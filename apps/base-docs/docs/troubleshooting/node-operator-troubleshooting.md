@@ -111,7 +111,7 @@ grep "ERROR" /path/to/node/logs/geth.log
 
 ## Support Contacts
 
-Если вы столкнулись с проблемой, которую не удается решить самостоятельно:
+If you encounter a problem that you cannot solve on your own:
 
 1. Visit the [Base Community Discord](https://discord.gg/buildonbase)
 2. Create an issue on [GitHub](https://github.com/base-org/node)
