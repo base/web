@@ -35,7 +35,7 @@ Use the script to regenerate this file.
 ### [Etherscan](./etherscan/etherscan-sbs.md)
 
 - List some of the features of Etherscan
-- Read data from the Bored Apes Yacht Club contract on Etherscan
+- Read data from the Bored Ape Yacht Club contract on Etherscan
 - Write data to a contract using Etherscan.
 
 ### [Deploying Smart Contracts](./hardhat-deploy/hardhat-deploy-sbs.md)

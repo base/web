@@ -76,9 +76,9 @@
         ],
         "difficulty": "beginner",
         "displayed_sidebar": null,
-        "last_updated": "Aug 14, 2024",
-        "duration": "15 min read",
-        "checksum": "b977f1f187d1f846e832710d5b4715a8f351ebb95dd392c970038adaec2cd94f"
+        "last_updated": "Jan 28, 2025",
+        "duration": "14 min read",
+        "checksum": "1a4ff0e8fb3bdb19eb31b23839e970328f465ee2b08edb974899c2029e6c8067"
     },
     "0_deploy-with-remix": {
         "title": "Deploying a smart contract using Remix",
@@ -106,9 +106,9 @@
         ],
         "difficulty": "beginner",
         "displayed_sidebar": null,
-        "last_updated": "Aug 9, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "18 min read",
-        "checksum": "0988226936a6179a48ef69db917e8a8d01f3a99db85e92c8985461dc35572d9a"
+        "checksum": "51a373b0edbcf28503e0674e5d7b3e286095bf9b24e68575314f8eca3b864d74"
     },
     "0_deploy-with-tenderly": {
         "title": "Deploying a smart contract using Tenderly",
@@ -137,9 +137,9 @@
         ],
         "difficulty": "beginner",
         "displayed_sidebar": null,
-        "last_updated": "Jul 11, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "19 min read",
-        "checksum": "6b93f84f6431fcf064adbb8b51ee2fb162a97516d4fbac2f982af1eddba87b6b"
+        "checksum": "e1d5cda5b9c402023c6c5f4ab5cd47636ba01880eb3027f44e6bccca5d8fbbf8"
     },
     "0_deploy-with-thirdweb": {
         "title": "Deploying a smart contract using thirdweb",
@@ -200,9 +200,9 @@
         "difficulty": "easy",
         "hide_table_of_contents": false,
         "displayed_sidebar": null,
-        "last_updated": "Aug 14, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "27 min read",
-        "checksum": "39df303029b9cfd8a5efe33a3c4a6280dd25f4d7554553fcfaf0904b0c72bd21"
+        "checksum": "d5fae24ccf951790ee64ed24104ec92d63f557b4fbfda73b6df7816d6c4213ea"
     },
     "0_intro-to-providers": {
         "title": "Introduction to Providers",
@@ -251,9 +251,9 @@
         "difficulty": "beginner",
         "hide_table_of_contents": false,
         "displayed_sidebar": null,
-        "last_updated": "Sep 12, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "21 min read",
-        "checksum": "774c94bba584693d64a3db2ec4da3554ac5bc69b54956874d78d0abdd6701c62"
+        "checksum": "e8ad9f260741d1bad609de2c417d0ab29b1cdba6fdf71660249f6bae1477f120"
     },
     "0_run-a-base-node": {
         "title": "Running a Base Node",
@@ -279,9 +279,9 @@
         ],
         "difficulty": "beginner",
         "displayed_sidebar": null,
-        "last_updated": "Dec 6, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "7 min read",
-        "checksum": "f54045db529b60ed18d47eea24b283da5620dc5e8e2fb39015daef16b5baa48a"
+        "checksum": "5fab200cf9f312d01648ebf0f508c9eb9dfa4f02fbb770dccb502cb7a0e90a1c"
     },
     "1_10_farcaster-frames-hyperframes": {
         "title": "Farcaster Frames: Building HyperFrames",
@@ -331,9 +331,9 @@
         "difficulty": "intermediate",
         "hide_table_of_contents": false,
         "displayed_sidebar": null,
-        "last_updated": "Aug 14, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "22 min read",
-        "checksum": "7ec4be15487c878540156a35cc0375aa1ca6f90f6cbfc412bb0604067a2d06d6"
+        "checksum": "88baf06914053c3358e53eeabae01e2c60f74628eae9944156652d2ab447b4a8"
     },
     "1_2_smart-wallet-and-eoa-with-onchainkit": {
         "title": "Use the Coinbase Smart Wallet and EOAs with OnchainKit",
@@ -437,9 +437,9 @@
         "difficulty": "beginner",
         "hide_table_of_contents": false,
         "displayed_sidebar": null,
-        "last_updated": "Aug 14, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "23 min read",
-        "checksum": "a78a3c220c1c4ee26a025f81eb6ec490d48be76db44ae959b57f30a220e7d799"
+        "checksum": "88b5e90ac17455267881a0181c6e360bf908efd75e80e0d0999e5aabf9ed7416"
     },
     "1_5_farcaster-frames-nocode-minting": {
         "title": "Farcaster Frames: Building a no-code minting Frame",
@@ -586,6 +586,29 @@
         "duration": "6 min read",
         "checksum": "6f687231958dc79d5264bcfeadfdb5704b860a7653d788491bdf4c8c41a0e0d3"
     },
+    "1_smart-wallet-spend-permissions": {
+        "title": "Create Onchain Subscription Payments with Spend Permissions",
+        "slug": "/create-subscription-payments-with-spend-permissions",
+        "description": "Implement a smart wallet signer for a subscription payment application.",
+        "author": "hughescoin",
+        "keywords": [
+            "smart wallet",
+            "onchain",
+            "spend permissions",
+            "smart wallet",
+            "account abstraction"
+        ],
+        "tags": [
+            "frontend",
+            "account abstraction"
+        ],
+        "difficulty": "medium",
+        "hide_table_of_contents": false,
+        "displayed_sidebar": null,
+        "last_updated": "Jan 28, 2025",
+        "duration": "15 min read",
+        "checksum": "f73fd21a59033f243172fc120fb3ee456c0063509e5acb6c610bab92669c56ad"
+    },
     "1_verify-contract-with-basescan": {
         "title": "Verify a Smart Contract using Basescan API",
         "slug": "/verify-smart-contract-using-basescan",
@@ -603,9 +626,9 @@
         "tags": [
             "smart contracts"
         ],
-        "last_updated": "Sep 12, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "12 min read",
-        "checksum": "c39c756f2f8f9940b0a041d5212d868f82aa0f949f11742d3fffedd37a5d2b35"
+        "checksum": "81a6956e7124a78de64f9f5363580ddd5fb7563cada84c9981157594958c45bd"
     },
     "2_1_simple-onchain-nfts": {
         "title": "Simple Onchain NFTs",
@@ -632,9 +655,9 @@
         "difficulty": "easy",
         "hide_table_of_contents": false,
         "displayed_sidebar": null,
-        "last_updated": "Aug 14, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "26 min read",
-        "checksum": "ac2dc8225de421e3718eb14a2854be1d524132c5f4e1fe9f3e0f855515d68a3c"
+        "checksum": "5b8b1179209e4dd292b9daac5ebbbcc106f58708c4741f946067ee9e5726a2a1"
     },
     "2_2_complex-onchain-nfts": {
         "title": "Complex Onchain NFTs",
@@ -773,9 +796,9 @@
         "difficulty": "intermediate",
         "hide_table_of_contents": false,
         "displayed_sidebar": null,
-        "last_updated": "Sep 26, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "14 min read",
-        "checksum": "28f843ebc47bc9d69b6bf040a6ec3d1b92237e78a462121d74ff70ab64d66018"
+        "checksum": "b0ff9731c71720e9c60d8715387c402ce481177d1d48ff625cb098e8120f8626"
     },
     "2_email-campaign-with-resend": {
         "title": "Create Email Marketing Campaigns Onchain using Coinbase Smart Wallet + Resend",
@@ -794,9 +817,9 @@
         ],
         "difficulty": "beginner",
         "displayed_sidebar": null,
-        "last_updated": "Sep 12, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "21 min read",
-        "checksum": "e04c640da09b69b49d92c792d7cc6ddfddbcbee6facc44de85690c73da1f3aeb"
+        "checksum": "8dc4ead004b163995712a5fe9563855f45bb7deb01d5a8f2c478ec31a914e8fe"
     },
     "2_event-gate-nouns": {
         "title": "Gate IRL Events with Nouns",
@@ -845,9 +868,9 @@
         "difficulty": "intermediate",
         "hide_table_of_contents": false,
         "displayed_sidebar": null,
-        "last_updated": "Aug 13, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "18 min read",
-        "checksum": "e20b430c2b1696b473625584d654f4a60e313c102127730553ab75f0bb54c568"
+        "checksum": "13a921259d94befc5320549482f1ba7789c3945049ce4485e3c1577dc3004601"
     },
     "2_ock-checkout-tutorial": {
         "title": "Build a eCommerce App using Coinbase Commerce and OnchainKit",
@@ -878,7 +901,7 @@
     "2_ock-fund-tutorial": {
         "title": "Build a Smart Wallet Funding app with OnchainKit",
         "slug": "/build-smart-wallet-funding-app",
-        "description": "Learn how to create a app that detects if a smart wallet has ETH and prompts users to add funds if needed.",
+        "description": "Learn how to create an app that detects if a smart wallet has ETH and prompts users to add funds if needed.",
         "author": "hughescoin",
         "keywords": [
             "Account Abstraction",
@@ -898,9 +921,9 @@
         ],
         "difficulty": "medium",
         "displayed_sidebar": null,
-        "last_updated": "Dec 6, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "8 min read",
-        "checksum": "7c0f5e6d29bac8f14d6bc3f169994b35553e2076541a6be37d90d70f15d6406c"
+        "checksum": "f5ad128bad310692e6e8e764b8ec9e23b5edd86a72eacfca3ee59d04720b727f"
     },
     "2_paymaster-erc20-gas-payments": {
         "title": "Enable ERC-20 Gas Payments with Coinbase Paymaster",
@@ -950,9 +973,9 @@
         ],
         "difficulty": "beginner",
         "displayed_sidebar": null,
-        "last_updated": "Dec 6, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "15 min read",
-        "checksum": "c3637099bddcc48e1480b60b3bf560c1a6ee901b8ed7bf598e8bf8d26cb23200"
+        "checksum": "ad0d59700325fbd55cb6690ccb747efefe4347d3188489c0f30917b396a42721"
     },
     "4_account-abstraction-with-biconomy": {
         "title": "Account Abstraction on Base using Biconomy",
@@ -1031,9 +1054,9 @@
         "difficulty": "intermediate",
         "hide_table_of_contents": false,
         "displayed_sidebar": null,
-        "last_updated": "Sep 12, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "46 min read",
-        "checksum": "aabfa2f90ea76b3e76b29d22f15262c84734e21d657e27ebc81b09f7f23b142d"
+        "checksum": "3e7eb3dbdfc8806245b9f0bf04a184688127fcff3b9608dd13d946c91af67837"
     },
     "4_hardhat-debugging": {
         "title": "Hardhat: Debugging smart contracts",
@@ -1134,9 +1157,9 @@
         "difficulty": "beginner",
         "hide_table_of_contents": false,
         "displayed_sidebar": null,
-        "last_updated": "Jul 19, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "9 min read",
-        "checksum": "91362e14b5f94b0bac604a0b17944fb8b41658f3e3b4c79510ea514f28f5d8d3"
+        "checksum": "7d5171f1aa6f16f640900e9b21ee6629ad2de0907fdf4c656cc3f3c0d2a2d694"
     },
     "4_intro-to-foundry-setup": {
         "title": "Foundry: Setting up Foundry with Base",
@@ -1209,9 +1232,9 @@
         "difficulty": "easy",
         "hide_table_of_contents": false,
         "displayed_sidebar": null,
-        "last_updated": "Sep 26, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "5 min read",
-        "checksum": "17b2137efd031251de2beb3683b5c75006b8723bff189e59d655d86f5abc296d"
+        "checksum": "e8785b5a482cc64f2aa4f878a60ab0cdfaa321bc2d20d6ad57ff60d9782df88a"
     },
     "5_cross-chain-with-ccip": {
         "title": "Sending messages and tokens from Base to other chains using Chainlink CCIP",
@@ -1234,9 +1257,9 @@
         ],
         "difficulty": "intermediate",
         "displayed_sidebar": null,
-        "last_updated": "Aug 14, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "32 min read",
-        "checksum": "a7cd33af8c6f1d4eb7853e2e348d956ce07e923923be0376484316c597733e7b"
+        "checksum": "05673c8e84071580e5352570b4292ee0e742b9f604d588bc709db08c9b7782d1"
     },
     "5_cross-chain-with-layerzero": {
         "title": "Sending messages from Base to other chains using LayerZero V2",
@@ -1259,9 +1282,9 @@
         ],
         "difficulty": "intermediate",
         "displayed_sidebar": null,
-        "last_updated": "Dec 6, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "34 min read",
-        "checksum": "af94b371cf5c3798b44ea74a21184bf81ca97ab2c12d6194c7ff6093e164ec6f"
+        "checksum": "b15bcf927d3a6d70131a7fe7e118b7810fa4ec3b34bbacf0db861b85238c5ce7"
     },
     "5_deploy-with-fleek": {
         "title": "Deploy an Onchain App with Fleek",
@@ -1282,9 +1305,9 @@
         "hide_table_of_contents": false,
         "displayed_sidebar": null,
         "image": "https://docs.base.org/img/base-learn-open-graph.png",
-        "last_updated": "Aug 14, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "9 min read",
-        "checksum": "d9302891627f1761507422bf35c361a30b343e77cb4d3981888ab70eb4fbd0ac"
+        "checksum": "4a06b8e349114fbc14b558e4721dee2077c8085b19dfcfeca4dc9a516a147ccf"
     },
     "5_farcaster-to-openframe": {
         "title": "Convert Farcaster Frame to Open Frame using OnchainKit",
@@ -1401,9 +1424,9 @@
         ],
         "difficulty": "intermediate",
         "displayed_sidebar": null,
-        "last_updated": "Aug 14, 2024",
+        "last_updated": "Jan 28, 2025",
         "duration": "19 min read",
-        "checksum": "46d96117b03b9225493b382afd3b8f5800001063296cb34eb48269481c7d15c6"
+        "checksum": "f1d856f7c75b125a4da32e33481b2b2745a064a39f2044887d0af25814dd08c3"
     },
     "5_shopify-storefront-commerce": {
         "title": "Deploy a Shopify Storefront with Coinbase Commerce",
