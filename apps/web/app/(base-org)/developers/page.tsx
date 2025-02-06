@@ -5,7 +5,7 @@ import { Hero } from 'apps/web/src/components/Developers/Hero';
 // import { UseCases } from 'apps/web/src/components/Developers/UseCases';
 import { Customers } from 'apps/web/src/components/Developers/Customers';
 import { Testimonials } from 'apps/web/src/components/Developers/Testimonials';
-// import { Tools } from 'apps/web/src/components/Developers/Tools';
+import { Tools } from 'apps/web/src/components/Developers/Tools';
 // import { WhyBase } from 'apps/web/src/components/Developers/WhyBase';
 import { BottomCta } from 'apps/web/src/components/Developers/BottomCta';
 // import { LiveDemo } from 'apps/web/src/components/Developers/LiveDemo';
@@ -28,8 +28,8 @@ export default async function Developers() {
           {/* <UseCases />*/}
           <Customers />
           <Testimonials />
-          {/* <Tools />
-          <WhyBase />
+          <Tools />
+          {/* <WhyBase />
           <LiveDemo /> */}
           <BottomCta />
         </main>
