@@ -1,0 +1,12 @@
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-1 * (200px + 40px))); /* Move by one logo width + gap */
+  }
+}
+
+.animate-scroll {
+  animation: scroll 5s linear infinite;
+}

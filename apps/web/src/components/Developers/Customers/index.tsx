@@ -4,6 +4,7 @@ import logo from 'apps/web/src/components/base-org/shared/TopNavigation/assets/l
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
 import Image, { type StaticImageData } from 'next/image';
+import 'apps/web/src/components/Developers/Customers/styles.css';
 
 const LOGO_WIDTH = 200; // width of each logo in pixels
 const LOGO_GAP = 40; // gap between logos in pixels
@@ -28,7 +29,7 @@ export function Customers() {
         }}
       >
         <div
-          className="animate-scroll absolute left-0 flex"
+          className="animate-scroll absolute left-0 flex animate-scroll"
           style={{
             gap: `${LOGO_GAP}px`,
             width: `calc((${LOGO_WIDTH}px + ${LOGO_GAP}px) * ${TOTAL_LOGOS})`,
