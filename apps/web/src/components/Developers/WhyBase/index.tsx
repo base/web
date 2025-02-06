@@ -1,10 +1,10 @@
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
 import Image, { type StaticImageData } from 'next/image';
-import integration from 'apps/web/src/components/Developers/WhyBase/integration.svg';
-import support from 'apps/web/src/components/Developers/WhyBase/support.svg';
-import megaphone from 'apps/web/src/components/Developers/WhyBase/megaphone.svg';
-import security from 'apps/web/src/components/Developers/WhyBase/security.svg';
+import integration from 'apps/web/src/components/Developers/WhyBase/assets/integration.svg';
+import support from 'apps/web/src/components/Developers/WhyBase/assets/support.svg';
+import megaphone from 'apps/web/src/components/Developers/WhyBase/assets/megaphone.svg';
+import security from 'apps/web/src/components/Developers/WhyBase/assets/security.svg';
 
 type ValuePropProps = {
   title: string;
