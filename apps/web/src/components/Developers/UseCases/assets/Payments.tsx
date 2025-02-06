@@ -32,7 +32,7 @@ export function AnimatedPayment() {
         <span className="text-lg font-bold text-white">$69.42</span>
       </div>
 
-      {/* <style jsx>{`
+      <style>{`
         @keyframes springIn {
           0% {
             transform: scale(0);
@@ -75,7 +75,7 @@ export function AnimatedPayment() {
         .fast-spin {
           animation: fastSpin 0.6s linear infinite;
         }
-      `}</style> */}
+      `}</style>
 
       {/* Pay with crypto button */}
       <button
