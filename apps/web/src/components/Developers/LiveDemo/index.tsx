@@ -1,11 +1,8 @@
 'use client';
 
-// import { WalletAdvancedDefault } from '@coinbase/onchainkit/wallet';
-// import { Buy } from '@coinbase/onchainkit/buy';
 import { Checkout, CheckoutButton } from '@coinbase/onchainkit/checkout';
 import { SwapDefault } from '@coinbase/onchainkit/swap';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { createHighlighter } from 'shiki';
 import sun from './assets/sun.svg';
 import moon from './assets/moon.svg';
 import Image, { StaticImageData } from 'next/image';
@@ -15,6 +12,12 @@ import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/ty
 import classNames from 'classnames';
 import { DynamicCryptoProviders } from 'apps/web/app/CryptoProviders.dynamic';
 import type { Token } from '@coinbase/onchainkit/token';
+import dynamic from 'next/dynamic';
+
+const DynamicCodeSnippet = dynamic<{ code: string }>(async () => import('./CodeSnippet'), {
+  ssr: false,
+  loading: () => <div>Loading...</div>,
+});
 
 type Tab = 'onboard' | 'onramp' | 'pay' | 'swap' | 'earn';
 
@@ -161,7 +164,7 @@ function EarnDemo() {
 export function LiveDemo() {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [isMounted, setIsMounted] = useState(false);
-  const [highlightedCode, setHighlightedCode] = useState('');
+  // const [highlightedCode, setHighlightedCode] = useState('');
   const [activeTab, setActiveTab] = useState<Tab>('onboard');
   const [copied, setCopied] = useState(false);
 
@@ -183,11 +186,9 @@ export function LiveDemo() {
 
     switch (activeTab) {
       case 'onboard':
-        return <div>WalletAdvancedDefault</div>;
-      // return <WalletAdvancedDefault />;
+        return <div>Wallet Advanced Default</div>;
       case 'onramp':
         return <div>Buy</div>;
-      // return <Buy toToken={degenToken} />;
       case 'pay':
         return (
           <Checkout productId="my-product-id">
@@ -206,39 +207,6 @@ export function LiveDemo() {
   useEffect(() => {
     setIsMounted(true);
   }, []);
-
-  useEffect(() => {
-    if (!isMounted) {
-      return;
-    }
-
-    async function highlightCode() {
-      const highlighter = await createHighlighter({
-        themes: ['github-light', 'github-dark'],
-        langs: ['typescript'],
-      });
-
-      const code = highlighter.codeToHtml(codeSnippets[activeTab], {
-        lang: 'typescript',
-        themes: {
-          light: 'github-light',
-          dark: 'github-dark',
-        },
-        defaultColor: false,
-      });
-
-      // Remove Shiki formatting
-      const cleanedCode = code.replace(
-        /<pre[^>]*class="([^"]*)"[^>]*>/,
-        (_match: string, className: string) =>
-          `<pre class="${className}" style="margin: 0; padding: 0; background: transparent">`,
-      );
-
-      setHighlightedCode(cleanedCode);
-    }
-
-    void highlightCode();
-  }, [isMounted, activeTab]);
 
   const handleCopy = useCallback(() => {
     void navigator.clipboard.writeText(codeSnippets[activeTab]);
@@ -393,16 +361,7 @@ export function LiveDemo() {
           </div>
           <div className="h-[300px] py-6 pl-6 pr-1 lg:h-[500px]">
             <div className={`${theme} relative h-full`}>
-              {highlightedCode ? (
-                <div
-                  className="code-snippet h-full overflow-auto rounded-lg transition-colors"
-                  dangerouslySetInnerHTML={{ __html: highlightedCode }}
-                />
-              ) : (
-                <div className="h-full overflow-auto rounded-lg transition-colors">
-                  <div className="text-neutral-400">Loading...</div>
-                </div>
-              )}
+              <DynamicCodeSnippet code={codeSnippets[activeTab]} />
             </div>
           </div>
         </div>
