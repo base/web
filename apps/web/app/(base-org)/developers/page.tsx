@@ -7,8 +7,8 @@ import { Customers } from 'apps/web/src/components/Developers/Customers';
 import { Testimonials } from 'apps/web/src/components/Developers/Testimonials';
 import { Tools } from 'apps/web/src/components/Developers/Tools';
 import { WhyBase } from 'apps/web/src/components/Developers/WhyBase';
-import { BottomCta } from 'apps/web/src/components/Developers/BottomCta';
 // import { LiveDemo } from 'apps/web/src/components/Developers/LiveDemo';
+import { BottomCta } from 'apps/web/src/components/Developers/BottomCta';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
