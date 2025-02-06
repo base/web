@@ -2,8 +2,8 @@
 
 import classNames from 'classnames';
 import { useEffect, useState, useRef, useCallback } from 'react';
-import Image, { StaticImageData } from 'next/image';
-import logo from 'apps/web/src/components/base-org/shared/TopNavigation/assets/logo.svg';
+import { Icon } from 'apps/web/src/components/Icon/Icon';
+import 'apps/web/src/components/Developers/UseCases/styles.css';
 
 export function AnimatedOnboarding() {
   const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({
@@ -68,8 +68,8 @@ export function AnimatedOnboarding() {
           } as React.CSSProperties
         }
       >
-        <div className="flex h-12 items-center justify-center gap-2 font-bold text-white">
-          <Image src={logo as StaticImageData} alt="Base Logo" width={24} height={24} />
+        <div className="relative z-10 flex h-12 items-center justify-center gap-2 font-bold text-white">
+          <Icon name="wallet" width={24} height={24} color="white" />
           Coinbase Wallet
         </div>
       </div>
