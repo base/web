@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import AnimatedIcon from './AnimatedIcon';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
 import Link from 'apps/web/src/components/Link';
+import { DevelopersDropdown } from 'apps/web/src/components/base-org/shared/TopNavigation/DevelopersDropdown';
 
 type MenuDesktopProps = {
   links: TopNavigationLink[];
@@ -95,47 +96,64 @@ export default function MenuDesktop({ links }: MenuDesktopProps) {
       {/* Sub Menu */}
       <div
         ref={subItemsRef}
-        className="absolute top-full w-full p-1 duration-300 ease-in-out"
+        className="absolute left-1/2 top-full w-[718px] min-w-full p-1 duration-300 ease-in-out"
         style={{
           height: `${subItemsHeight}px`,
           opacity: subActive ? 1 : 0,
-          transform: `translateY(${subActive ? 0 : -20}px)`,
+          transform: `translateX(-50%) translateY(${subActive ? 0 : -20}px)`,
         }}
       >
-        <Card radius={8} innerClassName="bg-[#191919]">
-          <div className="flex w-full items-stretch gap-2 rounded-lg bg-[#191919] p-2">
-            {links[hoverIndex]?.subItems && (
-              <AnalyticsProvider context={links[hoverIndex].analyticContext}>
-                <div className="flex flex-1 flex-col">
-                  {links[hoverIndex].subItems.map((subItem) => (
-                    <Link
-                      key={`link-${links[hoverIndex].name}-subitem-${subItem.name}`.toLocaleLowerCase()}
-                      href={subItem.href + '?utm_source=dotorg&utm_medium=nav'}
-                      target={subItem.href.startsWith('https://') ? '_blank' : undefined}
-                      className="group/sublink flex justify-between rounded-lg bg-white bg-opacity-0 px-3 py-2 text-sm transition-all duration-300 hover:bg-opacity-20"
-                    >
-                      <span>{subItem.name}</span>
-                      <span className="rotate-0 transform opacity-0 transition-all delay-75 duration-300 group-hover/sublink:rotate-45 group-hover/sublink:opacity-60">
-                        ↗
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </AnalyticsProvider>
-            )}
-            {links[hoverIndex]?.subItems && (
-              <div className="min-h-[200px] flex-1 basis-0 overflow-hidden ">
-                {links[hoverIndex]?.name && (
-                  <div className="flex h-full w-full flex-col items-center justify-center gap-2 rounded-lg bg-black">
-                    {subActive && (
-                      <AnimatedIcon key={links[hoverIndex].name} icon={links[hoverIndex].name} />
-                    )}
+        {links[hoverIndex]?.name === 'Developers' ? (
+          <DevelopersDropdown />
+        ) : (
+          <Card radius={8} innerClassName="bg-[#191919]">
+            <div className="flex w-full items-stretch gap-2 rounded-lg bg-[#191919] p-2">
+              {links[hoverIndex]?.subItems && (
+                <AnalyticsProvider context={links[hoverIndex].analyticContext}>
+                  <div className="flex flex-1 flex-col">
+                    {links[hoverIndex].subItems.map((subItem) => (
+                      <Link
+                        key={`link-${links[hoverIndex].name}-subitem-${subItem.name}`.toLocaleLowerCase()}
+                        href={
+                          subItem.href.includes('#')
+                            ? `${subItem.href.split('#')[0]}?utm_source=dotorg&utm_medium=nav#${
+                                subItem.href.split('#')[1]
+                              }`
+                            : `${subItem.href}?utm_source=dotorg&utm_medium=nav`
+                        }
+                        target={subItem.href.startsWith('https://') ? '_blank' : undefined}
+                        className="group/sublink flex items-center justify-between rounded-lg bg-white bg-opacity-0 px-3 py-2 text-sm transition-all duration-300 hover:bg-opacity-20"
+                      >
+                        <div className="flex flex-col">
+                          <span>{subItem.name}</span>
+                          {subItem.description && (
+                            <span className="text-dark-palette-foregroundMuted">
+                              {subItem.description}
+                            </span>
+                          )}
+                        </div>
+                        <span className="rotate-0 transform opacity-0 transition-all delay-75 duration-300 group-hover/sublink:rotate-45 group-hover/sublink:opacity-60">
+                          ↗
+                        </span>
+                      </Link>
+                    ))}
                   </div>
-                )}
-              </div>
-            )}
-          </div>
-        </Card>
+                </AnalyticsProvider>
+              )}
+              {links[hoverIndex]?.subItems && (
+                <div className="min-h-[200px] flex-1 basis-0 overflow-hidden ">
+                  {links[hoverIndex]?.name && (
+                    <div className="flex h-full w-full flex-col items-center justify-center gap-2 rounded-lg bg-black">
+                      {subActive && (
+                        <AnimatedIcon key={links[hoverIndex].name} icon={links[hoverIndex].name} />
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </Card>
+        )}
       </div>
     </div>
   );
