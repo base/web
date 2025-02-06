@@ -312,6 +312,11 @@ module.exports = extendBaseConfig(
           destination: '/names',
           permanent: true,
         },
+        {
+          source: '/build',
+          destination: '/resources',
+          permanent: true,
+        },
       ];
     },
   },
