@@ -29,7 +29,7 @@ const variantStyles: Record<ButtonVariants, string> = {
     'bg-transparent text-white border border-white hover:bg-white hover:text-black active:bg-[#E3E7E9]',
 
   // Secondary Outlined
-  [ButtonVariants.SecondaryOutline]: 'bg-transparent border border-gray-muted hover:bg-white/10',
+  [ButtonVariants.SecondaryOutline]: 'bg-transparent border border-gray-muted/65 hover:bg-white/10',
 };
 
 const sizeStyles: Record<ButtonSizes, string> = {
