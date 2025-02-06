@@ -7,6 +7,10 @@ import usdc from 'apps/web/public/images/partners/usdc.svg';
 
 const initialEarned = 4124.39;
 const apy = 6.97;
+const numberFlowFormat = {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+};
 
 export function AnimatedDefi() {
   const [currentEarned, setCurrentEarned] = useState(initialEarned);
@@ -58,13 +62,7 @@ export function AnimatedDefi() {
           </div>
           <div className="flex items-center gap-2 text-xl font-bold text-white">
             $
-            <NumberFlow
-              value={currentEarned}
-              format={{
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              }}
-            />
+            <NumberFlow value={currentEarned} format={numberFlowFormat} />
             <span className="text-sm font-medium text-dark-green-60">
               +{percentageIncrease.toFixed(2)}%
             </span>
