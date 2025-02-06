@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
 import Container from 'apps/web/src/components/base-org/Container';
-// import { Hero } from 'apps/web/src/components/Developers/Hero';
+import { Hero } from 'apps/web/src/components/Developers/Hero';
 // import { UseCases } from 'apps/web/src/components/Developers/UseCases';
 import { Customers } from 'apps/web/src/components/Developers/Customers';
 // import { Testimonials } from 'apps/web/src/components/Developers/Testimonials';
@@ -24,8 +24,8 @@ export default async function Developers() {
     <AnalyticsProvider context="developers">
       <Container>
         <main className="mb-32 flex min-h-screen w-full flex-col items-center bg-black">
-          {/* <Hero />
-          <UseCases />*/}
+          <Hero />
+          {/* <UseCases />*/}
           <Customers />
           {/* <Testimonials />
           <Tools />
