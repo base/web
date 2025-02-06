@@ -7,7 +7,7 @@ import { Customers } from 'apps/web/src/components/Developers/Customers';
 import { Testimonials } from 'apps/web/src/components/Developers/Testimonials';
 import { Tools } from 'apps/web/src/components/Developers/Tools';
 import { WhyBase } from 'apps/web/src/components/Developers/WhyBase';
-import { LiveDemo } from 'apps/web/src/components/Developers/LiveDemo';
+// import { LiveDemo } from 'apps/web/src/components/Developers/LiveDemo';
 import { BottomCta } from 'apps/web/src/components/Developers/BottomCta';
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Developers() {
+export default function Developers() {
   return (
     <AnalyticsProvider context="developers">
       <Container>
@@ -30,7 +30,7 @@ export default async function Developers() {
           <Testimonials />
           <Tools />
           <WhyBase />
-          <LiveDemo />
+          {/* <LiveDemo /> */}
           <BottomCta />
         </main>
       </Container>

@@ -8,7 +8,7 @@ import { AnimatedSocial } from 'apps/web/src/components/Developers/UseCases/asse
 import { AnimatedDefi } from 'apps/web/src/components/Developers/UseCases/assets/Defi';
 import { AnimatedGasless } from 'apps/web/src/components/Developers/UseCases/assets/Gasless';
 
-export async function UseCases() {
+export function UseCases() {
   return (
     <section className="h-full w-full">
       <div className="flex flex-row gap-2">
