@@ -164,7 +164,8 @@ function EarnDemo() {
 export function LiveDemo() {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [isMounted, setIsMounted] = useState(false);
-  // const [highlightedCode, setHighlightedCode] = useState('');
+  const [content, setContent] = useState<'code' | 'preview'>('code');
+  const [isComponentMenuOpen, setIsComponentMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>('onboard');
   const [copied, setCopied] = useState(false);
 
@@ -235,7 +236,7 @@ export function LiveDemo() {
   return (
     <section className="w-full">
       <style>{styles}</style>
-      <div className="mb-9 flex flex-row gap-2">
+      <div className="mb-9 flex flex-col gap-2 md:flex-row">
         <Title level={TitleLevel.Title1}>Try it out!</Title>
         <Title level={TitleLevel.Title1} className="text-dark-palette-foregroundMuted">
           Experience how easy it is to build on Base.
@@ -243,18 +244,137 @@ export function LiveDemo() {
       </div>
       <div
         className={classNames(
-          'rounded-xl border transition-colors',
+          'relative rounded-xl border transition-colors',
           theme === 'dark'
             ? 'border-dark-palette-line/50 bg-black'
             : 'border-dark-palette-line/50 bg-white',
         )}
       >
+        {isComponentMenuOpen && (
+          <div
+            className={classNames(
+              'md:hidden',
+              'h-full w-3/4 p-6',
+              'absolute right-0 top-0 z-10',
+              'border-l border-palette-lineHeavy/65',
+              'rounded-r-xl',
+              'font-medium',
+              theme === 'dark' ? 'bg-palette-foreground' : 'bg-white',
+            )}
+          >
+            <div className="flex w-full flex-col items-start space-y-4 px-1">
+              <div className="flex w-full justify-between">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveTab('onboard');
+                    setIsComponentMenuOpen(false);
+                  }}
+                  className={classNames(
+                    'whitespace-nowrap rounded-lg text-base font-medium transition-colors',
+                    activeTab === 'onboard' ? buttonClasses.active : buttonClasses.inactive,
+                  )}
+                >
+                  Sign in
+                </button>
+                <button
+                  type="button"
+                  aria-label="Close component menu"
+                  onClick={() => setIsComponentMenuOpen(false)}
+                  className={classNames(
+                    'rounded-lg p-2',
+                    theme === 'dark' ? 'text-white' : 'text-dark-palette-backgroundAlternate',
+                  )}
+                >
+                  <Icon name="close" color="currentColor" width={16} height={16} />
+                </button>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveTab('onramp');
+                  setIsComponentMenuOpen(false);
+                }}
+                className={classNames(
+                  'whitespace-nowrap rounded-lg text-base font-medium transition-colors',
+                  activeTab === 'onramp' ? buttonClasses.active : buttonClasses.inactive,
+                )}
+              >
+                Onramp
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveTab('pay');
+                  setIsComponentMenuOpen(false);
+                }}
+                className={classNames(
+                  'whitespace-nowrap rounded-lg text-base font-medium transition-colors',
+                  activeTab === 'pay' ? buttonClasses.active : buttonClasses.inactive,
+                )}
+              >
+                Pay
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveTab('swap');
+                  setIsComponentMenuOpen(false);
+                }}
+                className={classNames(
+                  'whitespace-nowrap rounded-lg text-base font-medium transition-colors',
+                  activeTab === 'swap' ? buttonClasses.active : buttonClasses.inactive,
+                )}
+              >
+                Swap
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveTab('earn');
+                  setIsComponentMenuOpen(false);
+                }}
+                className={classNames(
+                  'whitespace-nowrap rounded-lg text-base font-medium transition-colors',
+                  activeTab === 'earn' ? buttonClasses.active : buttonClasses.inactive,
+                )}
+              >
+                Earn yield
+              </button>
+            </div>
+          </div>
+        )}
         <div
-          className={`flex items-center justify-between border-b py-2 pl-6 pr-2 transition-colors ${
-            theme === 'dark' ? 'border-dark-palette-line/50' : 'border-dark-palette-line/50'
-          }`}
+          className={classNames(
+            'flex items-center justify-between border-b py-2 pl-6 pr-2 transition-colors',
+            theme === 'dark' ? 'border-dark-palette-line/50' : 'border-dark-palette-line/50',
+          )}
         >
-          <div className="no-scrollbar flex items-center space-x-8 overflow-x-auto">
+          <div className="no-scrollbar flex items-center space-x-8 overflow-x-auto md:hidden">
+            <div className="flex space-x-8 px-1">
+              <button
+                type="button"
+                onClick={() => setContent('code')}
+                className={classNames(
+                  'whitespace-nowrap rounded-lg text-base font-medium transition-colors',
+                  content === 'code' ? buttonClasses.active : buttonClasses.inactive,
+                )}
+              >
+                Code
+              </button>
+              <button
+                type="button"
+                onClick={() => setContent('preview')}
+                className={classNames(
+                  'whitespace-nowrap rounded-lg text-base font-medium transition-colors',
+                  content === 'preview' ? buttonClasses.active : buttonClasses.inactive,
+                )}
+              >
+                Preview
+              </button>
+            </div>
+          </div>
+          <div className="no-scrollbar hidden items-center space-x-8 overflow-x-auto md:flex">
             <div className="flex space-x-8 px-1">
               <button
                 type="button"
@@ -314,7 +434,7 @@ export function LiveDemo() {
               type="button"
               onClick={handleCopy}
               className={classNames(
-                'rounded-lg border p-2 transition-colors',
+                'hidden rounded-lg border p-2 transition-colors md:block',
                 theme === 'dark'
                   ? 'border-dark-palette-line/50 hover:bg-white/10'
                   : 'border-dark-palette-line/50 text-dark-palette-backgroundAlternate hover:bg-white/10',
@@ -327,6 +447,25 @@ export function LiveDemo() {
               ) : (
                 <Icon name="copy" color="currentColor" width={16} height={16} />
               )}
+            </button>
+            <button
+              type="button"
+              aria-label="Toggle component menu"
+              onClick={() => setIsComponentMenuOpen((prev) => !prev)}
+              className={classNames(
+                'rounded-lg border p-2 transition-colors md:hidden',
+                theme === 'dark'
+                  ? 'border-dark-palette-line/50 hover:bg-white/10'
+                  : 'border-dark-palette-line/50 text-dark-palette-backgroundAlternate hover:bg-white/10',
+              )}
+            >
+              <div
+                className={classNames(
+                  theme === 'dark' ? 'text-white' : 'text-dark-palette-backgroundAlternate',
+                )}
+              >
+                <Icon name="hamburger" color="currentColor" width={16} height={16} />
+              </div>
             </button>
             <button
               type="button"
@@ -347,7 +486,28 @@ export function LiveDemo() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div className="grid grid-cols-1 text-xs md:hidden">
+          {content === 'preview' ? (
+            <div
+              className={classNames(
+                'h-[300px] p-8 lg:h-[500px] lg:p-12',
+                'border-b lg:border-b-0 lg:border-r',
+                'flex items-center justify-center transition-colors',
+                'overflow-visible',
+                theme === 'dark' ? 'border-dark-palette-line/50' : 'border-dark-palette-line/50',
+              )}
+            >
+              <DynamicCryptoProviders>{demoComponent}</DynamicCryptoProviders>
+            </div>
+          ) : (
+            <div className="h-[300px] p-6">
+              <div className={`${theme} relative h-full`}>
+                <DynamicCodeSnippet code={codeSnippets[activeTab]} />
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="hidden grid-cols-1 md:grid lg:grid-cols-2">
           <div
             className={classNames(
               'h-[300px] p-8 lg:h-[500px] lg:p-12',

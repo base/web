@@ -623,6 +623,19 @@ const ICONS: Record<string, (props: SvgProps) => JSX.Element> = {
       />
     </svg>
   ),
+  hamburger: ({ color, width, height }: SvgProps) => (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M14.9883 4.59512H0.988292V2.99512H14.9883V4.59512Z" fill={color} />
+      <path d="M14.9883 8.79511H0.988281V7.19511H14.9883V8.79511Z" fill={color} />
+      <path d="M0.988292 12.9951H14.9883V11.3951H0.988292V12.9951Z" fill={color} />
+    </svg>
+  ),
 };
 
 export function Icon({ name, color = 'white', width = '24', height = '24' }: IconProps) {
