@@ -67,7 +67,7 @@ export function AnimatedSocial() {
           initial={buttonAnimations.initial}
           animate={buttonAnimations.animate}
           transition={buttonAnimations.transition}
-          className="h-12 w-full rounded-xl bg-white font-bold text-black transition-colors hover:bg-dark-gray-90"
+          className="h-12 w-full rounded-xl bg-white font-medium text-black transition-colors hover:bg-dark-gray-90"
         >
           Collect
         </motion.button>

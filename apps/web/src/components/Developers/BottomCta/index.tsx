@@ -28,7 +28,7 @@ export function BottomCta() {
         <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
           <button
             type="button"
-            className="inline-flex items-center gap-2.5 rounded-xl bg-white px-4 py-2 font-bold text-dark-palette-primaryForeground transition-colors hover:bg-white/90"
+            className="inline-flex items-center gap-2.5 rounded-xl bg-white px-4 py-2 font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90"
             onClick={handleCopy}
           >
             npm create onchain
@@ -42,7 +42,7 @@ export function BottomCta() {
           </button>
           <ButtonWithLinkAndEventLogging
             variant={ButtonVariants.SecondaryOutline}
-            linkClassNames="text-base font-bold text-white block"
+            linkClassNames="text-base font-medium text-white block"
             buttonClassNames="flex w-40 items-center justify-between px-4 py-3 group"
             target="_blank"
             href="/stories"

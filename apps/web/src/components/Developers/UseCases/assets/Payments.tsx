@@ -28,8 +28,8 @@ export function AnimatedPayment() {
 
       {/* Total amount with justified spacing */}
       <div className="mb-4 flex items-center justify-between">
-        <span className="text-lg font-bold text-white">Total</span>
-        <span className="text-lg font-bold text-white">$69.42</span>
+        <span className="text-lg font-medium text-white">Total</span>
+        <span className="text-lg font-medium text-white">$69.42</span>
       </div>
 
       <style>{`
@@ -80,7 +80,7 @@ export function AnimatedPayment() {
       {/* Pay with crypto button */}
       <button
         type="button"
-        className="relative h-12 w-full overflow-hidden rounded-xl bg-[#0052FF] font-bold text-white"
+        className="relative h-12 w-full overflow-hidden rounded-xl bg-[#0052FF] font-medium text-white"
       >
         <div className="absolute inset-0 flex items-center justify-center">
           {/* Default State: Logo + Text */}

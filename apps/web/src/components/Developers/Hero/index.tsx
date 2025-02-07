@@ -60,7 +60,7 @@ export function Hero() {
               className={classNames(
                 'w-full px-6 py-3',
                 'bg-illoblack',
-                'font-bold text-white',
+                'font-medium text-white',
                 'rounded-xl border !border-dark-palette-foregroundMuted/50',
                 '!justify-start',
               )}

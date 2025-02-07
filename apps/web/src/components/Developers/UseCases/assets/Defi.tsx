@@ -53,14 +53,14 @@ export function AnimatedDefi() {
           />
         </div>
         <div className="space-y-1">
-          <div className="text-xs font-bold text-dark-palette-foregroundMuted">APY</div>
-          <div className="text-base font-bold text-white">{apy}%</div>
+          <div className="text-xs font-medium text-dark-palette-foregroundMuted">APY</div>
+          <div className="text-base font-medium text-white">{apy}%</div>
         </div>
         <div className="space-y-1">
-          <div className="text-xs font-bold uppercase text-dark-palette-foregroundMuted">
+          <div className="text-xs font-medium uppercase text-dark-palette-foregroundMuted">
             Total Earned
           </div>
-          <div className="flex items-center gap-2 text-xl font-bold text-white">
+          <div className="flex items-center gap-2 text-xl font-medium text-white">
             $
             <NumberFlow value={currentEarned} format={numberFlowFormat} />
             <span className="text-sm font-medium text-dark-green-60">
@@ -70,7 +70,7 @@ export function AnimatedDefi() {
         </div>
         <button
           type="button"
-          className="mb-1 h-12 w-full rounded-xl bg-white font-bold text-black transition-colors hover:bg-dark-gray-90"
+          className="mb-1 h-12 w-full rounded-xl bg-white font-medium text-black transition-colors hover:bg-dark-gray-90"
         >
           Deposit
         </button>

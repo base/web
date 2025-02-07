@@ -23,7 +23,7 @@ export function UseCaseBlock({
         {children}
       </div>
       <div className="flex flex-col gap-2">
-        <Title level={TitleLevel.Title3} as="h3" className="font-bold text-white">
+        <Title level={TitleLevel.Title3} as="h3" className="font-medium text-white">
           {title}
         </Title>
         <Title level={TitleLevel.Title4} className="text-dark-palette-foregroundMuted">

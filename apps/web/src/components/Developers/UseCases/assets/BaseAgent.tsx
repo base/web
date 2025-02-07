@@ -39,7 +39,7 @@ export function AnimatedBaseAgent() {
         animate={isInView ? 'show' : 'hidden'}
         className="mb-4 flex items-center gap-2"
       >
-        <span className="flex items-center gap-2 text-lg font-bold text-white">
+        <span className="flex items-center gap-2 text-lg font-medium text-white">
           <Icon name="terminal" width="14" height="12" />
           Based Agent
         </span>
