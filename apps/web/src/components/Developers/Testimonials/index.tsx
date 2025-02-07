@@ -7,6 +7,7 @@ import { ButtonWithLinkAndEventLogging } from 'apps/web/src/components/Button/Bu
 import { ButtonVariants } from 'apps/web/src/components/base-org/Button/types';
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
+import { Icon } from 'apps/web/src/components/Icon/Icon';
 
 type Tab = 'build' | 'scale' | 'monetize';
 
@@ -93,15 +94,18 @@ export function Testimonials() {
                 </blockquote>
                 <ButtonWithLinkAndEventLogging
                   variant={ButtonVariants.SecondaryOutline}
-                  iconName="arrowRight"
-                  iconSize="20"
                   linkClassNames="text-base font-bold text-white block"
-                  buttonClassNames="flex w-40 items-center justify-between px-4 py-3"
-                  href="/stories"
+                  buttonClassNames="flex w-40 items-center justify-between px-4 py-3 group"
                   target="_blank"
+                  href="/stories"
                   eventName="testimonials"
                 >
-                  More stories
+                  <div className="flex w-40 items-center justify-between">
+                    <span> More stories</span>
+                    <div className="transition-transform duration-200 group-hover:translate-x-1">
+                      <Icon name="arrowRight" width={20} height={20} color="white" />
+                    </div>
+                  </div>
                 </ButtonWithLinkAndEventLogging>
               </motion.div>
             ))}

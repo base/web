@@ -42,13 +42,18 @@ export function BottomCta() {
           </button>
           <ButtonWithLinkAndEventLogging
             variant={ButtonVariants.SecondaryOutline}
-            iconName="arrowRight"
-            iconSize="24"
-            buttonClassNames="flex w-40 items-center justify-between px-4 py-3"
-            href=""
-            eventName="bottom-cta"
+            linkClassNames="text-base font-bold text-white block"
+            buttonClassNames="flex w-40 items-center justify-between px-4 py-3 group"
+            target="_blank"
+            href="/stories"
+            eventName="bottom-cta-documentation"
           >
-            Documentation
+            <div className="flex w-40 items-center justify-between">
+              <span> Documentation</span>
+              <div className="transition-transform duration-200 group-hover:translate-x-1">
+                <Icon name="arrowRight" width={20} height={20} color="white" />
+              </div>
+            </div>
           </ButtonWithLinkAndEventLogging>
         </div>
       </div>

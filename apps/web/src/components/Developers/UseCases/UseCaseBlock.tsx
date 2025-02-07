@@ -1,6 +1,7 @@
 'use client';
 
 import { ButtonWithLinkAndEventLogging } from 'apps/web/src/components/Button/ButtonWithLinkAndEventLogging';
+import { Icon } from 'apps/web/src/components/Icon/Icon';
 import { ButtonVariants } from 'apps/web/src/components/base-org/Button/types';
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
@@ -31,13 +32,16 @@ export function UseCaseBlock({
       </div>
       <ButtonWithLinkAndEventLogging
         variant={ButtonVariants.SecondaryOutline}
-        iconName="arrowRight"
-        iconSize="20"
-        buttonClassNames="flex w-40 items-center justify-between px-4 py-3"
+        buttonClassNames="flex w-40 items-center justify-between px-4 py-3 group"
         href={href}
         eventName={`developers_build-scale-monetize_${title.replace(/\s+/g, '-').toLowerCase()}`}
       >
-        Get started
+        <div className="flex w-40 items-center justify-between">
+          <span>Get started</span>
+          <div className="transition-transform duration-200 group-hover:translate-x-1">
+            <Icon name="arrowRight" width={20} height={20} color="white" />
+          </div>
+        </div>
       </ButtonWithLinkAndEventLogging>
     </div>
   );
