@@ -19,16 +19,26 @@ export function BottomCta() {
   return (
     <section className="my-24 w-full bg-black">
       <div className="flex flex-col items-center rounded-2xl bg-dark-palette-backgroundAlternate py-16">
-        <Title level={TitleLevel.Title1} as="h2">
+        <div className="px-9 text-center md:hidden">
+        <Title level={TitleLevel.Title3} as="h2">
           Together, we&apos;re updating the Internet with a new dev platform.
         </Title>
+        <Title level={TitleLevel.Headline} as="p" className="mt-2 font-normal">
+          Start building with a starter template or see documentation.
+          </Title>
+        </div>
+        <div className="hidden md:block">
+          <Title level={TitleLevel.Title1} as="h2">
+            Together, we&apos;re updating the Internet with a new dev platform.
+          </Title>
         <Title level={TitleLevel.Title4} as="p" className="mt-2">
           Start building with a starter template or see documentation.
         </Title>
+        </div>
         <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
           <button
             type="button"
-            className="inline-flex items-center gap-2.5 rounded-xl bg-white px-4 py-2 font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90"
+            className="inline-flex items-center gap-2.5 rounded-xl bg-white px-4 py-3 font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90"
             onClick={handleCopy}
           >
             npm create onchain
@@ -43,7 +53,7 @@ export function BottomCta() {
           <ButtonWithLinkAndEventLogging
             variant={ButtonVariants.SecondaryOutline}
             linkClassNames="text-base font-medium text-white block"
-            buttonClassNames="flex w-40 items-center justify-between px-4 py-3 group"
+            buttonClassNames="flex w-full items-center justify-between px-4 py-3 group !rounded-xl"
             target="_blank"
             href="/stories"
             eventName="bottom-cta-documentation"
