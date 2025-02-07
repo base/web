@@ -8,6 +8,14 @@
     "subcategory": "ai"
   },
   {
+    "name": "Bebop",
+    "description": "Bebop is a trading app and a suite of APIs that finds the best route for your trades. Quick, secure, any tokens in any size, at the best prices.",
+    "url": "https://bebop.xyz/trade?network=base",
+    "imageUrl": "/images/partners/bebop.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
+  },
+  {
     "name": "3DNS",
     "description": "3DNS is a decentralized domain name service (DNS) that can power real web domains. Users can import an existing domain or register a new one and bring the domain onchain via 3DNS.",
     "url": "https://3dns.box",
