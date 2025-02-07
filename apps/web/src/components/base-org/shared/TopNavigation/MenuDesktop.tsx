@@ -72,7 +72,7 @@ export default function MenuDesktop({ links }: MenuDesktopProps) {
               href={link.href + '?utm_source=dotorg&utm_medium=nav'}
               target={link.href.startsWith('https://') ? '_blank' : undefined}
               onMouseEnter={onMouseEnterNavLink}
-              className={`rounded-lg bg-opacity-0 px-6 py-1 text-sm opacity-50 transition-all duration-300 hover:bg-opacity-10 hover:opacity-100 ${
+              className={`rounded-md bg-opacity-0 px-6 py-1 text-sm opacity-50 transition-all duration-300 hover:bg-opacity-10 hover:opacity-100 ${
                 hoverIndex === index ? 'bg-opacity-10 opacity-100' : ''
               }`}
             >
@@ -82,7 +82,7 @@ export default function MenuDesktop({ links }: MenuDesktopProps) {
 
           {/* Animated background */}
           <div
-            className={`pointer-events-none absolute h-full rounded-lg bg-white/20 transition-all duration-300 ease-in-out ${
+            className={`pointer-events-none absolute h-full rounded-md bg-white/20 transition-all duration-300 ease-in-out ${
               hoverIndex > -1 ? 'opacity-100' : 'opacity-0'
             }`}
             style={{
@@ -122,12 +122,12 @@ export default function MenuDesktop({ links }: MenuDesktopProps) {
                             : `${subItem.href}?utm_source=dotorg&utm_medium=nav`
                         }
                         target={subItem.href.startsWith('https://') ? '_blank' : undefined}
-                        className="group/sublink flex items-center justify-between rounded-lg bg-white bg-opacity-0 px-3 py-2 text-sm transition-all duration-300 hover:bg-opacity-20"
+                        className="group/sublink flex items-center justify-between rounded-md bg-white bg-opacity-0 px-3 py-2 text-sm transition-all duration-300 hover:bg-opacity-20"
                       >
                         <div className="flex flex-col">
-                          <span>{subItem.name}</span>
+                          <span className="tracking-normal font-medium">{subItem.name}</span>
                           {subItem.description && (
-                            <span className="text-dark-palette-foregroundMuted">
+                            <span className="text-dark-palette-foregroundMuted tracking-normal">
                               {subItem.description}
                             </span>
                           )}

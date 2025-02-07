@@ -61,12 +61,12 @@ export function Hero() {
                 'w-full px-6 py-3',
                 'bg-illoblack',
                 'font-medium text-white',
-                'rounded-xl border !border-dark-palette-foregroundMuted/50',
+                'rounded-xl border !border-dark-palette-foregroundMuted/20',
                 '!justify-start',
               )}
             >
-              <span className="md:hidden">Search tools or templates...</span>
-              <span className="hidden md:inline">Search tools or templates to get started</span>
+              <span className="md:hidden tracking-normal">Search tools or templates...</span>
+              <span className="hidden md:inline tracking-normal">Search tools or templates to get started</span>
             </Button>
             <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 gap-1 md:flex">
               <div className="flex h-8 w-8 flex-col items-center justify-center rounded-sm bg-gray-80">
