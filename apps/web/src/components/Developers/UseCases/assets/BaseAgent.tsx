@@ -31,7 +31,7 @@ export function AnimatedBaseAgent() {
   );
 
   return (
-    <div ref={ref} className="my-8 flex h-full w-[292px] flex-col rounded-xl bg-black p-4">
+    <div ref={ref} className="my-8 flex h-full w-[285px] md:w-[292px] flex-col rounded-xl bg-black p-4">
       {/* Header */}
       <motion.div
         variants={item}

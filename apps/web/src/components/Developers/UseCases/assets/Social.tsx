@@ -36,7 +36,7 @@ export function AnimatedSocial() {
     [],
   );
   return (
-    <div className="m-6 w-full max-w-[292px]">
+    <div className="m-6 w-[285px] md:w-[292px]">
       <div className="mb-3 flex items-center gap-3">
         <LottieAnimation
           data={animation}

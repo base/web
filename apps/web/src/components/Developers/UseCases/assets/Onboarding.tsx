@@ -68,7 +68,7 @@ export function AnimatedOnboarding() {
           } as React.CSSProperties
         }
       >
-        <div className="relative z-10 flex h-12 items-center justify-center gap-2 font-bold text-white">
+        <div className="flex h-12 items-center justify-center gap-2 font-bold text-white">
           <Icon name="wallet" width={24} height={24} color="white" />
           Coinbase Wallet
         </div>

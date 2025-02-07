@@ -24,7 +24,7 @@ export function AnimatedGasless() {
 
   return (
     <div className="flex h-full w-full flex-col items-end justify-center">
-      <div className="w-[484px] gap-4 rounded-2xl bg-black p-6">
+      <div className="w-[328px] md:w-[484px] gap-4 rounded-2xl bg-black p-6">
         <h3 className="text-base font-semibold text-white">Gas sponsored</h3>
 
         <div className="relative mt-6 h-[160px]">

@@ -48,11 +48,11 @@ export function Hero() {
   return (
     <div className="flex w-full flex-col items-center justify-center bg-black pb-20 pt-20">
       <div className="flex h-[660px] w-full flex-col items-center justify-center py-20">
-        <Title className="font-display text-[2rem] leading-[1.2em] lg:text-[3rem] tracking-tight">
+        <Title className="font-display text-[1.25rem] leading-[1.2em] tracking-tight md:text-[2rem] lg:text-[3rem]">
           What do you want to build?
         </Title>
 
-        <div className="mt-7 flex w-[645px] flex-col items-center">
+        <div className="mt-7 flex w-[345px] flex-col items-center md:w-[645px]">
           <div className="relative w-full">
             <Button
               variant={ButtonVariants.SecondaryOutline}
@@ -60,14 +60,15 @@ export function Hero() {
               className={classNames(
                 'w-full px-6 py-3',
                 'bg-illoblack',
-                'text-white font-bold',
+                'font-bold text-white',
                 'rounded-xl border !border-dark-palette-foregroundMuted/50',
                 '!justify-start',
               )}
             >
-              Search tools or templates to get started
+              <span className="md:hidden">Search tools or templates...</span>
+              <span className="hidden md:inline">Search tools or templates to get started</span>
             </Button>
-            <div className="absolute right-6 top-1/2 flex -translate-y-1/2 gap-1">
+            <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 gap-1 md:flex">
               <div className="flex h-8 w-8 flex-col items-center justify-center rounded-sm bg-gray-80">
                 ⌘
               </div>
@@ -77,7 +78,7 @@ export function Hero() {
             </div>
             <SearchModal isOpen={isSearchModalOpen} setIsOpen={setIsSearchModalOpen} />
           </div>
-          <div className="mt-4 flex w-full justify-between">
+          <div className="mt-3 flex w-full flex-col items-start justify-between gap-3 md:mt-4 md:flex md:flex-row">
             <Button
               variant={ButtonVariants.SecondaryOutline}
               iconName="baseOrgDiagonalUpArrow"

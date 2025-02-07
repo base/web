@@ -22,7 +22,7 @@ export function Tools() {
       <Title level={TitleLevel.Title1} as="h2" className="mb-9 mt-32">
         The easiest and most rewarding way to build world-class onchain products.
       </Title>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ToolCard
           title="AgentKit"
           description="Build and deploy AI agents that can interact with blockchain data and smart contracts."
@@ -70,9 +70,9 @@ function ToolCard({ title, description, icon, href }: ToolCardProps) {
       href={href}
       className="flex cursor-pointer flex-col gap-4 rounded-xl bg-dark-palette-backgroundAlternate p-6 transition-all duration-200 hover:bg-dark-gray-10"
     >
-      <div className="flex items-center gap-8">
+      <div className="flex flex-col md:flex-row md:items-center gap-8">
         <Image src={icon} alt={title} width={64} height={64} className="h-16 w-16" />
-        <div>
+        <div className="flex flex-col gap-2">
           <Title level={TitleLevel.Title3} as="h3" className="font-bold text-white">
             {title}
           </Title>

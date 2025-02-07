@@ -55,11 +55,11 @@ export function WhyBase() {
 
 function ValueProp({ title, description, icon }: ValuePropProps) {
   return (
-    <div className="rounded-xl bg-dark-palette-backgroundAlternate px-6 py-4">
-      <div className="flex items-center gap-64">
-        <div className="flex min-w-[280px] items-center">
-          <Image src={icon} alt={title} width={32} height={32} className="h-5 w-5" />
-          <Title level={TitleLevel.Title3} className="ml-14">
+    <div className="h-[345px] md:h-full rounded-xl bg-dark-palette-backgroundAlternate p-6 md:px-6 md:py-4">
+      <div className="h-full flex flex-col gap-2 md:items-center md:flex-row md:gap-64">
+        <div className="h-full flex flex-col items-start justify-between md:flex-row min-w-[280px] md:items-center">
+          <Image src={icon} alt={title} width={32} height={32} className="md:h-5 md:w-5" />
+          <Title level={TitleLevel.Title3} className="md:ml-14">
             {title}
           </Title>
         </div>
