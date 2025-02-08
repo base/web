@@ -54,28 +54,36 @@ export function Hero() {
 
         <div className="mt-7 flex w-[345px] flex-col items-center md:w-[645px]">
           <div className="relative w-full">
-            <Button
-              variant={ButtonVariants.SecondaryOutline}
+            <button
+              type="button"
               onClick={handleSearchClick}
               className={classNames(
+                'whitespace-nowrap text-base', // Button shared base
+                'transition-all', // Button shared transition
+                'border border-gray-muted/65 bg-transparent hover:bg-white/10', // ButtonVariant.SecondaryOutline
                 'w-full px-6 py-3',
                 'bg-illoblack',
                 'font-medium text-white',
                 'rounded-xl border !border-dark-palette-foregroundMuted/20',
-                '!justify-start',
               )}
             >
-              <span className="md:hidden tracking-normal">Search tools or templates...</span>
-              <span className="hidden md:inline tracking-normal">Search tools or templates to get started</span>
-            </Button>
-            <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 gap-1 md:flex">
-              <div className="flex h-8 w-8 flex-col items-center justify-center rounded-sm bg-gray-80">
-                ⌘
+              <div className="flex h-9 w-full items-center justify-between">
+                <div>
+                  <div className="h-8 tracking-normal md:hidden">Search tools or templates...</div>
+                  <div className="hidden h-8 tracking-normal md:inline">
+                    Search tools or templates to get started
+                  </div>
+                </div>
+                <div className="flex gap-1">
+                  <div className="flex h-8 w-8 flex-col items-center justify-center rounded-sm bg-gray-80">
+                    ⌘
+                  </div>
+                  <div className="flex h-8 w-8 flex-col items-center justify-center rounded-sm bg-gray-80">
+                    B
+                  </div>
+                </div>
               </div>
-              <div className="flex h-8 w-8 flex-col items-center justify-center rounded-sm bg-gray-80">
-                B
-              </div>
-            </div>
+            </button>
             <SearchModal isOpen={isSearchModalOpen} setIsOpen={setIsSearchModalOpen} />
           </div>
           <div className="mt-3 flex w-full flex-col items-start justify-between gap-3 md:mt-4 md:flex md:flex-row">
