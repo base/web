@@ -223,7 +223,7 @@ export function LiveDemo() {
     return (
       <div id="demo" className="bg-black pb-32 pt-24">
         <div className="mx-auto max-w-4xl">
-          <div className="bg-neutral-900/50 mx-auto overflow-hidden rounded-xl border border-white/10">
+          <div className="bg-dark-palette-backgroundAlternate/50 mx-auto overflow-hidden rounded-xl border border-white/10">
             <div className="flex h-[500px] items-center justify-center">
               <div className="text-white/50">Loading...</div>
             </div>
@@ -246,8 +246,8 @@ export function LiveDemo() {
         className={classNames(
           'relative rounded-xl border transition-colors',
           theme === 'dark'
-            ? 'border-dark-palette-line/50 bg-black'
-            : 'border-dark-palette-line/50 bg-white',
+            ? 'border-dark-palette-line/20 bg-black'
+            : 'border-dark-palette-line/20 bg-white',
         )}
       >
         {isComponentMenuOpen && (
@@ -347,7 +347,7 @@ export function LiveDemo() {
         <div
           className={classNames(
             'flex items-center justify-between border-b py-2 pl-6 pr-2 transition-colors',
-            theme === 'dark' ? 'border-dark-palette-line/50' : 'border-dark-palette-line/50',
+            theme === 'dark' ? 'border-dark-palette-line/20' : 'border-dark-palette-line/20',
           )}
         >
           <div className="no-scrollbar flex items-center space-x-8 overflow-x-auto md:hidden">
@@ -436,8 +436,8 @@ export function LiveDemo() {
               className={classNames(
                 'hidden rounded-lg border p-2 transition-colors md:block',
                 theme === 'dark'
-                  ? 'border-dark-palette-line/50 hover:bg-white/10'
-                  : 'border-dark-palette-line/50 text-dark-palette-backgroundAlternate hover:bg-white/10',
+                  ? 'border-dark-palette-line/20 hover:bg-white/10'
+                  : 'border-dark-palette-line/20 text-dark-palette-backgroundAlternate hover:bg-white/10',
               )}
             >
               {copied ? (
@@ -455,8 +455,8 @@ export function LiveDemo() {
               className={classNames(
                 'rounded-lg border p-2 transition-colors md:hidden',
                 theme === 'dark'
-                  ? 'border-dark-palette-line/50 hover:bg-white/10'
-                  : 'border-dark-palette-line/50 text-dark-palette-backgroundAlternate hover:bg-white/10',
+                  ? 'border-dark-palette-line/20 hover:bg-white/10'
+                  : 'border-dark-palette-line/20 text-dark-palette-backgroundAlternate hover:bg-white/10',
               )}
             >
               <div
@@ -473,8 +473,8 @@ export function LiveDemo() {
               className={classNames(
                 'rounded-lg border p-2 transition-colors',
                 theme === 'dark'
-                  ? 'border-dark-palette-line/50 hover:bg-white/10'
-                  : 'border-dark-palette-line/50 hover:bg-white/10',
+                  ? 'border-dark-palette-line/20 hover:bg-white/10'
+                  : 'border-dark-palette-line/20 hover:bg-white/10',
               )}
             >
               {theme === 'dark' ? (
@@ -494,7 +494,7 @@ export function LiveDemo() {
                 'border-b lg:border-b-0 lg:border-r',
                 'flex items-center justify-center transition-colors',
                 'overflow-visible',
-                theme === 'dark' ? 'border-dark-palette-line/50' : 'border-dark-palette-line/50',
+                theme === 'dark' ? 'border-dark-palette-line/20' : 'border-dark-palette-line/20',
               )}
             >
               <DynamicCryptoProviders>{demoComponent}</DynamicCryptoProviders>
@@ -514,7 +514,7 @@ export function LiveDemo() {
               'border-b lg:border-b-0 lg:border-r',
               'flex items-center justify-center transition-colors',
               'overflow-visible',
-              theme === 'dark' ? 'border-dark-palette-line/50' : 'border-dark-palette-line/50',
+              theme === 'dark' ? 'border-dark-palette-line/20' : 'border-dark-palette-line/20',
             )}
           >
             <DynamicCryptoProviders>{demoComponent}</DynamicCryptoProviders>
