@@ -11,7 +11,7 @@ import { AnimatedGasless } from 'apps/web/src/components/Developers/UseCases/ass
 export function UseCases() {
   return (
     <section className="h-full w-full">
-      <div className="flex flex-col md:flex-row gap-2">
+      <div className="hidden flex-col gap-2 md:flex ">
         <Title level={TitleLevel.Title1} as="h2">
           Build. Scale. Monetize.
         </Title>
@@ -19,13 +19,19 @@ export function UseCases() {
           Everything you need to launch onchain products.
         </Title>
       </div>
-      <div className="mt-9 grid grid-cols-1 md:grid-cols-2 gap-9">
+      <div className="flex flex-col gap-2 md:hidden">
+        <Title level={TitleLevel.Title3}>
+          Build. Scale. Monetize.{' '}
+          <span className="text-gray-50">Everything you need to launch onchain products.</span>
+        </Title>
+      </div>
+      <div className="mt-6 grid grid-cols-1 gap-9 md:mt-9 md:grid-cols-2">
         <UseCaseBlock
           title="Onboard your users"
           description="Create seamless onboarding experiences with smart wallerts and social authentication."
           href="https://vocs-migration-mvp-one.vercel.app/dev-tools/identity/smart-wallet/quick-start"
         >
-          <div className="flex h-[320px] w-[285px] md:w-1/2 flex-col items-center justify-center">
+          <div className="flex h-[320px] w-[285px] flex-col items-center justify-center md:w-1/2">
             <AnimatedOnboarding />
           </div>
         </UseCaseBlock>

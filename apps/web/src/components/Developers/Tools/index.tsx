@@ -19,10 +19,13 @@ type ToolCardProps = {
 export function Tools() {
   return (
     <section className="h-full w-full">
-      <Title level={TitleLevel.Title1} as="h2" className="mb-9 mt-32">
+      <Title level={TitleLevel.Title1} as="h2" className="mb-9 mt-32 hidden md:block">
         The easiest and most rewarding way to build world-class onchain products.
       </Title>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <Title level={TitleLevel.Title3} className="mb-6 mt-32 md:hidden">
+        The easiest and most rewarding way to build world-class onchain products.
+      </Title>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
         <ToolCard
           title="AgentKit"
           description="Build and deploy AI agents that can interact with blockchain data and smart contracts."

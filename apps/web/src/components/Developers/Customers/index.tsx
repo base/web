@@ -6,20 +6,21 @@ import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/ty
 import Image, { type StaticImageData } from 'next/image';
 import 'apps/web/src/components/Developers/Customers/styles.css';
 
-const LOGO_WIDTH = 200; // width of each logo in pixels
-const LOGO_GAP = 40; // gap between logos in pixels
-const TOTAL_LOGOS = 10; // reduced number of logos per group for better performance
+const LOGO_WIDTH = 200; // pixels
+const LOGO_GAP = 40; // pixels
+const TOTAL_LOGOS = 10;
 
 export function Customers() {
   const logos = Array(TOTAL_LOGOS).fill(null);
 
   return (
     <section className="h-full w-full pt-32">
-      <Title level={TitleLevel.Title1} as="h2" className="mb-16">
+      <Title level={TitleLevel.Title1} as="h2" className="mb-16 hidden md:block">
         Powering the most consumer-friendly applications onchain.
       </Title>
-
-      {/* Auto-scrolling Logos */}
+      <Title level={TitleLevel.Title3} className="mb-8 md:hidden">
+        Powering the most consumer-friendly applications onchain.
+      </Title>
       <figure
         className="relative flex h-28 items-center overflow-hidden"
         style={{
@@ -29,7 +30,7 @@ export function Customers() {
         }}
       >
         <div
-          className="animate-scroll absolute left-0 flex animate-scroll"
+          className="animate-scroll animate-scroll absolute left-0 flex"
           style={{
             gap: `${LOGO_GAP}px`,
             width: `calc((${LOGO_WIDTH}px + ${LOGO_GAP}px) * ${TOTAL_LOGOS})`,

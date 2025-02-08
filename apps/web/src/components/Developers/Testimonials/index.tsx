@@ -53,7 +53,7 @@ export function Testimonials() {
   );
 
   return (
-    <section className="mt-16 h-[448px] md:h-full w-full">
+    <section className="mt-16 h-[448px] w-full md:h-full">
       <div className="rounded-xl border border-palette-line/20 p-8">
         <div className="mb-8 flex space-x-6">
           {(['build', 'scale', 'monetize'] as const).map((tab) => (

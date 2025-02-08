@@ -15,17 +15,27 @@ type ValuePropProps = {
 export function WhyBase() {
   return (
     <section className="h-full w-full py-20">
-      <div className="flex flex-col gap-9">
+      <div className="flex flex-col gap-6 md:gap-9">
         <div className="flex flex-col gap-1 pr-4">
-          <Title level={TitleLevel.Title1} as="h2">
-            Built by Base with the Coinbase connection.
+          <Title level={TitleLevel.Title1} as="h2" className="hidden md:block">
+            Build on the fastest growing L2.
           </Title>
-          <Title level={TitleLevel.Title1} as="h2" className="text-dark-palette-foregroundMuted">
+          <Title
+            level={TitleLevel.Title1}
+            as="h2"
+            className="hidden text-dark-palette-foregroundMuted md:block"
+          >
             Grow faster with distribution through Base&apos;s social graph and integrations with
             Coinbase products.
           </Title>
+          <Title level={TitleLevel.Title3} className="md:hidden">
+            Build on the fastest growing L2.{' '}
+            <span className="text-dark-palette-foregroundMuted">
+              Grow faster with distribution through Base&apos;s social graph and integrations with
+              Coinbase products.
+            </span>
+          </Title>
         </div>
-
         <div className="flex flex-col gap-3">
           <ValueProp
             title="Distribution & Growth"

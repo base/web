@@ -223,7 +223,7 @@ export function LiveDemo() {
     return (
       <div id="demo" className="bg-black pb-32 pt-24">
         <div className="mx-auto max-w-4xl">
-          <div className="bg-dark-palette-backgroundAlternate/50 mx-auto overflow-hidden rounded-xl border border-white/10">
+          <div className="mx-auto overflow-hidden rounded-xl border border-white/10 bg-dark-palette-backgroundAlternate/50">
             <div className="flex h-[500px] items-center justify-center">
               <div className="text-white/50">Loading...</div>
             </div>
@@ -236,10 +236,20 @@ export function LiveDemo() {
   return (
     <section className="w-full">
       <style>{styles}</style>
-      <div className="mb-9 flex flex-col gap-2 md:flex-row">
-        <Title level={TitleLevel.Title1}>Try it out!</Title>
-        <Title level={TitleLevel.Title1} className="text-dark-palette-foregroundMuted">
+      <div className="mb-9 hidden flex-row gap-2 md:flex ">
+        <Title level={TitleLevel.Title1} as="h2">
+          Try it out!
+        </Title>
+        <Title level={TitleLevel.Title1} as="h2" className="text-dark-palette-foregroundMuted">
           Experience how easy it is to build on Base.
+        </Title>
+      </div>
+      <div className="mb-9 flex flex-col gap-2 md:hidden">
+        <Title level={TitleLevel.Title3}>
+          Try it out!{' '}
+          <span className="text-dark-palette-foregroundMuted">
+            Experience how easy it is to build on Base.
+          </span>
         </Title>
       </div>
       <div
