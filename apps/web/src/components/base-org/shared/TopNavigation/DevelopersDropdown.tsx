@@ -10,12 +10,12 @@ import baseWallet from 'apps/web/src/components/Developers/Tools/assets/smartWal
 import onchainKit from 'apps/web/src/components/Developers/Tools/assets/onchainKit.svg';
 import verification from 'apps/web/src/components/Developers/Tools/assets/verification.svg';
 import Image, { StaticImageData } from 'next/image';
-import options from 'apps/web/src/components/base-org/shared/TopNavigation/assets/options.svg';
-import bug from 'apps/web/src/components/base-org/shared/TopNavigation/assets/bug.svg';
-import blockchain from 'apps/web/src/components/base-org/shared/TopNavigation/assets/blockchain.svg';
-import gitHubLogo from 'apps/web/src/components/base-org/shared/TopNavigation/assets/gitHubLogo.svg';
-import blog from 'apps/web/src/components/base-org/shared/TopNavigation/assets/blog.svg';
-import bridging from 'apps/web/src/components/base-org/shared/TopNavigation/assets/bridging.svg';
+import options from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/options.svg';
+import bug from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/bug.svg';
+import blockchain from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/blockchain.svg';
+import gitHubLogo from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/gitHubLogo.svg';
+import blog from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/blog.svg';
+import bridging from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/bridging.svg';
 
 type ToolMiniCardProps = {
   title: string;
