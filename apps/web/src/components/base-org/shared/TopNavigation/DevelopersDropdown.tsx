@@ -34,7 +34,7 @@ export function DevelopersDropdown() {
   return (
     <AnalyticsProvider context="developers">
       <div className="relative m-0 w-full rounded-xl bg-white/20 p-[1px]">
-        <div className="flex flex-col gap-2.5 rounded-xl bg-[#191919] p-2">
+        <div className="flex flex-col gap-2.5 rounded-xl bg-dark-palette-backgroundAlternate p-2">
           <Link
             href="https://docs.base.org"
             className="flex items-center justify-between rounded-lg bg-dark-palette-secondary px-4 py-3 hover:bg-white/10"

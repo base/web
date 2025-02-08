@@ -106,8 +106,8 @@ export default function MenuDesktop({ links }: MenuDesktopProps) {
         {links[hoverIndex]?.name === 'Developers' ? (
           <DevelopersDropdown />
         ) : (
-          <Card radius={8} innerClassName="bg-[#191919]">
-            <div className="flex w-full items-stretch gap-2 rounded-lg bg-[#191919] p-2">
+          <Card radius={8} innerClassName="bg-dark-palette-backgroundAlternate">
+            <div className="flex w-full items-stretch gap-2 rounded-lg bg-dark-palette-backgroundAlternate p-2">
               {links[hoverIndex]?.subItems && (
                 <AnalyticsProvider context={links[hoverIndex].analyticContext}>
                   <div className="flex flex-1 flex-col">
