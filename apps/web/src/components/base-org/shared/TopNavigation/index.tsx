@@ -45,7 +45,73 @@ const links: TopNavigationLink[] = [
     name: 'Developers',
     analyticContext: 'developers',
     href: '/developers',
-    subItems: [],
+    subItems: [
+      {
+        name: 'Documentation',
+        description: '',
+        href: 'https://docs.base.org',
+      },
+      {
+        name: 'AgentKit',
+        description: '',
+        href: '/agentkit',
+      },
+      {
+        name: 'Base Appchains',
+        description: '',
+        href: '/appchains',
+      },
+      {
+        name: 'Smart Wallet',
+        description: '',
+        href: '/smartwallet',
+      },
+      {
+        name: 'MiniKit',
+        description: '',
+        href: '/minikit',
+      },
+      {
+        name: 'OnchainKit',
+        description: '',
+        href: '/onchainkit',
+      },
+      {
+        name: 'Verifications',
+        description: '',
+        href: '/verify',
+      },
+      {
+        name: 'Status Page',
+        description: '',
+        href: 'https://status.base.org',
+      },
+      {
+        name: 'Bug Bounty',
+        description: '',
+        href: 'https://hackerone.com/base',
+      },
+      {
+        name: 'Block Explorer',
+        description: '',
+        href: 'https://basescan.org',
+      },
+      {
+        name: 'GitHub',
+        description: '',
+        href: 'https://github.com/base-org',
+      },
+      {
+        name: 'Blog',
+        description: '',
+        href: 'https://blog.base.org/',
+      },
+      {
+        name: 'Builder Stories',
+        description: '',
+        href: '/stories',
+      },
+    ],
   },
   {
     name: 'Community',

@@ -102,10 +102,10 @@ export function DevelopersDropdown() {
               <FooterCard
                 label="Block Explorer"
                 icon={blockchain as StaticImageData}
-                href="https://status.base.org/"
+                href="https://basescan.org/"
               />
               <FooterCard
-                label="Github"
+                label="GitHub"
                 icon={gitHubLogo as StaticImageData}
                 href="https://github.com/base-org"
               />
@@ -117,7 +117,7 @@ export function DevelopersDropdown() {
               <FooterCard
                 label="Builder Stories"
                 icon={bridging as StaticImageData}
-                href="https://status.base.org/"
+                href="/stories"
               />
             </div>
           </div>
