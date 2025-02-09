@@ -5,7 +5,138 @@ import classNames from 'classnames';
 import { useCallback, useEffect, useRef } from 'react';
 import Input from 'apps/web/src/components/Input';
 import { createPortal } from 'react-dom';
-import Link from 'next/link';
+
+type SearchCategory = {
+  category: string;
+  subCategories: SubCategory[];
+};
+
+type SubCategory = {
+  label: string;
+  href: string;
+  icon: string;
+  iconRotation?: string;
+  onClick?: () => void;
+};
+
+const searchCategories: SearchCategory[] = [
+  {
+    category: 'Quickstart',
+    subCategories: [
+      {
+        label: 'npm create onchain',
+        href: '',
+        icon: 'copy',
+        onClick: () => {
+          const copyCreateOnchain = async () => {
+            try {
+              await navigator.clipboard.writeText('npm create onchain');
+            } catch (error) {
+              console.error('Failed to copy to clipboard', error);
+            }
+          };
+          void copyCreateOnchain();
+        },
+      },
+    ],
+  },
+  {
+    category: 'Templates',
+    subCategories: [
+      {
+        label: 'Launch an AI agent',
+        href: 'https://replit.com/@CoinbaseDev/CDP-AgentKit#README.md',
+        icon: 'diagonalUpArrow',
+      },
+      {
+        label: 'Build an onchain store',
+        href: 'https://onchain-commerce-template.vercel.app/',
+        icon: 'diagonalUpArrow',
+      },
+      {
+        label: 'Integrate crypto payments',
+        href: 'https://replit.com/@KevinLeffew1/buy-me-a-coffee?v=1#README.md',
+        icon: 'diagonalUpArrow',
+      },
+    ],
+  },
+  {
+    category: 'Tools',
+    subCategories: [
+      {
+        label: 'AgentKit',
+        href: '/developers/agentkit',
+        icon: 'backArrow',
+        iconRotation: 'rotate-180',
+      },
+      {
+        label: 'Base Appchains',
+        href: '/developers/appchains',
+        icon: 'backArrow',
+        iconRotation: 'rotate-180',
+      },
+      {
+        label: 'MiniKit',
+        href: '/developers/minikit',
+        icon: 'backArrow',
+        iconRotation: 'rotate-180',
+      },
+      {
+        label: 'OnchainKit',
+        href: '/developers/onchainkit',
+        icon: 'backArrow',
+        iconRotation: 'rotate-180',
+      },
+      {
+        label: 'Smart Wallet',
+        href: '/developers/smartwallet',
+        icon: 'backArrow',
+        iconRotation: 'rotate-180',
+      },
+      {
+        label: 'Verifications',
+        href: '/developers/verifications',
+        icon: 'backArrow',
+        iconRotation: 'rotate-180',
+      },
+    ],
+  },
+  {
+    category: 'Guides',
+    subCategories: [
+      {
+        label: 'Onboard any users',
+        href: '/developers/guides/onboarding',
+        icon: 'diagonalUpArrow',
+      },
+      {
+        label: 'Accept crypto payments',
+        href: '/developers/guides/payments',
+        icon: 'diagonalUpArrow',
+      },
+      {
+        label: 'Launch AI Agents',
+        href: '/developers/guides/agents',
+        icon: 'diagonalUpArrow',
+      },
+      {
+        label: 'Decentralized social features',
+        href: '/developers/guides/social',
+        icon: 'diagonalUpArrow',
+      },
+      {
+        label: 'Defi your app',
+        href: '/developers/guides/defi',
+        icon: 'diagonalUpArrow',
+      },
+      {
+        label: 'Remove first-timer friction',
+        href: '/developers/guides/gasless',
+        icon: 'diagonalUpArrow',
+      },
+    ],
+  },
+];
 
 export function SearchModal({
   isOpen,
@@ -21,17 +152,6 @@ export function SearchModal({
       searchInputRef.current?.focus();
     }
   }, [isOpen]);
-
-  const handleCopyCreateOnchain = useCallback(() => {
-    const copyCreateOnchain = async () => {
-      try {
-        await navigator.clipboard.writeText('npm create onchain');
-      } catch (error) {
-        console.error('Failed to copy to clipboard', error);
-      }
-    };
-    void copyCreateOnchain();
-  }, []);
 
   const handleSearchInputFocus = useCallback(() => {
     setIsOpen(true);
@@ -74,97 +194,48 @@ export function SearchModal({
           )}
           placeholder="Search tools or templates to get started"
         />
-        <div className="flex flex-col gap-4 pt-4">
-          <div className="flex flex-col items-start justify-center">
-            <div className="w-full px-4 py-2 text-sm uppercase text-gray-muted">Quickstart</div>
-            <button
-              type="button"
-              className={classNames(
-                'group',
-                'w-full rounded-xl px-4 py-2',
-                'font-mono text-white',
-                'flex items-center justify-between',
-                'hover:bg-dark-palette-backgroundAlternate active:bg-dark-palette-secondary',
-              )}
-              onClick={handleCopyCreateOnchain}
-            >
-              <span>npm create onchain</span>
-              <div className="opacity-0 transition-opacity group-hover:opacity-100">
-                <Icon name="copy" width="16" height="16" />
+        <div className="flex w-full flex-col gap-4 pt-4">
+          <div className="justify-cente flex w-full flex-col items-start">
+            {searchCategories.map((searchCategory) => (
+              <div key={searchCategory.category} className="w-full">
+                <div className="w-full px-4 py-2 text-sm uppercase text-gray-muted">
+                  {searchCategory.category}
+                </div>
+                {searchCategory.subCategories.map((subCategory) => (
+                  <button
+                    key={subCategory.label}
+                    type="button"
+                    className={classNames(
+                      'group',
+                      'w-full rounded-xl px-4 py-2',
+                      {
+                        'font-mono': searchCategory.category === 'Quickstart',
+                      },
+                      'text-white',
+                      'flex items-center justify-between',
+                      'hover:bg-dark-palette-backgroundAlternate active:bg-dark-palette-secondary',
+                    )}
+                    onClick={
+                      subCategory.href ? () => window.open(subCategory.href) : subCategory?.onClick
+                    }
+                  >
+                    <span>{subCategory.label}</span>
+                    <div
+                      className={classNames(
+                        'opacity-0 transition-opacity group-hover:opacity-100',
+                        subCategory?.iconRotation,
+                      )}
+                    >
+                      <Icon name={subCategory.icon} width="16" height="16" />
+                    </div>
+                  </button>
+                ))}
               </div>
-            </button>
-          </div>
-          <div className="flex flex-col items-start justify-center">
-            <div className="w-full px-4 py-2 text-sm uppercase text-gray-muted">
-              Start with a Template
-            </div>
-            <ModalEntry
-              label="Launch an AI agent"
-              icon="diagonalUpArrow"
-              href="https://replit.com/@CoinbaseDev/CDP-AgentKit#README.md"
-            />
-            <ModalEntry
-              label="Build an onchain store"
-              icon="diagonalUpArrow"
-              href="https://onchain-commerce-template.vercel.app/"
-            />
-          </div>
-          <div className="flex flex-col items-start justify-center">
-            <div className="w-full px-4 py-2 text-sm uppercase text-gray-muted">Tools</div>
-            <ModalEntry
-              label="AgentKit"
-              icon="backArrow"
-              rotateIcon="rotate-180"
-              href="/developers/agent-kit"
-            />
-            <ModalEntry
-              label="Base Wallet"
-              icon="backArrow"
-              rotateIcon="rotate-180"
-              href="/developers/base-wallet"
-            />
-            <ModalEntry
-              label="Base App Chains"
-              icon="backArrow"
-              rotateIcon="rotate-180"
-              href="/developers/app-chains"
-            />
+            ))}
           </div>
         </div>
       </div>
     </div>,
     document.body,
-  );
-}
-
-function ModalEntry({
-  label,
-  icon,
-  rotateIcon,
-  href,
-}: {
-  label: string;
-  icon: string;
-  rotateIcon?: string;
-  href: string;
-}) {
-  return (
-    <Link
-      href={href}
-      className={classNames(
-        'group',
-        'w-full rounded-xl px-4 py-2',
-        'font-mono text-white',
-        'flex items-center justify-between',
-        'hover:bg-dark-palette-backgroundAlternate active:bg-dark-palette-secondary',
-      )}
-    >
-      <span>{label}</span>
-      <div
-        className={classNames('opacity-0 transition-opacity group-hover:opacity-100', rotateIcon)}
-      >
-        <Icon name={icon} width="16" height="16" />
-      </div>
-    </Link>
   );
 }
