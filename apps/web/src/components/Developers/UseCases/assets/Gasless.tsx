@@ -36,9 +36,9 @@ export function AnimatedGasless() {
           </div>
 
           <div className="ml-12 flex h-full items-end gap-2">
-            {barHeights.map((height) => (
+            {barHeights.map((height, index) => (
               <div
-                key={Math.random()}
+                key={index}
                 className="flex-1 rounded-t-md bg-dark-purple-40 transition-all duration-500"
                 style={{ height: `${height}%` }}
               />
