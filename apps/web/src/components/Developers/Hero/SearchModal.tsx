@@ -2,7 +2,7 @@
 
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import classNames from 'classnames';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Input from 'apps/web/src/components/Input';
 import { createPortal } from 'react-dom';
 
@@ -19,7 +19,7 @@ type SubCategory = {
   onClick?: () => void;
 };
 
-const searchCategories: SearchCategory[] = [
+const searchConfig: SearchCategory[] = [
   {
     category: 'Quickstart',
     subCategories: [
@@ -28,6 +28,7 @@ const searchCategories: SearchCategory[] = [
         href: '',
         icon: 'copy',
         onClick: () => {
+          console.log('clicked');
           const copyCreateOnchain = async () => {
             try {
               await navigator.clipboard.writeText('npm create onchain');
@@ -146,6 +147,23 @@ export function SearchModal({
   setIsOpen: (isOpen: boolean) => void;
 }) {
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeSearchConfig, setActiveSearchConfig] = useState<SearchCategory[]>(searchConfig);
+
+  const debounced = useRef<number>();
+  const onSearchInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      clearTimeout(debounced.current);
+
+      const value = e.target.value;
+      setSearchQuery(value);
+    },
+    [setSearchQuery],
+  );
+
+  const clearInput = useCallback(() => {
+    setSearchQuery('');
+  }, [setSearchQuery]);
 
   useEffect(() => {
     if (isOpen) {
@@ -153,12 +171,42 @@ export function SearchModal({
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    if (isOpen) {
+      const handleClick = (e: MouseEvent) => {
+        const modalEl = document.querySelector('[aria-label="search-modal"]');
+        if (modalEl && !modalEl.contains(e.target as Node)) {
+          clearInput();
+          setIsOpen(false);
+        }
+      };
+      document.addEventListener('mousedown', handleClick);
+      return () => document.removeEventListener('mousedown', handleClick);
+    }
+  }, [isOpen, setIsOpen]);
+
+  useEffect(() => {
+    if (searchQuery) {
+      const filteredCategories = searchConfig.filter((category) =>
+        category.subCategories.some((subCategory) =>
+          subCategory.label.toLowerCase().includes(searchQuery.toLowerCase()),
+        ),
+      );
+
+      const filteredSearchConfig = filteredCategories.map((category) => ({
+        category: category.category,
+        subCategories: category.subCategories.filter((subCategory) =>
+          subCategory.label.toLowerCase().includes(searchQuery.toLowerCase()),
+        ),
+      }));
+      setActiveSearchConfig(filteredSearchConfig);
+    } else {
+      setActiveSearchConfig(searchConfig);
+    }
+  }, [searchQuery]);
+
   const handleSearchInputFocus = useCallback(() => {
     setIsOpen(true);
-  }, [setIsOpen]);
-
-  const handleSearchInputBlur = useCallback(() => {
-    setIsOpen(false);
   }, [setIsOpen]);
 
   if (!isOpen) {
@@ -186,7 +234,7 @@ export function SearchModal({
         <Input
           ref={searchInputRef}
           onFocus={handleSearchInputFocus}
-          onBlur={handleSearchInputBlur}
+          onChange={onSearchInputChange}
           className={classNames(
             'w-full p-4',
             'bg-illoblack',
@@ -194,46 +242,50 @@ export function SearchModal({
           )}
           placeholder="Search tools or templates to get started"
         />
-        <div className="flex w-full flex-col gap-4 pt-4">
-          <div className="justify-cente flex w-full flex-col items-start">
-            {searchCategories.map((searchCategory) => (
-              <div key={searchCategory.category} className="w-full">
-                <div className="w-full px-4 py-2 text-sm uppercase text-gray-muted">
-                  {searchCategory.category}
-                </div>
-                {searchCategory.subCategories.map((subCategory) => (
-                  <button
-                    key={subCategory.label}
-                    type="button"
-                    className={classNames(
-                      'group',
-                      'w-full rounded-xl px-4 py-2',
-                      {
-                        'font-mono': searchCategory.category === 'Quickstart',
-                      },
-                      'text-white',
-                      'flex items-center justify-between',
-                      'hover:bg-dark-palette-backgroundAlternate active:bg-dark-palette-secondary',
-                    )}
-                    onClick={
-                      subCategory.href ? () => window.open(subCategory.href) : subCategory?.onClick
-                    }
-                  >
-                    <span>{subCategory.label}</span>
-                    <div
+        {activeSearchConfig.length > 0 && (
+          <div className="flex w-full flex-col gap-4 pt-4">
+            <div className="flex w-full flex-col items-start justify-center">
+              {activeSearchConfig.map((searchCategory) => (
+                <div key={searchCategory.category} className="w-full">
+                  <div className="w-full px-4 py-2 text-sm uppercase text-gray-muted">
+                    {searchCategory.category}
+                  </div>
+                  {searchCategory.subCategories.map((subCategory) => (
+                    <button
+                      key={subCategory.label}
+                      type="button"
                       className={classNames(
-                        'opacity-0 transition-opacity group-hover:opacity-100',
-                        subCategory?.iconRotation,
+                        'group',
+                        'w-full rounded-xl px-4 py-2',
+                        {
+                          'font-mono': searchCategory.category === 'Quickstart',
+                        },
+                        'text-white',
+                        'flex items-center justify-between',
+                        'hover:bg-dark-palette-backgroundAlternate active:bg-dark-palette-secondary',
                       )}
+                      onClick={
+                        subCategory.href
+                          ? () => window.open(subCategory.href)
+                          : subCategory?.onClick
+                      }
                     >
-                      <Icon name={subCategory.icon} width="16" height="16" />
-                    </div>
-                  </button>
-                ))}
-              </div>
-            ))}
+                      <span>{subCategory.label}</span>
+                      <div
+                        className={classNames(
+                          'opacity-0 transition-opacity group-hover:opacity-100',
+                          subCategory?.iconRotation,
+                        )}
+                      >
+                        <Icon name={subCategory.icon} width="16" height="16" />
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>,
     document.body,
