@@ -11,7 +11,6 @@ export function AnimatedSocial() {
     () => ({
       animate: {
         scale: [1, 1.2, 1],
-        fill: ['transparent', '#ef4444', '#ef4444'],
       },
       transition: {
         duration: 1,
@@ -46,7 +45,7 @@ export function AnimatedSocial() {
       </div>
       <div className="mb-4 h-32 w-full rounded-xl bg-dark-state-s-hovered" />
       <div className="flex items-center gap-4">
-        <motion.div className="border-red-50 flex h-12 w-16 items-center justify-center rounded-xl border">
+        <motion.div className="flex h-12 w-16 items-center justify-center rounded-xl border border-red-50">
           <motion.svg
             width="24"
             height="24"
