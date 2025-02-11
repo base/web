@@ -19,7 +19,7 @@ import guild from 'apps/web/src/components/Builders/Customers/assets/smart-walle
 import heyelsa from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/heyelsa.svg';
 import kyberswap from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/kyberswap.svg';
 import layer3 from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/layer3.svg';
-import magiceden from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/magiceden.png';
+import magiceden from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/magiceden.svg';
 import mochicam from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/mochicam.svg';
 import moonwell from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/moonwell.svg';
 import opensea from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/opensea.svg';
@@ -34,7 +34,7 @@ const logos: StaticImageData[] = [
   b3,
   blocklords,
   illuvium,
-  // metacade,
+  metacade,
   proofworks,
   superchamps,
   aerodrome,
@@ -45,7 +45,7 @@ const logos: StaticImageData[] = [
   heyelsa,
   kyberswap,
   layer3,
-  // magiceden,
+  magiceden,
   mochicam,
   moonwell,
   opensea,
@@ -70,8 +70,7 @@ export function Customers() {
         Powering the most consumer-friendly applications onchain.
       </Title>
       <figure
-        className="relative flex h-28 items-center overflow-hidden"
-        // className={`relative flex h-[${LOGO_WIDTH}px] items-center overflow-hidden`}
+        className={`relative flex h-[${LOGO_WIDTH}px] items-center overflow-hidden`}
         style={{
           maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
           WebkitMaskImage:
@@ -87,25 +86,33 @@ export function Customers() {
         >
           {/* First set of logos */}
           {logos.map((logo) => (
-            <Image
-              key={`first-${String(logo.src)}`}
-              src={logo as StaticImageData}
-              alt={String(logo.src)}
-              width={LOGO_WIDTH}
-              height={LOGO_WIDTH}
-              className="flex-none opacity-50 transition-opacity hover:opacity-100"
-            />
+            <div className={`w-[${LOGO_WIDTH}px]`}>
+              <Image
+                key={`first-${String(logo.src)}`}
+                src={logo as StaticImageData}
+                alt={String(logo.src)}
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
+                className="flex-none object-contain opacity-50 transition-opacity hover:opacity-100"
+              />
+            </div>
           ))}
           {/* Duplicate set of logos for seamless loop */}
           {logos.map((logo) => (
-            <Image
-              key={`second-${String(logo.src)}`}
-              src={logo as StaticImageData}
-              alt={String(logo.src)}
-              width={LOGO_WIDTH}
-              height={LOGO_WIDTH}
-              className="flex-none opacity-50 transition-opacity hover:opacity-100"
-            />
+            <div className={`w-[${LOGO_WIDTH}px]`}>
+              <Image
+                key={`second-${String(logo.src)}`}
+                src={logo as StaticImageData}
+                alt={String(logo.src)}
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
+                className="flex-none opacity-50 transition-opacity hover:opacity-100"
+              />
+            </div>
           ))}
         </div>
       </figure>
