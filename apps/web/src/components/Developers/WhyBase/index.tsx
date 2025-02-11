@@ -97,7 +97,9 @@ function ValueProp({ title, description, icon }: ValuePropProps) {
           height={32}
           className="mb-auto h-5 w-5 md:h-8 md:w-8"
         />
-        <Title level={TitleLevel.Title3}>{title}</Title>
+        <Title level={TitleLevel.Title3} className="font-medium">
+          {title}
+        </Title>
         <Title level={TitleLevel.Title4} className="text-dark-palette-foreground">
           {description}
         </Title>
