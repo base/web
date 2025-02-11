@@ -86,16 +86,18 @@ function StoryCard({
             {description}
           </Title>
         </div>
-        <div className="flex flex-row gap-2">
-          <div className={classNames(color, 'hidden md:block')}>
-            <Icon name="locationPin" color="currentColor" />
+        <div className="flex flex-col gap-2 md:flex-row">
+          <div className="flex gap-1">
+            <div className={classNames(color, 'hidden md:block')}>
+              <Icon name="locationPin" color="currentColor" />
+            </div>
+            <div className={classNames(color, 'md:hidden')}>
+              <Icon name="locationPin" color="currentColor" width={20} height={20} />
+            </div>
+            <Title level={TitleLevel.Headline} className={color}>
+              {location}
+            </Title>
           </div>
-          <div className={classNames(color, 'md:hidden')}>
-            <Icon name="locationPin" color="currentColor" width={20} height={20} />
-          </div>
-          <Title level={TitleLevel.Headline} className={color}>
-            {location}
-          </Title>
           <Title level={TitleLevel.Headline} className="text-dark-palette-foregroundMuted">
             {date}
           </Title>
