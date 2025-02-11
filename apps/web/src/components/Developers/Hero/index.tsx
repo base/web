@@ -1,10 +1,10 @@
 'use client';
 
 import classNames from 'classnames';
-import Button from 'apps/web/src/components/base-org/Button';
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { useCallback, useEffect, useState } from 'react';
 import { SearchModal } from 'apps/web/src/components/Developers/Hero/SearchModal';
+import Button from 'apps/web/src/components/base-org/Button';
 import { ButtonVariants } from 'apps/web/src/components/base-org/Button/types';
 
 export function Hero() {
@@ -38,9 +38,9 @@ export function Hero() {
     window.open('https://onchain-commerce-template.vercel.app/', '_blank');
   }, []);
 
-  const handleImplementSiwB = useCallback(() => {
+  const handleIntegrateCryptoPayments = useCallback(() => {
     window.open(
-      'https://vocs-migration-mvp-one.vercel.app/dev-tools/identity/smart-wallet/quick-start',
+      'https://onchainkit.xyz/checkout/checkout',
       '_blank',
     );
   }, []);
@@ -105,7 +105,7 @@ export function Hero() {
               variant={ButtonVariants.SecondaryOutline}
               iconName="baseOrgDiagonalUpArrow"
               className="rounded-xl text-sm"
-              onClick={handleImplementSiwB}
+              onClick={handleIntegrateCryptoPayments}
             >
               Integrate crypto payments
             </Button>

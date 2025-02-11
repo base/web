@@ -97,7 +97,7 @@ export function Testimonials() {
                   linkClassNames="text-base font-medium text-white block"
                   buttonClassNames="flex w-40 items-center justify-between px-4 py-3 group"
                   target="_blank"
-                  href="/stories"
+                  href="/builders/stories"
                   eventName="testimonials"
                 >
                   <div className="flex w-40 items-center justify-between">
