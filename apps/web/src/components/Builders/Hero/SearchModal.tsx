@@ -2,7 +2,7 @@
 
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import classNames from 'classnames';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Input from 'apps/web/src/components/Input';
 import { createPortal } from 'react-dom';
 
@@ -183,7 +183,7 @@ export function SearchModal({
       document.addEventListener('mousedown', handleClick);
       return () => document.removeEventListener('mousedown', handleClick);
     }
-  }, [isOpen, setIsOpen]);
+  }, [isOpen, clearInput, setIsOpen]);
 
   useEffect(() => {
     if (searchQuery) {

@@ -24,7 +24,7 @@ export function AnimatedGasless() {
 
   return (
     <div className="flex h-full w-full flex-col items-end justify-center">
-      <div className="w-[328px] md:w-[484px] gap-4 rounded-l-2xl bg-black p-6">
+      <div className="w-[328px] gap-4 rounded-l-2xl bg-black p-6 md:w-[484px]">
         <h3 className="text-base font-semibold text-white">Gas sponsored</h3>
 
         <div className="relative mt-6 h-[160px]">
@@ -38,6 +38,7 @@ export function AnimatedGasless() {
           <div className="ml-12 flex h-full items-end gap-2">
             {barHeights.map((height, index) => (
               <div
+                // eslint-disable-next-line react/no-array-index-key
                 key={index}
                 className="flex-1 rounded-t-md bg-dark-purple-40 transition-all duration-500"
                 style={{ height: `${height}%` }}
