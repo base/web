@@ -507,7 +507,7 @@ export function LiveDemo() {
                 theme === 'dark' ? 'border-dark-palette-line/20' : 'border-dark-palette-line/20',
               )}
             >
-              <DynamicCryptoProviders mode={theme === 'dark' ? 'light' : 'dark'}>
+              <DynamicCryptoProviders mode={theme}>
                 {demoComponent}
               </DynamicCryptoProviders>
             </div>
@@ -529,7 +529,7 @@ export function LiveDemo() {
               theme === 'dark' ? 'border-dark-palette-line/20' : 'border-dark-palette-line/20',
             )}
           >
-            <DynamicCryptoProviders mode={theme === 'dark' ? 'light' : 'dark'}>
+            <DynamicCryptoProviders mode={theme}>
               {demoComponent}
             </DynamicCryptoProviders>
           </div>
