@@ -228,7 +228,7 @@ export function SearchModal({
           'bg-illoblack',
           'fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
           'max-h-[460px] w-[555px] overflow-y-auto',
-          'rounded-xl border border-gray-muted  hover:border-gray-muted',
+          'rounded-xl border border-gray-muted/20  hover:border-gray-muted/20',
         )}
       >
         <Input
@@ -238,7 +238,7 @@ export function SearchModal({
           className={classNames(
             'w-full p-4',
             'bg-illoblack',
-            'border-b border-gray-muted hover:border-gray-muted focus:outline-none',
+            'border-b border-gray-muted/20 hover:border-gray-muted/20 focus:outline-none',
           )}
           placeholder="Search tools or templates to get started"
         />
@@ -247,7 +247,7 @@ export function SearchModal({
             <div className="flex w-full flex-col items-start justify-center">
               {activeSearchConfig.map((searchCategory) => (
                 <div key={searchCategory.category} className="w-full">
-                  <div className="w-full px-4 py-2 text-sm uppercase text-gray-muted">
+                  <div className="w-full px-4 py-2 text-sm font-medium uppercase tracking-normal text-gray-muted">
                     {searchCategory.category}
                   </div>
                   {searchCategory.subCategories.map((subCategory) => (
@@ -270,7 +270,7 @@ export function SearchModal({
                           : subCategory?.onClick
                       }
                     >
-                      <span>{subCategory.label}</span>
+                      <span className="tracking-normal">{subCategory.label}</span>
                       <div
                         className={classNames(
                           'opacity-0 transition-opacity group-hover:opacity-100',
