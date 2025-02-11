@@ -36,7 +36,29 @@ export function WhyBase() {
             </span>
           </Title>
         </div>
-        <div className="flex flex-col gap-3">
+        <div className="hidden flex-col gap-3 md:flex">
+          <ValueProp
+            title="Distribution & Growth"
+            description="Reach millions of users across the Coinbase product ecosystem and social graph, plus opportunities for builder grants."
+            icon={megaphone as StaticImageData}
+          />
+          <ValueProp
+            title="Trust & Security"
+            description="The most dependable way for ambitious projects to scale with the most trusted brand in crypto."
+            icon={security as StaticImageData}
+          />
+          <ValueProp
+            title="Powerful Integrations"
+            description="Integrations with Coinbase’s retail platform allows seamless transfers of assets across the onchain ecosystem."
+            icon={integration as StaticImageData}
+          />
+          <ValueProp
+            title="Enterprise Support"
+            description="Fully-managed infrastructure, white glove service, support, and in-depth developer documentation."
+            icon={support as StaticImageData}
+          />
+        </div>
+        <div className="flex flex-col gap-3 md:hidden">
           <ValueProp
             title="Distribution & Growth"
             description="Reach millions of unique users"
@@ -48,7 +70,7 @@ export function WhyBase() {
             icon={security as StaticImageData}
           />
           <ValueProp
-            title="Integrations"
+            title="Powerful Integrations"
             description="Seamless integration with Coinbase products and ecosystem"
             icon={integration as StaticImageData}
           />
@@ -65,14 +87,17 @@ export function WhyBase() {
 
 function ValueProp({ title, description, icon }: ValuePropProps) {
   return (
-    <div className="h-[200px] rounded-xl bg-dark-palette-backgroundAlternate p-6 md:h-full md:px-6 md:py-4">
-      <div className="flex h-full flex-col gap-2 md:flex-row md:items-center md:gap-64">
-        <div className="flex h-full min-w-[280px] flex-col items-start justify-between md:flex-row md:items-center md:justify-start">
-          <Image src={icon} alt={title} width={32} height={32} className="md:h-5 md:w-5" />
-          <Title level={TitleLevel.Title3} className="md:ml-14">
-            {title}
-          </Title>
-        </div>
+    <div className="h-[200px] rounded-xl bg-dark-palette-backgroundAlternate p-6 md:h-[180px] md:px-6 md:py-4">
+      <div className="flex h-full flex-col gap-2">
+        {/* <div className="flex h-full min-w-[280px] flex-col items-start justify-between md:flex-row md:items-center md:justify-start"> */}
+        <Image
+          src={icon}
+          alt={title}
+          width={32}
+          height={32}
+          className="mb-auto h-5 w-5 md:h-8 md:w-8"
+        />
+        <Title level={TitleLevel.Title3}>{title}</Title>
         <Title level={TitleLevel.Title4} className="text-dark-palette-foreground">
           {description}
         </Title>
