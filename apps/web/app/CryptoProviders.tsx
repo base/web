@@ -68,6 +68,7 @@ export default function CryptoProviders({ children }: CryptoProvidersProps) {
         <OnchainKitProvider
           chain={isDevelopment ? baseSepolia : base}
           apiKey={process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY}
+          projectId={process.env.NEXT_PUBLIC_ONCHAINKIT_PROJECT_ID}
           config={onchainKitConfig}
         >
           <RainbowKitProvider modalSize="compact">{children}</RainbowKitProvider>
