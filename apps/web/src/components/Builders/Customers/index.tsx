@@ -86,9 +86,8 @@ export function Customers() {
         >
           {/* First set of logos */}
           {logos.map((logo) => (
-            <div className={`w-[${LOGO_WIDTH}px]`}>
+            <div className={`w-[${LOGO_WIDTH}px]`} key={`first-${String(logo.src)}`}>
               <Image
-                key={`first-${String(logo.src)}`}
                 src={logo as StaticImageData}
                 alt={String(logo.src)}
                 style={{
@@ -101,9 +100,8 @@ export function Customers() {
           ))}
           {/* Duplicate set of logos for seamless loop */}
           {logos.map((logo) => (
-            <div className={`w-[${LOGO_WIDTH}px]`}>
+            <div className={`w-[${LOGO_WIDTH}px]`} key={`second-${String(logo.src)}`}>
               <Image
-                key={`second-${String(logo.src)}`}
                 src={logo as StaticImageData}
                 alt={String(logo.src)}
                 style={{
