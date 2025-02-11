@@ -4,7 +4,7 @@ import logo from 'apps/web/src/components/base-org/shared/TopNavigation/assets/l
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
 import Image, { type StaticImageData } from 'next/image';
-import 'apps/web/src/components/Developers/Customers/styles.css';
+import 'apps/web/src/components/Builders/Customers/styles.css';
 
 const LOGO_WIDTH = 200; // pixels
 const LOGO_GAP = 40; // pixels
