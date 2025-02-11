@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 import { useErrors } from 'apps/web/contexts/Errors';
 
-export function DynamicCryptoProviders({ children }: { children: React.ReactNode }) {
+export function DynamicCryptoProviders({ children, mode = 'light' }: { children: React.ReactNode, mode?: 'light' | 'dark' }) {
   const [CryptoProvidersDynamic, setCryptoProvidersDynamic] =
-    useState<React.ComponentType<{ children: React.ReactNode }>>();
+    useState<React.ComponentType<{ children: React.ReactNode, mode?: 'light' | 'dark' }>>();
   const { logError } = useErrors();
 
   useEffect(() => {
@@ -18,5 +18,5 @@ export function DynamicCryptoProviders({ children }: { children: React.ReactNode
 
   if (!CryptoProvidersDynamic) return null;
 
-  return <CryptoProvidersDynamic>{children}</CryptoProvidersDynamic>;
+  return <CryptoProvidersDynamic mode={mode}>{children}</CryptoProvidersDynamic>;
 }

@@ -18,15 +18,11 @@ export function WhyBase() {
       <div className="flex flex-col gap-6 md:gap-9">
         <div className="flex flex-col gap-1 pr-4">
           <Title level={TitleLevel.Title1} as="h2" className="hidden md:block">
-            Build on the fastest growing L2.
-          </Title>
-          <Title
-            level={TitleLevel.Title1}
-            as="h2"
-            className="hidden text-dark-palette-foregroundMuted md:block"
-          >
-            Grow faster with distribution through Base&apos;s social graph and integrations with
-            Coinbase products.
+            Build on the fastest growing L2.{' '}
+            <span className="text-dark-palette-foregroundMuted">
+              Grow faster with distribution through Base&apos;s social graph and integrations with
+              Coinbase products.
+            </span>
           </Title>
           <Title level={TitleLevel.Title3} className="md:hidden">
             Build on the fastest growing L2.{' '}
