@@ -46,7 +46,7 @@ export function Hero() {
   }, []);
 
   return (
-    <div className="flex w-full flex-col items-center justify-center bg-black mb-20">
+    <div className="mb-20 flex w-full flex-col items-center justify-center bg-black">
       <div className="flex h-[660px] w-full flex-col items-center justify-center">
         <Title className="font-display text-[1.25rem] leading-[1.2em] tracking-tight md:text-[2rem] lg:text-[3rem]">
           What do you want to build?
