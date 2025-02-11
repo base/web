@@ -3,10 +3,10 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-1 * (200px + 40px))); /* Move by one logo width + gap */
+    transform: translateX(calc(-50%));
   }
 }
 
 .animate-scroll {
-  animation: scroll 5s linear infinite;
+  animation: scroll 60s linear infinite;
 }
