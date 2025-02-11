@@ -1,9 +1,9 @@
 [
   {
-    "name": "Heurist AI",
-    "description": "Heurist is a decentralized AI-as-a-Service cloud. Run AI and Agents via API.",
-    "url": "https://heurist.ai",
-    "imageUrl": "/images/partners/heurist.png",
+    "name": "Ratio1",
+    "description": "A decentralized AI compute network ensuring trustless execution, data ownership, and linear scalability via a censorship-resistant, encrypted, and autonomous compute layer.",
+    "url": "https://ratio1.ai",
+    "imageUrl": "/images/partners/ratio1.png",
     "category": "ai",
     "subcategory": "ai"
   },
