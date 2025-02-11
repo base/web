@@ -13,13 +13,11 @@ export function UseCases() {
     <section className="h-full w-full">
       <div className="hidden flex-col gap-2 md:flex ">
         <Title level={TitleLevel.Title1} as="h2">
-          Build. Scale. Monetize.
-        </Title>
-        <Title level={TitleLevel.Title1} as="h2" className="text-gray-50">
-          Everything you need to launch onchain products.
+          Build. Scale. Monetize.{' '}
+          <span className="text-gray-50">Everything you need to launch onchain products.</span>
         </Title>
       </div>
-      <div className="flex flex-col gap-2 md:hidden">
+      <div className="flex flex-col gap-2 font-medium md:hidden">
         <Title level={TitleLevel.Title3}>
           Build. Scale. Monetize.{' '}
           <span className="text-gray-50">Everything you need to launch onchain products.</span>
