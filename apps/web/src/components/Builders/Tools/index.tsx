@@ -2,12 +2,12 @@ import Title from 'apps/web/src/components/base-org/typography/Title';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
 import Image, { type StaticImageData } from 'next/image';
 import Link from 'next/link';
-import agentKit from 'apps/web/src/components/Developers/Tools/assets/agentKit.svg';
-import appchains from 'apps/web/src/components/Developers/Tools/assets/appchains.svg';
-import miniKit from 'apps/web/src/components/Developers/Tools/assets/miniKit.svg';
-import smartWallet from 'apps/web/src/components/Developers/Tools/assets/smartWallet.svg';
-import onchainKit from 'apps/web/src/components/Developers/Tools/assets/onchainKit.svg';
-import verification from 'apps/web/src/components/Developers/Tools/assets/verification.svg';
+import agentKit from 'apps/web/src/components/Builders/Tools/assets/agentKit.svg';
+import appchains from 'apps/web/src/components/Builders/Tools/assets/appchains.svg';
+import miniKit from 'apps/web/src/components/Builders/Tools/assets/miniKit.svg';
+import smartWallet from 'apps/web/src/components/Builders/Tools/assets/smartWallet.svg';
+import onchainKit from 'apps/web/src/components/Builders/Tools/assets/onchainKit.svg';
+import verification from 'apps/web/src/components/Builders/Tools/assets/verification.svg';
 
 type ToolCardProps = {
   title: string;

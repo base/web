@@ -1,8 +1,8 @@
 import Image, { StaticImageData } from 'next/image';
-import mtsumi from 'apps/web/src/components/Developers/Stories/StoryCards/assets/mtsumi.webp';
-import nguyen from 'apps/web/src/components/Developers/Stories/StoryCards/assets/nguyen.webp';
-import kinya from 'apps/web/src/components/Developers/Stories/StoryCards/assets/kinya.webp';
-import ivog from 'apps/web/src/components/Developers/Stories/StoryCards/assets/ivog.webp';
+import mtsumi from 'apps/web/src/components/Builders/Stories/StoryCards/assets/mtsumi.webp';
+import nguyen from 'apps/web/src/components/Builders/Stories/StoryCards/assets/nguyen.webp';
+import kinya from 'apps/web/src/components/Builders/Stories/StoryCards/assets/kinya.webp';
+import ivog from 'apps/web/src/components/Builders/Stories/StoryCards/assets/ivog.webp';
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
 import { Icon } from 'apps/web/src/components/Icon/Icon';

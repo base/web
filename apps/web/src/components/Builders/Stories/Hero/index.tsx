@@ -1,6 +1,6 @@
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
-import baseGlobe from 'apps/web/app/(base-org)/developers/stories/assets/base_globe.webp';
+import baseGlobe from 'apps/web/src/components/Builders/Stories/Hero/assets/base_globe.webp';
 import Image, { StaticImageData } from 'next/image';
 
 export function Hero() {

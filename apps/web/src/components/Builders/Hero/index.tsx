@@ -3,7 +3,7 @@
 import classNames from 'classnames';
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { useCallback, useEffect, useState } from 'react';
-import { SearchModal } from 'apps/web/src/components/Developers/Hero/SearchModal';
+import { SearchModal } from 'apps/web/src/components/Builders/Hero/SearchModal';
 import Button from 'apps/web/src/components/base-org/Button';
 import { ButtonVariants } from 'apps/web/src/components/base-org/Button/types';
 
@@ -39,10 +39,7 @@ export function Hero() {
   }, []);
 
   const handleIntegrateCryptoPayments = useCallback(() => {
-    window.open(
-      'https://onchainkit.xyz/checkout/checkout',
-      '_blank',
-    );
+    window.open('https://onchainkit.xyz/checkout/checkout', '_blank');
   }, []);
 
   return (

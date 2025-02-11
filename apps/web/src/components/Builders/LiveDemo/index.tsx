@@ -3,8 +3,8 @@
 import { Checkout, CheckoutButton } from '@coinbase/onchainkit/checkout';
 import { SwapDefault } from '@coinbase/onchainkit/swap';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import sun from './assets/sun.svg';
-import moon from './assets/moon.svg';
+import sun from 'apps/web/src/components/Builders/LiveDemo/assets/sun.svg';
+import moon from 'apps/web/src/components/Builders/LiveDemo/assets/moon.svg';
 import Image, { StaticImageData } from 'next/image';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import Title from 'apps/web/src/components/base-org/typography/Title';

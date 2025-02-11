@@ -1,7 +1,7 @@
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
 import Container from 'apps/web/src/components/base-org/Container';
-import { Hero } from 'apps/web/src/components/Developers/Stories/Hero';
-import { StoryCards } from 'apps/web/src/components/Developers/Stories/StoryCards';
+import { Hero } from 'apps/web/src/components/Builders/Stories/Hero';
+import { StoryCards } from 'apps/web/src/components/Builders/Stories/StoryCards';
 
 export default function Stories() {
   return (
