@@ -30,7 +30,7 @@ import uniswap from 'apps/web/src/components/Builders/Customers/assets/smart-wal
 import virtual from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/virtual.svg';
 import zora from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/zora.svg';
 
-const logos: StaticImageData[] = [
+const logos = [
   b3,
   blocklords,
   illuvium,
@@ -86,9 +86,9 @@ export function Customers() {
         >
           {/* First set of logos */}
           {logos.map((logo) => (
-            <div className={`w-[${LOGO_WIDTH}px]`} key={`first-${String(logo.src)}`}>
+            <div className={`w-[${LOGO_WIDTH}px] flex items-center`} key={`first-${String(logo.src)}`}>
               <Image
-                src={logo as StaticImageData}
+                src={logo}
                 alt={String(logo.src)}
                 style={{
                   width: '100%',
@@ -100,9 +100,9 @@ export function Customers() {
           ))}
           {/* Duplicate set of logos for seamless loop */}
           {logos.map((logo) => (
-            <div className={`w-[${LOGO_WIDTH}px]`} key={`second-${String(logo.src)}`}>
+            <div className={`w-[${LOGO_WIDTH}px] flex items-center`} key={`second-${String(logo.src)}`}>
               <Image
-                src={logo as StaticImageData}
+                src={logo}
                 alt={String(logo.src)}
                 style={{
                   width: '100%',
