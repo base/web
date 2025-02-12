@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'apps/web/node_modules/next/dist/shared/lib/utils';
 import { getBasenameAvailable } from 'apps/web/src/utils/usernames';
-import { CHAIN } from 'apps/web/pages/api/basenames/frame/constants';
+import { base } from 'viem/chains';
 
 export type IsNameAvailableResponse = {
   nameIsAvailable: boolean;
@@ -9,7 +9,7 @@ export type IsNameAvailableResponse = {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { name } = req.query;
   try {
-    const isNameAvailableResponse = await getBasenameAvailable(String(name), CHAIN);
+    const isNameAvailableResponse = await getBasenameAvailable(String(name), base);
     const responseData: IsNameAvailableResponse = {
       nameIsAvailable: isNameAvailableResponse,
     };

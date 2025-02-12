@@ -149,7 +149,6 @@ export function ConnectWalletButton({
   return (
     <Wallet>
       <ConnectWallet
-        withWalletAggregator
         className="flex items-center justify-center rounded-xl bg-transparent p-2 hover:bg-gray-40/20"
       >
         <div className="flex items-center gap-2">

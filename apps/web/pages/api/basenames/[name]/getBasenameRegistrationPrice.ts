@@ -8,7 +8,7 @@ import {
 import { weiToEth } from 'apps/web/src/utils/weiToEth';
 import { formatWei } from 'apps/web/src/utils/formatWei';
 import { logger } from 'apps/web/src/utils/logger';
-import { CHAIN } from 'apps/web/pages/api/basenames/frame/constants';
+import { base } from 'viem/chains';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { name, years } = req.query;
@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 async function getBasenameRegistrationPrice(name: string, years: number): Promise<bigint | null> {
   const client = createPublicClient({
-    chain: CHAIN,
+    chain: base,
     transport: http(),
   });
   try {
@@ -40,7 +40,7 @@ async function getBasenameRegistrationPrice(name: string, years: number): Promis
     }
 
     const price = await client.readContract({
-      address: REGISTER_CONTRACT_ADDRESSES[CHAIN.id],
+      address: REGISTER_CONTRACT_ADDRESSES[base.id],
       abi: REGISTER_CONTRACT_ABI,
       functionName: 'registerPrice',
       args: [normalizedName, secondsInYears(years)],

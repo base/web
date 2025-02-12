@@ -16,6 +16,7 @@ import {
 
 export type SubItem = {
   name: string;
+  description?: string;
   href: string;
 };
 
@@ -28,43 +29,40 @@ export type TopNavigationLink = {
 
 const links: TopNavigationLink[] = [
   {
-    name: 'Build',
-    analyticContext: 'build',
-    href: '/build',
-    subItems: [
-      {
-        name: 'Get Started',
-        href: '/build',
-      },
-      { name: 'Docs', href: 'https://docs.base.org' },
-      { name: 'Learn', href: 'https://docs.base.org/base-learn/docs/welcome' },
-      { name: 'Status Page', href: 'https://status.base.org' },
-      { name: 'Block Explorer', href: 'https://base.blockscout.com' },
-      { name: 'Bug Bounty', href: 'https://hackerone.com/coinbase' },
-      { name: 'Github', href: 'https://github.com/base-org' },
-    ],
-  },
-  {
     name: 'Explore',
     analyticContext: 'explore',
     href: '/ecosystem',
     subItems: [
-      { name: 'Apps', href: '/ecosystem' },
-      { name: 'Bridge', href: 'https://bridge.base.org' },
+      { name: 'Apps', description: 'Discover applications on Base', href: '/ecosystem' },
+      {
+        name: 'Bridge',
+        description: 'Get started by bridging to Base',
+        href: 'https://bridge.base.org',
+      },
     ],
   },
   {
+    name: 'Developers',
+    analyticContext: 'developers',
+    href: '/developers',
+    subItems: [],
+  },
+  {
     name: 'Community',
-    analyticContext: 'community',
-    href: '/',
+    analyticContext: 'communnity',
+    href: '/resources',
     subItems: [
-      {
-        name: 'Grants',
-        href: 'https://paragraph.xyz/@grants.base.eth/calling-based-builders',
-      },
+      { name: 'Resources', description: 'Everything you need to get started', href: '/resources' },
+      { name: 'Grants', description: 'Fund your projects on Base', href: '/resources#GetFunded' },
       {
         name: 'Events',
-        href: 'https://lu.ma/BaseMeetups',
+        description: 'Connect with the Base community',
+        href: '/resources#GetInvolved',
+      },
+      {
+        name: 'Media Kit',
+        description: 'Base brand assets and guides',
+        href: 'https://github.com/base-org/brand-kit',
       },
     ],
   },
@@ -73,10 +71,13 @@ const links: TopNavigationLink[] = [
     analyticContext: 'about',
     href: '/about',
     subItems: [
-      { name: 'Vision', href: '/about' },
-      { name: 'Blog', href: 'https://base.mirror.xyz/' },
-      { name: 'Jobs', href: '/jobs' },
-      { name: 'Media Kit', href: 'https://github.com/base-org/brand-kit' },
+      { name: 'Vision', description: "Base's mission, vision, and strategy", href: '/about' },
+      {
+        name: 'Blog',
+        description: 'Latest updates from the Base core team',
+        href: 'https://base.mirror.xyz/',
+      },
+      { name: 'Jobs', description: 'Join Base to build a new internet', href: '/jobs' },
     ],
   },
   {
