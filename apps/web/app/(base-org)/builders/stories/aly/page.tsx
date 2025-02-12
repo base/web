@@ -1,10 +1,5 @@
 import Container from 'apps/web/src/components/base-org/Container';
-import Title from 'apps/web/src/components/base-org/typography/Title';
-import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
-import { Icon } from 'apps/web/src/components/Icon/Icon';
-import Link from 'next/link';
 import mtsumi from 'apps/web/src/components/Builders/Stories/StoryCards/assets/mtsumi.webp';
-import Image from 'next/image';
 import { Hero } from 'apps/web/src/components/Builders/Stories/StoryPages/Hero';
 import { QABlock } from 'apps/web/src/components/Builders/Stories/StoryPages/QABlock';
 import { Blockquote } from 'apps/web/src/components/Builders/Stories/StoryPages/Blockquote';

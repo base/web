@@ -5,7 +5,7 @@ import classNames from 'classnames';
 export function Blockquote({ quote, color }: { quote: string; color: string }) {
   return (
     <div className={classNames('mb-14 w-full italic', color)}>
-      <Title level={TitleLevel.Display3}>"{quote}"</Title>
+      <Title level={TitleLevel.Display3}>&quot;{quote}&quot;</Title>
     </div>
   );
 }
