@@ -2,7 +2,7 @@
 
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
-import Image, { type StaticImageData } from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import 'apps/web/src/components/Builders/Customers/styles.css';
 
 import b3 from 'apps/web/src/components/Builders/Customers/assets/appchains/b3.svg';
@@ -88,7 +88,7 @@ export function Customers() {
           {logos.map((logo) => (
             <div className={`w-[${LOGO_WIDTH}px] flex items-center`} key={`first-${String(logo.src)}`}>
               <Image
-                src={logo}
+                src={logo as StaticImageData}
                 alt={String(logo.src)}
                 style={{
                   width: '100%',
@@ -102,7 +102,7 @@ export function Customers() {
           {logos.map((logo) => (
             <div className={`w-[${LOGO_WIDTH}px] flex items-center`} key={`second-${String(logo.src)}`}>
               <Image
-                src={logo}
+                src={logo as StaticImageData}
                 alt={String(logo.src)}
                 style={{
                   width: '100%',

@@ -96,7 +96,6 @@ export function Testimonials() {
                   variant={ButtonVariants.SecondaryOutline}
                   linkClassNames="text-base font-medium text-white block"
                   buttonClassNames="flex w-40 items-center justify-between px-4 py-3 group"
-                  target="_blank"
                   href="/builders/stories"
                   eventName="testimonials"
                 >
