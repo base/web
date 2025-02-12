@@ -34,7 +34,7 @@ export function Hero({
           </Title>
         </div>
       </div>
-      <div className="grid grid-cols-[245px_245px_245px] gap-12">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-[245px_245px_245px] md:gap-12">
         <div className="flex flex-col gap-2">
           <span className="text-sm uppercase text-dark-palette-foregroundMuted">Region</span>
           <Title level={TitleLevel.Title3}>{region}</Title>

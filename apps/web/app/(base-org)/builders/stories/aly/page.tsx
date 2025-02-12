@@ -9,6 +9,7 @@ import { Hero } from 'apps/web/src/components/Builders/Stories/StoryPages/Hero';
 import { QABlock } from 'apps/web/src/components/Builders/Stories/StoryPages/QABlock';
 import { Blockquote } from 'apps/web/src/components/Builders/Stories/StoryPages/Blockquote';
 import { ReadMore } from 'apps/web/src/components/Builders/Stories/StoryPages/ReadMore';
+import { BottomCta } from 'apps/web/src/components/Builders/Stories/BottomCta';
 
 export default function Aly() {
   return (
@@ -67,6 +68,7 @@ export default function Aly() {
           nextLabel="Ngan Nguyen of Onchain Buster"
           nextHref="/builders/stories/ngan"
         />
+        <BottomCta />
       </main>
     </Container>
   );
