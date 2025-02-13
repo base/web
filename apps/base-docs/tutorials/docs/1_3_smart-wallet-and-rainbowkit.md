@@ -8,7 +8,6 @@ keywords:
     JSON RPC,
     RainbowKit,
     OnchainKit,
-    frontend,
     Next.js,
     Base,
     blockchain development,
