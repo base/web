@@ -41,7 +41,7 @@ const links: TopNavigationLink[] = [
       { name: 'Status Page', href: 'https://status.base.org' },
       { name: 'Block Explorer', href: 'https://base.blockscout.com' },
       { name: 'Bug Bounty', href: 'https://hackerone.com/coinbase' },
-      { name: 'Github', href: 'https://github.com/base-org' },
+      { name: 'Github', href: 'https://github.com/base' },
     ],
   },
   {
@@ -76,7 +76,7 @@ const links: TopNavigationLink[] = [
       { name: 'Vision', href: '/about' },
       { name: 'Blog', href: 'https://base.mirror.xyz/' },
       { name: 'Jobs', href: '/jobs' },
-      { name: 'Media Kit', href: 'https://github.com/base-org/brand-kit' },
+      { name: 'Media Kit', href: 'https://github.com/base/brand-kit' },
     ],
   },
   {
@@ -86,7 +86,7 @@ const links: TopNavigationLink[] = [
     subItems: [
       { name: 'X', href: 'https://x.com/base' },
       { name: 'Farcaster', href: 'https://warpcast.com/base' },
-      { name: 'Github', href: 'https://github.com/base-org' },
+      { name: 'Github', href: 'https://github.com/base' },
       { name: 'Discord', href: 'https://discord.com/invite/buildonbase' },
     ],
   },

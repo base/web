@@ -6,11 +6,11 @@ Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the ne
 
 <!-- Badge row 1 - status -->
 
-[![GitHub contributors](https://img.shields.io/github/contributors/base-org/web)](https://github.com/base-org/web/graphs/contributors)
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/w/base-org/web)](https://github.com/base-org/web/graphs/contributors)
-[![GitHub Stars](https://img.shields.io/github/stars/base-org/web.svg)](https://github.com/base-org/web/stargazers)
-![GitHub repo size](https://img.shields.io/github/repo-size/base-org/web)
-[![GitHub](https://img.shields.io/github/license/base-org/web?color=blue)](https://github.com/base-org/web/blob/master/LICENSE.md)
+[![GitHub contributors](https://img.shields.io/github/contributors/base/web)](https://github.com/base/web/graphs/contributors)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/w/base/web)](https://github.com/base/web/graphs/contributors)
+[![GitHub Stars](https://img.shields.io/github/stars/base/web.svg)](https://github.com/base/web/stargazers)
+![GitHub repo size](https://img.shields.io/github/repo-size/base/web)
+[![GitHub](https://img.shields.io/github/license/base/web?color=blue)](https://github.com/base/web/blob/master/LICENSE.md)
 
 <!-- Badge row 2 - links and profiles -->
 
@@ -22,8 +22,8 @@ Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the ne
 
 <!-- Badge row 3 - detailed status -->
 
-[![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/base-org/web)](https://github.com/base-org/web/pulls)
-[![GitHub Issues](https://img.shields.io/github/issues-raw/base-org/web.svg)](https://github.com/base-org/web/issues)
+[![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/base/web)](https://github.com/base/web/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues-raw/base/web.svg)](https://github.com/base/web/issues)
 
 ## Setup
 
@@ -117,7 +117,7 @@ By opening a PR to add your project, you authorize and license Coinbase on a non
 
 #### Submission requirements
 
-- App content adheres to the [Base Editorial Style Guide](https://github.com/base-org/brand-kit/blob/main/guides/editorial-style-guide.md)
+- App content adheres to the [Base Editorial Style Guide](https://github.com/base/brand-kit/blob/main/guides/editorial-style-guide.md)
 - App has been live on Base for at least 30 days
 - App has a Terms of Service and Privacy Policy
 - App supports HTTPS and 301 redirects HTTP requests
