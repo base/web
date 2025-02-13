@@ -153,7 +153,7 @@ const links: TopNavigationLink[] = [
     subItems: [
       { name: 'X', href: 'https://x.com/base' },
       { name: 'Farcaster', href: 'https://warpcast.com/base' },
-      { name: 'Github', href: 'https://github.com/base-org' },
+      { name: 'Github', href: 'https://github.com/base' },
       { name: 'Discord', href: 'https://discord.com/invite/buildonbase' },
     ],
   },

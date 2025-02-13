@@ -35,7 +35,7 @@ async function EcosystemHero() {
           <div className="flex w-full flex-col gap-8 md:max-w-lg">
             <Title level={TitleLevel.Display3}>Built on Base to bring the world onchain.</Title>
             <a
-              href="https://github.com/base-org/web?tab=readme-ov-file#updating-the-base-ecosystem-page"
+              href="https://github.com/base/web?tab=readme-ov-file#updating-the-base-ecosystem-page"
               target="_blank"
               rel="noreferrer noopener"
               className="max-w-fit"
