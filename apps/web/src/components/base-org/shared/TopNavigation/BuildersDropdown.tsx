@@ -143,7 +143,7 @@ function ToolMiniCard({ title, description, icon, href }: ToolMiniCardProps) {
   return (
     <Link
       href={href}
-      className="flex cursor-pointer flex-col gap-4 rounded-xl px-3 py-2 transition-all duration-200 hover:bg-white/10"
+      className="flex cursor-pointer flex-col gap-4 rounded-xl px-4 py-2 transition-all duration-200 hover:bg-white/10"
     >
       <div className="flex items-center gap-4">
         <div className="rounded-lg border border-dark-palette-lineHeavy p-2">
@@ -168,7 +168,7 @@ function ToolMiniCard({ title, description, icon, href }: ToolMiniCardProps) {
 
 function FooterCard({ label, icon, href }: FooterCardProps) {
   return (
-    <Link href={href} className="flex items-center gap-2 px-3">
+    <Link href={href} className="flex items-center gap-2 px-4">
       <Image src={icon} alt={label} width={16} height={16} />
       <Title level={TitleLevel.Headline} className="font-normal">
         {label}
