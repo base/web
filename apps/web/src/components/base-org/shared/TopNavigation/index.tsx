@@ -15,7 +15,6 @@ import {
 import { ButtonWithLinkAndEventLogging } from 'apps/web/src/components/Button/ButtonWithLinkAndEventLogging';
 import { ButtonVariants } from 'apps/web/src/components/base-org/Button/types';
 import Link from 'apps/web/src/components/Link';
-import classNames from 'classnames';
 
 export type SubItem = {
   name: string;
