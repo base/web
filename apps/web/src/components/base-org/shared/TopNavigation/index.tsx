@@ -2,7 +2,6 @@
 
 import { Suspense } from 'react';
 import Image, { StaticImageData } from 'next/image';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
 import logo from 'apps/web/src/components/base-org/shared/TopNavigation/assets/logo.svg';
@@ -13,6 +12,10 @@ import {
   ConnectWalletButtonVariants,
   DynamicWrappedConnectWalletButton,
 } from 'apps/web/src/components/ConnectWalletButton/ConnectWalletButton';
+import { ButtonWithLinkAndEventLogging } from 'apps/web/src/components/Button/ButtonWithLinkAndEventLogging';
+import { ButtonVariants } from 'apps/web/src/components/base-org/Button/types';
+import Link from 'apps/web/src/components/Link';
+import classNames from 'classnames';
 
 export type SubItem = {
   name: string;
@@ -185,7 +188,14 @@ export default function TopNavigation() {
           </div>
 
           {/* Connect Wallet button */}
-          <div className="flex items-end justify-end md:min-w-[16rem]">
+          <div className="flex items-center justify-end gap-3 md:min-w-[16rem]">
+            <ButtonWithLinkAndEventLogging
+              href="https://docs.base.org"
+              eventName="navbar_docs_click"
+              variant={ButtonVariants.SecondaryOutline}
+            >
+              Get Started
+            </ButtonWithLinkAndEventLogging>
             {showGasDropdownAndConnectWallet && (
               <Suspense>
                 <DynamicWrappedConnectWalletButton
