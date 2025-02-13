@@ -7,7 +7,7 @@ import clsx from 'clsx';
 import styles from './styles.module.css';
 import tutorialData from '../../../tutorials/data.json';
 import authors from '@app/base-docs/static/json/authors.json';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const TagList = [
   'all',
@@ -47,9 +47,9 @@ function TagChip({ tag, isSelected, setSelectedTag }) {
   );
 }
 
-const handleContainerClick = (event, tutorial, history) => {
+const handleContainerClick = (event, tutorial, navigate) => {
   if (event.target.closest('a')) return;
-  history.push(`/tutorials${tutorial.slug}`);
+  navigate(`/tutorials${tutorial.slug}`);
 };
 
 const handleClick = (event) => {
@@ -57,13 +57,13 @@ const handleClick = (event) => {
 };
 
 function TutorialListCell({ tutorial }) {
-  const history = useHistory();
+  const navigate = useNavigate();
   const authorData = authors[tutorial.author];
   return (
     // <Link to={`/tutorials${tutorial.slug}`}>
     <div
       onClick={(event) => {
-        handleContainerClick(event, tutorial, history);
+        handleContainerClick(event, tutorial, navigate);
       }}
       role="button"
       tabIndex={0}
@@ -105,7 +105,7 @@ const TITLE = 'Base Builder Tutorials';
 
 export default function Tutorials() {
   const [selectedTag, setSelectedTag] = useState('all');
-  const history = useHistory();
+  const navigate = useNavigate();
   const query = useQuery();
 
   useEffect(() => {
@@ -117,9 +117,9 @@ export default function Tutorials() {
 
   const selectTag = useCallback(
     (tag) => {
-      history.push(`?tag=${tag}`);
+      navigate(`?tag=${tag}`);
     },
-    [history],
+    [navigate],
   );
 
   return (
