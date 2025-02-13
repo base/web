@@ -1,5 +1,4 @@
 import satori from 'satori';
-import { NextRequest } from 'next/server';
 import {
   getBasenameImage,
   getChainForBasename,
@@ -14,10 +13,12 @@ import { getIpfsGatewayUrl, IpfsUrl, IsValidIpfsUrl } from 'apps/web/src/utils/u
 import { logger } from 'apps/web/src/utils/logger';
 import { Basename } from '@coinbase/onchainkit/identity';
 import { getCloudinaryMediaUrl } from 'apps/web/src/utils/images';
+import { readFile } from 'node:fs/promises';
+import { join } from 'path';
 
 const emojiCache: Record<string, Promise<string>> = {};
 
-export async function loadEmoji(emojiString: string) {
+async function loadEmoji(emojiString: string) {
   const code = twemoji.convert.toCodePoint(emojiString);
 
   if (code in emojiCache) {
@@ -34,16 +35,14 @@ export const config = {
   runtime: 'edge',
 };
 
-export default async function handler(request: NextRequest) {
-  const fontData = await fetch(
-    new URL('../../../../../src/fonts/CoinbaseDisplay-Regular.ttf', import.meta.url),
-  ).then(async (res) => res.arrayBuffer());
+export async function GET(request: Request, { params }: { params: Promise<{ name: string }> }) {
+  const fontData = await readFile(join(process.cwd(), 'src/fonts/CoinbaseDisplay-Regular.ttf'));
 
   const url = new URL(request.url);
 
-  const username = url.searchParams.get('name') ?? 'yourname';
+  const username = (await params).name ?? 'yourname';
   const domainName = isDevelopment ? `${url.protocol}//${url.host}` : 'https://www.base.org';
-  const profilePicture = getBasenameImage(username);
+  const profilePicture = getBasenameImage(username as Basename);
   const chain = getChainForBasename(username as Basename);
   let imageSource = domainName + profilePicture.src;
 
@@ -57,12 +56,13 @@ export default async function handler(request: NextRequest) {
 
     if (avatar) {
       // IPFS Resolution
-      if (avatar && IsValidIpfsUrl(avatar)) {
+      if (IsValidIpfsUrl(avatar)) {
         const ipfsUrl = getIpfsGatewayUrl(avatar as IpfsUrl);
+
         if (ipfsUrl) {
           imageSource = ipfsUrl;
         }
-      } else if (avatar) {
+      } else {
         imageSource = avatar;
       }
 
