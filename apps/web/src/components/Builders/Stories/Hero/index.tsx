@@ -11,8 +11,10 @@ export function Hero() {
         alt="Base Globe"
         className="absolute right-[-110px] top-0 hidden md:block"
       />
-      <div className="my-32 flex w-full flex-col items-start justify-center">
-        <Title level={TitleLevel.Display3}>Builder Stories</Title>
+      <div className="my-32 flex w-full flex-col items-start justify-center gap-2">
+        <Title level={TitleLevel.Display3} className="font-medium">
+          Builder Stories
+        </Title>
         <Title level={TitleLevel.Title3} className="max-w-[575px] text-gray-50">
           Inspirational stories of builders and the new internet they&apos;re building on Base.
         </Title>

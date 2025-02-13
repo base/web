@@ -2,7 +2,6 @@ import AnalyticsProvider from 'apps/web/contexts/Analytics';
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
-import Link from 'next/link';
 import agentKit from 'apps/web/src/components/Builders/Tools/assets/agentKit.svg';
 import baseNet from 'apps/web/src/components/Builders/Tools/assets/appchains.svg';
 import miniKit from 'apps/web/src/components/Builders/Tools/assets/miniKit.svg';
@@ -16,6 +15,7 @@ import blockchain from 'apps/web/src/components/base-org/shared/TopNavigation/as
 import gitHubLogo from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/gitHubLogo.svg';
 import blog from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/blog.svg';
 import bridging from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/bridging.svg';
+import Link from 'apps/web/src/components/Link';
 
 type ToolMiniCardProps = {
   title: string;
@@ -30,11 +30,23 @@ type FooterCardProps = {
   href: string;
 };
 
-export function DevelopersDropdown() {
+export function BuildersDropdown() {
   return (
     <AnalyticsProvider context="developers">
       <div className="relative m-0 w-full rounded-xl bg-white/20 p-[1px]">
         <div className="flex flex-col gap-2.5 rounded-xl bg-dark-palette-backgroundAlternate p-2">
+          <Link
+            href="/builders"
+            className="flex items-center justify-between rounded-lg bg-dark-palette-secondary px-4 py-3 hover:bg-white/10"
+          >
+            <div>
+              <Title level={TitleLevel.Headline}>Builders</Title>
+              <span className="text-sm text-dark-palette-foregroundMuted ">
+                Start building with Base tools
+              </span>
+            </div>
+            <Icon name="arrowRight" height={24} width={24} />
+          </Link>
           <Link
             href="https://docs.base.org"
             className="flex items-center justify-between rounded-lg bg-dark-palette-secondary px-4 py-3 hover:bg-white/10"
@@ -42,7 +54,7 @@ export function DevelopersDropdown() {
             <div>
               <Title level={TitleLevel.Headline}>Documentation</Title>
               <span className="text-sm text-dark-palette-foregroundMuted ">
-                Start building with Base tools
+                Dive into the developer docs
               </span>
             </div>
             <Icon name="arrowRight" height={24} width={24} />
@@ -133,7 +145,7 @@ function ToolMiniCard({ title, description, icon, href }: ToolMiniCardProps) {
       href={href}
       className="flex cursor-pointer flex-col gap-4 rounded-xl px-3 py-2 transition-all duration-200 hover:bg-white/10"
     >
-      <div className="flex items-center gap-8">
+      <div className="flex items-center gap-4">
         <div className="rounded-lg border border-dark-palette-lineHeavy p-2">
           <Image src={icon} alt={title} width={32} height={32} className="h-8 w-8" />
         </div>

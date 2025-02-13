@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import AnimatedIcon from './AnimatedIcon';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
 import Link from 'apps/web/src/components/Link';
-import { DevelopersDropdown } from 'apps/web/src/components/base-org/shared/TopNavigation/DevelopersDropdown';
+import { BuildersDropdown } from 'apps/web/src/components/base-org/shared/TopNavigation/BuildersDropdown';
 
 type MenuDesktopProps = {
   links: TopNavigationLink[];
@@ -103,8 +103,8 @@ export default function MenuDesktop({ links }: MenuDesktopProps) {
           transform: `translateX(-50%) translateY(${subActive ? 0 : -20}px)`,
         }}
       >
-        {links[hoverIndex]?.name === 'Developers' ? (
-          <DevelopersDropdown />
+        {links[hoverIndex]?.name === 'Builders' ? (
+          <BuildersDropdown />
         ) : (
           <Card radius={8} innerClassName="bg-dark-palette-backgroundAlternate">
             <div className="flex w-full items-stretch gap-2 rounded-lg bg-dark-palette-backgroundAlternate p-2">
@@ -125,9 +125,9 @@ export default function MenuDesktop({ links }: MenuDesktopProps) {
                         className="group/sublink flex items-center justify-between rounded-md bg-white bg-opacity-0 px-3 py-2 text-sm transition-all duration-300 hover:bg-opacity-20"
                       >
                         <div className="flex flex-col">
-                          <span className="tracking-normal font-medium">{subItem.name}</span>
+                          <span className="font-medium tracking-normal">{subItem.name}</span>
                           {subItem.description && (
-                            <span className="text-dark-palette-foregroundMuted tracking-normal">
+                            <span className="tracking-normal text-dark-palette-foregroundMuted">
                               {subItem.description}
                             </span>
                           )}

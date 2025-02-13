@@ -42,9 +42,9 @@ const links: TopNavigationLink[] = [
     ],
   },
   {
-    name: 'Developers',
-    analyticContext: 'developers',
-    href: '/developers',
+    name: 'Builders',
+    analyticContext: 'builders',
+    href: '/builders',
     subItems: [
       {
         name: 'Documentation',

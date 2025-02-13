@@ -18,7 +18,7 @@ export function StoryCards() {
         description="Enabling users to buy stablecoins through m-pesa and spend them."
         location="Nairobi, Kenya"
         date="January 11, 2025"
-        href=""
+        href="/builders/stories/aly"
         color="text-dark-green-60"
         image={mtsumi}
       />
@@ -73,7 +73,7 @@ function StoryCard({
   return (
     <div className="z-1 flex w-full flex-col gap-6">
       <Image src={image} alt={title} />
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col">
         <div className="hidden flex-col gap-2 md:flex">
           <Title level={TitleLevel.Title1}>{title}</Title>
           <Title level={TitleLevel.Title2} className="text-dark-palette-foregroundMuted">
@@ -81,41 +81,46 @@ function StoryCard({
           </Title>
         </div>
         <div className="flex flex-col gap-2 md:hidden">
-          <Title level={TitleLevel.Title3}>{title}</Title>
+          <Title level={TitleLevel.Title3} className="font-medium">
+            {title}
+          </Title>
           <Title level={TitleLevel.Title4} className="text-dark-palette-foregroundMuted">
             {description}
           </Title>
         </div>
-        <div className="flex flex-col gap-2 md:flex-row">
-          <div className="flex gap-1">
-            <div className={classNames(color, 'hidden md:block')}>
-              <Icon name="locationPin" color="currentColor" />
-            </div>
-            <div className={classNames(color, 'md:hidden')}>
-              <Icon name="locationPin" color="currentColor" width={20} height={20} />
-            </div>
-            <Title level={TitleLevel.Headline} className={color}>
-              {location}
-            </Title>
+      </div>
+      <div className="flex flex-col gap-2 md:flex-row">
+        <div className="flex gap-1">
+          <div className={classNames(color, 'hidden md:block')}>
+            <Icon name="locationPin" color="currentColor" />
           </div>
-          <Title level={TitleLevel.Headline} className="text-dark-palette-foregroundMuted">
-            {date}
+          <div className={classNames(color, 'md:hidden')}>
+            <Icon name="locationPin" color="currentColor" width={20} height={20} />
+          </div>
+          <Title level={TitleLevel.Headline} className={classNames(color, 'font-normal')}>
+            {location}
           </Title>
         </div>
-        <ButtonWithLinkAndEventLogging
-          variant={ButtonVariants.SecondaryOutline}
-          buttonClassNames="flex items-center justify-between px-4 py-3 group"
-          href={href}
-          eventName={`developers_stories_${title.replace(/\s+/g, '-').toLowerCase()}`}
+        <Title
+          level={TitleLevel.Headline}
+          className="font-normal text-dark-palette-foregroundMuted"
         >
-          <div className="flex items-center gap-4">
-            <span>Read</span>
-            <div className="transition-transform duration-200 group-hover:translate-x-1">
-              <Icon name="arrowRight" width={20} height={20} color="white" />
-            </div>
-          </div>
-        </ButtonWithLinkAndEventLogging>
+          {date}
+        </Title>
       </div>
+      <ButtonWithLinkAndEventLogging
+        variant={ButtonVariants.SecondaryOutline}
+        buttonClassNames="flex items-center justify-between px-4 py-3 group"
+        href={href}
+        eventName={`developers_stories_${title.replace(/\s+/g, '-').toLowerCase()}`}
+      >
+        <div className="flex items-center gap-4">
+          <span>Read</span>
+          <div className="transition-transform duration-200 group-hover:translate-x-1">
+            <Icon name="arrowRight" width={20} height={20} color="white" />
+          </div>
+        </div>
+      </ButtonWithLinkAndEventLogging>
     </div>
   );
 }
