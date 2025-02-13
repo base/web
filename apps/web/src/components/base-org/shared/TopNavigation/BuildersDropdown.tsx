@@ -45,7 +45,7 @@ export function BuildersDropdown() {
                 Start building with Base tools
               </span>
             </div>
-            <Icon name="arrowRight" height={24} width={24} />
+            <Icon name="arrowRight" height={20} width={20} />
           </Link>
           <Link
             href="https://docs.base.org"
@@ -57,7 +57,7 @@ export function BuildersDropdown() {
                 Dive into the developer docs
               </span>
             </div>
-            <Icon name="arrowRight" height={24} width={24} />
+            <Icon name="arrowRight" height={20} width={20} />
           </Link>
           <div className="flex items-center justify-between rounded-lg">
             <div className="grid w-full grid-cols-2 gap-1">
