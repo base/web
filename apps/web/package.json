@@ -73,6 +73,7 @@
     "recharts": "^2.12.7",
     "satori": "^0.10.14",
     "sharp": "^0.33.4",
+    "shiki": "^2.3.2",
     "three": "^0.168.0",
     "three-stdlib": "^2.33.0",
     "twemoji": "^14.0.2",
