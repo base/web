@@ -28,7 +28,7 @@ export default async function Home() {
               <Container>
                 <Title level={TitleLevel.Title1}>Base is for everyone.</Title>
                 <div className="mt-4 flex gap-4">
-                  <Link href="/build?utm_source=dotorg&medium=hero">
+                  <Link href="/builders?utm_source=dotorg&medium=hero">
                     <Button variant={ButtonVariants.Secondary} iconName="baseOrgDiagonalUpArrow">
                       Start building
                     </Button>
