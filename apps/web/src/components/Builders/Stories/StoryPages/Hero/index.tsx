@@ -22,13 +22,15 @@ export function Hero({
   image: StaticImageData;
 }) {
   return (
-    <div className="my-32 flex w-full flex-col items-start gap-12">
+    <div className="mb-24 mt-32 flex w-full flex-col items-start gap-12">
       <div className="flex flex-col gap-6">
         <Title level={TitleLevel.Title4} className="text-dark-palette-foregroundMuted">
           {date}
         </Title>
         <div className="flex flex-col gap-3">
-          <Title level={TitleLevel.Display3}>{title}</Title>
+          <Title level={TitleLevel.Display3} className="font-medium">
+            {title}
+          </Title>
           <Title level={TitleLevel.Title2} className="text-dark-palette-foregroundMuted">
             {description}
           </Title>
@@ -36,11 +38,15 @@ export function Hero({
       </div>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-[245px_245px_245px] md:gap-12">
         <div className="flex flex-col gap-2">
-          <span className="text-sm uppercase text-dark-palette-foregroundMuted">Region</span>
+          <span className="text-sm font-medium uppercase text-dark-palette-foregroundMuted">
+            Region
+          </span>
           <Title level={TitleLevel.Title3}>{region}</Title>
         </div>
         <div className="flex flex-col gap-2">
-          <span className="text-sm uppercase text-dark-palette-foregroundMuted">Project</span>
+          <span className="text-sm font-medium uppercase text-dark-palette-foregroundMuted">
+            Project
+          </span>
           <Link href="/">
             <div className="flex flex-row items-center gap-2">
               <Title level={TitleLevel.Title3}>{project}</Title>
@@ -51,7 +57,9 @@ export function Hero({
           </Link>
         </div>
         <div className="flex flex-col gap-2">
-          <span className="text-sm uppercase text-dark-palette-foregroundMuted">On Base Since</span>
+          <span className="text-sm font-medium uppercase text-dark-palette-foregroundMuted">
+            On Base Since
+          </span>
           <Title level={TitleLevel.Title3}>{onBaseSince}</Title>
         </div>
       </div>

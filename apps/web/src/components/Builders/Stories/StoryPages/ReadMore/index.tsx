@@ -15,15 +15,25 @@ export function ReadMore({
 }) {
   return (
     <div className="my-16 flex w-full flex-row justify-between">
-      <div className="flex flex-col gap-2 border-b border-dark-palette-foregroundMuted">
-        <span className="text-sm uppercase text-dark-palette-foregroundMuted">Previous</span>
-        <Link href={previousHref}>
+      <div className="flex flex-col gap-2 ">
+        <span className="text-sm font-medium uppercase text-dark-palette-foregroundMuted">
+          Previous
+        </span>
+        <Link
+          href={previousHref}
+          className="border-b border-dark-palette-foregroundMuted hover:border-b hover:border-white"
+        >
           <Title level={TitleLevel.Title3}>{previousLabel}</Title>
         </Link>
       </div>
-      <div className="flex flex-col gap-2 border-b border-dark-palette-foregroundMuted text-right">
-        <span className="text-sm uppercase text-dark-palette-foregroundMuted">Next</span>
-        <Link href={nextHref}>
+      <div className="flex flex-col gap-2 text-right ">
+        <span className="text-sm font-medium uppercase text-dark-palette-foregroundMuted">
+          Next
+        </span>
+        <Link
+          href={nextHref}
+          className="border-b border-dark-palette-foregroundMuted hover:border-b hover:border-white"
+        >
           <Title level={TitleLevel.Title3}>{nextLabel}</Title>
         </Link>
       </div>
