@@ -75,16 +75,17 @@ export default function ExperimentsProvider({ children }: ExperimentsProviderPro
       if (!isReady) {
         return undefined;
       }
-      if (!experimentClient) {
-        console.error('No experiment clients found');
-        return undefined;
+      const variant = experimentClient?.variant(flagKey);
+    
+      if (!variant) {
+      console.error('Variant not found for flag key:', flagKey);
+      return undefined;
       }
-      const variant = experimentClient.variant(flagKey);
+
       return variant.value;
     },
     [isReady, experimentClient],
   );
-
   const values = useMemo(() => {
     return { experimentClient, isReady, getUserVariant };
   }, [isReady, getUserVariant]);
