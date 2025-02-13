@@ -36,9 +36,6 @@ const baseConfig = {
 
   // Enable strict mode in development
   reactStrictMode: !isProdEnv,
-
-  // Minify for production builds
-  swcMinify: false,
 };
 
 function extendBaseConfig(customConfig = {}, plugins = []) {
@@ -119,6 +116,7 @@ const contentSecurityPolicy = {
     'https://unpkg.com/@lottiefiles/dotlottie-web@0.31.1/dist/dotlottie-player.wasm', // lottie player
     `https://${process.env.NEXT_PUBLIC_PINATA_GATEWAY_URL}`,
     'https://usdc-claim-git-master-coinbase-vercel.vercel.app',
+    'https://eth.merkle.io', // new default viem rpc
   ],
   'frame-src': ['https://p.datadoghq.com'],
   'frame-ancestors': ["'self'", baseXYZDomains],
