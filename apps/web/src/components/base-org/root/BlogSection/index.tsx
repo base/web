@@ -57,7 +57,7 @@ function ProgressButton({
       key={post.url}
       aria-label={`View blog post: ${post.title}`}
       type="button"
-      className="h-2 w-1/6 overflow-hidden rounded-full bg-black/20 backdrop-blur-[0.5rem] hover:h-4"
+      className="h-2 w-1/6 overflow-hidden rounded-full bg-black/20 backdrop-blur-[0.5rem] transition-all duration-200 ease-in-out hover:h-4"
       onClick={onClickHandler}
     >
       <div className={progressClasses} data-index={index} onAnimationEnd={onAnimationEndHandler} />

@@ -12,15 +12,27 @@ export function Footer() {
         <Container>
           <ul className="flex w-full justify-between gap-2 ">
             <li>
-              <Link href="https://docs.base.org/terms-of-service">Terms of Service</Link>
+              <Link
+                href="https://docs.base.org/terms-of-service"
+                className="opacity-100 hover:opacity-70"
+              >
+                Terms of Service
+              </Link>
             </li>
 
             <li>
-              <Link href="https://docs.base.org/privacy-policy">Privacy Policy</Link>
+              <Link
+                href="https://docs.base.org/privacy-policy"
+                className="opacity-100 hover:opacity-70"
+              >
+                Privacy Policy
+              </Link>
             </li>
 
             <li>
-              <Link href="/cookie-policy">Cookie Policy</Link>
+              <Link href="/cookie-policy" className="opacity-100 hover:opacity-70">
+                Cookie Policy
+              </Link>
             </li>
 
             <li>

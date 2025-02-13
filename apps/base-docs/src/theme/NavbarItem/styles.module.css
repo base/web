@@ -8,8 +8,11 @@
   line-height: 24px;
   text-transform: uppercase;
   background-color: transparent;
+  cursor: pointer;
 }
-
+.connectButton:hover {
+  text-decoration: underline;
+}
 .errorButton {
   padding: 8px 32px 8px 32px;
   border: 1px solid var(--ifm-navbar-link-color);
@@ -20,6 +23,10 @@
   line-height: 24px;
   text-transform: uppercase;
   background-color: transparent;
+  cursor: pointer;
+}
+.errorButton:hover {
+  text-decoration: underline;
 }
 
 .network {
