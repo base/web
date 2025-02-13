@@ -245,7 +245,7 @@ export function NFTList() {
   const { data: nftData, refetch: refetchNftData } = useReadContract({
     abi: contractData.abi,
     address: contractData.address as `0x${string}`,
-    functionName: "getNFftsOwned",
+    functionName: "getNFtsOwned",
     args: [account.address],
   });
 

@@ -387,7 +387,6 @@ Follow along using the [DevNet example project](https://github.com/Tenderly/devn
 
    ![Showing how to find TENDERLY_DEVNET_TEMPLATE](../../assets/images/deployment-with-tenderly/devnet-project-slug.png)
 
-   Showing how to find TENDERLY_DEVNET_TEMPLATE
 
 4. From your terminal, run the tests locally. The `test:devnet` script will [spawn a new DevNet automatically](https://github.com/Tenderly/devnet-examples/blob/main/spawn-devnet-auto/js/spawn-devnet.js) and run tests against it.
 
