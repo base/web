@@ -15,10 +15,6 @@ build:
         name: docs
         path: ./apps/base-docs/Dockerfile
         architecture: amd64
-    - BaldurECR:
-        name: bridge
-        path: ./apps/bridge/Dockerfile
-        architecture: amd64
   multi_arch: true
 
 operate:
