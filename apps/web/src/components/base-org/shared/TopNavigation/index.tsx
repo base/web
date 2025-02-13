@@ -188,13 +188,6 @@ export default function TopNavigation() {
 
           {/* Connect Wallet button */}
           <div className="flex items-center justify-end gap-3 md:min-w-[16rem]">
-            <ButtonWithLinkAndEventLogging
-              href="https://docs.base.org"
-              eventName="navbar_docs_click"
-              variant={ButtonVariants.SecondaryOutline}
-            >
-              Get Started
-            </ButtonWithLinkAndEventLogging>
             {showGasDropdownAndConnectWallet && (
               <Suspense>
                 <DynamicWrappedConnectWalletButton

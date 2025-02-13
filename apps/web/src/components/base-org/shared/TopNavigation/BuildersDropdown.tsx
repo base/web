@@ -99,7 +99,7 @@ export function BuildersDropdown() {
               />
             </div>
           </div>
-          <div className="flex items-center justify-between rounded-lg bg-dark-palette-secondary py-2">
+          <div className="flex items-center justify-between rounded-lg bg-dark-palette-secondary py-3">
             <div className="grid w-full grid-cols-2 gap-x-1 gap-y-2.5">
               <FooterCard
                 label="Status"
@@ -146,7 +146,7 @@ function ToolMiniCard({ title, description, icon, href }: ToolMiniCardProps) {
       className="flex cursor-pointer flex-col gap-4 rounded-xl px-4 py-2 transition-all duration-200 hover:bg-white/10"
     >
       <div className="flex items-center gap-4">
-        <div className="rounded-lg border border-dark-palette-lineHeavy p-2">
+        <div className="rounded-lg">
           <Image src={icon} alt={title} width={32} height={32} className="h-8 w-8" />
         </div>
         <div>

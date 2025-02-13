@@ -57,8 +57,9 @@ const logos = [
   zora,
 ];
 const LOGO_WIDTH = 200; // pixels
-const LOGO_GAP = 40; // pixels
+const LOGO_GAP = 96; // pixels
 const TOTAL_LOGOS = logos.length * 2;
+const LOGO_CONTAINER_WIDTH = (LOGO_WIDTH + LOGO_GAP) * TOTAL_LOGOS;
 
 export function Customers() {
   return (
@@ -70,7 +71,7 @@ export function Customers() {
         Powering the most consumer-friendly applications onchain.
       </Title>
       <figure
-        className={`relative flex h-[${LOGO_WIDTH}px] items-center overflow-hidden`}
+        className={`relative flex h-16 items-center overflow-hidden`}
         style={{
           maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
           WebkitMaskImage:
@@ -78,21 +79,27 @@ export function Customers() {
         }}
       >
         <div
-          className="animate-scroll absolute left-0 flex h-full items-center"
+          className={`animate-scroll absolute left-0 flex h-full items-center`}
           style={{
             gap: `${LOGO_GAP}px`,
-            width: `calc((${LOGO_WIDTH}px + ${LOGO_GAP}px) * ${TOTAL_LOGOS})`,
+            width: `${LOGO_CONTAINER_WIDTH}px`,
           }}
         >
           {/* First set of logos */}
           {logos.map((logo) => (
-            <div className={`w-[${LOGO_WIDTH}px] flex items-center`} key={`first-${String(logo.src)}`}>
+            <div
+              className={`max-w-[${LOGO_WIDTH}px] flex items-center`}
+              key={`first-${String(logo.src)}`}
+            >
               <Image
                 src={logo as StaticImageData}
                 alt={String(logo.src)}
                 style={{
-                  width: '100%',
+                  width: 'auto',
                   height: 'auto',
+                  minWidth: '64px',
+                  maxWidth: '100%',
+                  maxHeight: '64px',
                 }}
                 className="flex-none object-contain opacity-50 transition-opacity hover:opacity-100"
               />
@@ -100,15 +107,20 @@ export function Customers() {
           ))}
           {/* Duplicate set of logos for seamless loop */}
           {logos.map((logo) => (
-            <div className={`w-[${LOGO_WIDTH}px] flex items-center`} key={`second-${String(logo.src)}`}>
+            <div
+              className={`max-w-[${LOGO_WIDTH}px] flex items-center`}
+              key={`second-${String(logo.src)}`}
+            >
               <Image
                 src={logo as StaticImageData}
                 alt={String(logo.src)}
                 style={{
-                  width: '100%',
+                  width: 'auto',
                   height: 'auto',
+                  maxWidth: '100%',
+                  maxHeight: '64px',
                 }}
-                className="flex-none opacity-50 transition-opacity hover:opacity-100"
+                className="flex-none object-contain opacity-50 transition-opacity hover:opacity-100"
               />
             </div>
           ))}
