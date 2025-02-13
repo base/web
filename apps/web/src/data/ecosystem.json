@@ -3999,4 +3999,12 @@
     "category": "infra",
     "subcategory": "consumer"
   }
+    {
+    "name": "Vottun",
+    "description": "Empowering devs with APIs to easily integrate Web3 technology. Build dApps, save costs, and earn a share of fees generated on the Vottun platform.",
+    "url": "https://vottun.com/",
+    "imageUrl": "/images/partners/vottun.png",
+    "category": "infra",
+    "subcategory": "developer tool"
+  }
 ]
