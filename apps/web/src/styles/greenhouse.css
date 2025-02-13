@@ -4,16 +4,17 @@ body #wrapper {
   max-width: 1360px;
   margin: 0 auto;
   padding: 0 3rem;
+  overflow: auto; /* Added to handle overflow */
 }
 
 div#main div#app_body {
-  padding-left: 0 !important;
+  padding-left: 0; /* Removed !important for better maintainability */
   padding-right: 0;
   max-width: 100%;
 }
 
 @media (max-width: 640px) {
   div#main div#app_body .logo-container {
-    height: 0;
+    display: none; /* Changed to display: none to hide the logo */
   }
 }
