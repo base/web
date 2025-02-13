@@ -29,13 +29,9 @@ export type DiscountValue = {
   discountValidatorAddress: Address;
 };
 
-export type DiscountTypes = {
-  [key in DiscountType]?: DiscountValue;
-};
+export type DiscountTypes = Partial<Record<DiscountType, DiscountValue>>;
 
-export type PreviousClaims = {
-  [key in DiscountType]?: PreviousClaim;
-};
+export type PreviousClaims = Partial<Record<DiscountType, PreviousClaim>>;
 
 export type MerkleTreeProofResponse = {
   discountValidatorAddress: Address;

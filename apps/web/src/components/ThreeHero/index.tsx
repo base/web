@@ -75,7 +75,7 @@ const Physics = dynamic(async () => import('@react-three/rapier').then((mod) => 
   ssr: false,
 });
 
-/* 
+/*
   The Main Scene
   - Keeps track of window focus, intersection observer
   - Listen to pointer event for rotation context
@@ -223,7 +223,7 @@ function Loader() {
   );
 }
 
-/* 
+/*
   The Environment
   - Loads the JPEG / HDR gainmap file
   - Set as global texture
@@ -274,7 +274,7 @@ function EnvironmentSetup() {
   );
 }
 
-/* 
+/*
   The GLTF Scene
   - Loads the GLTF file / 3D scene
 */
