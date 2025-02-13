@@ -61,6 +61,14 @@ const LOGO_GAP = 96; // pixels
 const TOTAL_LOGOS = logos.length * 2;
 const LOGO_CONTAINER_WIDTH = (LOGO_WIDTH + LOGO_GAP) * TOTAL_LOGOS;
 
+const logoStyle = {
+  width: 'auto',
+  height: 'auto',
+  minWidth: '64px',
+  maxWidth: '100%',
+  maxHeight: '64px',
+};
+
 export function Customers() {
   return (
     <section className="h-full w-full pt-32">
@@ -71,7 +79,7 @@ export function Customers() {
         Powering the most consumer-friendly applications onchain.
       </Title>
       <figure
-        className={`relative flex h-16 items-center overflow-hidden`}
+        className="relative flex h-16 items-center overflow-hidden"
         style={{
           maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
           WebkitMaskImage:
@@ -79,7 +87,7 @@ export function Customers() {
         }}
       >
         <div
-          className={`animate-scroll absolute left-0 flex h-full items-center`}
+          className="animate-scroll absolute left-0 flex h-full items-center"
           style={{
             gap: `${LOGO_GAP}px`,
             width: `${LOGO_CONTAINER_WIDTH}px`,
@@ -94,13 +102,7 @@ export function Customers() {
               <Image
                 src={logo as StaticImageData}
                 alt={String(logo.src)}
-                style={{
-                  width: 'auto',
-                  height: 'auto',
-                  minWidth: '64px',
-                  maxWidth: '100%',
-                  maxHeight: '64px',
-                }}
+                style={logoStyle}
                 className="flex-none object-contain opacity-50 transition-opacity hover:opacity-100"
               />
             </div>
@@ -114,12 +116,7 @@ export function Customers() {
               <Image
                 src={logo as StaticImageData}
                 alt={String(logo.src)}
-                style={{
-                  width: 'auto',
-                  height: 'auto',
-                  maxWidth: '100%',
-                  maxHeight: '64px',
-                }}
+                style={logoStyle}
                 className="flex-none object-contain opacity-50 transition-opacity hover:opacity-100"
               />
             </div>

@@ -12,8 +12,6 @@ import {
   ConnectWalletButtonVariants,
   DynamicWrappedConnectWalletButton,
 } from 'apps/web/src/components/ConnectWalletButton/ConnectWalletButton';
-import { ButtonWithLinkAndEventLogging } from 'apps/web/src/components/Button/ButtonWithLinkAndEventLogging';
-import { ButtonVariants } from 'apps/web/src/components/base-org/Button/types';
 import Link from 'apps/web/src/components/Link';
 
 export type SubItem = {
