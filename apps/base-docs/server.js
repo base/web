@@ -49,339 +49,72 @@ app.post('/api/rateMessage', (req, res) => {
     .catch((error) => res.status(400));
 });
 
-app.get('/base-camp', (req, res) => {
-  res.redirect('/base-learn/docs/welcome');
-});
-
-app.get('/base-learn', (req, res) => {
-  res.redirect('/base-learn/docs/welcome');
-});
-
-app.get('/basecamp', (req, res) => {
-  res.redirect('/base-learn/docs/welcome');
-});
-
-app.get('/baselearn', (req, res) => {
-  res.redirect('/base-learn/docs/welcome');
-});
-
-app.get('/using-base', (req, res) => {
-  res.redirect('/docs/using-base');
-});
-
-app.get('/network-information', (req, res) => {
-  res.redirect('/docs/network-information');
-});
-
-app.get('/base-contracts', (req, res) => {
-  res.redirect('/docs/base-contracts');
-});
-
-app.get('/fees', (req, res) => {
-  res.redirect('/docs/fees');
-});
-
-app.get('/differences', (req, res) => {
-  res.redirect('/docs/differences');
-});
-
-app.get('/contracts', (req, res) => {
-  res.redirect('/docs/contracts');
-});
-
-app.get('/security', (req, res) => {
-  res.redirect('/docs/security');
-});
-
-app.get('/terms-of-service', (req, res) => {
-  res.redirect('/docs/terms-of-service');
-});
-
-app.get('/privacy-policy', (req, res) => {
-  res.redirect('/docs/privacy-policy');
-});
-
-app.get('/cookie-policy', (req, res) => {
-  res.redirect('/docs/cookie-policy');
-});
-
-app.get('/tools/node-providers', (req, res) => {
-  res.redirect('/docs/tools/node-providers');
-});
-
-app.get('/tools/block-explorers', (req, res) => {
-  res.redirect('/docs/tools/block-explorers');
-});
-
-app.get('/tools/network-faucets', (req, res) => {
-  res.redirect('/docs/tools/network-faucets');
-});
-
-app.get('/tools/oracles', (req, res) => {
-  res.redirect('/docs/tools/oracles');
-});
-
-app.get('/tools/data-indexers', (req, res) => {
-  res.redirect('/docs/tools/data-indexers');
-});
-
-app.get('/tools/cross-chain', (req, res) => {
-  res.redirect('/docs/tools/cross-chain');
-});
-
-app.get('/tools/account-abstraction', (req, res) => {
-  res.redirect('/docs/tools/account-abstraction');
-});
-
-app.get('/tools/nft-checkout', (req, res) => {
-  res.redirect('/docs/tools/nft-checkout');
-});
-
-app.get('/tools/onramps', (req, res) => {
-  res.redirect('/docs/tools/onramps');
-});
-
-app.get('/tools/onboarding', (req, res) => {
-  res.redirect('/docs/tools/onboarding');
-});
-
-app.get('/tools/bridges', (req, res) => {
-  res.redirect('/docs/tools/bridges');
-});
-
-app.get('/docs/tools/bridges-testnet', (req, res) => {
-  res.redirect('/docs/tools/bridges');
-});
-
-app.get('docs/tools/bridge-faq', (req, res) => {
-  res.redirect('/docs/tools/bridges');
-});
-
-app.get('/tools/foundry', (req, res) => {
-  res.redirect('/docs/tools/foundry');
-});
-
-app.get('/tools/hardhat', (req, res) => {
-  res.redirect('/docs/tools/hardhat');
-});
-
-app.get('/tools/thirdweb-cli', (req, res) => {
-  res.redirect('/docs/tools/thirdweb-cli');
-});
-
-app.get('/tools/ethers', (req, res) => {
-  res.redirect('/docs/tools/ethers');
-});
-
-app.get('/tools/thirdweb-sdk', (req, res) => {
-  res.redirect('/docs/tools/thirdweb-sdk');
-});
-
-app.get('/tools/viem', (req, res) => {
-  res.redirect('/docs/tools/viem');
-});
-
-app.get('/tools/web3', (req, res) => {
-  res.redirect('/docs/tools/web3');
-});
-
-app.get('/tokens/list', (req, res) => {
-  res.redirect('/docs/tokens/list');
-});
-
-app.get('/tokens/wallet', (req, res) => {
-  res.redirect('/docs/tokens/wallet');
-});
-
-app.get('/guides/run-a-base-goerli-node/', (req, res) => {
-  res.redirect('/tutorials/run-a-base-node/');
-});
-
-app.get('/guides/deploy-smart-contracts', (req, res) => {
-  res.redirect('/tutorials/deploy-with-hardhat');
-});
-
-app.get('/guides/deploy-with-foundry', (req, res) => {
-  res.redirect('/tutorials/deploy-with-foundry');
-});
-
-app.get('/guides/deploy-with-remix', (req, res) => {
-  res.redirect('/tutorials/deploy-with-remix');
-});
-
-app.get('/guides/deploy-with-tenderly', (req, res) => {
-  res.redirect('/tutorials/deploy-with-tenderly');
-});
-
-app.get('/guides/deploy-with-thirdweb', (req, res) => {
-  res.redirect('/tutorials/deploy-with-thirdweb');
-});
-
-app.get('/guides/build-with-thirdweb', (req, res) => {
-  res.redirect('/tutorials/build-with-thirdweb');
-});
-
-app.get('/guides/run-a-base-node', (req, res) => {
-  res.redirect('/tutorials/run-a-base-node');
-});
-
-app.get('/guides/using-chainlink-price-feeds', (req, res) => {
-  res.redirect('/tutorials/oracles-chainlink-price-feeds');
-});
-
-app.get('/guides/using-pyth-price-feeds', (req, res) => {
-  res.redirect('/tutorials/oracles-pyth-price-feeds');
-});
-
-app.get('/guides/using-supra-vrf', (req, res) => {
-  res.redirect('/tutorials/oracles-supra-vrf');
-});
-
-app.get('/guides/cross-chain-with-ccip', (req, res) => {
-  res.redirect('/tutorials/cross-chain-with-ccip');
-});
-
-app.get('/guides/cross-chain-with-layerzero', (req, res) => {
-  res.redirect('/tutorials/cross-chain-with-layerzero');
-});
-
-app.get('/guides/account-abstraction-with-biconomy', (req, res) => {
-  res.redirect('/tutorials/account-abstraction-with-biconomy');
-});
-
-app.get('/guides/building-with-base-and-foundry/introduction', (req, res) => {
-  res.redirect('/tutorials/intro-to-foundry-setup');
-});
-
-app.get('/guides/building-with-base-and-foundry/testing', (req, res) => {
-  res.redirect('/tutorials/intro-to-foundry-testing');
-});
-
-app.get('/guides/complex-onchain-nfts', (req, res) => {
-  res.redirect('/tutorials/onchain-nfts');
-});
-
-app.get('/guides/linked-minting-frame', (req, res) => {
-  res.redirect('/tutorials/farcaster-frames-nocode-minting');
-});
-
-app.get('/guides/nft-minting-frame', (req, res) => {
-  res.redirect('/tutorials/farcaster-frames-nft-minting');
-});
-
-app.get('/guides/deploy-frame-on-vercel', (req, res) => {
-  res.redirect('/tutorials/farcaster-frames-deploy-to-vercel');
-});
-
-app.get('/guides/advanced-frame-behavior', (req, res) => {
-  res.redirect('/tutorials/farcaster-frames-gating-and-redirects');
-});
-
-app.get('/guides/hyperframes', (req, res) => {
-  res.redirect('/tutorials/farcaster-frames-hyperframes');
-});
-
-app.get('/guides/frame-transactions', (req, res) => {
-  res.redirect('/tutorials/farcaster-frames-transactions');
-});
-
-app.get('/hardhat-tools-and-testing/overview', (req, res) => {
-  res.redirect('');
-});
-
-app.get(
-  '/hardhat-tools-and-testing/hardhat-profiling-size/contract-sizer-setup-vid',
-  (req, res) => {
-    res.redirect('/tutorials/hardhat-profiling-size');
-  },
-);
-
-app.get(
-  '/hardhat-tools-and-testing/hardhat-profiling-size/manual-contract-optimizations-vid',
-  (req, res) => {
-    res.redirect('/tutorials/hardhat-profiling-size');
-  },
-);
-
-app.get('/hardhat-tools-and-testing/hardhat-profiling-size/using-the-optimizer-vid', (req, res) => {
-  res.redirect('/tutorials/hardhat-profiling-size');
-});
-
-app.get('/hardhat-tools-and-testing/hardhat-profiling-size/hardhat-profiling-size', (req, res) => {
-  res.redirect('/tutorials/hardhat-profiling-size');
-});
-
-app.get(
-  '/hardhat-tools-and-testing/hardhat-profiling-gas/installing-the-gas-analyzer-vid',
-  (req, res) => {
-    res.redirect('/tutorials/hardhat-profiling-gas');
-  },
-);
-
-app.get('/hardhat-tools-and-testing/hardhat-profiling-gas/improving-gas-usage-vid', (req, res) => {
-  res.redirect('/tutorials/hardhat-profiling-gas');
-});
-
-app.get('/hardhat-tools-and-testing/hardhat-profiling-gas/hardhat-profiling-gas', (req, res) => {
-  res.redirect('/tutorials/hardhat-profiling-gas');
-});
-
-app.get('/hardhat-tools-and-testing/hardhat-debugging/debugging-with-hardhat-sbs', (req, res) => {
-  res.redirect('/tutorials/hardhat-debugging');
-});
-
-app.get(
-  '/hardhat-tools-and-testing/hardhat-test-coverage/hardhat-test-coverage-sbs',
-  (req, res) => {
-    res.redirect('/tutorials/hardhat-test-coverage');
-  },
-);
-
-app.get('/connecting-to-the-blockchain/overview', (req, res) => {
-  res.redirect('/tutorials/intro-to-providers');
-});
-
-app.get('/connecting-to-the-blockchain/blockchain-providers', (req, res) => {
-  res.redirect('/tutorials/intro-to-providers');
-});
-
-app.get('/connecting-to-the-blockchain/connecting-with-a-provider', (req, res) => {
-  res.redirect('/tutorials/intro-to-providers');
-});
-
-app.get('/guides/account-abstraction/overview', (req, res) => {
-  res.redirect('/tutorials/account-abstraction-with-privy-and-base-paymaster');
-});
-
-app.get('/guides/account-abstraction/intro-to-account-abstraction', (req, res) => {
-  res.redirect('/tutorials/account-abstraction-with-privy-and-base-paymaster');
-});
-
-app.get('/guides/account-abstraction/intro-to-privy', (req, res) => {
-  res.redirect('/tutorials/account-abstraction-with-privy-and-base-paymaster');
-});
-
-app.get('/guides/account-abstraction/implementing-the-paymaster', (req, res) => {
-  res.redirect('/tutorials/account-abstraction-with-privy-and-base-paymaster');
-});
-
-app.get('/building-with-base/guides/account-abstraction/overview', (req, res) => {
-  res.redirect('/tutorials/account-abstraction-with-privy-and-base-paymaster');
-});
-
-app.get(
-  '/building-with-base/guides/account-abstraction/intro-to-account-abstraction',
-  (req, res) => {
-    res.redirect('/tutorials/account-abstraction-with-privy-and-base-paymaster');
-  },
-);
-
-app.get('/building-with-base/guides/account-abstraction/intro-to-privy', (req, res) => {
-  res.redirect('/tutorials/account-abstraction-with-privy-and-base-paymaster');
-});
-
-app.get('/building-with-base/guides/account-abstraction/implementing-the-paymaster', (req, res) => {
-  res.redirect('/tutorials/account-abstraction-with-privy-and-base-paymaster');
+const redirectRoutes = {
+  '/base-camp': '/base-learn/docs/welcome',
+  '/base-learn': '/base-learn/docs/welcome',
+  '/basecamp': '/base-learn/docs/welcome',
+  '/baselearn': '/base-learn/docs/welcome',
+  '/using-base': '/docs/using-base',
+  '/network-information': '/docs/network-information',
+  '/base-contracts': '/docs/base-contracts',
+  '/fees': '/docs/fees',
+  '/differences': '/docs/differences',
+  '/contracts': '/docs/contracts',
+  '/security': '/docs/security',
+  '/terms-of-service': '/docs/terms-of-service',
+  '/privacy-policy': '/docs/privacy-policy',
+  '/cookie-policy': '/docs/cookie-policy',
+  '/tools/node-providers': '/docs/tools/node-providers',
+  '/tools/block-explorers': '/docs/tools/block-explorers',
+  '/tools/network-faucets': '/docs/tools/network-faucets',
+  '/tools/oracles': '/docs/tools/oracles',
+  '/tools/data-indexers': '/docs/tools/data-indexers',
+  '/tools/cross-chain': '/docs/tools/cross-chain',
+  '/tools/account-abstraction': '/docs/tools/account-abstraction',
+  '/tools/nft-checkout': '/docs/tools/nft-checkout',
+  '/tools/onramps': '/docs/tools/onramps',
+  '/tools/onboarding': '/docs/tools/onboarding',
+  '/tools/bridges': '/docs/tools/bridges',
+  '/docs/tools/bridges-testnet': '/docs/tools/bridges',
+  'docs/tools/bridge-faq': '/docs/tools/bridges',
+  '/tools/foundry': '/docs/tools/foundry',
+  '/tools/hardhat': '/docs/tools/hardhat',
+  '/tools/thirdweb-cli': '/docs/tools/thirdweb-cli',
+  '/tools/ethers': '/docs/tools/ethers',
+  '/tools/thirdweb-sdk': '/docs/tools/thirdweb-sdk',
+  '/tools/viem': '/docs/tools/viem',
+  '/tools/web3': '/docs/tools/web3',
+  '/tokens/list': '/docs/tokens/list',
+  '/tokens/wallet': '/docs/tokens/wallet',
+  '/guides/run-a-base-goerli-node/': '/tutorials/run-a-base-node/',
+  '/guides/deploy-smart-contracts': '/tutorials/deploy-with-hardhat',
+  '/guides/deploy-with-foundry': '/tutorials/deploy-with-foundry',
+  '/guides/deploy-with-remix': '/tutorials/deploy-with-remix',
+  '/guides/deploy-with-tenderly': '/tutorials/deploy-with-tenderly',
+  '/guides/deploy-with-thirdweb': '/tutorials/deploy-with-thirdweb',
+  '/guides/build-with-thirdweb': '/tutorials/build-with-thirdweb',
+  '/guides/run-a-base-node': '/tutorials/run-a-base-node',
+  '/guides/using-chainlink-price-feeds': '/tutorials/oracles-chainlink-price-feeds',
+  '/guides/using-pyth-price-feeds': '/tutorials/oracles-pyth-price-feeds',
+  '/guides/using-supra-vrf': '/tutorials/oracles-supra-vrf',
+  '/guides/cross-chain-with-ccip': '/tutorials/cross-chain-with-ccip',
+  '/guides/cross-chain-with-layerzero': '/tutorials/cross-chain-with-layerzero',
+  '/guides/account-abstraction-with-biconomy': '/tutorials/account-abstraction-with-biconomy',
+  '/guides/building-with-base-and-foundry/introduction': '/tutorials/intro-to-foundry-setup',
+  '/guides/building-with-base-and-foundry/testing': '/tutorials/intro-to-foundry-testing',
+  '/guides/complex-onchain-nfts': '/tutorials/onchain-nfts',
+  '/guides/linked-minting-frame': '/tutorials/farcaster-frames-nocode-minting',
+  '/guides/nft-minting-frame': '/tutorials/farcaster-frames-nft-minting',
+  '/guides/deploy-frame-on-vercel': '/tutorials/farcaster-frames-deploy-to-vercel',
+  '/guides/advanced-frame-behavior': '/tutorials/farcaster-frames-gating-and-redirects',
+  '/guides/hyperframes': '/tutorials/farcaster-frames-hyperframes',
+  '/guides/frame-transactions': '/tutorials/farcaster-frames-transactions'
+};
+
+Object.keys(redirectRoutes).forEach(route => {
+  app.get(route, (req, res) => {
+    res.redirect(redirectRoutes[route]);
+  });
 });
 
 if (process.env.APP_STAGE === 'production' && process.env.AUTH_ENABLED !== 'false') {
