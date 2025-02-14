@@ -1,6 +1,6 @@
 ---
 title: Etherscan
-description: Use Etherscan to interact with your own and others's contracts.
+description: Use Etherscan to interact with your own and others contracts.
 hide_table_of_contents: false
 ---
 
