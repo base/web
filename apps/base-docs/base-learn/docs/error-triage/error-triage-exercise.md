@@ -26,9 +26,9 @@ contract ErrorTriageExercise {
     ) public pure returns (uint[] memory) {
         uint[] memory results = new uint[](3);
 
-        results[0] = _a - _b;
-        results[1] = _b - _c;
-        results[2] = _c - _d;
+        results[0] = _a >= _b ? _a - _b : _b - _a;
+        results[1] = _b >= _c ? _b - _c : _c - _b;
+        results[2] = _c >= _d ? _c - _d : _d - _c;
 
         return results;
     }
@@ -41,7 +41,13 @@ contract ErrorTriageExercise {
         uint _base,
         int _modifier
     ) public pure returns (uint) {
-        return _base + _modifier;
+        require(_base >= 1000, "Base must be >= 1000");
+        require(_modifier >= -100 && _modifier <= 100, "Modifier must be between -100 and 100");
+        
+        if (_modifier < 0) {
+            return _base - uint(-_modifier);
+        }
+        return _base + uint(_modifier);
     }
 
     /**
@@ -51,9 +57,11 @@ contract ErrorTriageExercise {
     uint[] arr;
 
     function popWithReturn() public returns (uint) {
+        require(arr.length > 0, "Array is empty");
         uint index = arr.length - 1;
-        delete arr[index];
-        return arr[index];
+        uint value = arr[index];
+        arr.pop();
+        return value;
     }
 
     // The utility functions below are working as expected
