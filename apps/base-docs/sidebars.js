@@ -3,6 +3,7 @@ module.exports = {
     ['why-base'],
     ['overview'],
     ['using-base'],
+    ['building-onchain'],
     {
       type: 'category',
       label: 'Notices',

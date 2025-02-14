@@ -76,7 +76,7 @@ Some of the tooling that makes this possible:
 
 ## Builder support
 
-More apps mean more compelling reasons for everyone to get onchain. Base is committed to expanding its developer and user community by creating opportunities for apps to go viral. To support this, Base actively distributes apps through its official channels, including Wallet, X, and Warpcast.
+More apps mean more compelling reasons for everyone to get onchain. Base is committed to expanding its developer and user community by creating opportunities for apps to go viral. To support this, Base actively distributes apps through its official channels, including Wallet, [X], and [Warpcast].
 
 Beyond growth, Base is also a place to earn. Since its launch, we have dedicated a portion of our revenue to the Optimism Collective, supporting initiatives like [Retroactive Public Goods Funding (RetroPGF)] and other ecosystem projects.
 
@@ -87,7 +87,7 @@ We have also distributed over $26M in builder grants to more than 1,000 builders
 - **[Optimism RPGF]:** Projects built on Base are eligible for Optimism RPFG
 - Other community-driven collaborations through based.management, [Bountycaster], and [Talent Protocol]
 
-Base offers builders access to a high-growth, high-signal community across multiple social platforms, including a Discord server with over 400,000 members, X, and Warpcast. We actively amplify impactful projects on these platforms, helping the community discover new innovations. We believe the developers behind these applications are the key to unlocking an onchain future for everyone.
+Base offers builders access to a high-growth, high-signal community across multiple social platforms, including a [Discord] server with over 400,000 members, [X], and [Warpcast]. We actively amplify impactful projects on these platforms, helping the community discover new innovations. We believe the developers behind these applications are the key to unlocking an onchain future for everyone.
 
 ---
 
@@ -102,3 +102,6 @@ Base offers builders access to a high-growth, high-signal community across multi
 [Moonwell]: https://moonwell.fi/discover
 [Clanker]: https://www.clanker.world/
 [Retroactive Public Goods Funding (RetroPGF)]: https://round3.optimism.io/projects?after=undefined&display=grid&sort=mostAwarded&search=&seed=1738341430276&categories=
+[X]: https://x.com/base
+[Warpcast]: https://warpcast.com/base
+[Discord]: https://discord.com/invite/buildonbase
