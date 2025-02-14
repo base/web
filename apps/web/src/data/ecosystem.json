@@ -3998,5 +3998,13 @@
     "imageUrl": "/images/partners/unlockprotocol.png",
     "category": "infra",
     "subcategory": "consumer"
+  },
+  {
+    "name": "Base Digger",
+    "description": "Base Digger is a point-and-click digging game where players excavate worlds, uncovering treasures, rare items, and hidden surprises with unique characters and charming pixel art.",
+    "url": "https://www.basedigger.xyz/",
+    "imageUrl": "/images/partners/basedigger.png",
+    "category": "consumer",
+    "subcategory": "gaming"
   }
 ]
