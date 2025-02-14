@@ -24,7 +24,7 @@ thirdweb SDK is a library that enables developers to build web3 applications and
 
 You can use the thirdweb SDK to build apps and interact with smart contracts deployed on the Base network.
 
-The thirdweb SDK is available in various programming languages, including: [React](https://portal.thirdweb.com/react), [React Native](https://portal.thirdweb.com/react-native), [TypeScript](https://portal.thirdweb.com/typescript), [Python](https://portal.thirdweb.com/python), [Go](https://portal.thirdweb.com/go), and [Unity](https://portal.thirdweb.com/unity).
+The thirdweb SDK is available in various programming languages, including: [React](https://portal.thirdweb.com/react), [React Native](https://portal.thirdweb.com/react-native), [TypeScript](https://portal.thirdweb.com/typescript), [.NET](https://portal.thirdweb.com/dotnet), [Unreal Engine](https://portal.thirdweb.com/unreal-engine) and [Unity](https://portal.thirdweb.com/unity).
 
 Visit the [thirdweb documentation](https://portal.thirdweb.com/cli) for more instructions on using the thirdweb SDKs.
 
@@ -56,7 +56,7 @@ const contract = await sdk.getContract('0x00000000000000000000000000000000000000
 
 :::info
 
-The code snippet above uses the [React SDK](https://portal.thirdweb.com/react). The thirdweb SDKs are also available in [React Native](https://portal.thirdweb.com/react-native), [TypeScript](https://portal.thirdweb.com/typescript), [Python](https://portal.thirdweb.com/python), [Go](https://portal.thirdweb.com/go), and [Unity](https://portal.thirdweb.com/unity).
+The code snippet above uses the [React SDK](https://portal.thirdweb.com/react). The thirdweb SDKs are also available in [React](https://portal.thirdweb.com/react), [React Native](https://portal.thirdweb.com/react-native), [TypeScript](https://portal.thirdweb.com/typescript), [.NET](https://portal.thirdweb.com/dotnet), [Unreal Engine](https://portal.thirdweb.com/unreal-engine) and [Unity](https://portal.thirdweb.com/unity).
 
 If alternatively you'd like to initialize the SDK with Base Sepolia (testnet), use the following code instead:
 

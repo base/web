@@ -71,8 +71,8 @@ To get started with integrating Chainlink CCIP in your Base project, visit the C
 
 #### Supported Networks
 
-- [Base Mainnet](https://docs.chain.link/ccip/supported-networks/v1_0_0/mainnet#base-mainnet)
-- [Base Sepolia](https://docs.chain.link/ccip/supported-networks/v1_2_0/testnet) (Testnet)
+- [Base Mainnet](https://docs.chain.link/ccip/directory/mainnet/chain/ethereum-mainnet-base-1)
+- [Base Sepolia](https://docs.chain.link/ccip/directory/testnet/chain/ethereum-testnet-sepolia-base-1) (Testnet)
 
 ---
 
