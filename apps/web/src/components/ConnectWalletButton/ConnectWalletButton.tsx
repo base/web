@@ -45,7 +45,7 @@ export function DynamicWrappedConnectWalletButton({
     <DynamicCryptoProviders>
       <ConnectWalletButton connectWalletButtonVariant={connectWalletButtonVariant} />
     </DynamicCryptoProviders>
-  )
+  );
 }
 
 export function ConnectWalletButton({
@@ -118,17 +118,15 @@ export function ConnectWalletButton({
   if (!isConnected) {
     const baseOrgButton = connectWalletButtonVariant === ConnectWalletButtonVariants.BaseOrg;
     return baseOrgButton ? (
-      <BaseOrgButton onClick={clickConnect} roundedFull>
-        Connect
-      </BaseOrgButton>
+      <BaseOrgButton onClick={clickConnect}>Connect</BaseOrgButton>
     ) : (
       <Button
         variant={ButtonVariants.Black}
         size={ButtonSizes.Small}
         onClick={clickConnect}
-        rounded
+        className="rounded-lg"
       >
-        Connect
+        Sign In
       </Button>
     );
   }
@@ -139,7 +137,7 @@ export function ConnectWalletButton({
         variant={ButtonVariants.Black}
         size={ButtonSizes.Small}
         onClick={switchToIntendedNetwork}
-        rounded
+        className="rounded-lg"
       >
         Connect to Base
       </Button>
@@ -150,7 +148,7 @@ export function ConnectWalletButton({
     <Wallet>
       <ConnectWallet
         withWalletAggregator
-        className="flex items-center justify-center rounded-xl bg-transparent p-2 hover:bg-gray-40/20"
+        className="flex items-center justify-center rounded-lg bg-transparent p-2 hover:bg-gray-40/20"
       >
         <div className="flex items-center gap-2">
           <UserAvatar />
