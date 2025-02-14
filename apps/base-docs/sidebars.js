@@ -30,6 +30,13 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Troubleshooting',
+      collapsible: false,
+      collapsed: false,
+      items: ['troubleshooting/node-operator-troubleshooting'],
+    },
+    {
+      type: 'category',
       label: 'Tools',
       collapsible: false,
       collapsed: false,
