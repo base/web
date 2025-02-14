@@ -244,7 +244,7 @@ In this tutorial, you've learned how connect users to your app using [RainbowKit
 [wagmi]: https://wagmi.sh/
 [viem]: https://viem.sh/
 [quick start]: https://www.rainbowkit.com/docs/installation
-[WalletConnect]: https://cloud.walletconnect.com/
+[WalletConnect]: https://cloud.reown.com/
 [smart contract development]: https://base.org/learn
 [Base]: https://docs.base.org/network-information
 [smart contract development]: https://base.org/camp

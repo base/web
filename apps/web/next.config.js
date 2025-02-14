@@ -62,7 +62,7 @@ const ccaDomain = 'https://static-assets.coinbase.com/js/cca/v0.0.1.js';
 const ccaLiteDomains = 'https://cca-lite.coinbase.com';
 const sprigDomains = 'https://api.sprig.com https://cdn.sprig.com';
 const walletconnectDomains =
-  'https://*.walletconnect.org wss://*.walletconnect.org wss://*.walletconnect.com https://*.walletconnect.com https://explorer-api.walletconnect.com';
+  'https://*.walletconnect.org wss://*.walletconnect.org https://*.reown.com wss://*.reown.com https://explorer-api.walletconnect.com';
 
 const contentSecurityPolicy = {
   'default-src': [
@@ -129,7 +129,7 @@ const contentSecurityPolicy = {
     'blob:',
     'data:',
     'https://euc.li',
-    'https://*.walletconnect.com/', // WalletConnect
+    'https://*.reown.com/', // WalletConnect
     'https://i.seadn.io/', // ens avatars
     'https://ipfs.io', // ipfs ens avatar resolution
     'https://cloudflare-ipfs.com', // ipfs Cloudflare ens avatar resolution
