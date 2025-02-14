@@ -29,6 +29,7 @@ module.exports = {
     'import/extensions': ['error', 'never'],
     'react/destructuring-assignment': 'off',
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx', '.mdx'] }],
+    'react/react-in-jsx-scope': 'off',
 
     // We utilize prop spreading
     'react/jsx-props-no-spreading': 'off',

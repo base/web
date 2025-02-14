@@ -1,0 +1,41 @@
+{
+  "name": "vocs-mvp",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vocs dev",
+    "build": "vocs build",
+    "preview": "vocs preview",
+    "inject-feedback": "node --loader ts-node/esm scripts/inject-feedback.ts",
+    "fix-feedback": "node --loader ts-node/esm scripts/fix-feedback-import.ts",
+    "clean-frontmatter": "node --loader ts-node/esm scripts/clean-frontmatter.ts"
+  },
+  "dependencies": {
+    "@coinbase/onchainkit": "^0.35.8",
+    "@googleapis/sheets": "^5.0.5",
+    "@types/react": "latest",
+    "@vercel/node": "^3.0.17",
+    "classnames": "^2.5.1",
+    "framer-motion": "^11.11.11",
+    "lucide-react": "^0.468.0",
+    "permissionless": "^0.1.29",
+    "react": "latest",
+    "react-dom": "latest",
+    "siwe": "^2.3.2",
+    "typescript": "latest",
+    "usehooks-ts": "^3.1.0",
+    "vocs": "latest"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "chokidar": "^3.6.0",
+    "concurrently": "^8.2.2",
+    "glob": "^11.0.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
+    "vite-plugin-svgr": "^4.3.0"
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+}

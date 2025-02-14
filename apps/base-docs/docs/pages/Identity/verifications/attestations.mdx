@@ -1,0 +1,64 @@
+---
+title: 'Attestations'
+slug: /attestations
+description: Learn about attestations in Base Identity.
+---
+
+import { FeedbackWidget } from '@/components/FeedbackWidget/index.tsx'
+
+
+
+
+
+Attestations establish trust and credibility by enabling issuers to make claims, either onchain or offchain, about any quality about the recipient's wallet address. 
+
+
+## EAS Attestations
+
+Coinbase Verfications leverages the [Ethereum Attestation Service](https://attest.org/) (EAS), an open-source base layer for making attestations. Attestations are issued on Base using EAS with ENS domain [verifications.coinbase.eth](https://app.ens.domains/verifications.coinbase.eth). 
+
+This technology, paired with a credible issuer, can transfer credibility to the recipient. Because the attestation can be stored onchain, anyone can gather the attestation data from EAS.
+
+
+## Schemas
+
+Schemas act as blueprints for attestations and define the structure and type of data for a specific type of attestation. They set the information requirements for the attestation to contain.
+
+| Schema name          | Schema content           | Schema ID |
+| -------------------- | ------------------------ | --------- |
+| Account Verification | bool verifiedAccount     | `0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9` | 
+| Country Verification | string verifiedCountry   | `0x1801901fabd0e6189356b4fb52bb0ab855276d84f7ec140839fbd1f6801ca065` | 
+| Coinbase One         | bool verifiedCoinbaseOne | `0x254bd1b63e0591fefa66818ca054c78627306f253f86be6023725a67ee6bf9f4` | 
+
+
+## Flows
+
+
+<figure>
+
+![Coinbase Verification Flow](/images/verifications/coinbase-verification-flow.png)
+
+<figcaption><i>How EAS is integrated with Coinbase Verifications</i></figcaption>
+
+</figure>
+
+
+<figure>
+
+![Attestation Creation Flow](/images/verifications/attestation-creation-flow.png)
+
+<figcaption><i>How any Coinbase Verification is created starting from the user</i></figcaption>
+
+</figure>
+
+
+<figure>
+
+![Developer Data Flow](/images/verifications/developer-data-flow.png)
+
+<figcaption><i>How developers get data for the attestations they are verifying</i></figcaption>
+
+</figure>
+
+
+<FeedbackWidget />

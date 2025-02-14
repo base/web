@@ -1,0 +1,38 @@
+---
+title: Welcome to Coinbase Verifications
+sidebar_label: Welcome
+slug: welcome
+---
+
+import { FeedbackWidget } from '@/components/FeedbackWidget/index.tsx'
+
+Coinbase Verifications is a set of [Coinbase-verified onchain attestations](https://github.com/coinbase/verifications) that enable access to apps and other onchain benefits. A verification serves as a link between a user's Coinbase account and wallet address, and proves a specific attribute about that account without revealing any private information. 
+
+## Types
+
+The user can claim three types of Coinbase verifications:
+
+- Account: wallet address has a trade-eligible account with Coinbase. 
+- Country: wallet address has the country of residence of this account. 
+- Coinbase One: wallet address has a Coinbase account with a Coinbase One membership.
+
+
+## Motivations
+
+As part of a large custodial exchange we want to bridge the gap between custodial customers and their onchain identities without revealing their personally identifiable information (PII). 
+
+As [Base](https://www.base.org/) grows, we want to give our developers the ability to tap into pools of users with specific qualities (i.e., a specific country, trade-eligible accounts, Coinbase One member) to produce novel applications. 
+
+The purpose of the Coinbase Indexer is to help developers integrate verifications into their protocols or apps. Developers will be able to check specific attributes against wallets to gate exclusive benefits.
+
+
+<figure>
+
+<figcaption><i>Sample Attestation</i></figcaption>
+
+![Onchain Attestation](/images/verifications/onchain-attestation.png)
+
+</figure>
+
+
+<FeedbackWidget />

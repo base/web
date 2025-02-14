@@ -1,0 +1,60 @@
+---
+title: 'Wallet Fetch Permissions'
+slug: /wallet-fetch-permissions
+description: API reference for fetching wallet permissions.
+---
+
+import { FeedbackWidget } from '@/components/FeedbackWidget/index.tsx'
+
+
+
+## Coinbase Wallet API
+
+### `wallet_fetchPermissions`
+
+A utility API endpoint for recalling permissions previously granted for a specific user.
+Excludes permissions that have expired or been revoked.
+
+#### Schema
+
+**Endpoint:** `https://rpc.wallet.coinbase.com`
+
+```typescript
+type FetchPermissionsRequest = {
+  chainId: string; // hex, uint256
+  account: string; // address
+  spender: string; // address
+  pageOptions?: {
+    pageSize number; // number of items requested, defaults to 50
+    cursor string; // identifier for where the page should start
+  }
+}
+
+type FetchPermissionsResult = {
+  permissions: FetchPermissionsResultItem[];
+  pageDescription: {
+    pageSize number; // number of items returned
+    nextCursor string; // identifier for where the next page should start
+  }
+}
+
+type FetchPermissionsResultItem = {
+  createdAt: number; // UTC timestamp for when the permission was granted
+  permissionHash: string; // hex
+  signature: string; // hex
+  permission: {
+    account: string; // address
+    spender: string; // address
+    token: string; // address
+    allowance: string; // base 10 numeric string
+    period: number; // unix seconds
+    start: number; // unix seconds
+    end: number; // unix seconds
+    salt: string; // base 10 numeric string
+    extraData: string; // hex
+  };
+}
+```
+
+
+<FeedbackWidget />

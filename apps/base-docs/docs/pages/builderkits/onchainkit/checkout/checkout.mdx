@@ -1,0 +1,451 @@
+---
+title: <Checkout /> · OnchainKit
+description: One-click checkout for onchain commerce
+---
+
+import { FeedbackWidget } from '@/components/FeedbackWidget/index.tsx'
+
+
+
+
+
+import { Checkout, CheckoutButton } from '@coinbase/onchainkit/checkout';
+import App from '@/components/App';
+
+# `<Checkout />`
+
+The `Checkout` component provides a one-click checkout experience for onchain commerce. 
+
+Our all-in-one solution simplifies payment processing for onchain developers, removing complex integrations, high fees, and onboarding friction. Whether you're selling digital goods, services, or in-game items, this tool is for you.
+
+<img alt="Checkout"
+  src="https://onchainkit.xyz/assets/checkout.gif"
+  height="364"/>
+
+## Features
+- **Plug-and-Play Integration:** Add our `Checkout` button with just a few lines of code. No backend required.
+- **Seamless Onboarding:** Support Passkey wallets to eliminate onboarding drop-offs.
+- **Real-time Merchant Tooling:** Get instant payment tracking, analytics, and reporting.
+
+## Prerequisites
+
+Before using the `Checkout` component, ensure you've completed the [Getting Started](../getting-started) steps.
+
+To use the `Checkout` component, you'll need to provide an API Key in `OnchainKitProvider`. You can get one following our [Getting Started](../getting-started#get-your-public-api-key) steps.
+
+### Starting a new project
+
+If you're starting a new project, we recommend using `create onchain` to scaffold your project. 
+
+```bash
+npm create onchain@latest
+```
+
+### Adding to an existing project
+
+If you're adding `Checkout` to an existing project, simply install OnchainKit.
+
+:::code-group
+
+```bash [npm]
+npm install @coinbase/onchainkit
+```
+
+```bash [yarn]
+yarn add @coinbase/onchainkit
+```
+
+```bash [pnpm]
+pnpm add @coinbase/onchainkit
+```
+
+```bash [bun]
+bun add @coinbase/onchainkit
+```
+
+:::
+
+Wrap the `<OnchainKitProvider />` around your app, following the steps in [Getting Started](../getting-started#add-providers).
+
+## Quickstart
+
+::::steps
+
+### Sign up for a Coinbase Commerce account
+<img alt="Create a product"
+  src="https://onchainkit.xyz/assets/commerce-1.png"
+  height="364"/>
+Head to [Coinbase Commerce](https://beta.commerce.coinbase.com/) and sign up. This is where you’ll manage transactions, view reports, and configure payments.
+
+### Create a product and copy the `productId`
+  <img alt="Copy productId"
+  src="https://onchainkit.xyz/assets/commerce-2.png"
+  height="364"/>
+In the Coinbase Commerce dashboard, create a new product and copy the `productId`.
+
+### Import the component
+
+```tsx
+// Example code - this won't be executed during build
+import { WagmiProvider } from 'wagmi';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { OnchainKitProvider } from '@coinbase/onchainkit';
+import { Checkout, CheckoutButton, CheckoutStatus } from '@coinbase/onchainkit/checkout';
+
+function CheckoutExample() {
+  return (
+    <WagmiProvider config={wagmiConfig}>
+      <QueryClientProvider client={queryClient}>
+        <OnchainKitProvider apiKey={process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY}>
+          <Checkout productId='my-product-id'> 
+            <CheckoutButton coinbaseBranded/> {/* set coinbaseBranded for branding */}
+            <CheckoutStatus />
+          </Checkout>
+        </OnchainKitProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
+  );
+}
+```
+
+:::info
+The `Checkout` component must be used within `WagmiProvider`, `QueryClientProvider`, and `OnchainKitProvider`. See the [Getting Started](../getting-started#add-providers) guide for full setup instructions.
+:::
+
+That's it! Start selling onchain with just a few lines of code. 
+
+## Usage
+
+### Configuring a checkout
+
+You can create products on the Coinbase Commerce Portal and use them in the `Checkout` component through the `productId` prop.
+
+If you'd like to create product metadata programmatically or implement a multi-product checkout, please see [Advanced Usage](#advanced-usage).
+
+Coinbase Commerce charges a [1% fee](https://help.coinbase.com/en/commerce/getting-started/fees) associated with all payments.
+
+```tsx
+// Example code - this won't be executed during build
+import { Checkout, CheckoutButton } from '@coinbase/onchainkit/checkout';
+
+export default function PayComponents() {
+  return (
+    <Checkout productId='my-product-id'>
+      <CheckoutButton />
+    </Checkout>
+  );
+}
+```
+
+:::note
+The examples below are wrapped in our `App` component which provides the necessary WagmiProvider, QueryClientProvider, and OnchainKitProvider context.
+:::
+
+<App>
+  <Checkout>
+    <CheckoutButton disabled/>
+  </Checkout>
+</App>
+
+### Handling a successful checkout
+
+To handle successful checkouts, use the `onStatus` prop to listen for the `success` callback.
+
+This callback will return a [LifecycleStatusData](#advanced-usage) object including the [TransactionReceipt](https://github.com/wevm/viem/blob/main/src/types/transaction.ts#L38) and `chargeId`.
+
+For idempotent actions, like rendering your own success screen, you can simply check that the `statusName` is equal to `success`.
+
+For non-idempotent actions, like order fulfillment, we recommend one of the following approaches to verify a charge has been fully paid.
+
+1. (**Recommended**) Check the status of the `chargeId` using the [Coinbase Commerce API](https://docs.cdp.coinbase.com/commerce-onchain/docs/web3-payments-faq#how-can-i-verify-if-a-charge-has-been-fully-paid).
+2. Set up a [Coinbase Commerce Webhook](https://docs.cdp.coinbase.com/commerce-onchain/docs/webhooks) which will notify you for successful payments.
+
+```tsx
+import { Checkout, CheckoutButton } from '@coinbase/onchainkit/checkout';
+// ---cut-before---
+import type { LifecycleStatus } from '@coinbase/onchainkit/checkout'; // [!code focus]
+
+const statusHandler = async (status: LifecycleStatus) => { // [!code focus]
+  const { statusName, statusData } = status; // [!code focus]
+  switch (statusName) { // [!code focus]
+    case 'success': // [!code focus]
+      // handle success // [!code focus]
+      const { chargeId } = statusData; // [!code focus]
+      // use the charges api to verify the chargeId // [!code focus]
+      const options = { // [!code focus]
+        method: 'GET', // [!code focus]
+        headers: { // [!code focus]
+          'Content-Type': 'application/json', // [!code focus]
+          'Accept': 'application/json', // [!code focus]
+          'X-CC-Api-Key': 'your_api_key_here' // Replace this with your Coinbase Commerce API Key // [!code focus]
+        } // [!code focus]
+      }; // [!code focus]
+      const response = await fetch(`https://api.commerce.coinbase.com/charges/${chargeId}`); // [!code focus]
+  } // [!code focus]
+} // [!code focus]
+
+<Checkout onStatus={statusHandler}> // [!code focus]
+  <CheckoutButton />
+</Checkout>
+// ---cut-after---
+```
+:::tip[Coinbase Commerce API]
+This is an authenticated endpoint. To verify charges, you'll need a Coinbase Commerce [API Key](https://docs.cdp.coinbase.com/commerce-onchain/docs/getting-started).
+:::
+
+:::danger[⚠️ Warning]
+You should protect your Coinbase Commerce API Key by verifying charges server-side. This client-side code is only provided as an example.
+:::
+
+### Viewing successful checkouts
+
+You can view successful checkouts on the [Coinbase Commerce Merchant Dashboard](https://beta.commerce.coinbase.com/payments).
+
+<img alt="Viewing successful checkouts"
+src="https://onchainkit.xyz/assets/commerce-3.png"
+height="364"/>
+
+
+## Customization
+
+### Add name and logo
+
+To customize the name and logo of your application rendered in the popup, set the `name` and `logo` values inside [OnchainKitProvider](../config/onchainkit-provider#usage).
+
+```tsx
+import { base } from 'wagmi/chains';
+import { OnchainKitProvider } from '@coinbase/onchainkit';
+
+<OnchainKitProvider
+    chain={base}
+    config={{
+      appearance: {
+        name: 'OnchainKit Playground',
+        logo: 'https://onchainkit.xyz/favicon/48x48.png?v4-19-24',
+      },
+    }}
+  >
+    {children}
+</OnchainKitProvider>
+```
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <img 
+    alt="Add name and logo"
+    src="https://onchainkit.xyz/assets/commerce-4.png"
+  />
+</div>
+
+### Add Coinbase branding
+
+You can add Coinbase branding to the component by using the `coinbaseBranded` prop on `CheckoutButton`.
+
+```tsx
+import { Checkout, CheckoutButton } from '@coinbase/onchainkit/checkout';
+
+export default function PayComponents() {
+  return (
+    <Checkout >
+      <CheckoutButton coinbaseBranded/>
+    </Checkout>
+  );
+}
+```
+
+<App>
+  <Checkout>
+    <CheckoutButton coinbaseBranded disabled/>
+  </Checkout>
+</App>
+
+### Disabling the button
+
+You can disable the button using the `disabled` prop on `CheckoutButton`.
+```tsx
+import { Checkout, CheckoutButton } from '@coinbase/onchainkit/checkout';
+
+export default function PayComponents() {
+  return (
+    <Checkout >
+      <CheckoutButton disabled/>
+    </Checkout>
+  );
+}
+```
+
+<App>
+  <Checkout>
+    <CheckoutButton disabled/>
+  </Checkout>
+</App>
+
+
+### Customize button
+
+You can customize the button text using the `text` prop on `CheckoutButton`.
+```tsx
+import { Checkout, CheckoutButton } from '@coinbase/onchainkit/checkout';
+
+export default function PayComponents() {
+  return (
+    <Checkout >
+      <CheckoutButton text='Checkout with USDC'/>
+    </Checkout>
+  );
+}
+```
+
+<App>
+  <Checkout>
+    <CheckoutButton text='Checkout with USDC' disabled/>
+  </Checkout>
+</App>
+
+### Override styles
+
+We recommend style customization by setting a custom [OnchainKit theme](../guides/themes#custom-theme). You can also override individual component styles using `className`.
+```tsx
+import { Checkout, CheckoutButton } from '@coinbase/onchainkit/checkout';
+
+export default function PayComponents() {
+  return (
+    <Checkout >
+      <CheckoutButton className='bg-[#EA580C]'/>
+    </Checkout>
+  );
+}
+```
+
+<App>
+  <Checkout>
+    <CheckoutButton className='bg-[#EA580C]' disabled/>
+  </Checkout>
+</App>
+
+
+## Advanced Usage
+
+### Shopping Carts and Multi-Product Checkout
+
+You can accept payments for arbitrary product metadata using the Coinbase Commerce [create charge](https://docs.cdp.coinbase.com/commerce-onchain/reference/creates-a-charge) endpoint. This is useful if you have an existing inventory management system or want to implement custom features like multi-product checkouts, carts, etc.
+
+:::tip[Coinbase Commerce API]
+This is an authenticated endpoint. To create charges, you'll need a Coinbase Commerce [API Key](https://docs.cdp.coinbase.com/commerce-onchain/docs/getting-started).
+:::
+
+#### Example server side code
+
+This Typescript example uses [Express](https://expressjs.com/) and [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
+
+```tsx
+import express, { Request, Response } from 'express';
+// @ts-ignore
+import fetch from 'node-fetch';
+
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+
+// This endpoint should create a charge and return the response.
+app.post('/createCharge', async (req: Request, res: Response) => {
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'X-CC-Api-Key': 'your_api_key_here' // Replace this with your Coinbase Commerce API Key
+    }
+  };
+
+  const response = await fetch('https://api.commerce.coinbase.com/charges', options);
+  const data = await response.json();
+
+  res.json(data);
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
+```
+
+:::danger[⚠️ Warning]
+Charges should only be created server-side. If you create charges on the client, users will be able to create charges associated with your Commerce Merchant account.
+:::
+
+We expose a `chargeHandler` prop on the `Checkout` component which takes a callback that is invoked every time the Checkout button is clicked.
+
+This function **must** have the signature `() => Promise<string>` and **must** return a valid `chargeId` created by the create charge endpoint.
+
+Note that `productId` and `chargeHandler` are mutually exclusive and only one can be provided as a prop to `Checkout`.
+
+```tsx
+import { Checkout, CheckoutButton } from '@coinbase/onchainkit/checkout';
+
+
+// ---cut-before---
+const chargeHandler = async () => { // [!code focus]
+  // Create a charge on your backend server using the Create Charge API // [!code focus]
+  // Replace this URL with your backend endpoint // [!code focus]
+  const res = await fetch('api.merchant.com/createCharge'); // [!code focus]
+  const data = await res.json(); // [!code focus]
+  return data.id; // Return the chargeId // [!code focus]
+} // [!code focus]
+
+<Checkout chargeHandler={chargeHandler}> // [!code focus]
+  <CheckoutButton />
+</Checkout>
+// ---cut-after---
+```
+
+
+### Listening to the component lifecycle
+
+You can use our Checkout [`LifecycleStatus`](types#lifecyclestatus) and the `onStatus` prop to listen to transaction states.
+
+```tsx
+import { Checkout, CheckoutButton } from '@coinbase/onchainkit/checkout';
+// ---cut-before---
+import type { LifecycleStatus } from '@coinbase/onchainkit/checkout'; // [!code focus]
+
+const statusHandler = (status: LifecycleStatus) => { // [!code focus]
+  const { statusName, statusData } = status; // [!code focus]
+  switch (statusName) { // [!code focus]
+    case 'success': // [!code focus]
+      // handle success 
+    case 'pending': // [!code focus]
+      // handle payment pending
+    case 'error': // [!code focus]
+      // handle error
+    default: // [!code focus]
+      // handle 'init' state
+  } // [!code focus]
+} // [!code focus]
+
+<Checkout onStatus={statusHandler}> // [!code focus]
+  <CheckoutButton />
+</Checkout>
+// ---cut-after---
+```
+
+## Example use cases
+- **Demand-based pricing:** Allow users to select seats or ticket types for events, and dynamically calculate charges based on availability and demand.
+- **Product bundles:** Provide users with the option to create custom product bundles, applying discounts or special pricing based on the selected items.
+- **Freelance Services:** Allow clients to specify project details such as hours, deliverables, and deadlines, and generate charges based on these custom inputs.
+
+## Components
+
+The components are designed to work together hierarchically. For each component, ensure the following:
+
+- `<Checkout />` - Sets the `productId` or `chargeHandler` prop.
+- `<CheckoutButton />` - Branding and customization of the payment button.
+- `<CheckoutStatus />` - The status of the payment.
+
+## Props
+
+- [`LifecycleStatus`](types#lifecyclestatus)
+- [`CheckoutReact`](types#checkoutreact)
+- [`CheckoutButtonReact`](types#checkoutbuttonreact)
+- [`CheckoutStatusReact`](types#checkoutstatusreact)
+
+<FeedbackWidget />

@@ -1,0 +1,764 @@
+---
+title: "Verifications Quickstart"
+sidebar_label: "Quickstart"
+slug: "quickstart"
+---
+
+import { FeedbackWidget } from '@/components/FeedbackWidget/index.tsx'
+
+
+
+
+
+This Coinbase Verifications quickstart shows you how to get the metadata associated with a user's attestation. Our implementation creates a read-only smart contract, to the ensure the integrity of the onchain data.
+
+With a user wallet address and schema ID (a verification type ID), the Coinbase Indexer returns a UID. Then, with the UID, developers can call the EAS SDK to return the metadata associated with the attestation. If there is no attestation created, the Coinbase Indexer returns null. 
+
+
+## Prerequisites
+
+- Node >= 14.0.0
+- npm >= 6.0.0
+- [CDP account](https://portal.cdp.coinbase.com/products/node)
+- Base mainnet endpoint
+
+> How to get a Base Mainnet Endpoint:
+
+1. Log into [CDP > Node](https://portal.cdp.coinbase.com/products/node).
+1. Set the dropdown for RPC Endpoint to Base Mainnet.
+1. Copy and save your endpoint to use later.
+
+:::info
+We use Base mainnet because it is a read-only contract that does not require any gas. 
+:::
+
+![RPC Endpoint](/images/verificationsrpc-endpoint.png)
+
+
+## Get Attestation Data
+
+### Initialize your project
+
+In your terminal: 
+
+1. Create a directory called `attestation-tutorial`
+1. Initialize a project using npm.
+1. Download dependencies: `eas-sdk` and `ethers`.
+
+```sh
+mkdir attestation-tutorial & cd attestation-tutorial
+
+npm install @ethereum-attestation-service/eas-sdk
+
+npm install ethers
+```
+
+### Set up imported variables 
+
+Create a file called `indexer.js` and add the following variables to import: 
+
+```js
+import { EAS } from "@ethereum-attestation-service/eas-sdk";
+import { ethers } from 'ethers';
+```
+
+### Load and import ABI
+
+1. Import the [ABI file](#abi-file) for the Coinbase Indexer contract.
+1. Move the file to the `attestation-tutorial` directory.
+1. Import the ABI as a variable.
+
+```js
+import ABI from './attestation_ABI.js';
+```
+
+### Create contract instance
+
+Connect to the Base RPC endpoint and create a contract instance:
+
+1. Copy your endpoint and paste it as the input for the `ethers.JsonRpcProvider` function.
+1. Input the Coinbase Indexer contract address: `0x2c7eE1E5f416dfF40054c27A62f7B357C4E8619C`.
+1. Create the contract instance with `contract address`, `ABI`, and `provider` variables.
+
+
+:::note
+Coinbase Indexer contract address: [0x2c7eE1E5f416dfF40054c27A62f7B357C4E8619C](https://basescan.org/address/0x2c7eE1E5f416dfF40054c27A62f7B357C4E8619C)
+:::
+
+```js
+//Set this to the Node RPC URL from Step 1.
+const provider = new ethers.JsonRpcProvider("YOUR RPC URL");
+
+const contractAddress = "0x2c7eE1E5f416dfF40054c27A62f7B357C4E8619C";
+
+const indexerContract = new ethers.Contract(contractAddress, ABI, provider);
+```
+
+### Get attestation UID
+
+1. Setup a function that inputs a `walletAddress` and `schemaID` to return the `attestationUID`. 
+
+:::info 
+If the attestation does not exist, it returns `null`.
+:::
+
+> Fetching Attestation UID
+
+```js
+async function getAttestationUID(walletAddress,schemaID) {
+    try {
+      const attestationUID = await indexerContract.getAttestationUid(walletAddress, schemaID);
+      return attestationUID;
+    } catch (error) {
+      console.error("Error fetching Attestation UID:", error);
+    }
+  }
+```
+
+### Get attestation data
+
+Setup a function that inputs a `uid` to return `attestation`:
+
+1. Input the contract address into `EAS`.
+
+> Fetching Metadata
+
+```js
+async function getAttestationData(uid){
+  try{
+    const EASContractAddress = "0x4200000000000000000000000000000000000021"
+    const eas = new EAS(EASContractAddress);
+    eas.connect(provider);
+    const attestation = await eas.getAttestation(uid);
+    return attestation
+  } catch(error){
+    console.error("Error fetching Metadata: ", error)
+  }
+}	
+```
+
+### Call Functions
+
+1. Create your main function.
+1. Call the `getAttesationUID` and `getAttestationData` functions and input a valid Wallet Address and Schema ID.
+1. Try with the following:
+
+```
+Wallet Address: `0x115aBfDa6b101bDC813B90c2780952E89E185F54`
+Schema ID: `0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9
+```
+
+> Check out recently claimed wallet addresses, schema IDs, and attestation UIDs we have here:
+
+```js
+
+async function main() {
+  // Add any Wallet Address or SchemaID you would like to try.
+  const walletAddress = "0x115aBfDa6b101bDC813B90c2780952E89E185F54";
+  const schemaID = "0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9";
+  try {
+      const uid = await getAttestationUID(walletAddress, schemaID);
+      console.log('UID:', uid);
+      const metadata = await getAttestationData(uid);
+      console.log('Metadata:', metadata);
+  } catch (error) {
+      console.error('Error:', error);
+  }
+}
+
+main();
+```
+
+### Output
+
+You should return the output below. The comments above each line item represent the corresponding variable. 
+
+```js
+UID: 0x9c2108e7683176078b834068c0a8e6539213a56c3c4ae029d999f69840149911
+
+Metadata: Result(10) [
+//uid  '0x9c2108e7683176078b834068c0a8e6539213a56c3c4ae029d999f69840149911',
+// schemaID
+'0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9',
+//time
+  1721434067n,
+//expirationTime
+  0n,
+//revocationTime
+  0n,
+//refUID
+'0x0000000000000000000000000000000000000000000000000000000000000000',
+//recipient
+  '0x115aBfDa6b101bDC813B90c2780952E89E185F54',
+//attester
+  '0x357458739F90461b99789350868CD7CF330Dd7EE',
+//revocable[?]
+  true,
+//data  
+'0x0000000000000000000000000000000000000000000000000000000000000001'
+]
+```
+
+
+## ABI File
+
+You can copy the ABI file here, or download <a href="/downloads/verifications/coinbase-verifications-abi-code-snippet.json.tar.gz" download target="blank">coinbase-verifications-abi-code-snippet.json.tar.gz</a>
+
+```sh filename="command-to-untar"
+tar -xvf coinbase-verifications-abi-code-snippet.json.tar.gz
+```
+
+<details>
+<summary><b>Expand for the ABI File</b></summary>
+
+```json
+export const ABI = [
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "attestationUid",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint256",
+        "name": "expirationTime",
+        "type": "uint256"
+      }
+    ],
+    "name": "AttestationExpired",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "reason",
+        "type": "string"
+      }
+    ],
+    "name": "AttestationInvariantViolation",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "attestationUid",
+        "type": "bytes32"
+      }
+    ],
+    "name": "AttestationMissingRecipient",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "AttestationNotFound",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "attestationUid",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint256",
+        "name": "revocationTime",
+        "type": "uint256"
+      }
+    ],
+    "name": "AttestationRevoked",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "previousAdmin",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "newAdmin",
+        "type": "address"
+      }
+    ],
+    "name": "AdminChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "indexer",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "schema",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "attestationUid",
+        "type": "bytes32"
+      }
+    ],
+    "name": "AttestationIndexed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "beacon",
+        "type": "address"
+      }
+    ],
+    "name": "BeaconUpgraded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "version",
+        "type": "uint8"
+      }
+    ],
+    "name": "Initialized",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "Paused",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "previousAdminRole",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "newAdminRole",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RoleAdminChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "RoleGranted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "RoleRevoked",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "Unpaused",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "implementation",
+        "type": "address"
+      }
+    ],
+    "name": "Upgraded",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "DEFAULT_ADMIN_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "INDEXER_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "PAUSER_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "UPGRADER_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "schemaUid",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getAttestationUid",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getRoleAdmin",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "grantRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "hasRole",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "attestationUid",
+        "type": "bytes32"
+      }
+    ],
+    "name": "index",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "defaultAdmin",
+        "type": "address"
+      }
+    ],
+    "name": "initialize",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pause",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "paused",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "proxiableUUID",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "renounceRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "role",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "revokeRole",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes4",
+        "name": "interfaceId",
+        "type": "bytes4"
+      }
+    ],
+    "name": "supportsInterface",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "unpause",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newImplementation",
+        "type": "address"
+      }
+    ],
+    "name": "upgradeTo",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newImplementation",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "data",
+        "type": "bytes"
+      }
+    ],
+    "name": "upgradeToAndCall",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  }
+];
+```
+
+</details>
+
+<FeedbackWidget />

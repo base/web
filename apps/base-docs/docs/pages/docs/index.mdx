@@ -1,0 +1,103 @@
+---
+title: Overview
+showOutline: false
+content:
+  width: 100%
+  horizontalPadding: 48px
+---
+
+import { FeedbackWidget } from '@/components/FeedbackWidget/index.tsx'
+import { DocPageWrapper } from '@/components/wrappers/DocPageWrapper'
+import { DevToolsOverview } from '@/components/overviewPage/devToolsOverview'
+
+export const sections = [
+  {
+    title: "Builder Kits",
+    cards: [
+      {
+        title: "OnchainKit",
+        description: "Ready-to-use React components and TypeScript utilities for building onchain apps.",
+        href: "/docs/kits/onchainkit"
+      },
+      {
+        title: "AgentKit",
+        description: "Build AI agents that can transact and create onchain experiences.",
+        href: "/docs/kits/agentkit"
+      }
+    ]
+  },
+  {
+    title: "Identity & Wallet Tools",
+    cards: [
+      {
+        title: "Smart Wallet",
+        description: "A modern, secure wallet with incredible UX and advanced features.",
+        href: "/docs/identity/smart-wallet"
+      },
+      {
+        title: "Basenames",
+        description: "Human-readable onchain identifiers for Base accounts.",
+        href: "/docs/identity/basenames"
+      },
+      {
+        title: "Verifications",
+        description: "Identity and ownership verification with onchain attestations.",
+        href: "/docs/identity/verifications"
+      },
+      {
+        title: "Mobile Wallet Protocol",
+        description: "Connect and interact with mobile wallets seamlessly.",
+        href: "/docs/identity/mobile-wallet-protocol"
+      }
+    ]
+  },
+  {
+    title: "Chain Tools",
+    cards: [
+      {
+        title: "Run a Base Node",
+        description: "Set up and operate your own Base node.",
+        href: "/docs/chain/tutorials/run-a-base-node"
+      }
+    ]
+  }
+]
+
+export const featuredGuide = {
+  badge: "Featured Guide",
+  title: "Build a Full-Stack Onchain App",
+  description: "Learn how to build a complete onchain application using OnchainKit, Smart Wallet, and Base's development tools.",
+  href: "/guides/general-development/client-side-development/build-full-stack-dapp",
+  imageUrl: "/placeholder.svg",
+  imageAlt: "Full-Stack Onchain App Development"
+}
+
+export const quickstartLinks = [
+  {
+    title: "Get Started with OnchainKit",
+    href: "/docs/kits/onchainkit/getting-started",
+    section: "Development Kits"
+  },
+  {
+    title: "Integrate Smart Wallet",
+    href: "/docs/identity/smart-wallet/guides/create-app/using-onchain-app-template",
+    section: "Identity"
+  },
+  {
+    title: "Set Up Basenames",
+    href: "/docs/identity/basenames/basenames-onchainkit-tutorial",
+    section: "Identity"
+  },
+  {
+    title: "Build with AgentKit",
+    href: "/docs/kits/agentkit/getting-started",
+    section: "Development Kits"
+  }
+]
+
+<DocPageWrapper>
+  <DevToolsOverview />
+</DocPageWrapper>
+
+<FeedbackWidget />
+

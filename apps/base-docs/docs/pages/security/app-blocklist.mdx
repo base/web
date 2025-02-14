@@ -1,0 +1,70 @@
+---
+title: How to Avoid Getting Your App Flagged as Malicious
+description: Best practices to ensure your app is recognized as safe and compliant within the Base ecosystem.
+---
+
+import { FeedbackWidget } from '@/components/FeedbackWidget/index.tsx'
+
+
+# How to Avoid Getting Your App Flagged as Malicious
+
+Ensuring that your app is perceived as trustworthy and not flagged as malicious is crucial for maintaining user trust and a positive reputation within the Base ecosystem. Follow these best practices to build a secure and compliant app from day one.
+
+## Smart Contracts
+
+### Verify Source Code
+
+Ensure that the source code of your contracts is verified and publicly available on [block explorers](/chain/block-explorers). Verified contracts allow users to audit and trust your application more easily.
+
+### Audit Your Contracts
+
+Having your contracts audited by a reputable firm is essential. Publish the audit report and provide a reference link to it, so users can easily find and review it. Audits demonstrate that you've taken extra steps to secure your smart contracts.
+
+### Limit User Funds Exposure
+
+Design your contracts to minimize the exposure of user funds. Use efficient design patterns to reduce unnecessary risks. For example, request the minimum amount needed to fulfill transactions and implement appropriate access controls.
+
+## App Best Practices
+
+### Accessibility Across Regions
+
+Avoid geo-blocking or access restrictions that prevent certain regions or countries from accessing your app. Ensure that your app is accessible to a global audience to promote inclusivity.
+
+### Consistent Web2 Behavior
+
+Maintain consistent UI/UX patterns that users are familiar with from traditional web applications. Avoid rapid or unexplained changes in the interface that can make users feel uncertain about the app's reliability.
+
+### Transparent Web3 Interactions
+
+Ensure that web3 interactions in your app are clear and correspond to UI actions. For instance, a "Mint" button should explicitly trigger a mint transaction in the backend. Transparency in operations builds user trust.
+
+### Standard Sign-in Methods
+
+Provide standard connection methods for users to sign in, such as WalletConnect or popular browser extension wallets like MetaMask. Offering multiple sign-in options accommodates user preferences and enhances accessibility.
+
+## Verification Request
+
+After implementing these best practices, consider submitting a verification request through the following [form](https://report.blockaid.io/). This step helps ensure that your app is recognized as safe and verified by trusted sources in the ecosystem.
+
+## Continuous Monitoring
+
+Implement monitoring tools to detect and address any suspicious activities or vulnerabilities in real-time. Regularly update and patch your application to protect against new threats.
+
+## User Education
+
+Educate your users about security best practices, such as safeguarding their private keys and recognizing phishing attempts. Informed users are less likely to fall victim to malicious activities.
+
+## Reporting Malicious Behavior
+
+Encourage your users to report any suspicious or malicious behavior they encounter within your app. Provide clear channels for reporting, such as a dedicated support email or a reporting form.
+
+---
+
+By adhering to these guidelines, you'll significantly reduce the chances of your app being flagged as malicious and foster a secure and trustworthy environment for your users.
+
+For more information or assistance, contact our support team at [security@base.org](mailto:security@base.org) or join our [Discord Community](https://discord.com/invite/base).
+
+
+
+
+<FeedbackWidget />
