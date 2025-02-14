@@ -253,10 +253,8 @@ export function LiveDemo() {
         activeTab={activeTab}
         buttonClasses={buttonClasses}
         content={content}
-        handleCopy={handleCopy}
         demoComponent={demoComponent}
         toggleTheme={toggleTheme}
-        copied={copied}
         setContent={setContent}
       />
     </>
@@ -400,17 +398,7 @@ function DesktopDemo({
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2">
-          <div
-            className={classNames(
-              'h-full p-8 lg:p-12',
-              'border-b lg:border-b-0 lg:border-r',
-              'flex items-center justify-center transition-colors',
-              'overflow-visible',
-              theme === 'dark' ? 'border-dark-palette-line/20' : 'border-dark-palette-line/20',
-            )}
-          >
-            <DynamicCryptoProviders mode={theme}>{demoComponent}</DynamicCryptoProviders>
-          </div>
+          <ComponentDemo theme={theme} demoComponent={demoComponent} />
           <div className="h-[300px] py-6 pl-6 pr-1 lg:h-[500px]">
             <div className={`${theme} relative h-full`}>
               <DynamicCodeSnippet code={codeSnippets[activeTab]} />
@@ -430,10 +418,8 @@ function MobileDemo({
   activeTab,
   buttonClasses,
   content,
-  handleCopy,
   demoComponent,
   toggleTheme,
-  copied,
   setContent,
 }: {
   theme: 'dark' | 'light';
@@ -443,10 +429,8 @@ function MobileDemo({
   activeTab: Tab;
   buttonClasses: { active: string; inactive: string };
   content: 'code' | 'preview';
-  handleCopy: () => void;
   demoComponent: React.ReactNode;
   toggleTheme: () => void;
-  copied: boolean;
   setContent: (content: 'code' | 'preview') => void;
 }) {
   return (
@@ -632,17 +616,7 @@ function MobileDemo({
 
         <div className="grid grid-cols-1 text-xs">
           {content === 'preview' ? (
-            <div
-              className={classNames(
-                'h-full min-h-[300px] p-8 lg:p-12',
-                'border-b lg:border-b-0 lg:border-r',
-                'flex items-center justify-center transition-colors',
-                'overflow-visible',
-                theme === 'dark' ? 'border-dark-palette-line/20' : 'border-dark-palette-line/20',
-              )}
-            >
-              <DynamicCryptoProviders mode={theme}>{demoComponent}</DynamicCryptoProviders>
-            </div>
+            <ComponentDemo theme={theme} demoComponent={demoComponent} />
           ) : (
             <div className="h-[300px] p-6">
               <div className={`${theme} relative h-full`}>
@@ -653,5 +627,29 @@ function MobileDemo({
         </div>
       </div>
     </section>
+  );
+}
+
+function ComponentDemo({
+  theme,
+  demoComponent,
+}: {
+  theme: 'dark' | 'light';
+  demoComponent: React.ReactNode;
+}) {
+  return (
+    <div
+      className={classNames(
+        'h-full min-h-[300px] p-8 lg:p-12',
+        'border-b lg:border-b-0 lg:border-r',
+        'flex items-center justify-center transition-colors',
+        'overflow-visible',
+        theme === 'dark' ? 'border-dark-palette-line/20' : 'border-dark-palette-line/20',
+      )}
+    >
+      <DynamicCryptoProviders mode={theme} theme="base">
+        {demoComponent}
+      </DynamicCryptoProviders>
+    </div>
   );
 }

@@ -2,10 +2,6 @@
 
 import { AppConfig, OnchainKitProvider } from '@coinbase/onchainkit';
 import { connectorsForWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { isDevelopment } from 'apps/web/src/constants';
-import { createConfig, http, WagmiProvider } from 'wagmi';
-import { base, baseSepolia, mainnet } from 'wagmi/chains';
 import {
   coinbaseWallet,
   metaMaskWallet,
@@ -14,6 +10,11 @@ import {
   uniswapWallet,
   walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useMemo } from 'react';
+import { createConfig, http, WagmiProvider } from 'wagmi';
+import { base, baseSepolia, mainnet } from 'wagmi/chains';
+import { isDevelopment } from 'apps/web/src/constants';
 
 const connectors = connectorsForWallets(
   [
@@ -51,18 +52,26 @@ const config = createConfig({
 });
 const queryClient = new QueryClient();
 
-type CryptoProvidersProps = {
+export type CryptoProvidersProps = {
   children: React.ReactNode;
   mode?: 'light' | 'dark';
+  theme?: 'default' | 'base' | 'cyberpunk' | 'hacker';
 };
 
-
-export default function CryptoProviders({ children, mode = 'light' }: CryptoProvidersProps) {
-  const onchainKitConfig: AppConfig = {
-    appearance: {
-      mode,
-    },
-  };
+export default function CryptoProviders({
+  children,
+  mode = 'light',
+  theme = 'default',
+}: CryptoProvidersProps) {
+  const onchainKitConfig: AppConfig = useMemo(
+    () => ({
+      appearance: {
+        mode,
+        theme,
+      },
+    }),
+    [mode, theme],
+  );
 
   return (
     <WagmiProvider config={config}>
