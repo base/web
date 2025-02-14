@@ -3,7 +3,7 @@ title: 'Create Onchain Subscription Payments with Spend Permissions'
 slug: /create-subscription-payments-with-spend-permissions
 description: Implement a smart wallet signer for a subscription payment application.
 author: hughescoin
-keywords: [smart wallet, onchain, spend permissions, smart wallet, account abstraction]
+keywords: [smart wallet, onchain, spend permissions, account abstraction]
 tags: ['frontend', 'account abstraction']
 difficulty: medium
 hide_table_of_contents: false
