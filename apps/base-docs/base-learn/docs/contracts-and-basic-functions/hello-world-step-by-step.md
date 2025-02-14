@@ -63,10 +63,10 @@ contract HelloWorld {
 
 ### SayHello Function
 
-Add a function to your contract called `SayHello`:
+Add a function to your contract called `sayHello`:
 
 ```Solidity
-function SayHello() {
+function sayHello() {
 
 }
 ```
@@ -84,7 +84,7 @@ Don't forget your semicolon. They're mandatory in Solidity!
 You should have:
 
 ```Solidity
-function SayHello() external returns (string memory) {
+function sayHello() external returns (string memory) {
     return "Hello World!";
 }
 ```
@@ -96,7 +96,7 @@ Before you deploy, check the `Compiler` plugin. You've got one last warning:
 [Modifiers] are used to modify the behavior of a function. The `pure` modifier prevents the function from modifying, or even accessing state. While not mandatory, using these modifiers can help you and other programmers know the intention and impact of the functions you write. Your final function should be similar to:
 
 ```Solidity
-function SayHello() external pure returns (string memory) {
+function sayHello() external pure returns (string memory) {
     return "Hello World!";
 }
 ```
@@ -129,7 +129,7 @@ Finally, try creating a return string similar to how you might in another langua
 
 ```Solidity
 // Bad code example: Does not work
-function Greeter(string memory _name) external pure returns (string memory) {
+function greeter(string memory _name) external pure returns (string memory) {
     return "Hello " + _name + "!";
 }
 ```
@@ -171,7 +171,7 @@ pragma solidity 0.8.17;
 
 contract HelloWorld {
 
-    function SayHello() external pure returns (string memory) {
+    function sayHello() external pure returns (string memory) {
         return "Hello World!";
     }
 
@@ -180,7 +180,7 @@ contract HelloWorld {
     //     return "Hello " + _name;
     // }
 
-    function Greeter(string memory _name) external pure returns (string memory, string memory) {
+    function greeter(string memory _name) external pure returns (string memory, string memory) {
         return ("Hello", _name);
     }
 }
