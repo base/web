@@ -129,12 +129,11 @@ Instead, the transaction is reverting because of the built-in overflow/underflow
 
 ```Solidity
 function transfer(address _to, uint _amount) public {
-    int newSenderBalance = int(balances[msg.sender] - _amount);
-    if (newSenderBalance < 0) {
-        revert InsufficientTokens(newSenderBalance);
+    if (balances[msg.sender] < _amount) {
+        revert InsufficientTokens(balances[msg.sender]);
     }
 
-    balances[msg.sender] = uint(newSenderBalance);
+    balances[msg.sender] -= _amount;
     balances[_to] += _amount;
 }
 ```
