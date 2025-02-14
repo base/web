@@ -112,7 +112,7 @@ export const textRecordsSocialFieldsEnabledIcons: Partial<Record<UsernameTextRec
   };
 
 // Users might add their handle as @myProfile, which breaks on some website
-// TODO: Ideally we'd sanitize these before writing them as TextRecord
+// Sanitize social media handles before saving to ensure consistent format and prevent display issues
 export const sanitizeHandle = (handle: string) => {
   let handleSanitized = handle;
 
@@ -130,6 +130,9 @@ export const sanitizeHandle = (handle: string) => {
   if (handleSanitized.startsWith('@')) {
     handleSanitized = handleSanitized.substring(1);
   }
+
+  // Remove any trailing or leading whitespace
+  handleSanitized = handleSanitized.trim();
 
   return handleSanitized;
 };
