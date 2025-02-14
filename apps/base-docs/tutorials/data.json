@@ -46,9 +46,9 @@
         "difficulty": "intermediate",
         "hide_table_of_contents": false,
         "displayed_sidebar": null,
-        "last_updated": "Feb 6, 2025",
-        "duration": "8 min read",
-        "checksum": "5ab221b4918117874c1a1b69983acbe0482e4bad6370f86f4cafb8226c0a776c"
+        "last_updated": "Feb 11, 2025",
+        "duration": "9 min read",
+        "checksum": "045a21bc20b948598c652f8f86c5d2e452b11378069e839b30691e55900b09ab"
     },
     "0_deploy-with-foundry": {
         "title": "Deploying a smart contract using Foundry",
@@ -228,9 +228,9 @@
         "difficulty": "easy",
         "hide_table_of_contents": false,
         "displayed_sidebar": null,
-        "last_updated": "Feb 6, 2025",
-        "duration": "27 min read",
-        "checksum": "d5fae24ccf951790ee64ed24104ec92d63f557b4fbfda73b6df7816d6c4213ea"
+        "last_updated": "Feb 11, 2025",
+        "duration": "16 min read",
+        "checksum": "0b2c006dc12372b70b08130ec45cefeece4d6ec45a78fa323ee79cf9e86f665b"
     },
     "0_intro-to-providers": {
         "title": "Introduction to Providers",

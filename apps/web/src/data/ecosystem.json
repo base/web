@@ -1,4 +1,12 @@
-[
+[   
+  {
+    "name": "Aryze",
+    "description": "Aryze is a pioneering fintech ecosystem that bridges traditional finance and decentralized innovation through secure, compliant stablecoin solutions. We empower businesses to tokenize assets, streamline global payments, and drive operational efficiency in the digital era.",
+    "url": "https://aryze.io",
+    "imageUrl": "/images/partners/aryze.png",
+    "category": "infra",
+    "subcategory": "SaaS"
+  },
   {
     "name": "3DNS",
     "description": "3DNS is a decentralized domain name service (DNS) that can power real web domains. Users can import an existing domain or register a new one and bring the domain onchain via 3DNS.",
