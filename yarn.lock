@@ -512,7 +512,7 @@ __metadata:
   dependencies:
     "@coinbase/cookie-banner": ^1.0.3
     "@coinbase/cookie-manager": ^1.1.1
-    "@coinbase/onchainkit": ^0.35.2
+    "@coinbase/onchainkit": ^0.37.0
     "@datadog/browser-logs": ^5.23.3
     "@datadog/browser-rum": ^5.23.3
     "@frames.js/render": ^0.5.5
@@ -2380,23 +2380,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@coinbase/onchainkit@npm:^0.35.2":
-  version: 0.35.8
-  resolution: "@coinbase/onchainkit@npm:0.35.8"
+"@coinbase/onchainkit@npm:^0.37.0":
+  version: 0.37.0
+  resolution: "@coinbase/onchainkit@npm:0.37.0"
   dependencies:
     "@tanstack/react-query": ^5
     clsx: ^2.1.1
     graphql: ^14 || ^15 || ^16
     graphql-request: ^6.1.0
+    qrcode: ^1.5.4
     tailwind-merge: ^2.3.0
-    viem: ^2.21.33
-    wagmi: ^2.12.24
+    tailwindcss-animate: ^1.0.7
+    viem: ^2.23.0
+    wagmi: ^2.14.11
   peerDependencies:
-    "@types/react": ^18
-    "@xmtp/frames-validator": ^0.6.0
-    react: ^18
-    react-dom: ^18
-  checksum: 56c5d4b5461abf78132878e7ea4b21c7d6d1c7cecfe96e881b28a273b247e75a1d4adb7070a9696cda0b26b0947a88bafa4a4fa70a7bfa6f57220ada04c473fb
+    "@types/react": ^18 || ^19
+    react: ^18 || ^19
+    react-dom: ^18 || ^19
+  checksum: 140f0abae55e937eb84658f43aae55c08f5f2ac93e429b6835a826a21fed92483adc83dd629b8c031ef8a36b12a0fbaa1bc1575b50df5d3c317f19e4b8226bf1
   languageName: node
   linkType: hard
 
@@ -22893,7 +22894,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qrcode@npm:1.5.4, qrcode@npm:^1.5.1":
+"qrcode@npm:1.5.4, qrcode@npm:^1.5.1, qrcode@npm:^1.5.4":
   version: 1.5.4
   resolution: "qrcode@npm:1.5.4"
   dependencies:
@@ -25722,6 +25723,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tailwindcss-animate@npm:^1.0.7":
+  version: 1.0.7
+  resolution: "tailwindcss-animate@npm:1.0.7"
+  peerDependencies:
+    tailwindcss: "*"
+  checksum: c1760983eb3fec0c8421e95082bf308e6845df43e2f90862386366e82545c801b26b4d189c4cd23d6915252b76d18005c8e5f591f8b119944c7fb8650d0f8bce
+  languageName: node
+  linkType: hard
+
 "tailwindcss@npm:^3.2.4":
   version: 3.4.17
   resolution: "tailwindcss@npm:3.4.17"
@@ -27425,7 +27435,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"viem@npm:2.x, viem@npm:^2.1.1, viem@npm:^2.17.4, viem@npm:^2.21.33, viem@npm:^2.7.8, viem@npm:latest":
+"viem@npm:2.x, viem@npm:^2.1.1, viem@npm:^2.17.4, viem@npm:^2.23.0, viem@npm:^2.7.8, viem@npm:latest":
   version: 2.23.2
   resolution: "viem@npm:2.23.2"
   dependencies:
@@ -27513,7 +27523,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wagmi@npm:^2.11.3, wagmi@npm:^2.12.24, wagmi@npm:^2.5.19":
+"wagmi@npm:^2.11.3, wagmi@npm:^2.14.11, wagmi@npm:^2.5.19":
   version: 2.14.11
   resolution: "wagmi@npm:2.14.11"
   dependencies:

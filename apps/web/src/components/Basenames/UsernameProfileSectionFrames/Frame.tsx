@@ -137,12 +137,12 @@ export default function Frame({ url, className }: FrameProps) {
     const currentFrameStackItem = openFrameState.currentFrameStackItem;
     if (!openFrameWorksPersisted && currentFrameStackItem) {
       const status = currentFrameStackItem.status;
-      // @ts-expect-error frames.js type incompatibility between v1 and v2
-      if (status === 'done' && currentFrameStackItem.frameResult.frame.accepts) {
-        // @ts-expect-error frames.js type incompatibility between v1 and v2
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+      if (
+        status === 'done' &&
+        currentFrameStackItem.frameResult.specification === 'openframes' &&
+        currentFrameStackItem.frameResult.frame.accepts
+      ) {
         const acceptsAnonymous = currentFrameStackItem.frameResult.frame.accepts.some(
-          // @ts-expect-error frames.js type incompatibility between v1 and v2
           (element) => element.id === 'anonymous',
         );
         if (acceptsAnonymous) {
