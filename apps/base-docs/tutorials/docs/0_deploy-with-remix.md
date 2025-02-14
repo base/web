@@ -222,11 +222,11 @@ You now have the power to put smart contracts on the blockchain! You've only dep
 
 [`sepolia.basescan.org`]: https://sepolia.basescan.org/
 [`basescan.org`]: https://basescan.org/
-[coinbase]: https://www.coinbase.com/wallet
+[Coinbase]: https://www.coinbase.com/wallet
 [MetaMask]: https://metamask.io/
-[set up]: 
-[coinbase settings]: https://docs.cloud.coinbase.com/wallet-sdk/docs/developer-settings
+[Coinbase Settings]: https://docs.cloud.coinbase.com/wallet-sdk/docs/developer-settings
 [BaseScan]: https://sepolia.basescan.org/
 [faucets on the web]: https://coinbase.com/faucets
 [here]: #prepare-for-deployment
-[remix]: https://remix.ethereum.org
+[Remix]: https://remix.ethereum.org
+[MetaMask Settings]: https://metamask.io/developer/
