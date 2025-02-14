@@ -121,7 +121,7 @@ export function useCCTPBridgeStatus({
     }
   }, [bridgeAttestation, bridgeDirection, initiateTxReceipt, isDeposit, message, publicClient]);
 
-  // We need to be able to set the status from the FinzliaeCCTPBridgeButton, so we expose a setter.
+  // We need to be able to set the status from the FinalizeCCTPBridgeButton, so we expose a setter.
   return {
     status,
     message,
