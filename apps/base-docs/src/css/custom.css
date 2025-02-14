@@ -33,6 +33,7 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 .feature {
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: var(--ifm-pagination-nav-border-radius);
+  background-color: var(--ifm-background-surface-color);
 }
 
 .feature-title {
@@ -49,10 +50,6 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   font-family: CoinbaseDisplay;
   font-size: 45px;
   line-height: 52px;
-}
-
-.feature {
-  background-color: var(--ifm-background-surface-color);
 }
 
 /* overriding white text as the alert high a light background */
