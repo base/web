@@ -295,7 +295,11 @@ contract LockCreator {
     //
     function getAllLocks() external view returns(Lock[] memory result) {
         result = new Lock[](locks.length);
-        for(uint i = 0; i <= locks.length; i++){
+
+        console.log("locks length %s", locks.length);
+
+        for(uint i = 0; i < locks.length; i++){
+            console.log("Locks index %s", i);
             result[i] = locks[i];
         }
     }
@@ -358,7 +362,7 @@ You can include some debugging logs to identify the issue:
 
         console.log("locks length %s", locks.length);
 
-        for(uint i = 0; i <= locks.length; i++){
+        for(uint i = 0; i < locks.length; i++){
             console.log("Locks index %s", i);
             result[i] = locks[i];
         }
@@ -373,13 +377,12 @@ Creating
 Balance 10000000000000000
 locks length 1
 Locks index 0
-Locks index 1
 1) LockCreator Tests
        should get all locks:
      Error: VM Exception while processing transaction: reverted with panic code 0x32 (Array accessed at an out-of-bounds or negative index)
 ```
 
-Since arrays are 0 index based, an array with 1 item will store that item at the 0 index. In the above example, the `if` statement compares `<=` against the length of the array, so it tries to access the element in position 1, and crashes.
+Since arrays are 0 index based, an array with 1 item will store that item at the 0 index. In the above example, the `if` statement compares `<` against the length of the array, so it correctly accesses only valid array indices.
 
 Here's the simple solution:
 
