@@ -1,5 +1,5 @@
 import {
-  textRecordsCommunnicationKeywords,
+  textRecordsCommunicationKeywords,
   textRecordsCreativesKeywords,
   textRecordsEngineersKeywords,
   textRecordsKeysForDisplay,
@@ -23,7 +23,7 @@ export default function UsernameProfileKeywords({ keywords }: UsernameProfileKey
         'border-[#F8BDF5] bg-[#F8BDF5]/20 text-[#741A66]':
           textRecordsCreativesKeywords.includes(keyword),
         'border-[#45E1E5] bg-[#45E1E5]/20 text-[#004774]':
-          textRecordsCommunnicationKeywords.includes(keyword),
+          textRecordsCommunicationKeywords.includes(keyword),
       },
     );
 
