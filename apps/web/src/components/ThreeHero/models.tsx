@@ -7,7 +7,7 @@ import { useMediaQuery } from 'usehooks-ts';
 import dynamic from 'next/dynamic';
 
 // Assets
-import controlerModel from './assets/controller.glb';
+import controllerModel from './assets/controller.glb';
 import ethModel from './assets/eth.glb';
 import globeModel from './assets/globe.glb';
 import phoneModel from './assets/phone.glb';
@@ -229,7 +229,7 @@ export function Lightning() {
 }
 
 export function Controller(props: MeshProps) {
-  const { nodes } = useGLTF(controlerModel);
+  const { nodes } = useGLTF(controllerModel);
   const model = nodes.Controller as Mesh;
   return (
     <PhysicsMesh>
