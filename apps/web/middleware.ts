@@ -1,310 +1,65 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+const redirects: Record<string, string> = {
+  '/base-camp': '/base-learn/docs/welcome',
+  '/base-learn': '/base-learn/docs/welcome',
+  '/basecamp': '/base-learn/docs/welcome',
+  '/baselearn': '/base-learn/docs/welcome',
+  '/base-camp/docs': '/base-learn/docs/welcome',
+  '/base-learn/docs': '/base-learn/docs/welcome',
+  '/basecamp/docs': '/base-learn/docs/welcome',
+  '/baselearn/docs': '/base-learn/docs/welcome',
+  '/camp': '/base-learn/docs/welcome',
+  '/learn': '/base-learn/docs/welcome',
+  '/guides/run-a-base-goerli-node': '/tutorials/run-a-base-node',
+  '/using-base': '/docs/using-base',
+  '/network-information': '/docs/network-information',
+  '/base-contracts': '/docs/base-contracts',
+  '/fees': '/docs/fees',
+  '/differences': '/docs/differences',
+  '/tools/node-providers': '/docs/tools/node-providers',
+  '/tools/block-explorers': '/docs/tools/block-explorers',
+  '/tools/network-faucets': '/docs/tools/network-faucets',
+  '/tools/oracles': '/docs/tools/oracles',
+  '/tools/data-indexers': '/docs/tools/data-indexers',
+  '/tools/cross-chain': '/docs/tools/cross-chain',
+  '/tools/account-abstraction': '/docs/tools/account-abstraction',
+  '/tools/nft-checkout': '/docs/tools/nft-checkout',
+  '/tools/onramps': '/docs/tools/onramps',
+  '/tools/onboarding': '/docs/tools/onboarding',
+  '/tools/bridges': '/docs/tools/bridges',
+  '/tools/bridges-testnet': '/docs/tools/bridges-testnet',
+  '/tools/bridge-faq': '/docs/tools/bridge-faq',
+  '/tools/foundry': '/docs/tools/foundry',
+  '/tools/hardhat': '/docs/tools/hardhat',
+  '/tools/thirdweb-cli': '/docs/tools/thirdweb-cli',
+  '/tools/ethers': '/docs/tools/ethers',
+  '/tools/thirdweb-sdk': '/docs/tools/thirdweb-sdk',
+  '/tools/viem': '/docs/tools/viem',
+  '/tools/web3': '/docs/tools/web3',
+  '/tokens/list': '/docs/tokens/list',
+  '/tokens/wallet': '/docs/tokens/wallet',
+  '/contracts': '/docs/contracts',
+  '/security': '/docs/security',
+  '/terms-of-service': '/docs/terms-of-service',
+  '/privacy-policy': '/docs/privacy-policy',
+  '/cookie-policy': '/docs/cookie-policy',
+};
+
 export function middleware(req: NextRequest) {
   const url = req.nextUrl;
 
-  if (
-    url.pathname === '/base-camp' ||
-    url.pathname === '/base-learn' ||
-    url.pathname === '/basecamp' ||
-    url.pathname === '/baselearn' ||
-    url.pathname === '/base-camp/docs' ||
-    url.pathname === '/base-learn/docs' ||
-    url.pathname === '/basecamp/docs' ||
-    url.pathname === '/baselearn/docs' ||
-    url.pathname === '/camp' ||
-    url.pathname === '/learn'
-  ) {
-    url.host = 'docs.base.org';
-    url.pathname = '/base-learn/docs/welcome';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/guides/run-a-base-goerli-node') {
-    url.host = 'docs.base.org';
-    url.pathname = '/tutorials/run-a-base-node';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/using-base') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/using-base';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/network-information') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/network-information';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/base-contracts') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/base-contracts';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/fees') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/fees';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/differences') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/differences';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/differences') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/differences';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/node-providers') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/node-providers';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/block-explorers') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/block-explorers';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/network-faucets') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/network-faucets';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/oracles') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/oracles';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/data-indexers') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/data-indexers';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/cross-chain') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/cross-chain';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/account-abstraction') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/account-abstraction';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/nft-checkout') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/nft-checkout';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/onramps') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/onramps';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/onboarding') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/onboarding';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/bridges') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/bridges';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/bridges-testnet') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/bridges-testnet';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/bridge-faq') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/bridge-faq';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/foundry') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/foundry';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/hardhat') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/hardhat';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/thirdweb-cli') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/thirdweb-cli';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/ethers') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/ethers';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/thirdweb-sdk') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/thirdweb-sdk';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/viem') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/viem';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/web3') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/web3';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tokens/list') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tokens/list';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tokens/wallet') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tokens/wallet';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/contracts') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/contracts';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/security') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/security';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/terms-of-service') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/terms-of-service';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/privacy-policy') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/privacy-policy';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/cookie-policy') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/cookie-policy';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
   if (url.pathname === '/discord') {
-    url.host = 'discord.gg';
-    url.pathname = '/buildonbase';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
+    return NextResponse.redirect('https://discord.gg/buildonbase');
   }
 
   if (url.pathname === '/blog') {
-    url.host = 'base.mirror.xyz';
-    url.pathname = '/';
+    return NextResponse.redirect('https://base.mirror.xyz/');
+  }
+
+  if (redirects[url.pathname]) {
+    url.host = 'docs.base.org';
+    url.pathname = redirects[url.pathname];
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -334,7 +89,7 @@ export function middleware(req: NextRequest) {
       return NextResponse.next();
     }
   }
-  url.pathname = '/api/auth';
 
+  url.pathname = '/api/auth';
   return NextResponse.rewrite(url);
 }
