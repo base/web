@@ -4,7 +4,7 @@ import { useContractRead } from 'wagmi';
 
 const { publicRuntimeConfig } = getConfig();
 
-export function useProvenWithdrawl(withdrawalHash: string | null) {
+export function useProvenWithdrawal(withdrawalHash: string | null) {
   const { data: provenWithdrawal } = useContractRead({
     address: withdrawalHash ? publicRuntimeConfig.l1OptimismPortalProxyAddress : undefined,
     abi: optimismPortalABI,
