@@ -3998,5 +3998,13 @@
     "imageUrl": "/images/partners/unlockprotocol.png",
     "category": "infra",
     "subcategory": "consumer"
+  },
+  {
+    "name": "Polyflip",
+    "description": "Polyflip offers transparent smart contracts where you can double your ETH and USDC with provably fair games. Play directly with your wallet—no deposits, no signups. Polyflip is a 100% decentralized betting platform, powered by Chainlink VRF for ultimate transparency and security.",
+    "url": "https://base.polyflip.io/",
+    "imageUrl": "/images/partners/polyflip.png",
+    "category": "consumer",
+    "subcategory": "gaming"
   }
 ]
