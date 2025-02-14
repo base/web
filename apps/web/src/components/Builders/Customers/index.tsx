@@ -20,7 +20,7 @@ import heyelsa from 'apps/web/src/components/Builders/Customers/assets/smart-wal
 import kyberswap from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/kyberswap.svg';
 import layer3 from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/layer3.svg';
 import magiceden from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/magiceden.svg';
-import mochicam from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/mochicam.svg';
+import moshicam from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/moshicam.svg';
 import moonwell from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/moonwell.svg';
 import opensea from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/opensea.svg';
 import pancakeswap from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/pancakeswap.svg';
@@ -29,36 +29,114 @@ import tokeimon from 'apps/web/src/components/Builders/Customers/assets/smart-wa
 import uniswap from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/uniswap.svg';
 import virtual from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/virtual.svg';
 import zora from 'apps/web/src/components/Builders/Customers/assets/smart-wallet/zora.svg';
+import Link from 'apps/web/src/components/Link';
 
-const logos = [
-  b3,
-  blocklords,
-  illuvium,
-  metacade,
-  proofworks,
-  superchamps,
-  aerodrome,
-  cattown,
-  cooprecords,
-  frenpet,
-  guild,
-  heyelsa,
-  kyberswap,
-  layer3,
-  magiceden,
-  mochicam,
-  moonwell,
-  opensea,
-  pancakeswap,
-  seamless,
-  tokeimon,
-  uniswap,
-  virtual,
-  zora,
+type Customer = {
+  href: string;
+  logo: StaticImageData;
+};
+
+const customers: Customer[] = [
+  {
+    href: 'https://www.b3.fun/',
+    logo: b3 as StaticImageData,
+  },
+  {
+    href: 'https://blocklords.com/',
+    logo: blocklords as StaticImageData,
+  },
+  {
+    href: 'https://illuvium.io/',
+    logo: illuvium as StaticImageData,
+  },
+  {
+    href: 'https://tournaments.metacade.co/',
+    logo: metacade,
+  },
+  {
+    href: 'https://proof-8.com/news/introducing-proof-8-new-name-same-spirit', // TO CONFIRM
+    logo: proofworks as StaticImageData,
+  },
+  {
+    href: 'https://www.superchamps.com/',
+    logo: superchamps as StaticImageData,
+  },
+  {
+    href: 'https://aerodrome.finance/',
+    logo: aerodrome as StaticImageData,
+  },
+  {
+    href: 'https://cat.town/',
+    logo: cattown as StaticImageData,
+  },
+  {
+    href: 'https://www.cooprecords.xyz/',
+    logo: cooprecords as StaticImageData,
+  },
+  {
+    href: '', // TO CONFIRM
+    logo: frenpet as StaticImageData,
+  },
+  {
+    href: 'https://guild.xyz/',
+    logo: guild as StaticImageData,
+  },
+  {
+    href: 'https://www.heyelsa.ai/',
+    logo: heyelsa as StaticImageData,
+  },
+  {
+    href: 'https://kyberswap.com/swap/base',
+    logo: kyberswap as StaticImageData,
+  },
+  {
+    href: 'https://app.layer3.xyz/quests',
+    logo: layer3 as StaticImageData,
+  },
+  {
+    href: 'https://magiceden.us',
+    logo: magiceden as StaticImageData,
+  },
+  {
+    href: 'https://moshi.cam/',
+    logo: moshicam as StaticImageData,
+  },
+  {
+    href: 'https://moonwell.fi/',
+    logo: moonwell as StaticImageData,
+  },
+  {
+    href: 'https://opensea.io/',
+    logo: opensea as StaticImageData,
+  },
+  {
+    href: 'https://pancakeswap.finance/',
+    logo: pancakeswap as StaticImageData,
+  },
+  {
+    href: 'https://www.seamlessprotocol.com/',
+    logo: seamless as StaticImageData,
+  },
+  {
+    href: 'https://app.tokiemon.io/mint',
+    logo: tokeimon as StaticImageData,
+  },
+  {
+    href: 'https://uniswap.org/',
+    logo: uniswap as StaticImageData,
+  },
+  {
+    href: 'https://virtuals.io/',
+    logo: virtual as StaticImageData,
+  },
+  {
+    href: 'https://zora.co/',
+    logo: zora as StaticImageData,
+  },
 ];
 const LOGO_WIDTH = 200; // pixels
 const LOGO_GAP = 96; // pixels
-const TOTAL_LOGOS = logos.length * 2;
+const TOTAL_LOGOS = customers.length * 2;
 const LOGO_CONTAINER_WIDTH = (LOGO_WIDTH + LOGO_GAP) * TOTAL_LOGOS;
 
 const logoStyle = {
@@ -94,31 +172,35 @@ export function Customers() {
           }}
         >
           {/* First set of logos */}
-          {logos.map((logo) => (
+          {customers.map((customer) => (
             <div
               className={`max-w-[${LOGO_WIDTH}px] flex items-center`}
-              key={`first-${String(logo.src)}`}
+              key={`first-${customer.href}`}
             >
-              <Image
-                src={logo as StaticImageData}
-                alt={String(logo.src)}
-                style={logoStyle}
-                className="flex-none object-contain opacity-50 transition-opacity hover:opacity-100"
-              />
+              <Link href={customer.href} target="_blank">
+                <Image
+                  src={customer.logo}
+                  alt={String(customer.logo.src)}
+                  style={logoStyle}
+                  className="flex-none object-contain opacity-50 transition-opacity hover:opacity-100"
+                />
+              </Link>
             </div>
           ))}
           {/* Duplicate set of logos for seamless loop */}
-          {logos.map((logo) => (
+          {customers.map((customer) => (
             <div
               className={`max-w-[${LOGO_WIDTH}px] flex items-center`}
-              key={`second-${String(logo.src)}`}
+              key={`second-${customer.href}`}
             >
-              <Image
-                src={logo as StaticImageData}
-                alt={String(logo.src)}
-                style={logoStyle}
-                className="flex-none object-contain opacity-50 transition-opacity hover:opacity-100"
-              />
+              <Link href={customer.href} target="_blank">
+                <Image
+                  src={customer.logo}
+                  alt={String(customer.logo.src)}
+                  style={logoStyle}
+                  className="flex-none object-contain opacity-50 transition-opacity hover:opacity-100"
+                />
+              </Link>
             </div>
           ))}
         </div>
