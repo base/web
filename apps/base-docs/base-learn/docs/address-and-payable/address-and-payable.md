@@ -67,18 +67,27 @@ In this example, the fallback function is marked as external and payable, which 
 
 ```solidity
 contract PaymentReceiver {
-    address payable owner;
-
+    address payable public owner;
+    
+    event EtherWithdrawn(address indexed to, uint256 amount);
+    
     constructor() payable {
-        owner = payable(msg.sender); // Convert msg.sender to payable
+        owner = payable(msg.sender);
     }
-
+    
     function receiveEther() public payable {
         // This function can receive Ether
     }
-
+    
     function withdrawEther() public {
-        owner.transfer(address(this).balance); // Send Ether to owner
+        require(msg.sender == owner, "Only owner can withdraw");
+        uint256 balance = address(this).balance;
+        require(balance > 0, "No ether to withdraw");
+        
+        (bool success, ) = owner.call{value: balance}("");
+        require(success, "Transfer failed");
+        
+        emit EtherWithdrawn(owner, balance);
     }
 }
 ```
