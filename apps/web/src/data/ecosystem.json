@@ -24,6 +24,14 @@
     "subcategory": "gaming"
   },
   {
+  "name": "Choice Coin",
+  "description": "Choice Coin is a decentralized decision making, governance, and gaming platform. The project is currently focused on developing open source software and applications on Base.",
+  "url": "https://www.choice-coin.com/",
+  "imageUrl": "web/apps/web/public/images/partners/choice-coin-logo.png",
+  "category": "consumer",
+  "subcategory": "gaming"
+  },
+  {
     "name": "Moxie Protocol",
     "description": "Moxie is a SocialFi protocol on the Base blockchain that allows users to create and interact with Fan Tokens.",
     "url": "https://moxie.xyz",
