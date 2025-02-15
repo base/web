@@ -18,10 +18,11 @@ function Button({ onClick, disabled, children, className, variant = 'primary' }:
     <button
       type="button"
       className={clsx(
-        className ??
-          'text-md flex items-center justify-center rounded-md p-4 font-sans font-bold uppercase',
-        variants[variant],
-      )}
+      className={clsx(
+      'text-md flex items-center justify-center rounded-md p-4 font-sans font-bold uppercase',
+      className,
+      variants[variant]
+)}
       onClick={onClick}
       disabled={disabled}
     >
