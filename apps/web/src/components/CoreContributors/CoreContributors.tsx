@@ -15,7 +15,7 @@ const avatarCssStyle = {
 
 export default async function CoreContributors() {
   return (
-    <div className="flex flex-row flex-wrap items-start gap-3 bg-black pt-12">
+    <div className="flex flex-row flex-wrap items-start justify-center gap-3 bg-black pt-12 lg:justify-start">
       {owners?.length > 0 &&
         owners.map((owner) => {
           const filename = owner.filename ?? '';
