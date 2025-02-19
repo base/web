@@ -1,7 +1,6 @@
 import { defineConfig } from 'vocs';
 import { sidebar } from './sidebar.ts';
 import { ModuleKind, ModuleResolutionKind } from 'typescript';
-import React from 'react';
 import path from 'path';
 
 const baseConfig = {
@@ -20,10 +19,6 @@ const baseConfig = {
     textAccent: '578BFA',
   },
   logoUrl: '/logo.svg',
-  // logoUrl: {
-  //   // light: ,
-  //   // dark: ,
-  // }
 };
 
 const socialConfig = {
@@ -45,49 +40,6 @@ const socialConfig = {
       link: 'https://discord.com/invite/buildonbase',
     },
   ],
-};
-
-// used for global dismissable announcements, etc
-const bannerConfig = {
-  // If we don't fork vocs, the banner can be overridden as seen below to add a header
-  // banner: {
-  //   content: (
-  //     <div className="vocs_banner_content">
-  //       <div className="left-column">
-  //         {/* Optional: Add content here if needed in the future */}
-  //       </div>
-  //       <div className="center-column">
-  //         <nav className="navigation-links">
-  //           <a href="/">API</a>
-  //           <a href="/docs">Tools</a>
-  //           <a href="/blog">Blog</a>
-  //           <a href="/community">Community</a>
-  //         </nav>
-  //       </div>
-  //       <div className="right-column">
-  //         <button
-  //           className="connect-wallet-button"
-  //           onClick={() => {
-  //             // Add your wallet connection logic here
-  //           }}
-  //         >
-  //           Connect Wallet
-  //         </button>
-  //       </div>
-  //     </div>
-  //   ),
-  //   height: '99px', // Must match height in CSS
-  //   dismissable: 'false', // Make it permanent
-  //   backgroundColor: '#232225', // Charcoal color
-  // }
-};
-
-// Reusable nav link styles (if not using Tailwind)
-const navLinkStyle: React.CSSProperties = {
-  color: 'inherit',
-  textDecoration: 'none',
-  transition: 'opacity 0.2s',
-  ':hover': { opacity: 0.7 },
 };
 
 const twoslashConfig = {
@@ -128,15 +80,6 @@ const markdownConfig = {
       light: 'github-light',
       dark: 'github-dark',
     },
-  },
-};
-
-// plugins for transforming markdown: https://github.com/remarkjs/remark/blob/main/doc/plugins.md#list-of-plugins
-const pluggableConfig = {
-  markdown: {
-    remarkPlugins: [
-      // Add your remark plugins here
-    ],
   },
 };
 
@@ -186,13 +129,11 @@ const searchConfig = {
 
 export default defineConfig({
   ...baseConfig,
-  ...bannerConfig,
   ...sidebarConfig,
   ...topNavConfig,
   ...blogConfig,
   ...headConfig,
   ...markdownConfig,
-  ...pluggableConfig,
   ...searchConfig,
   ...twoslashConfig,
   ...socialConfig,

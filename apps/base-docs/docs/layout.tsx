@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import CardsProvider from './components/base-org/Card/context.tsx';
 import ThemeProvider from './contexts/Theme.tsx';
 
 export default function Layout({ children }: { children: ReactNode }) {
@@ -10,9 +9,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         fontFamily: 'CoinbaseSans !important',
       }}
     >
-      <ThemeProvider>
-        <CardsProvider>{children}</CardsProvider>
-      </ThemeProvider>
+      <ThemeProvider>{children}</ThemeProvider>
     </div>
   );
 }
