@@ -120,7 +120,6 @@ const contentSecurityPolicy = {
     `https://${process.env.NEXT_PUBLIC_PINATA_GATEWAY_URL}`,
     'https://usdc-claim-git-master-coinbase-vercel.vercel.app',
     'https://eth.merkle.io', // new default viem rpc
-    'https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com',
   ],
   'frame-src': ['https://p.datadoghq.com'],
   'frame-ancestors': ["'self'", baseXYZDomains],
@@ -136,9 +135,7 @@ const contentSecurityPolicy = {
     'https://cloudflare-ipfs.com', // ipfs Cloudflare ens avatar resolution
     'https://res.cloudinary.com',
     `https://${process.env.NEXT_PUBLIC_PINATA_GATEWAY_URL}`,
-    'https://*.google-analytics.com https://*.googletagmanager.com',
   ],
-  'script-src': ['https://*.googletagmanager.com'],
 };
 
 const cspObjectToString = Object.entries(contentSecurityPolicy).reduce((acc, [key, value]) => {
