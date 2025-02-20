@@ -591,6 +591,36 @@ const ICONS: Record<string, (props: SvgProps) => JSX.Element> = {
       />
     </svg>
   ),
+  fork: ({ color, width, height }: SvgProps) => (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 17 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="ui/fork">
+        <path
+          id="vector"
+          d="M2.16162 5.87488L3.86162 4.17487L3.86162 10.7101L7.66162 10.7101L7.66162 14.9102L9.26162 14.9102L9.26162 10.7101L13.4616 10.7101L13.4616 4.17488L15.1616 5.87488L15.1616 3.61214L12.6616 1.11212L10.1616 3.6121L10.1616 5.87485L11.8616 4.17484L11.8616 9.11011L5.46162 9.11011L5.46162 4.17485L7.16162 5.87485L7.16162 3.6121L4.66164 1.11212L2.16162 3.61214L2.16162 5.87488Z"
+          fill={color}
+        />
+      </g>
+    </svg>
+  ),
+  hamburger: ({ color, width, height }: SvgProps) => (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M14.9883 4.59512H0.988292V2.99512H14.9883V4.59512Z" fill={color} />
+      <path d="M14.9883 8.79511H0.988281V7.19511H14.9883V8.79511Z" fill={color} />
+      <path d="M0.988292 12.9951H14.9883V11.3951H0.988292V12.9951Z" fill={color} />
+    </svg>
+  ),
 };
 
 export function Icon({ name, color = 'white', width = '24', height = '24' }: IconProps) {

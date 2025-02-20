@@ -14,6 +14,7 @@ import {
   uniswapWallet,
   walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets';
+import { useMemo } from 'react';
 
 const connectors = connectorsForWallets(
   [
@@ -51,17 +52,28 @@ const config = createConfig({
 });
 const queryClient = new QueryClient();
 
-type CryptoProvidersProps = {
+export type CryptoProvidersProps = {
   children: React.ReactNode;
+  mode?: 'light' | 'dark';
+  theme?: 'default' | 'base' | 'cyberpunk' | 'hacker';
 };
 
-const onchainKitConfig: AppConfig = {
-  appearance: {
-    mode: 'light',
-  },
-};
+export default function CryptoProviders({
+  children,
+  mode = 'light',
+  theme = 'default',
+}: CryptoProvidersProps) {
+  const onchainKitConfig: AppConfig = useMemo(
+    () => ({
+      appearance: {
+        mode,
+        theme,
+      },
+    }),
+    [mode, theme],
+  );
 
-export default function CryptoProviders({ children }: CryptoProvidersProps) {
+  console.log({mode})
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
@@ -69,6 +81,7 @@ export default function CryptoProviders({ children }: CryptoProvidersProps) {
           chain={isDevelopment ? baseSepolia : base}
           apiKey={process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY}
           config={onchainKitConfig}
+          projectId={process.env.NEXT_PUBLIC_CDP_PROJECT_ID}
         >
           <RainbowKitProvider modalSize="compact">{children}</RainbowKitProvider>
         </OnchainKitProvider>

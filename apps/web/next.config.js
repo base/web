@@ -120,6 +120,8 @@ const contentSecurityPolicy = {
     `https://${process.env.NEXT_PUBLIC_PINATA_GATEWAY_URL}`,
     'https://usdc-claim-git-master-coinbase-vercel.vercel.app',
     'https://eth.merkle.io', // new default viem rpc
+    'https://blue-api.morpho.org/graphql', // morpho
+    'https://base-sepolia.easscan.org/graphql', // nft
   ],
   'frame-src': ['https://p.datadoghq.com'],
   'frame-ancestors': ["'self'", baseXYZDomains],
@@ -135,6 +137,8 @@ const contentSecurityPolicy = {
     'https://cloudflare-ipfs.com', // ipfs Cloudflare ens avatar resolution
     'https://res.cloudinary.com',
     `https://${process.env.NEXT_PUBLIC_PINATA_GATEWAY_URL}`,
+    'https://img.reservoir.tools', // reservoir
+    'https://d3r81g40ycuhqg.cloudfront.net/', // OCK Earn component
   ],
 };
 

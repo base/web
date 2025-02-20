@@ -531,6 +531,14 @@ module.exports = {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(calc(-100% - var(--gap)))' },
+        },
+        'marquee-vertical': {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(calc(-100% - var(--gap)))' },
+        },
 
         progress: {
           '0%': { width: '0%' },
@@ -576,6 +584,8 @@ module.exports = {
         longslide: 'longslide 2s linear infinite',
         verticalSlide: 'verticalSlide 2s linear infinite',
         pulsate: 'pulsate 2s linear infinite',
+        marquee: 'marquee var(--duration) linear infinite',
+        'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
       },
       zIndex: {
         1: '1',
