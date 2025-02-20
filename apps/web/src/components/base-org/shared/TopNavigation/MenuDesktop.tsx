@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import AnimatedIcon from './AnimatedIcon';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
 import Link from 'apps/web/src/components/Link';
+import { BuildersDropdown } from 'apps/web/src/components/base-org/shared/TopNavigation/BuildersDropdown';
 
 type MenuDesktopProps = {
   links: TopNavigationLink[];
@@ -12,11 +13,6 @@ type MenuDesktopProps = {
 export default function MenuDesktop({ links }: MenuDesktopProps) {
   const [hoverIndex, setHoverIndex] = useState<number>(-1);
   const [subActive, setSubActive] = useState<boolean>(false);
-  const [glowStyle, setGlowStyle] = useState({
-    width: 0,
-    height: 0,
-    transform: 'translateX(0px)',
-  });
 
   const subItemsRef = useRef<HTMLDivElement>(null);
   const [subItemsHeight, setSubItemsHeight] = useState<number>(0);
@@ -42,17 +38,14 @@ export default function MenuDesktop({ links }: MenuDesktopProps) {
     }, 100);
   }, []);
 
+  const onLinkClick = useCallback(() => {
+    setSubActive(false);
+    setHoverIndex(-1);
+  }, [setSubActive, setHoverIndex]);
+
   const onMouseEnterNavLink = useCallback((event: React.MouseEvent<HTMLAnchorElement>) => {
     const target = event.currentTarget as HTMLAnchorElement;
     const index = parseInt(target.getAttribute('data-index') ?? '0');
-
-    const linkRect = target.getBoundingClientRect();
-
-    setGlowStyle({
-      width: linkRect.width,
-      height: linkRect.height,
-      transform: `translateX(${target.offsetLeft - 4}px)`,
-    });
 
     handleHover(index);
   }, []);
@@ -62,8 +55,8 @@ export default function MenuDesktop({ links }: MenuDesktopProps) {
       className="relative flex flex-col items-center gap-2 rounded-xl p-1"
       onMouseLeave={onMouseLeaveNav}
     >
-      <Card innerClassName="py-1 bg-[#0C0C0C]" radius={8}>
-        <div className="group relative flex items-center gap-0 p-1">
+      <Card innerClassName="bg-[#0C0C0C]" radius={8}>
+        <div className="relative flex items-center gap-0 p-1">
           {links.map((link, index) => (
             <Link
               key={`link-${link.name}`.toLocaleLowerCase()}
@@ -71,71 +64,79 @@ export default function MenuDesktop({ links }: MenuDesktopProps) {
               href={link.href + '?utm_source=dotorg&utm_medium=nav'}
               target={link.href.startsWith('https://') ? '_blank' : undefined}
               onMouseEnter={onMouseEnterNavLink}
-              className={`rounded-lg bg-opacity-0 px-6 py-1 text-sm opacity-50 transition-all duration-300 hover:bg-opacity-10 hover:opacity-100 ${
-                hoverIndex === index ? 'bg-opacity-10 opacity-100' : ''
+              onClick={onLinkClick}
+              className={`h-full rounded-md bg-opacity-0 px-6 py-2 text-sm transition-all duration-300 hover:bg-[#32353D] ${
+                hoverIndex === index ? ' bg-[#32353D]' : ''
               }`}
             >
               {link.name}
             </Link>
           ))}
-
-          {/* Animated background */}
-          <div
-            className={`pointer-events-none absolute h-full rounded-lg bg-white/20 transition-all duration-300 ease-in-out ${
-              hoverIndex > -1 ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{
-              width: glowStyle.width,
-              transform: glowStyle.transform,
-            }}
-          />
         </div>
       </Card>
 
       {/* Sub Menu */}
       <div
         ref={subItemsRef}
-        className="absolute top-full w-full p-1 duration-300 ease-in-out"
+        className="absolute left-1/2 top-full w-[718px] min-w-full p-1 duration-300 ease-in-out"
         style={{
           height: `${subItemsHeight}px`,
           opacity: subActive ? 1 : 0,
-          transform: `translateY(${subActive ? 0 : -20}px)`,
+          transform: `translateX(-50%) translateY(${subActive ? 0 : -20}px)`,
         }}
       >
-        <Card radius={8} innerClassName="bg-[#191919]">
-          <div className="flex w-full items-stretch gap-2 rounded-lg bg-[#191919] p-2">
-            {links[hoverIndex]?.subItems && (
-              <AnalyticsProvider context={links[hoverIndex].analyticContext}>
-                <div className="flex flex-1 flex-col">
-                  {links[hoverIndex].subItems.map((subItem) => (
-                    <Link
-                      key={`link-${links[hoverIndex].name}-subitem-${subItem.name}`.toLocaleLowerCase()}
-                      href={subItem.href + '?utm_source=dotorg&utm_medium=nav'}
-                      target={subItem.href.startsWith('https://') ? '_blank' : undefined}
-                      className="group/sublink flex justify-between rounded-lg bg-white bg-opacity-0 px-3 py-2 text-sm transition-all duration-300 hover:bg-opacity-20"
-                    >
-                      <span>{subItem.name}</span>
-                      <span className="rotate-0 transform opacity-0 transition-all delay-75 duration-300 group-hover/sublink:rotate-45 group-hover/sublink:opacity-60">
-                        ↗
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </AnalyticsProvider>
-            )}
-            {links[hoverIndex]?.subItems && (
-              <div className="min-h-[200px] flex-1 basis-0 overflow-hidden ">
-                {links[hoverIndex]?.name && (
-                  <div className="flex h-full w-full flex-col items-center justify-center gap-2 rounded-lg bg-black">
-                    {subActive && (
-                      <AnimatedIcon key={links[hoverIndex].name} icon={links[hoverIndex].name} />
-                    )}
+        {links[hoverIndex]?.name === 'Builders' ? (
+          <BuildersDropdown onLinkClick={onLinkClick} />
+        ) : (
+          <Card radius={13} innerClassName="bg-dark-palette-backgroundAlternate">
+            <div className="flex w-full items-stretch gap-2 rounded-lg bg-dark-palette-backgroundAlternate p-2">
+              {links[hoverIndex]?.subItems && (
+                <AnalyticsProvider context={links[hoverIndex].analyticContext}>
+                  <div className="flex flex-1 flex-col">
+                    {links[hoverIndex].subItems.map((subItem) => (
+                      <Link
+                        key={`link-${links[hoverIndex].name}-subitem-${subItem.name}`.toLocaleLowerCase()}
+                        onClick={onLinkClick}
+                        href={
+                          subItem.href.includes('#')
+                            ? `${subItem.href.split('#')[0]}?utm_source=dotorg&utm_medium=nav#${
+                                subItem.href.split('#')[1]
+                              }`
+                            : `${subItem.href}?utm_source=dotorg&utm_medium=nav`
+                        }
+                        target={subItem.href.startsWith('https://') ? '_blank' : undefined}
+                        className="group/sublink flex items-center justify-between rounded-md bg-white bg-opacity-0 px-3 py-2 text-sm transition-all duration-300 hover:bg-opacity-20"
+                      >
+                        <div className="flex flex-col">
+                          <span className="font-medium tracking-normal">{subItem.name}</span>
+                          {subItem.description && (
+                            <span className="tracking-normal text-dark-palette-foregroundMuted">
+                              {subItem.description}
+                            </span>
+                          )}
+                        </div>
+                        <span className="rotate-0 transform opacity-0 transition-all delay-75 duration-300 group-hover/sublink:rotate-45 group-hover/sublink:opacity-60">
+                          ↗
+                        </span>
+                      </Link>
+                    ))}
                   </div>
-                )}
-              </div>
-            )}
-          </div>
-        </Card>
+                </AnalyticsProvider>
+              )}
+              {links[hoverIndex]?.subItems && (
+                <div className="min-h-[200px] flex-1 basis-0 overflow-hidden ">
+                  {links[hoverIndex]?.name && (
+                    <div className="flex h-full w-full flex-col items-center justify-center gap-2 rounded-lg bg-black">
+                      {subActive && (
+                        <AnimatedIcon key={links[hoverIndex].name} icon={links[hoverIndex].name} />
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </Card>
+        )}
       </div>
     </div>
   );
