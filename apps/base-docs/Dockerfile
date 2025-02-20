@@ -14,4 +14,4 @@ RUN yarn workspace @app/base-docs build
 RUN yarn workspaces focus --all --production
 
 EXPOSE 3000
-CMD ["yarn", "workspace", "@app/base-docs", "start"]
+CMD ["yarn", "dlx", "serve", "-s", "apps/base-docs/docs/dist", "-p", "3000"]
