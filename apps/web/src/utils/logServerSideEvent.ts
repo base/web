@@ -132,5 +132,5 @@ function convertKeys(obj: unknown): unknown {
 }
 
 function camelToSnakeCase(str: string) {
-  return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+  return str.replace(/([a-z0-9])([A-Z])/g, '$1_$2').toLowerCase();
 }
