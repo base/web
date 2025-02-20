@@ -105,7 +105,7 @@ const searchConfig: SearchCategory[] = [
       // },
       {
         label: 'Smart Wallet',
-        href: '/builders/smartwallet',
+        href: '/builders/smart-wallet',
         icon: 'backArrow',
         iconRotation: 'rotate-180',
       },

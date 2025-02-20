@@ -21,7 +21,7 @@ import heyelsa from 'apps/web/src/components/Builders/Shared/assets/Logos/heyels
 import byteai from 'apps/web/src/components/Builders/Shared/assets/Logos/byteai.svg';
 import guild from 'apps/web/src/components/Builders/Shared/assets/Logos/guild.svg';
 import moxie from 'apps/web/src/components/Builders/Shared/assets/Logos/moxie.svg';
-import frenpet from 'apps/web/src/components/Builders/Shared/assets/Logos/frenpet.svg';
+// import frenpet from 'apps/web/src/components/Builders/Shared/assets/Logos/frenpet.svg';
 import megaphone from 'apps/web/src/components/Builders/Shared/assets/Logos/megaphone.svg';
 import seamless from 'apps/web/src/components/Builders/Shared/assets/Logos/seamless.svg';
 import uniswap from 'apps/web/src/components/Builders/Shared/assets/Logos/uniswap.svg';
@@ -98,10 +98,10 @@ const customers: Customer[] = [
     href: 'https://moxie.xyz/',
     logo: moxie as StaticImageData,
   },
-  {
-    href: 'https://x.com/frenpetonbase',
-    logo: frenpet as StaticImageData,
-  },
+  // {
+  //   href: 'https://x.com/frenpetonbase',
+  //   logo: frenpet as StaticImageData,
+  // },
   {
     href: 'https://www.megaphone.xyz//',
     logo: megaphone as StaticImageData,

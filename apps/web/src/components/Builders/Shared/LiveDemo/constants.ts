@@ -206,11 +206,31 @@ function SwapDemo() {
 // to install dependencies
 
 import {
-  WalletDefault
+  ConnectWallet,
+  Wallet,
+  WalletAdvanced,
+  WalletAdvancedAddressDetails,
+  WalletAdvancedTokenHoldings,
+  WalletAdvancedTransactionActions,
+  WalletAdvancedWalletActions,
 } from '@coinbase/onchainkit/wallet';
+import { Avatar, Name } from '@coinbase/onchainkit/identity';
 
-function WalletDefaultDemo() {
-  return <WalletDefault />
+function WalletAdvancedDemo() {
+  return (
+    <Wallet>
+      <ConnectWallet>
+        <Avatar />
+        <Name />
+      </ConnectWallet>
+      <WalletAdvanced>
+        <WalletAdvancedWalletActions />
+        <WalletAdvancedAddressDetails />
+        <WalletAdvancedTransactionActions />
+        <WalletAdvancedTokenHoldings />
+      </WalletAdvanced>
+    </Wallet>
+  )
 }
 `,
   Earn: `

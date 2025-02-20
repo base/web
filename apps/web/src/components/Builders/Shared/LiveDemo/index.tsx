@@ -19,7 +19,16 @@ import { FundCard } from '@coinbase/onchainkit/fund';
 // import { NFTMedia } from '@coinbase/onchainkit/nft/view';
 import { SwapDefault } from '@coinbase/onchainkit/swap';
 import { TransactionDefault } from '@coinbase/onchainkit/transaction';
-import { WalletAdvancedDefault } from '@coinbase/onchainkit/wallet';
+import {
+  ConnectWallet,
+  Wallet,
+  WalletAdvanced,
+  WalletAdvancedAddressDetails,
+  WalletAdvancedTokenHoldings,
+  WalletAdvancedTransactionActions,
+  WalletAdvancedWalletActions,
+} from '@coinbase/onchainkit/wallet';
+import { Name } from '@coinbase/onchainkit/identity';
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
 import {
@@ -42,11 +51,16 @@ import { DynamicCryptoProviders } from 'apps/web/app/CryptoProviders.dynamic';
 import Text from 'apps/web/src/components/base-org/typography/Text';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/Text/types';
 import Link from 'apps/web/src/components/Link';
+import { UserAvatar } from 'apps/web/src/components/ConnectWalletButton/UserAvatar';
 
 type LiveDemoProps = {
   components: (typeof ONCHAINKIT_DEMO_TABS)[number][];
   title?: string;
   hideDescription?: boolean;
+};
+
+const walletAdvancedAddressDetailsClasses = {
+  avatar: '!hidden',
 };
 
 export function LiveDemo({ components, title, hideDescription = false }: LiveDemoProps) {
@@ -75,7 +89,20 @@ export function LiveDemo({ components, title, hideDescription = false }: LiveDem
 
     switch (activeTab) {
       case 'Wallet':
-        return <WalletAdvancedDefault />;
+        return (
+          <Wallet>
+            <ConnectWallet>
+              <UserAvatar />
+              <Name />
+            </ConnectWallet>
+            <WalletAdvanced>
+              <WalletAdvancedWalletActions />
+              <WalletAdvancedAddressDetails classNames={walletAdvancedAddressDetailsClasses} />
+              <WalletAdvancedTransactionActions />
+              <WalletAdvancedTokenHoldings />
+            </WalletAdvanced>
+          </Wallet>
+        );
       case 'Buy':
         return <Buy toToken={usdcToken} disabled />;
       case 'Pay':

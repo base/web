@@ -1,7 +1,6 @@
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
 import { Marquee } from 'apps/web/src/components/Builders/Shared/Marquee';
-import moshicam from 'apps/web/src/components/Builders/Shared/assets/Logos/moshicam.svg';
 import opensea from 'apps/web/src/components/Builders/Shared/assets/Logos/opensea.svg';
 import zora from 'apps/web/src/components/Builders/Shared/assets/Logos/zora.svg';
 import moonwell from 'apps/web/src/components/Builders/Shared/assets/Logos/moonwell.svg';
@@ -10,7 +9,7 @@ import aerodrome from 'apps/web/src/components/Builders/Shared/assets/Logos/aero
 import blocklords from 'apps/web/src/components/Builders/Shared/assets/Logos/blocklords.svg';
 import heyelsa from 'apps/web/src/components/Builders/Shared/assets/Logos/heyelsa.svg';
 import morpho from 'apps/web/src/components/Builders/Shared/assets/Logos/morpho.svg';
-import frenpet from 'apps/web/src/components/Builders/Shared/assets/Logos/frenpet.svg';
+// import frenpet from 'apps/web/src/components/Builders/Shared/assets/Logos/frenpet.svg';
 import uniswap from 'apps/web/src/components/Builders/Shared/assets/Logos/uniswap.svg';
 import Image, { StaticImageData } from 'next/image';
 import Link from 'apps/web/src/components/Link';
@@ -21,10 +20,6 @@ type Customer = {
 };
 
 const customers: Customer[] = [
-  {
-    href: 'https://moshi.cam/',
-    logo: moshicam as StaticImageData,
-  },
   {
     href: 'https://opensea.io/',
     logo: opensea as StaticImageData,
@@ -57,10 +52,10 @@ const customers: Customer[] = [
     href: 'https://guild.xyz/',
     logo: guild as StaticImageData,
   },
-  {
-    href: 'https://x.com/frenpetonbase',
-    logo: frenpet as StaticImageData,
-  },
+  // {
+  //   href: 'https://x.com/frenpetonbase',
+  //   logo: frenpet as StaticImageData,
+  // },
   {
     href: 'https://uniswap.org/',
     logo: uniswap as StaticImageData,
