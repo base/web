@@ -70,17 +70,6 @@ export default function ClientAnalyticsScript() {
   if (isDevelopment) return null;
 
   return (
-    <>
-      <Script src="https://static-assets.coinbase.com/js/cca/v0.0.1.js" onLoad={onLoadHandler} />
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-D1QGEV3B07" />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-D1QGEV3B07');
-        `}
-      </Script>
-    </>
+    <Script src="https://static-assets.coinbase.com/js/cca/v0.0.1.js" onLoad={onLoadHandler} />
   );
 }

@@ -1,10 +1,13 @@
 import './global.css';
 
+export const dynamic = 'force-dynamic';
+
 import AppProviders from 'apps/web/app/AppProviders';
 
 import localFont from 'next/font/local';
 import { Footer } from 'apps/web/src/components/Layout/Footer/Footer';
 import DatadogInit from 'apps/web/app/datadog';
+import { GoogleAnalytics } from 'apps/web/src/components/ClientAnalyticsScript/GoogleAnalytics';
 
 const coinbaseDisplay = localFont({
   src: [
@@ -88,6 +91,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           name="google-site-verification"
           content="lqwNRCxYlFLIcX9EiKAvE4k4ZT8JGpdWgehEIPA7y1Y"
         />
+        <GoogleAnalytics />
       </head>
       <body className="flex min-h-screen flex-col">
         <AppProviders>
