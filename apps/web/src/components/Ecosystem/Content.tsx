@@ -45,7 +45,6 @@ const config: Record<string, string[]> = {
   ],
   onramp: ['centralized exchange', 'fiat on-ramp'],
   infra: [
-    'ai',
     'bridge',
     'data',
     'depin',
