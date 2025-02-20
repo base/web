@@ -63,6 +63,7 @@ const ccaLiteDomains = 'https://cca-lite.coinbase.com';
 const sprigDomains = 'https://api.sprig.com https://cdn.sprig.com';
 const walletconnectDomains =
   'https://*.walletconnect.org wss://*.walletconnect.org wss://*.walletconnect.com https://*.walletconnect.com https://explorer-api.walletconnect.com';
+const googleAnalyticsDomain = 'https://www.googletagmanager.com/gtag/js';
 
 const contentSecurityPolicy = {
   'default-src': [
@@ -76,6 +77,7 @@ const contentSecurityPolicy = {
     walletconnectDomains,
     'https://fonts.googleapis.com', // OCK styles loads google fonts via CSS
     'https://fonts.gstatic.com/', // OCK styles loads google fonts via CSS
+    googleAnalyticsDomain,
   ],
   'worker-src': ["'self'", 'blob:'],
   'connect-src': [
@@ -120,7 +122,7 @@ const contentSecurityPolicy = {
     `https://${process.env.NEXT_PUBLIC_PINATA_GATEWAY_URL}`,
     'https://usdc-claim-git-master-coinbase-vercel.vercel.app',
     'https://eth.merkle.io', // new default viem rpc
-    'https://www.googletagmanager.com/gtag/js?id=G-D1QGEV3B07',
+     googleAnalyticsDomain,
   ],
   'frame-src': ['https://p.datadoghq.com'],
   'frame-ancestors': ["'self'", baseXYZDomains],
