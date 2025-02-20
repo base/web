@@ -1,0 +1,10 @@
+---
+title: "Smart Wallet"
+sidebar_label: "Smart Wallet"
+slug: "sw-setup"
+---
+
+:::info
+Our Smart Wallet documentation has moved! Visit the new [Smart Wallet Documentation](https://www.smartwallet.dev/) or join the [Smart Wallet Discord Channel](https://discord.gg/W6RSQQuP8X).
+:::
+
