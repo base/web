@@ -20,7 +20,7 @@ export function UseCaseBlock({
 }) {
   return (
     <div className="flex flex-col gap-6">
-      <Link href={href}>
+      <Link href={href} target="_blank">
         <div className="flex h-[320px] w-full flex-col items-center rounded-2xl bg-dark-palette-backgroundAlternate">
           {children}
         </div>

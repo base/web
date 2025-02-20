@@ -125,13 +125,13 @@ export function BuildersDropdown({ onLinkClick }: BuildersDropdownProps) {
               <FooterCard
                 label="GitHub"
                 icon={gitHubLogo as StaticImageData}
-                href="https://github.com/base-org"
+                href="https://github.com/base"
                 onLinkClick={onLinkClick}
               />
               <FooterCard
                 label="Engineering blog"
                 icon={blog as StaticImageData}
-                href="https://blog.base.org/"
+                href="https://www.base.dev/blog"
                 onLinkClick={onLinkClick}
               />
               <FooterCard

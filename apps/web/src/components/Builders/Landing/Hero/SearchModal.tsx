@@ -86,32 +86,32 @@ const searchConfig: SearchCategory[] = [
     subCategories: [
       {
         label: 'OnchainKit',
-        href: '/developers/onchainkit',
+        href: '/builders/onchainkit',
         icon: 'backArrow',
         iconRotation: 'rotate-180',
       },
       {
         label: 'AgentKit',
-        href: '/developers/agentkit',
+        href: '/builders/agentkit',
         icon: 'backArrow',
         iconRotation: 'rotate-180',
       },
       // TODO: Add back after launch
       // {
       //   label: 'Base Appchains',
-      //   href: '/developers/appchains',
+      //   href: '/builders/appchains',
       //   icon: 'backArrow',
       //   iconRotation: 'rotate-180',
       // },
       {
         label: 'Smart Wallet',
-        href: '/developers/smartwallet',
+        href: '/builders/smartwallet',
         icon: 'backArrow',
         iconRotation: 'rotate-180',
       },
       {
         label: 'MiniKit',
-        href: '/developers/minikit',
+        href: '/builders/minikit',
         icon: 'backArrow',
         iconRotation: 'rotate-180',
       },
@@ -119,7 +119,7 @@ const searchConfig: SearchCategory[] = [
       // TODO: Add back after launch
       // {
       //   label: 'Verifications',
-      //   href: '/developers/verifications',
+      //   href: '/builders/verifications',
       //   icon: 'backArrow',
       //   iconRotation: 'rotate-180',
       // },

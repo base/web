@@ -7,7 +7,7 @@ import { LiveDemo } from 'apps/web/src/components/Builders/Shared/LiveDemo';
 import { Hero } from 'apps/web/src/components/Builders/Onchainkit/Hero';
 import { CtaBanner } from 'apps/web/src/components/Builders/Onchainkit/CtaBanner';
 
-const demoComponents = ['Wallet', 'Buy', 'Fund', 'Earn', 'Mint', 'Transact'];
+const demoComponents = ['Wallet', 'Buy', 'Fund', 'Earn', 'Transact'];
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),

@@ -7,16 +7,16 @@ import { Buy } from '@coinbase/onchainkit/buy';
 import { Checkout, CheckoutButton } from '@coinbase/onchainkit/checkout';
 import { Earn } from '@coinbase/onchainkit/earn';
 import { FundCard } from '@coinbase/onchainkit/fund';
-import { NFTMintCard } from '@coinbase/onchainkit/nft';
-import {
-  NFTAssetCost,
-  NFTCollectionTitle,
-  NFTCreator,
-  NFTMintButton,
-  NFTMinters,
-  NFTQuantitySelector,
-} from '@coinbase/onchainkit/nft/mint';
-import { NFTMedia } from '@coinbase/onchainkit/nft/view';
+// import { NFTMintCard } from '@coinbase/onchainkit/nft';
+// import {
+//   NFTAssetCost,
+//   NFTCollectionTitle,
+//   NFTCreator,
+//   NFTMintButton,
+//   NFTMinters,
+//   NFTQuantitySelector,
+// } from '@coinbase/onchainkit/nft/mint';
+// import { NFTMedia } from '@coinbase/onchainkit/nft/view';
 import { SwapDefault } from '@coinbase/onchainkit/swap';
 import { TransactionDefault } from '@coinbase/onchainkit/transaction';
 import { WalletAdvancedDefault } from '@coinbase/onchainkit/wallet';
@@ -88,18 +88,18 @@ export function LiveDemo({ components, title, hideDescription = false }: LiveDem
         return <SwapDefault to={swappableTokens} from={swappableTokens} className="w-full" />;
       case 'Earn':
         return <Earn vaultAddress={earnVaultAddress} />;
-      case 'Mint':
-        return (
-          <NFTMintCard contractAddress="0xed2f34043387783b2727ff2799a46ce3ae1a34d2" tokenId="2">
-            <NFTCreator />
-            <NFTMedia />
-            <NFTCollectionTitle />
-            <NFTMinters />
-            <NFTQuantitySelector />
-            <NFTAssetCost />
-            <NFTMintButton />
-          </NFTMintCard>
-        );
+      // case 'Mint':
+      //   return (
+      //     <NFTMintCard contractAddress="0xed2f34043387783b2727ff2799a46ce3ae1a34d2" tokenId="2">
+      //       <NFTCreator />
+      //       <NFTMedia />
+      //       <NFTCollectionTitle />
+      //       <NFTMinters />
+      //       <NFTQuantitySelector />
+      //       <NFTAssetCost />
+      //       <NFTMintButton />
+      //     </NFTMintCard>
+      //   );
       case 'Fund':
         return (
           <FundCard
@@ -252,7 +252,7 @@ function DesktopDemo({
                 'rounded-lg border px-2 py-1 transition-colors',
                 mode === 'dark'
                   ? 'border-dark-palette-line/20 hover:bg-white/10'
-                  : 'border-dark-palette-line/20 hover:bg-white/10',
+                  : 'border-dark-palette-line/20 text-dark-palette-backgroundAlternate hover:bg-white/10',
               )}
             >
               Docs
@@ -309,7 +309,7 @@ function DesktopDemo({
           </div>
         )}
 
-        <div className="grid h-[600px] grid-cols-1 lg:grid-cols-2">
+        <div className="grid h-auto min-h-[600px] grid-cols-1 lg:grid-cols-2">
           <ComponentDemo mode={mode} demoComponent={demoComponent} />
           <div className="h-[300px] py-6 pl-6 pr-1 lg:h-[500px]">
             <div className={`${mode} relative h-full`}>
@@ -480,7 +480,7 @@ function MobileDemo({
                 'rounded-lg border px-2 py-1 transition-colors',
                 mode === 'dark'
                   ? 'border-dark-palette-line/20 hover:bg-white/10'
-                  : 'border-dark-palette-line/20 hover:bg-white/10',
+                  : 'border-dark-palette-line/20 text-dark-palette-backgroundAlternate hover:bg-white/10',
               )}
             >
               Docs
