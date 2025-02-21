@@ -1976,8 +1976,8 @@ __metadata:
   linkType: hard
 
 "@coinbase/onchainkit@npm:^0.37.0":
-  version: 0.37.1
-  resolution: "@coinbase/onchainkit@npm:0.37.1"
+  version: 0.37.3
+  resolution: "@coinbase/onchainkit@npm:0.37.3"
   dependencies:
     "@tanstack/react-query": ^5
     clsx: ^2.1.1
@@ -1992,7 +1992,7 @@ __metadata:
     "@types/react": ^18 || ^19
     react: ^18 || ^19
     react-dom: ^18 || ^19
-  checksum: 12978cadfc570831206dca5e63a174b5db41a96ce6e7ce05b2a41aed90297587401e6496b7f615751dd2b5f08210138fc6fb86df044a57fcd572b1195ac8481c
+  checksum: ae8bb91be2f57c1b3c6b2e6f32ad244aff377cdbe928315347a1680988128218d6549b33af01a86c063c53c58dac1b42f16f7b9ad95605b57b042543e69b4056
   languageName: node
   linkType: hard
 
@@ -12149,8 +12149,8 @@ __metadata:
   linkType: hard
 
 "create-vocs@npm:^1.0.0-alpha.4":
-  version: 1.0.0-next.20250218T233227
-  resolution: "create-vocs@npm:1.0.0-next.20250218T233227"
+  version: 1.0.0-next.20250220T215848
+  resolution: "create-vocs@npm:1.0.0-next.20250220T215848"
   dependencies:
     "@clack/prompts": ^0.7.0
     cac: ^6.7.14
@@ -12159,7 +12159,7 @@ __metadata:
     picocolors: ^1.1.1
   bin:
     create-vocs: _lib/bin.js
-  checksum: 9db76c0f2870e4b3ea87a4989074a0d0df982c7435036799c9476b2ff78d73fa8c1af529de9528bfd50add3938e0fd989e2c87ccbbdc3396753f0df9a2443f83
+  checksum: e3e1bf2710379191ac47868b5c15882acd166d7e5397c441ba774753dd6beecae77ada1401636ad08b98e8046e00a497f52fb4c06ed42822fdf8386d8158a65d
   languageName: node
   linkType: hard
 
