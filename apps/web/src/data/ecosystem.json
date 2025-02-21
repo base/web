@@ -3998,5 +3998,13 @@
     "imageUrl": "/images/partners/unlockprotocol.png",
     "category": "infra",
     "subcategory": "consumer"
+  },
+  {
+    "name": "Reflect",
+    "category": "defi",
+    "subcategory": "liquidity management",
+    "description": "We build AI solutions to supercharge dApps, Reflecting your intentions onchain.",
+    "url": "https://reflect.now/",
+    "imageUrl": "/images/partners/reflect.png"
   }
 ]
