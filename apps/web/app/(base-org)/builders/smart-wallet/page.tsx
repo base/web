@@ -16,6 +16,7 @@ import { Icon } from 'apps/web/src/components/Icon/Icon';
 import { LiveDemo } from 'apps/web/src/components/Builders/Shared/LiveDemo';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/Text/types';
 import Link from 'apps/web/src/components/Link';
+import smartWalletCover from './smart-wallet.png';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Base | Smart Wallet`,
     url: `/builders/smart-wallet`,
+    images: [smartWalletCover.src],
   },
 };
 

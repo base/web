@@ -9,6 +9,7 @@ import { Tools } from 'apps/web/src/components/Builders/Landing/Tools';
 import { WhyBase } from 'apps/web/src/components/Builders/Landing/WhyBase';
 import { LiveDemo } from 'apps/web/src/components/Builders/Landing/LiveDemo';
 import { BottomCta } from 'apps/web/src/components/Builders/Shared/BottomCta';
+import buildersCover from './builders.png';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Base | Builders`,
     url: `/builders`,
+    images: [buildersCover.src],
   },
 };
 

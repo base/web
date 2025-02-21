@@ -7,6 +7,8 @@ import { SupportedPlatforms } from 'apps/web/src/components/Builders/MiniKit/Sup
 import { CtaBanner } from 'apps/web/src/components/Builders/Shared/CtaBanner';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import { Hero } from 'apps/web/src/components/Builders/MiniKit/Hero';
+import minikitCover from './minikit.png';
+
 const GET_STARTED_URL = 'https://replit.com/@tina-he/ock-frames-template?v=1#README.md';
 
 export const metadata: Metadata = {
@@ -15,6 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Base | MiniKit`,
     url: `/builders/minikit`,
+    images: [minikitCover.src],
   },
 };
 

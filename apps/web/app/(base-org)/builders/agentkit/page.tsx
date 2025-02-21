@@ -14,6 +14,7 @@ import { Testmonials } from 'apps/web/src/components/Builders/AgentKit/Testimoni
 import { CtaBanner } from 'apps/web/src/components/Builders/Shared/CtaBanner';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import { Hero } from 'apps/web/src/components/Builders/AgentKit/Hero';
+import agentkitCover from './agentkit.png';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Base | AgentKit`,
     url: `/builders/agentkit`,
+    images: [agentkitCover.src],
   },
 };
 

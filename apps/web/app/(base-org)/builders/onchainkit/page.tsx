@@ -6,6 +6,7 @@ import { Testmonials } from 'apps/web/src/components/Builders/Onchainkit/Testimo
 import { LiveDemo } from 'apps/web/src/components/Builders/Shared/LiveDemo';
 import { Hero } from 'apps/web/src/components/Builders/Onchainkit/Hero';
 import { CtaBanner } from 'apps/web/src/components/Builders/Onchainkit/CtaBanner';
+import onchainkitCover from './onchainkit.png';
 
 const demoComponents = ['Wallet', 'Buy', 'Fund', 'Earn', 'Transact'];
 
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Base | OnchainKit`,
     url: `/builders/onchainkit`,
+    images: [onchainkitCover.src],
   },
 };
 
