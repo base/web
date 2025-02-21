@@ -3998,5 +3998,13 @@
     "imageUrl": "/images/partners/unlockprotocol.png",
     "category": "infra",
     "subcategory": "consumer"
+  },
+  {
+    "name": "Limitless",
+    "description": "Limitless is the world’s fastest prediction market, based on Base. We’re the home of same day trading, with >$150M bet. We cover crypto, stocks, commodities, indexes, sports, weather, pop culture & more.",
+    "url": "https://limitless.exchange/",
+    "imageUrl": "/images/partners/limitless.png",
+    "category": "consumer",
+    "subcategory": "social"
   }
 ]
