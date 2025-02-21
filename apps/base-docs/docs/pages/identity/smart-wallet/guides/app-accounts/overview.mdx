@@ -13,10 +13,18 @@ App Accounts can be interacted with via the Coinbase Wallet SDK.
 ## Example (creating a new app account)
 
 ```typescript
+import { createCoinbaseWalletSDK } from '@coinbase/coinbase-sdk';
+import { privateKeyToAccount } from 'viem/accounts';
+
 const sdk = new createCoinbaseWalletSDK({
   appName: 'My App',
   appLogoUrl: 'https://myapp.com/logo.png',
   appChainIds: [84532],
+  subAccount: {
+    getSigner: async () => {
+      return privateKeyToAccount('0x...');
+    },
+  },
 });
 
 const provider = sdk.getProvider();
@@ -55,6 +63,11 @@ const sdk = new createCoinbaseWalletSDK({
   appName: 'My App',
   appLogoUrl: 'https://myapp.com/logo.png',
   appChainIds: [84532],
+  subAccount: {
+    getSigner: async () => {
+      return privateKeyToAccount('0x...');
+    },
+  },
 });
 
 const provider = sdk.getProvider();
