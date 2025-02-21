@@ -288,7 +288,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/cookie-policy') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/cookie-policy';
+    url.pathname = '/cookie-policy';
     url.port = '443';
 
     return NextResponse.redirect(url);
