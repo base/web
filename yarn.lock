@@ -94,7 +94,7 @@ __metadata:
   dependencies:
     "@coinbase/cookie-banner": ^1.0.3
     "@coinbase/cookie-manager": ^1.1.1
-    "@coinbase/onchainkit": ^0.37.0
+    "@coinbase/onchainkit": ^0.37.3
     "@googleapis/sheets": ^5.0.5
     "@types/next": ^9.0.0
     "@types/node": ^22.13.4
@@ -1993,6 +1993,27 @@ __metadata:
     react: ^18 || ^19
     react-dom: ^18 || ^19
   checksum: 12978cadfc570831206dca5e63a174b5db41a96ce6e7ce05b2a41aed90297587401e6496b7f615751dd2b5f08210138fc6fb86df044a57fcd572b1195ac8481c
+  languageName: node
+  linkType: hard
+
+"@coinbase/onchainkit@npm:^0.37.3":
+  version: 0.37.3
+  resolution: "@coinbase/onchainkit@npm:0.37.3"
+  dependencies:
+    "@tanstack/react-query": ^5
+    clsx: ^2.1.1
+    graphql: ^14 || ^15 || ^16
+    graphql-request: ^6.1.0
+    qrcode: ^1.5.4
+    tailwind-merge: ^2.3.0
+    tailwindcss-animate: ^1.0.7
+    viem: ^2.23.0
+    wagmi: ^2.14.11
+  peerDependencies:
+    "@types/react": ^18 || ^19
+    react: ^18 || ^19
+    react-dom: ^18 || ^19
+  checksum: ae8bb91be2f57c1b3c6b2e6f32ad244aff377cdbe928315347a1680988128218d6549b33af01a86c063c53c58dac1b42f16f7b9ad95605b57b042543e69b4056
   languageName: node
   linkType: hard
 

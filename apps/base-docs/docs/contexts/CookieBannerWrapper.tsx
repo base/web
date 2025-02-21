@@ -1,6 +1,9 @@
-import { CookieBanner } from '@coinbase/cookie-banner';
 import { CookieManagerProvider } from '@/components/CookieManager/CookieManagerProvider.tsx';
 import ClientAnalyticsScript from '@/components/ClientAnalyticsScript/ClientAnalyticsScript.tsx';
+
+// CJS import
+import pkg from '@coinbase/cookie-banner';
+const { CookieBanner } = pkg;
 
 export const cookieBannerTheme = {
   colors: {
