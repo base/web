@@ -59,7 +59,7 @@ const components: Component[] = [
     name: 'Transaction',
     component: TransactionDemo,
     code: transactionDemoCode,
-    description: 'Trigger onchain transactions and sponsor them with Paymaster',
+    description: 'Trigger onchain transactions and sponsor them with Paymaster.',
   },
   {
     name: 'Fund',
