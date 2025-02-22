@@ -108,7 +108,7 @@ __metadata:
     glob: ^11.0.0
     lucide-react: ^0.468.0
     next: ^15.1.7
-    permissionless: ^0.2.34
+    permissionless: ^0.1.29
     postcss: ^8.4.47
     react: 18
     react-dom: 18
@@ -21166,22 +21166,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"permissionless@npm:^0.1.41":
+"permissionless@npm:^0.1.29, permissionless@npm:^0.1.41":
   version: 0.1.49
   resolution: "permissionless@npm:0.1.49"
   peerDependencies:
     viem: ">=2.14.1 <2.18.0"
   checksum: 0eb3df8987958a54d30134f9862bbfa9eff75d72a026a681b797beae56c8a75912715da86e934d8daaa1ded9ed2b8a3b35baacf3e9e8c1e906bcf5de0df260b4
-  languageName: node
-  linkType: hard
-
-"permissionless@npm:^0.2.34":
-  version: 0.2.34
-  resolution: "permissionless@npm:0.2.34"
-  peerDependencies:
-    viem: ^2.21.54
-    webauthn-p256: 0.0.10
-  checksum: 5fe40ec96f98e8c46055f31484cad5e5b028dbe07d9a89a3fa7bf71c12c89280b45fd736867c5ea92ff37e9c89590dfa7e910dc3fe087730882c4cd0c6f5a037
   languageName: node
   linkType: hard
 
