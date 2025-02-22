@@ -537,10 +537,22 @@ export const sidebar: Sidebar = [
         text: 'Paymaster ↗',
         link: 'https://docs.cdp.coinbase.com/paymaster/docs/welcome',
       },
-      // { PENDING APPCHAIN RELEASE 2/25
-      //   text: 'Appchains ↗',
-      //   link: 'https://docs.cdp.coinbase.com/paymaster/docs/welcome',
-      // },
+      {
+        text: 'Appchains',
+        collapsed: true,
+        items: [
+          {
+            text: 'Tutorials',
+            collapsed: true,
+            items: [
+              {
+                text: 'Bridge to an Appchain',
+                link: '/appchains/tutorials/appchain-manual-bridging',
+              },
+            ],
+          },
+        ],
+      },
     ],
   },
   {

@@ -1,0 +1,191 @@
+## Overview
+
+Base Appchains empowers onchain builders to deploy their L3 on Base in minutes. Key benefits include fast and seamless integration with Base's developer tools and Coinbase's retail and developer platform, along with rapid deposit/withdrawal mechanics and support for pre-deployed contracts.
+
+This guide will walk you through the process of bridging ETH to a custom Base Appchain using the Appchain-specific bridge contract. Bridging from Base to any of its L3s is quite simple in nature. You will send funds (ETH or a custom ERC-20) to a bridge contract from an **Externally Owned Account** (EOA) and those funds will be sent to the same address on the destination chain.
+
+To make funds available for a smart account, you must first bridge using an EOA then establish a smart account on the destination chain. Let's dive in on how to do this.
+
+## Prerequisites
+
+- A Base Appchain of your choice. This demo will use Blocklords as the Appchain.
+- An Externally Owned Account. This tutorial will require the use of a private key for an account with ETH to facilitate the bridging. The EOA will also be used to provision a smart account on the destination chain.
+- ETH to bridge (Sepolia or mainnet funds are fine). It's recommended to make a successful transfer using a testnet like Base Sepolia before moving on to mainnet funds.
+
+## Getting started
+
+::::steps
+
+### Start by cloning this sample repository:
+
+```bash
+git clone
+cd <repository-directory>
+npm install
+```
+
+You've now set up a project and installed all the dependencies needed. There are only a few, and you can view them in the package.json file under "dependencies".
+
+The project is set up with scripts you'll need to run in order to establish an account using your private key, bridge assets to the desired L3, create a smart account on that chain, and then send funds to that smart account.
+
+:::tip[Predeployed Contracts on Base Appchains]
+
+Every Base Appchain seamlessly integrates with Base's developer tools like Smart Wallet, OnchainKit, Paymaster, and many more. Additionally, each Appchain deployed is equipped with select predeployed contracts.
+
+Predeployed Contracts: Includes bridged USDC, multicall, deterministic proxy, entrypoint v0.6 and v0.7, and safe singleton factory.
+
+:::
+
+Magic for the configuration can be found in the `.env.example` file. Let's create a `.env` file and edit the variables to match the Appchain we want to bridge to.
+
+### Create an `.env` file
+
+Create an `.env` file to store your private key by running the following:
+
+```bash
+mv .env.example .env
+```
+
+### Update your .env with Appchain Configuration details
+
+Add the following information to your .env file:
+
+- Your private key
+- The RPC URL of the desired Appchain
+- The block explorer URL
+- Name of the chain
+- RPC URL of the originating chain (ex. Base Sepolia)
+
+For this demo, we will be using the Blocklords Appchain. To follow along paste this into your `.env` file:
+
+```bash
+PRIVATE_KEY_1=0xYOUR-WALLET-PRIVATE-KEY
+PRIVATE_KEY_2=
+RPC_URL="B3 RPC URL"
+BLOCKEXPLORER_URL="B3 Explorer"
+CHAIN_ID=B3-Chain-iD
+CHAIN_NAME="B3"
+BRIDGE_ADDRESS=""
+BASE_SEPOLIA_RPC_URL=https://api.developer.coinbase.com/rpc/v1/base-sepolia/CDP-API-KEY
+BASE_RPC_URL=https://api.developer.coinbase.com/rpc/v1/base/CDP-API-KEY
+```
+
+Sweet! Now that you have your wallet's private key and the Appchain's configuration details, you can create your scripts.
+
+::::
+
+## Define the Appchain
+
+The first script you'll write will define the custom Appchain you want to interact with by using the information in your `.env` file. You'll also export a function that creates a smart account on the defined chain.
+
+Open the `config_ToDo.js` file and edit the `chain` and `transport` properties that define the `appchainPublicClient`.
+
+:::info[Getting help]
+
+The answers to each of these files can be found in the `/answers` folder in the project home directory.
+
+:::
+
+```js filename="config_ToDo.js"
+//Create a public client for the appchain
+export const appchainPublicClient = createPublicClient({
+  chain: '', // Previously defined chain (line 17)
+  transport: '', // Previously defined RPC URL (line 11)
+});
+```
+
+With the public client set up, we can then read and write information directly onchain to our Appchain.
+
+Now let's complete the code block that creates the smart account. Edit the `createSmartAccounts()` function by adding in the public client and owner (hint: it's your EOA).
+
+```js filename="config_ToDo.js"
+export async function createSmartAccounts() {
+  try {
+    console.log(`Creating a smart account with ${account.address}`);
+    smartAccount = await toCoinbaseSmartAccount({
+      client: '', // Previously defined appchain public client (line 34)
+      owners: [], // Previously defined account (line 8).
+    });
+
+    console.log(`Smart account created successfully!`);
+    console.log(`Smart account 1: ${smartAccount.address}`);
+  } catch (error) {
+    console.log(error);
+  }
+
+  return { 'Smart Account 1': smartAccount };
+}
+```
+
+Here's what you've done so far:
+
+- Defined your custom appchain using [Viem]'s `defineChain` function
+- Established a public client for interacting with your custom Base Appchain
+- Created a function to create smart accounts on a custom Base Appchain
+
+With the chain defined and your EOA established, you can now bridge assets to the Appchain.
+
+## Bridging funds to the appchain
+
+The next script you'll write will handle sending ETH to the bridge contract.
+
+::::steps
+
+### Configure the bridge transaction
+
+Open the `BridgeAssetsToL3_ToDo.js` file and complete the following:
+
+- Set the amount of funds that you would like to bridge to the Appchain by editing line 7
+- Create a wallet client for the originating chain. For this demo, the originating chain is Base Sepolia
+- Lastly, add the address for the bridge contract as a parameter in the `sendTransaction` function within the `sendFundsToBridge()` function
+
+### Run the script
+
+When you have filled in the correct information run the file `BridgeAssetsToL3_ToDo.js` file to bridge your funds:
+
+```bash
+node BridgeAssetsToL3_ToDo.js
+```
+
+Congrats! You now have funds on your chain. If you run the script, you'll see a transaction hash.
+
+Paste it into the Base Sepolia block explorer to see the confirmed transaction.
+
+::::
+
+## Create a Smart Wallet and transfer funds to it
+
+You now have funds on an Appchain! Now, you want the added flexibility of a smart account. Let's create a smart account and fund it so that it will be your primary account for interacting on the Appchain.
+
+Open the `SendFundsToSmartWallet_ToDo.js` file and create a wallet client using the account from your config file and the RPC URL for the Appchain.
+
+Next, enter the amount of ether that you'd like to send to the smart account on line 10.
+
+Lastly, complete the `sendFundsToSmartWallet()` function by filling in the values for both `account` and `to` in the `sendTransaction` function.
+
+Once completed, run the script:
+
+```bash
+node SendFundsToSmartWallet_ToDo.js
+```
+
+You should see something similar to this:
+
+```bash
+Creating smart account 1 with 0xB6d00D83158feE6695C72ff9c5E915478A479224
+Smart accounts created successfully
+Smart account 1: 0xF71258E5cd35Fb9A7e6BFc593e45Bd4a5c2315a6
+Transaction sent: 0xe3600bbed26ad9c77b175cdd5b9c1f0844e98799e4d547e7bc86716dea3772bf
+```
+
+To see the transaction in detail, copy the tx hash and paste it into the block explorer for the appchain.
+
+![](#)
+
+## Conclusion
+
+Congratulations! You have done a ton of work, including defining a custom L3 chain, bridging assets to that chain, and establishing and funding a smart wallet. Great job.
+
+---
+
+[Viem]: https://viem.sh/
