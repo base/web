@@ -1,0 +1,86 @@
+# App Accounts
+
+App Accounts enable developers to create and manage app-specific accounts for their applications. These accounts are linked to the user's Smart Wallet and can be utilized to sign transactions specifically for the app. This integration grants developers full control over the user experience, ensuring a seamless and cohesive interaction within the app.
+
+App Accounts can be interacted with via the Coinbase Wallet SDK.
+
+## How it works
+
+1. An application can create an app account for a user by using the `wallet_addAccount` RPC method. See [EIP-XXXX](https://eips.ethereum.org/EIPS/eip-XXXX) for more details.
+2. The application can either create the account themselves or provide a signer for the Smart Wallet to create the account.
+3. Once the account is created, the application can use the account to sign transactions, messages, and EIP-712 typed data.
+
+## Example (creating a new app account)
+
+```typescript
+import { createCoinbaseWalletSDK } from '@coinbase/coinbase-sdk';
+import { privateKeyToAccount } from 'viem/accounts';
+
+const sdk = new createCoinbaseWalletSDK({
+  appName: 'My App',
+  appLogoUrl: 'https://myapp.com/logo.png',
+  appChainIds: [84532],
+  subAccount: {
+    getSigner: async () => {
+      return privateKeyToAccount('0x...');
+    },
+  },
+});
+
+const provider = sdk.getProvider();
+
+const response = await provider.request({
+  method: 'wallet_addAccount',
+  params: [
+    {
+      version: 1,
+      account: {
+        signers: [
+          {
+            type: 'key',
+            data: {
+              publicKey: '0x...',
+              type: 'secp256k1',
+            },
+          },
+          {
+            type: 'account',
+            data: {
+              address: '0x...',
+            },
+          },
+        ],
+      },
+    },
+  ],
+});
+```
+
+## Example (using an existing app account)
+
+```typescript
+const sdk = new createCoinbaseWalletSDK({
+  appName: 'My App',
+  appLogoUrl: 'https://myapp.com/logo.png',
+  appChainIds: [84532],
+  subAccount: {
+    getSigner: async () => {
+      return privateKeyToAccount('0x...');
+    },
+  },
+});
+
+const provider = sdk.getProvider();
+
+const response = await provider.request({
+  method: 'wallet_addAccount',
+  params: [
+    {
+      version: 1,
+      account: {
+        address: '0x...',
+      },
+    },
+  ],
+});
+```
