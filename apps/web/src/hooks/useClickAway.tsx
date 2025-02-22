@@ -5,7 +5,7 @@ function useClickAway<T extends HTMLElement>(handler: (event: MouseEvent) => voi
 
   useEffect(() => {
     const listener = (event: MouseEvent) => {
-      // Do nothing if clicking ref element or descendent elements
+      // Do nothing if clicking ref element or descendant elements
       if (!ref.current || ref.current.contains(event.target as Node)) {
         return;
       }
