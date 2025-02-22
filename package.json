@@ -2,13 +2,13 @@
   "name": "@base-org/base-web",
   "version": "1.0.0",
   "description": "Base web monorepo",
-  "repository": "git@github.com::base/base-web.git",
+  "repository": "git@github.com:base-org/base-web.git",
   "license": "Apache-2.0",
   "scripts": {
     "build": "yarn workspaces foreach run build",
     "lint": "yarn workspaces foreach run lint",
     "test": "yarn workspaces foreach run test",
-    "postinstall": "sh -c 'if [ command -v ./node_modules/.bin/husky ]; then ./node_modules/.bin/husky install; fi;'",
+    "postinstall": "sh -c 'if command -v ./node_modules/.bin/husky >/dev/null 2>&1; then ./node_modules/.bin/husky install; fi'",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable"
   },
