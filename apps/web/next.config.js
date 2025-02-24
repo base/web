@@ -142,6 +142,7 @@ const contentSecurityPolicy = {
     'https://img.reservoir.tools', // reservoir
     'https://d3r81g40ycuhqg.cloudfront.net/', // OCK Earn component
   ],
+  'media-src': ['https://ipfs.io'],
 };
 
 const cspObjectToString = Object.entries(contentSecurityPolicy).reduce((acc, [key, value]) => {
