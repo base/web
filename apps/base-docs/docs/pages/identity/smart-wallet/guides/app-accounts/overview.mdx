@@ -1,0 +1,290 @@
+# App Accounts
+
+App Accounts enable developers to create and manage app-specific accounts for their applications. These accounts are linked to the user's Smart Wallet and can be utilized to sign transactions specifically for the app. This integration grants developers full control over the user experience, ensuring a seamless and cohesive interaction within the app.
+
+App Accounts can be interacted with via the Coinbase Wallet SDK.
+
+## How it works
+
+1. An application can create an app account for a user by using the `wallet_addAddress` RPC method. See [EIP-XXXX](https://eips.ethereum.org/EIPS/eip-XXXX) for more details.
+2. The application can either create the account themselves or provide a signer for the Smart Wallet to create the account.
+3. Once the account is created, the application can use the account to sign transactions, messages, and EIP-712 typed data.
+
+### Provider Methods
+
+#### `wallet_addAddress`
+
+Adds an address to the Smart Wallet.
+
+##### Params
+
+```typescript
+type Params = {
+  address?: `0x${string}`;
+  version: number;
+  chainId: number;
+  capabilities?: {
+    createAccount?: {
+      signer?: `0x${string}`;
+    };
+  };
+};
+```
+
+##### Capabilities
+
+- `createAccount`
+
+```typescript
+type Params = {
+  createAccount: {
+    signer: `0x${string}`;
+  };
+};
+```
+
+#### `wallet_connect`
+
+Connects to the Smart Wallet.
+
+##### Params
+
+```typescript
+type Params = {
+  version: number;
+  chainId: number;
+  capabilities?: {
+    siwe?: {
+      nonce: string;
+      chainId: string; // EIP-155 hex-encoded
+      version?: string;
+      scheme?: string;
+      domain?: string;
+      uri?: string;
+      statement?: string;
+      issuedAt?: string;
+      expirationTime?: string;
+      notBefore?: string;
+      requestId?: string;
+      resources?: string[];
+    };
+    spendPermissions?: {
+      token: `0x${string}`;
+      allowance: string;
+      period: number;
+      salt?: `0x${string}`;
+      extraData?: `0x${string}`;
+    };
+    addAddress?: {
+      address?: `0x${string}`;
+      chainId: number;
+      createAccount?: {
+        signer: `0x${string}`;
+      };
+    };
+  };
+};
+```
+
+## Example w/Provider Methods (creating a new app account)
+
+```typescript
+const sdk = new createCoinbaseWalletSDK({
+  appName: 'My App',
+  appLogoUrl: 'https://myapp.com/logo.png',
+  appChainIds: [84532],
+  subAccount: {
+    getSigner: async () => {
+      return privateKeyToAccount('0x...');
+    },
+  },
+});
+
+const provider = sdk.getProvider();
+
+// Note: requires global account connection
+
+const response = await provider.request({
+  method: 'wallet_addAddress',
+  params: [
+    {
+      version: 1,
+      capabilities: {
+        createAccount: {
+          signer: '0x...',
+        },
+      },
+    },
+  ],
+});
+```
+
+### SDK Methods
+
+#### `createCoinbaseWalletSDK`
+
+Creates a new Coinbase Wallet SDK instance.
+
+##### Params
+
+```typescript
+type Params = {
+  appName: string;
+  appLogoUrl: string;
+  appChainIds: number[];
+  subAccount?: {
+    getSigner: () => Promise<OneOf<WebAuthnAccount | LocalAccount>>;
+  };
+};
+```
+
+##### Returns
+
+```typescript
+type SubAccountInfo = {
+  address: `0x${string}`;
+  root: `0x${string}`;
+  owners: `0x${string}`[];
+  initcode: {
+    factory: `0x${string}`;
+    factoryData: `0x${string}`;
+  }
+};
+
+type AddOwnerParams =
+  | { address: `0x${string}`; publicKey?: never }
+  | { address?: never; publicKey: `0x${string}` };
+
+type SubAccount = {
+  create: async (params: {
+    key: `0x${string}`;
+    chainId: number;
+  }) => Promise<SubAccountInfo>;
+  get: async (chainId: number) => Promise<SubAccountInfo>;
+  addOwner: async (params: AddOwnerParams) => Promise<void>;
+  setSigner: async (params: () => Promise<OneOf<WebAuthnAccount | LocalAccount>>) => Promise<void>;
+};
+
+type Returns = {
+  getProvider: () => EIP1193Provider;
+  subaccount: SubAccount;
+};
+```
+
+## Example w/SDK Methods (creating a new app account)
+
+```typescript
+const sdk = new createCoinbaseWalletSDK({
+  appName: 'My App',
+  appLogoUrl: 'https://myapp.com/logo.png',
+  appChainIds: [84532],
+  subAccount: {
+    getSigner: async () => {
+      return privateKeyToAccount('0x...');
+    },
+  },
+});
+
+const provider = sdk.getProvider();
+
+// Note: requires global account connection
+
+// Create new subaccount (Errors if subaccount already exists)
+const response = await sdk.subaccount.create({
+  key: '0x...',
+  chainId: 84532,
+});
+
+// Get existing subaccount
+const response = await sdk.subaccount.get(84532);
+
+// Add owner to subaccount
+await sdk.subaccount.addOwner({
+  address: '0x...',
+});
+
+// Set signer for subaccount, Allows updating the signer for a subaccount
+await sdk.subaccount.setSigner(async () => privateKeyToAccount('0x...'));
+```
+
+--
+
+# App Accounts (New Spec... DO NOT USE)
+
+App Accounts enable developers to create and manage app-specific accounts for their applications. These accounts are linked to the user's Smart Wallet and can be utilized to sign transactions specifically for the app. This integration grants developers full control over the user experience, ensuring a seamless and cohesive interaction within the app.
+
+App Accounts can be interacted with via the Coinbase Wallet SDK.
+
+## How it works
+
+1. An application can create an app account for a user by using the `wallet_addAccount` RPC method. See [EIP-XXXX](https://eips.ethereum.org/EIPS/eip-XXXX) for more details.
+2. The application can either create the account themselves or provide a signer for the Smart Wallet to create the account.
+3. Once the account is created, the application can use the account to sign transactions, messages, and EIP-712 typed data.
+
+## Example (creating a new app account)
+
+```typescript
+import { createCoinbaseWalletSDK } from '@coinbase/coinbase-sdk';
+import { privateKeyToAccount } from 'viem/accounts';
+
+const sdk = new createCoinbaseWalletSDK({
+  appName: 'My App',
+  appLogoUrl: 'https://myapp.com/logo.png',
+  appChainIds: [84532],
+  subAccount: {
+    getSigner: async () => {
+      return privateKeyToAccount('0x...');
+    },
+  },
+});
+
+const provider = sdk.getProvider();
+
+const response = await provider.request({
+  method: 'wallet_addAccount',
+  params: [
+    {
+      version: 1,
+      account: {
+        signers: [
+          {
+            type: 'account',
+            data: {
+              address: '0x...',
+            },
+          },
+        ],
+      },
+    },
+  ],
+});
+```
+
+## Example (using an existing and deployed app account)
+
+```typescript
+const sdk = new createCoinbaseWalletSDK({
+  appName: 'My App',
+  appLogoUrl: 'https://myapp.com/logo.png',
+  appChainIds: [84532],
+  subAccount: {
+    getSigner: async () => {
+      return privateKeyToAccount('0x...');
+    },
+  },
+});
+
+const provider = sdk.getProvider();
+
+const response = await provider.request({
+  method: 'wallet_addAccount',
+  params: [
+    {
+      version: 1,
+      account: {
+        address: '0x...',
+      },
+    },
+  ],
+});
+```
