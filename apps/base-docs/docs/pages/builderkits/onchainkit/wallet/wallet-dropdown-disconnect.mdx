@@ -6,7 +6,7 @@ import {
   EthBalance,
 } from '@coinbase/onchainkit/identity';
 import { color } from '@coinbase/onchainkit/theme';
-import { 
+import {
   ConnectWallet,
   Wallet,
   WalletDropdown,
@@ -20,7 +20,7 @@ import WalletComponents from '@/components/WalletComponents';
 
 The `WalletDropdownDisconnect` component is used to disconnect the wallet from the application.
 
-## Usage 
+## Usage
 
 ```tsx twoslash
 import {
@@ -34,7 +34,7 @@ import { color } from '@coinbase/onchainkit/theme';
 import {
   ConnectWallet,
   Wallet,
-  WalletDropdown, 
+  WalletDropdown,
   WalletDropdownDisconnect, // [!code focus]
 } from '@coinbase/onchainkit/wallet';
 
@@ -58,7 +58,7 @@ export function WalletComponents() {
       </Wallet>
     </div>
   );
-}      
+}
 ```
 
 <WalletComponents>
@@ -82,13 +82,13 @@ export function WalletComponents() {
 ### Override styles
 
 You can override component styles using `className`.
-  
+
 ```tsx
 // omitted for brevity
 
-<WalletDropdownDisconnect className="hover:bg-red-500" /> // [!code focus] 
+<WalletDropdownDisconnect className="hover:bg-red-500" /> // [!code focus]
 ```
-  
+
 <WalletComponents>
   <Wallet>
     <ConnectWallet text="Log In">
@@ -114,7 +114,7 @@ You can override component text using `text`.
 ```tsx
 // omitted for brevity
 
-<WalletDropdownDisconnect text="Log out" /> // [!code focus] 
+<WalletDropdownDisconnect text="Log out" /> // [!code focus]
 ```
 
 <WalletComponents>
@@ -135,6 +135,5 @@ You can override component text using `text`.
   </Wallet>
 </WalletComponents>
 
-## Props 
-- [`WalletDropdownDisconnectReact`](types#walletdropdowndisconnectreact)
-
+## Props
+- [`WalletDropdownDisconnectReact`](/builderkits/onchainkit/wallet/types#walletdropdowndisconnectreact)

@@ -525,7 +525,7 @@ export const sidebar: Sidebar = [
         ],
       },
       {
-        text: 'AgentKit ↗',
+        text: 'AgentKit (CDP) ↗',
         link: 'https://docs.cdp.coinbase.com/agentkit/docs/welcome',
       },
     ],
@@ -534,7 +534,7 @@ export const sidebar: Sidebar = [
     text: 'Blockspace Tools',
     items: [
       {
-        text: 'Paymaster ↗',
+        text: 'Paymaster (CDP) ↗',
         link: 'https://docs.cdp.coinbase.com/paymaster/docs/welcome',
       },
       // { PENDING APPCHAIN RELEASE 2/25
@@ -656,6 +656,38 @@ export const sidebar: Sidebar = [
                 link: '/identity/smart-wallet/guides/batch-transactions',
               },
               { text: 'ERC20 Paymasters', link: '/identity/smart-wallet/guides/erc20-paymasters' },
+              {
+                text: 'Spend Permissions',
+                collapsed: true,
+                items: [
+                  {
+                    text: 'Overview',
+                    link: '/identity/smart-wallet/guides/spend-permissions/overview',
+                  },
+                  {
+                    text: 'Quickstart',
+                    link: '/identity/smart-wallet/guides/spend-permissions/quick-start',
+                  },
+                  {
+                    text: 'API Reference',
+                    collapsed: true,
+                    items: [
+                      {
+                        text: 'Client Resources',
+                        link: '/identity/smart-wallet/guides/spend-permissions/api-reference/client-resources',
+                      },
+                      {
+                        text: 'Coinbase Fetch Permissions',
+                        link: '/identity/smart-wallet/guides/spend-permissions/api-reference/coinbase-fetchpermissions',
+                      },
+                      {
+                        text: 'Spend Permissions Manager',
+                        link: '/identity/smart-wallet/guides/spend-permissions/api-reference/spendpermissionmanager',
+                      },
+                    ],
+                  },
+                ],
+              },
             ],
           },
         ],
@@ -684,7 +716,7 @@ export const sidebar: Sidebar = [
         ],
       },
       {
-        text: 'Verifications ↗',
+        text: 'Verifications (CDP)↗',
         link: 'https://docs.cdp.coinbase.com/verifications/docs/welcome',
       },
     ],
