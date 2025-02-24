@@ -4014,5 +4014,13 @@
     "imageUrl": "/images/partners/ipor.svg",
     "category": "defi",
     "subcategory": "yield vault"
+  },
+  {
+    "name": "The Winners Circle",
+    "description": "Horseracing games, rewards and an AI tipster. Join us in The Winners Circle.",
+    "url": "https://www.thewinnerscircle.io/",
+    "imageUrl": "/images/partners/twc-hrse.png",
+    "category": "consumer",
+    "subcategory": "ai"
   }
 ]
