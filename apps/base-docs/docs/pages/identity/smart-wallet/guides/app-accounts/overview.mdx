@@ -86,6 +86,39 @@ type Params = {
 };
 ```
 
+## Example w/Provider Methods (creating a new app account)
+
+```typescript
+const sdk = new createCoinbaseWalletSDK({
+  appName: 'My App',
+  appLogoUrl: 'https://myapp.com/logo.png',
+  appChainIds: [84532],
+  subAccount: {
+    getSigner: async () => {
+      return privateKeyToAccount('0x...');
+    },
+  },
+});
+
+const provider = sdk.getProvider();
+
+// Note: requires global account connection
+
+const response = await provider.request({
+  method: 'wallet_addAddress',
+  params: [
+    {
+      version: 1,
+      capabilities: {
+        createAccount: {
+          signer: '0x...',
+        },
+      },
+    },
+  ],
+});
+```
+
 ### SDK Methods
 
 #### `createCoinbaseWalletSDK`
@@ -138,7 +171,7 @@ type Returns = {
 };
 ```
 
-## Example (creating a new app account)
+## Example w/SDK Methods (creating a new app account)
 
 ```typescript
 const sdk = new createCoinbaseWalletSDK({
@@ -154,19 +187,24 @@ const sdk = new createCoinbaseWalletSDK({
 
 const provider = sdk.getProvider();
 
-const response = await provider.request({
-  method: 'wallet_addAddress',
-  params: [
-    {
-      version: 1,
-      capabilities: {
-        createAccount: {
-          signer: '0x...',
-        },
-      },
-    },
-  ],
+// Note: requires global account connection
+
+// Create new subaccount (Errors if subaccount already exists)
+const response = await sdk.subaccount.create({
+  key: '0x...',
+  chainId: 84532,
 });
+
+// Get existing subaccount
+const response = await sdk.subaccount.get(84532);
+
+// Add owner to subaccount
+await sdk.subaccount.addOwner({
+  address: '0x...',
+});
+
+// Set signer for subaccount, Allows updating the signer for a subaccount
+await sdk.subaccount.setSigner(async () => privateKeyToAccount('0x...'));
 ```
 
 --
