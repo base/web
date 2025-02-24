@@ -127,12 +127,12 @@ And `WalletAdvanced` introduces several advanced wallet components, including
 import {
   ConnectWallet,
   Wallet,
-  WalletAdvanced, // [!code focus]
-  WalletAdvancedAddressDetails, // [!code focus]
-  WalletAdvancedTokenHoldings, // [!code focus]
-  WalletAdvancedTransactionActions, // [!code focus]
-  WalletAdvancedWalletActions, // [!code focus]
-} from '@coinbase/onchainkit/wallet'; // [!code focus]
+  WalletAdvanced,
+  WalletAdvancedAddressDetails,
+  WalletAdvancedTokenHoldings,
+  WalletAdvancedTransactionActions,
+  WalletAdvancedWalletActions,
+} from '@coinbase/onchainkit/wallet';
 import { Address, Avatar, Name, Identity } from '@coinbase/onchainkit/identity';
 import { color } from '@coinbase/onchainkit/theme';
 
@@ -144,12 +144,12 @@ export function YourWalletAdvanced() {
           <Avatar className="h-6 w-6" />
           <Name />
         </ConnectWallet>
-        <WalletAdvanced> // [!code focus]
-          <WalletAdvancedWalletActions /> // [!code focus]
-          <WalletAdvancedAddressDetails /> // [!code focus]
-          <WalletAdvancedTransactionActions /> // [!code focus]
-          <WalletAdvancedTokenHoldings /> // [!code focus]
-        </WalletAdvanced> // [!code focus]
+        <WalletAdvanced>
+          <WalletAdvancedWalletActions />
+          <WalletAdvancedAddressDetails />
+          <WalletAdvancedTransactionActions />
+          <WalletAdvancedTokenHoldings />
+        </WalletAdvanced>
       </Wallet>
     </div>
   );
