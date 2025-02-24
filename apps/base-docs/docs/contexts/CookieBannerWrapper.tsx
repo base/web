@@ -4,7 +4,7 @@ import { isDevelopment } from '@/constants.ts';
 
 // CJS import
 import pkg from '@coinbase/cookie-banner';
-const { CookieBanner } = isDevelopment ? {} : pkg; // TODO: revert before merging
+const { CookieBanner } = pkg;
 
 export const cookieBannerTheme = {
   colors: {
