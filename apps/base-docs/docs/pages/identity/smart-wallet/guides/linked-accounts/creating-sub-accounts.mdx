@@ -1,0 +1,161 @@
+---
+title: 'Creating Sub Accounts'
+description: 'Learn how to create and manage sub accounts with Coinbase Smart Wallet'
+---
+
+# Creating Sub Accounts
+
+After setting up your project with Coinbase Smart Wallet integration, the next step is implementing sub account creation. Sub accounts allow your application to create wallet accounts that are linked to the user's main Coinbase Smart Wallet.
+
+## Configuring the SDK for Sub Accounts
+
+First, we need to update our SDK configuration to enable sub account creation. The SDK provides browser key signers out of the box, which handle the creation and caching of signers for you.
+
+Update your CoinbaseWalletContext.tsx file to include sub account configuration:
+
+```tsx
+// app/context/CoinbaseWalletContext.tsx
+import {
+  createCoinbaseWalletSDK,
+  getCryptoKeyAccount,
+  ProviderInterface,
+} from '@coinbase/wallet-sdk';
+
+// Update the SDK initialization in useEffect
+useEffect(() => {
+  const coinbaseWalletSDK = createCoinbaseWalletSDK({
+    appName: 'Coinbase Wallet demo',
+    appChainIds: [baseSepolia.id],
+    preference: {
+      options: 'smartWalletOnly',
+      keysUrl: 'https://keys-dev.coinbase.com/connect',
+    },
+    subaccount: {
+      getSigner: getCryptoKeyAccount,
+    },
+  });
+
+  setProvider(coinbaseWalletSDK.getProvider());
+}, []);
+```
+
+## Adding Sub Account State Management
+
+Next, we'll add state management for sub accounts to our context:
+
+```tsx
+// app/context/CoinbaseWalletContext.tsx
+
+interface CoinbaseWalletContextType {
+  // ... existing interface properties
+  subAccount: Address | null;
+  createSubAccount: () => Promise<Address | null>;
+}
+
+// update the CoinbaseWalletContext defaults
+const CoinbaseWalletContext = createContext<CoinbaseWalletContextType>({
+// ..existing defaults
+  subAccount: null,
+  createSubAccount: async () => null,
+)};
+
+export function CoinbaseWalletProvider({ children }: { children: ReactNode }) {
+  // ... existing state
+  const [subAccount, setSubAccount] = useState<Address | null>(null);
+
+  const createSubAccount = useCallback(async () => {
+    if (!provider || !address) {
+      throw new Error('Address or provider not found');
+    };
+
+    const signer = await getCryptoKeyAccount();
+
+    const walletConnectResponse = await provider.request({
+      method: 'wallet_connect',
+      params: [{
+        version: '1',
+        capabilities: {
+          addAddress: {
+            chainId: baseSepolia.id,
+            createAccount: {
+              signer: signer.account?.publicKey,
+            },
+            address
+          },
+        },
+      }],
+    });
+
+    const subAccount = walletConnectResponse?.accounts[0].capabilities?.addAddress?.address;
+    setSubAccount(subAccount);
+    return subAccount;
+  }, [provider, address]);
+
+  return (
+    <CoinbaseWalletContext.Provider
+      value={{
+        provider,
+        connect,
+        disconnect,
+        isConnected,
+        address,
+        subAccount,
+        createSubAccount,
+      }}
+    >
+      {children}
+    </CoinbaseWalletContext.Provider>
+  );
+}
+```
+
+## Updating the UI
+
+Now let's update our main page to include sub account creation:
+
+```tsx
+// app/page.tsx
+'use client';
+import { useCoinbaseWallet } from './context/CoinbaseWalletContext';
+
+export default function Home() {
+  const { isConnected, connect, disconnect, address, subAccount, createSubAccount } =
+    useCoinbaseWallet();
+
+  if (!isConnected) {
+    return (
+      <div>
+        <button onClick={connect}>Connect Wallet</button>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      <p>Connected address: {address}</p>
+
+      {!subAccount && <button onClick={createSubAccount}>Create Sub Account</button>}
+
+      {subAccount && <p>Sub Account address: {subAccount}</p>}
+
+      <button onClick={disconnect}>Disconnect Wallet</button>
+    </div>
+  );
+}
+```
+
+## Understanding Sub Account Creation
+
+When a user clicks the "Create Sub Account" button, the following process occurs:
+
+1. The `createSubAccount` function is called
+2. A new browser key signer is generated using `getCryptoKeyAccount()`
+3. The wallet prompts the user to approve creating a new sub account
+4. After approval, the sub account is created and linked to the user's main wallet
+5. The sub account address is stored in our application state
+
+The sub account is now ready to be used for transactions and message signing. In the next section, we'll cover how to interact with the sub account to perform these operations.
+
+## Next Steps
+
+Continue to [Using Sub Accounts](/identity/smart-wallet/guides/linked-accounts/using-sub-accounts) to learn how to perform operations with your newly created sub account.
