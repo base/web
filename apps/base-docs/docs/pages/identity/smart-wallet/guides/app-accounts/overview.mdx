@@ -37,13 +37,6 @@ const response = await provider.request({
       account: {
         signers: [
           {
-            type: 'key',
-            data: {
-              publicKey: '0x...',
-              type: 'secp256k1',
-            },
-          },
-          {
             type: 'account',
             data: {
               address: '0x...',
@@ -56,7 +49,7 @@ const response = await provider.request({
 });
 ```
 
-## Example (using an existing app account)
+## Example (using an existing and deployed app account)
 
 ```typescript
 const sdk = new createCoinbaseWalletSDK({
