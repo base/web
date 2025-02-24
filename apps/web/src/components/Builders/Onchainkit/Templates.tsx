@@ -66,7 +66,7 @@ export function Templates() {
           iconName="github"
           target="_blank"
           eventName="onchainkit-feature-template"
-          buttonClassNames="flex items-center justify-between px-4 pb-2.5 pt-3 group font-medium"
+          buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
         >
           Feature your template
         </ButtonWithLinkAndEventLogging>

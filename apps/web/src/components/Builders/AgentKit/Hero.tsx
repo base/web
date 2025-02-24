@@ -47,7 +47,7 @@ export function Hero() {
       <div className="flex gap-4 bg-black pb-24  pt-5 max-sm:flex-col">
         <button
           type="button"
-          className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-lg bg-white px-4 pb-2.5 pt-3 font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90 max-sm:mr-auto"
+          className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-lg bg-white px-4 pb-3 pt-3 font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90 max-sm:mr-auto"
           onClick={handleCopy}
         >
           npx create-agentkit-app
@@ -63,7 +63,7 @@ export function Hero() {
           href={AGENTKIT_DOCS_LINK}
           target="_blank"
           variant={ButtonVariants.SecondaryOutline}
-          buttonClassNames="flex items-center justify-between px-4 pb-2.5 pt-3 group font-medium"
+          buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
           eventName="agentkit-docs"
         >
           <div className="flex items-center justify-between gap-6">

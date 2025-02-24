@@ -133,7 +133,7 @@ function StoryCard({
         <ButtonWithLinkAndEventLogging
           variant={ButtonVariants.SecondaryOutline}
           linkClassNames="w-fit"
-          buttonClassNames="flex items-center justify-between px-4 pb-2.5 pt-3 group font-medium"
+          buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
           href={href}
           eventName={`developers_stories_${title.replace(/\s+/g, '-').toLowerCase()}`}
         >
