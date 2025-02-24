@@ -100,12 +100,12 @@ and [`<Address>`](/builderkits/onchainkit/identity/address) are used in a compos
 Explore their documentation pages to discover various customization options.
 
 ```tsx twoslash
-import { // [!code focus]
-  ConnectWallet, // [!code focus]
-  Wallet, // [!code focus]
-  WalletDropdown, // [!code focus]
-  WalletDropdownDisconnect, // [!code focus]
-} from '@coinbase/onchainkit/wallet'; // [!code focus]
+import {
+  ConnectWallet,
+  Wallet,
+  WalletDropdown,
+  WalletDropdownDisconnect,
+} from '@coinbase/onchainkit/wallet';
 import {
   Address,
   Avatar,
@@ -117,20 +117,20 @@ import { color } from '@coinbase/onchainkit/theme';
 export function WalletComponents() {
   return (
     <div className="flex justify-end">
-      <Wallet> // [!code focus]
-        <ConnectWallet> // [!code focus]
+      <Wallet>
+        <ConnectWallet>
           <Avatar className="h-6 w-6" />
           <Name />
-        </ConnectWallet> // [!code focus]
-        <WalletDropdown> // [!code focus]
+        </ConnectWallet>
+        <WalletDropdown>
           <Identity className="px-4 pt-3 pb-2" hasCopyAddressOnClick>
             <Avatar />
             <Name />
             <Address className={color.foregroundMuted} />
           </Identity>
-          <WalletDropdownDisconnect /> // [!code focus]
-        </WalletDropdown> // [!code focus]
-      </Wallet> // [!code focus]
+          <WalletDropdownDisconnect />
+        </WalletDropdown>
+      </Wallet>
     </div>
   );
 }
@@ -196,16 +196,16 @@ import {
       <Avatar />
       <Name />
       <Address />
-      <EthBalance /> // [!code focus]
+      <EthBalance />
     </Identity>
-    <WalletDropdownBasename /> // [!code focus]
-    <WalletDropdownLink // [!code focus]
-      icon="wallet" // [!code focus]
-      href="https://keys.coinbase.com" // [!code focus]
-    > // [!code focus]
-      Wallet // [!code focus]
-    </WalletDropdownLink> // [!code focus]
-    <WalletDropdownFundLink /> // [!code focus]
+    <WalletDropdownBasename />
+    <WalletDropdownLink
+      icon="wallet"
+      href="https://keys.coinbase.com"
+    >
+      Wallet
+    </WalletDropdownLink>
+    <WalletDropdownFundLink />
     <WalletDropdownDisconnect />
   </WalletDropdown>
 </Wallet>
@@ -267,14 +267,14 @@ import { color } from '@coinbase/onchainkit/theme';
 // omitted for brevity
 
 <Wallet>
-  <ConnectWallet className='bg-blue-800'> // [!code focus]
-    <ConnectWalletText>Log In</ConnectWalletText> // [!code focus]
-    <Avatar className="h-6 w-6" /> // [!code focus]
-    <Name className='text-white' /> // [!code focus]
-  </ConnectWallet> // [!code focus]
+  <ConnectWallet className='bg-blue-800'>
+    <ConnectWalletText>Log In</ConnectWalletText>
+    <Avatar className="h-6 w-6" />
+    <Name className='text-white' />
+  </ConnectWallet>
   <WalletDropdown>
     <Identity
-      className="px-4 pt-3 pb-2 hover:bg-blue-200" // [!code focus]
+      className="px-4 pt-3 pb-2 hover:bg-blue-200"
       hasCopyAddressOnClick
     >
       <Avatar />
@@ -283,13 +283,13 @@ import { color } from '@coinbase/onchainkit/theme';
       <EthBalance />
     </Identity>
     <WalletDropdownLink
-      className='hover:bg-blue-200' // [!code focus]
+      className='hover:bg-blue-200'
       icon="wallet"
       href="https://keys.coinbase.com"
     >
       Wallet
     </WalletDropdownLink>
-    <WalletDropdownDisconnect className='hover:bg-blue-200' /> // [!code focus]
+    <WalletDropdownDisconnect className='hover:bg-blue-200' />
   </WalletDropdown>
 </Wallet>
 ```

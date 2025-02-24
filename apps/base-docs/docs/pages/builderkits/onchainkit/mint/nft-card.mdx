@@ -105,11 +105,11 @@ import {
   contractAddress='0xb4703a3a73aec16e764cbd210b0fde9efdab8941'
   tokenId='1'
 >
-  <NFTMedia /> // [!code ++]
-  <NFTTitle /> // [!code ++]
-  <NFTOwner /> // [!code ++]
-  <NFTLastSoldPrice /> // [!code ++]
-  <NFTNetwork /> // [!code ++]
+  <NFTMedia />
+  <NFTTitle />
+  <NFTOwner />
+  <NFTLastSoldPrice />
+  <NFTNetwork />
 </NFTCard>
 ```
 
@@ -136,9 +136,9 @@ import {
   contractAddress='0xb4703a3a73aec16e764cbd210b0fde9efdab8941'
   tokenId='1'
 >
-  <NFTTitle /> // [!code ++]
+  <NFTTitle />
   <NFTMedia />
-  <NFTTitle /> // [!code --]
+  <NFTTitle />
 </NFTCard>
 // ---cut-after---
 ```
@@ -159,7 +159,7 @@ import {
   contractAddress='0xb4703a3a73aec16e764cbd210b0fde9efdab8941'
   tokenId='1'
 >
-  <NFTMedia square={false} /> // [!code focus]
+  <NFTMedia square={false} />
 </NFTCard>
 // ---cut-after---
 ```
@@ -186,7 +186,7 @@ export default function NFTComponent() {
   tokenId='1'
 >
   <NFTMedia/>
-  <NFTTitle className='text-[#EA580C]'/> // [!code focus]
+  <NFTTitle className='text-[#EA580C]'/>
 </NFTCard>
 // ---cut-after---
 );

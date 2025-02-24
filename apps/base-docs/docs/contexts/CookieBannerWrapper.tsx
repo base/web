@@ -1,9 +1,10 @@
 import { CookieManagerProvider } from '@/components/CookieManager/CookieManagerProvider.tsx';
 import ClientAnalyticsScript from '@/components/ClientAnalyticsScript/ClientAnalyticsScript.tsx';
+import { isDevelopment } from '@/constants.ts';
 
 // CJS import
 import pkg from '@coinbase/cookie-banner';
-const { CookieBanner } = pkg;
+const { CookieBanner } = isDevelopment ? {} : pkg; // TODO: revert before merging
 
 export const cookieBannerTheme = {
   colors: {
@@ -54,7 +55,8 @@ export const cookieBannerTheme = {
 };
 
 export default function CookieBannerWrapper() {
-  if (typeof window === 'undefined') return null;
+  if (isDevelopment || typeof window === 'undefined') return null;
+
   return (
     <CookieManagerProvider>
       <ClientAnalyticsScript />
