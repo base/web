@@ -583,6 +583,7 @@ module.exports = {
           to: { transform: 'translateY(calc(-100% - var(--gap)))' },
         },
       },
+
       animation: {
         'slide-left': 'slide-left var(--animation-duration, 20s) linear infinite',
         progress: 'progress 5s linear',
