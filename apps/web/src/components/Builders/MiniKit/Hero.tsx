@@ -15,7 +15,7 @@ export function Hero() {
   const [hasCopied, setHasCopied] = useState(false);
 
   const handleCopy = useCallback(() => {
-    void navigator.clipboard.writeText('npm create-onchain --mini');
+    void navigator.clipboard.writeText('npm create onchain --mini');
     setHasCopied(true);
     setTimeout(() => setHasCopied(false), 2000); // Reset after 2 seconds
   }, []);
@@ -52,7 +52,7 @@ export function Hero() {
             className="inline-flex items-center gap-2.5 rounded-lg bg-white px-4 pb-3 pt-3 font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90 max-sm:mr-auto"
             onClick={handleCopy}
           >
-            npm create-onchain --mini
+            npm create onchain --mini
             {hasCopied ? (
               <div className="text-green-60">
                 <Icon name="checkmark" width="16" height="16" color="currentColor" />
