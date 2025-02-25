@@ -19,7 +19,7 @@ const variantStyles: Record<ButtonVariants, string> = {
   [ButtonVariants.Primary]:
     'bg-blue text-white border border-blue hover:bg-blue-80 active:bg-[#06318E]',
 
-  // White buton
+  // White button
   [ButtonVariants.Secondary]:
     'bg-white border border-white text-palette-foreground hover:bg-zinc-15 active:bg-zinc-30',
 
@@ -32,7 +32,7 @@ const sizeStyles: Record<ButtonSizes, string> = {
   // Blue button
   [ButtonSizes.Medium]: 'text-md px-4 py-2 gap-3',
 
-  // White buton
+  // White button
   [ButtonSizes.Large]: 'text-lg px-6 py-4 gap-5',
 };
 
@@ -40,7 +40,7 @@ const sizeIconRatio: Record<ButtonSizes, string> = {
   // Blue button
   [ButtonSizes.Medium]: '0.75rem',
 
-  // White buton
+  // White button
   [ButtonSizes.Large]: '1rem',
 };
 
