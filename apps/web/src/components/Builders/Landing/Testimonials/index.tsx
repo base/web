@@ -95,7 +95,7 @@ export function Testimonials() {
                 <ButtonWithLinkAndEventLogging
                   variant={ButtonVariants.SecondaryOutline}
                   linkClassNames="w-fit block"
-                  buttonClassNames="text-base font-medium text-white flex items-center justify-between px-4 pb-2.5 pt-3 group"
+                  buttonClassNames="text-base font-medium text-white flex items-center justify-between px-4 pb-3 pt-3 group"
                   href="/builders/stories"
                   eventName="testimonials"
                 >

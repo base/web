@@ -28,15 +28,15 @@ const searchConfig: SearchCategory[] = [
       {
         label: 'npm create onchain',
         description: (
-          <div className="px-4 pb-2 text-xs text-dark-palette-foregroundMuted ">
+          <div className="px-3 pb-2 text-xs text-dark-palette-foregroundMuted tracking-wide">
             Run this command in your terminal to start building with
             <Link
               href="https://docs.base.org/builderkits/onchainkit/getting-started"
               color="white"
-              className="pl-1 text-xs text-white"
+              className="text-xs text-white tracking-wide pl-1"
               target="_blank"
             >
-              OnchainKit quickstart template.
+              OnchainKit quickstart template
             </Link>
           </div>
         ),
@@ -248,7 +248,7 @@ export function SearchModal({
         aria-modal="true"
         role="dialog"
         className={classNames(
-          'bg-illoblack',
+          'bg-illoblack p-2',
           'fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
           'max-h-[460px] w-full overflow-y-auto md:w-[555px]',
           'rounded-xl border border-gray-muted/20  hover:border-gray-muted/20',
@@ -259,18 +259,18 @@ export function SearchModal({
           onFocus={handleSearchInputFocus}
           onChange={onSearchInputChange}
           className={classNames(
-            'w-full p-4',
+            'w-full p-3 pt-2',
             'bg-illoblack',
             'border-b border-gray-muted/20 hover:border-gray-muted/20 focus:outline-none',
           )}
           placeholder="Find tools, templates, or guides"
         />
         {activeSearchConfig.length > 0 && (
-          <div className="flex w-full flex-col gap-4 pt-4">
+          <div className="flex w-full flex-col pt-2\ pb-2 gap-4">
             <div className="flex w-full flex-col items-start justify-center">
               {activeSearchConfig.map((searchCategory) => (
                 <div key={searchCategory.category} className="w-full">
-                  <div className="w-full px-4 py-2 text-sm font-medium uppercase tracking-normal text-gray-muted">
+                  <div className="w-full px-3 py-2 text-xs font-medium uppercase tracking-wide text-gray-muted mt-3">
                     {searchCategory.category}
                   </div>
                   {searchCategory.subCategories.map((subCategory) => (
@@ -279,7 +279,7 @@ export function SearchModal({
                         type="button"
                         className={classNames(
                           'group',
-                          'w-full rounded-xl px-4 py-2',
+                          'w-full rounded-xl px-3 py-2',
                           {
                             'font-mono': searchCategory.category === 'Quickstart',
                           },
@@ -293,7 +293,7 @@ export function SearchModal({
                             : subCategory?.onClick
                         }
                       >
-                        <span className="tracking-normal">{subCategory.label}</span>
+                        <span className="tracking-wide">{subCategory.label}</span>
                         <div
                           className={classNames(
                             'opacity-0 transition-opacity group-hover:opacity-100',
