@@ -3998,5 +3998,13 @@
     "imageUrl": "/images/partners/unlockprotocol.png",
     "category": "infra",
     "subcategory": "consumer"
+  },
+  {
+    "name": "The Winners Circle",
+    "description": "Horseracing games, rewards and an AI tipster. Get some $HRSE and join us in The Winners Circle.",
+    "url": "https://www.thewinnerscircle.io/",
+    "imageUrl": "/images/partners/twc-hrse.png",
+    "category": "consumer",
+    "subcategory": "ai"
   }
 ]
