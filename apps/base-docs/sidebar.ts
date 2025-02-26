@@ -92,6 +92,16 @@ export const sidebar: Sidebar = [
             text: 'Components',
             items: [
               {
+                text: 'Appchain',
+                collapsed: true,
+                items: [
+                  {
+                    text: 'Bridge',
+                    link: '/builderkits/onchainkit/appchain/bridge',
+                  },
+                ],
+              },
+              {
                 text: 'Buy',
                 collapsed: true,
                 items: [
@@ -465,6 +475,10 @@ export const sidebar: Sidebar = [
               {
                 text: 'API',
                 link: '/builderkits/onchainkit/api/types',
+              },
+              {
+                text: 'Appchain',
+                link: '/builderkits/onchainkit/appchain/types',
               },
               {
                 text: 'Checkout',
