@@ -25,7 +25,7 @@ export function CtaBanner() {
         <>
           <button
             type="button"
-            className="inline-flex items-center gap-2.5 rounded-lg bg-white px-4 pb-2.5 pt-3 font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90"
+            className="inline-flex items-center gap-2.5 rounded-lg bg-white px-4 pb-3 pt-3 font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90"
             onClick={handleCopy}
           >
             npm create onchain
@@ -41,7 +41,7 @@ export function CtaBanner() {
             href={ONCHAINKIT_DOCS_LINK}
             target="_blank"
             variant={ButtonVariants.SecondaryOutline}
-            buttonClassNames="flex items-center justify-between px-4 pb-2.5 pt-3 group font-medium"
+            buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
             eventName="onchainkit-docs"
           >
             <div className="flex items-center justify-between gap-6">
