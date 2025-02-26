@@ -643,14 +643,6 @@ export const sidebar: Sidebar = [
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/overview',
                       },
                       {
-                        text: 'eth_decrypt',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_decrypt',
-                      },
-                      {
-                        text: 'eth_getEncryptionPublicKey',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getEncryptionPublicKey',
-                      },
-                      {
                         text: 'eth_sendTransaction',
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_sendTransaction',
                       },
@@ -665,26 +657,6 @@ export const sidebar: Sidebar = [
                       {
                         text: 'wallet_addEthereumChain',
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_addEthereumChain',
-                      },
-                      {
-                        text: 'wallet_registerOnboarding',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_registerOnboarding',
-                      },
-                      {
-                        text: 'wallet_requestPermissions',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_requestPermissions',
-                      },
-                      {
-                        text: 'wallet_revokePermissions',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_revokePermissions',
-                      },
-                      {
-                        text: 'wallet_scanQRCode',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_scanQRCode',
-                      },
-                      {
-                        text: 'wallet_swapAsset',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_swapAsset',
                       },
                       {
                         text: 'wallet_watchAsset',
@@ -707,20 +679,12 @@ export const sidebar: Sidebar = [
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_requestAccounts',
                       },
                       {
-                        text: 'wallet_getPermissions',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_getPermissions',
-                      },
-                      {
                         text: 'wallet_switchEthereumChain',
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_switchEthereumChain',
                       },
                       {
                         text: 'eth_blockNumber',
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_blockNumber',
-                      },
-                      {
-                        text: 'eth_call',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_call',
                       },
                       {
                         text: 'eth_estimateGas',
@@ -757,14 +721,6 @@ export const sidebar: Sidebar = [
                       {
                         text: 'eth_getCode',
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getCode',
-                      },
-                      {
-                        text: 'eth_getFilterChanges',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getFilterChanges',
-                      },
-                      {
-                        text: 'eth_getFilterLogs',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getFilterLogs',
                       },
                       {
                         text: 'eth_getLogs',
@@ -807,36 +763,8 @@ export const sidebar: Sidebar = [
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getUncleCountByBlockNumber',
                       },
                       {
-                        text: 'eth_newBlockFilter',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_newBlockFilter',
-                      },
-                      {
-                        text: 'eth_newFilter',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_newFilter',
-                      },
-                      {
-                        text: 'eth_newPendingTransactionFilter',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_newPendingTransactionFilter',
-                      },
-                      {
                         text: 'eth_sendRawTransaction',
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_sendRawTransaction',
-                      },
-                      {
-                        text: 'eth_subscribe',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_subscribe',
-                      },
-                      {
-                        text: 'eth_syncing',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_syncing',
-                      },
-                      {
-                        text: 'eth_uninstallFilter',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_uninstallFilter',
-                      },
-                      {
-                        text: 'eth_unsubscribe',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_unsubscribe',
                       },
                       {
                         text: 'web3_clientVersion',
