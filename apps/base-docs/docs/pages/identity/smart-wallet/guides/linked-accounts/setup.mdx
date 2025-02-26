@@ -7,6 +7,13 @@ description: 'Set up a NextJS project with Coinbase Smart Wallet integration'
 
 In this section, we'll set up a NextJS project and configure it to work with Coinbase Smart Wallet.
 
+## What you'll achieve
+
+By the end of this guide, you will:
+
+- Set up a NextJS project and configure it to work with Coinbase Smart Wallet
+- Create a Coinbase Wallet Context to manage the state and functions needed to interact with Coinbase Smart Wallet
+
 ## Creating a New Project
 
 We'll be using NextJS to bootstrap this project, but you can adapt these concepts to any frontend framework of your choice.
@@ -35,7 +42,7 @@ Install viem for blockchain interactions
 npm install viem
 ```
 
-**Note:** Make sure you're using version XXXX or above of the Coinbase Wallet SDK.
+**Note:** Make sure you're using version 4.4.0 or above of the Coinbase Wallet SDK.
 
 ## Project Structure
 
@@ -49,7 +56,9 @@ app/
 
 ## Setting up the Coinbase Wallet Context
 
-Create a new directory called `context` under the `app` directory and add a React Context for the Coinbase SDK. This will make it easier to interact with the wallet throughout your application.
+This section will walk you through setting up Coinbase Wallet Context to manage the state and functions needed to interact with Coinbase Smart Wallet.
+
+Create a new directory called `context` under the `app` directory and add a React Context for the Coinbase SDK.
 
 ```tsx
 // app/context/CoinbaseWalletContext.tsx
