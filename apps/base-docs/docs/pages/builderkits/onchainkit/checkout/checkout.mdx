@@ -430,7 +430,9 @@ const statusHandler = (status: LifecycleStatus) => { // [!code focus]
   } // [!code focus]
 } // [!code focus]
 
-<Checkout onStatus={statusHandler}> // [!code focus]
+<Checkout // [!code focus]
+  onStatus={statusHandler} // [!code focus]
+>
   <CheckoutButton />
 </Checkout>
 // ---cut-after---

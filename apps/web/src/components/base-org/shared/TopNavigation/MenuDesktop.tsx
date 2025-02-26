@@ -5,6 +5,7 @@ import AnimatedIcon from './AnimatedIcon';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
 import Link from 'apps/web/src/components/Link';
 import { BuildersDropdown } from 'apps/web/src/components/base-org/shared/TopNavigation/BuildersDropdown';
+import { Icon } from 'apps/web/src/components/Icon/Icon';
 
 type MenuDesktopProps = {
   links: TopNavigationLink[];
@@ -89,7 +90,7 @@ export default function MenuDesktop({ links }: MenuDesktopProps) {
           <BuildersDropdown onLinkClick={onLinkClick} />
         ) : (
           <Card radius={13} innerClassName="bg-dark-palette-backgroundAlternate">
-            <div className="flex w-full items-stretch gap-2 rounded-lg bg-dark-palette-backgroundAlternate p-2">
+            <div className="flex w-full items-stretch gap-2 rounded-xl bg-dark-palette-backgroundAlternate p-2">
               {links[hoverIndex]?.subItems && (
                 <AnalyticsProvider context={links[hoverIndex].analyticContext}>
                   <div className="flex flex-1 flex-col">
@@ -105,18 +106,19 @@ export default function MenuDesktop({ links }: MenuDesktopProps) {
                             : `${subItem.href}?utm_source=dotorg&utm_medium=nav`
                         }
                         target={subItem.href.startsWith('https://') ? '_blank' : undefined}
-                        className="group/sublink flex items-center justify-between rounded-md bg-white bg-opacity-0 px-3 py-2 text-sm transition-all duration-300 hover:bg-opacity-20"
+                        className="group/sublink flex items-center justify-between rounded-lg bg-white bg-opacity-0 px-3 py-3 text-sm transition-all duration-300 hover:bg-[#3A3D45]"
                       >
                         <div className="flex flex-col">
                           <span className="font-medium tracking-normal">{subItem.name}</span>
                           {subItem.description && (
-                            <span className="tracking-normal text-dark-palette-foregroundMuted">
-                              {subItem.description}
-                            </span>
+                            // use tracking-wide to temporary offset the odd tight letter-spacing
+                            <p className="text-dark-palette-foregroundMuted font-normal text-sm tracking-wide"> 
+                            {subItem.description}
+                            </p>
                           )}
                         </div>
-                        <span className="rotate-0 transform opacity-0 transition-all delay-75 duration-300 group-hover/sublink:rotate-45 group-hover/sublink:opacity-60">
-                          ↗
+                        <span className="rotate-0 transform opacity-0 transition-all delay-75 duration-300 group-hover/sublink:opacity-60">
+                        <Icon name="arrowRight" height={16} width={16} />
                         </span>
                       </Link>
                     ))}
