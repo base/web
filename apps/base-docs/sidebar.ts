@@ -607,6 +607,10 @@ export const sidebar: Sidebar = [
                     text: 'Custom Gas Tokens',
                     link: '/identity/smart-wallet/features/custom-gas-tokens',
                   },
+                  {
+                    text: 'Linked Accounts',
+                    link: '/identity/smart-wallet/guides/linked-accounts/overview',
+                  },
                 ],
               },
             ],
