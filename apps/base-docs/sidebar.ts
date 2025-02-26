@@ -607,6 +607,10 @@ export const sidebar: Sidebar = [
                     text: 'Custom Gas Tokens',
                     link: '/identity/smart-wallet/features/custom-gas-tokens',
                   },
+                  {
+                    text: 'Sub Accounts',
+                    link: '/identity/smart-wallet/features/app-accounts',
+                  },
                 ],
               },
             ],
@@ -791,6 +795,10 @@ export const sidebar: Sidebar = [
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/web3_clientVersion',
                       },
                     ],
+                  },
+                  {
+                    text: 'App Accounts Reference',
+                    link: '/identity/smart-wallet/sdk/app-accounts-reference',
                   },
                 ],
               },
