@@ -264,6 +264,7 @@ export async function POST(r: Request) {
 
 ```ts twoslash [config.ts] filename="config.ts"
 // @errors: 2305 2554
+// @noErrors
 const process = { env: { PAYMASTER_SERVICE_URL: '' } }
 // ---cut---
 import { createClient, http } from "viem";
