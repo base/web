@@ -5,16 +5,26 @@ description: 'Learn how to perform operations with sub accounts in Coinbase Smar
 
 # Incorporate Spend Permissions with Sub Accounts
 
-In the previous steps we learned how to create a sub account and send valueless transactions with it.
+In the [previous steps](/identity/smart-wallet/guides/linked-accounts/using-sub-accounts) we learned how to create a sub account and send valueless transactions with it.
 Many apps require the ability to spend funds from the user's wallets. To enable this, we can use Spend Permissions,
-which allows the sub account to request the abilitty to spend funds from the user's main wallet.
+which allows the sub account to request the ability to spend funds from the user's universal wallet.
+
+## What you'll achieve
+
+By the end of this guide, you will:
+
+- Update your wallet connection to request spend permissions during sub account creation
+- Extend state management for tracking spend permissions in your application
+- Send transactions with value from your sub account using spend permissions without routing to user's universal account
+
+## Implementation Steps
 
 The first thing we need to do is update our `wallet_connect` request to pass the Spend Permission capability.
 
 This allows us to request Coinbase Smart Wallet to create both a sub account and a spend permission for it during
-that step.
+connection step.
 
-```tsx
+```tsx {75,78}
 // app/context/CoinbaseWalletContext.tsx
 
 // import toHex from viem
@@ -49,18 +59,22 @@ const createSubAccount = useCallback(async () => {
     throw new Error('Address or provider not found');
   }
   const signer = await getCryptoKeyAccount();
-  const walletConnectResponse = await provider.request({
+  const walletConnectResponse = (await provider.request({
     method: 'wallet_connect',
     params: [
       {
         version: '1',
         capabilities: {
-          addAddress: {
-            chainId: baseSepolia.id,
-            createAccount: {
-              signer: signer.account?.publicKey,
+          addSubAccount: {
+            account: {
+              type: 'create',
+              keys: [
+                {
+                  type: 'webauthn-p256',
+                  signer: signer.account?.publicKey,
+                },
+              ],
             },
-            address,
           },
           spendPermissions: {
             token: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
@@ -72,13 +86,29 @@ const createSubAccount = useCallback(async () => {
         },
       },
     ],
-  });
+  })) as {
+    accounts: {
+      address: Address;
+      capabilities: {
+        addSubAccount: {
+          address: Address;
+        };
+        spendPermissions: {
+          permission: SpendPermission;
+          signature: `0x${string}`;
+        };
+      };
+    }[];
+  };
 
-  const subAccount = walletConnectResponse?.accounts[0].capabilities?.addAddress?.address;
-  const spendPermissionData = walletConnectResponse?.accounts[0].capabilities?.spendPermissions;
-  setSpendPermission(spendPermissionData.permission);
-  setSpendPermissionSignature(spendPermissionData.signature);
+  const { addSubAccount, spendPermissions } = walletConnectResponse.accounts[0].capabilities;
+
+  const subAccount = addSubAccount.address;
+  const { permission, signature } = spendPermissions;
+  setSpendPermission(permission);
+  setSpendPermissionSignature(signature);
   setSubAccount(subAccount);
+
   return subAccount;
 }, [provider, address, setSpendPermission, setSpendPermissionSignature]);
 
@@ -104,7 +134,7 @@ return (
 );
 ```
 
-Now that we're creating and storing spend permissions, lets use them within our app to actually send a transaction with value.
+Now that we're finished with creating and storing spend permissions, lets use them within our app to actually send a transaction with value.
 
 // Create a file to store the Spend Permission Manager ABI
 

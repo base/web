@@ -5,11 +5,18 @@ description: 'Learn how to perform operations with sub accounts in Coinbase Smar
 
 # Using Sub Accounts
 
-Once you've created a sub account, you can use it to perform various operations like signing messages and sending transactions. In this section, we'll cover how to interact with your sub account.
+Once you've [created a sub account](/identity/smart-wallet/guides/linked-accounts/creating-sub-accounts), you can use it to perform various operations like signing messages and sending transactions. In this section, we'll cover how to interact with your sub account.
+
+## What you'll achieve
+
+By the end of this guide, you will:
+
+- Create a wallet client specifically for the sub account
+- Sign messages or send transactions with the sub account
 
 ## Setting up the Sub Account Client
 
-First, we need to update our context to include a wallet client specifically for the sub account. Add the following to your CoinbaseWalletContext.tsx:
+First, we need to update our context to include a wallet client specifically for the sub account. Add the following to your `CoinbaseWalletContext.tsx`:
 
 ```tsx
 // app/context/CoinbaseWalletContext.tsx
@@ -232,7 +239,7 @@ export default function Home() {
 }
 ```
 
-So what did we just do? We added a function to send a sponsored transaction of the sub account sending 0 ETH to itself. It’s a simple way to test that a transaction works properly for a given account. Boot up the app and give it a shot! You should be able to
+So what did we just do? We added a function to send a sponsored transaction of the sub account sending 0 ETH to itself. It’s a simple way to test that a transaction works properly for a given account. Boot up the app and give it a shot!
 
 However, this isn’t really useful since many transactions require sending actual value. So let’s look at how to incorporate Spend Permissions to our Subaccounts to allow you to seamlessly spend funds from the user’s Coinbase Smart Wallet from their Subaccount.
 
