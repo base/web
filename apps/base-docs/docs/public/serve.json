@@ -4,5 +4,11 @@
       "source": "/api/_health",
       "destination": "/index.html"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/docs/network-information",
+      "destination": "/chain/network-information"
+    }
   ]
 }
