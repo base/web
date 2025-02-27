@@ -842,6 +842,7 @@ export const sidebar: Sidebar = [
               },
               { text: 'Paymasters', link: '/identity/smart-wallet/guides/paymasters' },
               { text: 'ERC20 Paymasters', link: '/identity/smart-wallet/guides/erc20-paymasters' },
+              { text: 'Sub Accounts', link: '/identity/smart-wallet/guides/sub-accounts/overview' },
               {
                 text: 'Spend Permissions',
                 collapsed: true,
