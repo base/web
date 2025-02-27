@@ -1,17 +1,90 @@
 # Buildathon: 2025-02-flash
 
+## Builder Side Quest
+
+With Flashblocks, a technology built by Flashbots, Base chain will have 200-millisecond block times. This will make Base 10x faster than it is today, and the fastest EVM chain to date.
+
+To celebrate this, we're running a one day Builder Side Quest with a 2 ETH prize pool!
+
 ## Prompt
 
-_Coming Soon_
+Build a mobile-friendy web app that showcases the 10x speed improvement of Flashblocks on Base Sepolia:
 
-## Start Building
+1. Should be able to view 2s full blocks
+2. Should be able to view 200ms flashblocks
+3. (Bonus) Should be able to submit a tx and see how much faster it lands in a flashblock than a full block
 
-Visit our [Flashblocks page](https://www.base.org/flashblocks) and navigate to for details on how to build with Flashblocks
+Base Sepolia full block RPC endpoint: https://sepolia.base.org
+Base Sepolia flashblock RPC endpoint: https://sepolia-preconf.base.org
+
+submit your build by replying to this tweet with the hashtag #baseflash
+
+submissions are open for 24h until tomorrow Fri 2/28 2pm MT
+
+submissions will be judged on clarity and creativity, by members of the @buildonbase chain team, Base DevRel team, and @flashbots team
+
+winners will be announced tomorrow Fri 2/28 3pm MT at the Home Base booth and on socials — come through for free pizza and flashblocks demo
+
+what will you build?
 
 ## Prizes
 
-_Coming Soon_
+A total of **2 ETH** in prizes with the 1st place receiving 1 ETH.
 
-## CTA
+## Submission Details
 
-_Coming Soon_
+- **Deadline**: Submit by 2pm MNT on Friday 2/28
+- **Submission**: Reply on [this X post](//tom's post url here) with your submissions
+- **Results**: Join us at 3pm the Home Base booth in the main hall at ETH Denver for pizza and the live announcement of the winners.
+
+## Start Building
+
+:::info
+Visit our [Flashblocks page](https://www.base.org/flashblocks) for comprehensive documentation on how to build with Flashblocks, including detailed examples and response formats.
+:::
+
+Flashblocks is enabled for developers on Base Sepolia, providing ultra-fast 200-millisecond block times. You can integrate with Flashblocks in two ways:
+
+:::steps
+
+### Flashblock WebSocket endpoint
+
+Stream real-time block updates over a WebSocket connection at:
+
+```
+wss://sepolia.flashblocks.base.org/ws
+```
+
+This endpoint returns a stream of Flashblocks with differential data between blocks to minimize bandwidth usage. The initial block contains complete data while subsequent blocks only include changes.
+
+### Flashblock RPC endpoint
+
+Query the Flashblocks-aware RPC endpoint at:
+
+```
+https://sepolia-preconf.base.org
+```
+
+This endpoint supports all standard Ethereum JSON-RPC methods plus Flashblocks-specific functionality. You can use the `pending` tag to retrieve the latest Flashblock:
+
+```bash
+curl https://sepolia-preconf.base.org \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_getBlockByNumber",
+    "params": ["pending", true],
+    "id": 1
+  }'
+```
+
+:::
+
+### Full Block RPC endpoint
+
+The existing RPC endpoint for interacting with full blocks is still available at:
+
+```
+https://sepolia.base.org
+```
