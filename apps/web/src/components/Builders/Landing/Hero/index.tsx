@@ -7,7 +7,7 @@ import { SearchModal } from 'apps/web/src/components/Builders/Landing/Hero/Searc
 import { ButtonVariants } from 'apps/web/src/components/base-org/Button/types';
 import { ButtonWithLinkAndEventLogging } from 'apps/web/src/components/Button/ButtonWithLinkAndEventLogging';
 import { TextShimmer } from 'apps/web/src/components/Builders/Shared/TextShimmer';
-import heroBg from './hero_bg.gif';
+import { GridHero } from 'apps/web/src/components/Builders/Landing/Hero/GridHero';
 
 export function Hero() {
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
@@ -42,13 +42,7 @@ export function Hero() {
             'after:absolute after:inset-x-0 after:bottom-0 after:z-10 after:h-24 after:bg-gradient-to-t after:from-black after:via-black/50 after:to-transparent',
           )}
         >
-          <div
-            className="h-full w-full bg-repeat max-md:bg-[length:200%]"
-            style={{ backgroundImage: `url(${heroBg.src})` }}
-          />
-          {/* <Image src={heroBg} alt="hero background" /> */}
-          {/* <GridHero columns={30} hasBlue className="hidden md:block" />
-          <GridHero columns={50} hasBlue className="md:hidden" /> */}
+          <GridHero hasBlue />
         </div>
         <div className="z-10 px-6">
           <Title className=" font-display text-[1.25rem] leading-[1.2em] tracking-tight md:text-[2rem] lg:text-[3rem]">
