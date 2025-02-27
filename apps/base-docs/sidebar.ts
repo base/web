@@ -646,10 +646,6 @@ export const sidebar: Sidebar = [
             text: 'SDK',
             items: [
               {
-                text: 'createCoinbaseWalletSDK',
-                link: '/identity/smart-wallet/sdk/create-coinbase-wallet-sdk',
-              },
-              {
                 text: 'Install',
                 link: '/identity/smart-wallet/sdk/install',
               },
