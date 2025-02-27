@@ -632,9 +632,29 @@ export const sidebar: Sidebar = [
                 link: '/identity/smart-wallet/sdk/create-coinbase-wallet-sdk',
               },
               {
+                text: 'Install',
+                link: '/identity/smart-wallet/sdk/install',
+              },
+              {
+                text: 'Setup',
+                link: '/identity/smart-wallet/sdk/setup',
+              },
+              {
+                text: 'makeWeb3Provider',
+                link: '/identity/smart-wallet/sdk/make-web3-provider',
+              },
+              {
+                text: 'Upgrading from 3.x',
+                link: '/identity/smart-wallet/sdk/v3-to-v4-changes',
+              },
+              {
                 text: 'CoinbaseWalletProvider',
                 collapsed: true,
                 items: [
+                  {
+                    text: 'Overview',
+                    link: '/identity/smart-wallet/sdk/coinbasewalletprovider/overview',
+                  },
                   {
                     text: 'request',
                     items: [
