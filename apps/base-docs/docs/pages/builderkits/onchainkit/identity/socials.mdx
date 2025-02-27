@@ -17,7 +17,7 @@ import { base, mainnet } from 'viem/chains';
 
 # `<Socials />`
 
-The `Socials` component displays social media links associated with Basenames and ENS names. 
+The `Socials` component displays social media links associated with Basenames and ENS names.
 It automatically fetches and renders social links stored in text records.
 
 ## Features
@@ -52,7 +52,7 @@ import { base } from 'viem/chains';
     <Badge />
   </Name>
   <Address />
-  <Socials /> // [!code focus]
+  <Socials />
 </Identity>
 ```
 <App>
@@ -89,7 +89,7 @@ export default function StandaloneSocials() {
 }
 ```
 <App>
-  <Socials 
+  <Socials
     address="0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF"
     chain={base}
   />
@@ -121,7 +121,7 @@ import { mainnet } from 'viem/chains'; // [!code focus]
     <Badge />
   </Name>
   <Address />
-  <Socials /> // [!code focus]
+  <Socials />
 </Identity>
 ```
 <App>
@@ -158,4 +158,3 @@ The component handles various edge cases:
 - Shows empty state while loading
 - Gracefully handles ENS resolution errors
 - Validates social links before display
-
