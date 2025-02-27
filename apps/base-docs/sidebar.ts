@@ -551,10 +551,10 @@ export const sidebar: Sidebar = [
         text: 'Paymaster (CDP) ↗',
         link: 'https://docs.cdp.coinbase.com/paymaster/docs/welcome',
       },
-      // { PENDING APPCHAIN RELEASE 2/25
-      //   text: 'Appchains ↗',
-      //   link: 'https://docs.cdp.coinbase.com/paymaster/docs/welcome',
-      // },
+      {
+        text: 'Appchains ↗',
+        link: 'https://docs.cdp.coinbase.com/appchains/docs/welcome',
+      },
     ],
   },
   {
