@@ -100,7 +100,7 @@ export function BuildersDropdown({ onLinkClick }: BuildersDropdownProps) {
                 title="Base Appchains"
                 description="Scale your app"
                 icon={basenet as StaticImageData}
-                href="/builders/appchains"
+                href="/builders/base-appchains"
                 onLinkClick={onLinkClick}
               />
               <ToolMiniCard

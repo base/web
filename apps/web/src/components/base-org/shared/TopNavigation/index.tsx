@@ -59,7 +59,7 @@ const links: TopNavigationLink[] = [
       {
         name: 'Base Appchains',
         description: '',
-        href: '/builders/appchains',
+        href: '/builders/base-appchains',
       },
       {
         name: 'OnchainKit',

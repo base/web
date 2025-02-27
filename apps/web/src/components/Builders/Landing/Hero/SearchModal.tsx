@@ -96,10 +96,9 @@ const searchConfig: SearchCategory[] = [
         icon: 'backArrow',
         iconRotation: 'rotate-180',
       },
-      // TODO: Add back after launch
       {
         label: 'Base Appchains',
-        href: '/builders/appchains',
+        href: '/builders/base-appchains',
         icon: 'backArrow',
         iconRotation: 'rotate-180',
       },
@@ -266,7 +265,7 @@ export function SearchModal({
           placeholder="Find tools, templates, or guides"
         />
         {activeSearchConfig.length > 0 && (
-          <div className="pt-2\ flex w-full flex-col gap-4 pb-2">
+          <div className="flex w-full flex-col gap-4 pb-2 pt-2">
             <div className="flex w-full flex-col items-start justify-center">
               {activeSearchConfig.map((searchCategory) => (
                 <div key={searchCategory.category} className="w-full">

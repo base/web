@@ -44,7 +44,7 @@ export function Tools() {
           title="Base Appchains"
           description="Launch your own chain with dedicated blockspace on Base, in minutes."
           icon={basenet as StaticImageData}
-          href="/builders/appchains"
+          href="/builders/base-appchains"
         />
         <ToolCard
           title="MiniKit"
