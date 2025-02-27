@@ -1559,6 +1559,11 @@ export const sidebar: Sidebar = [
     ],
   },
   {
+    text: 'Buildathons',
+    collapsed: true,
+    items: [{ text: '2025-02-flash', link: '/buildathons/2025-02-flash' }],
+  },
+  {
     text: 'Feedback',
     items: [
       {
