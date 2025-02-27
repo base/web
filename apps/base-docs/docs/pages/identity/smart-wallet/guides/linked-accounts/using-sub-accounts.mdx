@@ -1,6 +1,6 @@
 ---
 title: 'Using Sub Accounts'
-description: 'Learn how to perform operations with sub accounts in Coinbase Smart Wallet'
+description: 'Learn how to perform operations with Sub Accounts in Coinbase Smart Wallet'
 ---
 
 # Using Sub Accounts
@@ -52,7 +52,7 @@ export function CoinbaseWalletProvider({ children }: { children: ReactNode }) {
     [],
   );
 
-  // Initialize sub account client when sub account is created
+  // Initialize Sub Account client when Sub Account is created
   useEffect(() => {
     async function initializeSubAccountClient() {
       if (!subAccount || !provider || !publicClient) {
@@ -109,7 +109,7 @@ export function CoinbaseWalletProvider({ children }: { children: ReactNode }) {
 
 ## Signing Messages
 
-Let's implement message signing with the sub account. Update your page.tsx:
+Let's implement message signing with the Sub Account. Update your page.tsx:
 
 ```tsx
 // app/page.tsx
@@ -218,7 +218,7 @@ export default function Home() {
       {/* ... existing UI */}
       {subAccount && (
         <div>
-          {/* ... existing sub account UI */}
+          {/* ... existing Sub Account UI */}
           <button onClick={sendTransaction}>Send Transaction</button>
           {txHash && (
             <div style={{ overflowWrap: 'break-word' }}>
@@ -239,10 +239,10 @@ export default function Home() {
 }
 ```
 
-So what did we just do? We added a function to send a sponsored transaction of the sub account sending 0 ETH to itself. It’s a simple way to test that a transaction works properly for a given account. Boot up the app and give it a shot!
+So what did we just do? We added a function to send a sponsored transaction of the Sub Account sending 0 ETH to itself. It’s a simple way to test that a transaction works properly for a given account. Boot up the app and give it a shot!
 
 However, this isn’t really useful since many transactions require sending actual value. So let’s look at how to incorporate Spend Permissions to our Subaccounts to allow you to seamlessly spend funds from the user’s Coinbase Smart Wallet from their Subaccount.
 
 ## Next Steps
 
-Continue to [Implementing Spend Permissions](/identity/smart-wallet/guides/linked-accounts/incorporate-spend-permissions) to learn how to enable your sub account to spend funds from the user's main wallet.
+Continue to [Implementing Spend Permissions](/identity/smart-wallet/guides/linked-accounts/incorporate-spend-permissions) to learn how to enable your Sub Account to spend funds from the user's main wallet.

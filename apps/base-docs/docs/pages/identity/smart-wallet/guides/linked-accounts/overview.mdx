@@ -1,6 +1,6 @@
 ---
 title: 'Creating App Accounts with Coinbase Smart Wallet'
-description: 'Learn how to create and manage sub accounts using Coinbase Smart Wallet'
+description: 'Learn how to create and manage Sub Accounts using Coinbase Smart Wallet'
 ---
 
 # Creating App Accounts with Coinbase Smart Wallet
@@ -11,18 +11,18 @@ Coinbase Smart Wallet's self-custodial design requires a user passkey prompt for
 
 To support using Coinbase Smart Wallet with user experiences that require more developer control over the wallet interactions, we've built Sub Accounts in conjunction with EIP-XXXX, a new wallet spec for creating hierarchical relationships between wallet accounts.
 
-Sub accounts allow you to provision wallet accounts that are directly embedded in your application for your users. You can control when a sub account is created for your user, and can interact with them just as you would with another wallet via the wallet provider, or other popular web3 libraries like OnchainKit, wagmi, viem, etc.
+Sub Accounts allow you to provision wallet accounts that are directly embedded in your application for your users. You can control when a Sub Account is created for your user, and can interact with them just as you would with another wallet via the wallet provider, or other popular web3 libraries like OnchainKit, wagmi, viem, etc.
 
-These Sub accounts are linked to the end user's Coinbase Smart wallet through an onchain relationship. When combined with our [Spend Permission feature](/identity/smart-wallet/guides/spend-permissions/overview), this creates a powerful foundation for provisioning and funding app accounts, securely, while giving you, the developer, ample control over building the user experience that makes the most sense for your application.
+These Sub Accounts are linked to the end user's Coinbase Smart wallet through an onchain relationship. When combined with our [Spend Permission feature](/identity/smart-wallet/guides/spend-permissions/overview), this creates a powerful foundation for provisioning and funding app accounts, securely, while giving you, the developer, ample control over building the user experience that makes the most sense for your application.
 
 ## What You'll Build
 
 In this guide, we'll set up a basic React app using NextJS that:
 
 - Lets users log in with their Coinbase Smart Wallet
-- Creates a sub account scoped to the app
-- Requests a Spend Permission for the sub account to have a daily allowance
-- Uses the sub account to perform popup-less transactions
+- Creates a Sub Account scoped to the app
+- Requests a Spend Permission for the Sub Account to have a daily allowance
+- Uses the Sub Account to perform popup-less transactions
 
 ## Guide Sections
 
