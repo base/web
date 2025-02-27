@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { ButtonVariants } from 'apps/web/src/components/base-org/Button/types';
 import Container from 'apps/web/src/components/base-org/Container';
 import Title from 'apps/web/src/components/base-org/typography/Title';
@@ -11,9 +12,20 @@ import { Testimonials } from 'apps/web/src/components/Builders/Appchains/Testimo
 import { CtaBanner } from 'apps/web/src/components/Builders/Shared/CtaBanner';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import Image, { StaticImageData } from 'next/image';
+import appchainCover from './appchains.png';
 
 const CDP_APPCHAIN_URL = 'https://portal.cdp.coinbase.com/products/base-appchains';
 const DOCS_URL = 'https://docs.cdp.coinbase.com/appchains/docs/welcome';
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://base.org'),
+  title: `Base | Appchains`,
+  openGraph: {
+    title: `Base | Appchains`,
+    url: `/builders/base-appchains`,
+    images: [appchainCover.src],
+  },
+};
 
 export default async function Appchains() {
   return (
