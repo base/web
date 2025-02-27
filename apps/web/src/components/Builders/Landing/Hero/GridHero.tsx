@@ -10,12 +10,12 @@ const GREY = 'hsl(0, 0%, 10%)';
 const GRID_COLOR = 'hsl(0, 0%, 20%)';
 
 type GridHeroProps = {
-  cellSize?: number;
   hasBlue?: boolean;
 };
 
-export function GridHero({ cellSize = 70, hasBlue = false }: GridHeroProps) {
+export function GridHero({ hasBlue = false }: GridHeroProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const gridRef = useRef<HTMLCanvasElement>(null);
   const [canvasWidth, setCanvasWidth] = useState(0);
 
   useEffect(() => {
@@ -37,31 +37,38 @@ export function GridHero({ cellSize = 70, hasBlue = false }: GridHeroProps) {
       return;
     }
 
+    const cellSize = Math.floor(Math.min(Math.max(25, canvas.width / 20), 70));
+    
     const rows = Math.floor(canvas.height / cellSize);
     const cols = Math.floor(canvas.width / cellSize);
 
     function drawGridLines() {
-      if (!canvas || !ctx) return;
-      ctx.strokeStyle = GRID_COLOR;
-      ctx.lineWidth = 1;
+      const grid = gridRef.current;
+      const gridCtx = grid?.getContext('2d');
+      if (!grid || !gridCtx) return;
+      gridCtx.strokeStyle = GRID_COLOR;
+      gridCtx.lineWidth = 1;
 
-      for (let x = 0; x <= canvas.width; x += cellSize) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvas.height);
-        ctx.stroke();
+      for (let x = 0; x <= grid.width; x += cellSize) {
+        gridCtx.beginPath();
+        gridCtx.moveTo(x, 0);
+        gridCtx.lineTo(x, grid.height);
+        gridCtx.stroke();
       }
 
-      for (let y = 0; y <= canvas.height; y += cellSize) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(canvas.width, y);
-        ctx.stroke();
+      for (let y = 0; y <= grid.height; y += cellSize) {
+        gridCtx.beginPath();
+        gridCtx.moveTo(0, y);
+        gridCtx.lineTo(grid.width, y);
+        gridCtx.stroke();
       }
     }
 
     function drawCell(x: number, y: number, color: string) {
-      if (!ctx) return;
+      if (!ctx) {
+        return;
+      }
+
       ctx.fillStyle = color;
       ctx.fillRect(x * cellSize, y * cellSize, cellSize - 1, cellSize - 1);
     }
@@ -86,11 +93,19 @@ export function GridHero({ cellSize = 70, hasBlue = false }: GridHeroProps) {
   }, [canvasWidth]);
 
   return (
-    <canvas 
-      ref={canvasRef}
-      className="w-full"
-      width={canvasWidth}
-      height={700}
-    />
+    <div className="relative w-full h-full">
+      <canvas 
+        ref={canvasRef}
+        className="w-full absolute"
+        width={canvasWidth}
+        height={700}
+      />
+      <canvas 
+        ref={gridRef}
+        className="w-full absolute"
+        width={canvasWidth}
+        height={700}
+      />
+    </div>
   );
 }
