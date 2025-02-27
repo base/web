@@ -9,7 +9,7 @@ description: 'Learn how to create and manage Sub Accounts using Coinbase Smart W
 
 Coinbase Smart Wallet's self-custodial design requires a user passkey prompt for each wallet interaction that the user is presented with, such as a transaction or message signing. While this helps ensure the user is aware and required to approve of every interaction with their wallet, this also impacts user experience when using applications that may require frequent wallet interactions.
 
-To support using Coinbase Smart Wallet with user experiences that require more developer control over the wallet interactions, we've built Sub Accounts in conjunction with EIP-XXXX, a new wallet RPC for creating hierarchical relationships between wallet accounts.
+To support using Coinbase Smart Wallet with user experiences that require more developer control over the wallet interactions, we've built Sub Accounts in conjunction with [a new ERC](https://github.com/ethereum/ERCs/pull/932/files), a new wallet RPC for creating hierarchical relationships between wallet accounts.
 
 Sub Accounts allow you to provision wallet accounts that are directly embedded in your application for your users. You can control when a Sub Account is created for your user, and can interact with them just as you would with another wallet via the wallet provider, or other popular web3 libraries like OnchainKit, wagmi, viem, etc.
 
