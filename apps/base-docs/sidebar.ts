@@ -92,6 +92,16 @@ export const sidebar: Sidebar = [
             text: 'Components',
             items: [
               {
+                text: 'Appchain',
+                collapsed: true,
+                items: [
+                  {
+                    text: 'Bridge',
+                    link: '/builderkits/onchainkit/appchain/bridge',
+                  },
+                ],
+              },
+              {
                 text: 'Buy',
                 collapsed: true,
                 items: [
@@ -467,6 +477,10 @@ export const sidebar: Sidebar = [
                 link: '/builderkits/onchainkit/api/types',
               },
               {
+                text: 'Appchain',
+                link: '/builderkits/onchainkit/appchain/types',
+              },
+              {
                 text: 'Checkout',
                 link: '/builderkits/onchainkit/checkout/types',
               },
@@ -537,10 +551,10 @@ export const sidebar: Sidebar = [
         text: 'Paymaster (CDP) ↗',
         link: 'https://docs.cdp.coinbase.com/paymaster/docs/welcome',
       },
-      // { PENDING APPCHAIN RELEASE 2/25
-      //   text: 'Appchains ↗',
-      //   link: 'https://docs.cdp.coinbase.com/paymaster/docs/welcome',
-      // },
+      {
+        text: 'Appchains ↗',
+        link: 'https://docs.cdp.coinbase.com/appchains/docs/welcome',
+      },
     ],
   },
   {
