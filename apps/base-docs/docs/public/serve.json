@@ -3,6 +3,10 @@
     {
       "source": "/api/_health",
       "destination": "/index.html"
+    },
+    {
+      "source": "/docs/network-information",
+      "destination": "/chain/network-information"
     }
   ]
 }
