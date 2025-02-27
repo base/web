@@ -42,7 +42,7 @@ export type LifecycleStatus =
   | {
       // NFTCard success state represents media loaded
       // NFTMintCard success state represents successful Mint
-      statusName: 'success'; 
+      statusName: 'success';
       statusData: {
         transactionReceipts?: TransactionReceipt[];
       };
@@ -54,27 +54,27 @@ export type LifecycleStatus =
 ```ts
 type NFTCardReact = {
   children: React.ReactNode;
-  
+
   // Optional className override for top div element.
-  className?: string; 
+  className?: string;
 
   // Contract address of the NFT
-  contractAddress: Hex; 
+  contractAddress: Hex;
 
    // Required Token ID of the NFT
   tokenId: string;
 
   // Optional hook to override the default useNftData hook
-  useNFTData?: UseNFTData; 
+  useNFTData?: UseNFTData;
 
    // An optional callback function that handles errors within the provider.
   onError?: (error: NFTError) => void;
 
   // An optional callback function that exposes the component lifecycle state
-  onStatus?: (lifecycleStatus: LifecycleStatus) => void; 
+  onStatus?: (lifecycleStatus: LifecycleStatus) => void;
 
   // card will not pass transactionReceipt
-  onSuccess?: (transactionReceipt?: TransactionReceipt) => void; 
+  onSuccess?: (transactionReceipt?: TransactionReceipt) => void;
 };
 ```
 
@@ -84,31 +84,31 @@ type NFTMintCardReact = {
   children: ReactNode;
 
   // Optional className override for top div element.
-  className?: string; 
+  className?: string;
 
   // Contract address of the NFT
-  contractAddress: Hex; 
+  contractAddress: Hex;
 
   // Token ID of the NFT only required for ERC1155
-  tokenId?: string; 
+  tokenId?: string;
 
   // Optional boolean to determine if the mint is sponsored by paymaster
-  isSponsored?: boolean; 
+  isSponsored?: boolean;
 
   // Optional hook to override the default useNFTData hook
-  useNFTData?: UseNFTData; 
+  useNFTData?: UseNFTData;
 
   // Optional function to override the default function that builds the mint transaction
-  buildMintTransaction?: BuildMintTransaction; 
+  buildMintTransaction?: BuildMintTransaction;
 
   // An optional callback function that handles errors within the provider.
-  onError?: (error: NFTError) => void; 
+  onError?: (error: NFTError) => void;
 
   // An optional callback function that exposes the component lifecycle state
-  onStatus?: (lifecycleStatus: LifecycleStatus) => void; 
+  onStatus?: (lifecycleStatus: LifecycleStatus) => void;
 
   // MintCard will pass transactionReceipt
-  onSuccess?: (transactionReceipt?: TransactionReceipt) => void; 
+  onSuccess?: (transactionReceipt?: TransactionReceipt) => void;
 };
 ```
 

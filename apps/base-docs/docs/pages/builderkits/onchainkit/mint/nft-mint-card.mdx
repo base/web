@@ -3,16 +3,16 @@ title: <NFTMintCard /> · OnchainKit
 description: Mint NFTs with OnchainKit
 ---
 
-import { 
-  MintCardMain, 
-  MintCardTitleAbove, 
-  MintCardScaled, 
-  MintCardOverrideStyles 
+import {
+  MintCardMain,
+  MintCardTitleAbove,
+  MintCardScaled,
+  MintCardOverrideStyles
 } from '@/components/NFTComponents';
 
 # `<NFTMintCard />`
 
-The `NFTMintCard` component provides an easy way to mint an NFT.  Just enter the NFT contract address and token Id (for ERC1155 contracts) and include the subcomponents you want to render.
+The `NFTMintCard` component provides an easy way to mint an NFT. Just enter the NFT contract address and token Id (for ERC1155 contracts) and include the subcomponents you want to render.
 
 <img alt="Checkout"
   src="/images/onchainkit/NFTMintCard.gif"
@@ -27,7 +27,7 @@ To use the `NFTMintCard` component, you'll need to provide an API Key in `Onchai
 
 ### Starting a new project
 
-If you're starting a new project, we recommend using `create onchain` to scaffold your project. 
+If you're starting a new project, we recommend using `create onchain` to scaffold your project.
 
 ```bash
 npm create onchain@latest
@@ -61,7 +61,7 @@ Wrap the `<OnchainKitProvider />` around your app, following the steps in [Getti
 
 ## Quickstart
 
-The `NFTMintCardDefault` component is a simplified version of the `NFTMintCard` component, designed to streamline the integration process for developers.  Instead of manually defining each subcomponent, developers can use this shorthand version which renders our suggested implementation of the component and includes `NFTCreator`, `NFTMedia`, `NFTCollectionTitle`, `NFTQuantitySelector`, `NFTAssetCost` and `NFTMintButton`.
+The `NFTMintCardDefault` component is a simplified version of the `NFTMintCard` component, designed to streamline the integration process for developers. Instead of manually defining each subcomponent, developers can use this shorthand version which renders our suggested implementation of the component and includes `NFTCreator`, `NFTMedia`, `NFTCollectionTitle`, `NFTQuantitySelector`, `NFTAssetCost` and `NFTMintButton`.
 
 ```tsx twoslash
 import { NFTMintCardDefault } from '@coinbase/onchainkit/nft'; // [!code focus]
@@ -83,7 +83,7 @@ import { NFTMintCard } from '@coinbase/onchainkit/nft'; // [!code focus]
 
 <NFTMintCard  // [!code focus]
   contractAddress='0xb4703a3a73aec16e764cbd210b0fde9efdab8941'  // [!code focus]
-> 
+>
 </NFTMintCard>
 ```
 
@@ -101,16 +101,16 @@ import {
   NFTMintButton, // [!code ++]
 } from '@coinbase/onchainkit/nft/mint'; // [!code ++]
 
-<NFTMintCard 
-  contractAddress='0xed2f34043387783b2727ff2799a46ce3ae1a34d2' 
+<NFTMintCard
+  contractAddress='0xed2f34043387783b2727ff2799a46ce3ae1a34d2'
   tokenId='2'
-> 
-  <NFTCreator /> // [!code ++] 
-  <NFTMedia /> // [!code ++] 
-  <NFTCollectionTitle /> // [!code ++] 
-  <NFTQuantitySelector /> // [!code ++] 
-  <NFTAssetCost /> // [!code ++] 
-  <NFTMintButton /> // [!code ++] 
+>
+  <NFTCreator />
+  <NFTMedia />
+  <NFTCollectionTitle />
+  <NFTQuantitySelector />
+  <NFTAssetCost />
+  <NFTMintButton />
 </NFTMintCard>
 ```
 
@@ -122,7 +122,7 @@ That's it! You've now created an NFT mint card.
 
 ## Not sure what to mint?
 
-You can create your own NFT to mint at [Coinbase Wallets create a Mint flow](https://wallet.coinbase.com/home/create).  Just follow the instructions to create your NFT and then copy the contract address out of the url into an NFTMintCard.
+You can create your own NFT to mint at [Coinbase Wallets create a Mint flow](https://wallet.coinbase.com/home/create). Just follow the instructions to create your NFT and then copy the contract address out of the url into an NFTMintCard.
 
 ## Customization
 
@@ -135,12 +135,12 @@ import { NFTMintCard } from '@coinbase/onchainkit/nft';
 import { NFTMedia } from '@coinbase/onchainkit/nft/view';
 import { NFTCollectionTitle } from '@coinbase/onchainkit/nft/mint';
 // ---cut-before---
-<NFTMintCard 
-  contractAddress='0xb4703a3a73aec16e764cbd210b0fde9efdab8941' 
-> 
-  <NFTCollectionTitle /> // [!code ++]
+<NFTMintCard
+  contractAddress='0xb4703a3a73aec16e764cbd210b0fde9efdab8941'
+>
+  <NFTCollectionTitle />
   <NFTMedia />
-  <NFTCollectionTitle /> // [!code --]
+  <NFTCollectionTitle />
 </NFTMintCard>
 // ---cut-after---
 ```
@@ -149,7 +149,7 @@ import { NFTCollectionTitle } from '@coinbase/onchainkit/nft/mint';
 
 ### Customize the `<NFTMedia />` aspect ratio
 
-By default, we display all media scaled to fit the card.  If you would prefer to show the media at its original aspect ratio you can set `square={false}` on the `<NFTMedia />` component.
+By default, we display all media scaled to fit the card. If you would prefer to show the media at its original aspect ratio you can set `square={false}` on the `<NFTMedia />` component.
 
 ```tsx twoslash
 import { NFTMintCard } from '@coinbase/onchainkit/nft';
@@ -157,16 +157,16 @@ import {
   NFTMedia,
 } from '@coinbase/onchainkit/nft/view';
 // ---cut-before---
-<NFTMintCard 
-  contractAddress='0x877f0f3fef81c28a8c40fe060b17d254003377ad' 
-> 
-  <NFTMedia square={false} /> // [!code focus]
+<NFTMintCard
+  contractAddress='0x877f0f3fef81c28a8c40fe060b17d254003377ad'
+>
+  <NFTMedia square={false} />
 </NFTMintCard>
 // ---cut-after---
 ```
 
-| Scaled to fit (default) | Original Aspect Ratio |
-|-----------------|------------|
+| Scaled to fit (default)         | Original Aspect Ratio            |
+| ------------------------------- | -------------------------------- |
 | <MintCardScaled square={true}/> | <MintCardScaled square={false}/> |
 
 ### Override styles
@@ -182,11 +182,11 @@ import { NFTCollectionTitle } from '@coinbase/onchainkit/nft/mint';
 export default function NFTComponent() {
   return (
 // ---cut-before---
-<NFTMintCard 
-  contractAddress='0xb4703a3a73aec16e764cbd210b0fde9efdab8941' 
+<NFTMintCard
+  contractAddress='0xb4703a3a73aec16e764cbd210b0fde9efdab8941'
 >
   <NFTMedia/>
-  <NFTCollectionTitle className='text-[#EA580C]'/> // [!code focus]
+  <NFTCollectionTitle className='text-[#EA580C]'/>
 </NFTMintCard>
 // ---cut-after---
 );
@@ -197,13 +197,13 @@ export default function NFTComponent() {
 
 ## Compatibility
 
-The mint component uses a custom buildMintTransaction implementation which supports Coinbase mints as well as  [`these supported platforms on reservoir`](https://docs.reservoir.tools/docs/minting#platform-support).  If your contract is not supported, please follow the [`bring your own data instructions`](#bring-your-own-data) below.
+The mint component uses a custom buildMintTransaction implementation which supports Coinbase mints as well as [`these supported platforms on reservoir`](https://docs.reservoir.tools/docs/minting#platform-support). If your contract is not supported, please follow the [`bring your own data instructions`](#bring-your-own-data) below.
 
 ## Advanced Usage
 
 ### Bring your own data
 
-The default `NFTMintCard` implementation uses Coinbase Developer Platform to provide the data and requires an API key.  You can use the `useNFTData` prop to pass in a hook which fetches the NFT data from a source of your choice.  As long as this hook returns an object with the same shape as the [`NFTData`](/builderkits/onchainkit/mint/types#nftdata) type, the NFTMintCard will render.
+The default `NFTMintCard` implementation uses Coinbase Developer Platform to provide the data and requires an API key. You can use the `useNFTData` prop to pass in a hook which fetches the NFT data from a source of your choice. As long as this hook returns an object with the same shape as the [`NFTData`](/builderkits/onchainkit/mint/types#nftdata) type, the NFTMintCard will render.
 
 You can also use a custom `buildMintTransaction` function to create your own Mint transaction.
 
@@ -228,8 +228,8 @@ async function buildMintTransaction() {  // [!code focus]
 
 export default function NFTComponent() {
   return (
-    <NFTMintCard 
-      contractAddress='0xb4703a3a73aec16e764cbd210b0fde9efdab8941' 
+    <NFTMintCard
+      contractAddress='0xb4703a3a73aec16e764cbd210b0fde9efdab8941'
       useNFTData={useNFTData}  // [!code focus]
       buildMintTransaction={buildMintTransaction}  // [!code focus]
     >
@@ -246,13 +246,14 @@ export default function NFTComponent() {
 You can use our NFT [`LifecycleStatus`](/builderkits/onchainkit/mint/types#lifecyclestatus) and the `onStatus` prop to listen to transaction states.
 
 NFTMintCard has 6 lifecycle states:
-* `init` - The component is initialized
-* `error` - The component has encountered an error
-* `mediaLoading` - The media is loading
-* `mediaLoaded` - The media has been loaded
-* `transactionPending` - The mint transaction is pending
-* `transactionLegacyExecuted` - The mint transaction has been executed
-* `success` - The mint transaction has been successful
+
+- `init` - The component is initialized
+- `error` - The component has encountered an error
+- `mediaLoading` - The media is loading
+- `mediaLoaded` - The media has been loaded
+- `transactionPending` - The mint transaction is pending
+- `transactionLegacyExecuted` - The mint transaction has been executed
+- `success` - The mint transaction has been successful
 
 ```tsx twoslash
 import { NFTMintCard } from '@coinbase/onchainkit/nft';
@@ -264,7 +265,7 @@ const statusHandler = (status: LifecycleStatus) => { // [!code focus]
   const { statusName, statusData } = status; // [!code focus]
   switch (statusName) { // [!code focus]
     case 'success': // [!code focus]
-      // handle success 
+      // handle success
     case 'error': // [!code focus]
       // handle error
     default: // [!code focus]
@@ -274,7 +275,7 @@ const statusHandler = (status: LifecycleStatus) => { // [!code focus]
 
 <NFTMintCard  // [!code focus]
   onStatus={statusHandler}  // [!code focus]
-  contractAddress='0xb4703a3a73aec16e764cbd210b0fde9efdab8941' 
+  contractAddress='0xb4703a3a73aec16e764cbd210b0fde9efdab8941'
 >
   <NFTMedia />
 </NFTMintCard>
@@ -282,6 +283,7 @@ const statusHandler = (status: LifecycleStatus) => { // [!code focus]
 ```
 
 ## Example use cases
+
 - **Create a gallery of your mintable NFTs:** Create a gallery of NFTs you created for users to mint
 - **Minted in game avatar:** Allow your users to mint and then view a minted avatar
 

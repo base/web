@@ -47,7 +47,7 @@ export function Hero() {
       <div className="flex gap-4 pt-5 max-sm:max-w-[240px] max-sm:flex-col">
         <button
           type="button"
-          className="inline-flex items-center gap-2.5 rounded-lg bg-white px-4 pb-2.5 pt-3 font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90 max-sm:mr-auto"
+          className="inline-flex items-center gap-2.5 rounded-lg bg-white px-4 pb-3 pt-3 font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90 max-sm:mr-auto"
           onClick={handleCopy}
         >
           npm create onchain
@@ -61,7 +61,7 @@ export function Hero() {
         </button>
         <ButtonWithLinkAndEventLogging
           variant={ButtonVariants.SecondaryOutline}
-          buttonClassNames="flex items-center justify-between px-4 pb-2.5 pt-3 group font-medium"
+          buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
           href={ONCHAINKIT_DOCS_LINK}
           eventName="onchainkit-documentation-click"
           target="_blank"

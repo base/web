@@ -59,20 +59,20 @@ Use `loadingComponent` prop to change the loading placeholder:
 import { Avatar } from '@coinbase/onchainkit/identity';
 <Avatar
   address="0x1234567890abcdef1234567890abcdef12345678"
-  loadingComponent={( // [!code focus]
-    <div className="h-8 w-8"> // [!code focus]
-      <svg width="100%" height="100%" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> // [!code focus]
-        <polygon points="6,1 14,1 19,6 19,14 14,19 6,19 1,14 1,6" fill="yellow" stroke="yellow" stroke-width="1"/> // [!code focus]
-      </svg> // [!code focus]
-    </div> // [!code focus]
-  )} // [!code focus]
-  defaultComponent={( // [!code focus]
-    <div className="h-8 w-8"> // [!code focus]
-      <svg width="100%" height="100%" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> // [!code focus]
-        <polygon points="6,1 14,1 19,6 19,14 14,19 6,19 1,14 1,6" fill="green" stroke="green" stroke-width="1"/> // [!code focus]
-      </svg> // [!code focus]
-    </div> // [!code focus]
-  )} // [!code focus]
+  loadingComponent={(
+    <div className="h-8 w-8">
+      <svg width="100%" height="100%" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="6,1 14,1 19,6 19,14 14,19 6,19 1,14 1,6" fill="yellow" stroke="yellow" stroke-width="1"/>
+      </svg>
+    </div>
+  )}
+  defaultComponent={(
+    <div className="h-8 w-8">
+      <svg width="100%" height="100%" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="6,1 14,1 19,6 19,14 14,19 6,19 1,14 1,6" fill="green" stroke="green" stroke-width="1"/>
+      </svg>
+    </div>
+  )}
 />
 ```
 <App>
@@ -97,14 +97,14 @@ import { Avatar } from '@coinbase/onchainkit/identity';
 Show attestation on ENV avatar with [`Badge`](/builderkits/onchainkit/identity/badge) component.
 Use [`OnchainKitProvider`](/builderkits/onchainkit/config/onchainkit-provider) or [`Identity`](/builderkits/onchainkit/identity/identity) component with the `schemaId` prop.
 ```tsx twoslash
-import { Avatar, Badge, Identity } from '@coinbase/onchainkit/identity'; // [!code focus]
+import { Avatar, Badge, Identity } from '@coinbase/onchainkit/identity';
 <Identity
-  schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9" // [!code focus]
+  schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
   address="0x838aD0EAE54F99F1926dA7C3b6bFbF617389B4D9"
 >
-  <Avatar > // [!code focus]
-    <Badge /> // [!code focus]
-  </Avatar> // [!code focus]
+  <Avatar >
+    <Badge />
+  </Avatar>
 </Identity>
 ```
 <App>
@@ -120,4 +120,3 @@ import { Avatar, Badge, Identity } from '@coinbase/onchainkit/identity'; // [!co
 </App>
 ## Props
 [`AvatarReact`](/builderkits/onchainkit/identity/types#AvatarReact)
-

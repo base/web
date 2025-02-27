@@ -14,14 +14,6 @@ export default async function GetNoticed() {
       </Title>
       <div className={gridClasses}>
         <ResourceCard
-          title="Onchain Content Network"
-          description="Submit your project to be viewed by millions of potential users across the network"
-          href="https://buildonbase.deform.cc/getstarted/?utm_source=dotorg&utm_medium=builderkit"
-          topLeft={<span className="font-mono">01</span>}
-          topRight={<Icon name="diagonalUpArrow" width="16px" height="16px" />}
-          classnames="bg-pink-60 border-pink-60"
-        />
-        <ResourceCard
           title="Marketing Amplification Guidelines"
           description="Use our style guide and tag @base on X and Farcaster to be eligible for amplification"
           href="https://github.com/base-org/brand-kit/blob/main/guides/editorial-style-guide.md"

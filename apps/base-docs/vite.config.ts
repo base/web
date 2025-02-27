@@ -56,13 +56,15 @@ export default defineConfig({
     },
     headers: {
       'Cache-Control': 'no-store',
-      'Content-Security-Policy': Object.entries(contentSecurityPolicy).map(([key, value]) => `${key} ${value.join('  ')}`).join('; '),
+      'Content-Security-Policy': Object.entries(contentSecurityPolicy)
+        .map(([key, value]) => `${key} ${value.join('  ')}`)
+        .join('; '),
     },
   },
   resolve: {
     alias: [
       {
-        find: '@',
+        find: '@/',
         replacement: resolve(DIRNAME, './docs'),
       },
       {
