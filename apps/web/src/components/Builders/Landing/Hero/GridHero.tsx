@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const FLASH_PROBABILITY = 0.1;
 const BLUE_FLASH_PROBABILITY = 0.04;
@@ -7,6 +7,7 @@ const FRAME_INTERVAL = 400;
 const BLUE = '#0052ff';
 const BLACK = '#000';
 const GREY = 'hsl(0, 0%, 10%)';
+const GRID_COLOR = 'hsl(0, 0%, 20%)';
 
 type GridHeroProps = {
   cellSize?: number;
@@ -39,6 +40,26 @@ export function GridHero({ cellSize = 70, hasBlue = false }: GridHeroProps) {
     const rows = Math.floor(canvas.height / cellSize);
     const cols = Math.floor(canvas.width / cellSize);
 
+    function drawGridLines() {
+      if (!canvas || !ctx) return;
+      ctx.strokeStyle = GRID_COLOR;
+      ctx.lineWidth = 1;
+
+      for (let x = 0; x <= canvas.width; x += cellSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
+
+      for (let y = 0; y <= canvas.height; y += cellSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
+    }
+
     function drawCell(x: number, y: number, color: string) {
       if (!ctx) return;
       ctx.fillStyle = color;
@@ -59,6 +80,7 @@ export function GridHero({ cellSize = 70, hasBlue = false }: GridHeroProps) {
       animationFrameId = setTimeout(animate, FRAME_INTERVAL);
     }
 
+    drawGridLines();
     animate();
     return () => clearTimeout(animationFrameId);
   }, [canvasWidth]);
