@@ -17,5 +17,52 @@
   );
   background-repeat: no-repeat;
   background-size: 2000px 100%;
+}
+
+.group:hover .shimmer-effect {
   animation: shimmer 2s linear infinite;
+}
+
+/* Payments Animations */
+@keyframes springIn {
+  0% {
+    transform: scale(0);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  80% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes springOut {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes fastSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spring-in {
+  animation: springIn 0.5s cubic-bezier(0.37, 0, 0.63, 1);
+}
+.spring-out {
+  animation: springOut 0.4s cubic-bezier(0.37, 0, 0.63, 1);
+}
+.fast-spin {
+  animation: fastSpin 0.6s linear infinite;
 }

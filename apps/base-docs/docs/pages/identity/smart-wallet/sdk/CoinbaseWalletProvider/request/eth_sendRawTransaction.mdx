@@ -1,0 +1,34 @@
+# eth_sendRawTransaction
+
+> Submits a pre-signed transaction for broadcast to the Ethereum network.
+
+## Parameters
+
+1. `string` - The signed transaction data
+
+### Example
+
+```json
+["0xf86c098504a817c800825208943535353535353535353535353535353535353535880de0b6b3a76400008025a028ef61340bd939bc2195fe537567866003e1a15d3c71ff63e1590620aa636276a067cbe9d8997f761aecb703304b3800ccf555c9f3dc64214b297fb1966a3b6d83"]
+```
+
+## Returns
+
+`string`
+
+A 32-byte hex string containing the transaction hash.
+
+### Example
+
+```
+"0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
+```
+
+## Errors
+
+| Code   | Message              |
+| ------ | -------------------- |
+| -32000 | Invalid transaction  |
+| -32003 | Transaction rejected |
+| -32010 | Gas price too low    |
+| -32603 | Internal error       |

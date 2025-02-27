@@ -28,12 +28,12 @@ const searchConfig: SearchCategory[] = [
       {
         label: 'npm create onchain',
         description: (
-          <div className="px-3 pb-2 text-xs text-dark-palette-foregroundMuted tracking-wide">
+          <div className="px-3 pb-2 text-xs tracking-wide text-dark-palette-foregroundMuted">
             Run this command in your terminal to start building with
             <Link
               href="https://docs.base.org/builderkits/onchainkit/getting-started"
               color="white"
-              className="text-xs text-white tracking-wide pl-1"
+              className="pl-1 text-xs tracking-wide text-white"
               target="_blank"
             >
               OnchainKit quickstart template
@@ -96,13 +96,12 @@ const searchConfig: SearchCategory[] = [
         icon: 'backArrow',
         iconRotation: 'rotate-180',
       },
-      // TODO: Add back after launch
-      // {
-      //   label: 'Base Appchains',
-      //   href: '/builders/appchains',
-      //   icon: 'backArrow',
-      //   iconRotation: 'rotate-180',
-      // },
+      {
+        label: 'Base Appchains',
+        href: '/builders/base-appchains',
+        icon: 'backArrow',
+        iconRotation: 'rotate-180',
+      },
       {
         label: 'Smart Wallet',
         href: '/builders/smart-wallet',
@@ -266,11 +265,11 @@ export function SearchModal({
           placeholder="Find tools, templates, or guides"
         />
         {activeSearchConfig.length > 0 && (
-          <div className="flex w-full flex-col pt-2\ pb-2 gap-4">
+          <div className="flex w-full flex-col gap-4 pb-2 pt-2">
             <div className="flex w-full flex-col items-start justify-center">
               {activeSearchConfig.map((searchCategory) => (
                 <div key={searchCategory.category} className="w-full">
-                  <div className="w-full px-3 py-2 text-xs font-medium uppercase tracking-wide text-gray-muted mt-3">
+                  <div className="mt-3 w-full px-3 py-2 text-xs font-medium uppercase tracking-wide text-gray-muted">
                     {searchCategory.category}
                   </div>
                   {searchCategory.subCategories.map((subCategory) => (
