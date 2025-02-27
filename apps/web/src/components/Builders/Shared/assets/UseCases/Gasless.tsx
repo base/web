@@ -13,8 +13,6 @@ export function AnimatedGasless() {
     });
   }, []);
 
-  console.log({ barHeights });
-
   useEffect(() => {
     const initialHeights = Array(16)
       .fill(0)

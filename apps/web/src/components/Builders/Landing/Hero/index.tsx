@@ -7,7 +7,7 @@ import { SearchModal } from 'apps/web/src/components/Builders/Landing/Hero/Searc
 import { ButtonVariants } from 'apps/web/src/components/base-org/Button/types';
 import { ButtonWithLinkAndEventLogging } from 'apps/web/src/components/Button/ButtonWithLinkAndEventLogging';
 import { TextShimmer } from 'apps/web/src/components/Builders/Shared/TextShimmer';
-import heroBg1 from './hero_bg1.gif';
+import heroBg from './hero_bg.gif';
 
 export function Hero() {
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
@@ -44,7 +44,7 @@ export function Hero() {
         >
           <div
             className="h-full w-full bg-repeat max-md:bg-[length:200%]"
-            style={{ backgroundImage: `url(${heroBg1.src})` }}
+            style={{ backgroundImage: `url(${heroBg.src})` }}
           />
           {/* <Image src={heroBg} alt="hero background" /> */}
           {/* <GridHero columns={30} hasBlue className="hidden md:block" />
