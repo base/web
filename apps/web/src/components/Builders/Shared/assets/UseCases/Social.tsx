@@ -2,11 +2,16 @@
 
 import LottieAnimation from 'apps/web/src/components/LottieAnimation';
 import { getBasenameAnimation } from 'apps/web/src/utils/usernames';
-import { motion } from 'framer-motion';
-import { useMemo } from 'react';
+import { motion, useInView, useAnimation } from 'framer-motion';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 export function AnimatedSocial() {
-  const animation = getBasenameAnimation('basename');
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.85 });
+  const basenameAnimation = getBasenameAnimation('basename');
+  const heartAnimationControls = useAnimation();
+  const [heartHovered, setHeartHovered] = useState(false);
+
   const heartAnimations = useMemo(
     () => ({
       animate: {
@@ -29,16 +34,34 @@ export function AnimatedSocial() {
       transition: {
         type: 'spring',
         stiffness: 100,
-        delay: 0.1,
+        delay: 0.4,
       },
     }),
     [],
   );
+
+  const toggleHeartHover = useCallback(() => {
+    setHeartHovered((prev) => !prev);
+  }, []);
+
+  useEffect(() => {
+    if (heartHovered) {
+      void heartAnimationControls.start(heartAnimations.animate);
+    } else {
+      heartAnimationControls.stop();
+    }
+  }, [heartHovered, heartAnimationControls, heartAnimations]);
+
   return (
-    <div className="m-6 w-[285px] md:w-[292px]">
+    <div
+      ref={ref}
+      onMouseEnter={toggleHeartHover}
+      onMouseLeave={toggleHeartHover}
+      className="m-6 w-[285px] md:w-[292px]"
+    >
       <div className="mb-3 flex items-center gap-3">
         <LottieAnimation
-          data={animation}
+          data={basenameAnimation}
           wrapperClassName="rounded-full h-[2rem] max-h-[2rem] min-h-[2rem] w-[2rem] min-w-[2rem] max-w-[2rem]"
         />
         <div className="h-4 w-32 rounded-xl bg-dark-state-s-hovered" />
@@ -50,7 +73,7 @@ export function AnimatedSocial() {
             width="24"
             height="24"
             viewBox="0 0 24 24"
-            animate={heartAnimations.animate}
+            animate={heartAnimationControls}
             transition={heartAnimations.transition}
             className="fill-red-50 text-red-50"
           >
@@ -64,7 +87,7 @@ export function AnimatedSocial() {
         </motion.div>
         <motion.button
           initial={buttonAnimations.initial}
-          animate={buttonAnimations.animate}
+          animate={isInView && buttonAnimations.animate}
           transition={buttonAnimations.transition}
           className="h-12 w-full rounded-xl bg-white font-medium text-black transition-colors hover:bg-dark-gray-90"
         >
