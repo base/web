@@ -818,6 +818,7 @@ export const sidebar: Sidebar = [
                 text: 'Batch Transactions',
                 link: '/identity/smart-wallet/guides/batch-transactions',
               },
+              { text: 'Paymasters', link: '/identity/smart-wallet/guides/paymasters' },
               { text: 'ERC20 Paymasters', link: '/identity/smart-wallet/guides/erc20-paymasters' },
               {
                 text: 'Spend Permissions',

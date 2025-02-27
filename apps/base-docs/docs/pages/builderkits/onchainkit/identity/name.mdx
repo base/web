@@ -60,16 +60,16 @@ Show attestation on ENV name with [`Badge`](/builderkits/onchainkit/identity/bad
 Use [`OnchainKitProvider`](/builderkits/onchainkit/config/onchainkit-provider) or [`Identity`](/builderkits/onchainkit/identity/identity) component with the `schemaId` prop.
 
 ```tsx twoslash
-import { Badge, Name, Identity } from '@coinbase/onchainkit/identity'; // [!code focus]
+import { Badge, Name, Identity } from '@coinbase/onchainkit/identity';
 
 const address = '0x838aD0EAE54F99F1926dA7C3b6bFbF617389B4D9';
 <Identity
   address={address}
-  schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"  // [!code focus]
+  schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
 >
-  <Name> // [!code focus]
-    <Badge /> // [!code focus]
-  </Name> // [!code focus]
+  <Name>
+    <Badge />
+  </Name>
 </Identity>
 ```
 
