@@ -18,6 +18,7 @@ const generateNonce = () => {
   return crypto.randomBytes(16).toString('base64');
 };
 
+// NOTE: this CSP only applies in local development. Prod CSP is set in `serve.json`
 const contentSecurityPolicy = {
   'default-src': ["'self'"],
   'frame-ancestors': ["'self'"],
