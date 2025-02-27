@@ -73,3 +73,5 @@ persisted_queries.json
 
 # eslint
 .eslintcache
+
+.vercel

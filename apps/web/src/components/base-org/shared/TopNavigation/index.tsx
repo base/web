@@ -2,7 +2,6 @@
 
 import { Suspense } from 'react';
 import Image, { StaticImageData } from 'next/image';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
 import logo from 'apps/web/src/components/base-org/shared/TopNavigation/assets/logo.svg';
@@ -13,9 +12,11 @@ import {
   ConnectWalletButtonVariants,
   DynamicWrappedConnectWalletButton,
 } from 'apps/web/src/components/ConnectWalletButton/ConnectWalletButton';
+import Link from 'apps/web/src/components/Link';
 
 export type SubItem = {
   name: string;
+  description?: string;
   href: string;
 };
 
@@ -28,43 +29,113 @@ export type TopNavigationLink = {
 
 const links: TopNavigationLink[] = [
   {
-    name: 'Build',
-    analyticContext: 'build',
-    href: '/build',
-    subItems: [
-      {
-        name: 'Get Started',
-        href: '/build',
-      },
-      { name: 'Docs', href: 'https://docs.base.org' },
-      { name: 'Learn', href: 'https://docs.base.org/base-learn/docs/welcome' },
-      { name: 'Status Page', href: 'https://status.base.org' },
-      { name: 'Block Explorer', href: 'https://base.blockscout.com' },
-      { name: 'Bug Bounty', href: 'https://hackerone.com/coinbase' },
-      { name: 'Github', href: 'https://github.com/base' },
-    ],
-  },
-  {
     name: 'Explore',
     analyticContext: 'explore',
     href: '/ecosystem',
     subItems: [
-      { name: 'Apps', href: '/ecosystem' },
-      { name: 'Bridge', href: 'https://bridge.base.org' },
+      { name: 'Apps', description: 'Discover apps on Base', href: '/ecosystem' },
+      {
+        name: 'Bridge',
+        description: 'Get started by bridging to Base',
+        href: 'https://bridge.base.org',
+      },
+    ],
+  },
+  {
+    name: 'Builders',
+    analyticContext: 'builders',
+    href: '/builders',
+    subItems: [
+      {
+        name: 'Builders',
+        description: '',
+        href: '/builders',
+      },
+      {
+        name: 'Documentation',
+        description: '',
+        href: 'https://docs.base.org',
+      },
+      // TODO: Add back after launch
+      // {
+      //   name: 'Base Appchains',
+      //   description: '',
+      //   href: '/appchains',
+      // },
+      {
+        name: 'OnchainKit',
+        description: '',
+        href: '/builders/onchainkit',
+      },
+      {
+        name: 'AgentKit',
+        description: '',
+        href: '/builders/agentkit',
+      },
+      {
+        name: 'Smart Wallet',
+        description: '',
+        href: '/builders/smart-wallet',
+      },
+      {
+        name: 'MiniKit',
+        description: '',
+        href: '/builders/minikit',
+      },
+      // TODO: Add back after launch
+      // {
+      //   name: 'Verifications',
+      //   description: '',
+      //   href: '/verify',
+      // },
+      {
+        name: 'Status',
+        description: '',
+        href: 'https://status.base.org',
+      },
+      {
+        name: 'Bug bounty',
+        description: '',
+        href: 'https://hackerone.com/base',
+      },
+      {
+        name: 'BaseScan',
+        description: '',
+        href: 'https://basescan.org',
+      },
+      {
+        name: 'GitHub',
+        description: '',
+        href: 'https://github.com/base-org',
+      },
+      {
+        name: 'Blog',
+        description: '',
+        href: 'https://blog.base.org/',
+      },
+      {
+        name: 'Builder stories',
+        description: '',
+        href: '/builders/stories',
+      },
     ],
   },
   {
     name: 'Community',
-    analyticContext: 'community',
-    href: '/',
+    analyticContext: 'communnity',
+    href: '/resources',
     subItems: [
-      {
-        name: 'Grants',
-        href: 'https://paragraph.xyz/@grants.base.eth/calling-based-builders',
-      },
+      { name: 'Resources', description: 'Everything you need to get started', href: '/resources' },
+      { name: 'Grants', description: 'Fund your projects on Base', href: '/resources#GetFunded' },
       {
         name: 'Events',
-        href: 'https://lu.ma/BaseMeetups',
+        description: 'Connect with the Base community',
+        href: '/resources#GetInvolved',
+      },
+      {
+        name: 'Media Kit',
+        description: 'Base brand assets and guides',
+        href: 'https://github.com/base-org/brand-kit',
       },
     ],
   },
@@ -73,10 +144,17 @@ const links: TopNavigationLink[] = [
     analyticContext: 'about',
     href: '/about',
     subItems: [
-      { name: 'Vision', href: '/about' },
-      { name: 'Blog', href: 'https://base.mirror.xyz/' },
-      { name: 'Jobs', href: '/jobs' },
-      { name: 'Media Kit', href: 'https://github.com/base/brand-kit' },
+      {
+        name: 'Vision',
+        description: "Base's mission, vision, and strategy",
+        href: 'https://base.mirror.xyz/gFOLgyrs8jtX4Eqt4Kh6ikWhB3tqrhQoKfddeqZIECs',
+      },
+      {
+        name: 'Blog',
+        description: 'Latest updates from the Base core team',
+        href: 'https://base.mirror.xyz/',
+      },
+      { name: 'Jobs', description: 'Join Base to build a new internet', href: '/jobs' },
     ],
   },
   {
@@ -85,7 +163,7 @@ const links: TopNavigationLink[] = [
     href: '#socials',
     subItems: [
       { name: 'X', href: 'https://x.com/base' },
-      { name: 'Farcaster', href: 'https://warpcast.com/base' },
+      { name: 'Warpcast', href: 'https://warpcast.com/base' },
       { name: 'Github', href: 'https://github.com/base' },
       { name: 'Discord', href: 'https://discord.com/invite/buildonbase' },
     ],
@@ -118,7 +196,7 @@ export default function TopNavigation() {
           </div>
 
           {/* Connect Wallet button */}
-          <div className="flex items-end justify-end md:min-w-[16rem]">
+          <div className="flex items-center justify-end gap-3 md:min-w-[16rem]">
             {showGasDropdownAndConnectWallet && (
               <Suspense>
                 <DynamicWrappedConnectWalletButton

@@ -1,3 +1,1 @@
-# Base Docs
-
-This the Docusaurus app for the Base docs. You can run the dev server locally with `yarn workspace @app/base-docs dev`.
+This is a [Vocs](https://vocs.dev) project bootstrapped with the Vocs CLI.

@@ -43,7 +43,7 @@ export function GasPriceDropdown() {
         <small>Mwei</small>
       </div>
       <div className="absolute left-0 top-full hidden pt-2 group-hover:inline-block">
-        <Card innerClassName="p-4 bg-[#191919]">
+        <Card innerClassName="p-4 bg-dark-palette-backgroundAlternate">
           <ul className="flex flex-col gap-2 whitespace-nowrap">
             <li className="flex gap-2">
               <strong className="font-normal">{base.name}</strong>

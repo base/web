@@ -1,0 +1,54 @@
+---
+title: 'Making requests'
+sidebar_label: 'Making requests'
+slug: 'android-making-requests'
+---
+
+Requests to Coinbase Wallet can be made by calling the `makeRequest` function provided by the SDK. This function also accepts a list of `actions`.
+
+```kotlin
+val signTypedDataV3 = Web3JsonRPC.SignTypedDataV3(
+   "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826", // address
+   "" // typed data JSON
+).action()
+val requestActions = listOf(signTypedDataV3)
+
+client.makeRequest(request = RequestContent.Request(actions = requestActions)) { result ->
+   result.fold(
+       onSuccess = { returnValues ->
+           returnValues.handleSuccess("Request", requestActions)
+       },
+       onFailure = { err ->
+           err.handleError("Request")
+       }
+   )
+}
+```
+
+## Batch requests
+
+The client supports sending multiple `actions` as a single batch request.
+
+For example, the code below will make requests for a user account and to switch chains:
+
+```kotlin
+val requestAccounts = Web3JsonRPC.RequestAccounts().action()
+val switchEthereumChain = Web3JsonRPC.SwitchEthereumChain(
+   chainId = "1666600000"
+).action()
+val requestActions = listOf(requestAccounts, switchEthereumChain)
+
+client.makeRequest(request = RequestContent.Request(actions = requestActions)) { result ->
+   result.fold(
+       onSuccess = { returnValues ->
+           returnValues.handleSuccess("Request", requestActions)
+       },
+       onFailure = { err ->
+           err.handleError("Request")
+       }
+   )
+}
+```
+
+An example request is provided in the [sample application](https://github.com/MobileWalletProtocol/wallet-mobile-sdk/blob/main/android/example/src/main/java/com/coinbase/android/beta/MainActivity.kt).
+
