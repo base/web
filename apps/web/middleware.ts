@@ -3,6 +3,23 @@ import { NextRequest, NextResponse } from 'next/server';
 export function middleware(req: NextRequest) {
   const url = req.nextUrl;
 
+  if (url.pathname === '/docs') {
+    url.host = 'docs.base.org';
+    url.pathname = '/';
+    url.port = '443';
+
+    return NextResponse.redirect(url);
+  }
+
+  if (url.pathname.startsWith('/flashblocks')) {
+    const subPath = url.pathname.replace('/flashblocks', '');
+    url.host = 'flashblocks.base.org';
+    url.pathname = `/${subPath}`;
+    url.port = '443';
+
+    return NextResponse.redirect(url);
+  }
+
   if (
     url.pathname === '/base-camp' ||
     url.pathname === '/base-learn' ||
