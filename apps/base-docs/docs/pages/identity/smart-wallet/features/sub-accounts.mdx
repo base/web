@@ -1,9 +1,13 @@
 # Sub Accounts
 
-Sub Accounts enable developers to create and manage app-specific accounts for their applications. These accounts are linked to the user's Smart Wallet and can be utilized to sign transactions specifically for the app. This integration grants developers full control over the user experience, ensuring a seamless and cohesive interaction within the app.
+Sub Accounts are hierarchical, app-specific accounts that extend from a user's primary Smart Wallet. Each Sub Account operates as a distinct account that can:
+
+- Execute transactions and sign messages
+- Maintain separate asset management
+- Be fully controlled by both the universal Smart Wallet and authorized application logic
 
 ## Technical Details
 
-- Smart Wallet Ownership: The user's Smart Wallet acts as an owner of the Sub Account, allowing it to manage assets on the Sub Account and make calls from it. 
-- App-Signer Agnostic: Sub Accounts are designed to be agnostic to whatever signing software an app wants to use: whether in-browser CryptoKey or server signers from teams like Privy or Turnkey. 
-- Sub Accounts can be used to sign transactions, messages, and EIP-712 typed data.
+- Smart Wallet Ownership: The user's Smart Wallet acts as an owner of the Sub Account, allowing it to manage assets on the Sub Account and make calls from it.
+- App-Signer Agnostic: Sub Accounts are designed to be agnostic to whatever signing software an app wants to use: whether in-browser CryptoKey or server signers from teams like Privy or Turnkey.
+- When an app requests a Sub Account creation and the user approves, all future signing and transaction requests will use the Sub Account.

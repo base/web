@@ -2,8 +2,8 @@
 
 ## Overview
 
-The Coinbase Wallet SDK now supports sub accounts, allowing apps to create and manage additional smart contract accounts for users.
-sub accounts can have multiple owners and operate as smart contract wallets with enhanced security and flexibility.
+The Coinbase Wallet SDK now supports Sub Accounts, allowing apps to create and manage additional smart contract accounts for users.
+Sub Accounts can have multiple owners and operate as smart contract wallets with enhanced security and flexibility.
 
 ## Getting Started
 
@@ -18,11 +18,11 @@ npm install @coinbase/wallet-sdk@canary
 ```typescript
 import { createCoinbaseWalletSDK, getCryptoKeyAccount } from '@coinbase/wallet-sdk';
 
-// Initialize the SDK with sub account support
+// Initialize the SDK with Sub Account support
 const sdk = createCoinbaseWalletSDK({
   appName: 'My Dapp',
   appLogoUrl: 'https://example.com/logo.png',
-  // Set up sub account support with a signer function
+  // Set up Sub Account support with a signer function
   subaccount: {
     getSigner: async () => {
       // Return a signer that can be used to authenticate operations
@@ -38,7 +38,7 @@ const provider = sdk.getProvider();
 ## Creating a Sub Account
 
 ```typescript
-// Create a new sub account with WebAuthn keys
+// Create a new Sub Account with WebAuthn keys
 const account = await sdk.subaccount.create({
   type: 'create',
   keys: [
@@ -56,14 +56,14 @@ console.log('Sub account created:', account.address);
 ## Getting a Sub Account
 
 ```typescript
-// Get the current sub account if it exists, otherwise connect to one
+// Get the current Sub Account if it exists, otherwise connect to one
 const account = await sdk.subaccount.get();
 console.log('Sub account address:', account.address);
 ```
 
 ## Adding an Owner to a Sub Account
 
-You can add owners to a sub account by providing either an address or a public key.
+You can add owners to a Sub Account by providing either an address or a public key.
 
 ```typescript
 // Add an owner using an address
@@ -82,13 +82,13 @@ await sdk.subaccount.addOwner({
 
 ## Using a Sub Account for Transactions
 
-Once a sub account is created, you can use it to sign and send transactions:
+Once a Sub Account is created, you can use it to sign and send transactions:
 
 ```typescript
-// Connect to the sub account
+// Connect to the Sub Account
 const account = await sdk.subaccount.get();
 
-// Use the provider to send transactions from the sub account
+// Use the provider to send transactions from the Sub Account
 const provider = sdk.getProvider();
 const signature = await provider.request({
   method: 'personal_sign',
@@ -114,7 +114,7 @@ createCoinbaseWalletSDK({
 
 #### `sdk.subaccount.create(account)`
 
-Creates a new sub account.
+Creates a new Sub Account.
 
 Parameters:
 
@@ -128,13 +128,13 @@ Returns: `Promise<SubAccountInfo>`
 
 #### `sdk.subaccount.get()`
 
-Gets the current sub account, or connects to one if none exists.
+Gets the current Sub Account, or connects to one if none exists.
 
 Returns: `Promise<SubAccountInfo>`
 
 #### `sdk.subaccount.addOwner(options)`
 
-Adds an owner to a sub account.
+Adds an owner to a Sub Account.
 
 Parameters:
 
@@ -147,7 +147,7 @@ Returns: `Promise<string>` - Response from the smart contract call
 
 #### `sdk.subaccount.setSigner(getSigner)`
 
-Sets the signer function for sub account operations.
+Sets the signer function for Sub Account operations.
 
 Parameters:
 
@@ -157,11 +157,11 @@ Parameters:
 
 Sub accounts are implemented as smart contract wallets that support multiple owners. The SDK provides a wrapper around the low-level RPC methods used to interact with these accounts:
 
-- `wallet_addSubAccount`: Creates a new sub account
-- `wallet_connect`: Connects to an existing sub account
-- `wallet_sendCalls`: Sends transactions from a sub account
+- `wallet_addSubAccount`: Creates a new Sub Account
+- `wallet_connect`: Connects to an existing Sub Account
+- `wallet_sendCalls`: Sends transactions from a Sub Account
 
-Each sub account can have multiple owners identified by either their address or public key. When performing operations with a sub account, the appropriate owner is used to sign the transaction.
+Each Sub Account can have multiple owners identified by either their address or public key. When performing operations with a Sub Account, the appropriate owner is used to sign the transaction.
 
 ## Requirements
 
