@@ -123,7 +123,7 @@ export function BuildersDropdown({ onLinkClick }: BuildersDropdownProps) {
               <FooterCard
                 label="Bug bounty"
                 icon={bug as StaticImageData}
-                href="https://hackerone.com/base"
+                href="https://hackerone.com/coinbase"
                 onLinkClick={onLinkClick}
               />
               <FooterCard
