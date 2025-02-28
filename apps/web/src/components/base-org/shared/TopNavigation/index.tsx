@@ -33,7 +33,7 @@ const links: TopNavigationLink[] = [
     analyticContext: 'explore',
     href: '/ecosystem',
     subItems: [
-      { name: 'Apps', description: 'Discover applications on Base', href: '/ecosystem' },
+      { name: 'Apps', description: 'Discover apps on Base', href: '/ecosystem' },
       {
         name: 'Bridge',
         description: 'Get started by bridging to Base',
@@ -56,12 +56,11 @@ const links: TopNavigationLink[] = [
         description: '',
         href: 'https://docs.base.org',
       },
-      // TODO: Add back after launch
-      // {
-      //   name: 'Base Appchains',
-      //   description: '',
-      //   href: '/appchains',
-      // },
+      {
+        name: 'Base Appchains',
+        description: '',
+        href: '/builders/base-appchains',
+      },
       {
         name: 'OnchainKit',
         description: '',

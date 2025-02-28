@@ -6,7 +6,7 @@ import {
   EthBalance,
 } from '@coinbase/onchainkit/identity';
 import { color } from '@coinbase/onchainkit/theme';
-import { 
+import {
   ConnectWallet,
   Wallet,
   WalletDropdown,
@@ -19,9 +19,9 @@ import { walletDropdownLinkCustomBaseIconSvg } from '@/components/svg/walletDrop
 
 # `<WalletDropdownLink />`
 
-The `WalletDropdownLink` component creates customizable, interactive links within the wallet dropdown menu. 
+The `WalletDropdownLink` component creates customizable, interactive links within the wallet dropdown menu.
 
-## Usage 
+## Usage
 
 ```tsx twoslash
 import {
@@ -35,7 +35,7 @@ import { color } from '@coinbase/onchainkit/theme';
 import {
   ConnectWallet,
   Wallet,
-  WalletDropdown, 
+  WalletDropdown,
   WalletDropdownLink, // [!code focus]
   WalletDropdownDisconnect,
 } from '@coinbase/onchainkit/wallet';
@@ -55,15 +55,15 @@ export function WalletComponents() {
             <Address className={color.foregroundMuted} />
             <EthBalance />
           </Identity>
-          <WalletDropdownLink icon="wallet" href="https://keys.coinbase.com"> // [!code focus]
-            Wallet // [!code focus]
-          </WalletDropdownLink> // [!code focus]
+          <WalletDropdownLink icon="wallet" href="https://keys.coinbase.com">
+            Wallet
+          </WalletDropdownLink>
           <WalletDropdownDisconnect />
         </WalletDropdown>
       </Wallet>
     </div>
   );
-}      
+}
 ```
 
 <WalletComponents>
@@ -88,6 +88,7 @@ export function WalletComponents() {
 </WalletComponents>
 
 ### Custom link
+
 Add a custom link to the wallet dropdown menu, allowing users to navigate to external resources directly from the wallet interface.
 
 ```tsx twoslash
@@ -97,12 +98,12 @@ import {
 } from '@coinbase/onchainkit/wallet';
 // ---cut-before---
 // omitted for brevity
-<WalletDropdownLink // [!code focus] 
-  icon={BaseIcon} // [!code focus] 
-  href="https://www.base.org/" // [!code focus] 
-  rel="noopener noreferrer" // [!code focus] 
-> // [!code focus]
-  Base.org // [!code focus]
+<WalletDropdownLink // [!code focus]
+  icon={BaseIcon} // [!code focus]
+  href="https://www.base.org/" // [!code focus]
+  rel="noopener noreferrer" // [!code focus]
+>
+  Base.org
 </WalletDropdownLink> // [!code focus]
 ```
 
@@ -119,10 +120,10 @@ import {
         <Address className={color.foregroundMuted} />
         <EthBalance />
       </Identity>
-      <WalletDropdownLink 
-        icon={walletDropdownLinkCustomBaseIconSvg} 
-        href="https://www.base.org/" 
-        rel="noopener noreferrer" 
+      <WalletDropdownLink
+        icon={walletDropdownLinkCustomBaseIconSvg}
+        href="https://www.base.org/"
+        rel="noopener noreferrer"
       >
         Base.org
       </WalletDropdownLink>
@@ -132,6 +133,7 @@ import {
 </WalletComponents>
 
 ### Custom children components
+
 Accepts React children, enabling the use of custom elements, styled text, icons, and complex components.
 This allows for diverse customizations, including complex layouts and conditional rendering based on your app's state.
 
@@ -142,9 +144,9 @@ import {
 } from '@coinbase/onchainkit/wallet';
 // ---cut-before---
 // omitted for brevity
-<WalletDropdownLink icon="wallet" href="https://keys.coinbase.com"> // [!code focus]
-  <span className="font-bold italic">Profile</span> // [!code focus]
-  <span> 🔵 </span> // [!code focus]
+<WalletDropdownLink icon="wallet" href="https://keys.coinbase.com">
+  <span className="font-bold italic">Profile</span>
+  <span> 🔵 </span>
 </WalletDropdownLink> // [!code focus]
 ```
 
@@ -171,6 +173,7 @@ import {
 </WalletComponents>
 
 ### Override styles
+
 You can override component styles using className.
 
 ```tsx twoslash
@@ -179,8 +182,8 @@ import {
 } from '@coinbase/onchainkit/wallet';
 // ---cut-before---
 // omitted for brevity
-<WalletDropdownLink className="hover:bg-red-500" icon="wallet" href="https://keys.coinbase.com" > // [!code focus]
-  Wallet // [!code focus]
+<WalletDropdownLink className="hover:bg-red-500" icon="wallet" href="https://keys.coinbase.com" >
+  Wallet
 </WalletDropdownLink> // [!code focus]
 ```
 
@@ -205,8 +208,8 @@ import {
   </Wallet>
 </WalletComponents>
 
-## Props 
+## Props
+
 See the [types](/builderkits/onchainkit/wallet/types#walletdropdownlinkreact) for more details.
 
 [WalletDropdownLinkReact](/builderkits/onchainkit/wallet/types#walletdropdownlinkreact)
-

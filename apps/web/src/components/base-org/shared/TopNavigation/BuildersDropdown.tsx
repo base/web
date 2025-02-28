@@ -15,6 +15,7 @@ import blog from 'apps/web/src/components/base-org/shared/TopNavigation/assets/d
 import bridging from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/bridging.svg';
 import Link from 'apps/web/src/components/Link';
 import Card from 'apps/web/src/components/base-org/Card';
+import basenet from 'apps/web/src/components/Builders/Appchains/basenet.svg';
 
 type BuildersDropdownProps = {
   onLinkClick: () => void;
@@ -43,30 +44,32 @@ export function BuildersDropdown({ onLinkClick }: BuildersDropdownProps) {
           <Link
             href="/builders"
             onClick={onLinkClick}
-            className="flex items-center justify-between rounded-lg bg-dark-palette-secondary px-4 pb-2.5 pt-3 hover:bg-white/10"
+            className="flex items-center justify-between rounded-lg bg-dark-palette-secondary px-4 pb-3 pt-3 hover:bg-[#3A3D45]"
           >
             <div className="flex flex-col justify-center">
-              <Title level={TitleLevel.Headline} className="text-sm leading-none">
+              <Title level={TitleLevel.Headline} className="text-sm tracking-normal">
                 Builders
               </Title>
-              <span className="text-sm text-dark-palette-foregroundMuted ">
+              {/* use tracking-wide to temporary offset the odd tight letter-spacing */}
+              <p className="text-sm tracking-wide text-dark-palette-foregroundMuted">
                 Start building with Base tools
-              </span>
+              </p>
             </div>
             <Icon name="arrowRight" height={16} width={16} />
           </Link>
           <Link
             href="https://docs.base.org"
             onClick={onLinkClick}
-            className="flex items-center justify-between rounded-lg bg-dark-palette-secondary px-4 pb-2.5 pt-3 hover:bg-white/10"
+            className="flex items-center justify-between rounded-lg bg-dark-palette-secondary px-4 pb-3 pt-3 hover:bg-[#3A3D45]"
           >
             <div className="flex flex-col justify-center">
-              <Title level={TitleLevel.Headline} className="text-sm leading-none">
-                Documentation
+              <Title level={TitleLevel.Headline} className="text-sm tracking-normal">
+                Docs
               </Title>
-              <span className="text-sm text-dark-palette-foregroundMuted ">
+              {/* use tracking-wide to temporary offset the odd tight letter-spacing */}
+              <p className="text-sm tracking-wide text-dark-palette-foregroundMuted">
                 Dive into the developer docs
-              </span>
+              </p>
             </div>
             <Icon name="arrowRight" height={16} width={16} />
           </Link>
@@ -87,17 +90,24 @@ export function BuildersDropdown({ onLinkClick }: BuildersDropdownProps) {
                 onLinkClick={onLinkClick}
               />
               <ToolMiniCard
-                title="MiniKit"
-                description="Build once. Deploy anywhere"
-                icon={miniKit as StaticImageData}
-                href="/builders/minikit"
-                onLinkClick={onLinkClick}
-              />
-              <ToolMiniCard
                 title="Smart Wallet"
                 description="Seamless self-custody"
                 icon={baseWallet as StaticImageData}
                 href="/builders/smart-wallet"
+                onLinkClick={onLinkClick}
+              />
+              <ToolMiniCard
+                title="Base Appchains"
+                description="Scale your app"
+                icon={basenet as StaticImageData}
+                href="/builders/base-appchains"
+                onLinkClick={onLinkClick}
+              />
+              <ToolMiniCard
+                title="MiniKit"
+                description="Build once. Deploy anywhere"
+                icon={miniKit as StaticImageData}
+                href="/builders/minikit"
                 onLinkClick={onLinkClick}
               />
             </div>
@@ -154,20 +164,20 @@ function ToolMiniCard({ title, description, icon, href, onLinkClick }: ToolMiniC
     <Link
       href={href}
       onClick={onLinkClick}
-      className="flex cursor-pointer flex-col gap-4 rounded-lg px-4 py-2 transition-all duration-200 hover:bg-white/10"
+      className="flex cursor-pointer flex-col gap-4 rounded-lg px-3 py-2 transition-all duration-200 hover:bg-[#32353D]"
     >
       <div className="flex items-center gap-4">
         <div className="rounded-lg">
           <Image src={icon} alt={title} width={24} height={24} className="h-8 w-8" />
         </div>
-        <div className="flex flex-col gap-1">
-          <Title level={TitleLevel.Headline} className="text-sm font-bold leading-none text-white">
+        <div className="flex flex-col">
+          <Title level={TitleLevel.Headline} className="text-sm font-bold text-white">
             {title}
           </Title>
           <Title
             level={TitleLevel.Headline}
             as="p"
-            className="text-sm font-normal leading-none text-dark-palette-foregroundMuted"
+            className="text-sm font-normal tracking-normal text-dark-palette-foregroundMuted"
           >
             {description}
           </Title>
@@ -186,7 +196,7 @@ function FooterCard({ label, icon, href, onLinkClick }: FooterCardProps) {
       className="flex items-center gap-2 px-4"
     >
       <Image src={icon} alt={label} width={16} height={16} />
-      <Title level={TitleLevel.Headline} className="text-sm font-normal leading-none">
+      <Title level={TitleLevel.Headline} className="text-sm font-normal tracking-normal">
         {label}
       </Title>
     </Link>
