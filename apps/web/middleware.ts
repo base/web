@@ -20,10 +20,7 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  if (
-    url.pathname.startsWith('/jobs') &&
-    (url.searchParams.has('gh_jid') || url.searchParams.has('gh_src'))
-  ) {
+  if (url.pathname.startsWith('/jobs') && url.searchParams.has('gh_jid')) {
     const params = url.searchParams;
     const token = params.get('gh_jid');
     const src = params.get('gh_src');
