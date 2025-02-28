@@ -29,7 +29,12 @@ export function middleware(req: NextRequest) {
     const token = params.get('gh_jid');
     const src = params.get('gh_src');
     url.host = 'boards.greenhouse.io';
-    url.pathname = `/embed/job_app?for=basejobs&token=${token}&gh_src=${src}`;
+    url.pathname = '/embed/job_app';
+
+    url.searchParams.set('for', 'basejobs');
+    url.searchParams.set('token', String(token));
+    url.searchParams.set('src', String(src));
+    
     url.port = '443';
 
     return NextResponse.redirect(url);
