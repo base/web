@@ -669,6 +669,43 @@ const ICONS: Record<string, (props: SvgProps) => JSX.Element> = {
       />
     </svg>
   ),
+  baseLogo: ({ color, width, height }: SvgProps) => (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 46 46"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g filter="url(#filter0_b_139_1266)">
+        <path
+          d="M22.9803 34.3703C29.2728 34.3703 34.3739 29.2796 34.3739 23.0001C34.3739 16.7205 29.2728 11.6299 22.9803 11.6299C17.0104 11.6299 12.1129 16.212 11.6265 22.0443H26.6861V23.9558H11.6265C12.1129 29.7882 17.0104 34.3703 22.9803 34.3703Z"
+          fill={color}
+        />
+      </g>
+      <defs>
+        <filter
+          id="filter0_b_139_1266"
+          x="-14"
+          y="-14"
+          width="74"
+          height="74"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feGaussianBlur in="BackgroundImageFix" stdDeviation="7" />
+          <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_139_1266" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_backgroundBlur_139_1266"
+            result="shape"
+          />
+        </filter>
+      </defs>
+    </svg>
+  ),
 };
 
 export function Icon({ name, color = 'white', width = '24', height = '24' }: IconProps) {
