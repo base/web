@@ -20,16 +20,21 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  if (
-    url.pathname.startsWith('/jobs') &&
-    url.searchParams.has('gh_jid') &&
-    url.searchParams.has('gh_src')
-  ) {
+  if (url.pathname.startsWith('/jobs') && url.searchParams.has('gh_jid')) {
     const params = url.searchParams;
     const token = params.get('gh_jid');
     const src = params.get('gh_src');
     url.host = 'boards.greenhouse.io';
-    url.pathname = `/embed/job_app?for=basejobs&token=${token}&gh_src=${src}`;
+    url.pathname = '/embed/job_app';
+
+    url.searchParams.set('for', 'basejobs');
+    if (token) {
+      url.searchParams.set('token', String(token));
+    }
+    if (src) {
+      url.searchParams.set('src', String(src));
+    }
+
     url.port = '443';
 
     return NextResponse.redirect(url);
