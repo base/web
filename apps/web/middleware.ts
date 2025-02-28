@@ -21,6 +21,21 @@ export function middleware(req: NextRequest) {
   }
 
   if (
+    url.pathname.startsWith('/jobs') &&
+    url.searchParams.has('gh_jid') &&
+    url.searchParams.has('gh_src')
+  ) {
+    const params = url.searchParams;
+    const token = params.get('gh_jid');
+    const src = params.get('gh_src');
+    url.host = 'boards.greenhouse.io';
+    url.pathname = `/embed/job_app?for=basejobs&token=${token}&gh_src=${src}`;
+    url.port = '443';
+
+    return NextResponse.redirect(url);
+  }
+
+  if (
     url.pathname === '/base-camp' ||
     url.pathname === '/base-learn' ||
     url.pathname === '/basecamp' ||
