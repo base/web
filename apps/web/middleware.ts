@@ -22,8 +22,7 @@ export function middleware(req: NextRequest) {
 
   if (
     url.pathname.startsWith('/jobs') &&
-    url.searchParams.has('gh_jid') &&
-    url.searchParams.has('gh_src')
+    (url.searchParams.has('gh_jid') || url.searchParams.has('gh_src'))
   ) {
     const params = url.searchParams;
     const token = params.get('gh_jid');
@@ -32,9 +31,13 @@ export function middleware(req: NextRequest) {
     url.pathname = '/embed/job_app';
 
     url.searchParams.set('for', 'basejobs');
-    url.searchParams.set('token', String(token));
-    url.searchParams.set('src', String(src));
-    
+    if (token) {
+      url.searchParams.set('token', String(token));
+    }
+    if (src) {
+      url.searchParams.set('src', String(src));
+    }
+
     url.port = '443';
 
     return NextResponse.redirect(url);
