@@ -56,12 +56,11 @@ const links: TopNavigationLink[] = [
         description: '',
         href: 'https://docs.base.org',
       },
-      // TODO: Add back after launch
-      // {
-      //   name: 'Base Appchains',
-      //   description: '',
-      //   href: '/appchains',
-      // },
+      {
+        name: 'Base Appchains',
+        description: '',
+        href: '/builders/base-appchains',
+      },
       {
         name: 'OnchainKit',
         description: '',

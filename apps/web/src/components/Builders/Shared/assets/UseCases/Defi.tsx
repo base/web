@@ -1,7 +1,7 @@
 'use client';
 
 import Image, { StaticImageData } from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import NumberFlow from '@number-flow/react';
 import usdc from 'apps/web/public/images/partners/usdc.svg';
 
@@ -15,33 +15,32 @@ const numberFlowFormat = {
 export function AnimatedDefi() {
   const [currentEarned, setCurrentEarned] = useState(initialEarned);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentEarned((prev) => {
-        const tier = Math.random() * 100;
-        let increment;
+  const handleEarnUpdate = useCallback(() => {
+    setCurrentEarned((prev) => {
+      const tier = Math.random() * 100;
+      let increment;
 
-        if (tier < 50) {
-          increment = Math.random() * 15.4 + 0.5;
-        } else if (tier < 80) {
-          increment = Math.random() * 8.2 + 1.5;
-        } else if (tier < 95) {
-          increment = Math.random() * 5.75 + 2.5;
-        } else {
-          increment = Math.random() * 3.0 + 4.0;
-        }
+      if (tier < 50) {
+        increment = Math.random() * 15.4 + 0.5;
+      } else if (tier < 80) {
+        increment = Math.random() * 8.2 + 1.5;
+      } else if (tier < 95) {
+        increment = Math.random() * 5.75 + 2.5;
+      } else {
+        increment = Math.random() * 3.0 + 4.0;
+      }
 
-        return prev + increment;
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
+      return prev + increment;
+    });
   }, []);
 
   const percentageIncrease = ((currentEarned - initialEarned) / initialEarned) * 100;
 
   return (
-    <div className="flex h-full w-[250px] flex-col items-center justify-center">
+    <div
+      onMouseEnter={handleEarnUpdate}
+      className="flex h-full w-[250px] flex-col items-center justify-center"
+    >
       <div className="flex w-full flex-col gap-4 rounded-2xl bg-black p-4">
         <div className="h-8 w-8">
           <Image

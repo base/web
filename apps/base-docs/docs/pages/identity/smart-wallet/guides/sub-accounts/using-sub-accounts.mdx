@@ -1,0 +1,248 @@
+---
+title: 'Using Sub Accounts'
+description: 'Learn how to perform operations with Sub Accounts in Coinbase Smart Wallet'
+---
+
+# Using Sub Accounts
+
+Once you've [created a Sub Account](/identity/smart-wallet/guides/sub-accounts/creating-sub-accounts), you can use it to perform various operations like signing messages and sending transactions. In this section, we'll cover how to interact with your Sub Account.
+
+## What you'll achieve
+
+By the end of this guide, you will:
+
+- Create a wallet client specifically for the Sub Account
+- Sign messages or send transactions with the Sub Account
+
+## Setting up the Sub Account Client
+
+First, we need to update our context to include a wallet client specifically for the Sub Account. Add the following to your `CoinbaseWalletContext.tsx`:
+
+```tsx
+// app/context/CoinbaseWalletContext.tsx
+import { createCoinbaseWalletSDK, getCryptoKeyAccount } from '@coinbase/wallet-sdk';
+import { WalletClient, createPublicClient, http } from 'viem';
+import { WebAuthnAccount, toCoinbaseSmartAccount } from 'viem/account-abstraction';
+import { baseSepolia } from 'viem/chains';
+
+// update the Context interface type to include subAccountWalletClient
+interface CoinbaseWalletContextType {
+  // ... existing properties
+  subAccountWalletClient: WalletClient | null;
+}
+
+// update the CoinbaseWalletContext defaults
+const CoinbaseWalletContext = createContext<CoinbaseWalletContextType>({
+  // ... existing defaults
+  subAccountWalletClient: null,
+});
+
+// update the provider component
+export function CoinbaseWalletProvider({ children }: { children: ReactNode }) {
+  // ... existing state
+  const [subAccountWalletClient, setSubAccountWalletClient] = useState<WalletClient | null>(null);
+
+  // Add public client for account creation
+  const publicClient = useMemo(
+    () =>
+      createPublicClient({
+        chain: baseSepolia,
+        transport: http(),
+      }),
+    [],
+  );
+
+  // Initialize Sub Account client when Sub Account is created
+  useEffect(() => {
+    async function initializeSubAccountClient() {
+      if (!subAccount || !provider || !publicClient) {
+        setSubAccountWalletClient(null);
+        return;
+      }
+
+      try {
+        const signer = await getCryptoKeyAccount();
+        if (!signer) {
+          throw new Error('Signer not found');
+        }
+
+        const account = await toCoinbaseSmartAccount({
+          client: publicClient,
+          owners: [signer.account as WebAuthnAccount],
+          address: subAccount,
+        });
+
+        const client = createWalletClient({
+          account,
+          chain: baseSepolia,
+          transport: custom({
+            async request({ method, params }) {
+              const response = await provider.request({ method, params });
+              return response;
+            },
+          }),
+        });
+
+        setSubAccountWalletClient(client);
+      } catch (error) {
+        console.error('Failed to initialize subAccount wallet client:', error);
+        setSubAccountWalletClient(null);
+      }
+    }
+
+    initializeSubAccountClient();
+  }, [subAccount, provider, publicClient]);
+
+  // Update context value to include subAccountWalletClient
+  return (
+    <CoinbaseWalletContext.Provider
+      value={{
+        // ... existing values
+        subAccountWalletClient,
+      }}
+    >
+      {children}
+    </CoinbaseWalletContext.Provider>
+  );
+}
+```
+
+## Signing Messages
+
+Let's implement message signing with the Sub Account. Update your page.tsx:
+
+```tsx
+// app/page.tsx
+'use client';
+import { useState, useCallback } from 'react';
+import { useCoinbaseWallet } from './context/CoinbaseWalletContext';
+
+export default function Home() {
+  const {
+    isConnected,
+    connect,
+    disconnect,
+    address,
+    subAccount,
+    createSubAccount,
+    subAccountWalletClient,
+    provider,
+  } = useCoinbaseWallet();
+
+  const [signature, setSignature] = useState<string | null>(null);
+
+  const signMessage = useCallback(async () => {
+    if (!subAccountWalletClient || !subAccount) {
+      throw new Error('Subaccount wallet client or subaccount not found');
+    }
+
+    const message = 'Hello, world!';
+    const signature = await subAccountWalletClient.signMessage({
+      message,
+      account: subAccount,
+    });
+
+    setSignature(signature);
+    return signature;
+  }, [subAccountWalletClient, subAccount]);
+
+  // ... existing render logic
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      <p>Connected address: {address}</p>
+
+      {!subAccount && <button onClick={createSubAccount}>Create Sub Account</button>}
+
+      {subAccount && (
+        <div>
+          <p>Sub Account address: {subAccount}</p>
+          <button onClick={signMessage}>Sign Message</button>
+          {signature && <div style={{ overflowWrap: 'break-word' }}>Signature: {signature}</div>}
+        </div>
+      )}
+
+      <button onClick={disconnect}>Disconnect Wallet</button>
+    </div>
+  );
+}
+```
+
+## Sending Transactions
+
+Now let's implement transaction sending with gas sponsorship. To get a paymaster URL, sign up on [Coinbase Developer Platform](https://www.coinbase.com/developer-platform/products/paymaster) to get access
+to the free Base Sepolia testnet paymaster.
+
+Add this to your page.tsx:
+
+```tsx
+// app/page.tsx
+export default function Home() {
+  // ... existing state and hooks
+  const [txHash, setTxHash] = useState<string | null>(null);
+
+  const sendTransaction = useCallback(async () => {
+    if (!provider) {
+      throw new Error('Provider not found');
+    }
+
+    const txHash = await provider.request({
+      method: 'wallet_sendCalls',
+      params: [
+        {
+          chainId: baseSepolia.id,
+          calls: [
+            {
+              to: subAccount,
+              data: '0x',
+              value: 0,
+            },
+          ],
+          from: subAccount,
+          version: '1',
+          capabilities: {
+            paymasterService: {
+              url: 'YOUR_PAYMASTER_URL',
+            },
+          },
+        },
+      ],
+    });
+
+    setTxHash(txHash as string);
+    return txHash;
+  }, [provider, subAccount]);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      {/* ... existing UI */}
+      {subAccount && (
+        <div>
+          {/* ... existing Sub Account UI */}
+          <button onClick={sendTransaction}>Send Transaction</button>
+          {txHash && (
+            <div style={{ overflowWrap: 'break-word' }}>
+              Transaction Hash:{' '}
+              <a
+                href={`https://sepolia.basescan.org/tx/${txHash}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {txHash}
+              </a>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+So what did we just do? We added a function to send a sponsored transaction of the Sub Account sending 0 ETH to itself. It’s a simple way to test that a transaction works properly for a given account. Boot up the app and give it a shot!
+
+However, this isn’t really useful since many transactions require sending actual value. So let’s look at how to incorporate Spend Permissions to our Subaccounts to allow you to seamlessly spend funds from the user’s Coinbase Smart Wallet from their Subaccount.
+
+## Next Steps
+
+Continue to [Implementing Spend Permissions](/identity/smart-wallet/guides/sub-accounts/incorporate-spend-permissions) to learn how to enable your Sub Account to spend funds from the user's main wallet.

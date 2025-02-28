@@ -1,0 +1,287 @@
+---
+title: 'Using Spend Permissions with Sub Accounts'
+description: 'Learn how to perform operations with sub accounts in Coinbase Smart Wallet'
+---
+
+# Incorporate Spend Permissions with Sub Accounts
+
+In the [previous steps](/identity/smart-wallet/guides/sub-accounts/using-sub-accounts) we learned how to create a Sub Account and send valueless transactions with it.
+Many apps require the ability to spend funds from the user's wallets. To enable this, we can use Spend Permissions,
+which allows the Sub Account to request the ability to spend funds from the user's universal wallet.
+
+## What you'll achieve
+
+By the end of this guide, you will:
+
+- Update your wallet connection to request spend permissions during Sub Account creation
+- Extend state management for tracking spend permissions in your application
+- Send transactions with value from your sub account using spend permissions without routing to user's universal account
+
+## Implementation Steps
+
+The first thing we need to do is update our `wallet_connect` request to pass the Spend Permission capability.
+
+This allows us to request Coinbase Smart Wallet to create both a Sub Account and a Spend Permission for it during
+connection step.
+
+```tsx {75,78}
+// app/context/CoinbaseWalletContext.tsx
+
+// import toHex from viem
+import {
+  // ...other imports
+  toHex,
+} from 'viem';
+
+// Add a new type to make working with spend permissions easier
+
+export type SpendPermission = {
+  account: Address;
+  spender: Address;
+  token: Address;
+  allowance: string;
+  period: number;
+  start: number;
+  end: number;
+  salt: bigint;
+  extraData: string;
+};
+
+// Add new state to track our spend permission data
+const [spendPermission, setSpendPermission] = useState<SpendPermission | null>(null);
+const [spendPermissionSignature, setSpendPermissionSignature] = useState<`0x${string}` | null>(
+  null,
+);
+
+// This will create a spend permission of 0.0001 ETH for the sub account during sub account creation and store it in the context.
+const createSubAccount = useCallback(async () => {
+  if (!provider || !address) {
+    throw new Error('Address or provider not found');
+  }
+  const signer = await getCryptoKeyAccount();
+  const walletConnectResponse = (await provider.request({
+    method: 'wallet_connect',
+    params: [
+      {
+        version: '1',
+        capabilities: {
+          addSubAccount: {
+            account: {
+              type: 'create',
+              keys: [
+                {
+                  type: 'webauthn-p256',
+                  signer: signer.account?.publicKey,
+                },
+              ],
+            },
+          },
+          spendPermissions: {
+            token: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
+            allowance: toHex(parseEther('0.0001')),
+            period: 86400,
+            salt: '0x1',
+            extraData: '0x',
+          },
+        },
+      },
+    ],
+  })) as {
+    accounts: {
+      address: Address;
+      capabilities: {
+        addSubAccount: {
+          address: Address;
+        };
+        spendPermissions: {
+          permission: SpendPermission;
+          signature: `0x${string}`;
+        };
+      };
+    }[];
+  };
+
+  const { addSubAccount, spendPermissions } = walletConnectResponse.accounts[0].capabilities;
+
+  const subAccount = addSubAccount.address;
+  const { permission, signature } = spendPermissions;
+  setSpendPermission(permission);
+  setSpendPermissionSignature(signature);
+  setSubAccount(subAccount);
+
+  return subAccount;
+}, [provider, address, setSpendPermission, setSpendPermissionSignature]);
+
+// export these values to be used in our app
+
+return (
+  <CoinbaseWalletContext.Provider
+    value={{
+      provider,
+      connect,
+      disconnect,
+      isConnected,
+      address,
+      subAccount,
+      createSubAccount,
+      subAccountWalletClient,
+      spendPermission,
+      spendPermissionSignature,
+    }}
+  >
+    {children}
+  </CoinbaseWalletContext.Provider>
+);
+```
+
+Now that we're finished with creating and storing Spend Permissions, lets use them within our app to actually send a transaction with value.
+
+// Create a file to store the Spend Permission Manager ABI
+
+```tsx
+// app/abi.ts
+
+export const spendPermissionManagerAbi = [
+  {
+    type: 'function',
+    name: 'approveWithSignature',
+    inputs: [
+      {
+        name: 'spendPermission',
+        type: 'tuple',
+        internalType: 'struct SpendPermissionManager.SpendPermission',
+        components: [
+          { name: 'account', type: 'address', internalType: 'address' },
+          { name: 'spender', type: 'address', internalType: 'address' },
+          { name: 'token', type: 'address', internalType: 'address' },
+          {
+            name: 'allowance',
+            type: 'uint160',
+            internalType: 'uint160',
+          },
+          { name: 'period', type: 'uint48', internalType: 'uint48' },
+          { name: 'start', type: 'uint48', internalType: 'uint48' },
+          { name: 'end', type: 'uint48', internalType: 'uint48' },
+          { name: 'salt', type: 'uint256', internalType: 'uint256' },
+          { name: 'extraData', type: 'bytes', internalType: 'bytes' },
+        ],
+      },
+      { name: 'signature', type: 'bytes', internalType: 'bytes' },
+    ],
+    outputs: [{ name: '', type: 'bool', internalType: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    name: 'spend',
+    inputs: [
+      {
+        name: 'spendPermission',
+        type: 'tuple',
+        internalType: 'struct SpendPermissionManager.SpendPermission',
+        components: [
+          { name: 'account', type: 'address', internalType: 'address' },
+          { name: 'spender', type: 'address', internalType: 'address' },
+          { name: 'token', type: 'address', internalType: 'address' },
+          {
+            name: 'allowance',
+            type: 'uint160',
+            internalType: 'uint160',
+          },
+          { name: 'period', type: 'uint48', internalType: 'uint48' },
+          { name: 'start', type: 'uint48', internalType: 'uint48' },
+          { name: 'end', type: 'uint48', internalType: 'uint48' },
+          { name: 'salt', type: 'uint256', internalType: 'uint256' },
+          { name: 'extraData', type: 'bytes', internalType: 'bytes' },
+        ],
+      },
+      { name: 'value', type: 'uint160', internalType: 'uint160' },
+    ],
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+];
+```
+
+```tsx
+// app/page.tsx
+
+// import the spend permission manager abi
+import { spendPermissionManagerAbi } from './abi';
+
+// import parseEther from viem
+import { parseEther } from 'viem';
+
+// grab the Spend Permission data from context
+const {
+  isConnected,
+  connect,
+  disconnect,
+  address,
+  subAccount,
+  spendPermission,
+  spendPermissionSignature,
+  createSubAccount,
+  subAccountWalletClient,
+  provider,
+} = useCoinbaseWallet();
+
+// update our send Transaction function to include the spend permission data
+const sendTransaction = useCallback(async () => {
+  if (!provider) {
+    throw new Error('Provider not found');
+  }
+  if (!spendPermission || !spendPermissionSignature) {
+    throw new Error('Spend permission data not found');
+  }
+
+  const txHash = await provider.request({
+    method: 'wallet_sendCalls',
+    params: [
+      {
+        chainId: baseSepolia.id,
+        calls: [
+          {
+            to: '0xf85210B21cC50302F477BA56686d2019dC9b67Ad',
+            abi: spendPermissionManagerAbi,
+            functionName: 'approveWithSignature',
+            args: [spendPermission, spendPermissionSignature],
+            data: '0x',
+          },
+          {
+            to: '0xf85210B21cC50302F477BA56686d2019dC9b67Ad',
+            abi: spendPermissionManagerAbi,
+            functionName: 'spend',
+            args: [spendPermission, parseEther('0.0001').toString()],
+            data: '0x',
+          },
+          {
+            to: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045',
+            data: '0x',
+            value: parseEther('0.0001').toString(),
+          },
+        ],
+        from: subAccount,
+        version: '1',
+        capabilities: {
+          paymasterService: {
+            url: 'YOUR_PAYMASTER_URL',
+          },
+        },
+      },
+    ],
+  });
+  setTxHash(txHash as string);
+  return txHash;
+}, [provider, subAccount, spendPermission, spendPermissionSignature]);
+```
+
+We just updated our sendTransaction function to do a few things. Firstly you probably noticed that we switched from using a single call to a batch call. We're actually performing 3 transactions in this call!
+
+1. Perform a transction on the Spend Permission Manager contract that approves using the spend permission you created earlier in this transction
+2. Request some amount of funds from the user's Coinbase Smart Wallet to the Sub Account for this transaction
+3. Send the actual transaction to 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 (which is vitalik.eth)
+
+Boot up the app and watch everything work! Remember, you'll need to add at least 0.0001 Base Sepolia ETH to your Coinbase Smart Wallet (not Sub Account) to get this example working!
+
+Need free Base Sepolia ETH? Sign up on the [Coinbase Developer Platform](https://www.coinbase.com/developer-platform) to get access to a faucet.

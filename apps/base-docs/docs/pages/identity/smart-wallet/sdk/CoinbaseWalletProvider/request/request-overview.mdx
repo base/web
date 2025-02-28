@@ -1,0 +1,95 @@
+# Overview
+
+The `request` method allows apps to make make Ethereum RPC requests to the wallet.
+
+## Specification
+
+```ts twoslash
+interface RequestArguments {
+  readonly method: string;
+  readonly params?: readonly unknown[] | object;
+}
+
+interface ProviderRpcError extends Error {
+  code: number;
+  data?: unknown;
+}
+
+interface CoinbaseWalletProvider {
+  /**
+   * @param {RequestArguments} args request arguments.
+   * @returns A promise that resolves with the result.
+   * @throws {ProviderRpcError} incase of error.
+   * @fires CoinbaseWalletProvider#connect When the provider successfully connects.
+   */
+  request: (args: RequestArguments) => Promise<unknown>
+}
+```
+
+### Example
+
+:::code-group
+
+```ts twoslash [example.ts]
+import {provider} from "./setup";
+
+const addresses = await provider.request({method: 'eth_requestAccounts'});
+const txHash = await provider.request({
+    method: 'eth_sendTransaction',
+    params: [{from: addresses[0], to: addresses[0], value: 1}]
+  }
+);
+```
+
+```ts twoslash [setup.ts] filename="setup.ts"
+import { CoinbaseWalletSDK } from '@coinbase/wallet-sdk'
+
+const baseSepoliaChainId = 84532;
+
+export const sdk = new CoinbaseWalletSDK({
+  appName: 'My App Name',
+  appChainIds: [baseSepoliaChainId]
+});
+
+const provider = sdk.makeWeb3Provider();
+```
+
+:::
+
+## Request Handling
+
+Requests are hanlded in one of three ways
+
+1. Sent to the Wallet application (Wallet mobile app, extension, or popup window).
+2. Handled locally by the SDK.
+3. Passed onto default RPC provider for the given chain, if it exists.
+
+### 1. Sent to the Wallet application
+
+The following RPC requests are sent to the Wallet application:
+
+- eth_ecRecover
+- personal_sign
+- personal_ecRecover
+- eth_signTransaction
+- eth_sendTransaction
+- eth_signTypedData_v1
+- eth_signTypedData_v3
+- eth_signTypedData_v4
+- eth_signTypedData
+- wallet_addEthereumChain
+- wallet_watchAsset
+- wallet_sendCalls
+- wallet_showCallsStatus
+
+### 2. Handled Locally by the SDK
+
+The following requests are handled locally by the SDK, with no external calls.
+
+- eth_requestAccounts
+- eth_accounts
+- eth_coinbase
+- net_version
+- eth_chainId
+- wallet_getCapabilities
+- wallet_switchEthereumChain

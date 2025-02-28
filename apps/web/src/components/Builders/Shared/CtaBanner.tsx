@@ -24,7 +24,11 @@ export function CtaBanner({ title, description, cta }: CtaBannerProps) {
         </Title>
         {description && (
           <>
-            <Title level={TitleLevel.Title4} as="p" className="mt-2 max-sm:hidden sm:text-center">
+            <Title
+              level={TitleLevel.Title4}
+              as="p"
+              className="mt-2 max-sm:hidden sm:max-w-2xl sm:text-center"
+            >
               {description}
             </Title>
             <Text variant={TextVariant.Body} className="mt-2 sm:hidden sm:text-center">

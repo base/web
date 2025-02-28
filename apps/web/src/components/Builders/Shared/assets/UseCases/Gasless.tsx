@@ -1,9 +1,17 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export function AnimatedGasless() {
   const [barHeights, setBarHeights] = useState<number[]>([]);
+
+  const handleHover = useCallback(() => {
+    setBarHeights((prev) => {
+      const newHeights = prev.slice(1);
+      newHeights.push(Math.random() * 40 + 40);
+      return newHeights;
+    });
+  }, []);
 
   useEffect(() => {
     const initialHeights = Array(16)
@@ -12,18 +20,13 @@ export function AnimatedGasless() {
         () => Math.random() * 40 + 40, // Random values between 40% and 80% for initial state
       );
     setBarHeights(initialHeights);
-
-    const interval = setInterval(() => {
-      setBarHeights(
-        (prev) => prev.map(() => Math.random() * 100), // Random values between 0 and 100% ($0 to $1.5K)
-      );
-    }, 2000);
-
-    return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="flex h-full w-full flex-col items-end justify-center">
+    <div
+      onMouseEnter={handleHover}
+      className="flex h-full w-full flex-col items-end justify-center"
+    >
       <div className="w-[328px] gap-4 rounded-l-2xl bg-black p-6 md:w-[484px]">
         <h3 className="text-base font-semibold text-white">Gas sponsored</h3>
 

@@ -6,7 +6,7 @@ import { useMemo, useRef } from 'react';
 
 export function AnimatedBaseAgent() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.4 });
+  const isInView = useInView(ref, { once: true, amount: 0.85 });
 
   const container = useMemo(
     () => ({

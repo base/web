@@ -324,6 +324,11 @@ module.exports = extendBaseConfig(
           destination: '/resources',
           permanent: true,
         },
+        {
+          source: '/builders/appchains',
+          destination: '/builders/base-appchains',
+          permanent: true,
+        },
       ];
     },
   },

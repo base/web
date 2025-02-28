@@ -34,7 +34,7 @@ export default async function BuildWithUsFooter() {
 
         <div className="flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row sm:gap-8">
           <ButtonWithLinkAndEventLogging
-            href="https://lu.ma/base-officehours/?utm_source=dotorg&medium=builderkit"
+            href="https://lu.ma/base-virtualevents/?utm_source=dotorg&medium=builderkit"
             eventName="start_building_with_us_contact_us"
             target="_blank"
             rel="noreferrer noopener"
@@ -42,7 +42,7 @@ export default async function BuildWithUsFooter() {
             size={ButtonSizes.Large}
             buttonClassNames={`${linkTextClasses} rounded-[3px]`}
           >
-            Office Hours
+            Virtual Events
           </ButtonWithLinkAndEventLogging>
           <ButtonWithLinkAndEventLogging
             href="https://docs.base.org/docs/?utm_source=dotorg&utm_medium=builderkit"
