@@ -10,10 +10,8 @@ slug: paymaster-bundler-erc20
 
 <figcaption>
   <i>Paymaster - ERC20 Policy</i>
-</figcaption> 
-<img src="/images/paymaster/pb-paymaster-policy-erc20.png" width="700" alt="Paymaster ERC20 Policy" /> 
-<br />
-<br />
+</figcaption>
+<img src="/images/paymaster/pb-paymaster-policy-erc20.png" width="700" alt="Paymaster ERC20 Policy" />
 
 </div>
 </details>
@@ -44,10 +42,8 @@ We also recommend creating a separate project to test your ERC20 custom flows so
 
 <figcaption>
   <i>Paymaster - ERC20 Policy Flow</i>
-</figcaption> 
-<img src="/images/paymaster/pb-paymaster-policy-erc20-flow.png" width="700" alt="Paymaster ERC20 Policy Flow" /> 
-<br />
-<br />
+</figcaption>
+<img src="/images/paymaster/pb-paymaster-policy-erc20-flow.png" width="700" alt="Paymaster ERC20 Policy Flow" />
 
 </div>
 </details>
@@ -284,4 +280,3 @@ The request contains the entrypoint and the chain id with optional context.
 `request denied - max address sponsorship value reached 0x4D44afB8D98c9984F381E60Ac855D89C73f40e45 and sender can not pay with an accepted ERC20”`
 
 The first part of the error signifies why the regular fully sponsored transaction was not accepted. This is to be expected. However, if the “sender can not pay with an accepted ERC20”, check to make sure that the user has enough ERC20 tokens in their wallet to pay for the gas and your wallet approved our Paymaster to spend those tokens.
-
