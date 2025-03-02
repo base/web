@@ -7,7 +7,7 @@
   "html.format.enable": false,
   "json.format.enable": false,
 
-  // TypeScript
+  // TypeScript and JavaScript
   "javascript.validate.enable": false,
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.preferences.importModuleSpecifier": "non-relative",
@@ -24,7 +24,13 @@
   "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.codeActionsOnSave": ["source.fixAll.eslint"],
+
+  // Enable ESLint fixes on save
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+
+  // ESLint
   "eslint.packageManager": "yarn",
   "eslint.useESLintClass": true,
   "eslint.workingDirectories": [
@@ -33,10 +39,29 @@
     { "pattern": "libs/*" },
     { "pattern": "packages/*" }
   ],
+
+  // Formatter settings for various file types
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[svg]": {
     "editor.defaultFormatter": "jock.svg"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Other helpful settings
+  "files.autoSave": "onFocusChange",
+  "files.associations": {
+    "*.ts": "typescript",
+    "*.tsx": "typescriptreact",
+    "*.js": "javascript",
+    "*.jsx": "javascriptreact"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true
   }
 }
