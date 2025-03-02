@@ -11,14 +11,14 @@ export enum RawErrorStrings {
   InvalidUnderscore = 'underscore allowed only at start',
 }
 
-export async function getTransactionStatus(chain: Chain, transactionId: string) {
+export async function getTransactionStatus(chain: Chain, transactionHash: string) {
   const client = createPublicClient({
     chain: chain,
     transport: http(),
   });
 
   try {
-    const tx: TransactionReceipt = await client.waitForTransactionReceipt({ hash: transactionId });
+    const tx: TransactionReceipt = await client.waitForTransactionReceipt({ hash: transactionHash });
     const txStatus = tx.status;
     return txStatus;
   } catch (error) {
