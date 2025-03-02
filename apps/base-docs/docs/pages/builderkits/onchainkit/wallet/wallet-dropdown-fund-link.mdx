@@ -11,7 +11,7 @@ import {
   EthBalance,
 } from '@coinbase/onchainkit/identity';
 import { color } from '@coinbase/onchainkit/theme';
-import { 
+import {
   ConnectWallet,
   Wallet,
   WalletDropdown,
@@ -28,8 +28,8 @@ import { walletDropdownLinkCustomBaseIconSvg } from '@/components/svg/walletDrop
 The `WalletDropdownFundLink` works just like the [`FundButton`](/builderkits/onchainkit/fund/fund-button) except that it's inside your wallet
 dropdown menu.
 
-If your user connects a Coinbase Smart Wallet, it provides an easy way to access the Coinbase Smart Wallet 
-[Fund](https://keys.coinbase.com/fund) flow. Users will be able to buy and receive crypto, or use their Coinbase 
+If your user connects a Coinbase Smart Wallet, it provides an easy way to access the Coinbase Smart Wallet
+[Fund](https://keys.coinbase.com/fund) flow. Users will be able to buy and receive crypto, or use their Coinbase
 balances onchain with [Magic Spend](https://www.smartwallet.dev/guides/magic-spend).
 
 If your user connects any other EOA wallet, it provides an easy way to access [Coinbase Onramp](https://docs.cdp.coinbase.com/onramp/docs/welcome/)
@@ -76,7 +76,7 @@ export function WalletComponents() {
             <Address />
             <EthBalance />
           </Identity>
-          <WalletDropdownFundLink /> // [!code focus]
+          <WalletDropdownFundLink />
           <WalletDropdownDisconnect />
         </WalletDropdown>
       </Wallet>
@@ -211,5 +211,4 @@ You can override the default URL by using the `fundingUrl` prop.
 
 ## Props
 
-- [`WalletDropdownFundLinkReact`](types#walletdropdownfundlinkreact)
-
+- [`WalletDropdownFundLinkReact`](/builderkits/onchainkit/wallet/types#walletdropdownfundlinkreact)

@@ -276,7 +276,7 @@ function DesktopDemo({
               href="https://docs.base.org/builderkits/onchainkit/getting-started"
               target="_blank"
               className={classNames(
-                'rounded-lg border px-2 py-1 transition-colors',
+                'rounded-lg border px-3 py-1 transition-colors',
                 mode === 'dark'
                   ? 'border-dark-palette-line/20 hover:bg-white/10'
                   : 'border-dark-palette-line/20 text-dark-palette-backgroundAlternate hover:bg-white/10',
