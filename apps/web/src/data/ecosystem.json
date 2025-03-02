@@ -3998,5 +3998,13 @@
     "imageUrl": "/images/partners/unlockprotocol.png",
     "category": "infra",
     "subcategory": "consumer"
+  },
+  {
+    "name": "PopCraft",
+    "description": "PopCraft is the first fully on-chain casual elimination game, meticulously crafted with cross-application composability as its foundational principle. It represents the perfect fusion of financial innovation and gaming entertainment.",
+    "url": "https://popcraft.pixelaw.xyz/",
+    "imageUrl": "/images/partners/popcraft.png",
+    "category": "consumer",
+    "subcategory": "gaming"
   }
 ]
