@@ -1,5 +1,13 @@
 [
   {
+    "name": "Tatum",
+    "description": "Tatum is a blockchain development platform providing API, SDK, RPC nodes and infrastructure for building, scaling, and deploying Web3 applications with ease.",
+    "url": "https://tatum.io/",
+    "imageUrl": "/images/partners/tatum.png",
+    "category": "infra",
+    "subcategory": "developer tool"
+  },
+  {
     "name": "3DNS",
     "description": "3DNS is a decentralized domain name service (DNS) that can power real web domains. Users can import an existing domain or register a new one and bring the domain onchain via 3DNS.",
     "url": "https://3dns.box",
