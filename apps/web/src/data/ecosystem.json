@@ -3998,5 +3998,13 @@
     "imageUrl": "/images/partners/unlockprotocol.png",
     "category": "infra",
     "subcategory": "consumer"
-  }
+  },
+  {
+  "name": "TesseractX",
+  "description": "TesseractX is a next-gen, community-centric NFT marketplace revolutionizing digital ownership",
+  "url": "https://tesseractx.com",
+  "imageUrl": "/images/partners/tesseractx.png",
+  "category": "consumer",
+  "subcategory": "nft"
+}
 ]
