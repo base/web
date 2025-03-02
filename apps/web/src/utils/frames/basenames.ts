@@ -1,7 +1,3 @@
-import { createPublicClient, http } from 'viem';
-import type { TransactionReceipt } from 'viem';
-import type { Chain } from 'viem/chains';
-
 export enum RawErrorStrings {
   Unavailable = 'Name unavailable',
   TooShort = 'Name is too short',
@@ -9,19 +5,50 @@ export enum RawErrorStrings {
   DisallowedChars = 'disallowed character:',
   Invalid = 'Name is invalid',
   InvalidUnderscore = 'underscore allowed only at start',
+  TransactionFailed = 'Transaction failed or not found'
 }
 
-export async function getTransactionStatus(chain: Chain, transactionId: string) {
+export type TransactionStatus = 'success' | 'failure' | 'pending';
+
+export interface TransactionResult {
+  status: TransactionStatus;
+  receipt?: TransactionReceipt;
+  error?: string;
+}
+
+export async function getTransactionStatus(
+  chain: Chain, 
+  transactionId: Hash,
+  confirmations: number = 2
+): Promise<TransactionResult> {
   const client = createPublicClient({
-    chain: chain,
+    chain,
     transport: http(),
+    timeout: 15_000, // 15 seconds timeout
+    retryCount: 3,
+    retryDelay: 1000
   });
 
   try {
-    const tx: TransactionReceipt = await client.waitForTransactionReceipt({ hash: transactionId });
-    const txStatus = tx.status;
-    return txStatus;
+    const receipt = await client.waitForTransactionReceipt({ 
+      hash: transactionId,
+      confirmations,
+      onReplaced: (replacement) => {
+        console.warn('Transaction replaced:', replacement);
+      }
+    });
+
+    return {
+      status: receipt.status === 'success' ? 'success' : 'failure',
+      receipt
+    };
   } catch (error) {
-    console.error('Could not get transaction receipt:', error);
+    const errorMessage = error instanceof Error ? error.message : RawErrorStrings.TransactionFailed;
+    console.error(`Transaction error for hash ${transactionId}:`, errorMessage);
+    
+    return {
+      status: 'failure',
+      error: errorMessage
+    };
   }
 }

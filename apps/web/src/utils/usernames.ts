@@ -35,8 +35,7 @@ import { getBasenamePublicClient } from 'apps/web/src/hooks/useBasenameChain';
 import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
 import { logger } from 'apps/web/src/utils/logger';
 
-// Note: The animations provided by the studio team didn't match the number from our SVGs
-//       If we replace those, double check the animation avatar is the same shape as the SVG
+
 import animation1 from 'apps/web/src/components/Basenames/BasenameAvatar/animations/01.json';
 import animation2 from 'apps/web/src/components/Basenames/BasenameAvatar/animations/02.json';
 import animation3 from 'apps/web/src/components/Basenames/BasenameAvatar/animations/03.json';
