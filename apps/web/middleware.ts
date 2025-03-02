@@ -20,6 +20,26 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  if (url.pathname.startsWith('/jobs') && url.searchParams.has('gh_jid')) {
+    const params = url.searchParams;
+    const token = params.get('gh_jid');
+    const src = params.get('gh_src');
+    url.host = 'boards.greenhouse.io';
+    url.pathname = '/embed/job_app';
+
+    url.searchParams.set('for', 'basejobs');
+    if (token) {
+      url.searchParams.set('token', String(token));
+    }
+    if (src) {
+      url.searchParams.set('src', String(src));
+    }
+
+    url.port = '443';
+
+    return NextResponse.redirect(url);
+  }
+
   if (
     url.pathname === '/base-camp' ||
     url.pathname === '/base-learn' ||
@@ -49,7 +69,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/using-base') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/using-base';
+    url.pathname = '/chain/using-base';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -57,7 +77,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/network-information') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/network-information';
+    url.pathname = '/chain/network-information';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -65,7 +85,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/base-contracts') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/base-contracts';
+    url.pathname = '/chain/base-contracts';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -73,7 +93,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/fees') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/fees';
+    url.pathname = '/chain/fees';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -81,15 +101,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/differences') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/differences';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/differences') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/differences';
+    url.pathname = '/chain/differences-between-ethereum-and-base';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -97,7 +109,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/node-providers') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/node-providers';
+    url.pathname = '/chain/node-providers';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -105,7 +117,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/block-explorers') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/block-explorers';
+    url.pathname = '/chain/block-explorers';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -113,7 +125,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/network-faucets') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/network-faucets';
+    url.pathname = '/chain/network-faucets';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -121,7 +133,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/oracles') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/oracles';
+    url.pathname = '/chain/oracles';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -129,7 +141,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/data-indexers') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/data-indexers';
+    url.pathname = '/chain/data-indexers';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -137,7 +149,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/cross-chain') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/cross-chain';
+    url.pathname = '/chain/cross-chain';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -145,7 +157,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/account-abstraction') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/account-abstraction';
+    url.pathname = '/chain/account-abstraction';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -153,7 +165,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/nft-checkout') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/nft-checkout';
+    url.pathname = '/'; // TODO: add pathname
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -161,7 +173,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/onramps') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/onramps';
+    url.pathname = '/chain/onramps';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -169,31 +181,31 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/onboarding') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/onboarding';
+    url.pathname = '/'; // TODO: add pathname
     url.port = '443';
 
     return NextResponse.redirect(url);
   }
 
   if (url.pathname === '/tools/bridges') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/bridges';
+    url.host = 'bridge.base.org';
+    url.pathname = '/';
     url.port = '443';
 
     return NextResponse.redirect(url);
   }
 
   if (url.pathname === '/tools/bridges-testnet') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/bridges-testnet';
+    url.host = 'bridge.base.org';
+    url.pathname = '/';
     url.port = '443';
 
     return NextResponse.redirect(url);
   }
 
   if (url.pathname === '/tools/bridge-faq') {
-    url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/bridge-faq';
+    url.host = 'bridge.base.org';
+    url.pathname = '/';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -201,7 +213,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/foundry') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/foundry';
+    url.pathname = '/'; // TODO: add pathname
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -209,7 +221,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/hardhat') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/hardhat';
+    url.pathname = '/'; // TODO: add pathname
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -217,7 +229,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/thirdweb-cli') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/thirdweb-cli';
+    url.pathname = '/'; // TODO: add pathname
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -225,7 +237,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/ethers') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/ethers';
+    url.pathname = '/'; // TODO: add pathname
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -233,7 +245,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/thirdweb-sdk') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/thirdweb-sdk';
+    url.pathname = '/'; // TODO: add pathname
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -241,7 +253,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/viem') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/viem';
+    url.pathname = '/'; // TODO: add pathname
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -249,7 +261,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/web3') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tools/web3';
+    url.pathname = '/'; // TODO: add pathname
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -257,7 +269,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tokens/list') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tokens/list';
+    url.pathname = '/'; // TODO: add pathname
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -265,7 +277,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tokens/wallet') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/tokens/wallet';
+    url.pathname = '/'; // TODO: add pathname
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -273,7 +285,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/contracts') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/contracts';
+    url.pathname = '/chain/base-contracts';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -281,7 +293,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/security') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/security';
+    url.pathname = '/'; // TODO: add pathname
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -289,7 +301,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/terms-of-service') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/terms-of-service';
+    url.pathname = '/terms-of-service';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -297,7 +309,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/privacy-policy') {
     url.host = 'docs.base.org';
-    url.pathname = '/docs/privacy-policy';
+    url.pathname = '/privacy-policy';
     url.port = '443';
 
     return NextResponse.redirect(url);
