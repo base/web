@@ -55,7 +55,7 @@ function BridgeCard({ name, url, logo, color, team }: (typeof bridges)[0]) {
       >
         <Image src={logo} alt={name} className="mb-4" />
       </div>
-      <div className="flex w-full flex-row items-start justify-between bg-gray p-12 group-hover:bg-hovergray">
+      <div className="flex w-full flex-row items-start justify-between bg-gray p-12 group-hover:bg-hover-gray">
         <div className="flex flex-col">
           <h2 className="font-mono text-3xl uppercase">{name}</h2>
           <p className="mt-2 text-xl text-muted">By {team}</p>
