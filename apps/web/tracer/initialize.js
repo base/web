@@ -33,4 +33,4 @@ const initTracer = () => {
   return tracer;
 };
 
-tracer = initTracer();
+const tracer = initTracer();
