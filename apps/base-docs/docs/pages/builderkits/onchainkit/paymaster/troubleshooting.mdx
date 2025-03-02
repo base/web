@@ -54,8 +54,6 @@ You can use the `simulateHandleOp` function and pass that UserOperation in the `
       width="700"
       alt="Tenderly Entrypoint"
     />
-    <br />
-    <br />
   </div>
 </details>
 
@@ -81,23 +79,22 @@ The example below shows you how to debug your own smart contract.
 
 - `Insert any address` - Enter your smart contract's address here
 - `Enter raw input data` - Enter the `callData` of your contract's function (right after `callData = encodeFunctionData()`)
-  <details>
-    <summary>
-      <b>Expand for images and click to enlarge</b>
-    </summary>
-    <div>
-      <figcaption>
-        <i>Tenderly - Contract Debug</i>
-      </figcaption>{' '}
-      <img
-        src="/images/paymaster/pb-paymaster-tenderly-dev-debug.png"
-        width="700"
-        alt="Tenderly Debug"
-      />
-      <br />
-      <br />
-    </div>
-  </details>
+
+<details>
+  <summary>
+    <b>Expand for images and click to enlarge</b>
+  </summary>
+  <div>
+    <figcaption>
+      <i>Tenderly - Contract Debug</i>
+    </figcaption>{' '}
+    <img
+      src="/images/paymaster/pb-paymaster-tenderly-dev-debug.png"
+      width="700"
+      alt="Tenderly Debug"
+    />
+  </div>
+</details>
 
 ## Invalid chain id
 
@@ -116,8 +113,6 @@ You might be using the mainnet RPC url instead of the testnet RPC url (or vis ve
       width="700"
       alt="Paymaster Chain ID"
     />
-    <br />
-    <br />
   </div>
 </details>
 
@@ -128,4 +123,3 @@ UserOperation rejected because account signature check failed (or paymaster sign
 ```
 
 This likely means that you updated the UserOperation after getting a signature from our Paymaster service. Our Paymster signs the UserOperation with the UserOperation itself, so make sure you're not making any changes to the UserOperation after it's already been signed by our Paymaster `paymasterClient.getPaymasterData()`. If you need to adjust things like `callData`, `preVerificationGas`, or `callGasLimit`, you will need to receive a new signature from our Paymaster. Also if you're handling multiple UserOperation, make sure the paymaster signature matches the right UserOperation.
-

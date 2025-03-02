@@ -29,19 +29,19 @@ Below is a list of the exercises, with links to view their code. The unit tests 
 | [ERC-721 Tokens]         | [0x15534ED3d1dBA55148695B2Ba4164F147E47a10c] |
 
 [progress page]: https://docs.base.org/base-learn/progress
-[Deploying to a Testnet]: https://docs.base.org/base-learn/docs/deployment-to-testnet/deployment-to-testnet-exercise
-[Control Structures]: https://docs.base.org/base-learn/docs/control-structures/control-structures-exercise
-[Storage]: https://docs.base.org/base-learn/docs/storage/storage-exercise
-[Arrays]: https://docs.base.org/base-learn/docs/arrays/arrays-exercise
-[Mappings]: https://docs.base.org/base-learn/docs/mappings/mappings-exercise
-[Structs]: https://docs.base.org/base-learn/docs/structs/structs-exercise
-[Inheritance]: https://docs.base.org/base-learn/docs/inheritance/inheritance-exercise
-[Imports]: https://docs.base.org/base-learn/docs/imports/imports-exercise
-[Errors]: https://docs.base.org/base-learn/docs/error-triage/error-triage-exercise
-[The "new" Keyword]: https://docs.base.org/base-learn/docs/new-keyword/new-keyword-exercise
-[Minimal Tokens]: https://docs.base.org/base-learn/docs/minimal-tokens/minimal-tokens-exercise
-[ERC-20 Tokens]: https://docs.base.org/base-learn/docs/erc-20-token/erc-20-exercise
-[ERC-721 Tokens]: https://docs.base.org/base-learn/docs/erc-721-token/erc-721-exercise
+[Deploying to a Testnet]: https://docs.base.org/learn/deployment-to-testnet/deployment-to-testnet-exercise
+[Control Structures]: https://docs.base.org/learn/control-structures/control-structures-exercise
+[Storage]: https://docs.base.org/learn/storage/storage-exercise
+[Arrays]: https://docs.base.org/learn/arrays/arrays-exercise
+[Mappings]: https://docs.base.org/learn/mappings/mappings-exercise
+[Structs]: https://docs.base.org/learn/structs/structs-exercise
+[Inheritance]: https://docs.base.org/learn/inheritance/inheritance-exercise
+[Imports]: https://docs.base.org/learn/imports/imports-exercise
+[Errors]: https://docs.base.org/learn/error-triage/error-triage-exercise
+[The "new" Keyword]: https://docs.base.org/learn/new-keyword/new-keyword-exercise
+[Minimal Tokens]: https://docs.base.org/learn/minimal-tokens/minimal-tokens-exercise
+[ERC-20 Tokens]: https://docs.base.org/learn/erc-20-token/erc-20-exercise
+[ERC-721 Tokens]: https://docs.base.org/learn/erc-721-token/erc-721-exercise
 [0x075eB9Dc52177Aa3492E1D26f0fDE3d729625d2F]: https://sepolia.basescan.org/address/0x075eb9dc52177aa3492e1d26f0fde3d729625d2f#code#F16#L1
 [0xF4D953A3976F392aA5509612DEfF395983f22a84]: https://sepolia.basescan.org/address/0xf4d953a3976f392aa5509612deff395983f22a84#code#F17#L1
 [0x567452C6638c0D2D9778C20a3D59749FDCaa7aB3]: https://sepolia.basescan.org/address/0x567452c6638c0d2d9778c20a3d59749fdcaa7ab3#code#F17#L1

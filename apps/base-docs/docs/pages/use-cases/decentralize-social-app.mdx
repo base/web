@@ -15,36 +15,38 @@ import {
 import App from '@/components/App';
 import { base, mainnet } from 'viem/chains';
 
-# Onchain Social 
-Onchain social apps can use onchain identity, which allows users to carry a single, portable profile across many applications. By leveraging onchain identity, your app can instantly personalize the user experience as soon as a user connects their wallet. This creates a frictionless experience where users feel recognized immediately. This guide will walk you through how to integrate onchain identity into your social app. 
+# Onchain Social
 
+Onchain social apps can use onchain identity, which allows users to carry a single, portable profile across many applications. By leveraging onchain identity, your app can instantly personalize the user experience as soon as a user connects their wallet. This creates a frictionless experience where users feel recognized immediately. This guide will walk you through how to integrate onchain identity into your social app.
 
 ## Benefits
+
 - **Seamless Onboarding:** Eliminate tedious information collection from your onboarding flow.
 - **Instant Personalization:** Delight users by displaying their profile information the first time they open your app.
-- **Global Profiles:** Leverage the user's global profile instead of building your own profile management. If the user updates their Avatar anywhere, it automatically updates everywhere. 
-
+- **Global Profiles:** Leverage the user's global profile instead of building your own profile management. If the user updates their Avatar anywhere, it automatically updates everywhere.
 
 Onchain profiles are built with Basenames and ENS, services which wrap wallet addresses with profile information like names and avatars. Using the IdentityCard component from OnchainKit we can easily display a user’s Basename or ENS profile in our app.
 
-`<IdentityCard/>` will display the user's: 
+`<IdentityCard/>` will display the user's:
+
 - Name
 - Avatar
 - Socials
-- Verification Badge 
+- Verification Badge
 
-## Integrating `<IdentityCard/>` 
+## Integrating `<IdentityCard/>`
 
 :::steps
+
 ### Install and Configure OnchainKit
-   Creating a new OnchainKit app is the easiest way to get started. 
-   
-   ```bash [Terminal]
-   npm create onchain@latest
-   ```
 
-  Or you can integrate OnchainKit into an existing app by following the [installation guide](/builderkits/onchainkit/getting-started/#manual-installation).
+Creating a new OnchainKit app is the easiest way to get started.
 
+```bash [Terminal]
+npm create onchain@latest
+```
+
+Or you can integrate OnchainKit into an existing app by following the [installation guide](/builderkits/onchainkit/getting-started/#manual-installation).
 
 ### Add the IdentityCard component
 
@@ -53,17 +55,19 @@ Onchain profiles are built with Basenames and ENS, services which wrap wallet ad
 import { IdentityCard } from '@coinbase/onchainkit/identity'; // [!code focus]
 import { base } from 'viem/chains';
 
-<IdentityCard // [!code focus] 
+<IdentityCard // [!code focus]
   address="0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF" // [!code focus]
   chain={base} // [!code focus]
   schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
 /> // [!code focus]
 ```
+
 :::
 
-Just like that, you've added onchain identity into your app! Once a user connects a wallet with a Basename or ENS name, the IdentityCard component will display the user's profile information like you see below. 
+Just like that, you've added onchain identity into your app! Once a user connects a wallet with a Basename or ENS name, the IdentityCard component will display the user's profile information like you see below.
+
 <App>
-  <IdentityCard 
+  <IdentityCard
     schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
     address="0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF"
     chain={base}
@@ -71,12 +75,11 @@ Just like that, you've added onchain identity into your app! Once a user connect
   />
 </App>
 
-
 :::tip[Setting the address]
 In the above example, we hardcoded the address. In a real app, you'll dynamically set the address based on the user's connected wallet. [Use OnchainKit's `<Wallet/>` component to get the user's address](/builderkits/onchainkit/wallet/wallet).
 :::
 
-The IdentityCard component comes with helpful defaults, such as a plain avatar image, for users who don't have a Basename or ENS name. 
+The IdentityCard component comes with helpful defaults, such as a plain avatar image, for users who don't have a Basename or ENS name.
 
 ## Customization
 
@@ -96,17 +99,18 @@ import { mainnet } from 'viem/chains'; // [!code focus]
 >
 </OnchainKitProvider>
 
-<IdentityCard 
+<IdentityCard
   address="0x123..."
   chain={mainnet} // [!code focus]
   schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
 />
 
 ```
+
 In the above customization we updated the theme to the `cyberpunk` theme and defined the chain as `mainnet` to trigger ENS name resolution.
 
 <App>
-  <IdentityCard 
+  <IdentityCard
     schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
     address="0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF"
     chain={mainnet}
@@ -114,11 +118,14 @@ In the above customization we updated the theme to the `cyberpunk` theme and def
   />
 </App>
 
-## Next Steps 
-By using `<IdentityCard/>`, you’ve essentially given your app a “user profile” feature powered by onchain data. Users will have the magical experience of being welcomed by their profile as soon as they jump into your app without getting stuck in a laborious onboarding flow. 
+## Next Steps
+
+By using `<IdentityCard/>`, you've essentially given your app a “user profile” feature powered by onchain data. Users will have the magical experience of being welcomed by their profile as soon as they jump into your app without getting stuck in a laborious onboarding flow.
 
 ### Keep Building
-If you're building a social app, there are additional features you may want to explore: 
+
+If you're building a social app, there are additional features you may want to explore:
+
 - [`<NFTMintCard/>`](/builderkits/onchainkit/mint/nft-mint-card) - Allow users to mint NFTs directly from your app.
 - Social feed integration with [Farcaster](https://docs.farcaster.xyz/developers/) - Bring the farcaster feed directly into your app.
-- [`<Checkout/>`](/builderkits/onchainkit/checkout/checkout) - Allow users to checkout with onchain payments if your app offers products or services. 
+- [`<Checkout/>`](/builderkits/onchainkit/checkout/checkout) - Allow users to checkout with onchain payments if your app offers products or services.

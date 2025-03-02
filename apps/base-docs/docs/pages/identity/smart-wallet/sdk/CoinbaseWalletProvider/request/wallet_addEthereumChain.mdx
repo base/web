@@ -1,0 +1,45 @@
+# wallet_addEthereumChain
+
+Defined in [EIP-3085](https://eips.ethereum.org/EIPS/eip-3085)
+
+> Requests that the wallet adds the specified chain to the wallet.
+
+## Parameters
+
+`Array<AddEthereumChainParameter>`
+
+An array containing a single object with the following fields:
+
+| Field             | Type            | Description                                        |
+| ----------------- | --------------- | -------------------------------------------------- |
+| chainId           | string          | The chain ID as a 0x-prefixed hexadecimal string   |
+| chainName         | string          | The name of the chain to display to the user       |
+| nativeCurrency    | NativeCurrency  | Information about the chain's native currency      |
+| rpcUrls           | `Array<string>` | Array of RPC endpoint URLs for the chain           |
+| blockExplorerUrls | `Array<string>` | (Optional) Array of block explorer URLs            |
+| iconUrls          | `Array<string>` | (Optional) Array of icon URLs for the chain's icon |
+
+The `NativeCurrency` object should contain:
+
+| Field    | Type   | Description                                              |
+| -------- | ------ | -------------------------------------------------------- |
+| name     | string | The name of the native currency                          |
+| symbol   | string | The symbol of the native currency (2-6 characters)       |
+| decimals | number | The number of decimals of the native currency (e.g., 18) |
+
+## Returns
+
+`null`
+
+Returns null if the request was successful.
+
+## Errors
+
+| Code | Message                        |
+| ---- | ------------------------------ |
+| 4001 | User rejected the request      |
+| 4100 | Requested method not supported |
+| 4200 | Wallet not connected           |
+| 4300 | Invalid parameters             |
+| 4901 | Chain already added            |
+| 4902 | Chain couldn't be added        |

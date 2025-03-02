@@ -1,0 +1,55 @@
+# eth_accounts
+
+Defined in [EIP-1474](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1474.md)
+
+> Returns a list of addresses owned by the connected wallet. Unlike `eth_requestAccounts`, this method returns an empty array if no accounts are available or if the user has not authorized any accounts to the caller. This method does not prompt the user to approve connection.
+
+## Parameters
+
+None. This method does not accept any parameters.
+
+## Returns
+
+`Array<string>`
+
+An array of Ethereum addresses (hexadecimal strings), which the connected user controls. The array will typically contain a single address, which is the currently selected account in the wallet. If the wallet is not connected or no accounts are authorized, this method returns an empty array.
+
+## Example
+
+Request:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "eth_accounts",
+  "params": []
+}
+```
+
+Response:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": ["0xabc123..."]
+}
+```
+
+If no accounts are connected:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": []
+}
+```
+
+## Errors
+
+| Code | Message                        | Description                                             |
+| ---- | ------------------------------ | ------------------------------------------------------- |
+| 4100 | Requested method not supported | The provider does not support the `eth_accounts` method |
+| 4900 | Disconnected                   | The provider is disconnected from the wallet            |
