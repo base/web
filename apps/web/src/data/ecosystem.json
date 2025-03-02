@@ -3998,5 +3998,13 @@
     "imageUrl": "/images/partners/unlockprotocol.png",
     "category": "infra",
     "subcategory": "consumer"
+  },
+  {
+    "name": "Fashion.Fun",
+    "description": "A financial fashion platform which combines digital fashion drops from leading creators with the opportunity to win prizes",
+    "url": "https://www.fashion.fun",
+    "imageUrl": "/images/partners/fashion-fun.png",
+    "category": "consumer",
+    "subcategory": "nfts"
   }
 ]
