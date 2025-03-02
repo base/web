@@ -21,32 +21,33 @@ import SwapWrapper from '@/components/SwapWrapper';
 import { walletDropdownLinkCustomBaseIconSvg } from '@/components/svg/walletDropdownLinkCustomBaseIconSvg';
 
 # `SwapSettings`
-The `SwapSettings` component enables customizable slippage configuration in the `Swap` component. 
 
-## Usage 
+The `SwapSettings` component enables customizable slippage configuration in the `Swap` component.
 
-```tsx twoslash 
-// omitted for brevity  
+## Usage
+
+```tsx twoslash
+// omitted for brevity
 import {
   Swap,
-  SwapSettings, // [!code focus]
-  SwapSettingsSlippageDescription, // [!code focus]
-  SwapSettingsSlippageInput, // [!code focus]
-  SwapSettingsSlippageTitle, // [!code focus]
+  SwapSettings,
+  SwapSettingsSlippageDescription,
+  SwapSettingsSlippageInput,
+  SwapSettingsSlippageTitle,
 } from '@coinbase/onchainkit/swap';
 
-<Swap> 
-  <SwapSettings>// [!code focus]
-    <SwapSettingsSlippageTitle>// [!code focus]
-      Max. slippage// [!code focus]
-    </SwapSettingsSlippageTitle>// [!code focus]
-    <SwapSettingsSlippageDescription>// [!code focus]
-      Your swap will revert if the prices change by more than the selected// [!code focus]
-      percentage.// [!code focus]
-    </SwapSettingsSlippageDescription>// [!code focus]
-    <SwapSettingsSlippageInput />// [!code focus]
-  </SwapSettings>// [!code focus]
-</Swap> 
+<Swap>
+  <SwapSettings>
+    <SwapSettingsSlippageTitle>
+      Max. slippage
+    </SwapSettingsSlippageTitle>
+    <SwapSettingsSlippageDescription>
+      Your swap will revert if the prices change by more than the selected
+      percentage.
+    </SwapSettingsSlippageDescription>
+    <SwapSettingsSlippageInput />
+  </SwapSettings>
+</Swap>
 ```
 
 <App>
@@ -97,7 +98,7 @@ import {
 
 You can override component styles using `className`.
 
-```tsx twoslash 
+```tsx twoslash
 import {
   Swap,
   SwapSettings,
@@ -106,19 +107,19 @@ import {
   SwapSettingsSlippageTitle,
 } from '@coinbase/onchainkit/swap';
 // ---cut-before---
-// omitted for brevity  
-<Swap> 
+// omitted for brevity
+<Swap>
   <SwapSettings>
-    <SwapSettingsSlippageTitle className="text-[#EA580C]">// [!code focus]
+    <SwapSettingsSlippageTitle className="text-[#EA580C]">
       Max. slippage
     </SwapSettingsSlippageTitle>
-    <SwapSettingsSlippageDescription className="text-[#EA580C]">// [!code focus]
+    <SwapSettingsSlippageDescription className="text-[#EA580C]">
       Your swap will revert if the prices change by more than the selected
       percentage.
     </SwapSettingsSlippageDescription>
     <SwapSettingsSlippageInput/>
   </SwapSettings>
-</Swap> 
+</Swap>
 ```
 
 <App>
@@ -166,9 +167,10 @@ import {
 </App>
 
 ### Override icon
+
 You can override the icon using the icon prop.
 
-```tsx twoslash 
+```tsx twoslash
 // suppress twoslash error
 declare const baseIcon: any;
 
@@ -180,8 +182,8 @@ import {
   SwapSettingsSlippageTitle,
 } from '@coinbase/onchainkit/swap';
 // ---cut-before---
-// omitted for brevity  
-<SwapSettings icon={baseIcon}>// [!code focus]
+// omitted for brevity
+<SwapSettings icon={baseIcon}>
 // ---cut-after---
 </SwapSettings>
 ```
@@ -231,9 +233,10 @@ import {
 </App>
 
 ### Add text
+
 You can add text next to the `SwapSettings` component using text.
 
-```tsx twoslash 
+```tsx twoslash
 import {
   Swap,
   SwapSettings,
@@ -242,8 +245,8 @@ import {
   SwapSettingsSlippageTitle,
 } from '@coinbase/onchainkit/swap';
 // ---cut-before---
-// omitted for brevity  
-<SwapSettings text="Settings">// [!code focus]
+// omitted for brevity
+<SwapSettings text="Settings">
 // ---cut-after---
 </SwapSettings>
 ```
@@ -293,9 +296,10 @@ import {
 </App>
 
 ### Override text
+
 You can override component text by providing children text.
 
-```tsx twoslash 
+```tsx twoslash
 import {
   Swap,
   SwapSettings,
@@ -303,18 +307,18 @@ import {
   SwapSettingsSlippageInput,
   SwapSettingsSlippageTitle,
 } from '@coinbase/onchainkit/swap';
-<Swap>  
+<Swap>
 // ---cut-before---
-// omitted for brevity  
+// omitted for brevity
 
 <SwapSettingsSlippageTitle>
-  Slippage Settings// [!code focus]
+  Slippage Settings
 </SwapSettingsSlippageTitle>
 <SwapSettingsSlippageDescription>
-  Set a max slippage you are willing to accept.// [!code focus]
+  Set a max slippage you are willing to accept.
 </SwapSettingsSlippageDescription>
 // ---cut-after---
-</Swap> 
+</Swap>
 ```
 
 <App>
@@ -369,8 +373,7 @@ import {
 
 ## Props
 
-- [`SwapSettingsReact`](types#swapsettingsreact)
-- [`SwapSettingsSlippageDescriptionReact`](types#swapsettingsslippagedescriptionreact)
-- [`SwapSettingsSlippageInputReact`](types#swapsettingsslippageinputreact)
-- [`SwapSettingsSlippageTitleReact`](types#swapsettingsslippagetitlereact)
-
+- [`SwapSettingsReact`](/builderkits/onchainkit/swap/types#swapsettingsreact)
+- [`SwapSettingsSlippageDescriptionReact`](/builderkits/onchainkit/swap/types#swapsettingsslippagedescriptionreact)
+- [`SwapSettingsSlippageInputReact`](/builderkits/onchainkit/swap/types#swapsettingsslippageinputreact)
+- [`SwapSettingsSlippageTitleReact`](/builderkits/onchainkit/swap/types#swapsettingsslippagetitlereact)
