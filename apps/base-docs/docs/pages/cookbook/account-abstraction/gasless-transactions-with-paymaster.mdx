@@ -10,16 +10,12 @@ Base transaction fees are typically less than a penny, but the concept of gas ca
 
 > **Note:** If you need an increase in your sponsorship limit, please [reach out on Discord][Discord]!
 
-
-
 ## Objectives
 
-1. Configure security measures to ensure safe and reliable transactions.  
-2. Manage and allocate resources for sponsored transactions.  
-3. Subsidize transaction fees for users, enhancing the user experience by making transactions free.  
+1. Configure security measures to ensure safe and reliable transactions.
+2. Manage and allocate resources for sponsored transactions.
+3. Subsidize transaction fees for users, enhancing the user experience by making transactions free.
 4. Set up and manage sponsored transactions on various schedules, including weekly, monthly, and daily cadences.
-
-
 
 ## Prerequisites
 
@@ -37,13 +33,11 @@ This tutorial assumes you have:
 > **Testnet vs. Mainnet**  
 > If you prefer not to spend real funds, you can switch to **Base Goerli** (testnet). The steps below are conceptually the same. Just select _Base Goerli_ in the Coinbase Developer Platform instead of _Base Mainnet_, and use a contract deployed on Base testnet for your allowlisted methods.
 
-
-
 ## Set Up a Base Paymaster & Bundler
 
 In this section, you will configure a Paymaster to sponsor payments on behalf of a specific smart contract for a specified amount.
 
-1. **Navigate to the [Coinbase Developer Platform].**  
+1. **Navigate to the [Coinbase Developer Platform].**
 2. Create or select your project from the upper left corner of the screen.
 3. Click on the **Paymaster** tool from the left navigation.
 4. Go to the **Configuration** tab and copy the **RPC URL** to your clipboard — you’ll need this shortly in your code.
@@ -59,8 +53,6 @@ In this section, you will configure a Paymaster to sponsor payments on behalf of
 - **Configuration screen**  
   ![cdp-paymaster-tool.png](/images/gasless-transaction-on-base/cdp-config.png)
 
- 
-
 ### Allowlist a Sponsorable Contract
 
 1. From the Configuration page, ensure **Base Mainnet** (or **Base Goerli** if you’re testing) is selected.
@@ -73,17 +65,16 @@ In this section, you will configure a Paymaster to sponsor payments on behalf of
 > **Use your own contract**  
 > We use a [simple NFT contract][simple NFT contract] on Base mainnet as an example. Feel free to substitute your own.
 
- 
-
 ### Global & Per User Limits
 
 Scroll down to the **Per User Limit** section. You can set:
 
-- **Dollar amount limit** or **number of UserOperations** per user  
+- **Dollar amount limit** or **number of UserOperations** per user
 - **Limit cycles** that reset daily, weekly, or monthly
 
 For example, you might set:
-- `max USD` to `$0.05`  
+
+- `max USD` to `$0.05`
 - `max UserOperation` to `1`
 
 This means **each user** can only have \$0.05 in sponsored gas and **1** user operation before the cycle resets.
@@ -94,8 +85,6 @@ This means **each user** can only have \$0.05 in sponsored gas and **1** user op
 Next, **Set the Global Limit**. For example, set this to `$0.07` so that once the entire paymaster has sponsored \$0.07 worth of gas (across all users), no more sponsorship occurs unless you raise the limit.
 
 ![cdp-global-user-limits.png](/images/gasless-transaction-on-base/cdp-global-user-limits.png)
-
- 
 
 ## Test Your Paymaster Policy
 
@@ -121,8 +110,6 @@ Now let’s verify that these policies work. We’ll:
    cast --help
    ```
    If you see Foundry usage info, you’re good to go!
-
- 
 
 ### Create Your Project & Generate Key Pairs
 
@@ -160,7 +147,6 @@ PRIVATE_KEY_2=0xbcd6fbc1dfa3c9...
 
 > **Security**  
 > **Never** commit `.env` files to a public repo!
-
 
 ## Example `index.js` (Using Twoslash)
 
@@ -281,21 +267,23 @@ async function sendTransaction(client, recipientAddress) {
 })();
 ```
 
-> **Note**:  
-> - Run this via `node index.js` from your project root.  
+> **Note**:
+>
+> - Run this via `node index.js` from your project root.
 > - If your Paymaster settings are strict (e.g., limit 1 transaction per user), the second time you run the script, you may get a “request denied” error, indicating the policy is working.
-
 
 ## Hitting Policy Limits & Troubleshooting
 
 1. **Per-User Limit**  
    If you see an error like:
+
    ```json
    {
      "code": -32001,
      "message": "request denied - rejected due to maximum per address transaction count reached"
    }
    ```
+
    That means you’ve hit your **UserOperation** limit for a single account. Return to the [Coinbase Developer Platform] UI to adjust the policy.
 
 2. **Global Limit**  
@@ -307,7 +295,6 @@ async function sendTransaction(client, recipientAddress) {
    }
    ```
    You’ve hit the **global** limit of sponsored gas. Increase it in the CDP dashboard and wait a few minutes for changes to take effect.
-
 
 ## Verifying Token Ownership (Optional)
 
@@ -328,44 +315,43 @@ async function checkNftBalance(publicClient, contractAddress, abi, ownerAddress)
 }
 ```
 
-
 ## Conclusion
 
 In this tutorial, you:
 
-- Set up and **configured** a Base Paymaster on the Coinbase Developer Platform.  
-- **Allowlisted** a contract and specific function (`mintTo`) for sponsorship.  
-- Established **per-user** and **global** sponsorship **limits** to control costs.  
+- Set up and **configured** a Base Paymaster on the Coinbase Developer Platform.
+- **Allowlisted** a contract and specific function (`mintTo`) for sponsorship.
+- Established **per-user** and **global** sponsorship **limits** to control costs.
 - Demonstrated the **sponsorship flow** with Smart Accounts using `permissionless`, `viem`, and Foundry-generated private keys.
 
 This approach can greatly improve your dApp’s user experience by removing gas friction. For more complex sponsorship schemes (like daily or weekly cycles), simply tweak your per-user and global limit settings in the Coinbase Developer Platform.
 
-> **Next Steps**  
-> - Use a [proxy service][proxy service] for better endpoint security.  
-> - Deploy your own contracts and allowlist them.  
+> **Next Steps**
+>
+> - Use a [proxy service][proxy service] for better endpoint security.
+> - Deploy your own contracts and allowlist them.
 > - Experiment with bundling multiple calls into a single sponsored transaction.
-
 
 ## References
 
-- [list of factory addresses]  
-- [Discord]  
-- [CDP site]  
-- [Coinbase Developer Platform]  
-- [UI]  
-- [proxy service]  
-- [Paymaster Tool]  
-- [Foundry Book installation guide]  
+- [list of factory addresses]
+- [Discord]
+- [CDP site]
+- [Coinbase Developer Platform]
+- [UI]
+- [proxy service]
+- [Paymaster Tool]
+- [Foundry Book installation guide]
 - [simple NFT contract]
 
-[list of factory addresses]: https://docs.alchemy.com/reference/factory-addresses  
-[Discord]: https://discord.gg/AaAcm4UW  
-[CDP site]: https://portal.cdp.coinbase.com/  
-[Coinbase Developer Platform]: https://portal.cdp.coinbase.com/  
-[UI]: https://portal.cdp.coinbase.com/products/bundler-and-paymaster  
-[proxy service]: https://www.smartwallet.dev/guides/paymasters  
-[Paymaster Tool]: https://portal.cdp.coinbase.com/products/bundler-and-paymaster  
-[Foundry Book installation guide]: https://book.getfoundry.sh/getting-started/installation  
-[simple NFT contract]: https://basescan.org/token/0x83bd615eb93ee1336aca53e185b03b54ff4a17e8  
+[list of factory addresses]: https://docs.alchemy.com/reference/factory-addresses
+[Discord]: https://discord.com/invite/cdp
+[CDP site]: https://portal.cdp.coinbase.com/
+[Coinbase Developer Platform]: https://portal.cdp.coinbase.com/
+[UI]: https://portal.cdp.coinbase.com/products/bundler-and-paymaster
+[proxy service]: https://www.smartwallet.dev/guides/paymasters
+[Paymaster Tool]: https://portal.cdp.coinbase.com/products/bundler-and-paymaster
+[Foundry Book installation guide]: https://book.getfoundry.sh/getting-started/installation
+[simple NFT contract]: https://basescan.org/token/0x83bd615eb93ee1336aca53e185b03b54ff4a17e8
 
 **Happy Building on Base!**
