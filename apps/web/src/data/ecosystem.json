@@ -3998,5 +3998,13 @@
     "imageUrl": "/images/partners/unlockprotocol.png",
     "category": "infra",
     "subcategory": "consumer"
+  },
+  {
+    "name": "Zerolend",
+    "description": "ZeroLend is a decentralized lending protocol built on blockchain technology, designed to provide individuals and businesses with a secure and transparent platform for borrowing and lending digital assets",
+    "url": "https://one.zerolend.xyz/",
+    "imageUrl": "/images/partners/zerolend.png",
+    "category": "Defi ",
+    "subcategory": "Lending"
   }
 ]
