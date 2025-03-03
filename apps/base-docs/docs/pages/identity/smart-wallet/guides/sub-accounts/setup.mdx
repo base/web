@@ -22,7 +22,7 @@ Note: if you want to skip ahead and just get the final code, you can find it [he
 
 We'll be using NextJS to bootstrap this project, but you can adapt these concepts to any frontend framework of your choice.
 
-First, create a new NextJS project:
+First, create a new NextJS project and select all the default options when prompted:
 
 ```bash
 npx create-next-app@latest my-app
@@ -178,7 +178,8 @@ Create a providers file to wrap your application:
 // app/providers.tsx
 
 'use client';
-import { CoinbaseWalletProvider } from '@/context/CoinbaseWalletContext';
+import { CoinbaseWalletProvider } from '@/app/context/CoinbaseWalletContext';
+import { ReactNode } from 'react';
 
 export default function Providers({ children }: { children: ReactNode }) {
   return <CoinbaseWalletProvider>{children}</CoinbaseWalletProvider>;
@@ -191,8 +192,8 @@ Update your root layout to include the providers:
 
 ```tsx
 // app/layout.tsx
-
 import Providers from '@/app/providers';
+import { ReactNode } from 'react';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

@@ -27,13 +27,14 @@ connection step.
 ```tsx {75,78}
 // app/context/CoinbaseWalletContext.tsx
 
-// import toHex from viem
+// import toHex and parseEtherfrom viem
 import {
   // ...other imports
   toHex,
+  parseEther,
 } from 'viem';
 
-// Add a new type to make working with spend permissions easier
+// Add a new type to the file to make working with spend permissions easier
 
 export type SpendPermission = {
   account: Address;
@@ -47,12 +48,26 @@ export type SpendPermission = {
   extraData: string;
 };
 
+// update the CoinbaseWalletContextType interface to include the spend permission data
+interface CoinbaseWalletContextType {
+    // ... existing types
+  spendPermission: SpendPermission | null;
+  spendPermissionSignature: `0x${string}` | null;
+}
+
+// update the Context defaults to include the spend permission data
+const CoinbaseWalletContext = createContext<CoinbaseWalletContextType>({
+  // ... existing defaults
+  spendPermission: null,
+  spendPermissionSignature: null,
+});
+
+// ... existing imports
 // Add new state to track our spend permission data
 const [spendPermission, setSpendPermission] = useState<SpendPermission | null>(null);
-const [spendPermissionSignature, setSpendPermissionSignature] = useState<`0x${string}` | null>(
-  null,
-);
+const [spendPermissionSignature, setSpendPermissionSignature] = useState<`0x${string}` | null>(null);
 
+// Update the createSubAccount function to include the spend permission data
 // This will create a spend permission of 0.0001 ETH for the sub account during sub account creation and store it in the context.
 const createSubAccount = useCallback(async () => {
   if (!provider || !address) {
@@ -112,19 +127,11 @@ const createSubAccount = useCallback(async () => {
   return subAccount;
 }, [provider, address, setSpendPermission, setSpendPermissionSignature]);
 
-// export these values to be used in our app
-
+// update the provider to return the spend permission data and signature
 return (
   <CoinbaseWalletContext.Provider
     value={{
-      provider,
-      connect,
-      disconnect,
-      isConnected,
-      address,
-      subAccount,
-      createSubAccount,
-      subAccountWalletClient,
+      // ... existing values
       spendPermission,
       spendPermissionSignature,
     }}
