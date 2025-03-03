@@ -3998,5 +3998,13 @@
     "imageUrl": "/images/partners/unlockprotocol.png",
     "category": "infra",
     "subcategory": "consumer"
+  },
+  {
+    "name": "TYMIO",
+    "description": "Ecosystem of crypto investor apps for yield and protection.",
+    "url": "https://tymio.com/",
+    "imageUrl": "/images/partners/TYMIO.png",
+    "category": "defi",
+    "subcategory": "liquidity management"
   }
 ]
