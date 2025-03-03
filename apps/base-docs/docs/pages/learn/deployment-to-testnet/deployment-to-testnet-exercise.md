@@ -21,7 +21,7 @@ Stay tuned for updates!
 
 #### Hey, where'd my NFT go!?
 
-[Testnets](../deployment-to-testnet/test-networks) are not permanent! Base Goerli [will soon be sunset](https://base.mirror.xyz/kkz1-KFdUwl0n23PdyBRtnFewvO48_m-fZNzPMJehM4), in favor of Base Sepolia.
+[Testnets](https://docs.base.org/learn/deployment-to-testnet/test-networks) are not permanent! Base Goerli [will soon be sunset](https://base.mirror.xyz/kkz1-KFdUwl0n23PdyBRtnFewvO48_m-fZNzPMJehM4), in favor of Base Sepolia.
 
 As these are separate networks with separate data, your NFTs **will not** transfer over.
 
@@ -35,4 +35,4 @@ import CafeUnitTest from '../../../src/components/CafeUnitTest/index.jsx'
 
 ---
 
-[basic math]: ../contracts-and-basic-functions/basic-functions-exercise
+[basic math]: https://docs.base.org/learn/contracts-and-basic-functions/basic-functions-exercise
