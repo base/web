@@ -95,7 +95,7 @@ const links: TopNavigationLink[] = [
       {
         name: 'Bug bounty',
         description: '',
-        href: 'https://hackerone.com/base',
+        href: 'https://hackerone.com/coinbase',
       },
       {
         name: 'BaseScan',

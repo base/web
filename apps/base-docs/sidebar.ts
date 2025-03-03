@@ -646,10 +646,6 @@ export const sidebar: Sidebar = [
             text: 'SDK',
             items: [
               {
-                text: 'createCoinbaseWalletSDK',
-                link: '/identity/smart-wallet/sdk/create-coinbase-wallet-sdk',
-              },
-              {
                 text: 'Install',
                 link: '/identity/smart-wallet/sdk/install',
               },
@@ -681,28 +677,12 @@ export const sidebar: Sidebar = [
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/overview',
                       },
                       {
-                        text: 'eth_sendTransaction',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_sendTransaction',
-                      },
-                      {
-                        text: 'eth_signTypedData_v4',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_signTypedData_v4',
-                      },
-                      {
-                        text: 'personal_sign',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/personal_sign',
-                      },
-                      {
-                        text: 'wallet_addEthereumChain',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_addEthereumChain',
-                      },
-                      {
-                        text: 'wallet_watchAsset',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_watchAsset',
-                      },
-                      {
                         text: 'eth_accounts',
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_accounts',
+                      },
+                      {
+                        text: 'eth_blockNumber',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_blockNumber',
                       },
                       {
                         text: 'eth_chainId',
@@ -711,18 +691,6 @@ export const sidebar: Sidebar = [
                       {
                         text: 'eth_coinbase',
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_coinbase',
-                      },
-                      {
-                        text: 'eth_requestAccounts',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_requestAccounts',
-                      },
-                      {
-                        text: 'wallet_switchEthereumChain',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_switchEthereumChain',
-                      },
-                      {
-                        text: 'eth_blockNumber',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_blockNumber',
                       },
                       {
                         text: 'eth_estimateGas',
@@ -801,8 +769,44 @@ export const sidebar: Sidebar = [
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getUncleCountByBlockNumber',
                       },
                       {
+                        text: 'eth_requestAccounts',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_requestAccounts',
+                      },
+                      {
                         text: 'eth_sendRawTransaction',
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_sendRawTransaction',
+                      },
+                      {
+                        text: 'eth_sendTransaction',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_sendTransaction',
+                      },
+                      {
+                        text: 'eth_signTypedData_v4',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_signTypedData_v4',
+                      },
+                      {
+                        text: 'personal_sign',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/personal_sign',
+                      },
+                      {
+                        text: 'wallet_addEthereumChain',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_addEthereumChain',
+                      },
+                      {
+                        text: 'wallet_addSubAccount',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_addSubAccount',
+                      },
+                      {
+                        text: 'wallet_connect',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_connect',
+                      },
+                      {
+                        text: 'wallet_switchEthereumChain',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_switchEthereumChain',
+                      },
+                      {
+                        text: 'wallet_watchAsset',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_watchAsset',
                       },
                       {
                         text: 'web3_clientVersion',

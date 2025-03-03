@@ -20,8 +20,10 @@ First, we need to update our context to include a wallet client specifically for
 
 ```tsx
 // app/context/CoinbaseWalletContext.tsx
-import { createCoinbaseWalletSDK, getCryptoKeyAccount } from '@coinbase/wallet-sdk';
-import { WalletClient, createPublicClient, http } from 'viem';
+
+// update the following imports
+import { createCoinbaseWalletSDK, ProviderInterface, getCryptoKeyAccount } from '@coinbase/wallet-sdk';
+import { WalletClient, createPublicClient, http, Address, createWalletClient, custom } from 'viem';
 import { WebAuthnAccount, toCoinbaseSmartAccount } from 'viem/account-abstraction';
 import { baseSepolia } from 'viem/chains';
 
@@ -42,6 +44,8 @@ export function CoinbaseWalletProvider({ children }: { children: ReactNode }) {
   // ... existing state
   const [subAccountWalletClient, setSubAccountWalletClient] = useState<WalletClient | null>(null);
 
+  // ... existing functions
+
   // Add public client for account creation
   const publicClient = useMemo(
     () =>
@@ -52,7 +56,7 @@ export function CoinbaseWalletProvider({ children }: { children: ReactNode }) {
     [],
   );
 
-  // Initialize Sub Account client when Sub Account is created
+  // Add a new useEffect to initialize a Sub Account wallet client when Sub Account is created
   useEffect(() => {
     async function initializeSubAccountClient() {
       if (!subAccount || !provider || !publicClient) {
@@ -116,6 +120,8 @@ Let's implement message signing with the Sub Account. Update your page.tsx:
 'use client';
 import { useState, useCallback } from 'react';
 import { useCoinbaseWallet } from './context/CoinbaseWalletContext';
+import { baseSepolia } from 'viem/chains';
+
 
 export default function Home() {
   const {
@@ -173,6 +179,8 @@ export default function Home() {
 Now let's implement transaction sending with gas sponsorship. To get a paymaster URL, sign up on [Coinbase Developer Platform](https://www.coinbase.com/developer-platform/products/paymaster) to get access
 to the free Base Sepolia testnet paymaster.
 
+**Replace `YOUR_PAYMASTER_URL` with the paymaster URL you received from the Coinbase Developer Platform.**
+
 Add this to your page.tsx:
 
 ```tsx
@@ -213,12 +221,19 @@ export default function Home() {
     return txHash;
   }, [provider, subAccount]);
 
-  return (
+  // ... existing render logic
+   // update the return statement to include the new UI elements
+    return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      {/* ... existing UI */}
+      <p>Connected address: {address}</p>
+
+      {!subAccount && <button onClick={createSubAccount}>Create Sub Account</button>}
+
       {subAccount && (
         <div>
-          {/* ... existing Sub Account UI */}
+          <p>Sub Account address: {subAccount}</p>
+          <button onClick={signMessage}>Sign Message</button>
+          {signature && <div style={{ overflowWrap: 'break-word' }}>Signature: {signature}</div>}
           <button onClick={sendTransaction}>Send Transaction</button>
           {txHash && (
             <div style={{ overflowWrap: 'break-word' }}>
@@ -234,6 +249,8 @@ export default function Home() {
           )}
         </div>
       )}
+
+      <button onClick={disconnect}>Disconnect Wallet</button>
     </div>
   );
 }
