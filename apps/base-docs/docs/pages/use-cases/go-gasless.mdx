@@ -16,16 +16,12 @@ Base transaction fees are typically less than a penny, but the concept of gas ca
 If you need an increase in your sponsorship limit, please [reach out on Discord][Discord]!
 :::
 
-
-
 ## Objectives
 
 1. Configure security measures to ensure safe and reliable transactions.
 2. Manage and allocate resources for sponsored transactions.
 3. Subsidize transaction fees for users, enhancing the user experience by making transactions free.
 4. Set up and manage sponsored transactions on various schedules, including weekly, monthly, and daily cadences.
-
-
 
 ## Prerequisites
 
@@ -44,8 +40,6 @@ This tutorial assumes you have:
 **Testnet vs. Mainnet**  
 If you prefer not to spend real funds, you can switch to **Base Sepolia** (testnet). The steps below are conceptually the same. Just select _Base Sepolia_ in the Coinbase Developer Platform instead of _Base Mainnet_, and use a contract deployed on Base testnet for your allowlisted methods.
 :::
-
-
 
 ## Set Up a Base Paymaster & Bundler
 
@@ -67,8 +61,6 @@ In this section, you will configure a Paymaster to sponsor payments on behalf of
 - **Configuration screen**  
   ![cdp-paymaster-tool.png](/images/gasless-transaction-on-base/cdp-config.png)
 
-
-
 ### Allowlist a Sponsorable Contract
 
 1. From the Configuration page, ensure **Base Mainnet** (or **Base Sepolia** if you’re testing) is selected.
@@ -82,8 +74,6 @@ In this section, you will configure a Paymaster to sponsor payments on behalf of
 **Use your own contract**  
  We use a [simple NFT contract][simple NFT contract] on Base mainnet as an example. Feel free to substitute your own.
 :::
-
-
 
 ### Global & Per User Limits
 
@@ -107,8 +97,6 @@ These reset based on the selected cadence (daily, weekly, monthly).
 Next, **set the Global Limit**. For example, set this to `$0.07` so that once the entire paymaster has sponsored \$0.07 worth of gas (across all users), no more sponsorship occurs unless you raise the limit.
 
 ![cdp-global-user-limits.png](/images/gasless-transaction-on-base/cdp-global-user-limits.png)
-
-
 
 ## Test Your Paymaster Policy
 
@@ -134,8 +122,6 @@ Now let’s verify that these policies work. We’ll:
    cast --help
    ```
    If you see Foundry usage info, you’re good to go!
-
-
 
 ### Create Your Project & Generate Key Pairs
 
@@ -184,8 +170,6 @@ PRIVATE_KEY_2=0xbcd6fbc1dfa3c9...
 :::danger
 Never commit `.env` files to a public repo!
 :::
-
-
 
 ## Example `index.js`
 
@@ -316,8 +300,6 @@ You should see a "Transaction successfully sponsored" output.
 
 To confirm that your spend policies are correctly in place, try running the script again. If your Paymaster settings are strict (e.g., limit 1 transaction per user), the second time you run the script, you may get a “request denied” error, indicating the policy is working.
 
-
-
 ## Hitting Policy Limits & Troubleshooting
 
 1. **Per-User Limit**  
@@ -342,8 +324,6 @@ To confirm that your spend policies are correctly in place, try running the scri
    ```
    You’ve hit the **global** limit of sponsored gas. Increase it in the CDP dashboard and wait a few minutes for changes to take effect.
 
-
-
 ## Verifying Token Ownership (Optional)
 
 Want to confirm the token actually minted? You can read the NFT’s `balanceOf` function:
@@ -363,8 +343,6 @@ async function checkNftBalance(publicClient, contractAddress, abi, ownerAddress)
 }
 ```
 
-
-
 ## Conclusion
 
 In this tutorial, you:
@@ -381,8 +359,6 @@ This approach can greatly improve your dApp’s user experience by removing gas 
 > - Use a [proxy service][proxy service] for better endpoint security.
 > - Deploy your own contracts and allowlist them.
 > - Experiment with bundling multiple calls into a single sponsored transaction.
-
-
 
 ## References
 
