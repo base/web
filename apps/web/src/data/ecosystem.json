@@ -3998,5 +3998,13 @@
     "imageUrl": "/images/partners/unlockprotocol.png",
     "category": "infra",
     "subcategory": "consumer"
-  }
+  },
+    {
+  "name": "Rampz",
+  "description": "A Decentralize Peer-to-Peer Platform for on-ramping and off-ramping",
+  "url": "https://rampz.io",
+  "imageUrl": "/images/partners/Rampz-logo.png",
+  "category": "onramp",
+  "subcategory": "fiat on-ramp"
+}
 ]
