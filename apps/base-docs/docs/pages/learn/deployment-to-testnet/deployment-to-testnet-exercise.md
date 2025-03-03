@@ -35,4 +35,4 @@ import CafeUnitTest from '../../../src/components/CafeUnitTest/index.jsx'
 
 ---
 
-[basic math]: https://docs.base.org/learn/contracts-and-basic-functions/basic-functions-exercise
+[basic math]: /learn/contracts-and-basic-functions/basic-functions-exercise
