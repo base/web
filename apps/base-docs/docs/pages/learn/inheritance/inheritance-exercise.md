@@ -104,7 +104,7 @@ contract InheritanceSubmission {
 
 #### Hey, where'd my NFT go!?
 
-[Testnets](https://docs.base.org/learn/deployment-to-testnet/test-networks) are not permanent! Base Goerli [will soon be sunset](https://base.mirror.xyz/kkz1-KFdUwl0n23PdyBRtnFewvO48_m-fZNzPMJehM4), in favor of Base Sepolia.
+[Testnets](/learn/deployment-to-testnet/test-networks) are not permanent! Base Goerli [will soon be sunset](https://base.mirror.xyz/kkz1-KFdUwl0n23PdyBRtnFewvO48_m-fZNzPMJehM4), in favor of Base Sepolia.
 
 As these are separate networks with separate data, your NFTs **will not** transfer over.
 
