@@ -1,5 +1,13 @@
 [
   {
+    "name": "Mybucks.online",
+    "description": "Mybucks.online is a password-only, self-custodial and browser-based crypto wallet. It generates a private key from a password using an industry-standard, verified one-way hash function.",
+    "url": "https://mybucks.online",
+    "imageUrl": "/images/partners/mybucks-online.png",
+    "category": "wallet",
+    "subcategory": "self-custody"
+  },
+  {
     "name": "3DNS",
     "description": "3DNS is a decentralized domain name service (DNS) that can power real web domains. Users can import an existing domain or register a new one and bring the domain onchain via 3DNS.",
     "url": "https://3dns.box",
