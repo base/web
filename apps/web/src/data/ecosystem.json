@@ -80,6 +80,14 @@
     "imageUrl": "/images/partners/anzen.png"
   },
   {
+    "name": "MXNe",
+    "url": "https://brale.xyz/stablecoins/MXNe",
+    "description": "MXNe is a Mexican pesos-backed stablecoin issued by Brale in partnership with Etherfuse to grow onchain finance in Mexico.",
+    "category": "defi",
+    "subcategory": "stablecoin",
+    "imageUrl": "/images/partners/mxne.png"
+  },
+  {
     "name": "Connext",
     "description": "Connext is an intent-based modular interoperability protocol for securely passing funds and data between chains with the best possible speed, pricing, and security.",
     "url": "https://bridge.connext.network/",
