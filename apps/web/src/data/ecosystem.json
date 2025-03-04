@@ -1,5 +1,13 @@
 [
   {
+    "name": "Liteflow",
+    "description": "Analyze, Launch, & Scale Web3 Projects. Liteflow unifies business insights, Web3 tools, & execution capabilities, enabling companies to grow, engage & monetize.",
+    "url": "https://liteflow.com/",
+    "imageUrl": "/images/partners/liteflow-logo.png",
+    "category": "infra",
+    "subcategory": "developer tool"
+  },
+  {
     "name": "3DNS",
     "description": "3DNS is a decentralized domain name service (DNS) that can power real web domains. Users can import an existing domain or register a new one and bring the domain onchain via 3DNS.",
     "url": "https://3dns.box",
