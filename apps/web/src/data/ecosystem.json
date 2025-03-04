@@ -200,6 +200,14 @@
     "subcategory": "data"
   },
   {
+    "name": "Gifted.art",
+    "description": "Gifted.art makes sending and receiving digital goods delightful via email.",
+    "url": "https://gifted.art",
+    "imageUrl": "/images/partners/gifted.png",
+    "category": "consumer",
+    "subcategory": "nft"
+  },
+  {
     "name": "Bulla Network",
     "description": "Bulla is a global onchain credit protocol that streamlines web3 business with one-step invoicing, payments, payroll, loans and multi-functional account management and tax reporting across 14 chains.",
     "url": "https://www.bulla.network/",
