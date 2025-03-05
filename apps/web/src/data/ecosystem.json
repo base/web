@@ -1,5 +1,13 @@
 [
   {
+    "name": "Humanode Biomapper",
+    "description": "Biomapper is an on-chain dapp that lets a person verify only one EVM-compatible wallet address, preventing Sybil attacks. Users simply accept terms, complete a 15-second facial scan, and sign a smart contract with a minimal fee. Unlike KYC, no personal data is shared, and Biometric data goes to a Confidential Virtual Machine (CVM) for private verification of uniqueness and liveness.",
+    "url": "https://mainnet.biomapper.hmnd.app/",
+    "imageUrl": "/images/partners/humanode.png",
+    "category": "infra",
+    "subcategory": "identity"
+  },
+  {
     "name": "3DNS",
     "description": "3DNS is a decentralized domain name service (DNS) that can power real web domains. Users can import an existing domain or register a new one and bring the domain onchain via 3DNS.",
     "url": "https://3dns.box",
