@@ -13,9 +13,7 @@ import {
   USERNAME_EA_DISCOUNT_VALIDATORS,
 } from 'apps/web/src/addresses/usernames';
 
-const validators: {
-  [key in ProofTableNamespace]: Record<number, Address>;
-} = {
+const validators: Record<ProofTableNamespace, Record<number, Address>> = {
   [ProofTableNamespace.CBIDDiscount]: USERNAME_CB_ID_DISCOUNT_VALIDATORS,
   [ProofTableNamespace.BaseEthHolders]: USERNAME_BASE_ETH_HOLDERS_DISCOUNT_VALIDATORS,
   [ProofTableNamespace.BNSDiscount]: USERNAME_BNS_DISCOUNT_VALIDATORS,

@@ -1,0 +1,22 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/_health",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/docs/network-information",
+      "destination": "/chain/network-information"
+    },
+    {
+      "source": "/docs/tools/network-faucets",
+      "destination": "/chain/network-faucets"
+    },
+    {
+      "source": "/tutorials/deploy-with-foundry",
+      "destination": "/cookbook/smart-contract-development/foundry/deploy-with-foundry"
+    }
+  ]
+}

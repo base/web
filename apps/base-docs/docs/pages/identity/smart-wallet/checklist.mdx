@@ -1,0 +1,34 @@
+# Smart Wallet Launch-Ready Checklist 
+## The Basics
+
+:::steps
+
+### Test your app with Smart Wallet
+ 
+Test your app with Smart Wallet enabled. See [our guide](./guides/update-existing-app).
+
+### Ensure Smart Wallet compatible Signature Validation
+ 
+If your app does any offchain signature validation (such as Sign-In With Ethereum) or your smart contracts 
+do any signature validation, ensure your app is [ERC-6492](https://eips.ethereum.org/EIPS/eip-6492) compliant. 
+See [our guide](./guides/signature-verification). 
+
+### MagicSpend Compatible
+MagicSpend enables users to get "just in time" transaction funding from their Coinbase account.
+This is currently supported for ETH only on Base. 
+To give users the best experience, apps should make use of the `auxiliaryFunds` capability 
+and ensure they are not blocking actions based solely on onchain balance checks. See [our guide](./guides/magic-spend).
+
+### Use SDK 4.0.3 or later
+Ensure your app is using SDK version 4.0.3. Check [Wallet Library Support](./wallet-library-support) to ensure readiness.
+:::
+
+## Bonus: Make the most of Smart Wallet!
+:::steps
+### Batch Transactions
+Improve your app's UX by using batch transactions, allowing, for examples, 
+approvals and swaps to happen in a single transaction. See [our guide](/identity/smart-wallet/guides/batch-transactions).
+### Paymasters (sponsored transactions)
+Smart Wallet is one of the first wallets to support app-defined paymasters. This enables sponsoring
+certain transactions for your users, so they do not have to know or think about gas cost. 
+:::
