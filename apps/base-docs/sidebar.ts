@@ -13,6 +13,10 @@ export const sidebar: Sidebar = [
     link: '/quickstart',
   },
   {
+    text: 'Bridges',
+    link: '/chain/bridges-mainnet',
+  },
+  {
     text: 'Builder Kits',
     items: [
       {
