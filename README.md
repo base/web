@@ -6,11 +6,11 @@ Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the ne
 
 <!-- Badge row 1 - status -->
 
-[![GitHub contributors](https://img.shields.io/github/contributors/base-org/web)](https://github.com/base-org/web/graphs/contributors)
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/w/base-org/web)](https://github.com/base-org/web/graphs/contributors)
-[![GitHub Stars](https://img.shields.io/github/stars/base-org/web.svg)](https://github.com/base-org/web/stargazers)
-![GitHub repo size](https://img.shields.io/github/repo-size/base-org/web)
-[![GitHub](https://img.shields.io/github/license/base-org/web?color=blue)](https://github.com/base-org/web/blob/master/LICENSE.md)
+[![GitHub contributors](https://img.shields.io/github/contributors/base/web)](https://github.com/base/web/graphs/contributors)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/w/base/web)](https://github.com/base/web/graphs/contributors)
+[![GitHub Stars](https://img.shields.io/github/stars/base/web.svg)](https://github.com/base/web/stargazers)
+![GitHub repo size](https://img.shields.io/github/repo-size/base/web)
+[![GitHub](https://img.shields.io/github/license/base/web?color=blue)](https://github.com/base/web/blob/master/LICENSE.md)
 
 <!-- Badge row 2 - links and profiles -->
 
@@ -22,12 +22,12 @@ Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the ne
 
 <!-- Badge row 3 - detailed status -->
 
-[![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/base-org/web)](https://github.com/base-org/web/pulls)
-[![GitHub Issues](https://img.shields.io/github/issues-raw/base-org/web.svg)](https://github.com/base-org/web/issues)
+[![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/base/web)](https://github.com/base/web/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues-raw/base/web.svg)](https://github.com/base/web/issues)
 
 ## Setup
 
-1. Ensure `nvm` is [installed](https://github.com/nvm-sh/nvm#install--update-script).
+1. Ensure that `nvm` is [installed](https://github.com/nvm-sh/nvm#install--update-script).
 2. Clone the repository.
 3. If `nvm` doesn't auto-load the Node.js environment when changing to the repo directory, run `nvm use`.
 4. Enable Yarn by running `corepack enable`.
@@ -71,7 +71,7 @@ yarn workspace @app/bridge dev
 
 ## Contributing
 
-We welcome contributions to Base! To contribute, please see [CONTRIBUTING.md](CONTRIBUTING.md).
+We welcome contributions to Base! For guidelines on how to contribute please refer to [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ### Updating the Base Ecosystem Page
 
@@ -81,7 +81,7 @@ If you're a builder who wants to add or update your project on the [Base Ecosyst
 
 2. Create a new branch for your changes.
 
-3. Update the `web/apps/web/src/data/ecosystem.json` with your project information. All fields are required. Each entry should follow this format:
+3. Update the `web/apps/web/src/data/ecosystem.json` with your project information. All fields are required. Each entry should follow the format below:
 
    ```json
    {
@@ -98,11 +98,12 @@ If you're a builder who wants to add or update your project on the [Base Ecosyst
    - description: A brief description of your project, must be less than 200 characters
    - url: Your project's website URL
    - imageUrl: Path to your project's logo image
-   - category: Your project's category, _one_ of: `consumer`, `defi`, `infra`, `onramp`, `wallet`
+   - category: Your project's category, _one_ of: `ai`, `consumer`, `defi`, `infra`, `onramp`, `wallet`
    - subcategory: Your project's subcategory, with the following options associated with each category
+     - `ai`: Simply add `ai` as the subcategory as well
      - `consumer`: _One_ of `creator`, `crypto taxes`, `dao`, `gaming`, `messaging`, `music`, `nft`, `payments`, `real world`, `social`
      - `defi`: _One_ of `dex`, `dex aggregator`, `insurance`, `lending/borrowing`, `liquidity management`, `portfolio`, `stablecoin`, `yield vault`
-     - `infra`: _One_ of `ai`, `bridge`, `data`, `depin`, `developer tool`, `identity`, `node provider`, `raas`, `security`
+     - `infra`: _One_ of `bridge`, `data`, `depin`, `developer tool`, `identity`, `node provider`, `raas`, `security`
      - `onramp`: _One_ of `centralized exchange`, `fiat on-ramp`
      - `wallet`: _One_ of `account abstraction`, `multisig`, `self-custody`
 
@@ -116,12 +117,12 @@ By opening a PR to add your project, you authorize and license Coinbase on a non
 
 #### Submission requirements
 
-- App content adheres to the [Base Editorial Style Guide](https://github.com/base-org/brand-kit/blob/main/guides/editorial-style-guide.md)
+- App content adheres to the [Base Editorial Style Guide](https://github.com/base/brand-kit/blob/main/guides/editorial-style-guide.md)
 - App has been live on Base for at least 30 days
 - App has a Terms of Service and Privacy Policy
 - App supports HTTPS and 301 redirects HTTP requests
-- App is not a TGE, ICO, airdrop, claim, or similar
-- Landing page is a Base-specific page for users who will becoming from base.org
+- App is not a TGE (Token Generation Event), ICO (Initial Coin Offering), airdrop, claim, or similar
+- Landing page is a Base-specific page for users who will be coming from base.org
 - Active development and community engagement can be observed without issue
 
 ---

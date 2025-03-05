@@ -18,6 +18,6 @@ export default function useBuildathonParticipant(address?: `0x${string}`): {
   });
 
   if (!balanceOf) return { isParticipant: false, isWinner: false };
-  // winners will have both a particpant SBT and a winner SBT
+  // winners will have both a participant SBT and a winner SBT
   return { isParticipant: balanceOf > 0, isWinner: balanceOf > 1 };
 }

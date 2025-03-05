@@ -1,0 +1,219 @@
+import { Callout } from "vocs/components";
+
+# Create a React Native App
+
+<Callout type="info">
+  This doc is updated for Mobile Wallet Protocol Client `v1.0.0`
+</Callout>
+
+This guide will walk you through adding support for Smart Wallet into a React Native app by integrating the [Mobile Wallet Protocol Client](https://www.npmjs.com/package/@mobile-wallet-protocol/client).
+
+<Callout type="success">
+  **Tips**: If you need a template or scaffold to start with, you can check out
+  the [Smart Wallet Expo
+  Example](https://github.com/MobileWalletProtocol/smart-wallet-expo-example).
+</Callout>
+
+::::steps
+
+## Prerequisites
+
+### Deeplink handling
+
+<Callout type="danger">
+  Breaking change in v1.0.0: Universal Links and App Links requirements are
+  removed in favor of custom schemes (e.g. `myapp://`).
+</Callout>
+
+### Install peer dependencies
+
+The Mobile Wallet Protocol Client library requires the [Expo WebBrowser](https://docs.expo.dev/versions/latest/sdk/webbrowser/) and [Async Storage](https://react-native-async-storage.github.io/async-storage/docs/install) packages to be installed.
+Follow the instructions on the respective pages for any additional setup.
+
+:::code-group
+
+```zsh [npm]
+npm i expo expo-web-browser @react-native-async-storage/async-storage
+```
+
+```zsh [yarn]
+yarn add expo expo-web-browser @react-native-async-storage/async-storage
+```
+
+:::
+
+### Polyfills
+
+Mobile Wallet Protocol Client requires `crypto.randomUUID`, `crypto.getRandomValues`, and `URL` to be polyfilled globally since they are not available in the React Native environment.
+
+Below is an example of how to polyfill these functions in your app using the [expo-crypto](https://docs.expo.dev/versions/latest/sdk/crypto/) and [expo-standard-web-crypto](https://github.com/expo/expo/tree/master/packages/expo-standard-web-crypto/) packages.
+
+:::code-group
+
+```zsh [npm]
+npm i expo-crypto expo-standard-web-crypto react-native-url-polyfill
+```
+
+```zsh [yarn]
+yarn add expo-crypto expo-standard-web-crypto react-native-url-polyfill
+```
+
+:::
+
+:::code-group
+
+```js [polyfills.js]
+import "react-native-url-polyfill/auto";
+import { polyfillWebCrypto } from "expo-standard-web-crypto";
+import { randomUUID } from "expo-crypto";
+
+polyfillWebCrypto();
+crypto.randomUUID = randomUUID;
+```
+
+```tsx [App.tsx]
+import "./polyfills"; // import before @mobile-wallet-protocol/client
+
+import { CoinbaseWalletSDK } from "@mobile-wallet-protocol/client";
+
+/// ...
+```
+
+:::
+
+## Setup
+
+### Install Mobile Wallet Protocol Client
+
+Add the latest version of Mobile Wallet Protocol Client to your project.
+
+:::code-group
+
+```zsh [npm]
+npm i @mobile-wallet-protocol/client@latest
+```
+
+```zsh [yarn]
+yarn add @mobile-wallet-protocol/client@latest
+```
+
+:::
+
+### Configuration
+
+<Callout type="danger">
+  Breaking change in v1.0.0: `handleResponse` is removed. No need to handle
+  returned deeplinks as this is now handled by the SDK.
+</Callout>
+
+## Usage
+
+Mobile Wallet Protocol Client provides 2 interfaces for mobile app to interact with the Smart Wallet, an EIP-1193 compliant provider interface and a wagmi connector.
+
+<Callout type="success">
+  If your app is using wallet aggregator, go straight to **Option 2: Wagmi
+  Connector** for 1-line integration. :)
+</Callout>
+
+### Option 1: EIP-1193 Provider
+
+<Callout type="warning">
+  the `app` prefix in SDK config params is removed in v1.0.0.
+</Callout>
+
+Create a new `EIP1193Provider` instance, which is EIP-1193 compliant.
+
+```tsx [App.tsx]
+import { EIP1193Provider } from "@mobile-wallet-protocol/client";
+
+// Step 1. Initialize provider with your dapp's metadata and target wallet
+const metadata = {
+  name: "My App Name",
+  customScheme: "myapp://", // only custom scheme (e.g. `myapp://`) is supported in v1.0.0
+  chainIds: [8453],
+  logoUrl: "https://example.com/logo.png",
+};
+const provider = new EIP1193Provider({
+  metadata,
+  wallet: Wallets.CoinbaseSmartWallet,
+});
+
+// ...
+
+// 2. Use the provider
+const addresses = await provider.request({ method: "eth_requestAccounts" });
+const signedData = await provider.request({
+  method: "personal_sign",
+  params: ["0x48656c6c6f20776f726c6421", addresses[0]],
+});
+```
+
+### Option 2: Wagmi Connector
+
+Add the latest verion of Mobile Wallet Protocol wagmi-connectors to your project.
+
+:::code-group
+
+```zsh [npm]
+npm i @mobile-wallet-protocol/wagmi-connectors@latest
+```
+
+```zsh [yarn]
+yarn add @mobile-wallet-protocol/wagmi-connectors@latest
+```
+
+:::
+
+Simply import the `createConnectorFromWallet` function and pass in the wallet you want to use to wagmi config.
+
+```ts [config.ts]
+import {
+  createConnectorFromWallet,
+  Wallets,
+} from "@mobile-wallet-protocol/wagmi-connectors";
+
+const metadata = {
+  name: "My App Name",
+  customScheme: "myapp://", // only custom scheme (e.g. `myapp://`) is supported in v1.0.0
+  chainIds: [8453],
+  logoUrl: "https://example.com/logo.png",
+};
+
+export const config = createConfig({
+  chains: [base],
+  connectors: [
+    createConnectorFromWallet({
+      metadata,
+      wallet: Wallets.CoinbaseSmartWallet,
+    }),
+  ],
+  transports: {
+    [base.id]: http(),
+  },
+});
+```
+
+Then you can use wagmi's react interface to interact with the Smart Wallet.
+
+```tsx [App.tsx]
+import { useConnect } from "wagmi";
+
+// ...
+
+const { connect, connectors } = useConnect();
+
+return (
+  <Button
+    title={"Connect"}
+    onPress={() => {
+      connect({ connector: connectors[0] });
+    }}
+  />
+);
+```
+
+## Give feedback!
+
+Send us feedback on the [Coinbase Developer Platform](https://discord.com/invite/cdp/) Discord or create a new issue on the [MobileWalletProtocol/react-native-client](https://github.com/MobileWalletProtocol/react-native-client/issues) repository.
+
+::::

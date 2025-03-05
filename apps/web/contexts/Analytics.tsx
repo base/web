@@ -4,6 +4,7 @@ import logEvent, {
   ActionType,
   AnalyticsEventImportance,
   CCAEventData,
+  AnalyticsEventContext,
 } from 'libs/base-ui/utils/logEvent';
 import { ReactNode, createContext, useCallback, useContext, useMemo } from 'react';
 
@@ -29,7 +30,7 @@ export function useAnalytics() {
 
 type AnalyticsProviderProps = {
   children?: ReactNode;
-  context: string; // TODO: This could be an enum in CCAEventData
+  context: string | AnalyticsEventContext;
 };
 
 export default function AnalyticsProvider({ children, context }: AnalyticsProviderProps) {
@@ -41,7 +42,7 @@ export default function AnalyticsProvider({ children, context }: AnalyticsProvid
       const sanitizedEventName = eventName.toLocaleLowerCase();
       if (typeof window === 'undefined') return;
       logEvent(
-        sanitizedEventName, // TODO: Do we want context here?
+        sanitizedEventName,
         {
           action: action,
           context: fullContext,

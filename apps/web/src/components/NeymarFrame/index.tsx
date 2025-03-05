@@ -1,7 +1,7 @@
 import ImageWithLoading from 'apps/web/src/components/ImageWithLoading';
 import { NeynarFrame } from 'apps/web/src/utils/frames';
 
-// Frame displayed from Neymar API data
+// Frame displayed from Neynar API data
 // No buttons or interactions for now, just a link to the frame source
 export default function NeymarFrame({ frame }: { hash: string; frame: NeynarFrame }) {
   return (

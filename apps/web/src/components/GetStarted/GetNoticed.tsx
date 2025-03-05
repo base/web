@@ -14,12 +14,12 @@ export default async function GetNoticed() {
       </Title>
       <div className={gridClasses}>
         <ResourceCard
-          title="Onchain Content Network"
-          description="Submit your project to be viewed by millions of potential users across the network"
-          href="https://buildonbase.deform.cc/getstarted/?utm_source=dotorg&utm_medium=builderkit"
+          title="Marketing Amplification Guidelines"
+          description="Use our style guide and tag @base on X and Farcaster to be eligible for amplification"
+          href="https://github.com/base-org/brand-kit/blob/main/guides/editorial-style-guide.md"
           topLeft={<span className="font-mono">01</span>}
           topRight={<Icon name="diagonalUpArrow" width="16px" height="16px" />}
-          classnames="bg-pink-60 border-pink-60"
+          classnames="bg-pink-80 border-pink-80"
         />
         <ResourceCard
           title="Base Builds Channel"
@@ -27,7 +27,7 @@ export default async function GetNoticed() {
           href="https://warpcast.com/~/channel/base-builds/?utm_source=dotorg&utm_medium=builderkit"
           topLeft={<span className="font-mono">02</span>}
           topRight={<Icon name="diagonalUpArrow" width="16px" height="16px" />}
-          classnames="bg-pink-80 border-pink-80"
+          classnames="bg-pink-60 border-pink-60"
         />
       </div>
     </div>

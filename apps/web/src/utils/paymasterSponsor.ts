@@ -87,7 +87,7 @@ export async function willSponsor({
       value: bigint;
       data: Hex;
     }[];
-    // modify if want to allow batch calls to your contract
+    // modify if you want to allow batch calls to your contract
     if (calls.length > 2) {
       return false;
     }
