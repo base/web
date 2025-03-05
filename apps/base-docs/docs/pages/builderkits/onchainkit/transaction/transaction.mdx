@@ -49,15 +49,10 @@ const calls = [...];
 <App>
   <TransactionWrapper>
     {({ address, contracts, onStatus }) => {
-      const capabilities = {
-        paymasterService: {
-          url: PAYMASTER_AND_BUNDLER_ENDPOINT,
-        },
-      }
       if (address) {
         return (
           <TransactionDefault
-            capabilities={capabilities}
+            isSponsored={true}
             chainId={BASE_SEPOLIA_CHAIN_ID}
             calls={contracts}
             onStatus={onStatus}
@@ -79,7 +74,7 @@ const calls = [...];
 
 ### Props
 
-[`TransactionDefaultReact`](types#transactiondefaultreact)
+[`TransactionDefaultReact`](/builderkits/onchainkit/transaction/types#transactiondefaultreact)
 
 ## Walkthrough
 
@@ -89,13 +84,10 @@ const calls = [...];
 
 Execute one or multiple transactions using the Transaction component. You can pass transactions in either `Call` or `ContractFunctionParameters` format. The component will automatically apply batching logic if the user's wallet supports it.
 
-<br/>
-
 #### Types
-- [`ContractFunctionParameters`](https://github.com/wevm/viem/blob/ce1b8aff4d4523d3a324e500261c8c0867fd35e9/src/types/contract.ts#L188)
-- [`Call`](types#call)
 
-<br/>
+- [`ContractFunctionParameters`](https://github.com/wevm/viem/blob/ce1b8aff4d4523d3a324e500261c8c0867fd35e9/src/types/contract.ts#L188)
+- [`Call`](/builderkits/onchainkit/transaction/types#call)
 
 :::code-group
 
@@ -132,8 +124,8 @@ export default function TransactionComponents() {
     <Transaction // [!code focus]
       chainId={BASE_SEPOLIA_CHAIN_ID} // [!code focus]
       calls={calls} // [!code focus]
-      onStatus={handleOnStatus}
-    >// [!code focus]
+      onStatus={handleOnStatus} // [!code focus]
+    >
       <TransactionButton />
       <TransactionSponsor />
       <TransactionStatus>
@@ -179,15 +171,10 @@ export const calls = [
 <App>
   <TransactionWrapper>
     {({ address, contracts, onStatus }) => {
-      const capabilities = {
-        paymasterService: {
-          url: PAYMASTER_AND_BUNDLER_ENDPOINT,
-        },
-      }
       if (address) {
         return (
           <Transaction
-            capabilities={capabilities}
+            isSponsored={true}
             chainId={BASE_SEPOLIA_CHAIN_ID}
             contracts={contracts}
             onStatus={onStatus}
@@ -211,6 +198,7 @@ export const calls = [
         )
       }
     }}
+
   </TransactionWrapper>
 </App>
 
@@ -249,7 +237,7 @@ const handleOnStatus = useCallback((status: LifecycleStatus) => {  // [!code foc
 <Transaction  // [!code focus]
   contracts={contracts}
   onStatus={handleOnStatus} // [!code focus]
->  // [!code focus]
+>
   <TransactionButton />
   <TransactionSponsor />
   <TransactionToast>
@@ -257,7 +245,7 @@ const handleOnStatus = useCallback((status: LifecycleStatus) => {  // [!code foc
     <TransactionToastLabel />
     <TransactionToastAction />
   </TransactionToast>
-</Transaction>  // [!code focus]
+</Transaction>
 ```
 
 The Lifecycle Status features seven states for the transaction experience.
@@ -303,7 +291,7 @@ type LifecycleStatus =
 
 ### Sponsor with Paymaster capabilities
 
-To sponsor your transactions with Paymaster capabilities, provide the `paymasterService` object.
+To sponsor your transactions with Paymaster capabilities, configure your [`OnchainKitProvider`](/builderkits/onchainkit/config/onchainkit-provider) with the appropriate `config.paymaster` URL, then pass `isSponsored={true}` to the `Transaction` component.
 
 Obtain a Paymaster and Bundler endpoint from the [Coinbase Developer Platform](https://portal.cdp.coinbase.com/products/bundler-and-paymaster).
 
@@ -316,18 +304,25 @@ Obtain a Paymaster and Bundler endpoint from the [Coinbase Developer Platform](h
 />
 
 ```tsx twoslash
+// @noErrors:  2304 17008 1005
+<OnchainKitProvider
+  config={{ // [!code focus]
+    paymaster: process.env.PAYMASTER_ENDPOINT, // [!code focus]
+  }} // [!code focus]
+>
+```
+
+Next, pass `isSponsored={true}` to the `Transaction` component.
+
+```tsx twoslash
 // @noErrors: 2580 2304 2322 - Cannot find name 'process', Cannot find name 'contracts'
 import { Transaction, TransactionButton, TransactionSponsor } from "@coinbase/onchainkit/transaction"
 // ---cut-before---
 // omitted for brevity
 <Transaction
-  capabilities={{ // [!code focus]
-    paymasterService: { // [!code focus]
-      url: process.env.PAYMASTER_AND_BUNDLER_ENDPOINT, // [!code focus]
-    }, // [!code focus]
-  }} // [!code focus]
-  contracts={contracts}
-  >
+  isSponsored={true} // [!code focus]
+  contracts={contracts} // [!code focus]
+>
   <TransactionButton />
   <TransactionSponsor />
 </Transaction>
@@ -383,6 +378,7 @@ export default function TransactionWithCalls() {
 </div>
 
 The components are designed to work together hierarchically. For each component, ensure the following:
+
 - `<Transaction />` - Serves as the main container for all transaction-related components.
 - `<TransactionButton />` - Handles the transaction initiation process.
 - `<TransactionSponsor />` - Displays information about the sponsorship of transaction gas fees.
@@ -396,15 +392,15 @@ The components are designed to work together hierarchically. For each component,
 
 ## Component types
 
-- [`TransactionButtonReact`](types#transactionbuttonreact)
-- [`TransactionError`](types#transactionerror)
-- [`TransactionDefaultReact`](types#transactiondefaultreact)
-- [`TransactionReact`](types#transactionreact)
-- [`TransactionSponsorReact`](types#transactionsponsorreact)
-- [`TransactionStatusReact`](types#transactionstatusreact)
-- [`TransactionStatusActionReact`](types#transactionstatusactionreact)
-- [`TransactionStatusLabelReact`](types#transactionstatuslabelreact)
-- [`TransactionToastReact`](types#transactiontoastreact)
-- [`TransactionToastActionReact`](types#transactiontoastactionreact)
-- [`TransactionToastIconReact`](types#transactiontoasticonreact)
-- [`TransactionToastLabelReact`](types#transactiontoastlabelreact)
+- [`TransactionButtonReact`](/builderkits/onchainkit/transaction/types#transactionbuttonreact)
+- [`TransactionError`](/builderkits/onchainkit/transaction/types#transactionerror)
+- [`TransactionDefaultReact`](/builderkits/onchainkit/transaction/types#transactiondefaultreact)
+- [`TransactionReact`](/builderkits/onchainkit/transaction/types#transactionreact)
+- [`TransactionSponsorReact`](/builderkits/onchainkit/transaction/types#transactionsponsorreact)
+- [`TransactionStatusReact`](/builderkits/onchainkit/transaction/types#transactionstatusreact)
+- [`TransactionStatusActionReact`](/builderkits/onchainkit/transaction/types#transactionstatusactionreact)
+- [`TransactionStatusLabelReact`](/builderkits/onchainkit/transaction/types#transactionstatuslabelreact)
+- [`TransactionToastReact`](/builderkits/onchainkit/transaction/types#transactiontoastreact)
+- [`TransactionToastActionReact`](/builderkits/onchainkit/transaction/types#transactiontoastactionreact)
+- [`TransactionToastIconReact`](/builderkits/onchainkit/transaction/types#transactiontoasticonreact)
+- [`TransactionToastLabelReact`](/builderkits/onchainkit/transaction/types#transactiontoastlabelreact)

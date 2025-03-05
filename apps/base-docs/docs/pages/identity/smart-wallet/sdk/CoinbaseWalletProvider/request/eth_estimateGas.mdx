@@ -1,0 +1,30 @@
+# eth_estimateGas
+
+> Generates and returns an estimate of how much gas is necessary to allow the transaction to complete.
+
+## Parameters
+
+```typescript
+interface TransactionParams {
+  from?: string; // The address the transaction is sent from
+  to?: string; // The address the transaction is directed to
+  gas?: string; // Hexadecimal string of the gas provided for the transaction execution
+  gasPrice?: string; // Hexadecimal string of the gasPrice used for each paid gas
+  value?: string; // Hexadecimal string of the value sent with this transaction
+  data?: string; // The compiled code of a contract or the hash of the invoked method signature and encoded parameters
+}
+```
+
+## Returns
+
+`string`
+
+A hexadecimal string indicating the estimated gas required for the transaction to complete. This is not the exact gas amount that will be used by the transaction when it executes, but should be used as a gas limit when sending the transaction.
+
+## Errors
+
+| Code   | Message                        |
+| ------ | ------------------------------ |
+| -32000 | Transaction execution error    |
+| -32602 | Invalid transaction parameters |
+| -32603 | Internal error                 |
