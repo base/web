@@ -8,6 +8,14 @@
     "subcategory": "SaaS"
   },
   {
+    "name": "Heurist AI",
+    "description": "Heurist is a decentralized AI-as-a-Service cloud. Run AI and Agents via API.",
+    "url": "https://heurist.ai",
+    "imageUrl": "/images/partners/heurist.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "3DNS",
     "description": "3DNS is a decentralized domain name service (DNS) that can power real web domains. Users can import an existing domain or register a new one and bring the domain onchain via 3DNS.",
     "url": "https://3dns.box",
