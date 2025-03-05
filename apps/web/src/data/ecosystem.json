@@ -3616,6 +3616,14 @@
     "imageUrl": "/images/partners/phantom.svg"
   },
   {
+    "name": "20lab",
+    "description": "20lab.app is a customizable ERC-20, SPL (Solana) & Sui token generator with over 17 extendable features. Test our generator for free and manage functions via token owner dashboard.",
+    "url": "https://20lab.app/generate/erc20-token/base/",
+    "imageUrl": "/images/partners/20lab.png",
+    "category": "infra",
+    "subcategory": "developer tool"
+  },
+  {
     "name": "Bend",
     "description": "A free payments app that allows anyone to easily send money worldwide-no bank account required.",
     "category": "wallet",
