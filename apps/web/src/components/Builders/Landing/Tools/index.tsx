@@ -6,6 +6,7 @@ import agentKit from 'apps/web/src/components/Builders/Shared/assets/Tools/agent
 import miniKit from 'apps/web/src/components/Builders/Shared/assets/Tools/miniKit.svg';
 import smartWallet from 'apps/web/src/components/Builders/Shared/assets/Tools/smartWallet.svg';
 import onchainKit from 'apps/web/src/components/Builders/Shared/assets/Tools/onchainKit.svg';
+import basenet from 'apps/web/src/components/Builders/Appchains/basenet.svg';
 
 type ToolCardProps = {
   title: string;
@@ -38,6 +39,12 @@ export function Tools() {
           description="Give every AI agent a crypto wallet and the ability to transact and interact onchain."
           icon={agentKit as StaticImageData}
           href="/builders/agentkit"
+        />
+        <ToolCard
+          title="Base Appchains"
+          description="Launch your own chain with dedicated blockspace on Base, in minutes."
+          icon={basenet as StaticImageData}
+          href="/builders/base-appchains"
         />
         <ToolCard
           title="MiniKit"

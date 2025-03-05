@@ -15,7 +15,7 @@ export function Hero() {
   const [hasCopied, setHasCopied] = useState(false);
 
   const handleCopy = useCallback(() => {
-    void navigator.clipboard.writeText('npm create-onchain --mini');
+    void navigator.clipboard.writeText('npm create onchain --mini');
     setHasCopied(true);
     setTimeout(() => setHasCopied(false), 2000); // Reset after 2 seconds
   }, []);
@@ -49,10 +49,10 @@ export function Hero() {
         <div className="flex gap-4 pt-5  max-sm:flex-col">
           <button
             type="button"
-            className="inline-flex items-center gap-2.5 rounded-lg bg-white px-4 pb-2.5 pt-3 font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90 max-sm:mr-auto"
+            className="inline-flex items-center gap-2.5 rounded-lg bg-white px-4 pb-3 pt-3 font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90 max-sm:mr-auto"
             onClick={handleCopy}
           >
-            npm create-onchain --mini
+            npm create onchain --mini
             {hasCopied ? (
               <div className="text-green-60">
                 <Icon name="checkmark" width="16" height="16" color="currentColor" />
@@ -63,7 +63,7 @@ export function Hero() {
           </button>
           <ButtonWithLinkAndEventLogging
             variant={ButtonVariants.SecondaryOutline}
-            buttonClassNames="flex items-center justify-between px-4 pb-2.5 pt-3 group font-medium"
+            buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
             href={GET_STARTED_URL}
             eventName="minikit-get-started"
             target="_blank"
