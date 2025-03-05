@@ -4014,5 +4014,13 @@
     "imageUrl": "/images/partners/ipor.svg",
     "category": "defi",
     "subcategory": "yield vault"
+  },
+    {
+    "name": "PWN",
+    "url": "https://app.pwn.xyz",
+    "description": "PWN is a permissionless, peer-to-peer, fixed-rate lending protocol. Unlock liquidity using any asset, customize terms, always without price-based liquidations.",
+    "imageUrl": "/images/partners/pwn.png",
+    "category": "defi",
+    "subcategory": "lending/borrowing"
   }
 ]
