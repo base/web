@@ -22,10 +22,10 @@ export default async function GetInvolved() {
           classnames="bg-teal-80 border-teal-80"
         />
         <ResourceCard
-          title="Base Community Leaders"
-          description="Follow and connect with key community members in the Base ecosystem"
+          title="Based Builders"
+          description="Connect with some based builders. This link is not curated, monitored, or an official endorsement by Base."
           href="https://x.com/i/lists/1869425408573075694"
-          topLeft={<span className="font-mono">04</span>}
+          topLeft={<span className="font-mono">02</span>}
           topRight={<Icon name="diagonalUpArrow" width="16px" height="16px" />}
           classnames="bg-teal-60 border-teal-60"
         />
@@ -33,7 +33,7 @@ export default async function GetInvolved() {
           title="Host a Meetup"
           description="Sign up to host a meetup with other Based builders anywhere in the world"
           href="https://docs.google.com/forms/d/e/1FAIpQLSf5wnzD_czyYOyHFeOmFK_rjsJj7Utovo3jWwR40JizPqmDZg/viewform"
-          topLeft={<span className="font-mono">02</span>}
+          topLeft={<span className="font-mono">03</span>}
           topRight={<Icon name="diagonalUpArrow" width="16px" height="16px" />}
           classnames="bg-teal-80 border-teal-80"
         />
@@ -41,7 +41,7 @@ export default async function GetInvolved() {
           title="Use Apps on Base"
           description="Browse and use projects being built on the Base ecosystem"
           href="https://www.base.org/ecosystem?utm_source=dotorg&utm_medium=builderkit"
-          topLeft={<span className="font-mono">03</span>}
+          topLeft={<span className="font-mono">04</span>}
           topRight={<Icon name="diagonalUpArrow" width="16px" height="16px" />}
           classnames="bg-teal-60 border-teal-60"
         />

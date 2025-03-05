@@ -1,0 +1,46 @@
+# eth_requestAccounts
+
+Defined in [EIP-1102](https://eips.ethereum.org/EIPS/eip-1102)
+
+> Requests that the user provides an Ethereum address to be identified by. This method is used to request the user's accounts and trigger wallet connection. Calling this method may trigger a user interface that allows the user to approve or reject account access for the dApp.
+
+## Parameters
+
+None. This method does not accept any parameters.
+
+## Returns
+
+`Array<string>`
+
+An array of Ethereum addresses (hexadecimal strings), which the connected user controls. The array will typically contain a single address, which is the currently selected account in the wallet.
+
+## Example
+
+Request:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "eth_requestAccounts",
+  "params": []
+}
+```
+
+Response:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": ["0xabc123..."]
+}
+```
+
+## Errors
+
+| Code | Message                        | Description                                                 |
+| ---- | ------------------------------ | ----------------------------------------------------------- |
+| 4001 | User denied connection request | The user rejected the request to connect with your dApp     |
+| 4100 | Unauthorized                   | The requested method and/or account has not been authorized |
+| 4900 | Disconnected                   | The provider is disconnected from the wallet                |

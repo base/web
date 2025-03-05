@@ -84,7 +84,7 @@ type CCAEventData = {
   message_id?: number;
   response_helpful?: boolean;
   address?: string;
-  context?: AnalyticsEventContext;
+  context?: string | AnalyticsEventContext;
   userId?: string;
   error?: string;
   wallet_type?: string;

@@ -70,6 +70,21 @@ export function EcosystemFilters({
             >
               {category}
             </button>
+          ) : category === 'ai' ? (
+            <button
+              type="button"
+              key={category}
+              onClick={() => handleCategorySelect('ai')}
+              className={classNames(
+                'h-10 whitespace-nowrap rounded-full border border-white/20 px-4 uppercase tracking-wider transition-colors',
+                {
+                  'bg-white text-black': categoryIsSelected,
+                  'text-white/50 hover:bg-white/20 hover:text-white': !categoryIsSelected,
+                },
+              )}
+            >
+              {category}
+            </button>
           ) : (
             <Popover.Root key={category}>
               <div className="flex h-10 items-stretch">
@@ -106,7 +121,7 @@ export function EcosystemFilters({
 
               <Popover.Portal>
                 <Popover.Content className="z-50 w-64" sideOffset={5}>
-                  <Card radius={8} innerClassName="bg-[#191919] p-4">
+                  <Card radius={8} innerClassName="bg-dark-palette-backgroundAlternate p-4">
                     <div className="flex flex-col gap-2">
                       {config[category]?.map((subcategory) => {
                         const subcategoryIsSelected = selectedSubcategories.includes(subcategory);

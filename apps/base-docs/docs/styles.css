@@ -1,0 +1,330 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CoinbaseSans Font Family */
+@font-face {
+  font-family: 'CoinbaseSans';
+  src: url('/fonts/Coinbase_Sans-Extra_Light-web-1.32.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CoinbaseSans';
+  src: url('/fonts/Coinbase_Sans-Light-web-1.32.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CoinbaseSans';
+  src: url('/fonts/CoinbaseSans-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CoinbaseSans';
+  src: url('/fonts/CoinbaseSans-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CoinbaseSans';
+  src: url('/fonts/Coinbase_Sans-Bold-web-1.32.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* CoinbaseSans Italic variants */
+@font-face {
+  font-family: 'CoinbaseSans';
+  src: url('/fonts/Coinbase_Sans-Extra_Light_Italic-web-1.32.woff2') format('woff2');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CoinbaseSans';
+  src: url('/fonts/Coinbase_Sans-Light_Italic-web-1.32.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CoinbaseSans';
+  src: url('/fonts/Coinbase_Sans-Regular_Italic-web-1.32.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CoinbaseSans';
+  src: url('/fonts/Coinbase_Sans-Medium_Italic-web-1.32.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CoinbaseSans';
+  src: url('/fonts/Coinbase_Sans-Bold_Italic-web-1.32.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* CoinbaseMono Font Family */
+@font-face {
+  font-family: 'CoinbaseMono';
+  src: url('/fonts/Coinbase_Mono-Regular-web.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    /* Override Vocs' font family variables */
+    --vocs-fontFamily_default: 'CoinbaseSans';
+    --vocs-fontFamily_mono: 'CoinbaseMono';
+
+    /* Override Vocs' font weight variables */
+    --vocs-fontWeight_regular: 300; /* Your light weight */
+    --vocs-fontWeight_medium: 400; /* Your regular weight */
+    --vocs-fontWeight_semibold: 500; /* Your medium weight */
+    --vocs-fontWeight_bold: 700; /* Your bold weight */
+
+    /* these vars control the colors of bg including the nav and footer*/
+    --vocs-color_background: rgb(255, 255, 255);
+    --vocs-color_background2: rgb(57, 104, 197);
+    --vocs-color_footer: rgb(19, 112, 204);
+    --vocs-color_backgroundDark: rgb(255 255 255); /* Defines sidebar bg color */
+
+    /* For dark mode */
+    &.dark {
+      --vocs-color_background: rgb(0 0 0);
+      --vocs-color_background2: rgb(0 0 0);
+      --vocs-color_backgroundDark: rgb(0 0 0); /* Defines sidebar bg color */
+    }
+  }
+
+  /* Light mode override */
+  :root:not(.dark) .vocs_DesktopSearch_search {
+    background-color: #f0f0f0 !important;
+    border: 1px solid #ccc !important;
+  }
+
+  /* Dark mode override */
+  :root.dark .vocs_DesktopSearch_search {
+    background-color: #0a0b0d !important;
+    border: 1px solid #8a919e33 !important;
+  }
+  /* Ensure full height coverage */
+  body {
+    background: var(--vocs-color_background);
+  }
+
+  /* More specific and forceful font declarations */
+  html {
+    font-family: 'CoinbaseSans', system-ui, -apple-system, sans-serif !important;
+  }
+
+  body {
+    font-family: 'CoinbaseSans', system-ui, -apple-system, sans-serif !important;
+  }
+
+  * {
+    font-family: inherit;
+  }
+
+  pre,
+  code,
+  kbd,
+  samp {
+    font-family: 'CoinbaseMono', ui-monospace, monospace !important;
+  }
+}
+
+.vocs_Banner_inner {
+  width: 100%; /* Ensure full width */
+  height: 99px; /* Retain existing height */
+  display: flex;
+  justify-content: center; /* Center the content wrapper */
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  color: rgb(255, 255, 255);
+  color-scheme: dark;
+  font-family: 'CoinbaseSans', sans-serif;
+  font-feature-settings: 'rlig', 'calt';
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 28px;
+  tab-size: 4;
+  text-rendering: optimizelegibility;
+  text-size-adjust: 100%;
+  unicode-bidi: isolate;
+}
+
+.vocs_Banner_content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Distribute columns evenly */
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+.vocs_banner_content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Distribute columns evenly */
+  align-items: center;
+}
+
+.left-column,
+.center-column,
+.right-column {
+  flex: 1; /* Equal width for all columns */
+  display: flex;
+  align-items: center;
+}
+
+.center-column {
+  justify-content: center; /* Center the navigation links */
+}
+
+.right-column {
+  justify-content: flex-end; /* Right-align the Connect Wallet button */
+  padding-right: 20px;
+}
+
+.navigation-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 8px 16px;
+}
+
+.navigation-links a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.navigation-links a:hover {
+  opacity: 0.7;
+}
+
+.connect-wallet-button {
+  padding: 8px 16px;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.connect-wallet-button:hover {
+  background-color: #4338ca;
+}
+
+@layer components {
+  .wave-pattern {
+    @apply dark:opacity-[0.07];
+    background: linear-gradient(135deg, #3b82f620 25%, transparent 25%) -24px 0,
+      linear-gradient(225deg, #3b82f620 25%, transparent 25%) -24px 0,
+      linear-gradient(315deg, #3b82f620 25%, transparent 25%),
+      linear-gradient(45deg, #3b82f620 25%, transparent 25%);
+    background-size: 48px 48px;
+    background-color: transparent;
+    animation: wave-animation 60s linear infinite;
+  }
+
+  @keyframes wave-animation {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 48px 48px;
+    }
+  }
+
+  .card-active {
+    @apply relative overflow-hidden rounded-md border-2 border-blue-100 bg-white p-6 shadow-lg dark:border-zinc-800 dark:bg-zinc-900;
+  }
+
+  .card-active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .card-active:active::before,
+  .card-active:focus::before,
+  .card-active:hover::before {
+    transform: scaleX(1);
+  }
+
+  .touch-feedback {
+    @apply transform transition-transform active:scale-[0.98];
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .floating-icon {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+/* Desktop section header */
+
+.custom-section-title {
+  display: none;
+  align-items: center;
+  padding: 0 48px;
+  height: 40px; /* Matches the gutterTopCurtain height */
+  font-weight: 500;
+  color: var(--vocs-colors-text2);
+}
+
+/* Show on desktop */
+@media screen and (min-width: 1080px) {
+  .custom-section-title {
+    display: flex;
+  }
+
+  /* Hide when the mobile curtain is visible */
+  .vocs_DocsLayout_gutterTopCurtain .custom-section-title {
+    display: none;
+  }
+}
