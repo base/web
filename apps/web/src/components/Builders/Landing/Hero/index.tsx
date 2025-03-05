@@ -44,13 +44,27 @@ export function Hero() {
         >
           <GridHero hasBlue />
         </div>
+        
+        <div className="absolute top-20 z-20 flex w-full px-8 md:justify-center">
+          <ButtonWithLinkAndEventLogging
+            variant={ButtonVariants.SecondaryOutline}
+            iconName="arrowRight"
+            buttonClassNames="!rounded-full text-xs md:text-sm font-medium tracking-wide bg-white/20 text-white backdrop-blur-sm border-none !px-2.5 !py-1"
+            href="https://flashblocks.base.org/"
+            eventName="flashblocks-announcement"
+            target="_blank"
+          >
+            Introducing Flashblocks: 200 milliseconds block times
+          </ButtonWithLinkAndEventLogging>
+        </div>
+
         <div className="z-10 px-6">
-          <Title className=" font-display text-[1.25rem] leading-[1.2em] tracking-tight md:text-[2rem] lg:text-[3rem]">
+          <Title className="font-display text-[1.25rem] leading-[1.2em] tracking-tight md:text-[2rem] lg:text-[3rem]">
             What do you want to build today?
           </Title>
 
-          <div className="mt-7 flex w-full flex-col items-center gap-4 md:w-[645px]">
-            <div className="z-10 flex w-full flex-col items-start justify-center gap-4 md:flex md:flex-row md:items-center">
+          <div className="mt-7 flex w-full flex-col items-center gap-4 md:w-full">
+            <div className="z-10 flex w-full flex-col items-start justify-center gap-4 md:flex md:flex-row md:items-center md:justify-center">
               <ButtonWithLinkAndEventLogging
                 variant={ButtonVariants.SecondaryOutline}
                 iconName="baseOrgDiagonalUpArrow"
