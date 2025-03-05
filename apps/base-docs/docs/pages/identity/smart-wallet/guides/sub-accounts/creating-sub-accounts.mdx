@@ -25,7 +25,7 @@ The Coinbase Smart Wallet SDK provides a browser key signer out of the box, whic
 
 ## Configuring the SDK for Sub Accounts
 
-Include Sub Account configuration in your SDK initialization. In this react web app example, we are passing in `getCryptoKeyAccount` from the SDK for the `subaccount.getSigner` param when initializing the SDK in an React useEffect hook.
+Include the Sub Account configuration properties in your SDK initialization. In this React web app example, we are passing in `getCryptoKeyAccount` from the SDK for the `subaccount.getSigner` param when initializing the SDK in an React useEffect hook.
 
 ```tsx
 // app/context/CoinbaseWalletContext.tsx
@@ -35,7 +35,9 @@ import {
   ProviderInterface,
 } from '@coinbase/wallet-sdk';
 
-// Update the SDK initialization in useEffect
+// ... existing imports
+
+// Update the SDK initialization in the useEffect hook to add the subaccount configuration
 useEffect(() => {
   const coinbaseWalletSDK = createCoinbaseWalletSDK({
     appName: 'Coinbase Wallet demo',
@@ -77,6 +79,7 @@ export function CoinbaseWalletProvider({ children }: { children: ReactNode }) {
   // ... existing state
   const [subAccount, setSubAccount] = useState<Address | null>(null);
 
+  // add the createSubAccount function to the context
   const createSubAccount = useCallback(async () => {
     if (!provider || !address) {
       throw new Error('Address or provider not found');
@@ -112,22 +115,17 @@ export function CoinbaseWalletProvider({ children }: { children: ReactNode }) {
         };
       }[];
     };
-
     const { addSubAccount } = walletConnectResponse.accounts[0].capabilities;
     const subAccount = addSubAccount.address;
     setSubAccount(subAccount);
-
     return subAccount;
   }, [provider, address]);
 
+  // update the Provider's return values to include the createSubAccount function and subAccount state
   return (
     <CoinbaseWalletContext.Provider
       value={{
-        provider,
-        connect,
-        disconnect,
-        isConnected,
-        address,
+        // ... existing values
         subAccount,
         createSubAccount,
       }}
@@ -144,6 +142,8 @@ Now let's update your main page to include Sub Account creation, using the conte
 
 ```tsx
 // app/page.tsx
+
+// update the file with the following code that calls the createSubAccount function and displays the created Sub Account's address
 'use client';
 import { useCoinbaseWallet } from './context/CoinbaseWalletContext';
 
@@ -183,7 +183,13 @@ When a user clicks the "Create Sub Account" button, the following process occurs
 4. After approval, the Sub Account is created and linked to the user's main wallet
 5. The Sub Account address is stored in our application state
 
-The Sub Account is now ready to be used for transactions and message signing. In the next section, we'll cover how to interact with the Sub Account to perform these operations.
+The Sub Account is now ready to be used for transactions and message signing! Run the app and try creating the Sub Account and viewing the created address.
+
+```bash
+npm run dev
+```
+
+In the next section, we'll cover how to interact with the Sub Account to perform these operations.
 
 ## Next Steps
 
