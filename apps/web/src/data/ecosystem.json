@@ -4014,5 +4014,13 @@
     "imageUrl": "/images/partners/ipor.svg",
     "category": "defi",
     "subcategory": "yield vault"
+  },
+  {
+    "name": "XCeption",
+    "description": "Xception is a multi-chain DEX aggregator on Web & Telegram, offering fast trading, limit orders, sniping, and DCA. Built for traders and protocols, it ensures efficiency, security, and seamless execution.",
+    "url": "https://www.xceptionbot.io/",
+    "imageUrl": "/images/partners/xception.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
   }
 ]
