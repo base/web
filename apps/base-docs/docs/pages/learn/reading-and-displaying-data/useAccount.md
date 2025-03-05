@@ -159,5 +159,5 @@ In this guide, you've learned how the `useAccount` hook gives you access to info
 [Wallet Connectors]: ../frontend-setup/wallet-connectors/
 [`useAccount`]: https://wagmi.sh/react/hooks/useAccount
 [hydration error]: https://nextjs.org/docs/messages/react-hydration-error
-[Introduction to Providers]: https://docs.base.org/tutorials/intro-to-providers/
+[Introduction to Providers]: https://docs.base.org/cookbook/client-side-development/introduction-to-providers
 [UseAccountReturnType]: https://wagmi.sh/react/api/hooks/useAccount#return-type
