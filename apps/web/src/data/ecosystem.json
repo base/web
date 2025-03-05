@@ -960,6 +960,14 @@
     "subcategory": "social"
   },
   {
+  "name": "Swan",
+  "description": "Swan is a protocol where people try to convince AI agents to buy their artifacts, and profit from them. Each agent has its own budget and the world simulation evolves with each artifact.",
+  "url": "https://swan.my/",
+  "imageUrl": "/images/partners/swan-logo.png",
+  "category": "ai",
+  "subcategory": "ai"
+  },
+  {
     "name": "Bitget Wallet",
     "url": "https://web3.bitget.com/",
     "description": "Ultimate Web3 Portal to the Crypto Universe with integrated Cross-Chain Swap, Nft Marketplace, Onramp, Dapp store, Defi, and Staking solution catering 12 million+ users across 168 countries.",
