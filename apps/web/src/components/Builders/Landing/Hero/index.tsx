@@ -54,7 +54,7 @@ export function Hero() {
             eventName="flashblocks-announcement"
             target="_blank"
           >
-            Introducing Flashblocks: 200 milliseconds block times
+            Introducing Flashblocks: 200ms block times make Base 10x faster
           </ButtonWithLinkAndEventLogging>
         </div>
 
