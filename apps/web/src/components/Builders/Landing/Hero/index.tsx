@@ -45,7 +45,7 @@ export function Hero() {
           <GridHero hasBlue />
         </div>
         
-        <div className="absolute top-20 z-20 flex w-full justify-center px-6">
+        <div className="absolute top-20 z-20 flex w-full md:justify-center px-6">
           <ButtonWithLinkAndEventLogging
             variant={ButtonVariants.SecondaryOutline}
             iconName="arrowRight"
@@ -63,8 +63,8 @@ export function Hero() {
             What do you want to build today?
           </Title>
 
-          <div className="mt-7 flex w-full flex-col items-center gap-4">
-            <div className="z-10 flex w-full flex-col items-center justify-center gap-4 md:flex-row">
+          <div className="mt-7 flex w-full flex-col items-center gap-4 md:w-full">
+            <div className="z-10 flex w-full flex-col items-start justify-center gap-4 md:flex md:flex-row md:items-center md:justify-center">
               <ButtonWithLinkAndEventLogging
                 variant={ButtonVariants.SecondaryOutline}
                 iconName="baseOrgDiagonalUpArrow"
