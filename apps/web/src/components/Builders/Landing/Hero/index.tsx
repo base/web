@@ -45,7 +45,7 @@ export function Hero() {
           <GridHero hasBlue />
         </div>
         
-        <div className="absolute top-20 z-20 flex w-full px-8 md:justify-center">
+        <div className="absolute top-20 z-20 flex w-full px-6 md:justify-center">
           <ButtonWithLinkAndEventLogging
             variant={ButtonVariants.SecondaryOutline}
             iconName="arrowRight"
@@ -54,7 +54,7 @@ export function Hero() {
             eventName="flashblocks-announcement"
             target="_blank"
           >
-            Introducing Flashblocks: 200ms block times make Base 10x faster
+            Base is now 10x faster with 200ms block times
           </ButtonWithLinkAndEventLogging>
         </div>
 
