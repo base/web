@@ -4006,5 +4006,13 @@
     "imageUrl": "/images/partners/unlockprotocol.png",
     "category": "infra",
     "subcategory": "consumer"
+  },
+  {
+    "name": "IPOR",
+    "description": "IPOR offers two key products - IPOR Fusion: A composable vault stack optimized for modularity, security, and automation of sophisticated DeFi strategies. Asset managers can automate strategies, protocols can source liquidity, and LPs can get automated smart yield. Additionally, IPOR Derivatives: Earn token-boosted yield on stables and ETH. Trade plain-vanilla interest rate swaps onchain with up to 1000x leverage and 90-day maturity.",
+    "url": "https://app.ipor.io/fusion?chains=8453",
+    "imageUrl": "/images/partners/ipor.svg",
+    "category": "defi",
+    "subcategory": "yield vault"
   }
 ]
