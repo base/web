@@ -1,5 +1,13 @@
 [
   {
+    "name": "Ride DEX",
+    "description": "A decentralized self custodial memecoin launch platform that allows to create new types of standard, denominational, tiered and dynamic NFTs with presale and graduated pools, staking and claim packs.",
+    "url": "https://ride.wtf",
+    "imageUrl": "/images/partners/ride-dex.svg",
+    "category": "defi",
+    "subcategory": "dex"
+  },
+  {
     "name": "3DNS",
     "description": "3DNS is a decentralized domain name service (DNS) that can power real web domains. Users can import an existing domain or register a new one and bring the domain onchain via 3DNS.",
     "url": "https://3dns.box",
