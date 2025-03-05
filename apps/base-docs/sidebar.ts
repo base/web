@@ -92,6 +92,16 @@ export const sidebar: Sidebar = [
             text: 'Components',
             items: [
               {
+                text: 'Appchain',
+                collapsed: true,
+                items: [
+                  {
+                    text: 'Bridge',
+                    link: '/builderkits/onchainkit/appchain/bridge',
+                  },
+                ],
+              },
+              {
                 text: 'Buy',
                 collapsed: true,
                 items: [
@@ -467,6 +477,10 @@ export const sidebar: Sidebar = [
                 link: '/builderkits/onchainkit/api/types',
               },
               {
+                text: 'Appchain',
+                link: '/builderkits/onchainkit/appchain/types',
+              },
+              {
                 text: 'Checkout',
                 link: '/builderkits/onchainkit/checkout/types',
               },
@@ -537,10 +551,10 @@ export const sidebar: Sidebar = [
         text: 'Paymaster (CDP) ↗',
         link: 'https://docs.cdp.coinbase.com/paymaster/docs/welcome',
       },
-      // { PENDING APPCHAIN RELEASE 2/25
-      //   text: 'Appchains ↗',
-      //   link: 'https://docs.cdp.coinbase.com/paymaster/docs/welcome',
-      // },
+      {
+        text: 'Appchains ↗',
+        link: 'https://docs.cdp.coinbase.com/appchains/docs/welcome',
+      },
     ],
   },
   {
@@ -607,6 +621,10 @@ export const sidebar: Sidebar = [
                     text: 'Custom Gas Tokens',
                     link: '/identity/smart-wallet/features/custom-gas-tokens',
                   },
+                  {
+                    text: 'Sub Accounts',
+                    link: '/identity/smart-wallet/features/sub-accounts',
+                  },
                 ],
               },
             ],
@@ -627,10 +645,6 @@ export const sidebar: Sidebar = [
           {
             text: 'SDK',
             items: [
-              {
-                text: 'createCoinbaseWalletSDK',
-                link: '/identity/smart-wallet/sdk/create-coinbase-wallet-sdk',
-              },
               {
                 text: 'Install',
                 link: '/identity/smart-wallet/sdk/install',
@@ -663,28 +677,12 @@ export const sidebar: Sidebar = [
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/overview',
                       },
                       {
-                        text: 'eth_sendTransaction',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_sendTransaction',
-                      },
-                      {
-                        text: 'eth_signTypedData_v4',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_signTypedData_v4',
-                      },
-                      {
-                        text: 'personal_sign',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/personal_sign',
-                      },
-                      {
-                        text: 'wallet_addEthereumChain',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_addEthereumChain',
-                      },
-                      {
-                        text: 'wallet_watchAsset',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_watchAsset',
-                      },
-                      {
                         text: 'eth_accounts',
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_accounts',
+                      },
+                      {
+                        text: 'eth_blockNumber',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_blockNumber',
                       },
                       {
                         text: 'eth_chainId',
@@ -693,18 +691,6 @@ export const sidebar: Sidebar = [
                       {
                         text: 'eth_coinbase',
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_coinbase',
-                      },
-                      {
-                        text: 'eth_requestAccounts',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_requestAccounts',
-                      },
-                      {
-                        text: 'wallet_switchEthereumChain',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_switchEthereumChain',
-                      },
-                      {
-                        text: 'eth_blockNumber',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_blockNumber',
                       },
                       {
                         text: 'eth_estimateGas',
@@ -783,14 +769,54 @@ export const sidebar: Sidebar = [
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getUncleCountByBlockNumber',
                       },
                       {
+                        text: 'eth_requestAccounts',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_requestAccounts',
+                      },
+                      {
                         text: 'eth_sendRawTransaction',
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_sendRawTransaction',
+                      },
+                      {
+                        text: 'eth_sendTransaction',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_sendTransaction',
+                      },
+                      {
+                        text: 'eth_signTypedData_v4',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_signTypedData_v4',
+                      },
+                      {
+                        text: 'personal_sign',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/personal_sign',
+                      },
+                      {
+                        text: 'wallet_addEthereumChain',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_addEthereumChain',
+                      },
+                      {
+                        text: 'wallet_addSubAccount',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_addSubAccount',
+                      },
+                      {
+                        text: 'wallet_connect',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_connect',
+                      },
+                      {
+                        text: 'wallet_switchEthereumChain',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_switchEthereumChain',
+                      },
+                      {
+                        text: 'wallet_watchAsset',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_watchAsset',
                       },
                       {
                         text: 'web3_clientVersion',
                         link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/web3_clientVersion',
                       },
                     ],
+                  },
+                  {
+                    text: 'Sub Account Reference',
+                    link: '/identity/smart-wallet/sdk/sub-account-reference',
                   },
                 ],
               },
@@ -820,6 +846,7 @@ export const sidebar: Sidebar = [
               },
               { text: 'Paymasters', link: '/identity/smart-wallet/guides/paymasters' },
               { text: 'ERC20 Paymasters', link: '/identity/smart-wallet/guides/erc20-paymasters' },
+              { text: 'Sub Accounts', link: '/identity/smart-wallet/guides/sub-accounts/overview' },
               {
                 text: 'Spend Permissions',
                 collapsed: true,
@@ -1720,6 +1747,11 @@ export const sidebar: Sidebar = [
         link: 'https://discord.com/invite/buildonbase',
       },
     ],
+  },
+  {
+    text: 'Buildathons',
+    collapsed: true,
+    items: [{ text: '2025-02-flash', link: '/buildathons/2025-02-flash' }],
   },
   {
     text: 'Feedback',
