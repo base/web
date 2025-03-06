@@ -128,7 +128,7 @@ const contentSecurityPolicy = {
     'blob:',
     'data:',
     'https://euc.li',
-    'https://*.reown.com/', // WalletConnect
+    'https://*.walletconnect.com/', // WalletConnect
     'https://i.seadn.io/', // ens avatars
     'https://ipfs.io', // ipfs ens avatar resolution
     'https://cloudflare-ipfs.com', // ipfs Cloudflare ens avatar resolution
