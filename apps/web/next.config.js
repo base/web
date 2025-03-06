@@ -36,9 +36,6 @@ const baseConfig = {
 
   // Enable strict mode in development
   reactStrictMode: !isProdEnv,
-
-  // Minify for production builds
-  swcMinify: false,
 };
 
 function extendBaseConfig(customConfig = {}, plugins = []) {
@@ -79,6 +76,8 @@ const contentSecurityPolicy = {
     walletconnectDomains,
     'https://fonts.googleapis.com', // OCK styles loads google fonts via CSS
     'https://fonts.gstatic.com/', // OCK styles loads google fonts via CSS
+    'https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com',
+    'https://jsv3.recruitics.com/0778138b-cc59-11ef-a514-fd1759833eec.js', // recruitics job analytics
   ],
   'worker-src': ["'self'", 'blob:'],
   'connect-src': [
@@ -116,9 +115,16 @@ const contentSecurityPolicy = {
     'https://*.datadoghq.com', //datadog
     'https://translate.googleapis.com', // Let user translate our website
     'https://sdk-api.neynar.com/', // Neynar API
-    'https://unpkg.com/@lottiefiles/dotlottie-web@0.31.1/dist/dotlottie-player.wasm', // lottie player
+    'https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web@0.33.0/dist/dotlottie-player.wasm', // lottie player for profile pages
+    'https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web@0.31.1/dist/dotlottie-player.wasm', // lottie player for profile pages
+    'https://unpkg.com/@lottiefiles/dotlottie-web@0.31.1/dist/dotlottie-player.wasm', // lottie player for profile pages
+    'https://unpkg.com/@lottiefiles/dotlottie-web@0.33.0/dist/dotlottie-player.wasm', // lottie player for api
     `https://${process.env.NEXT_PUBLIC_PINATA_GATEWAY_URL}`,
     'https://usdc-claim-git-master-coinbase-vercel.vercel.app',
+    'https://eth.merkle.io', // new default viem rpc
+    'https://blue-api.morpho.org/graphql', // morpho
+    'https://base-sepolia.easscan.org/graphql', // nft
+    'https://*.google-analytics.com',
   ],
   'frame-src': ['https://p.datadoghq.com'],
   'frame-ancestors': ["'self'", baseXYZDomains],
@@ -134,6 +140,8 @@ const contentSecurityPolicy = {
     'https://cloudflare-ipfs.com', // ipfs Cloudflare ens avatar resolution
     'https://res.cloudinary.com',
     `https://${process.env.NEXT_PUBLIC_PINATA_GATEWAY_URL}`,
+    'https://img.reservoir.tools', // reservoir
+    'https://d3r81g40ycuhqg.cloudfront.net/', // OCK Earn component
   ],
 };
 
@@ -310,6 +318,16 @@ module.exports = extendBaseConfig(
         {
           source: '/name',
           destination: '/names',
+          permanent: true,
+        },
+        {
+          source: '/build',
+          destination: '/resources',
+          permanent: true,
+        },
+        {
+          source: '/builders/appchains',
+          destination: '/builders/base-appchains',
           permanent: true,
         },
       ];
