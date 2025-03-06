@@ -43,7 +43,7 @@
 }
 
 .scrollbar::-webkit-scrollbar {
-  /*display: auto;  - is invalid because the 'display' property does not accept 'auto' as a value. */
+  display: auto;
 }
 
 /* https://stackoverflow.com/questions/71296535/how-to-remove-arrow-on-input-type-number-with-tailwind-css */
