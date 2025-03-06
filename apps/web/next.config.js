@@ -126,7 +126,7 @@ const contentSecurityPolicy = {
     'https://base-sepolia.easscan.org/graphql', // nft
     'https://*.google-analytics.com',
   ],
-  'frame-src': ['https://p.datadoghq.com'],
+  'frame-src': ['https://p.datadoghq.com', walletconnectDomains],
   'frame-ancestors': ["'self'", baseXYZDomains],
   'form-action': ["'self'", baseXYZDomains],
   'img-src': [
