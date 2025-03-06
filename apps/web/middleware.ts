@@ -53,7 +53,7 @@ export function middleware(req: NextRequest) {
     url.pathname === '/learn'
   ) {
     url.host = 'docs.base.org';
-    url.pathname = '/base-learn/docs/welcome';
+    url.pathname = '/learn/welcome';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -61,7 +61,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/guides/run-a-base-goerli-node') {
     url.host = 'docs.base.org';
-    url.pathname = '/tutorials/run-a-base-node';
+    url.pathname = '/chain/run-a-base-node';
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -181,7 +181,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/onboarding') {
     url.host = 'docs.base.org';
-    url.pathname = '/'; // TODO: add pathname
+    url.pathname = '/chain/onboarding';
     url.port = '443';
 
     return NextResponse.redirect(url);
