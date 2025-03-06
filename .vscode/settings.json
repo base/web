@@ -25,10 +25,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
-  // Enable ESLint fixes on save
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
 
   // ESLint
   "eslint.packageManager": "yarn",
