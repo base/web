@@ -63,7 +63,7 @@ export default async function StartBuilding() {
         />
         <ResourceCard
           title="Gas Sponsorship"
-          description="Reduce costs and Sponsor Gas for you users, with the Coinbase Paymaster and Bundler"
+          description="Reduce costs and Sponsor Gas for your users, with the Coinbase Paymaster and Bundler"
           href="https://www.coinbase.com/developer-platform/products/paymaster/?utm_source=dotorg&utm_medium=builderkit"
           topLeft={<span className="font-mono">02</span>}
           topRight={<Icon name="diagonalUpArrow" width="16px" height="16px" />}

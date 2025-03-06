@@ -1,0 +1,96 @@
+---
+title: 'Setup'
+sidebar_label: 'Setup'
+slug: 'initializing'
+---
+
+This page explains how to integrate Coinbase Wallet SDK as the default provider for your app using <a href="https://web3js.readthedocs.io/en/v1.7.0/" target="_blank" rel="noreferrer noopener">web3.js</a>. You can follow a similar pattern if you are using <a href="https://docs.ethers.io/v5/" target="_blank" rel="noreferrer noopener">ethers.js</a>.
+
+## Setting up Coinbase Wallet SDK
+
+:::caution
+The code snippets have been updated to reflect the rebranding of Coinbase Wallet SDK from its previous name of WalletLink.
+:::
+
+:::info
+Instructions are in TypeScript. The usage is the same in JavaScript, except for the occasional TypeScript type annotation such as `string[]` or `as any`.
+:::
+
+### Prerequisites
+
+- A Typescript project set up locally, created with `yarn create react-app my-app --template typescript` or similar
+- web3.js installed using `npm install web3` or similar
+
+### Initializing
+
+In your **App.tsx** file, add the following code to initialize Coinbase Wallet SDK and a Web3 object:
+
+```typescript
+// TypeScript
+import CoinbaseWalletSDK from '@coinbase/wallet-sdk';
+import Web3 from 'web3';
+
+const APP_NAME = 'My Awesome App';
+const APP_LOGO_URL = 'https://example.com/logo.png';
+const APP_SUPPORTED_CHAIN_IDS = [8453, 84532];
+
+// Initialize Coinbase Wallet SDK
+export const coinbaseWallet = new CoinbaseWalletSDK({
+  appName: APP_NAME,
+  appLogoUrl: APP_LOGO_URL,
+  chainIds: APP_SUPPORTED_CHAIN_IDS,
+});
+
+// Initialize a Web3 Provider object
+export const ethereum = coinbaseWallet.makeWeb3Provider();
+
+// Initialize a Web3 object
+export const web3 = new Web3(ethereum as any);
+```
+
+Coinbase Wallet SDK uses an rpcUrl provided by Coinbase Wallet clients regardless of the rpcUrl passed into `makeWeb3Provider` for whitelisted networks. Wallet SDK needs an rpcUrl to be provided by the app as a fallback.
+
+**Next steps:**
+
+- [Switching or Adding EVM Chains](./switching-chains.mdx)
+- [Getting Ethereum Accounts](./getting-eth-accounts.mdx)
+
+## <a name="troubleshooting"></a>Troubleshooting
+
+<details>
+  <summary>I run into the following error: <b>Module not found: Error: Can't resolve &lt;'assert'/'url/'/...&gt;</b></summary>
+  <div>
+Due to the removal of default polyfills in webpack5, you must install the following utilities:
+
+```bash
+yarn add assert
+yarn add url
+yarn add os-browserify
+yarn add https-browserify
+yarn add stream-http
+yarn add stream-browserify
+yarn add crypto-browserify
+```
+
+Then, add the following code snippet to your _webpack.config.js_:
+
+```javascript
+resolve: {
+  fallback: {
+    fs: false,
+    'util': require.resolve('assert/'),
+    'url': require.resolve('url/'),
+    'os': require.resolve("os-browserify/browser"),
+    'https': require.resolve("https-browserify"),
+    'http': require.resolve("stream-http"),
+    'stream': require.resolve("stream-browserify"),
+    'crypto': require.resolve("crypto-browserify")
+  },
+}
+```
+
+If you are using an application built on `create-react-app` locally, you must run `npm run eject` to be able to customize your webpack configuration.
+
+  </div>
+</details>
+

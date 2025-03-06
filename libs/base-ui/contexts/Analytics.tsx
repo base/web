@@ -19,7 +19,7 @@ export const AnalyticsContext = createContext<AnalyticsContextProps>({
 export function useAnalytics() {
   const context = useContext(AnalyticsContext);
   if (context === undefined) {
-    throw new Error('useAnalytics must be used within a AnalyticsProvider');
+    throw new Error('useAnalytics must be used within an AnalyticsProvider');
   }
   return context;
 }

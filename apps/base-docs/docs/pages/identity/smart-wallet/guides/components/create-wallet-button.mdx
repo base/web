@@ -1,0 +1,532 @@
+import { Callout } from 'vocs/components';
+
+# Create Wallet Button
+
+## Simplify user onboarding with Smart Wallet
+
+For the best onboarding experience, we recommend adding a highly visible 'Create' or 'Create Wallet' button to your dapp's homepage.
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  ![Create Wallet Button](/examplePlacement.png)
+</div>
+
+Adding a 'Create Wallet' button to a page streamlines the onboarding experience for a new user and gets them ready to use your dapp in a few seconds.
+
+<Callout type="info" >
+We're offering additional incentives to dapps who implement this new approach. By integrating a create wallet button on the front page of your app, you are eligible for:
+
+- Increased volume of gas credits via our Cloud paymaster
+- Comarketing and promotional opportunities with Coinbase
+- Featured placement in our dapp listings on wallet.coinbase.com
+
+For more information, please [fill out the
+form](https://docs.google.com/forms/d/e/1FAIpQLSdmTnSjbI-wkkf2TzmuSEv3iYzkbZBsY08xPdK-54J0Ipt4PA/viewform)
+on [coinbase.com/smart-wallet](http://coinbase.com/smart-wallet) so our team can get
+in touch with you.
+
+</Callout>
+
+## Implementation
+
+**We recommend two paths for implementation:**
+
+1. Match our branded Create Wallet button
+1. Match your own apps look and feel in the Create button
+
+Example:
+
+<div style={{ width: 200 }}>
+  <div style={{ paddingBottom: 10 }}>
+    ![Create Wallet Button](/createWalletButtonBlack.png)
+  </div>
+  <div>![Create Wallet Button](/createWalletButtonBlue.png)</div>
+</div>
+
+![Create Wallet Button](/buttonPlacementExamples.png)
+
+### With Wagmi
+
+To implement the Create Wallet button with Wagmi, all you need to do is call `connect`.
+
+:::code-group
+
+```tsx twoslash [BlueCreateWalletButton.tsx] filename="BlueCreateWalletButton.tsx"
+import React, { useCallback } from 'react';
+import { useConnect } from 'wagmi';
+import { CoinbaseWalletLogo } from './CoinbaseWalletLogo';
+
+const buttonStyles = {
+  background: 'transparent',
+  border: '1px solid transparent',
+  boxSizing: 'border-box',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  width: 200,
+  fontFamily: 'Arial, sans-serif',
+  fontWeight: 'bold',
+  fontSize: 18,
+  backgroundColor: '#0052FF',
+  paddingLeft: 15,
+  paddingRight: 30,
+  borderRadius: 10,
+};
+
+export function BlueCreateWalletButton() {
+  const { connectors, connect, data } = useConnect();
+
+  const createWallet = useCallback(() => {
+    const coinbaseWalletConnector = connectors.find(
+      (connector) => connector.id === 'coinbaseWalletSDK'
+    );
+    if (coinbaseWalletConnector) {
+      connect({ connector: coinbaseWalletConnector });
+    }
+  }, [connectors, connect]);
+  return (
+    <button style={buttonStyles} onClick={createWallet}>
+      <CoinbaseWalletLogo />
+      Create Wallet
+    </button>
+  );
+}
+```
+
+```tsx twoslash [BlackCreateWalletButton.tsx] filename="BlackCreateWalletButton.tsx"
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useConnect } from 'wagmi';
+import { CoinbaseWalletLogo } from './CoinbaseWalletLogo';
+
+const GRADIENT_BORDER_WIDTH = 2;
+
+const buttonStyles = {
+  background: 'transparent',
+  border: '1px solid transparent',
+  boxSizing: 'border-box',
+};
+
+const contentWrapperStyle = {
+  position: 'relative',
+};
+
+function Gradient({ children, style, isAnimationDisabled = false }) {
+  const [isAnimating, setIsAnimating] = useState(false);
+  const gradientStyle = useMemo(() => {
+    const rotate = isAnimating ? '720deg' : '0deg';
+    return {
+      transform: `rotate(${rotate})`,
+      transition: isAnimating
+        ? 'transform 2s cubic-bezier(0.27, 0, 0.24, 0.99)'
+        : 'none',
+      ...style,
+    };
+  }, [isAnimating, style]);
+
+  const handleMouseEnter = useCallback(() => {
+    if (isAnimationDisabled || isAnimating) return;
+    setIsAnimating(true);
+  }, [isAnimationDisabled, isAnimating, setIsAnimating]);
+
+  useEffect(() => {
+    if (!isAnimating) return;
+    const animationTimeout = setTimeout(() => {
+      setIsAnimating(false);
+    }, 2000);
+    return () => {
+      clearTimeout(animationTimeout);
+    };
+  }, [isAnimating]);
+
+  return (
+    <div style={contentWrapperStyle} onMouseEnter={handleMouseEnter}>
+      <div className="gradient-background" style={gradientStyle} />
+      {children}
+    </div>
+  );
+}
+
+export function BlackCreateWalletButton({ height = 66, width = 200 }) {
+  const { connectors, connect } = useConnect();
+
+  const minButtonHeight = 48;
+  const minButtonWidth = 200;
+  const buttonHeight = Math.max(minButtonHeight, height);
+  const buttonWidth = Math.max(minButtonWidth, width);
+  const gradientDiameter = Math.max(buttonHeight, buttonWidth);
+  const styles = useMemo(
+    () => ({
+      gradientContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'black',
+        borderRadius: buttonHeight / 2,
+        height: buttonHeight,
+        width: buttonWidth,
+        boxSizing: 'border-box',
+        overflow: 'hidden',
+      },
+      gradient: {
+        background:
+          'conic-gradient(from 180deg, #45E1E5 0deg, #0052FF 86.4deg, #B82EA4 165.6deg, #FF9533 255.6deg, #7FD057 320.4deg, #45E1E5 360deg)',
+        position: 'absolute',
+        top: -buttonHeight - GRADIENT_BORDER_WIDTH,
+        left: -GRADIENT_BORDER_WIDTH,
+        width: gradientDiameter,
+        height: gradientDiameter,
+      },
+      buttonBody: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        boxSizing: 'border-box',
+        backgroundColor: '#000000',
+        height: buttonHeight - GRADIENT_BORDER_WIDTH * 2,
+        width: buttonWidth - GRADIENT_BORDER_WIDTH * 2,
+        fontFamily: 'Arial, sans-serif',
+        fontWeight: 'bold',
+        fontSize: 18,
+        borderRadius: buttonHeight / 2,
+        position: 'relative',
+        paddingRight: 10,
+      },
+    }),
+    [buttonHeight, buttonWidth, gradientDiameter]
+  );
+
+  const createWallet = useCallback(() => {
+    const coinbaseWalletConnector = connectors.find(
+      (connector) => connector.id === 'coinbaseWalletSDK'
+    );
+    if (coinbaseWalletConnector) {
+      connect({ connector: coinbaseWalletConnector });
+    }
+  }, [connectors, connect]);
+
+  return (
+    <button style={buttonStyles} onClick={createWallet}>
+      <div style={styles.gradientContainer}>
+        <Gradient style={styles.gradient}>
+          <div style={styles.buttonBody}>
+            <CoinbaseWalletLogo containerStyles={{ paddingRight: 10 }} />
+            Create Wallet
+          </div>
+        </Gradient>
+      </div>
+    </button>
+  );
+}
+```
+
+```tsx twoslash [CoinbaseWalletLogo.tsx] filename="CoinbaseWalletLogo.tsx"
+import React from 'react';
+
+const defaultContainerStyles = {
+  paddingTop: 2,
+};
+
+export function CoinbaseWalletLogo({
+  size = 26,
+  containerStyles = defaultContainerStyles,
+}) {
+  return (
+    <div style={containerStyles}>
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M2.66675 15.9998C2.66675 23.3628 8.63712 29.3332 16.0001 29.3332C23.363 29.3332 29.3334 23.3628 29.3334 15.9998C29.3334 8.63687 23.363 2.6665 16.0001 2.6665C8.63712 2.6665 2.66675 8.63687 2.66675 15.9998ZM12.5927 11.7035H19.4075C19.9001 11.7035 20.2964 12.0998 20.2964 12.5924V19.4072C20.2964 19.8998 19.9001 20.2961 19.4075 20.2961H12.5927C12.1001 20.2961 11.7038 19.8998 11.7038 19.4072V12.5924C11.7038 12.0998 12.1001 11.7035 12.5927 11.7035Z"
+          fill="white"
+        />
+      </svg>
+    </div>
+  );
+}
+```
+
+```ts twoslash [wagmi.ts]
+// @noErrors: 2554
+import { http, createConfig } from 'wagmi';
+import { baseSepolia } from 'wagmi/chains';
+import { coinbaseWallet } from 'wagmi/connectors';
+
+export const config = createConfig({
+  chains: [baseSepolia],
+  connectors: [
+    coinbaseWallet({
+      appName: 'Create Wagmi',
+      preference: 'smartWalletOnly',
+    }),
+  ],
+  transports: {
+    [baseSepolia.id]: http(),
+  },
+});
+
+declare module 'wagmi' {
+  interface Register {
+    config: typeof config;
+  }
+}
+```
+
+:::
+
+#### Notes
+
+- For more detail, view the [`useConnect` documentation](https://wagmi.sh/react/api/hooks/useConnect).
+- Upon successful connection, account information can be accessed via [data](https://wagmi.sh/react/api/hooks/useConnect#data)
+  returned from `useConnect`, or via [`useAccount`](https://wagmi.sh/react/api/hooks/useAccount).
+
+### With CoinbaseWalletSDK only
+
+To implement the Create Wallet button using only the SDK, all you need to do is make an `eth_requestAccounts` request.
+
+:::code-group
+
+```tsx twoslash [BlueCreateWalletButton.tsx] filename="BlueCreateWalletButton.tsx"
+import React, { useCallback } from 'react';
+import { createCoinbaseWalletSDK } from '@coinbase/wallet-sdk';
+import { CoinbaseWalletLogo } from './CoinbaseWalletLogo';
+
+const buttonStyles = {
+  background: 'transparent',
+  border: '1px solid transparent',
+  boxSizing: 'border-box',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  width: 200,
+  fontFamily: 'Arial, sans-serif',
+  fontWeight: 'bold',
+  fontSize: 18,
+  backgroundColor: '#0052FF',
+  paddingLeft: 15,
+  paddingRight: 30,
+  borderRadius: 10,
+};
+
+const sdk = new createCoinbaseWalletSDK({
+  appName: 'My Dapp',
+  appLogoUrl: 'https://example.com/logo.png',
+  appChainIds: [84532],
+});
+
+const provider = sdk.getProvider();
+
+export function BlueCreateWalletButton({ handleSuccess, handleError }) {
+  const createWallet = useCallback(async () => {
+    try {
+      const [address] = await provider.request({
+        method: 'eth_requestAccounts',
+      });
+      handleSuccess(address);
+    } catch (error) {
+      handleError(error);
+    }
+  }, [handleSuccess, handleError]);
+
+  return (
+    <button style={buttonStyles} onClick={createWallet}>
+      <CoinbaseWalletLogo />
+      Create Wallet
+    </button>
+  );
+}
+```
+
+```tsx twoslash [BlackCreateWalletButton.tsx] filename="BlackCreateWalletButton.tsx"
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { createCoinbaseWalletSDK } from '@coinbase/wallet-sdk';
+import { CoinbaseWalletLogo } from './CoinbaseWalletLogo';
+
+const GRADIENT_BORDER_WIDTH = 2;
+
+const buttonStyles = {
+  background: 'transparent',
+  border: '1px solid transparent',
+  boxSizing: 'border-box',
+};
+
+const contentWrapperStyle = {
+  position: 'relative',
+};
+
+function Gradient({ children, style, isAnimationDisabled = false }) {
+  const [isAnimating, setIsAnimating] = useState(false);
+  const gradientStyle = useMemo(() => {
+    const rotate = isAnimating ? '720deg' : '0deg';
+    return {
+      transform: `rotate(${rotate})`,
+      transition: isAnimating
+        ? 'transform 2s cubic-bezier(0.27, 0, 0.24, 0.99)'
+        : 'none',
+      ...style,
+    };
+  }, [isAnimating, style]);
+
+  const handleMouseEnter = useCallback(() => {
+    if (isAnimationDisabled || isAnimating) return;
+    setIsAnimating(true);
+  }, [isAnimationDisabled, isAnimating, setIsAnimating]);
+
+  useEffect(() => {
+    if (!isAnimating) return;
+    const animationTimeout = setTimeout(() => {
+      setIsAnimating(false);
+    }, 2000);
+    return () => {
+      clearTimeout(animationTimeout);
+    };
+  }, [isAnimating]);
+
+  return (
+    <div style={contentWrapperStyle} onMouseEnter={handleMouseEnter}>
+      <div className="gradient-background" style={gradientStyle} />
+      {children}
+    </div>
+  );
+}
+
+const sdk = new createCoinbaseWalletSDK({
+  appName: 'My Dapp With Vanilla SDK',
+  appLogoUrl: 'https://example.com/logo.png',
+  appChainIds: [84532],
+});
+
+const provider = sdk.getProvider();
+
+export function BlackCreateWalletButton({ height = 66, width = 200 }) {
+  const minButtonHeight = 48;
+  const minButtonWidth = 200;
+  const buttonHeight = Math.max(minButtonHeight, height);
+  const buttonWidth = Math.max(minButtonWidth, width);
+  const gradientDiameter = Math.max(buttonHeight, buttonWidth);
+  const styles = useMemo(
+    () => ({
+      gradientContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'black',
+        borderRadius: buttonHeight / 2,
+        height: buttonHeight,
+        width: buttonWidth,
+        boxSizing: 'border-box',
+        overflow: 'hidden',
+      },
+      gradient: {
+        background:
+          'conic-gradient(from 180deg, #45E1E5 0deg, #0052FF 86.4deg, #B82EA4 165.6deg, #FF9533 255.6deg, #7FD057 320.4deg, #45E1E5 360deg)',
+        position: 'absolute',
+        top: -buttonHeight - GRADIENT_BORDER_WIDTH,
+        left: -GRADIENT_BORDER_WIDTH,
+        width: gradientDiameter,
+        height: gradientDiameter,
+      },
+      buttonBody: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        boxSizing: 'border-box',
+        backgroundColor: '#000000',
+        height: buttonHeight - GRADIENT_BORDER_WIDTH * 2,
+        width: buttonWidth - GRADIENT_BORDER_WIDTH * 2,
+        fontFamily: 'Arial, sans-serif',
+        fontWeight: 'bold',
+        fontSize: 18,
+        borderRadius: buttonHeight / 2,
+        position: 'relative',
+        paddingRight: 10,
+      },
+    }),
+    [buttonHeight, buttonWidth, gradientDiameter]
+  );
+
+  const createWallet = useCallback(async () => {
+    try {
+      const [address] = await provider.request({
+        method: 'eth_requestAccounts',
+      });
+      handleSuccess(address);
+    } catch (error) {
+      handleError(error);
+    }
+  }, [handleSuccess, handleError]);
+
+  return (
+    <button style={buttonStyles} onClick={createWallet}>
+      <div style={styles.gradientContainer}>
+        <Gradient style={styles.gradient}>
+          <div style={styles.buttonBody}>
+            <CoinbaseWalletLogo containerStyles={{ paddingRight: 10 }} />
+            Create Wallet
+          </div>
+        </Gradient>
+      </div>
+    </button>
+  );
+}
+```
+
+```tsx twoslash [CoinbaseWalletLogo.tsx] filename="CoinbaseWalletLogo.tsx"
+import React from 'react';
+
+const defaultContainerStyles = {
+  paddingTop: 2,
+};
+
+export function CoinbaseWalletLogo({
+  size = 26,
+  containerStyles = defaultContainerStyles,
+}) {
+  return (
+    <div style={containerStyles}>
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M2.66675 15.9998C2.66675 23.3628 8.63712 29.3332 16.0001 29.3332C23.363 29.3332 29.3334 23.3628 29.3334 15.9998C29.3334 8.63687 23.363 2.6665 16.0001 2.6665C8.63712 2.6665 2.66675 8.63687 2.66675 15.9998ZM12.5927 11.7035H19.4075C19.9001 11.7035 20.2964 12.0998 20.2964 12.5924V19.4072C20.2964 19.8998 19.9001 20.2961 19.4075 20.2961H12.5927C12.1001 20.2961 11.7038 19.8998 11.7038 19.4072V12.5924C11.7038 12.0998 12.1001 11.7035 12.5927 11.7035Z"
+          fill="white"
+        />
+      </svg>
+    </div>
+  );
+}
+```
+
+```ts twoslash [wagmi.ts]
+// @noErrors: 2554
+import { http, createConfig } from 'wagmi';
+import { baseSepolia } from 'wagmi/chains';
+import { coinbaseWallet } from 'wagmi/connectors';
+
+export const config = createConfig({
+  chains: [baseSepolia],
+  connectors: [
+    coinbaseWallet({
+      appName: 'Create Wagmi',
+      preference: 'smartWalletOnly',
+    }),
+  ],
+  transports: {
+    [baseSepolia.id]: http(),
+  },
+});
+
+declare module 'wagmi' {
+  interface Register {
+    config: typeof config;
+  }
+}
+```
+
+:::

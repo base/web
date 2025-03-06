@@ -164,7 +164,7 @@ export default function RegistrationForm() {
 
   const { seconds, timestamp: premiumEndTimestamp } = usePremiumEndDurationRemaining();
 
-  const isPremiumActive = premiumPrice && premiumPrice !== 0n && seconds !== 0n;
+  const isPremiumActive = Boolean(premiumPrice && premiumPrice !== 0n && seconds !== 0n);
   const mainRegistrationElementClasses = classNames(
     'z-10 flex flex-col items-start justify-between gap-6 bg-[#F7F7F7] p-8 text-gray-60 shadow-xl md:flex-row md:items-center relative z-20',
     {
