@@ -181,7 +181,7 @@ export function middleware(req: NextRequest) {
 
   if (url.pathname === '/tools/onboarding') {
     url.host = 'docs.base.org';
-    url.pathname = '/chain/onboardin';
+    url.pathname = '/chain/onboarding';
     url.port = '443';
 
     return NextResponse.redirect(url);
