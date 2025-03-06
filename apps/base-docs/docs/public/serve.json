@@ -23,10 +23,6 @@
       "destination": "/chain/run-a-base-node"
     },
     {
-      "source": "/guides/run-a-base-node",
-      "destination": "/chain/run-a-base-node"
-    },
-    {
       "source": "/network-information",
       "destination": "/chain/network-information"
     },
