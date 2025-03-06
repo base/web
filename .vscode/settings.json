@@ -51,17 +51,5 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
-  // Other helpful settings
-  "files.autoSave": "onFocusChange",
-  "files.associations": {
-    "*.ts": "typescript",
-    "*.tsx": "typescriptreact",
-    "*.js": "javascript",
-    "*.jsx": "javascriptreact"
-  },
-  "files.exclude": {
-    "**/.git": true,
-    "**/.DS_Store": true,
-    "**/node_modules": true
   }
 }
