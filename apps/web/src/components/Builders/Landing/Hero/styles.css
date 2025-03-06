@@ -1,0 +1,14 @@
+.grid-item {
+  background-color: rgb(0, 0, 0);
+  transition: background-color 0.8s ease-in-out;
+}
+
+.flash-gray {
+  background-color: hsl(0, 0%, 10%);
+  transition: background-color 0s ease-in-out;
+}
+
+.flash-blue {
+  background-color: #0052ff;
+  transition: background-color 0s ease-in-out;
+}

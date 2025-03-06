@@ -51,7 +51,7 @@ const AnimatedIcon = ({
 
   const renderIcon = () => {
     switch (icon.toLocaleLowerCase()) {
-      case 'build':
+      case 'explore':
         return (
           <motion.svg
             variants={svgVariants}
@@ -129,7 +129,7 @@ const AnimatedIcon = ({
             />
           </motion.svg>
         );
-      case 'explore':
+      case 'community':
         return (
           <motion.svg
             variants={svgVariants}
@@ -207,7 +207,7 @@ const AnimatedIcon = ({
             />
           </motion.svg>
         );
-      case 'community':
+      case 'about':
         return (
           <motion.svg
             variants={svgVariants}
@@ -359,84 +359,6 @@ const AnimatedIcon = ({
               d="M62.908 4.85645L81.4069 23.3515"
               stroke={color}
               strokeWidth="2.72903"
-              strokeMiterlimit="10"
-            />
-          </motion.svg>
-        );
-      case 'about':
-        return (
-          <motion.svg
-            variants={svgVariants}
-            initial="hidden"
-            animate="visible"
-            width="69"
-            height="69"
-            viewBox="0 0 69 69"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <motion.path
-              variants={pathVariants}
-              custom={0}
-              d="M3.64893 3.64868L26.6767 26.6765"
-              stroke={color}
-              strokeWidth="2.47787"
-              strokeMiterlimit="10"
-            />
-            <motion.path
-              variants={pathVariants}
-              custom={0}
-              d="M3.6488 64.7227L26.6766 41.6948"
-              stroke={color}
-              strokeWidth="2.47787"
-              strokeMiterlimit="10"
-            />
-            <motion.path
-              variants={pathVariants}
-              custom={0}
-              d="M64.7226 64.7224L41.6948 41.6946"
-              stroke={color}
-              strokeWidth="2.47787"
-              strokeMiterlimit="10"
-            />
-            <motion.path
-              variants={pathVariants}
-              custom={0}
-              d="M64.7226 3.64869L41.6948 26.6765"
-              stroke={color}
-              strokeWidth="2.47787"
-              strokeMiterlimit="10"
-            />
-            <motion.path
-              variants={pathVariants}
-              custom={0}
-              d="M59.9777 67.2202H8.73413"
-              stroke={color}
-              strokeWidth="2.70552"
-              strokeMiterlimit="10"
-            />
-            <motion.path
-              variants={pathVariants}
-              custom={0}
-              d="M59.9777 1.4917H8.73413"
-              stroke={color}
-              strokeWidth="2.70552"
-              strokeMiterlimit="10"
-            />
-            <motion.path
-              variants={pathVariants}
-              custom={0}
-              d="M67.2202 8.73413V59.9777"
-              stroke={color}
-              strokeWidth="2.70552"
-              strokeMiterlimit="10"
-            />
-            <motion.path
-              variants={pathVariants}
-              custom={0}
-              d="M1.4917 8.73413V59.9777"
-              stroke={color}
-              strokeWidth="2.70552"
               strokeMiterlimit="10"
             />
           </motion.svg>

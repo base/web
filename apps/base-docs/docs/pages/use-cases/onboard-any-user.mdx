@@ -1,0 +1,148 @@
+---
+title: Onboard any user
+description: Learn how to seamlessly integrate the WalletModal component from OnchainKit to rapidly onboard new users with a smart wallet experience.
+---
+
+import { ConnectWallet, Wallet, WalletDropdown, WalletDropdownDisconnect } from '@coinbase/onchainkit/wallet'
+import { Address, Avatar, Name, Identity, EthBalance } from '@coinbase/onchainkit/identity'
+import AppWithWalletModal from '@/components/AppWithWalletModal'
+import { color } from '@coinbase/onchainkit/theme'
+
+# Onboard any user
+
+In onchain apps, the wallet is at the center of your user model. Onboarding requires users to connect an existing wallet or sign up for a new wallet. The [`<WalletModal />`](/builderkits/onchainkit/wallet/wallet-modal) component provides a drag-and-drop solution to handle wallet onboarding seamlessly to eliminate friction and churn.
+
+## How It Works
+
+The component offers:
+- Smooth onboarding for new users with guided Smart Wallet creation
+- Quick connection for existing wallets
+- Consistent handling of connection states with a responsive UI
+
+Lets add the `WalletModal` component to your app.
+
+:::steps
+
+### Create a new OnchainKit app
+
+```bash [Terminal]
+npm create onchain@latest
+```
+
+### Configure the `OnchainKitProvider` with modal settings:
+
+```tsx [providers.tsx]
+<OnchainKitProvider
+  apiKey={process.env.ONCHAINKIT_API_KEY}
+  chain={base}
+  config={{
+    appearance: {
+      name: 'Your App Name',        // Displayed in modal header
+      logo: 'https://your-logo.com',// Displayed in modal header
+      mode: 'auto',                 // 'light' | 'dark' | 'auto'
+      theme: 'default',             // 'default' or custom theme
+    },
+    // configure the wallet modal below 
+    wallet: {
+      display: 'modal',       
+      termsUrl: 'https://...', 
+      privacyUrl: 'https://...', 
+    },
+  }}
+>
+  {children}
+</OnchainKitProvider>
+```
+
+### Add the `<Wallet/>` component
+
+```tsx [App.tsx]
+<Wallet>
+  <ConnectWallet>
+    <Avatar className="h-6 w-6" />
+    <Name />
+  </ConnectWallet>
+  <WalletDropdown>
+    <Identity className="px-4 pt-3 pb-2" hasCopyAddressOnClick>
+      <Avatar />
+      <Name />
+      <Address />
+      <EthBalance />
+    </Identity>
+    <WalletDropdownDisconnect />
+  </WalletDropdown>
+</Wallet>
+```
+
+### Wrap with Wallet Modal Context
+
+Ensure that the Wallet Modal is globally accessible by wrapping your key UI components:
+
+```tsx
+<AppWithWalletModal>
+  <div className="my-10 flex justify-center">
+    <Wallet>
+      <ConnectWallet>
+        <Avatar className="h-6 w-6" />
+        <Name />
+      </ConnectWallet>
+      <WalletDropdown>
+        <Identity className="px-4 pt-3 pb-2" hasCopyAddressOnClick>
+          <Avatar />
+          <Name />
+          <Address className={color.foregroundMuted} />
+          <EthBalance />
+        </Identity>
+        <WalletDropdownDisconnect />
+      </WalletDropdown>
+    </Wallet>
+  </div>
+</AppWithWalletModal>
+```
+
+:::
+
+<AppWithWalletModal>
+  <div className="my-10 flex justify-center">
+    <Wallet>
+      <ConnectWallet>
+        <Avatar className="h-6 w-6" />
+        <Name />
+      </ConnectWallet>
+      <WalletDropdown>
+        <Identity className="px-4 pt-3 pb-2" hasCopyAddressOnClick>
+          <Avatar />
+          <Name />
+          <Address className={color.foregroundMuted} />
+          <EthBalance />
+        </Identity>
+        <WalletDropdownDisconnect />
+      </WalletDropdown>
+    </Wallet>
+  </div>
+</AppWithWalletModal>
+
+You now have an interface to streamline user onboarding! The `WalletModal` component handles: 
+- Smart wallet createion for new signups 
+- Quick connection for existing wallets
+- Wallet connection states
+- Error handling
+- Mobile/desktop responsive behavior
+- Theme customization
+- Terms/privacy policy display
+
+
+
+## Why Smart Wallet for new signups?
+
+In addition to providing a secure and feature-rich wallet experience, Smart Wallets provide a streamlined onboarding experience through account creation with Passkeys. This allows anyone to securely create a new wallet and begin transacting without ever leaving your app.
+
+:::info[More on Smart Wallets]
+
+Smart Wallet has advanced features such as sponsored transactions, spend permissions, and Magic Spend. [Learn more about Smart Wallet here](/identity/smart-wallet/introduction/install-web).
+
+:::
+
+## Conclusion
+
+By integrating  `<WalletModal />`, you offer a robust and user-friendly wallet onboarding experience. First-time users benefit from a seamless Smart Wallet creation flow, while returning users can quickly connect their wallets to get started with your onchain app.

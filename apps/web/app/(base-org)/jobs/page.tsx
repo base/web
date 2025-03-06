@@ -1,3 +1,4 @@
+import JobsScript from 'apps/web/app/(base-org)/jobs/JobsScript';
 import Container from 'apps/web/src/components/base-org/Container';
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
@@ -15,17 +16,16 @@ export const metadata: Metadata = {
   },
 };
 
-// Revalidate every 30 minutes
-export const revalidate = 60 * 30;
-
 async function getJobs() {
   const res = await fetch(`${greenhouseApiUrl}/boards/basejobs/jobs?content=true`, {
-    next: { revalidate },
+    next: { revalidate: 60 * 30 }, // Revalidate every 30 minutes
   });
   try {
     const { jobs } = (await res.json()) as { jobs: JobType[] };
     return jobs;
-  } catch (error) {}
+  } catch (_error) {
+    console.error(_error);
+  }
   return [];
 }
 
@@ -34,6 +34,7 @@ export default async function Jobs() {
 
   return (
     <main className="flex w-full grow flex-col items-center pt-20">
+      <JobsScript />
       <Container>
         <section className="mb-[140px] flex w-full flex-col pb-10 pt-20 ">
           <Title level={TitleLevel.Display3}>Join our team</Title>
