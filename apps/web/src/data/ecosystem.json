@@ -24,6 +24,14 @@
     "subcategory": "self-custody"
   },
   {
+    "name": "CoW Swap",
+    "description": "CoW Swap is an intent-based meta-DEX aggregator that leverages CoW Protocol's bespoke batch/solver ecosystem. With built in MEV protection, CoW Swap lets traders big and small do more and worry less",
+    "url": "https://swap.cow.fi",
+    "imageUrl": "/images/partners/cowswap.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
+  },
+  {
     "name": "Arcadia Games",
     "description": "Arcadia Games provides PvP board games on the blockchain. Play Chess, Battleship and other classic games against other players for crypto.",
     "url": "https://arcadiagames.io",
@@ -950,6 +958,14 @@
     "imageUrl": "/images/partners/appicon.webp",
     "category": "consumer",
     "subcategory": "social"
+  },
+  {
+  "name": "Swan",
+  "description": "Swan is a protocol where people try to convince AI agents to buy their artifacts, and profit from them. Each agent has its own budget and the world simulation evolves with each artifact.",
+  "url": "https://swan.my/",
+  "imageUrl": "/images/partners/swan-logo.png",
+  "category": "ai",
+  "subcategory": "ai"
   },
   {
     "name": "Bitget Wallet",
@@ -3592,6 +3608,14 @@
     "imageUrl": "/images/partners/phantom.svg"
   },
   {
+    "name": "20lab",
+    "description": "20lab.app is a customizable ERC-20, SPL (Solana) & Sui token generator with over 17 extendable features. Test our generator for free and manage functions via token owner dashboard.",
+    "url": "https://20lab.app/generate/erc20-token/base/",
+    "imageUrl": "/images/partners/20lab.png",
+    "category": "infra",
+    "subcategory": "developer tool"
+  },
+  {
     "name": "Bend",
     "description": "A free payments app that allows anyone to easily send money worldwide-no bank account required.",
     "category": "wallet",
@@ -3768,10 +3792,10 @@
     "subcategory": "ai"
   },
   {
-    "name": "PeakChain MoveUp",
-    "description": "Peakchain MoveUp: A Move-to-Earn app rewarding sustainable travel with tokens, points & NFTs, driving eco-friendly mobility & sustainability!",
+    "name": "MoveUP",
+    "description": "MoveUP: The first AI-powered Move-to-Earn app on Base, rewarding users with tokens, points, and NFTs, while providing AI-driven insights to enhance their experience!",
     "url": "https://peakchain.network/base",
-    "imageUrl": "/images/partners/peakchain-moveup.png",
+    "imageUrl": "/images/partners/moveUP-logo.png",
     "category": "consumer",
     "subcategory": "real world"
   },
