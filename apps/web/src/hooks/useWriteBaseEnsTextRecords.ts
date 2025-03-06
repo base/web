@@ -66,7 +66,7 @@ export default function useWriteBaseEnsTextRecords({
       const existingValue = existingTextRecords[key].trim();
       const updatedValue = updatedTextRecords[key].trim();
 
-      return existingValue != updatedValueValue;
+      return existingValue != updatedValue;
     });
   }, [existingTextRecords, updatedTextRecords]);
 
