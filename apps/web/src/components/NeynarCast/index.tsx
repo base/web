@@ -1,8 +1,8 @@
 'use client';
 
 import ImageWithLoading from 'apps/web/src/components/ImageWithLoading';
-import NeymarFrame from 'apps/web/src/components/NeymarFrame';
-import { fetchCast, NeymarCastData } from 'apps/web/src/utils/frames';
+import NeynarFrame from 'apps/web/src/components/NeynarFrame';
+import { fetchCast, NeynarCastData } from 'apps/web/src/utils/frames';
 import Link from 'next/link';
 import { MouseEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Hls from 'hls.js';
@@ -102,14 +102,14 @@ function ParagraphWithLinks({ text }: { text: string }) {
   return textWithLinks;
 }
 
-export default function NeymarCast({
+export default function NeynarCast({
   identifier,
   type,
 }: {
   identifier: string;
   type: 'url' | 'hash';
 }) {
-  const [data, setData] = useState<NeymarCastData['cast']>();
+  const [data, setData] = useState<NeynarCastData['cast']>();
   const { logError } = useErrors();
   useEffect(() => {
     fetchCast({ type, identifier })
@@ -208,7 +208,7 @@ export default function NeymarCast({
         <ul className="flex flex-col gap-2">
           {frames.map((frame) => (
             <li key={frame.title}>
-              <NeymarFrame frame={frame} hash={hash} />
+              <NeynarFrame frame={frame} hash={hash} />
             </li>
           ))}
         </ul>

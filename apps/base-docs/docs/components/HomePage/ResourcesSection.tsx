@@ -16,7 +16,7 @@ const resources = [
   {
     icon: Users,
     title: 'Discord',
-    description: 'Join our global community,get help, and meet builders.',
+    description: 'Join our global community, get help, and meet builders.',
     link: 'https://discord.com/invite/buildonbase'
   },
 
