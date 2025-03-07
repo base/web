@@ -4038,5 +4038,13 @@
     "imageUrl": "/images/partners/ipor.svg",
     "category": "defi",
     "subcategory": "yield vault"
+  },
+  {
+    "name": "vaults.fyi",
+    "description": "vaults.fyi is your onchain yield hub, curating and verifying DeFi vault analytics (APY, TVL, etc.) via onchain data. Our Insights and Earn APIs let builders seamlessly integrate DeFi.",
+    "url": "https://app.vaults.fyi/discover?selectedNetworks=base",
+    "imageUrl": "/images/partners/vaultsfyi.png",
+    "category": "defi",
+    "subcategory": "portfolio"
   }
 ]
