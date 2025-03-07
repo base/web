@@ -154,7 +154,7 @@ const guides = [
     title: "Cross-Chain Development",
     description: "Build applications that work across chains",
     icon: Link2,
-    href: "//guides/general-development/cross-chain/bridge-tokens-with-layerzero"
+    href: "/guides/general-development/cross-chain/bridge-tokens-with-layerzero"
   }
 ] as const
 
