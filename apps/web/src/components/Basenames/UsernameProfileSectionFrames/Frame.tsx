@@ -137,7 +137,11 @@ export default function Frame({ url, className }: FrameProps) {
     const currentFrameStackItem = openFrameState.currentFrameStackItem;
     if (!openFrameWorksPersisted && currentFrameStackItem) {
       const status = currentFrameStackItem.status;
-      if (status === 'done' && currentFrameStackItem.frameResult.frame.accepts) {
+      if (
+        status === 'done' &&
+        currentFrameStackItem.frameResult.specification === 'openframes' &&
+        currentFrameStackItem.frameResult.frame.accepts
+      ) {
         const acceptsAnonymous = currentFrameStackItem.frameResult.frame.accepts.some(
           (element) => element.id === 'anonymous',
         );

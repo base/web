@@ -1,0 +1,28 @@
+# Why Smart Wallet?
+
+## Instant Onboarding
+Smart Wallet enables users to create an account in seconds with no app or extension required.
+
+This is possible because Smart Wallet uses passkeys for signing. 
+Passkeys are generated and stored securely on users' devices. 
+If the user has iCloud or Google Password Manager, their passkeys will also be 
+backed up and synced across devices [1](https://developer.apple.com/passkeys/), [2](https://developers.google.com/identity/passkeys/supported-environments). 
+
+Note that this is *not* passkey authentication where a server stores a user's keys. Instead, a user's on-device passkey is [validated for signing onchain](https://github.com/base-org/webauthn-sol). 
+
+## Zero Cost 
+Smart Wallet is free for both developers and users.
+
+## Unified Account Across Apps
+Smart Wallet users can use the same account and address across all onchain apps. 
+
+## MagicSpend
+Smart Wallet users can connect their coinbase.com account and spend their coinbase.com held ETH from 
+their Smart Account (Base only, for now).
+
+## Batch Transactions, Paymasters, and more!
+Our Smart Wallet is ERC-4337 compliant and our SDK supports batch transactions and app-defined paymasters.
+
+## Coinbase Security
+Users will see transaction and signing previews that will help keep them safe.
+Our smart contracts have been audited 4 times by leading audit teams. 
