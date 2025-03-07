@@ -1,4 +1,20 @@
-[
+[   
+  {
+    "name": "Aryze",
+    "description": "Aryze is a pioneering fintech ecosystem that bridges traditional finance and decentralized innovation through secure, compliant stablecoin solutions. We empower businesses to tokenize assets, streamline global payments, and drive operational efficiency in the digital era.",
+    "url": "https://aryze.io",
+    "imageUrl": "/images/partners/aryze.png",
+    "category": "infra",
+    "subcategory": "SaaS"
+  },
+  {
+    "name": "Heurist AI",
+    "description": "Heurist is a decentralized AI-as-a-Service cloud. Run AI and Agents via API.",
+    "url": "https://heurist.ai",
+    "imageUrl": "/images/partners/heurist.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
   {
     "name": "Heurist AI",
     "description": "Heurist is a decentralized AI-as-a-Service cloud. Run AI and Agents via API.",
