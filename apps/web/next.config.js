@@ -76,7 +76,7 @@ const contentSecurityPolicy = {
     walletconnectDomains,
     'https://fonts.googleapis.com', // OCK styles loads google fonts via CSS
     'https://fonts.gstatic.com/', // OCK styles loads google fonts via CSS
-    'https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com',
+    'https://*.google-analytics.com https://*.analytics.google.com https://*.tagmanager.google.com',
     'https://jsv3.recruitics.com/0778138b-cc59-11ef-a514-fd1759833eec.js', // recruitics job analytics
   ],
   'worker-src': ["'self'", 'blob:'],
