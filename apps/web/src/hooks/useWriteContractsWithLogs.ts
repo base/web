@@ -38,7 +38,7 @@ export enum BatchCallsStatus {
   Processing = 'processing',
   Reverted = 'reverted',
 
-  // UserOperationEvent and top transaction are successfull
+  // UserOperationEvent and top transaction are successful
   Failed = 'failed',
   Success = 'success',
 }
@@ -150,7 +150,7 @@ export default function useWriteContractsWithLogs({
       return;
     }
 
-    // Onchain TransactionReceipt Successfull with logs
+    // Onchain TransactionReceipt Successful with logs
     if (transactionReceipt?.status === 'success' && sendCallsResult?.receipts?.length) {
       const logs = transactionReceipt.logs;
       const decodedUserOperationEventLog = logs

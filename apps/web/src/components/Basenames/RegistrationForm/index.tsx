@@ -164,7 +164,7 @@ export default function RegistrationForm() {
 
   const { seconds, timestamp: premiumEndTimestamp } = usePremiumEndDurationRemaining();
 
-  const isPremiumActive = premiumPrice && premiumPrice !== 0n && seconds !== 0n;
+  const isPremiumActive = Boolean(premiumPrice && premiumPrice !== 0n && seconds !== 0n);
   const mainRegistrationElementClasses = classNames(
     'z-10 flex flex-col items-start justify-between gap-6 bg-[#F7F7F7] p-8 text-gray-60 shadow-xl md:flex-row md:items-center relative z-20',
     {
@@ -337,8 +337,7 @@ export default function RegistrationForm() {
           </div>
           {code && (
             <div className="relative z-10 -mt-8 rounded-2xl bg-gradient-to-r from-indigo-40 to-orange-30 px-4 py-4 pt-12 text-center text-lg text-white">
-              Claim your <strong>free creator basename</strong> &mdash; See you{' '}
-              <strong>Friday at Botanica</strong>
+              Claim your <strong>free basename</strong> &mdash; Thanks for joining us!
             </div>
           )}
 

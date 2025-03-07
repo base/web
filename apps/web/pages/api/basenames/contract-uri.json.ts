@@ -16,7 +16,7 @@ export default async function GET(request: Request) {
 
   const name = chainId === base.id ? 'Basename' : 'Basename (Sepolia testnet)';
 
-  const tokenMedata = {
+  const tokenMetadata = {
     name: name,
     description:
       'Basenames are a core onchain building block that enables anyone to establish their identity on Base by registering human-readable names for their address(es). They are a fully onchain solution which leverages ENS infrastructure deployed on Base.',
@@ -27,5 +27,5 @@ export default async function GET(request: Request) {
     collaborators: [],
   };
 
-  return NextResponse.json(tokenMedata);
+  return NextResponse.json(tokenMetadata);
 }

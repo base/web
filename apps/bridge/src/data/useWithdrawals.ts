@@ -48,7 +48,7 @@ async function fetchOPWithdrawals(address: string) {
 
 async function fetchExplorerWithdrawals(address: string, isMainnet: boolean) {
   const response = await getJSON<BlockExplorerApiResponse<BlockExplorerTransaction[]>>(
-    // TODO: filter to transactions to the withdraw contract
+    // TODO: filter transactions to the withdraw contract
     publicRuntimeConfig.l2ExplorerApiURL,
     {
       address,

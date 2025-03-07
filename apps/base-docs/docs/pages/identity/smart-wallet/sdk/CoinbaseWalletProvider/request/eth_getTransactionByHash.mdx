@@ -1,0 +1,44 @@
+# eth_getTransactionByHash
+
+> Returns information about a transaction by transaction hash.
+
+## Parameters
+
+1. `string` - The transaction hash
+
+### Example
+
+```json
+["0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b"]
+```
+
+## Returns
+
+`object` or `null`
+
+Returns a transaction object, or `null` if no transaction was found:
+
+```typescript
+interface Transaction {
+  blockHash: string | null; // Hash of the block. null when pending
+  blockNumber: string | null; // Number of the block. null when pending
+  from: string; // Address of the sender
+  gas: string; // Gas provided by the sender
+  gasPrice: string; // Gas price provided by the sender
+  hash: string; // Hash of the transaction
+  input: string; // The data sent along with the transaction
+  nonce: string; // Number of transactions from the sender prior to this one
+  to: string | null; // Address of the receiver. null when creating a contract
+  transactionIndex: string | null; // Integer of the transaction's index position in the block. null when pending
+  value: string; // Value transferred in wei
+  v: string; // ECDSA recovery ID
+  r: string; // ECDSA signature r
+  s: string; // ECDSA signature s
+}
+```
+
+## Errors
+
+| Code   | Message           |
+| ------ | ----------------- |
+| -32602 | Invalid parameter |

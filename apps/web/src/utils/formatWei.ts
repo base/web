@@ -1,6 +1,6 @@
 import { formatEther, parseEther } from 'viem';
 
-export function formatWei(wei?: bigint): number | '...' {
+export function formatWei(wei?: bigint): bigint | '...' {
   if (wei === undefined) {
     return '...';
   }
@@ -8,3 +8,4 @@ export function formatWei(wei?: bigint): number | '...' {
   const priceInEth = formatEther(wei);
   return parseEther(priceInEth.toString());
 }
+

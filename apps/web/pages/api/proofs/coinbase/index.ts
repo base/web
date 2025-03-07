@@ -20,7 +20,7 @@ export type CoinbaseProofResponse = {
 };
 
 /**
- * This endpoint reports whether or not the provided access has access to the verified account attestation
+ * This endpoint reports whether or not the provided address has access to the verified account attestation
  *
  * Error responses:
  * 400: if address is invalid or missing verifications

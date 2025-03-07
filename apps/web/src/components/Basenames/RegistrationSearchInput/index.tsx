@@ -33,7 +33,7 @@ function SuggestionEntry({
   }, [handleSelectName, suggestion]);
 
   return (
-    <button key={suggestion} className={buttonClasses} type="button" onClick={selectSuggestion}>
+    <button key={suggestion} className={buttonClasses} type="button" onMouseDown={selectSuggestion}>
       <span className="truncate">{formatBaseEthDomain(suggestion, basenameChain.id)}</span>
       <Icon name="chevronRight" width={iconSize} height={iconSize} />
     </button>
@@ -217,8 +217,8 @@ export default function RegistrationSearchInput({
 
   const handleSelectName = useCallback(
     (name: string) => {
-      setDropdownOpen(false);
       setSelectedName(name.trim());
+      setDropdownOpen(false);
     },
     [setSelectedName],
   );
@@ -298,7 +298,7 @@ export default function RegistrationSearchInput({
         ) : isNameAvailable === true ? (
           <>
             <p className={`${dropdownLabelClasses} hidden md:block`}>Available</p>
-            <button className={buttonClasses} type="button" onClick={selectName}>
+            <button className={buttonClasses} type="button" onMouseDown={selectName}>
               <span className="truncate">{formattedBaseEthDomain}</span>
               <ChevronRightIcon width={iconSize} height={iconSize} />
             </button>

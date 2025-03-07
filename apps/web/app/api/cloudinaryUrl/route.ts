@@ -66,7 +66,7 @@ async function getCloudinaryMediaUrl({
   media,
   width,
 }: CloudinaryMediaUrlRequest): Promise<string | false> {
-  // Asset idea based on URL
+  // Asset ID based on URL
   const assetId = generateAssetId(media);
 
   // Return the asset if already uploaded

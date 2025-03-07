@@ -1,0 +1,80 @@
+# Why does it cost more on Ethereum L1?
+
+Smart Wallet transactions on Ethereum L1 (mainnet) generally cost more than regular EOA wallet transactions due to several technical factors and overhead costs.
+
+## Core Overhead Components
+
+When compared to an EOA (Externally Owned Account), Smart Wallets have additional overhead with:
+
+1. **ERC-4337 Bundling**
+   - Bundlers require at least 27% base fee padding
+   - Additional gas limits and preverification gas padding
+   - Complex bundling verification process
+
+2. **Smart Contract Operations**
+   - Contract deployment costs for first-time users
+   - Multiple contract interactions per transaction
+   - Additional security validations
+
+3. **Signature Verification**
+   - WebAuthn + p256 signature verification overhead
+   - More complex than standard ECDSA signatures used by EOAs
+
+## First-Time Deployment Costs
+
+The first transaction for any Smart Wallet account requires contract deployment, which can be particularly expensive on Ethereum L1. Current gas costs can easily exceed $100 for initial deployment.
+
+## Gas Cost Breakdown
+
+Here's a rough comparison of gas costs:
+
+| Operation Type | EOA Wallet | Smart Wallet |
+|---------------|------------|--------------|
+| Native Token Transfer | ~21,000 gas | ~100,000 gas* |
+| ERC-20 Token Transfer | ~65,000 gas | ~150,000 gas* |
+| First Deployment | N/A | ~300,000+ gas* |
+
+*Note: Actual gas costs may vary significantly due to bundler padding and network conditions.
+
+## Recommended Solution: Use Layer 2
+
+Due to these inherent costs, we strongly recommend using Layer 2 networks like:
+- Base
+- Optimism
+- Arbitrum
+
+See [Networks](/identity/smart-wallet/features/networks) for a complete list of supported networks.
+
+Layer 2 solutions provide:
+- Significantly lower transaction fees
+- Same security guarantees
+- Full Smart Wallet functionality
+- Better user experience
+
+An advantage of L2s is the support of [RIP-7212](https://github.com/ethereum/RIPs/blob/master/RIPS/rip-7212.md):
+- Precompiling makes P256 verification cheaper compared to L1
+- Implemented by L2s like Base and Optimism
+- Not available on Ethereum L1
+
+## Alternative Cost-Reduction Strategies
+
+If you must use L1, consider:
+- Batching multiple transactions together
+- Using gasless transactions with paymasters where available
+- Implementing session keys for frequent operations
+
+## Benefits vs Costs
+
+While L1 transactions are expensive, Smart Wallets provide crucial benefits:
+- Enhanced security features
+- Account recovery options
+- Transaction batching
+- Gasless transactions (on supported networks)
+- Programmable permissions
+- Future extensibility
+
+## Looking Forward
+
+While there may be opportunities to optimize bundler padding and gas limits in the future, L1 transactions will likely remain costly due to the inherent complexity of Smart Wallet operations. For cost-effective deployment, we strongly recommend using Layer 2 networks.
+
+Feel free to reach out to our team for more detailed discussions about gas optimization strategies or L2 deployment options!

@@ -70,7 +70,7 @@ export function isETHOrERC20OrCCTPDeposit(tx: BlockExplorerTransaction) {
     return true;
   }
 
-  // ERC-20 desposit
+  // ERC-20 deposit
   if (tx.to === ERC20_DEPOSIT_ADDRESS) {
     const { functionName, args } = decodeFunctionData({
       abi: l1StandardBridgeABI,

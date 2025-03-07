@@ -29,7 +29,7 @@ type AppProvidersProps = {
   children: React.ReactNode;
 };
 
-// TODO: Not all pages needs all these components, ideally should be split and put
+// TODO: Not all pages need all these components, ideally should be split and put
 //       on the sub-layouts
 export default function AppProviders({ children }: AppProvidersProps) {
   const trackingPreference = useRef<TrackingPreference | undefined>();

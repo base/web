@@ -8,7 +8,7 @@ import { useAccount, useSwitchChain, useWaitForTransactionReceipt, useWriteContr
 /*
   A hook to request and track a wallet write transaction
 
-  Responsabilities:
+  Responsibilities:
   - Track the wallet request status
   - Track the transaction receipt and status
   - Log analytics & error
