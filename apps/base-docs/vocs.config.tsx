@@ -51,7 +51,7 @@ const contentSecurityPolicy = {
     'https://api.lab.amplitude.com/sdk/v2/vardata',
     'https://browser-intake-datadoghq.com', // datadog
     'https://*.datadoghq.com',
-    'https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com', // Google Analytics
+    'https://*.google-analytics.com https://*.analytics.google.com https://*.tagmanager.google.com', // Google Analytics
   ],
   'frame-src': ["'self'", 'https://player.vimeo.com', 'https://verify.walletconnect.org'],
 };
@@ -68,7 +68,7 @@ export default defineConfig({
         />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="base.org" />
-        <script src="https://www.googletagmanager.com/gtag/js?id=G-TKCM02YFWN" async defer />
+        <script src="https://tagmanager.google.com/gtag/js?id=G-TKCM02YFWN" async defer />
         <script
           id="gtag-init"
           // eslint-disable-next-line react/no-danger -- need to set innerHTML for Google Analytics
