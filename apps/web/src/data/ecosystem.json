@@ -4038,5 +4038,13 @@
     "imageUrl": "/images/partners/ipor.svg",
     "category": "defi",
     "subcategory": "yield vault"
+  },
+  {
+  "name": "coNFT",
+  "description": "coNFT - a Multi-Chain Web3 Utility Hub offering comprehensive services such as Web3 Name Service, NFT Aggregator, and Launchpad.)",
+  "url": "https://conft.app",
+  "imageUrl": "/images/partners/conft.png",
+  "category": "consumer",
+  "subcategory": "nft"
   }
 ]
