@@ -1,11 +1,60 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+const redirects: Record<string, string> = {
+  '/docs': 'https://docs.base.org/',
+  '/base-camp': 'https://docs.base.org/learn/welcome',
+  '/base-learn': 'https://docs.base.org/learn/welcome',
+  '/basecamp': 'https://docs.base.org/learn/welcome',
+  '/baselearn': 'https://docs.base.org/learn/welcome',
+  '/base-camp/docs': 'https://docs.base.org/learn/welcome',
+  '/base-learn/docs': 'https://docs.base.org/learn/welcome',
+  '/basecamp/docs': 'https://docs.base.org/learn/welcome',
+  '/baselearn/docs': 'https://docs.base.org/learn/welcome',
+  '/camp': 'https://docs.base.org/learn/welcome',
+  '/learn': 'https://docs.base.org/learn/welcome',
+  '/guides/run-a-base-goerli-node': 'https://docs.base.org/chain/run-a-base-node',
+  '/using-base': 'https://docs.base.org/chain/using-base',
+  '/network-information': 'https://docs.base.org/chain/network-information',
+  '/base-contracts': 'https://docs.base.org/chain/base-contracts',
+  '/fees': 'https://docs.base.org/chain/fees',
+  '/differences': 'https://docs.base.org/chain/differences-between-ethereum-and-base',
+  '/tools/node-providers': 'https://docs.base.org/chain/node-providers',
+  '/tools/block-explorers': 'https://docs.base.org/chain/block-explorers',
+  '/tools/network-faucets': 'https://docs.base.org/chain/network-faucets',
+  '/tools/oracles': 'https://docs.base.org/chain/oracles',
+  '/tools/data-indexers': 'https://docs.base.org/chain/data-indexers',
+  '/tools/cross-chain': 'https://docs.base.org/chain/cross-chain',
+  '/tools/account-abstraction': 'https://docs.base.org/chain/account-abstraction',
+  '/tools/nft-checkout': 'https://docs.base.org/', // TODO: add pathname
+  '/tools/onramps': 'https://docs.base.org/chain/onramps',
+  '/tools/onboarding': 'https://docs.base.org/chain/onboarding',
+  '/tools/bridges': 'https://bridge.base.org/',
+  '/tools/bridges-testnet': 'https://bridge.base.org/',
+  '/tools/bridge-faq': 'https://bridge.base.org/',
+  '/tools/foundry': 'https://docs.base.org/', // TODO: add pathname
+  '/tools/hardhat': 'https://docs.base.org/', // TODO: add pathname
+  '/tools/thirdweb-cli': 'https://docs.base.org/', // TODO: add pathname
+  '/tools/ethers': 'https://docs.base.org/', // TODO: add pathname
+  '/tools/thirdweb-sdk': 'https://docs.base.org/', // TODO: add pathname
+  '/tools/viem': 'https://docs.base.org/', // TODO: add pathname
+  '/tools/web3': 'https://docs.base.org/', // TODO: add pathname
+  '/tokens/list': 'https://docs.base.org/', // TODO: add pathname
+  '/tokens/wallet': 'https://docs.base.org/', // TODO: add pathname
+  '/contracts': 'https://docs.base.org/chain/base-contracts',
+  '/security': 'https://docs.base.org/', // TODO: add pathname
+  '/terms-of-service': 'https://docs.base.org/terms-of-service',
+  '/privacy-policy': 'https://docs.base.org/privacy-policy',
+  '/cookie-policy': 'https://docs.base.org/cookie-policy',
+  '/discord': 'https://discord.gg/buildonbase',
+  '/blog': 'https://base.mirror.xyz/',
+};
+
 export function middleware(req: NextRequest) {
   const url = req.nextUrl;
 
-  if (url.pathname === '/docs') {
-    url.host = 'docs.base.org';
-    url.pathname = '/';
+  if (redirects[url.pathname]) {
+    url.host = new URL(redirects[url.pathname]).host;
+    url.pathname = new URL(redirects[url.pathname]).pathname;
     url.port = '443';
 
     return NextResponse.redirect(url);
@@ -16,7 +65,6 @@ export function middleware(req: NextRequest) {
     url.host = 'flashblocks.base.org';
     url.pathname = `/${subPath}`;
     url.port = '443';
-
     return NextResponse.redirect(url);
   }
 
@@ -40,302 +88,8 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  if (
-    url.pathname === '/base-camp' ||
-    url.pathname === '/base-learn' ||
-    url.pathname === '/basecamp' ||
-    url.pathname === '/baselearn' ||
-    url.pathname === '/base-camp/docs' ||
-    url.pathname === '/base-learn/docs' ||
-    url.pathname === '/basecamp/docs' ||
-    url.pathname === '/baselearn/docs' ||
-    url.pathname === '/camp' ||
-    url.pathname === '/learn'
-  ) {
-    url.host = 'docs.base.org';
-    url.pathname = '/learn/welcome';
+
     url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/guides/run-a-base-goerli-node') {
-    url.host = 'docs.base.org';
-    url.pathname = '/chain/run-a-base-node';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/using-base') {
-    url.host = 'docs.base.org';
-    url.pathname = '/chain/using-base';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/network-information') {
-    url.host = 'docs.base.org';
-    url.pathname = '/chain/network-information';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/base-contracts') {
-    url.host = 'docs.base.org';
-    url.pathname = '/chain/base-contracts';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/fees') {
-    url.host = 'docs.base.org';
-    url.pathname = '/chain/fees';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/differences') {
-    url.host = 'docs.base.org';
-    url.pathname = '/chain/differences-between-ethereum-and-base';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/node-providers') {
-    url.host = 'docs.base.org';
-    url.pathname = '/chain/node-providers';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/block-explorers') {
-    url.host = 'docs.base.org';
-    url.pathname = '/chain/block-explorers';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/network-faucets') {
-    url.host = 'docs.base.org';
-    url.pathname = '/chain/network-faucets';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/oracles') {
-    url.host = 'docs.base.org';
-    url.pathname = '/chain/oracles';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/data-indexers') {
-    url.host = 'docs.base.org';
-    url.pathname = '/chain/data-indexers';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/cross-chain') {
-    url.host = 'docs.base.org';
-    url.pathname = '/chain/cross-chain';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/account-abstraction') {
-    url.host = 'docs.base.org';
-    url.pathname = '/chain/account-abstraction';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/nft-checkout') {
-    url.host = 'docs.base.org';
-    url.pathname = '/'; // TODO: add pathname
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/onramps') {
-    url.host = 'docs.base.org';
-    url.pathname = '/chain/onramps';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/onboarding') {
-    url.host = 'docs.base.org';
-    url.pathname = '/chain/onboarding';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/bridges') {
-    url.host = 'bridge.base.org';
-    url.pathname = '/';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/bridges-testnet') {
-    url.host = 'bridge.base.org';
-    url.pathname = '/';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/bridge-faq') {
-    url.host = 'bridge.base.org';
-    url.pathname = '/';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/foundry') {
-    url.host = 'docs.base.org';
-    url.pathname = '/'; // TODO: add pathname
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/hardhat') {
-    url.host = 'docs.base.org';
-    url.pathname = '/'; // TODO: add pathname
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/thirdweb-cli') {
-    url.host = 'docs.base.org';
-    url.pathname = '/'; // TODO: add pathname
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/ethers') {
-    url.host = 'docs.base.org';
-    url.pathname = '/'; // TODO: add pathname
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/thirdweb-sdk') {
-    url.host = 'docs.base.org';
-    url.pathname = '/'; // TODO: add pathname
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/viem') {
-    url.host = 'docs.base.org';
-    url.pathname = '/'; // TODO: add pathname
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tools/web3') {
-    url.host = 'docs.base.org';
-    url.pathname = '/'; // TODO: add pathname
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tokens/list') {
-    url.host = 'docs.base.org';
-    url.pathname = '/'; // TODO: add pathname
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/tokens/wallet') {
-    url.host = 'docs.base.org';
-    url.pathname = '/'; // TODO: add pathname
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/contracts') {
-    url.host = 'docs.base.org';
-    url.pathname = '/chain/base-contracts';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/security') {
-    url.host = 'docs.base.org';
-    url.pathname = '/'; // TODO: add pathname
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/terms-of-service') {
-    url.host = 'docs.base.org';
-    url.pathname = '/terms-of-service';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/privacy-policy') {
-    url.host = 'docs.base.org';
-    url.pathname = '/privacy-policy';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/cookie-policy') {
-    url.host = 'docs.base.org';
-    url.pathname = '/cookie-policy';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/discord') {
-    url.host = 'discord.gg';
-    url.pathname = '/buildonbase';
-    url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-  if (url.pathname === '/blog') {
-    url.host = 'base.mirror.xyz';
-    url.pathname = '/';
-    url.port = '443';
-
     return NextResponse.redirect(url);
   }
 
