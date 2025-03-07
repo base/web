@@ -84,12 +84,6 @@ export function middleware(req: NextRequest) {
     }
 
     url.port = '443';
-
-    return NextResponse.redirect(url);
-  }
-
-
-    url.port = '443';
     return NextResponse.redirect(url);
   }
 
