@@ -19,6 +19,7 @@ export type EcosystemApp = {
 };
 
 const config: Record<string, string[]> = {
+  ai: ['ai'],
   wallet: ['account abstraction', 'multisig', 'self-custody'],
   defi: [
     'dex',
@@ -44,7 +45,6 @@ const config: Record<string, string[]> = {
   ],
   onramp: ['centralized exchange', 'fiat on-ramp'],
   infra: [
-    'ai',
     'bridge',
     'data',
     'depin',

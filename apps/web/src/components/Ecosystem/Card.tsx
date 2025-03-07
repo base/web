@@ -58,9 +58,11 @@ export default function EcosystemCard({
               </span>
             </div>
             <div className="flex h-6 flex-col justify-center rounded-[100px] bg-black px-2 py-1">
-              <span className="rounded-full border border-gray-muted px-2 py-1 font-mono text-[10px] uppercase text-gray-muted">
-                {subcategory}
-              </span>
+              {subcategory !== category && (
+                <span className="rounded-full border border-gray-muted px-2 py-1 font-mono text-[10px] uppercase text-gray-muted">
+                  {subcategory}
+                </span>
+              )}
             </div>
           </div>
         </div>

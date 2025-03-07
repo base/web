@@ -130,7 +130,7 @@ export default function MenuMobile({ links }: MenuMobileProps) {
               type="button"
               onClick={toggleMenu}
               aria-label="Close Menu"
-              className="rounded.xl relative z-20 bg-black px-4 py-2 pr-1"
+              className="rounded-xl relative z-20 bg-black px-4 py-2 pr-1"
             >
               <Icon name="close" color="currentColor" height="1rem" width="1rem" />
             </button>

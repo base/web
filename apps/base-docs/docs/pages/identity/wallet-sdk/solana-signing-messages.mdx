@@ -1,0 +1,39 @@
+---
+title: "Signing messages"
+sidebar_label: "Signing messages"
+slug: "solana-signing-messages"
+---
+
+## Signing a message
+
+To request a user to sign a message, call the `signMessage` method on the provider, passing it a message to sign.
+
+```javascript
+const message = `Sign this message to authenticate.`;
+const encodedMessage = new TextEncoder().encode(message);
+const { signature } = await window.coinbaseSolana.signMessage(encodedMessage);
+```
+
+If the user successfully signs the message, the call returns a Promise for an object with the signature.
+
+:::info
+The message passed to the `signMessage` method must be a UTF-8 encoded string as a [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array).
+:::
+
+## Verifying a message
+
+You can verify the signature of a message by using a cryptographic library.
+
+Below is an example that verifies a message using [TweetNaCl.js](https://github.com/dchest/tweetnacl-js/blob/master/README.md#naclsigndetachedverifymessage-signature-publickey):
+
+```javascript
+import nacl from “tweetnacl”
+
+// Verify a message using the encoded message, signature, and public key.
+const verified = nacl.sign.detached.verify(
+        encodedMessage,
+        signature,
+        window.coinbaseSolana.publicKey.toBuffer()
+);
+```
+

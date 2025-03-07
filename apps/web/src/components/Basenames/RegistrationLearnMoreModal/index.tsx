@@ -65,7 +65,7 @@ const DISCOUNT_ITEMS: DiscountItem[] = [
     alt: 'icon of talent protocol',
     label: 'Builder score 50+',
     tooltipContent:
-      'Available for anyone with an onchain builder score 50+. Go to passport.talentprotocol.com to mint yours.',
+      'Available for anyone with a 50+ Builder Score minted onchain. Go to app.talentprotocol.com to get yours.',
   },
   {
     discount: Discount.SUMMER_PASS_LVL_3,

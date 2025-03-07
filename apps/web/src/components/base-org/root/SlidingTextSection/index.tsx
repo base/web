@@ -8,7 +8,8 @@ import { CSSProperties, useRef } from 'react';
 export default function SlidingTextSection() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const text = ' Base is for everyone - بایس للجمیع - Base es para todos - 基地适合所有人 - La Base è per tutti - Base est pour tout le monde - Base ni ya kila mtu - Base yɛ ma obiara - Base nye amesiame tɔ - Base ji he ni mɔ fɛɛ mɔ yɔɔ - Base är för alla - Base สำหรับทุกคน - Бейз для каждого - Бейз для кожного - Base ist für alle - Base herkes içindir - ';
+  const text =
+    ' Base is for everyone - بایس للجمیع - Base es para todos - 基地适合所有人 - La Base è per tutti - Base est pour tout le monde - Base ni ya kila mtu - Base yɛ ma obiara - Base nye amesiame tɔ - Base ji he ni mɔ fɛɛ mɔ yɔɔ - Base är för alla - Base สำหรับทุกคน - Бейз для каждого - Бейз для кожного - Base ist für alle - Base herkes içindir - బేస్ అందరి కోసం - बेस सबके लिए है - Base é para todos - Base bụ maka onye ọ bụla - Base jẹ fun gbogbo eniyan - Base na kowa - Base ist für alle - Base jest dla każdego - Base is voor iedereen - ';
 
   const containerClasses = classNames(
     'relative w-full overflow-hidden rounded-2xl bg-blue p-8',
