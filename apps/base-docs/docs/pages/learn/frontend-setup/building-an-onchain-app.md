@@ -210,9 +210,9 @@ If you're looking to quickly bootstrap a simple app, you can always use a script
 [Next.js]: https://nextjs.org/
 [Tailwind]: https://tailwindcss.com/
 [nvm]: https://github.com/nvm-sh/nvm
-[WalletConnect]: https://cloud.walletconnect.com/
+[WalletConnect]: https://cloud.reown.com/
 [Connecting to the Blockchain]: https://docs.base.org/connecting-to-the-blockchain/overview
-[Wallet Connect Cloud]: https://cloud.walletconnect.com/
+[Wallet Connect Cloud]: https://cloud.reown.com/
 [Connect Button]: https://www.rainbowkit.com/docs/connect-button
 [customize the connect button]: https://www.rainbowkit.com/docs/custom-connect-button
 [TanStack Query]: https://tanstack.com/query/latest
