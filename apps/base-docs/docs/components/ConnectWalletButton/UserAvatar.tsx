@@ -3,7 +3,7 @@ import { useAccount, useEnsAvatar, useEnsName } from 'wagmi';
 import { mainnet } from 'wagmi/chains';
 import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
 import ImageWithLoading from 'apps/web/src/components/ImageWithLoading';
-import { CLOUDFARE_IPFS_PROXY } from 'apps/web/src/utils/urls';
+import { CLOUDFLARE_IPFS_PROXY } from 'apps/web/src/utils/urls';
 import BasenameAvatar from 'apps/web/src/components/Basenames/BasenameAvatar';
 
 export function UserAvatar() {
@@ -22,7 +22,7 @@ export function UserAvatar() {
     name: ensName ?? undefined,
     chainId: mainnet.id,
     assetGatewayUrls: {
-      ipfs: CLOUDFARE_IPFS_PROXY,
+      ipfs: CLOUDFLARE_IPFS_PROXY,
     },
     query: {
       retry: false,
