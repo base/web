@@ -2161,7 +2161,7 @@
   },
   {
     "name": "Uniswap",
-    "url": "http://uniswap.com/",
+    "url": "https://app.uniswap.org/",
     "description": "The Uniswap Protocol is the largest decentralized exchange with over $1.6T in trading volume. Uniswap Labs builds products that let you buy, sell, and use your self custodied digital assets in a safe, simple, and secure way.",
     "imageUrl": "/images/partners/uniswap.webp",
     "category": "defi",
