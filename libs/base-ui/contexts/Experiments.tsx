@@ -102,7 +102,7 @@ const useExperiments = () => {
 
 const useExperiment = (flagKey: string): UseExperimentReturnValue => {
   const { isReady, getUserVariant } = useExperiments();
-  const userVariant = useMemo(() => getUserVariant(flagKey), [getUserVariant, flagKey]);
+  const userVariant = useMemo(() => getUserVariant(flagKey), [getUserVariant, flagKey, isReady]);
 
   return { isReady, userVariant };
 };
