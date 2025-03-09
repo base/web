@@ -28,10 +28,10 @@ export default function Card({
     return () => unregisterCard(id);
   }, [registerCard, unregisterCard, id]);
 
-  /* 
+  /*
     Shimmer / Tailwind integration notes:
     - Converted from https://codepen.io/yxshv/pen/JjaRZmb
-    - The card "border" is controlled via the padding, p-[1px]
+    - The card "border" is controlled via the padding, p-[1px], and the background color, bg-white/20
   */
   const cardClasses = `card overflow-hidden p-[1px] m-0 bg-white/20 relative ${wrapperClassName} w-full`;
 

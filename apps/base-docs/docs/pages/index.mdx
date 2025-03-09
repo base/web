@@ -1,0 +1,136 @@
+---
+content:
+  layout: landing
+  sidebar: true
+  width: 100%
+  horizontalPadding: 40px
+  verticalPadding: 0px
+---
+
+<style type="text/css">
+  {`
+  .vocs_DocsLayout_gutterRight,
+  .vocs_DocsLayout_gutterRight_withSidebar {
+    display: none !important;
+  }
+`}
+</style>
+
+import { BrowseCard } from '@/components/BrowseCard';
+import { onchainKitSvg } from '@/components/svg/onchainKitSvg';
+import { smartWalletSvg } from '@/components/svg/smartWalletSvg';
+import { agentKitSvg } from '@/components/svg/agentKitSvg';
+import { verificationsSvg } from '@/components/svg/verificationsSvg';
+import { miniKitSvg } from '@/components/svg/miniKitSvg';
+import { BrowseUseCaseCard } from '@/components/BrowseUseCaseCard';
+import { onboardingSvg } from '@/components/svg/onboardingSvg';
+import { agentSvg } from '@/components/svg/agentSvg';
+import { paymentsSvg } from '@/components/svg/paymentsSvg';
+import { depositSvg } from '@/components/svg/depositSvg';
+import { gaslessSvg } from '@/components/svg/gaslessSvg';
+import { socialSvg } from '@/components/svg/socialSvg';
+import { paymasterSvg } from '@/components/svg/paymasterSvg';
+
+<div className="min-h-screen bg-white dark:bg-black">
+  <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="space-y-8">
+      <div className="space-y-6">
+        <h1 className="text-3xl font-bold tracking-tight">Base Documentation</h1>
+        <div className="space-y-4 text-lg text-zinc-600 dark:text-zinc-400">
+            Base is a secure, low-cost, builder-friendly Ethereum L2 built to bring the next billion users onchain.
+
+            Base is incubated within Coinbase and plans to progressively decentralize in the years ahead. We believe that
+            decentralization is critical to creating an open, global cryptocurrency that is accessible to everyone.
+        </div>
+      </div>
+
+      {/* Browse by Use Cases Section */}
+      <div className="space-y-6 pt-12">
+        <h2 className="text-xl font-semibold">Browse by use cases</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <BrowseUseCaseCard
+            title="Onboard anyone"
+            description="Let users sign up and sign in with Smart Wallet — the universal account for the onchain world."
+            icon={onboardingSvg}
+            href="/use-cases/onboard-any-user"
+          />
+          <BrowseUseCaseCard
+            title="Accept crypto payments"
+            description="Integrate secure and efficient crypto payment solutions for your applications."
+            icon={paymentsSvg}
+            href="/use-cases/accept-crypto-payments"
+          />
+          <BrowseUseCaseCard
+            title="Launch AI agents"
+            description="Build and deploy AI agents that can interact with onchain data and smart contracts."
+            icon={agentSvg}
+            href="/use-cases/launch-ai-agents"
+          />
+          <BrowseUseCaseCard
+            title="Create engaging social experiences"
+            description="Add decentralized social features in your app for new content and identity."
+            icon={socialSvg}
+            href="/use-cases/decentralize-social-app"
+          />
+          <BrowseUseCaseCard
+            title="DeFi your app"
+            description="Integrate DeFi protocols and services directly into your applications."
+            icon={depositSvg}
+            href="/use-cases/defi-your-app"
+          />
+          <BrowseUseCaseCard
+            title="Remove first-timer friction"
+            description="Enable gasless transactions and account abstraction solutions."
+            icon={gaslessSvg}
+            href="/use-cases/go-gasless"
+          />
+        </div>
+      </div>
+
+      {/* Browse by Tools Section */}
+      <div className="space-y-6 pt-8">
+        <h2 className="text-xl font-semibold">Browse by tools</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <BrowseCard
+            title="OnchainKit"
+            description="Build an app in 10 minutes with this all-in-one toolkit and full-stack components."
+            icon={onchainKitSvg}
+            href="/builderkits/onchainkit/getting-started"
+          />
+          <BrowseCard
+            title="Smart Wallet"
+            description="A passkey-based universal account to connect with the onchain world."
+            icon={smartWalletSvg}
+            href="/identity/smart-wallet/introduction/install-web"
+          />
+          <BrowseCard
+            title="AgentKit"
+            description="Give every AI agent a crypto wallet and the ability to transact and interact onchain."
+            icon={agentKitSvg}
+            href="https://docs.cdp.coinbase.com/agentkit/docs/welcome"
+          />
+          <BrowseCard
+            title="Paymaster"
+            description="Build gasless apps with bundled infrastructure. Start with free credits."
+            icon={paymasterSvg}
+            href="https://docs.cdp.coinbase.com/paymaster/docs/welcome"
+          />
+          <BrowseCard
+            title="MiniKit"
+            description="Feature your mini app on Warpcast and Coinbase Wallet with a few lines of code.."
+            icon={miniKitSvg}
+            href="https://replit.com/@tina-he/ock-frames-template?v=1#README.md"
+          />
+          <BrowseCard
+            title="Verifications"
+            description="Identify high-quality users and build compliant apps with verifiable attestations."
+            icon={verificationsSvg}
+            href="https://docs.cdp.coinbase.com/verifications/docs/welcome"
+          />
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+</div>

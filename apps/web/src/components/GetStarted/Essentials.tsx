@@ -33,9 +33,9 @@ export default async function Essentials() {
           classnames="bg-purple-60 border-purple-60"
         />
         <ResourceCard
-          title="Office Hours"
-          description="Check out our Office Hours schedule to ask your questions live"
-          href="https://lu.ma/base-officehours/?utm_source=dotorg&medium=builderkit"
+          title="Virtual Events"
+          description="Check out our Virtual Events schedule to ask your questions live"
+          href="https://lu.ma/base-virtualevents/?utm_source=dotorg&medium=builderkit"
           topLeft={<Icon name="dotGrid" color="white" />}
           classnames="bg-purple-80 border-purple-80"
         />

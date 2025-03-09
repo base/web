@@ -1,0 +1,39 @@
+---
+title: 'Connecting accounts'
+sidebar_label: 'Connecting accounts'
+slug: 'solana-connecting-accounts'
+---
+
+## Connecting
+
+To establish a connection to a user's account, call the `connect` method on the provider.
+
+```javascript
+try {
+  await window.coinbaseSolana.connect();
+} catch (err) {
+  // { method: 'connect', message: 'Connection error' }
+}
+```
+
+If the user accepts the request and the connection is successful, the `publicKey` field is set to the [PublicKey](https://solana-labs.github.io/solana-web3.js/classes/PublicKey.html) of the connected account, and the `isConnected` field is set to `true`.
+
+```javascript
+window.coinbaseSolana.publicKey.toString();
+// J7VKAb39Vgxar55cFtzLu8QJ2dwS9MrV7NyQJoUK1yDa
+window.coinbaseSolana.isConnected;
+// true
+```
+
+If the user rejects the request to connect, an error is thrown.
+
+## Disconnecting
+
+To disconnect a user's account from your application, call the `disconnect` method on the provider.
+
+```javascript
+await window.coinbaseSolana.disconnect();
+```
+
+If the user’s account is disconnected, the `publicKey` field is set to `null`, and the `isConnected` field is set to `false`.
+

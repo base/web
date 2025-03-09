@@ -1,0 +1,37 @@
+# eth_getUncleCountByBlockNumber
+
+Defined in the [Ethereum JSON-RPC Specification](https://ethereum.org/en/developers/docs/apis/json-rpc/)
+
+> Returns the number of uncles in a block from a block matching the given block number.
+
+## Parameters
+
+```ts
+type GetUncleCountByBlockNumberParams = [string]
+```
+
+An array containing a single string: the block number (as a hexadecimal) or tag.
+
+Valid tags: `"earliest"`, `"latest"`, `"pending"`, `"safe"`, `"finalized"`
+
+## Returns
+
+`string`
+
+The number of uncles in the specified block, encoded as a hexadecimal.
+
+## Example
+
+```
+"0x1" // 1 uncle
+```
+
+## Errors
+
+| Code | Message            |
+| ---- | ------------------ |
+| 4200 | Unsupported method |
+
+```
+
+```

@@ -4,7 +4,7 @@ import Label from 'apps/web/src/components/Label';
 
 import {
   UsernameTextRecordKeys,
-  textRecordsCommunnicationKeywords,
+  textRecordsCommunicationKeywords,
   textRecordsCreativesKeywords,
   textRecordsEngineersKeywords,
   textRecordsKeysForDisplay,
@@ -63,7 +63,7 @@ export default function UsernameKeywordsField({
           'border-[#F8BDF5] bg-[#F8BDF5]/20 text-[#741A66]':
             keywordSelected && textRecordsCreativesKeywords.includes(keyword),
           'border-[#45E1E5] bg-[#45E1E5]/20 text-[#004774]':
-            keywordSelected && textRecordsCommunnicationKeywords.includes(keyword),
+            keywordSelected && textRecordsCommunicationKeywords.includes(keyword),
         },
       );
 

@@ -1,0 +1,23 @@
+---
+title: 'Solana Overview'
+slug: /solana-overview
+description: Overview of Solana support in Coinbase Wallet.
+---
+
+There are two ways to integrate Coinbase Wallet into your Solana web applications:
+
+## Injected Solana provider
+
+The quickest way to integrate Coinbase Wallet into your Solana application is via the injected Solana provider.
+
+Coinbase Wallet injects a provider into the top-level window of web applications at `window.coinbaseSolana`.
+This provider provides a globally available API for your application to read on-chain data, establish connections to user accounts, sign messages, and send transactions.
+
+## Solana wallet adapter
+
+The **most recommended** way to integrate Coinbase Wallet into your Solana application is via [wallet adapters](https://solana-labs.github.io/wallet-adapter/).
+
+The Solana Foundation provides a library of modular Typescript wallet adapters and components for Solana web applications. This library is great for developers that want to support multiple wallets, including Coinbase Wallet.
+
+To get started using this library, check out our 'Getting started guide' or the official Solana wallet adapter [documentation](https://github.com/anza-xyz/wallet-adapter/blob/master/README.md).
+

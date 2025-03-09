@@ -1,0 +1,28 @@
+---
+title: 'Smart Wallet Rainbowkit'
+sidebar_label: 'Rainbowkit'
+slug: 'sw-rainbowkit'
+---
+
+This page explains how to install and upgrade <a href="https://github.com/coinbase/coinbase-wallet-sdk/" target="_blank" rel="noreferrer noopener">Coinbase Wallet SDK</a>.
+
+## Installing or upgrading package version
+
+The Smart Wallet features are available in version ^4.0.0. Ensure the version is updated in package.json, for example:
+
+```json
+{
+  "dependencies": {
+    "@coinbase/wallet-sdk": "^4.0.0"
+  }
+}
+```
+
+## End User Setup experience
+
+Once the wallet starts the connection process, the end user can create, select an existing passkey wallet, or do a QR connect with an existing wallet.
+
+![smart-wallet-entry.png](/images/wallet-sdk/smart-wallet-entry.png)
+
+To highlight the create flow, the user will be prompted
+

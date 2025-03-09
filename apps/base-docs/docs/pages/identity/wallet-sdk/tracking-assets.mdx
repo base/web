@@ -1,0 +1,64 @@
+---
+title: "Acquiring and Tracking Assets with EIP-747"
+sidebar_label: "Tracking Assets"
+slug: "tracking-assets"
+--- 
+
+A major use case of Ethereum wallets is to acquire and track assets. This is often done by pre-loading a list of approved assets, which is insecure, or by stepping through a tedious process of adding each asset.
+
+The RPC method `wallet_watchAsset` allows users to easily track new assets with a suggestion from the sites they visit.
+
+## Calling wallet_watchAsset
+
+Calling `wallet_watchAsset` method returns true/false if the asset is accepted/denied by the user, or an error if there is something wrong with the request.
+
+Unlike other methods, the default definition of `wallet_watchAsset` params is not an array, but to keep it compatible with code conventions of other apps, wallet-sdk supports both array and object format.
+
+```typescript
+interface WatchAssetParameters {
+  type: string // The asset's interface, e.g. 'ERC20'
+  options: {
+    address: string // The hexadecimal Ethereum address of the token contract
+    symbol?: string // A ticker symbol or shorthand, up to 5 alphanumerical characters
+    decimals?: number // The number of asset decimals
+    image?: string // A string url of the token logo
+  }
+}
+```
+
+Here's an example of how to suggest the client wallet add a custom token:
+
+```typescript
+function onApproveWatchAsset() {
+  // your approval callback implementation
+}
+
+function onDenyWatchAsset() {
+  // your denying callback implementation
+}
+
+function onError(message: string) {
+  // your error callback implementation
+}
+
+// Use wallet_watchAsset
+ethereum.request({
+  method: "wallet_watchAsset",
+  params: {
+    type: "ERC20",
+    options: {
+      address: "0xcf664087a5bb0237a0bad6742852ec6c8d69a27a",
+      symbol: "WONE",
+      decimals: 18,
+      image:
+        "https://s2.coinmarketcap.com/static/img/coins/64x64/11696.png",
+    },
+  },
+})
+.then(response => {
+  const result : boolean = response as boolean
+  result ? onApproveWatchAsset() : onDenyWatchAsset()
+})
+.catch(err => onError(err.message));
+```
+

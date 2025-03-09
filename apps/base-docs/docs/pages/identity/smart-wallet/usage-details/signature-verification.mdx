@@ -1,0 +1,41 @@
+# Signature Verification
+
+There are important details to verifying smart contract wallet signatures. The smart contract itself
+cannot produce a signature. Instead, the contract has a function
+```solidity
+function isValidSignature(bytes32 _hash, bytes memory _signature) returns (bytes4 magicValue);
+```
+which can be called to determine if signature should be considered valid (defined in [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271)).
+
+In the case of Smart Wallet, a signature is considered valid if it was signed by a current signer (aka "owner") of the Smart Wallet.
+For example, a user can sign a message with their passkey, and when `isValidSignature` is called on their Smart Wallet,
+it would return that the signature is valid because their passkey is an owner.  
+
+There is also an additional complexity: users receive their Smart Wallet address immediately upon passkey registration,
+and are able to begin signing for their Smart Wallet,
+but their Smart Wallet is not deployed on a chain until the first transaction on that chain.
+
+[ERC-6492](https://eips.ethereum.org/EIPS/eip-6492) describes 
+> With the rising popularity of account abstraction, we often find that the best user experience 
+for contract wallets is to defer contract deployment until the first user transaction, 
+therefore not burdening the user with an additional deploy step before they can use their account. 
+However, at the same time, many dApps expect signatures, not only for interactions, but also just for logging in.
+
+So the challenge is, how do we verify signatures in a way that works for both deployed and undeployed Smart Wallets?
+ERC-6492 has a solution for this, which Smart Wallet has adopted. 
+We won't go unto all the details here, read the ERC linked above, if you're looking for that.
+Below we cover the minimum work needed to support on and off chain signature validation for Smart Wallet.
+
+## Offchain
+For purely offchain signature verification––such as "Sign-In With Ethereum"––ensure you are using 
+a ERC-6492-compliant signature verification library. 
+We recommend Viem's [`verifyMessage`](https://viem.sh/docs/actions/public/verifyMessage#verifymessage) ([example](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/SignMessage.tsx#L28)) 
+and [verifyTypedData](https://viem.sh/docs/actions/public/verifyTypedData) ([example](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/TypedSign.tsx#L46)).
+
+
+## Onchain
+For signatures that will be used onchain, such as with [Permit2](https://github.com/Uniswap/permit2) 
+or [Seaport](https://github.com/ProjectOpenSea/seaport) developers will need to inspect the signature offchain 
+and remove unneeded ERC-6492 data, if it is present. 
+We recommend using the [parseErc6492Signature](https://viem.sh/docs/utilities/parseErc6492Signature#parseerc6492signature) 
+util from Viem. 

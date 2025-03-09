@@ -10,6 +10,7 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariants;
   size?: ButtonSizes;
   iconName?: IconProps['name'];
+  iconSize?: IconProps['width'];
   roundedFull?: boolean;
   fullWidth?: boolean;
 };
@@ -26,6 +27,8 @@ const variantStyles: Record<ButtonVariants, string> = {
   // White outlined
   [ButtonVariants.Outlined]:
     'bg-transparent text-white border border-white hover:bg-white hover:text-black active:bg-[#E3E7E9]',
+  // Secondary Outlined
+  [ButtonVariants.SecondaryOutline]: 'bg-transparent border border-gray-muted/65 hover:bg-white/10',
 };
 
 const sizeStyles: Record<ButtonSizes, string> = {
@@ -51,13 +54,14 @@ export default function Button({
   variant = ButtonVariants.Primary,
   size = ButtonSizes.Medium,
   iconName,
+  iconSize = sizeIconRatio[size],
   roundedFull = false,
   className,
   fullWidth = false,
 }: ButtonProps) {
   const buttonClasses = classNames(
     // Shared - base
-    'text-md px-4 py-2 whitespace-nowrap',
+    'text-base px-4 py-2 whitespace-nowrap',
 
     // Shared - layout
     'flex items-center justify-center',
@@ -81,8 +85,6 @@ export default function Button({
 
     className,
   );
-
-  const iconSize = sizeIconRatio[size];
 
   return (
     <button type="button" onClick={onClick} disabled={disabled} className={buttonClasses}>

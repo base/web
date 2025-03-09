@@ -1,0 +1,47 @@
+---
+title: 'API Reference'
+sidebar_label: 'API Reference'
+slug: 'android-api-reference'
+---
+
+## Actions
+
+The `initiateHandshake` and `makeRequest` methods accept a list of actions to perform. An `Action` can be created using the `Web3JsonRPC` class.
+
+Below is a list of supported actions for each method:
+
+| Action                                                                 | RPC method                                                                                        | initiateHandshake | makeRequest      |
+| :--------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------ | :---------------- | :--------------- |
+| [RequestAccounts](./android-api-reference.mdx#requestaccounts)         | [eth_requestAccounts](https://eips.ethereum.org/EIPS/eip-1102)                                    | ✔️ Supported      | ✔️ Supported     |
+| [SignTransaction](./android-api-reference.mdx#signtransaction)         | [eth_signTransaction](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_signtransaction) | ❌ Not supported  | ✔️ Supported     |
+| [SendTransaction](./android-api-reference.mdx#sendtransaction)         | [eth_sendTransaction](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sendtransaction) | ❌ Not supported  | ✔️ Supported     |
+| -                                                                      | [eth_sign](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sign)                       | ❌ Not supported  | ❌ Not supported |
+| [PersonalSign](./android-api-reference.mdx#personalsign)               | [personal_sign](https://eips.ethereum.org/EIPS/eip-191)                                           | ✔️ Supported      | ✔️ Supported     |
+| [SignTypedDataV3](./android-api-reference.mdx#signtypeddatav3)         | [eth_signTypedData_v3](https://eips.ethereum.org/EIPS/eip-712)                                    | ✔️ Supported      | ✔️ Supported     |
+| [SignTypedDataV4](./android-api-reference.mdx#signtypeddatav4)         | [eth_signTypedData_v4](https://eips.ethereum.org/EIPS/eip-712)                                    | ✔️ Supported      | ✔️ Supported     |
+| [SwitchEthereumChain](./android-api-reference.mdx#switchethereumchain) | [wallet_switchEthereumChain](https://eips.ethereum.org/EIPS/eip-3326)                             | ✔️ Supported      | ✔️ Supported     |
+| [AddEthereumChain](./android-api-reference.mdx#addethereumchain)       | [wallet_addEthereumChain](https://eips.ethereum.org/EIPS/eip-3085)                                | ✔️ Supported      | ✔️ Supported     |
+| [WatchAsset](./android-api-reference.mdx#watchasset)                   | [wallet_watchAsset](https://eips.ethereum.org/EIPS/eip-747)                                       | ✔️ Supported      | ✔️ Supported     |
+
+### RequestAccounts
+
+Request that the user provides an account in the form of an Ethereum address.
+
+#### Parameters
+
+None.
+
+#### Example
+
+:::code-group
+
+```kotlin [Kotlin]
+val requestAccounts = Web3JsonRPC.RequestAccounts().action()
+```
+
+```java [Java]
+Action requestAccounts = new Web3JsonRPC.RequestAccounts().action(false);
+```
+
+:::
+

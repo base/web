@@ -1,0 +1,93 @@
+---
+title: 'Coinbase Wallet: Payment Message Content Type'
+sidebar_label: 'Payment Message Content Type'
+---
+
+Coinbase Wallet messaging is built with [XMTP](https://xmtp.org/), and defines a custom [content type](https://xmtp.org/docs/content-types/introduction) for Coinbase Wallet payment messages.
+
+This documentation outlines the structure for the payment message content type so other XMTP message API clients can encode and decode these messages, ensuring interoperability and consistent display of messages across other applications.
+
+## Details
+
+The custom [content type](https://xmtp.org/docs/content-types/introduction) for payment messages is:
+
+`coinbase.com/coinbase-messaging-payment-activity:1.0`
+
+Payment messages can be one of two types:
+
+- Regular Payments
+- Coinbase Sponsored Payments
+
+## Regular Payments
+
+A regular payment message contains details of standard cryptocurrency transactions.
+
+### Sample Structure
+
+```json
+{
+  "currencyCode": {
+    "code": "MATIC",
+    "rawValue": "MATIC"
+  },
+  "fromAddress": "0xf4491fFfa96382d48949cB4fFfA39a3D6Eb9b11A",
+  "network": {
+    "isTestnet": false,
+    "rawValue": "ETHEREUM_CHAIN:137/false"
+  },
+  "toAddress": "0x6b21bf91f7d2e70f66d24fb15d18878175f4d1c0",
+  "transactionHash": "0xe2dbb1fa07e50b12379c4f85c79a7a614124dad85b356cfb36fecba378f781b5"
+}
+```
+
+#### Attributes
+
+| Name              | Description                                                         |
+| :---------------- | :------------------------------------------------------------------ |
+| `currencyCode`    | Specifies the cryptocurrency being transacted.                      |
+| `fromAddress`     | The sender's cryptocurrency wallet address.                         |
+| `network`         | Details of the network on which the transaction is being conducted. |
+| `toAddress`       | The recipient's cryptocurrency wallet address.                      |
+| `transactionHash` | A unique identifier for the transaction.                            |
+
+:::info
+The `transactionHash` can be used to fetch additional details and verify that the transaction has succeeded.
+:::
+
+## Coinbase Sponsored Payments
+
+Coinbase sponsored payments differ slightly from regular payments in their structure. They contain a sponsored transaction ID instead of a direct transaction hash.
+
+### Sample Structure
+
+```json
+{
+  "fromAddress": "0xf4491fFfa96382d48949cB4fFfA39a3D6Eb9b11A",
+  "network": {
+    "isTestnet": false,
+    "rawValue": "ETHEREUM_CHAIN:137/false"
+  },
+  "sponsoredTxId": "d1a92f8d-e3ea-411e-93fa-db1f5fedc33b",
+  "toAddress": "0x6b21bf91f7d2e70f66d24fb15d18878175f4d1c0"
+}
+```
+
+#### Attributes
+
+| Name            | Description                                                         |
+| :-------------- | :------------------------------------------------------------------ |
+| `fromAddress`   | The sender's cryptocurrency wallet address.                         |
+| `network`       | Details of the network on which the transaction is being conducted. |
+| `sponsoredTxId` | A unique identifier for the sponsored transaction.                  |
+| `toAddress`     | The recipient's cryptocurrency wallet address.                      |
+
+### Fetching Transaction Hash from SponsoredTxId
+
+To obtain the actual `transactionHash` using the `sponsoredTxId`, make a **GET** request to the provided endpoint:
+
+```
+https://api.wallet.coinbase.com/rpc/v2/sponsoredSend/getTransactionStatus?token=d1a92f8d-e3ea-411e-93fa-db1f5fedc33b
+```
+
+Replace the token in the query parameter with your `sponsoredTxId`. This endpoint will return the `transactionId`, which is equivalent to the transaction hash, allowing you to verify the transaction on the relevant blockchain.
+

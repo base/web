@@ -1,0 +1,31 @@
+
+
+## LangChain Replit Setup
+
+:::steps
+### Set Up Your Development Environment
+
+1. Fork the template from our [NodeJS](https://replit.com/@lincolnmurr/AgentKitjs-Quickstart-010?v=1) or [Python](https://replit.com/@lincolnmurr/AgentKitpy-01?v=1) Replit templates.
+2. Modify your forked project as needed.
+
+### Configure Environment Variables
+
+1. Click on "Tools" in the left sidebar and select "Secrets".
+2. Add the following secrets:
+
+```bash
+CDP_API_KEY_NAME=your_cdp_key_name
+CDP_API_KEY_PRIVATE_KEY=your_cdp_private_key
+OPENAI_API_KEY=your_openai_key # Or XAI_API_KEY if using NodeJS
+NETWORK_ID="base-sepolia" # Optional, defaults to base-sepolia
+MNEMONIC_PHRASE=your_mnemonic_phrase # Optional
+```
+
+### Run the Agent
+
+1. Click the "Run" button to start the chatbot.
+
+:::warning[Security of wallets on Replit]
+
+Every agent comes with an associated wallet. Wallet data is read from wallet_data.txt, and if that file does not exist, this repl will create a new wallet and persist it in a new file. Please note that this contains your wallet's private key and should not be used in production environments. Refer to the [CDP docs](https://docs.cdp.coinbase.com/wallet-api/docs/wallets#securing-a-wallet) on how to secure your wallets.
+:::

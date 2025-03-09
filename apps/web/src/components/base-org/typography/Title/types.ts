@@ -7,7 +7,7 @@ export enum TitleLevel {
   Title1 = 'title-1',
   Title2 = 'title-2',
   Title3 = 'title-3',
-  Title4 = 'title-5',
+  Title4 = 'title-4',
 
   Headline = 'headline',
 }

@@ -25,6 +25,7 @@ export function ButtonWithLink({
   roundedFull = false,
   fullWidth = false,
   disabled = false,
+  iconSize,
 
   ...buttonProps
 }: ButtonWithLinkProps) {
@@ -43,6 +44,7 @@ export function ButtonWithLink({
         roundedFull={roundedFull}
         fullWidth={fullWidth}
         disabled={disabled}
+        iconSize={iconSize}
         {...buttonProps}
       >
         {children}

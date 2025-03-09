@@ -1,4 +1,4 @@
-import L1StandartBridge from 'apps/bridge/src/contract-abis/L1StandardBridge';
+import L1StandardBridge from 'apps/bridge/src/contract-abis/L1StandardBridge';
 import { Asset } from 'apps/bridge/src/types/Asset';
 import getConfig from 'next/config';
 import { parseUnits } from 'viem';
@@ -28,7 +28,7 @@ export function usePrepareERC20DepositTo({
       isPermittedToBridge && depositAmount !== ''
         ? publicRuntimeConfig.l1BridgeProxyAddress
         : undefined,
-    abi: L1StandartBridge,
+    abi: L1StandardBridge,
     functionName: 'depositERC20To',
     chainId: parseInt(publicRuntimeConfig.l1ChainID),
     args: [
@@ -55,7 +55,7 @@ export async function prepareERC20DepositTo({
 }: UsePrepareERC20DepositToProps) {
   return prepareWriteContract({
     address: publicRuntimeConfig.l1BridgeProxyAddress,
-    abi: L1StandartBridge,
+    abi: L1StandardBridge,
     functionName: 'depositERC20To',
     chainId: parseInt(publicRuntimeConfig.l1ChainID),
     args: [

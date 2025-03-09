@@ -1,0 +1,82 @@
+# wallet_switchEthereumChain
+
+Defined in [EIP-3326](https://github.com/ethereum/EIPs/pull/3326)
+
+> Requests that the wallet switches to the specified chain. This method is used to request that the user changes the connected chain in their wallet. If the requested chain is not available in the wallet, this method may return a 4902 error, which can be used as a signal to call `wallet_addEthereumChain`.
+
+## Parameters
+
+```ts
+interface SwitchEthereumChainParameter {
+  /**
+   * The chain ID as a 0x-prefixed hexadecimal string
+   */
+  chainId: string
+}
+
+type SwitchEthereumChainParams = [SwitchEthereumChainParameter]
+```
+
+## Returns
+
+`null`
+
+Returns null if the request was successful, indicating that the wallet has switched to the requested chain.
+
+## Example
+
+Request:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "wallet_switchEthereumChain",
+  "params": [{ "chainId": "0x1" }]
+}
+```
+
+Response:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": null
+}
+```
+
+## Handling Chain Not Found
+
+If the requested chain is not available in the wallet, the method will return a 4902 error. In this case, you may want to prompt the user to add the chain using `wallet_addEthereumChain`.
+
+```js
+try {
+  await ethereum.request({
+    method: 'wallet_switchEthereumChain',
+    params: [{ chainId: '0x89' }], // Polygon
+  });
+} catch (error) {
+  // This error code indicates that the chain has not been added to the wallet
+  if (error.code === 4902) {
+    await ethereum.request({
+      method: 'wallet_addEthereumChain',
+      params: [{
+        chainId: '0x89',
+        chainName: 'Polygon Mainnet',
+        // ...other chain parameters
+      }],
+    });
+  }
+}
+```
+
+## Errors
+
+| Code | Message                        | Description                                                           |
+| ---- | ------------------------------ | --------------------------------------------------------------------- |
+| 4001 | User rejected the request      | The user rejected the request to switch networks                      |
+| 4100 | Requested method not supported | The provider does not support the `wallet_switchEthereumChain` method |
+| 4200 | Wallet not connected           | The wallet is not connected to the dApp                               |
+| 4300 | Invalid parameters             | The parameters provided are invalid                                   |
+| 4902 | Unrecognized chain ID          | The chain ID is not recognized by the wallet                          |

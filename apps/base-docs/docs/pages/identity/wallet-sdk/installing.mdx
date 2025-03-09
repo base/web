@@ -1,0 +1,125 @@
+---
+title: 'Install'
+sidebar_label: 'Install'
+slug: 'installing'
+---
+
+This page explains how to install and upgrade <a href="https://github.com/coinbase/coinbase-wallet-sdk/" target="_blank" rel="noreferrer noopener">Coinbase Wallet SDK</a>.
+
+:::caution
+The installation package for **Coinbase Wallet SDK** (formerly WalletLink) is now named `@coinbase/wallet-sdk`.
+:::
+
+## Installing Wallet SDK
+
+Install Coinbase Wallet SDK with yarn or npm.
+
+### Yarn
+
+1. Check available versions of Coinbase Wallet SDK:
+
+```bash
+yarn info @coinbase/wallet-sdk versions
+```
+
+2. Install a specific version or the latest version:
+
+> Install specific version:
+>
+> ```bash
+> yarn add @coinbase/wallet-sdk@4.0.0
+> ```
+>
+> Install latest version:
+>
+> ```bash
+> yarn add @coinbase/wallet-sdk
+> ```
+
+3. Check your installed version:
+
+```bash
+yarn list @coinbase/wallet-sdk
+```
+
+### Npm
+
+1. Check available versions of Coinbase Wallet SDK:
+
+```bash
+npm view @coinbase/wallet-sdk versions
+```
+
+2. Install a specific version or the latest version:
+
+> Install specific version:
+>
+> ```bash
+> npm install @coinbase/wallet-sdk@4.0.0
+> ```
+>
+> Install latest version:
+>
+> ```bash
+> npm install @coinbase/wallet-sdk
+> ```
+
+3. Check your installed version:
+
+```bash
+npm list @coinbase/wallet-sdk
+```
+
+## Upgrading Wallet SDK
+
+Upgrade Coinbase Wallet SDK with yarn or npm.
+
+### Yarn
+
+1. Compare your installed version of Coinbase Wallet SDK with the latest available version:
+
+```bash
+yarn outdated @coinbase/wallet-sdk
+```
+
+2. Update Coinbase Wallet SDK to the latest:
+
+```bash
+yarn upgrade @coinbase/wallet-sdk --latest
+```
+
+3. Check your version:
+
+```bash
+yarn list @coinbase/wallet-sdk
+```
+
+### Npm
+
+1. Compare your installed version of Coinbase Wallet SDK with the latest available version:
+
+```bash
+npm outdated @coinbase/wallet-sdk
+```
+
+2. If necessary, update `package.json` with the latest version (or major version), for example:
+
+```json
+{
+  "dependencies": {
+    "@coinbase/wallet-sdk": "^4.0.0"
+  }
+}
+```
+
+3. Update Coinbase Wallet SDK to the latest available version:
+
+```bash
+npm update @coinbase/wallet-sdk
+```
+
+**Next steps:**
+
+- [Setup Coinbase Wallet SDK with Web3](./setup.mdx)
+- [Getting Ethereum Accounts](./getting-eth-accounts.mdx)
+
