@@ -80,6 +80,6 @@ import CafeUnitTest from '../../../src/components/CafeUnitTest/index.jsx'
   <summary>
     ⚠️ Spoiler Alert: Open only if tests fail</summary>
 
-Ensure your variable sizes align with their intended use, and consider the nuances of packing in Solidity. Resources: [Solidity - Layout in Storage](https://docs.soliditylang.org/en/v0.8.17/internals/layout_in_storage.html#layout-of-state-variables-in-storage), [Variables in Struct](https://docs.base.org/base-learn/docs/structs/structs-sbs#setting-up-the-struct)
+Ensure your variable sizes align with their intended use, and consider the nuances of packing in Solidity. Resources: [Solidity - Layout in Storage](https://docs.soliditylang.org/en/v0.8.17/internals/layout_in_storage.html#layout-of-state-variables-in-storage), [Variables in Struct](https://docs.base.org/learn/structs/structs-sbs#setting-up-the-struct)
 
 </details>
