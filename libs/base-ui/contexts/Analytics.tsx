@@ -35,7 +35,7 @@ export default function AnalyticsProvider({ children, context }: AnalyticsProvid
   const fullContext = [previousContext, context].filter((c) => !!c).join('_');
   const logEventWithContext = useCallback(
     (eventName: string, action: ActionType, eventData?: CCAEventData) => {
-      const sanitizedEventName = eventName.toLocaleLowerCase();
+      const sanitizedEventName = eventName.toLowerCase();
       if (typeof window === 'undefined') return;
 
       if (isDevelopment) {
