@@ -4038,5 +4038,13 @@
     "imageUrl": "/images/partners/ipor.svg",
     "category": "defi",
     "subcategory": "yield vault"
+  },
+  {
+    "name": "Zerolend",
+    "description": "ZeroLend is a decentralized lending protocol built on blockchain technology, designed to provide individuals and businesses with a secure and transparent platform for borrowing and lending digital assets",
+    "url": "https://app.zerolend.xyz/",
+    "imageUrl": "/images/partners/zerolend.png",
+    "category": "Defi ",
+    "subcategory": "Lending"
   }
 ]
