@@ -104,8 +104,10 @@ This guide covers common issues you may encounter while using OnchainKit. If you
 ### Theme Issues
 
 - **Dark Mode Not Working**
+
   - Error: "Dark mode styles not applying"
   - Solution: Configure Tailwind and OnchainKit properly:
+
   ```js
   // tailwind.config.js
   module.exports = {
@@ -114,6 +116,18 @@ This guide covers common issues you may encounter while using OnchainKit. If you
     // ... rest of config
   }
   ```
+
+### React Native
+
+- ** React Native Support **
+  - OnchainKit's components are not supported for use in React Native, however, you can use utility functions, like `getName`, as well as some hooks in your React Native app. When using these utility functions, you may need to import them directly rather than through the export file.
+  - Example: `import { getName } from '@coinbase/onchainkit/esm/identity/utils/getName.js';` rather than `import { getName } from '@coinbase/onchainkit/identity;`
+
+### Module Resolution
+
+- **Module Resolution Errors**
+  - Error: "Cannot find module ... or its corresponding type declarations. Consider updating to 'node16', 'nodenext', or 'bundler'"
+  - Solution: Update your Node.js version or use a compatible bundler. We recommend using Node 18+ and `"moduleResolution": "NodeNext"` for the best developer experience. OnchainKit supports only ES Modules and does not support CommonJS modules.
 
 ## Getting Help
 

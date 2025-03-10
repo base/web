@@ -697,7 +697,7 @@ export async function getBasenameTextRecords(username: Basename) {
 }
 
 /*
-  Reclaim a Basename contrat write method
+  Reclaim a Basename contract write method
 */
 export function buildBasenameReclaimContract(
   username: Basename,
