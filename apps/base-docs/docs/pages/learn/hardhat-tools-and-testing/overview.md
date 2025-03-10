@@ -69,6 +69,6 @@ These guides assume that you're reasonably comfortable writing basic smart contr
 
 We also assume that you've got Hardhat up and running, and can write unit tests for your smart contracts. If you're not there yet, but already know Solidity, you can [setup Hardhat here].
 
-[setup Hardhat here]: https://docs.base.org/base-learn/docs/hardhat-setup-overview/hardhat-setup-overview-sbs
+[setup Hardhat here]: https://docs.base.org/learn/hardhat-setup-overview/hardhat-setup-overview-sbs
 [Hardhat plugins]: https://hardhat.org/hardhat-runner/plugins
 [Base Learn]: https://base.org/learn
