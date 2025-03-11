@@ -12,7 +12,7 @@ Get avatars for multiple ENS names:
 ```tsx twoslash [code]
 import { useAvatars } from '@coinbase/onchainkit/identity';
 
-const ensNames = ['vitalik.eth', 'zizzamia.eth'];
+const ensNames = ['vitalik.eth', 'paulcramer.eth'];
 const { data: avatars, isLoading } = useAvatars({ ensNames });
 ```
 
@@ -36,7 +36,7 @@ Get avatars for multiple Basenames:
 import { useAvatars } from '@coinbase/onchainkit/identity';
 import { base } from 'viem/chains';
 
-const ensNames = ['zizzamia.base.eth', 'coinbase.base.eth'];
+const ensNames = ['paul.base.eth', 'coinbase.base.eth'];
 const { data: avatars, isLoading } = useAvatars({ ensNames, chain: base });
 ```
 
