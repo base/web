@@ -1,0 +1,67 @@
+# `useNames`
+
+The `useNames` hook is used to get multiple names from an onchain identity provider
+for an array of addresses in a single batch request.
+
+## Usage
+
+Get ENS names from multiple addresses:
+
+:::code-group
+
+```tsx twoslash [code]
+import { useNames } from '@coinbase/onchainkit/identity';
+
+const addresses = [
+  '0x02feeb0AdE57b6adEEdE5A4EEea6Cf8c21BeB6B1',
+  '0x838aD0EAE54F99F1926dA7C3b6bFbF617389B4D9'
+];
+const { data: names, isLoading } = useNames({ addresses });
+```
+
+```ts [return value]
+{ 
+  data: ['zizzamia.eth', 'vitalik.eth'], 
+  isLoading: false 
+}
+```
+
+:::
+
+Get Basenames from multiple addresses:
+
+:::code-group
+
+```tsx twoslash [code]
+import { useNames } from '@coinbase/onchainkit/identity';
+import { base } from 'viem/chains';
+
+const addresses = [
+  '0x02feeb0AdE57b6adEEdE5A4EEea6Cf8c21BeB6B1',
+  '0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF'
+];
+const { data: names, isLoading } = useNames({ addresses, chain: base });
+```
+
+```ts [return value]
+{ 
+  data: ['zizzamia.base.eth', 'coinbase.base.eth'], 
+  isLoading: false 
+}
+```
+
+:::
+
+## Returns
+
+[`useQuery<Promise<GetNameReturnType[]>>`](/builderkits/onchainkit/identity/types#getnamereturntype)
+
+## Parameters
+
+### UseNamesOptions
+
+[`UseNamesOptions`](/builderkits/onchainkit/identity/types#usenamesoptions)
+
+### UseQueryOptions
+
+[`UseQueryOptions`](/builderkits/onchainkit/identity/types#usequeryoptions) 

@@ -3,8 +3,9 @@ import ClientAnalyticsScript from '@/components/ClientAnalyticsScript/ClientAnal
 import { isDevelopment } from '@/constants.ts';
 
 // CJS import
-import pkg from '@coinbase/cookie-banner';
-const { CookieBanner } = pkg;
+// import pkg from '@coinbase/cookie-banner';
+// const { CookieBanner } = pkg;
+import { CookieBanner } from '@coinbase/cookie-banner';
 
 export const cookieBannerTheme = {
   colors: {

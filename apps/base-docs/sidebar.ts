@@ -418,8 +418,16 @@ export const sidebar: Sidebar = [
                     link: '/builderkits/onchainkit/identity/get-avatar',
                   },
                   {
+                    text: 'getAvatars',
+                    link: '/builderkits/onchainkit/identity/get-avatars',
+                  },
+                  {
                     text: 'getName',
                     link: '/builderkits/onchainkit/identity/get-name',
+                  },
+                  {
+                    text: 'getNames',
+                    link: '/builderkits/onchainkit/identity/get-names',
                   },
                   {
                     text: 'useAddress',
@@ -430,8 +438,16 @@ export const sidebar: Sidebar = [
                     link: '/builderkits/onchainkit/identity/use-avatar',
                   },
                   {
+                    text: 'useAvatars',
+                    link: '/builderkits/onchainkit/identity/use-avatars',
+                  },
+                  {
                     text: 'useName',
                     link: '/builderkits/onchainkit/identity/use-name',
+                  },
+                  {
+                    text: 'useNames',
+                    link: '/builderkits/onchainkit/identity/use-names',
                   },
                 ],
               },

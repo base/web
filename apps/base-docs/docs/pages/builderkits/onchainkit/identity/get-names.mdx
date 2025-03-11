@@ -1,0 +1,80 @@
+# `getNames`
+
+The `getNames` utility is designed to retrieve multiple names from an onchain identity
+provider for an array of addresses in a single batch request.
+
+Consider the utility instead of the hook when you
+use it with Next.js or any Node.js backend.
+
+## Usage
+
+Get ENS names from multiple addresses:
+
+:::code-group
+
+```tsx twoslash [code]
+import { getNames } from '@coinbase/onchainkit/identity';
+
+const addresses = [
+  '0x02feeb0AdE57b6adEEdE5A4EEea6Cf8c21BeB6B1',
+  '0x838aD0EAE54F99F1926dA7C3b6bFbF617389B4D9'
+];
+const names = await getNames({ addresses });
+```
+
+```ts [return value]
+['zizzamia.eth', 'vitalik.eth']
+```
+
+:::
+
+Get Basenames from multiple addresses:
+
+:::code-group
+
+```tsx twoslash [code]
+import { getNames } from '@coinbase/onchainkit/identity';
+import { base } from 'viem/chains';
+
+const addresses = [
+  '0x02feeb0AdE57b6adEEdE5A4EEea6Cf8c21BeB6B1',
+  '0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF'
+];
+const names = await getNames({ addresses, chain: base });
+```
+
+```ts [return value]
+['zizzamia.base.eth', 'coinbase.base.eth']
+```
+
+:::
+
+Get a mix of ENS names and sliced addresses when some addresses don't have names:
+
+:::code-group
+
+```tsx twoslash [code]
+import { getNames } from '@coinbase/onchainkit/identity';
+
+const addresses = [
+  '0x02feeb0AdE57b6adEEdE5A4EEea6Cf8c21BeB6B1',
+  '0x1234567890abcdef1234567890abcdef12345678'
+];
+const names = await getNames({ addresses });
+```
+
+```ts [return value]
+['zizzamia.eth', null]
+```
+
+:::
+
+## Returns
+
+Array of [`GetNameReturnType`](/builderkits/onchainkit/identity/types#getnamereturntype)
+
+## Parameters
+
+### GetNames
+
+[`GetNames`](/builderkits/onchainkit/identity/types#getnames) 
