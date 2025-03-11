@@ -91,7 +91,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           content="lqwNRCxYlFLIcX9EiKAvE4k4ZT8JGpdWgehEIPA7y1Y"
         />
         <script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+          src={`https://tagmanager.google.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
           async
           defer
         />
