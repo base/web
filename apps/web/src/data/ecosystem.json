@@ -4038,5 +4038,13 @@
     "imageUrl": "/images/partners/ipor.svg",
     "category": "defi",
     "subcategory": "yield vault"
+  },
+  {
+    "name": "Rivalz Network",
+    "description": "Rivalz Network is building the World Abstraction Layer. Our infrastructure abstracts the complexities of connecting AI services and Agents to various real-world resources.",
+    "url": "https://rivalz.ai/",
+    "imageUrl": "/images/partners/rivalznetwork.png",
+    "category": "ai",
+    "subcategory": "ai"
   }
 ]
