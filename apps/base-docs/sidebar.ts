@@ -456,11 +456,11 @@ export const sidebar: Sidebar = [
                 items: [
                   {
                     text: 'useTokenDetails',
-                    link: '/builderkits/onchainkit/mint/use-token-details',
+                    link: '/builderkits/onchainkit/hooks/use-token-details',
                   },
                   {
                     text: 'useMintDetails',
-                    link: '/builderkits/onchainkit/mint/use-mint-details',
+                    link: '/builderkits/onchainkit/hooks/use-mint-details',
                   },
                 ],
               },
