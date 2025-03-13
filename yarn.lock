@@ -94,7 +94,7 @@ __metadata:
   dependencies:
     "@coinbase/cookie-banner": ^1.0.3
     "@coinbase/cookie-manager": ^1.1.1
-    "@coinbase/onchainkit": ^0.37.5
+    "@coinbase/onchainkit": ^0.37.7
     "@googleapis/sheets": ^5.0.5
     "@types/next": ^9.0.0
     "@types/node": ^22.13.4
@@ -165,7 +165,7 @@ __metadata:
   dependencies:
     "@coinbase/cookie-banner": ^1.0.3
     "@coinbase/cookie-manager": ^1.1.1
-    "@coinbase/onchainkit": ^0.37.5
+    "@coinbase/onchainkit": ^0.37.7
     "@datadog/browser-logs": ^5.23.3
     "@datadog/browser-rum": ^5.23.3
     "@frames.js/render": ^0.5.5
@@ -1975,10 +1975,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@coinbase/onchainkit@npm:^0.37.5":
-  version: 0.37.5
-  resolution: "@coinbase/onchainkit@npm:0.37.5"
+"@coinbase/onchainkit@npm:^0.37.7":
+  version: 0.37.7
+  resolution: "@coinbase/onchainkit@npm:0.37.7"
   dependencies:
+    "@farcaster/frame-sdk": ^0.0.28
+    "@farcaster/frame-wagmi-connector": ^0.0.16
     "@tanstack/react-query": ^5
     clsx: ^2.1.1
     graphql: ^14 || ^15 || ^16
@@ -1992,7 +1994,7 @@ __metadata:
     "@types/react": ^18 || ^19
     react: ^18 || ^19
     react-dom: ^18 || ^19
-  checksum: 84f2f16d8bb6bf1664485dbb10823d26327f19676a7c10aacb79975309f5ded2e94f83284a09a314c98f81cfd682b2df292e49d711902d626e3f6bb7ea3b7c54
+  checksum: be258ab12e4b505ab859b6938da58e980886a1b1c6a97633f24f572a56177c341e094888a8d6189a6ac2466edee05c75cc884a4c17f8456a95393734b4120f99
   languageName: node
   linkType: hard
 
@@ -3357,6 +3359,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@farcaster/frame-core@npm:0.0.26":
+  version: 0.0.26
+  resolution: "@farcaster/frame-core@npm:0.0.26"
+  dependencies:
+    ox: ^0.4.4
+    zod: ^3.24.1
+  checksum: f85ee0cd64f111dfb0e9827223f3f5356c44846611b3d4916236a85dfdda28b9f62223830229e3afe5bf2079ab1df99cf0d3c0a10d48520ee5f1a950f0324701
+  languageName: node
+  linkType: hard
+
 "@farcaster/frame-host@npm:^0.0.24":
   version: 0.0.24
   resolution: "@farcaster/frame-host@npm:0.0.24"
@@ -3366,6 +3378,29 @@ __metadata:
   peerDependencies:
     react: ">=17.0.0"
   checksum: e79add7ed9b14d6e191233f4da3606a4f01bc97bd1eff86bd7953bd9732a78098066cb26d0712b963d0985f69a3f1f55caaf1df67e28b9a1c535399ef4491a4a
+  languageName: node
+  linkType: hard
+
+"@farcaster/frame-sdk@npm:^0.0.28":
+  version: 0.0.28
+  resolution: "@farcaster/frame-sdk@npm:0.0.28"
+  dependencies:
+    "@farcaster/frame-core": 0.0.26
+    comlink: ^4.4.2
+    eventemitter3: ^5.0.1
+    ox: ^0.4.4
+  checksum: f6ce5a398059175e65c25a3f58a68141375dfc6961d86581fc567b2920e9ad96d88a400b636c857c935cea0b2ddb1c8301d7b6956f3d9d62a3cf5b1e7087a08d
+  languageName: node
+  linkType: hard
+
+"@farcaster/frame-wagmi-connector@npm:^0.0.16":
+  version: 0.0.16
+  resolution: "@farcaster/frame-wagmi-connector@npm:0.0.16"
+  peerDependencies:
+    "@farcaster/frame-sdk": ^0.0.28
+    "@wagmi/core": ^2.14.1
+    viem: ^2.21.55
+  checksum: e84dabea7c8b3a8d4eb2eac427072abfbfe750eddd0f0cb1d76572f8b5884ba9ee9476f978022107d3ebdc77f0126ecb1ae64ca4b5955cecf725a606d406ba87
   languageName: node
   linkType: hard
 
@@ -11866,6 +11901,13 @@ __metadata:
   dependencies:
     delayed-stream: ~1.0.0
   checksum: 49fa4aeb4916567e33ea81d088f6584749fc90c7abec76fd516bf1c5aa5c79f3584b5ba3de6b86d26ddd64bae5329c4c7479343250cfe71c75bb366eae53bb7c
+  languageName: node
+  linkType: hard
+
+"comlink@npm:^4.4.2":
+  version: 4.4.2
+  resolution: "comlink@npm:4.4.2"
+  checksum: 35313f26fdd78c202be21be49a7607f57e9e91963399b524676742ee0cf7db589be500d923ed0809b53f37996461186fb345bf867d93236be22bfae3cb7bd07e
   languageName: node
   linkType: hard
 

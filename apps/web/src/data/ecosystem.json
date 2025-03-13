@@ -3652,7 +3652,7 @@
     "category": "defi",
     "subcategory": "stablecoin",
     "description": "ZARP is a stablecoin pegged to the price of the South African Rand (ZAR).",
-    "url": "https://zarp.io/",
+    "url": "https://www.zarpstablecoin.com/",
     "imageUrl": "/images/partners/zarp.png"
   },
   {
@@ -3838,14 +3838,6 @@
     "imageUrl": "/images/partners/pulsarfinance.png",
     "category": "defi",
     "subcategory": "portfolio"
-  },
-  {
-    "name": "20lab",
-    "description": "20lab.app is a customizable ERC-20, SPL (Solana) & Sui token generator with over 17 extendable features. Test our generator for free and manage functions via token owner dashboard.",
-    "url": "https://20lab.app/generate/erc20-token/base/",
-    "imageUrl": "/images/partners/20lab.png",
-    "category": "infra",
-    "subcategory": "developer tool"
   },
   {
     "name": "based.gift",
