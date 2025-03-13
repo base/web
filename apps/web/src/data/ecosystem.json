@@ -1,4 +1,11 @@
-[
+[  {
+    "name": "RWAX Exchange",
+    "description": "The RWAX Exchange is the leading RWA perp dex where you can go long/short any RWA asset with up to 50x leverage.",
+    "url": "https://therwax.com/",
+    "imageUrl": "/images/partners/rwax.png",
+    "category": "defi",
+    "subcategory": "dex"
+  },
   {
     "name": "Heurist AI",
     "description": "Heurist is a decentralized AI-as-a-Service cloud. Run AI and Agents via API.",
