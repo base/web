@@ -3,7 +3,7 @@ import { createContext, useCallback, useContext, useEffect } from 'react';
 import { base } from 'viem/chains';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { contractABI, contractAddress } from 'apps/web/src/components/BuilderNft/constants';
-import logEvent from 'apps/web/src/utils/analytics/logEvent';
+import logEvent from 'apps/web/src/utils/logEvent';
 import { useLocalStorage } from 'usehooks-ts';
 
 class HttpError extends Error {
