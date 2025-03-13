@@ -38,7 +38,7 @@ export function ConnectWalletButton({
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
   const { switchChain } = useSwitchChain();
-  const { address, connector, isConnecting, isReconnecting, chain } = useAccount();
+  const { address, connector, isConnected, isConnecting, isReconnecting, chain } = useAccount();
 
   const isDesktop = useMediaQuery('(min-width: 768px)');
   const searchParams = useSearchParams();
@@ -51,6 +51,12 @@ export function ConnectWalletButton({
     'text-white': connectWalletButtonVariant === ConnectWalletButtonVariants.BaseOrg,
     'text-black': connectWalletButtonVariant === ConnectWalletButtonVariants.Basename,
   });
+
+  const buttonClasses = classNames(
+    address
+      ? 'flex items-center justify-center rounded-lg bg-transparent p-2 hover:bg-gray-40/20'
+      : 'min-w-full px-4 py-2 whitespace-nowrap flex items-center justify-center transition-all bg-blue text-white border border-blue hover:bg-blue-80 active:bg-[#06318E] text-md px-4 py-2 gap-3',
+  );
 
   const switchToIntendedNetwork = useCallback(
     () => switchChain({ chainId: base.id }),
@@ -82,7 +88,7 @@ export function ConnectWalletButton({
     return <Icon name="spinner" color="currentColor" />;
   }
 
-  if (!chainSupported) {
+  if (isConnected && !chainSupported) {
     return (
       <Button
         variant={ButtonVariants.Black}
@@ -97,8 +103,8 @@ export function ConnectWalletButton({
 
   return (
     <Wallet>
-      <ConnectWallet className="flex items-center justify-center rounded-lg bg-transparent p-2 hover:bg-gray-40/20">
-        <ConnectWalletText>
+      <ConnectWallet className={buttonClasses}>
+        <ConnectWalletText className="font-sans text-base font-normal">
           {connectWalletButtonVariant === ConnectWalletButtonVariants.BaseOrg
             ? 'Connect'
             : 'Sign In'}
