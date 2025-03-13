@@ -653,8 +653,8 @@ export const sidebar: Sidebar = [
             text: 'Usage Details',
             items: [
               {
-                text: 'Signature Verification',
-                link: '/identity/smart-wallet/usage-details/signature-verification',
+                text: 'Signing and Verifying Messages',
+                link: '/identity/smart-wallet/usage-details/signing-and-verifying-messages',
               },
               { text: 'Popups', link: '/identity/smart-wallet/usage-details/popups' },
               { text: 'Simulations', link: '/identity/smart-wallet/usage-details/Simulations' },

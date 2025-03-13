@@ -1,0 +1,372 @@
+# Sign Messages Using Smart Wallet
+
+Smart contract wallets introduce a few differences in how messages are signed compared to traditional Externally Owned Accounts (EOAs). This guide explains how to properly implement message signing using Smart Wallet, covering both standard messages and typed data signatures, as well as some edge cases.
+
+## Table of Contents
+
+- [Introduction](#introduction)
+  - [Use Cases for Wallet Signatures](#use-cases-for-wallet-signatures)
+  - [Smart Contract Wallet Differences](#smart-contract-wallet-differences)
+- [Signing Offchain Messages using Wagmi/Viem](#signing-offchain-messages-using-wagmiviem)
+  - [Prerequisites](#prerequisites)
+  - [Signing a Simple Message](#signing-a-simple-message)
+  - [Signing Typed Data (EIP-712)](#signing-typed-data-eip-712)
+- [Handling Advanced Cases](#handling-advanced-cases)
+  - [Onchain Signatures](#onchain-signatures)
+  - [Alternative Frameworks](#alternative-frameworks)
+  - [Server-side Verification](#server-side-verification)
+
+## Introduction
+
+Before walking through the details of how to sign and verify messages using Smart Wallet, it's important to understand some of the use cases of signing messages with wallets, as well as the key differences between EOAs and smart contracts when it comes to signing messages.
+
+### Use Cases for Wallet Signatures
+
+Blockchain-based apps use wallet signatures for two main categories:
+
+1. **Signatures for offchain verification**: Used for authenticating users in dApps (e.g., Sign-In with Ethereum) to avoid spoofing. The signature is not used for any onchain action.
+
+2. **Signatures for onchain verification**: Used for signing onchain permissions (e.g., [Permit2](https://github.com/Uniswap/permit2)) or batching transactions. The signature is usually stored for future transactions.
+
+### Smart Contract Wallet Differences
+
+Smart contract wallets handle signatures differently from EOAs in several ways:
+
+- The contract itself doesn't produce signatures - instead, the owner (e.g., passkey) signs messages
+- Verification happens through the `isValidSignature` function defined in [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271)
+- Smart contract wallet addresses are often deterministic, allowing signature support before deployment via [ERC-6492](https://eips.ethereum.org/EIPS/eip-6492)
+
+## Signing Offchain Messages using Wagmi/Viem
+
+### Prerequisites
+
+Before implementing message signing, ensure:
+
+- Your project can use Wagmi/Viem
+- You're signing an offchain message
+- Your smart wallet can be deployed or undeployed (methods are ERC-6492 compatible)
+
+:::info
+If your implementation is more complicated and is not covered by the above assumptions, please refer to the "Handling Advanced Cases" section below.
+:::
+
+### Signing a Simple Message
+
+The following example demonstrates how to implement basic message signing using a Smart Wallet:
+
+<details style={{ 
+  backgroundColor: 'transparent', 
+  padding: '1rem', 
+  border: '1px solid #e9ecef',
+  borderRadius: '8px',
+  marginBottom: '1rem'
+}}>
+<summary style={{
+  cursor: 'pointer',
+  fontWeight: 'bold',
+  padding: '0.5rem',
+  color: 'white'
+}}>SignMessage.tsx:  👉 Click to expand/collapse</summary>
+
+```tsx [SignMessage.tsx]
+import { useCallback, useEffect, useMemo, useState } from "react";
+import type { Hex } from "viem";
+import { useAccount, usePublicClient, useSignMessage } from "wagmi";
+import { SiweMessage } from "siwe";
+
+export function SignMessage() {
+  const account = useAccount();
+  const client = usePublicClient();
+  const [signature, setSignature] = useState<Hex | undefined>(undefined);
+  const { signMessage } = useSignMessage({
+    mutation: { onSuccess: (sig) => setSignature(sig) },
+  });
+  const message = useMemo(() => {
+    return new SiweMessage({
+      domain: document.location.host,
+      address: account.address,
+      chainId: account.chainId,
+      uri: document.location.origin,
+      version: "1",
+      statement: "Smart Wallet SIWE Example",
+      nonce: "12345678",
+    });
+  }, []);
+
+  const [valid, setValid] = useState<boolean | undefined>(undefined);
+
+  const checkValid = useCallback(async () => {
+    if (!signature || !account.address || !client) return;
+
+    client
+      .verifyMessage({
+        address: account.address,
+        message: message.prepareMessage(),
+        signature,
+      })
+      .then((v) => setValid(v));
+  }, [signature, account]);
+
+  useEffect(() => {
+    checkValid();
+  }, [signature, account]);
+
+  return (
+    <div>
+      <h2>Sign Message (Sign In with Ethereum)</h2>
+      <button
+        onClick={() => signMessage({ message: message.prepareMessage() })}
+      >
+        Sign
+      </button>
+      <p>{}</p>
+      {signature && <p>Signature: {signature}</p>}
+      {valid != undefined && <p> Is valid: {valid.toString()} </p>}
+    </div>
+  );
+}
+```
+
+</details>
+
+To run this example:
+
+1. Clone the repo: `git clone https://github.com/wilsoncusack/wagmi-scw/`
+2. Install bun: `curl -fsSL https://bun.sh/install | bash`
+3. Install packages: `bun i`
+4. Run next app: `bun run dev`
+
+### Signing Typed Data (EIP-712)
+
+For structured data signing, implement the following:
+
+<details style={{ 
+  backgroundColor: 'transparent', 
+  padding: '1rem', 
+  border: '1px solid #e9ecef',
+  borderRadius: '8px',
+  marginBottom: '1rem'
+}}>
+<summary style={{
+  cursor: 'pointer',
+  fontWeight: 'bold',
+  padding: '0.5rem',
+  color: 'white'
+}}>TypedSign.tsx:  👉 Click to expand/collapse</summary>
+
+```tsx [TypedSign.tsx]
+import { useCallback, useEffect, useState } from "react";
+import type { Address, Hex } from "viem";
+import { useAccount, usePublicClient, useSignTypedData } from "wagmi";
+
+export const domain = {
+  name: "Ether Mail",
+  version: "1",
+  chainId: 1,
+  verifyingContract: "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC",
+} as const;
+
+export const types = {
+  Person: [
+    { name: "name", type: "string" },
+    { name: "wallet", type: "address" },
+  ],
+  Mail: [
+    { name: "from", type: "Person" },
+    { name: "to", type: "Person" },
+    { name: "contents", type: "string" },
+  ],
+} as const;
+
+export function TypedSign() {
+  const account = useAccount();
+  const client = usePublicClient();
+  const [signature, setSignature] = useState<Hex | undefined>(undefined);
+  const { signTypedData } = useSignTypedData({
+    mutation: { onSuccess: (sig) => setSignature(sig) },
+  });
+  const message = {
+    from: {
+      name: "Cow",
+      wallet: "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826" as Address,
+    },
+    to: {
+      name: "Bob",
+      wallet: "0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB" as Address,
+    },
+    contents: "Hello, Bob!",
+  };
+
+  const [valid, setValid] = useState<boolean | undefined>(undefined);
+
+  const checkValid = useCallback(async () => {
+    if (!signature || !account.address) return;
+
+    client
+      .verifyTypedData({
+        address: account.address,
+        types,
+        domain,
+        primaryType: "Mail",
+        message,
+        signature,
+      })
+      .then((v) => setValid(v));
+  }, [signature, account]);
+
+  useEffect(() => {
+    checkValid();
+  }, [signature, account]);
+
+  return (
+    <div>
+      <h2>Sign Typed Data</h2>
+      <button
+        onClick={() =>
+          signTypedData({ domain, types, message, primaryType: "Mail" })
+        }
+      >
+        Sign
+      </button>
+      <p>{}</p>
+      {signature && <p>Signature: {signature}</p>}
+      {valid != undefined && <p> Is valid: {valid.toString()} </p>}
+    </div>
+  );
+}
+```
+
+</details>
+
+Key points about typed data signatures:
+
+- Uses wagmi's `useSignTypedData` hook for structured data signing
+- Defines domain and types for EIP-712 typed data
+- Verifies the signature using the public client
+- Provides user feedback on signature validity
+
+## Handling Advanced Cases
+
+### Onchain Signatures
+
+If you are looking to handle onchain signatures (eg. [Permit2](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/Permit2.tsx)), you can sign them in the same way as above.
+However, you should be careful when looking to validate the signatures:
+
+- ERC-6492-compatible signatures contain other elements that are not useful for onchain signatures (magicBytes, create2Factory, factoryCalldata). In order to understand the complete logic of how ERC-6492-compatible signatures work,
+  please refer to the ["Verifier Side" section of the EIP](https://eips.ethereum.org/EIPS/eip-6492#verifier-side).
+- Use Viem's [`parseErc6492Signature`](https://viem.sh/docs/utilities/parseErc6492Signature#parseerc6492signature) utility to parse these elements
+- For non-Viem implementations, see alternative approaches below
+
+:::info
+There is an example implementation of Permit2 using Wagmi in the [wagmi-scw repository](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/Permit2.tsx).
+:::
+
+### Alternative Frameworks
+
+To aid in the verification of smart account signatures, ERC-6492 includes a singleton contract that can validate ERC-6492 signatures.
+This singleton contract is called [`UniversalSigValidator`](https://eips.ethereum.org/EIPS/eip-6492#reference-implementation).
+
+If you are using a different framework other than Viem, or you find it impossible to use Viem, you can do one of the following:
+
+1. Deploy [`UniversalSigValidator`](https://eips.ethereum.org/EIPS/eip-6492#reference-implementation) and call the view function `isValidSig`. It accepts a signer,
+   hash, and signature and returns a boolean of whether the signature is valid or not.
+   This method may revert if the underlying calls revert.
+2. If you would like to avoid deploying the contract, the ERC-6492 contract has a ValidateSigOffchain
+   helper contract that allows you to validate a signature in one eth_call without deploying the smart account. Below is a reference implementation in ethers for this second case.
+
+```typescript [ethers-example.ts]
+const isValidSignature = '0x01' === await provider.call({
+  data: ethers.utils.concat([
+    validateSigOffchainBytecode,
+    (new ethers.utils.AbiCoder()).encode(['address', 'bytes32', 'bytes'], [signer, hash, signature])
+  ])
+})
+```
+
+### Server-side Verification
+
+You can handle server-side verification using NextJS edge functions such as shown [here](https://github.com/youssefea/ethden2025-sign-tx-csw/blob/main/src/app/api/verify/route.ts):
+
+<details style={{ 
+  backgroundColor: 'transparent', 
+  padding: '1rem', 
+  border: '1px solid #e9ecef',
+  borderRadius: '8px',
+  marginBottom: '1rem'
+}}>
+<summary style={{
+  cursor: 'pointer',
+  fontWeight: 'bold',
+  padding: '0.5rem',
+  color: 'white'
+}}>route.ts:  👉 Click to expand/collapse</summary>
+
+```typescript [route.ts]
+import { type Hex } from "viem";
+import { headers } from "next/headers";
+
+// Mock database
+const db: { signatures: Array<{ signature: Hex; address: string }> } = {
+  signatures: [],
+};
+
+// Helper to validate the request is from our application
+function isValidOrigin(request: Request) {
+  // UNCOMMENT THIS TO SECURE THE API FROM UNAUTHORIZED ACCESS
+  // AND CHECK THAT THE REQUEST IS FROM OUR APPLICATION
+
+  /*
+  const headersList = headers();
+  const origin = request.headers.get("origin");
+  const referer = headersList.get("referer");
+  const validOrigin = process.env.NEXT_PUBLIC_APP_URL || `https://${headersList.get("host")}`;
+  return origin === validOrigin || referer?.startsWith(validOrigin);
+  */
+  return true;
+}
+
+export async function POST(request: Request) {
+  try {
+    // Check if the request is from our application
+    if (!isValidOrigin(request)) {
+      return Response.json(
+        { error: "Unauthorized" },
+        { status: 403 }
+      );
+    }
+
+    const { signature, address } = await request.json();
+
+    if (!signature || !address) {
+      return Response.json(
+        { error: "Signature and address are required" },
+        { status: 400 }
+      );
+    }
+
+    // Store in mock database
+    db.signatures.push({ signature, address });
+
+    return Response.json({ success: true });
+  } catch (error) {
+    return Response.json(
+      { error: "Failed to store signature" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function GET() {
+  return Response.json({ signatures: db.signatures });
+}
+```
+
+</details>
+
+:::warning
+Storing signatures safely requires advanced security guarantees. Ensure your database cannot be tampered with.
+:::
+
+## Next Steps
+
+[TBD]
