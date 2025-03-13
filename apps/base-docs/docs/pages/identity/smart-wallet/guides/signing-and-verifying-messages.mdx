@@ -2,20 +2,6 @@
 
 Smart contract wallets introduce a few differences in how messages are signed compared to traditional Externally Owned Accounts (EOAs). This guide explains how to properly implement message signing using Smart Wallet, covering both standard messages and typed data signatures, as well as some edge cases.
 
-## Table of Contents
-
-- [Introduction](#introduction)
-  - [Use Cases for Wallet Signatures](#use-cases-for-wallet-signatures)
-  - [Smart Contract Wallet Differences](#smart-contract-wallet-differences)
-- [Signing Offchain Messages using Wagmi/Viem](#signing-offchain-messages-using-wagmiviem)
-  - [Prerequisites](#prerequisites)
-  - [Signing a Simple Message](#signing-a-simple-message)
-  - [Signing Typed Data (EIP-712)](#signing-typed-data-eip-712)
-- [Handling Advanced Cases](#handling-advanced-cases)
-  - [Onchain Signatures](#onchain-signatures)
-  - [Alternative Frameworks](#alternative-frameworks)
-  - [Server-side Verification](#server-side-verification)
-
 ## Introduction
 
 Before walking through the details of how to sign and verify messages using Smart Wallet, it's important to understand some of the use cases of signing messages with wallets, as well as the key differences between EOAs and smart contracts when it comes to signing messages.
