@@ -8,14 +8,10 @@ import logo from 'apps/web/src/components/base-org/shared/TopNavigation/assets/l
 import MenuDesktop from 'apps/web/src/components/base-org/shared/TopNavigation/MenuDesktop';
 import MenuMobile from 'apps/web/src/components/base-org/shared/TopNavigation/MenuMobile';
 import { DynamicWrappedGasPriceDropdown } from 'apps/web/src/components/base-org/shared/TopNavigation/GasPriceDropdown';
-import {
-  // ConnectWalletButtonVariants,
-  DynamicWrappedConnectWalletButton,
-} from 'apps/web/src/components/ConnectWalletButton/ConnectWalletButton';
 import Link from 'apps/web/src/components/Link';
 import {
   ConnectWalletButtonVariants,
-  NewDynamicWrappedConnectWalletButton,
+  DynamicWrappedConnectWalletButton,
 } from 'apps/web/src/components/ConnectWalletButton/NewConnectWalletButton';
 
 export type SubItem = {
@@ -202,12 +198,9 @@ export default function TopNavigation() {
           <div className="flex items-center justify-end gap-3 md:min-w-[16rem]">
             {showGasDropdownAndConnectWallet && (
               <Suspense>
-                <NewDynamicWrappedConnectWalletButton
+                <DynamicWrappedConnectWalletButton
                   connectWalletButtonVariant={ConnectWalletButtonVariants.BaseOrg}
                 />
-                {/* <DynamicWrappedConnectWalletButton
-                  connectWalletButtonVariant={ConnectWalletButtonVariants.BaseOrg}
-                /> */}
               </Suspense>
             )}
           </div>

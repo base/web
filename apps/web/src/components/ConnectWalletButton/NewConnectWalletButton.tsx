@@ -20,6 +20,8 @@ import { UserAvatar } from 'apps/web/src/components/ConnectWalletButton/UserAvat
 import { useMediaQuery } from 'usehooks-ts';
 import classNames from 'classnames';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
+import logEvent, { ActionType, AnalyticsEventImportance, identify } from 'base-ui/utils/logEvent';
+import sanitizeEventString from 'base-ui/utils/sanitizeEventString';
 
 export enum ConnectWalletButtonVariants {
   BaseOrg,
@@ -30,13 +32,13 @@ type ConnectWalletButtonProps = {
   connectWalletButtonVariant: ConnectWalletButtonVariants;
 };
 
-export function NewConnectWalletButton({
+export function ConnectWalletButton({
   connectWalletButtonVariant = ConnectWalletButtonVariants.BaseOrg,
 }: ConnectWalletButtonProps) {
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
   const { switchChain } = useSwitchChain();
-  const { isConnecting, isReconnecting, chain } = useAccount();
+  const { address, connector, isConnecting, isReconnecting, chain } = useAccount();
 
   const isDesktop = useMediaQuery('(min-width: 768px)');
   const searchParams = useSearchParams();
@@ -59,6 +61,23 @@ export function NewConnectWalletButton({
     setIsMounted(true);
   }, []);
 
+  useEffect(() => {
+    if (address) {
+      logEvent(
+        'wallet_connected',
+        {
+          action: ActionType.change,
+          context: 'navbar',
+          address,
+          wallet_type: sanitizeEventString(connector?.name),
+          wallet_connector_id: connector?.id,
+        },
+        AnalyticsEventImportance.low,
+      );
+      identify({ userId: address });
+    }
+  }, [address, connector]);
+
   if (isConnecting || isReconnecting || !isMounted) {
     return <Icon name="spinner" color="currentColor" />;
   }
@@ -79,7 +98,11 @@ export function NewConnectWalletButton({
   return (
     <Wallet>
       <ConnectWallet className="flex items-center justify-center rounded-lg bg-transparent p-2 hover:bg-gray-40/20">
-        <ConnectWalletText>Connect</ConnectWalletText>
+        <ConnectWalletText>
+          {connectWalletButtonVariant === ConnectWalletButtonVariants.BaseOrg
+            ? 'Connect'
+            : 'Sign In'}
+        </ConnectWalletText>
         <UserAvatar />
         {isDesktop && <Name chain={basenameChain} className={userAddressClasses} />}
         {showChainSwitcher && <ChainDropdown />}
@@ -93,12 +116,12 @@ export function NewConnectWalletButton({
   );
 }
 
-export function NewDynamicWrappedConnectWalletButton({
+export function DynamicWrappedConnectWalletButton({
   connectWalletButtonVariant = ConnectWalletButtonVariants.BaseOrg,
 }: ConnectWalletButtonProps) {
   return (
     <DynamicCryptoProviders theme="base">
-      <NewConnectWalletButton connectWalletButtonVariant={connectWalletButtonVariant} />
+      <ConnectWalletButton connectWalletButtonVariant={connectWalletButtonVariant} />
     </DynamicCryptoProviders>
   );
 }
