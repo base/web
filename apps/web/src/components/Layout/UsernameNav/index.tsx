@@ -5,7 +5,7 @@ import Link from 'apps/web/src/components/Link';
 import {
   ConnectWalletButton,
   ConnectWalletButtonVariants,
-} from 'apps/web/src/components/ConnectWalletButton/NewConnectWalletButton';
+} from 'apps/web/src/components/ConnectWalletButton/ConnectWalletButton';
 import { StaticImageData } from 'next/dist/shared/lib/get-img-props';
 import { useAccount, useSwitchChain } from 'wagmi';
 import classNames from 'classnames';

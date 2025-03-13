@@ -12,7 +12,7 @@ import Link from 'apps/web/src/components/Link';
 import {
   ConnectWalletButtonVariants,
   DynamicWrappedConnectWalletButton,
-} from 'apps/web/src/components/ConnectWalletButton/NewConnectWalletButton';
+} from 'apps/web/src/components/ConnectWalletButton/ConnectWalletButton';
 
 export type SubItem = {
   name: string;
