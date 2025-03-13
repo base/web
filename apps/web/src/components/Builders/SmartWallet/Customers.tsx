@@ -74,7 +74,7 @@ export function Customers() {
   return (
     <div className="flex w-full flex-col gap-10 tracking-tight">
       <Title level={TitleLevel.Title1} className="font-bold">
-        Powering the best onchain experiences
+        Powering your favorite onchain apps
       </Title>
       <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
         <Marquee className="gap-8 [--duration:20s]" pauseOnHover>

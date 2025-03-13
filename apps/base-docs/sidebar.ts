@@ -587,6 +587,10 @@ export const sidebar: Sidebar = [
           {
             text: 'Introduction',
             items: [
+              {
+                text: 'Getting Started',
+                link: '/identity/smart-wallet/introduction/getting-started',
+              },
               { text: 'Install for Web', link: '/identity/smart-wallet/introduction/install-web' },
               {
                 text: 'Install for React Native',
@@ -603,7 +607,6 @@ export const sidebar: Sidebar = [
               },
             ],
           },
-
           {
             text: 'Features',
             items: [
