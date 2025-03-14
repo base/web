@@ -3,22 +3,26 @@ import { UserAvatar } from 'apps/web/src/components/ConnectWalletButton/UserAvat
 import classNames from 'classnames';
 import { useCallback, useState } from 'react';
 import { useAccount } from 'wagmi';
+import { useCopyToClipboard } from 'usehooks-ts';
 
 export function CustomWalletAdvancedAddressDetails() {
   const { address, chain } = useAccount();
   const [copyText, setCopyText] = useState('Copy');
 
+  const [, copy] = useCopyToClipboard();
   const handleCopyAddress = useCallback(() => {
-    try {
-      void navigator.clipboard.writeText(String(address));
-      setCopyText('Copied');
-      setTimeout(() => setCopyText('Copy'), 2000);
-    } catch (err) {
-      console.error('Failed to copy address:', err);
-      setCopyText('Failed to copy');
-      setTimeout(() => setCopyText('Copy'), 2000);
-    }
-  }, [address]);
+    copy(String(address))
+      .then(() => {
+        setCopyText('Copied');
+      })
+      .catch((err) => {
+        setCopyText('Failed to copy');
+        console.error('Failed to copy address:', err);
+      })
+      .finally(() => {
+        setTimeout(() => setCopyText('Copy'), 2000);
+      });
+  }, [address, copy]);
 
   if (!address || !chain) {
     return <div className="mt-1 h-28 w-10" />; // Prevent layout shift
@@ -68,7 +72,8 @@ export function CustomWalletAdvancedAddressDetails() {
           {copyText}
         </button>
       </div>
-      {/* <AddressBalanceInFiat className={classNames?.fiatBalance} /> */} {/* TODO: Add fiat balance */}
+      {/* <AddressBalanceInFiat className={classNames?.fiatBalance} /> */}{' '}
+      {/* TODO: Add fiat balance */}
     </div>
   );
 }
