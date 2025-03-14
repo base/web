@@ -48,16 +48,34 @@ curl -X POST \
  https://www.base.org/api/checkNftProof
 ```
 
-2. Next, navigate to the Basescan page for the [Base Builder NFT](https://basescan.org/token/0x8DC80A209A3362f0586e6C116973Bb6908170c84#writeContract)
+2. This curl returns JSON but the NFT contract expects raw hex values. So you'll
+   need to parse the JSON, extract the `result` array, and convert each value to
+   raw hex.
 
-3. Connect your wallet by clicking the "Connect to Web3" button.
+API response format:
 
-4. Under the `mint` method, paste the Merkle proof you pulled in step 1 into the
+```json
+{
+   "result":["0x123...ABC","0x456...ZYX","0x789...MNO","0x000...PQR"]
+}
+```
+
+NFT contract format:
+
+```
+[0x123...ABC,0x456...ZYX,0x789...MNO,0x000...PQR]
+```
+
+3. Next, navigate to the Basescan page for the [Base Builder NFT](https://basescan.org/token/0x8DC80A209A3362f0586e6C116973Bb6908170c84#writeContract)
+
+4. Connect your wallet by clicking the "Connect to Web3" button.
+
+5. Under the `mint` method, paste the formatted Merkle proof from step 2 into the
    `proof` parameter.
 
-5. Click "Write" and confirm the transaction in your wallet.
+6. Click "Write" and confirm the transaction in your wallet.
 
-6. That's it! Your NFT will be minted and appear in your wallet.
+7. That's it! Your NFT will be minted and appear in your wallet.
 
 **Why can't I claim my NFT?**
 
