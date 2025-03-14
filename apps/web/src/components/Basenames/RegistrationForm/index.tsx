@@ -4,7 +4,6 @@ import {
   MinusIcon,
   PlusIcon,
 } from '@heroicons/react/16/solid';
-import { ConnectButton, useConnectModal } from '@rainbow-me/rainbowkit';
 import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { useErrors } from 'apps/web/contexts/Errors';
 import RegistrarControllerABI from 'apps/web/src/abis/RegistrarControllerABI';
@@ -12,7 +11,6 @@ import { USERNAME_REGISTRAR_CONTROLLER_ADDRESSES } from 'apps/web/src/addresses/
 import { PremiumExplainerModal } from 'apps/web/src/components/Basenames/PremiumExplainerModal';
 import { useRegistration } from 'apps/web/src/components/Basenames/RegistrationContext';
 import RegistrationLearnMoreModal from 'apps/web/src/components/Basenames/RegistrationLearnMoreModal';
-import { Button, ButtonSizes, ButtonVariants } from 'apps/web/src/components/Button/Button';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import Label from 'apps/web/src/components/Label';
 import Tooltip from 'apps/web/src/components/Tooltip';
@@ -32,6 +30,7 @@ import { ActionType } from 'libs/base-ui/utils/logEvent';
 import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { formatEther, zeroAddress } from 'viem';
 import { useAccount, useBalance, useReadContract, useSwitchChain } from 'wagmi';
+import { RegistrationButton } from './RegistrationButton';
 
 function formatEtherPrice(price?: bigint) {
   if (price === undefined) {
@@ -55,7 +54,6 @@ function formatUsdPrice(price: bigint, ethUsdPrice: number) {
 export default function RegistrationForm() {
   const { isConnected, chain: connectedChain, address } = useAccount();
 
-  const { openConnectModal } = useConnectModal();
   const { logEventWithContext } = useAnalytics();
   const { logError } = useErrors();
   const { basenameChain } = useBasenameChain();
@@ -298,41 +296,13 @@ export default function RegistrationForm() {
             </div>
 
             <div className="w-full max-w-full md:max-w-[13rem]">
-              <ConnectButton.Custom>
-                {({ account, chain, mounted }) => {
-                  const ready = mounted;
-                  const connected = ready && account && chain;
-
-                  if (!connected) {
-                    return (
-                      <Button
-                        type="button"
-                        variant={ButtonVariants.Black}
-                        size={ButtonSizes.Medium}
-                        onClick={openConnectModal}
-                        rounded
-                      >
-                        Connect wallet
-                      </Button>
-                    );
-                  }
-
-                  return (
-                    <Button
-                      onClick={correctChain ? registerNameCallback : switchToIntendedNetwork}
-                      type="button"
-                      variant={ButtonVariants.Black}
-                      size={ButtonSizes.Medium}
-                      disabled={insufficientFundsNoAuxFundsAndCorrectChain || registerNameIsPending}
-                      isLoading={registerNameIsPending}
-                      rounded
-                      fullWidth
-                    >
-                      {correctChain ? 'Register name' : 'Switch to Base'}
-                    </Button>
-                  );
-                }}
-              </ConnectButton.Custom>
+              <RegistrationButton
+                correctChain={correctChain}
+                registerNameCallback={registerNameCallback}
+                switchToIntendedNetwork={switchToIntendedNetwork}
+                insufficientFundsNoAuxFundsAndCorrectChain={insufficientFundsNoAuxFundsAndCorrectChain}
+                registerNameIsPending={registerNameIsPending}
+              />
             </div>
           </div>
           {code && (
@@ -341,7 +311,7 @@ export default function RegistrationForm() {
             </div>
           )}
 
-          {registerNameError && (
+          {!!registerNameError && (
             <TransactionError className="mt-4 text-center" error={registerNameError} />
           )}
 
