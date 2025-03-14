@@ -68,7 +68,7 @@ export function CustomWalletAdvancedAddressDetails() {
           {copyText}
         </button>
       </div>
-      {/* <AddressBalanceInFiat className={classNames?.fiatBalance} /> */}
+      {/* <AddressBalanceInFiat className={classNames?.fiatBalance} /> */} {/* TODO: Add fiat balance */}
     </div>
   );
 }
