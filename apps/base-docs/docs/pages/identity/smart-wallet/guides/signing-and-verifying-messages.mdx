@@ -1,3 +1,5 @@
+import { Callout } from "vocs/components";
+
 # Sign Messages Using Smart Wallet
 
 Smart contract wallets introduce a few differences in how messages are signed compared to traditional Externally Owned Accounts (EOAs). This guide explains how to properly implement message signing using Smart Wallet, covering both standard messages and typed data signatures, as well as some edge cases.
@@ -10,7 +12,7 @@ Before walking through the details of how to sign and verify messages using Smar
 
 Blockchain-based apps use wallet signatures for two main categories:
 
-1. **Signatures for offchain verification**: Used for authenticating users in dApps (e.g., Sign-In with Ethereum) to avoid spoofing. The signature is not used for any onchain action.
+1. **Signatures for offchain verification**: Used for authenticating users in onchain apps (e.g., Sign-In with Ethereum) to avoid spoofing. The signature is not used for any onchain action.
 
 2. **Signatures for onchain verification**: Used for signing onchain permissions (e.g., [Permit2](https://github.com/Uniswap/permit2)) or batching transactions. The signature is usually stored for future transactions.
 
@@ -30,15 +32,16 @@ Before implementing message signing, ensure:
 
 - Your project can use Wagmi/Viem
 - You're signing an offchain message
-- Your smart wallet can be deployed or undeployed (methods are ERC-6492 compatible)
+- Your Smart Wallet can be deployed or undeployed (methods are ERC-6492 compatible)
 
 :::info
-If your implementation is more complicated and is not covered by the above assumptions, please refer to the "Handling Advanced Cases" section below.
+If your implementation is more complicated and is not covered by the above assumptions, please refer to the [Handling Advanced Cases section](#handling-advanced-cases) below.
 :::
 
-### Signing a Simple Message
+### Signing a Simple Message (Sign-In with Ethereum)
 
-The following example demonstrates how to implement basic message signing using a Smart Wallet:
+The following example demonstrates how to implement basic message signing using a Smart Wallet.
+It is a typical Sign-In with Ethereum (SIWE) implementation as detailed in [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361):
 
 <details style={{ 
   backgroundColor: 'transparent', 
@@ -121,6 +124,10 @@ To run this example:
 2. Install bun: `curl -fsSL https://bun.sh/install | bash`
 3. Install packages: `bun i`
 4. Run next app: `bun run dev`
+
+<Callout type="info">
+The example above is a typical Sign-In with Ethereum (SIWE) implementation as detailed in [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361).
+</Callout>
 
 ### Signing Typed Data (EIP-712)
 
@@ -288,62 +295,47 @@ You can handle server-side verification using NextJS edge functions such as show
 }}>route.ts:  👉 Click to expand/collapse</summary>
 
 ```typescript [route.ts]
-import { type Hex } from "viem";
-import { headers } from "next/headers";
+import { NextRequest, NextResponse } from 'next/server';
+import { createPublicClient, http } from 'viem';
+import { baseSepolia, base } from 'viem/chains';
 
-// Mock database
-const db: { signatures: Array<{ signature: Hex; address: string }> } = {
-  signatures: [],
-};
-
-// Helper to validate the request is from our application
-function isValidOrigin(request: Request) {
-  // UNCOMMENT THIS TO SECURE THE API FROM UNAUTHORIZED ACCESS
-  // AND CHECK THAT THE REQUEST IS FROM OUR APPLICATION
-
-  /*
-  const headersList = headers();
-  const origin = request.headers.get("origin");
-  const referer = headersList.get("referer");
-  const validOrigin = process.env.NEXT_PUBLIC_APP_URL || `https://${headersList.get("host")}`;
-  return origin === validOrigin || referer?.startsWith(validOrigin);
-  */
-  return true;
-}
-
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    // Check if the request is from our application
-    if (!isValidOrigin(request)) {
-      return Response.json(
-        { error: "Unauthorized" },
-        { status: 403 }
-      );
+    const { address, message, signature } = await request.json();
+    const CHAIN = process.env.NODE_ENV === 'production' ? base : baseSepolia
+
+    const publicClient = createPublicClient({
+      chain: CHAIN,
+      transport: http(),
+    });
+
+
+    const valid = await publicClient.verifyMessage({
+        address: address,
+        message: message,
+        signature: signature,
+    });
+    console.log("valid", valid);
+
+    if (valid){
+        return NextResponse.json({ 
+            success: true, 
+            message: 'Signature verified',
+            address: address 
+        });
+    } else {
+        return NextResponse.json(
+            { success: false, message: 'Invalid signature' },
+            { status: 400 }
+        );
     }
-
-    const { signature, address } = await request.json();
-
-    if (!signature || !address) {
-      return Response.json(
-        { error: "Signature and address are required" },
-        { status: 400 }
-      );
-    }
-
-    // Store in mock database
-    db.signatures.push({ signature, address });
-
-    return Response.json({ success: true });
   } catch (error) {
-    return Response.json(
-      { error: "Failed to store signature" },
-      { status: 500 }
+    console.error('Error verifying signature:', error);
+    return NextResponse.json(
+      { success: false, message: 'Invalid signature' },
+      { status: 400 }
     );
   }
-}
-
-export async function GET() {
-  return Response.json({ signatures: db.signatures });
 }
 ```
 
@@ -352,7 +344,3 @@ export async function GET() {
 :::warning
 Storing signatures safely requires advanced security guarantees. Ensure your database cannot be tampered with.
 :::
-
-## Next Steps
-
-[TBD]
