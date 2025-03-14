@@ -46,7 +46,7 @@ async function main() {
     if (changesCount > 0) {
       console.log(`Feedback widget removed from ${changesCount} file(s)`)
     } else {
-      console.log('No files needed modification')
+      console.log('No files need modification')
     }
   } catch (error) {
     console.error('Error:', error)
