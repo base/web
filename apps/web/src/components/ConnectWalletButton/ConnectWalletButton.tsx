@@ -22,6 +22,7 @@ import classNames from 'classnames';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import logEvent, { ActionType, AnalyticsEventImportance, identify } from 'base-ui/utils/logEvent';
 import sanitizeEventString from 'base-ui/utils/sanitizeEventString';
+import { CustomWalletAdvancedAddressDetails } from './CustomWalletAdvancedAddressDetails';
 
 export enum ConnectWalletButtonVariants {
   BaseOrg,
@@ -115,6 +116,7 @@ export function ConnectWalletButton({
       </ConnectWallet>
       <WalletAdvanced>
         <WalletAdvancedWalletActions />
+        <CustomWalletAdvancedAddressDetails />
         <WalletAdvancedTransactionActions />
         <WalletAdvancedTokenHoldings />
       </WalletAdvanced>
