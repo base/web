@@ -1,4 +1,12 @@
-# Base Bridge App
+# Base Bridge Has Been Deprecated
+
+In May 2024, the Base native bridge was deprecated.
+
+In March 2025, the Base Bridge website was deprecated.
+
+This code is maintained for educational purposes, but is not actively maintained.
+
+## Base Bridge App
 
 The Base Bridge App is a Next.js app.
 
