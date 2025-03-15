@@ -4024,6 +4024,14 @@
     "subcategory": "consumer"
   },
   {
+    "name": "Nodit",
+    "description": "Nodit is a Web3 development platform offering enterprise-grade blockchain data APIs and reliable node services with 99.9% uptime, empowering developers with affordable and accessible multi-chain infrastructure.",
+    "url": "https://nodit.io/",
+    "imageUrl": "/images/partners/nodit.png",
+    "category": "infra",
+    "subcategory": "developer tool"
+  },    
+  {
     "name": "IPOR",
     "description": "IPOR offers two key products - IPOR Fusion: A composable vault stack optimized for modularity, security, and automation of sophisticated DeFi strategies. Asset managers can automate strategies, protocols can source liquidity, and LPs can get automated smart yield. Additionally, IPOR Derivatives: Earn token-boosted yield on stables and ETH. Trade plain-vanilla interest rate swaps onchain with up to 1000x leverage and 90-day maturity.",
     "url": "https://app.ipor.io/fusion?chains=8453",
