@@ -3,7 +3,7 @@ import { useHasWithdrawalBeenFinalized } from 'apps/bridge/src/utils/hooks/useHa
 import { useHasWithdrawalBeenProven } from 'apps/bridge/src/utils/hooks/useHasWithdrawalBeenProven';
 import { useIsFinalizationPeriodElapsed } from 'apps/bridge/src/utils/hooks/useIsFinalizationPeriodElapsed';
 import { useL2OutputProposal } from 'apps/bridge/src/utils/hooks/useL2OutputProposal';
-import { useProvenWithdrawl } from 'apps/bridge/src/utils/hooks/useProvenWithdrawl';
+import { useProvenWithdrawal } from 'apps/bridge/src/utils/hooks/useProvenWithdrawal';
 import { getWithdrawalMessage } from 'apps/bridge/src/utils/transactions/getWithdrawalMessage';
 import type { WithdrawalPhase } from 'apps/bridge/src/utils/transactions/phase';
 import getConfig from 'next/config';
@@ -32,7 +32,7 @@ export function useWithdrawalStatus({
   });
   const withdrawalHasBeenProven = useHasWithdrawalBeenProven(withdrawalHash);
   const withdrawalHasBeenFinalized = useHasWithdrawalBeenFinalized(withdrawalHash);
-  const provenWithdrawal = useProvenWithdrawl(withdrawalHash);
+  const provenWithdrawal = useProvenWithdrawal(withdrawalHash);
   const { hasElapsed: finalizationPeriodHasElapsedForProvenWithdrawal, challengeWindowEndTime } =
     useIsFinalizationPeriodElapsed(provenWithdrawal?.[1]);
   const l2OutputProposal = useL2OutputProposal(provenWithdrawal?.[2]);
