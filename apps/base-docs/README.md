@@ -38,7 +38,7 @@ yarn build
 
 # Troubleshooting
 
-You may encounter an error of the form:
+You may encounter an error in the following form:
 ```
 TypeError: Cannot destructure property 'CookieBanner' of 'pkg' as it is undefined.
 ```
@@ -52,9 +52,9 @@ import pkg from '@coinbase/cookie-banner';
 const { CookieBanner } = pkg;
 ```
 
-3. add the following line:
+3. add the following line instead:
 ```
 import { CookieBanner } from '@coinbase/cookie-banner';
 ```
 
-NB: Do not commit this change, this is an issue in local dev only.
+NB: Do not commit this change, this issue occurs only in local development.
