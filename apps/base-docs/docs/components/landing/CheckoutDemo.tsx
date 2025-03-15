@@ -65,7 +65,7 @@ function CheckoutModal({ closeModal }: { closeModal: () => void }) {
               Fork the Onchain Commerce Template to experience the end-to-end
               checkout flow.{' '}
             </a>
-            Your users will see the below flow when checkout is enabled.
+            Your users will see the following flow when checkout is enabled.
           </span>
           <img
             alt="Checkout"
