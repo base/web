@@ -4031,4 +4031,12 @@
     "category": "defi",
     "subcategory": "yield vault"
   }
+  {
+  "name": "Vultisig",
+  "description": "The secure, seedless, multi-device, multi-chain crypto wallet for everyone. Have institutional-grade security for your assets in your pocket",
+  "url": "https://vultisig.com",
+  "imageUrl": "/images/partners/vultisig.png",
+  "category": "wallet",
+  "subcategory": "multisig"
+}
 ]
