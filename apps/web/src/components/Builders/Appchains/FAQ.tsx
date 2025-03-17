@@ -85,8 +85,6 @@ export function FAQ() {
     );
   }, [getItemClickHandler, openIndex]);
 
-  if (!Array.isArray(FAQ_ITEMS)) return null;
-
   return (
     <div className="w-full mx-auto">
       <div className="flex flex-col md:flex-row md:gap-24 gap-8">
