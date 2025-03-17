@@ -102,7 +102,7 @@ export function FAQ() {
             eventName="appchains-see-all-faqs"
           >
             <div className="flex items-center gap-4">
-              <span>See all FAQs</span>
+              <span>All FAQs</span>
               <div className="transition-transform duration-200 group-hover:translate-x-1">
                 <Icon name="arrowRight" width={16} height={16} color="white" />
               </div>
