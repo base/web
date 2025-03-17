@@ -69,6 +69,9 @@ export default function CryptoProviders({
         mode,
         theme,
       },
+      wallet: {
+        display: 'modal',
+      },
     }),
     [mode, theme],
   );

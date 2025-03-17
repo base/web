@@ -73,10 +73,20 @@ function spend(SpendPermission memory spendPermission, uint160 value) external;
 
 #### `revoke`
 
-Revoke a spend permission, permanently disabling its use. Only callable by the `account` owner specified in the spend permission.
+Revoke a spend permission, permanently disabling its use. Only callable by the `account` specified in the spend permission.
 
 ```solidity
 function revoke(SpendPermission calldata spendPermission) external;
+```
+
+---
+
+#### `revokeAsSpender`
+
+Revoke a spend permission, permanently disabling its use. Only callable by the `spender` specified in the spend permission.
+
+```solidity
+function revokeAsSpender(SpendPermission calldata spendPermission) external;
 ```
 
 ---
