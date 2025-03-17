@@ -15,7 +15,7 @@ type FAQItem = {
 const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'How do I know if Appchains are right for me?',
-    answer: 'Appchains are for mature projects who are seeking scale through dedicated blockspace, full control over their infrastructure, or may be looking to utilize custom gas tokens.'
+    answer: 'Appchains are for mature projects who want full control over their infrastructure, are seeking scale through dedicated blockspace, and/or are considering custom gas tokens.'
   },
   {
     question: 'How do I create an Appchain?',
@@ -23,7 +23,7 @@ const FAQ_ITEMS: FAQItem[] = [
   },
   {
     question: 'I am considering launching my own altL1 or L2 Rollup — should I be deploying a Base Appchain instead?',
-    answer: 'Appchains are a great alternative to launching an altL1 or L2. As an extension of the Base ecosystem, Appchains benefit from the Ethereum alignment, co-marketing, liquidity and users of Base Mainnet.'
+    answer: 'Appchains are a great alternative to launching an altL1 or L2. As an extension of the Base ecosystem, Appchains benefit from Ethereum alignment, co-marketing, liquidity and users of Base Mainnet.'
   },
   {
     question: 'What is the UX of users onboarding onto an Appchain?',
