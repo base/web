@@ -1,9 +1,9 @@
 [
   {
-    "name": "Heurist AI",
-    "description": "Heurist is a decentralized AI-as-a-Service cloud. Run AI and Agents via API.",
-    "url": "https://heurist.ai",
-    "imageUrl": "/images/partners/heurist.png",
+    "name": "Ratio1",
+    "description": "A decentralized AI compute network ensuring trustless execution, data ownership, and linear scalability via a censorship-resistant, encrypted, and autonomous compute layer.",
+    "url": "https://ratio1.ai",
+    "imageUrl": "/images/partners/ratio1.png",
     "category": "ai",
     "subcategory": "ai"
   },
@@ -3838,14 +3838,6 @@
     "imageUrl": "/images/partners/pulsarfinance.png",
     "category": "defi",
     "subcategory": "portfolio"
-  },
-  {
-    "name": "20lab",
-    "description": "20lab.app is a customizable ERC-20, SPL (Solana) & Sui token generator with over 17 extendable features. Test our generator for free and manage functions via token owner dashboard.",
-    "url": "https://20lab.app/generate/erc20-token/base/",
-    "imageUrl": "/images/partners/20lab.png",
-    "category": "infra",
-    "subcategory": "developer tool"
   },
   {
     "name": "based.gift",

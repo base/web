@@ -31,6 +31,7 @@
 }
 
 body {
+  overscroll-behavior: none;
   overflow-x: hidden;
   height: 100%;
   margin: 0;
