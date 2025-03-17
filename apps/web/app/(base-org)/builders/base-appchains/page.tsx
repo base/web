@@ -95,7 +95,7 @@ export default async function Appchains() {
         <OnchainApps />
         <Pricing />
         <Testimonials />
-        {FAQ && <FAQ />}
+        <FAQ />
         <CtaBanner
           title="Your own blockspace, built for scale"
           description="Unlock high-speed and low-cost transactions at scale, with dedicated blockspace and seamless integration with Base tools."
