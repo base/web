@@ -48,6 +48,10 @@ export const sidebar: Sidebar = [
                 text: 'OnchainKitProvider',
                 link: '/builderkits/onchainkit/config/onchainkit-provider',
               },
+              {
+                text: 'Custom Supplemental Providers',
+                link: '/builderkits/onchainkit/config/supplemental-providers',
+              },
             ],
           },
           {
