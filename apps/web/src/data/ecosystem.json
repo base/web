@@ -600,6 +600,14 @@
     "subcategory": "music"
   },
   {
+    "name": "Multisender.app",
+    "description": "Multisender facilitates airdrops and other mass transactions on 20+ networks, including Base. It takes a list of recipients and their respective token amounts and automates everything else.",
+    "url": "https://classic.multisender.app/",
+    "imageUrl": "/images/partners/multisender.png",
+    "category": "infra",
+    "subcategory": "developer tool"
+  },
+  {
     "name": "GetBlock",
     "url": "https://getblock.io/",
     "description": "GetBlock offers fast and cost-efficient RPC nodes for over 50 blockchains, including Base, catering to hundreds of dApps from diverse segments.",
