@@ -1,10 +1,9 @@
 ---
-title: MiniKit Alpha: Getting started 
+title: MiniKit Alpha | Getting started 
 description: Easiest way to build Mini Apps on Base
 ---
 
-import { MiniKitProvider } from '@coinbase/onchainkit/minikit';
-import { useMiniKit, useTBADeepLink, useAddFrame, useNotification, useOpenUrl, useClose, usePrimaryButton, useViewProfile, useAuthenticate } from '@coinbase/onchainkit/minikit/hooks';
+import { MiniKitProvider, useMiniKit, useTBADeepLink, useAddFrame, useNotification, useOpenUrl, useClose, usePrimaryButton, useViewProfile, useAuthenticate  } from '@coinbase/onchainkit/minikit';
 
 # MiniKit
 
@@ -36,6 +35,7 @@ npx create-onchain@alpha --mini
 ```
 
 This command will:
+
 1. Set up a new project with both frontend and backend components
 2. Configure webhooks and notifications
 3. Set up account association generation
@@ -104,6 +104,7 @@ useEffect(() => {
 ```
 
 **Returns:**
+
 ```tsx
 {
   ready: () => Promise<MiniKitContextType>; // Removes splash screen and shows the application
@@ -144,6 +145,7 @@ const handleAddFrame = async () => {
 ```
 
 **Returns:**
+
 ```tsx
 () => Promise<{
   url: string;
@@ -233,7 +235,7 @@ const handleSignIn = async () => {
     domain: 'your-domain.com',
     siweUri: 'https://your-domain.com/login'
   });
-  
+
   if (result) {
     // Handle successful authentication
     console.log('Authenticated:', result);
@@ -264,20 +266,24 @@ npx create-onchain@alpha --mini
 The CLI creates an application with:
 
 1. **Frontend and Backend Integration**
+
    - Complete setup for adding frames, webhooks, and notifications
    - Uses upstash/redis for data storage (compatible with Vercel)
    - Requires users to sign up for an upstash/redis account and add their key and URL to the .env file
-   
+
    :::info
    The CLI creates both frontend and backend components to support adding frames, webhooks, and notifications. While a frontend-only option was considered, the ability to add frames and handle notifications requires backend support. If you don't need these features, you can easily remove the database and related routes after project creation.
    :::
 
 2. **Account Association Generation**
+
    - Automatically generates valid account associations
    - Configures the necessary environment variables
 
 3. **.well-known/farcaster.json Configuration**
+
    - Sets up the required configuration file:
+
    ```json
    {
      "accountAssociation": {
@@ -297,6 +303,7 @@ The CLI creates an application with:
    ```
 
 4. **Notification Proxy**
+
    - Automatically sets up a proxy route at `/api/notification`
    - Used by the `useNotification` hook when sending notifications
 
