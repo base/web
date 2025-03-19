@@ -4,7 +4,8 @@ In May 2024, the Base native bridge was deprecated.
 
 In March 2025, the Base Bridge website was deprecated.
 
-This code is maintained for educational purposes, but is not actively maintained.
+If you wish to see the Base Bridge code, for educational purposes, check out the
+`base/web` repo at commit [b3dc865225339e943a14715acf30b9b2820b3dc0](https://github.com/base/web/tree/b3dc865225339e943a14715acf30b9b2820b3dc0/apps/bridge).
 
 ## Base Bridge App
 
