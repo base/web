@@ -9,6 +9,8 @@
     "emitDeclarationOnly": true,
     "incremental": true,
     "rootDirs": ["."],
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext"
   }
 }

@@ -1,0 +1,87 @@
+---
+title: "Getting Started"
+description: "Learn how to integrate Smart Wallet into your app"
+sidebar_position: 1
+---
+
+import StartBuilding from '@/components/StartBuilding';
+import InstallationOptions from '@/components/InstallationOptions';
+
+# Getting Started
+
+## What is Smart Wallet?
+
+Smart Wallet is the fastest way for users to connect to your app, onramp in seconds, and experience world-class onchain UX:
+
+- **Universal account:** An account that just works anywhere your users go.
+- **Instant onboarding:** Bring users onchain in seconds with secure passkey sign-in. No app or extension required.
+- **Onchain made simple:** Build delightful user experiences with sponsored transactions, spend permissions, and batch operations.
+- **Built-in onramps:** Simple account funding for users — with Apple Pay, debit card, or Coinbase Exchange balances.
+- **Free to use:** Smart Wallet is 100% free for users and developers. No fees whatsoever.
+
+## Quick Start with OnchainKit
+
+We recommend starting a new OnchainKit app using `create onchain`, which sets up everything automatically for you. To create a project, run:
+
+```bash [Terminal]
+npm create onchain@latest
+```
+
+After the prompts, `create onchain` will create a folder with your project name and install the required dependencies.
+
+You can also checkout our pre-built templates:
+
+- [Onchain Commerce](https://onchain-commerce-template.vercel.app/)
+- [NFT minting](https://ock-mint.vercel.app/)
+- [Funding flow](https://github.com/fakepixels/fund-component)
+- [Social profile](https://github.com/fakepixels/ock-identity)
+
+## Add to your existing project
+
+###Install for Web
+
+:::code-group
+
+```bash [npm]
+npm i @coinbase/wallet-sdk
+```
+
+```bash [pnpm]
+pnpm i @coinbase/wallet-sdk
+```
+
+```bash [yarn]
+yarn add @coinbase/wallet-sdk
+```
+
+```bash [bun]
+bun i @coinbase/wallet-sdk
+```
+
+:::
+
+### Install for React Native
+
+:::code-group
+
+```bash [npm]
+npm i @mobile-wallet-protocol/client
+```
+
+```bash [pnpm]
+pnpm i @mobile-wallet-protocol/client
+```
+
+```bash [yarn]
+yarn add @mobile-wallet-protocol/client
+```
+
+```bash [bun]
+bun i @mobile-wallet-protocol/client
+```
+
+:::
+
+<InstallationOptions />
+
+<StartBuilding />
