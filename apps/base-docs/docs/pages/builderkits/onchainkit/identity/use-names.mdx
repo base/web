@@ -3,6 +3,8 @@
 The `useNames` hook is used to get multiple names from an onchain identity provider
 for an array of addresses in a single batch request.
 
+It is implemented with [useQuery](https://tanstack.com/query/latest/docs/framework/react/reference/useQuery) from `@tanstack/react-query`, and returns a `UseQueryResult` object, allowing you to pass through all `@tanstack/react-query` options.
+
 ## Usage
 
 Get ENS names from multiple addresses:
