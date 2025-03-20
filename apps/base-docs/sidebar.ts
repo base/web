@@ -563,6 +563,10 @@ export const sidebar: Sidebar = [
         ],
       },
       {
+        text: 'MiniKit',
+        link: '/builderkits/minikit/getting-started',
+      },
+      {
         text: 'AgentKit (CDP) ↗',
         link: 'https://docs.cdp.coinbase.com/agentkit/docs/welcome',
       },
