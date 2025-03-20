@@ -33,6 +33,7 @@
     "vocs": "1.0.0-alpha.62"
   },
   "devDependencies": {
+    "@types/mdast": "^4.0.4",
     "@types/next": "^9.0.0",
     "@types/node": "^22.13.4",
     "autoprefixer": "^10.4.20",
@@ -41,9 +42,12 @@
     "glob": "^11.0.0",
     "next": "^15.1.7",
     "postcss": "^8.4.47",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
     "tailwindcss": "^3.4.14",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
+    "unified": "^11.0.5",
     "vite-plugin-svgr": "^4.3.0"
   },
   "packageManager": "yarn@3.5.0"
