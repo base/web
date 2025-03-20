@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Get the content of algolia.json as config
         id: algolia_config
-        run: echo "::set-output name=config::$(cat apps/base-docs/algolia.json | jq -r tostring)"
+        run: echo "config=$(cat apps/base-docs/algolia.json | jq -r tostring)" >> $GITHUB_ENV
       - name: Push indices to Algolia
         uses: signcl/docsearch-scraper-action@master
         env:
