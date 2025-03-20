@@ -14,11 +14,15 @@ By the end of this guide, you will:
 - Set up a NextJS project and configure it to work with Coinbase Smart Wallet
 - Create a Coinbase Wallet Context to manage the state and functions needed to interact with Coinbase Smart Wallet
 
+:::tip[Skip ahead]
+Note: if you want to skip ahead and just get the final code, you can find it [here](https://github.com/montycheese/sub-account-starter-template).
+:::
+
 ## Creating a New Project
 
 We'll be using NextJS to bootstrap this project, but you can adapt these concepts to any frontend framework of your choice.
 
-First, create a new NextJS project:
+First, create a new NextJS project and select all the default options when prompted:
 
 ```bash
 npx create-next-app@latest my-app
@@ -42,7 +46,12 @@ Install viem for blockchain interactions
 npm install viem
 ```
 
-**Note:** Make sure you're using version 4.4.0 or above of the Coinbase Wallet SDK.
+:::tip[Development Environment]
+Note: Sub Accounts are currently only available in the Coinbase Smart Wallet development environment.
+In the CoinbaseWalletSDK properties you can set the `keysUrl` to `https://keys-dev.coinbase.com/connect` to use this environment.
+:::
+
+**Note:** Sub Accounts are only supported in version 4.4.0 or above of the Coinbase Wallet SDK.
 
 ## Project Structure
 
@@ -174,7 +183,8 @@ Create a providers file to wrap your application:
 // app/providers.tsx
 
 'use client';
-import { CoinbaseWalletProvider } from '@/context/CoinbaseWalletContext';
+import { CoinbaseWalletProvider } from '@/app/context/CoinbaseWalletContext';
+import { ReactNode } from 'react';
 
 export default function Providers({ children }: { children: ReactNode }) {
   return <CoinbaseWalletProvider>{children}</CoinbaseWalletProvider>;
@@ -187,8 +197,8 @@ Update your root layout to include the providers:
 
 ```tsx
 // app/layout.tsx
-
 import Providers from '@/app/providers';
+import { ReactNode } from 'react';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

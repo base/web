@@ -9,6 +9,30 @@
     {
       "source": "/docs/network-information",
       "destination": "/chain/network-information"
+    },
+    {
+      "source": "/docs/tools/network-faucets",
+      "destination": "/chain/network-faucets"
+    },
+    {
+      "source": "/tutorials/deploy-with-foundry",
+      "destination": "/cookbook/smart-contract-development/foundry/deploy-with-foundry"
+    },
+    {
+      "source": "/guides/run-a-base-node",
+      "destination": "/chain/run-a-base-node"
+    },
+    {
+      "source": "/network-information",
+      "destination": "/chain/network-information"
+    },
+    {
+      "source": "/tutorials/deploy-with-remix",
+      "destination": "/cookbook/smart-contract-development/remix/deploy-with-remix"
+    },
+    {
+      "source": "/docs/arbitration",
+      "destination": "/arbitration"
     }
   ]
 }

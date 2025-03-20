@@ -13,6 +13,10 @@ export const sidebar: Sidebar = [
     link: '/quickstart',
   },
   {
+    text: 'Bridges',
+    link: '/chain/bridges-mainnet',
+  },
+  {
     text: 'Builder Kits',
     items: [
       {
@@ -43,6 +47,10 @@ export const sidebar: Sidebar = [
               {
                 text: 'OnchainKitProvider',
                 link: '/builderkits/onchainkit/config/onchainkit-provider',
+              },
+              {
+                text: 'Custom Supplemental Providers',
+                link: '/builderkits/onchainkit/config/supplemental-providers',
               },
             ],
           },
@@ -414,8 +422,16 @@ export const sidebar: Sidebar = [
                     link: '/builderkits/onchainkit/identity/get-avatar',
                   },
                   {
+                    text: 'getAvatars',
+                    link: '/builderkits/onchainkit/identity/get-avatars',
+                  },
+                  {
                     text: 'getName',
                     link: '/builderkits/onchainkit/identity/get-name',
+                  },
+                  {
+                    text: 'getNames',
+                    link: '/builderkits/onchainkit/identity/get-names',
                   },
                   {
                     text: 'useAddress',
@@ -426,8 +442,16 @@ export const sidebar: Sidebar = [
                     link: '/builderkits/onchainkit/identity/use-avatar',
                   },
                   {
+                    text: 'useAvatars',
+                    link: '/builderkits/onchainkit/identity/use-avatars',
+                  },
+                  {
                     text: 'useName',
                     link: '/builderkits/onchainkit/identity/use-name',
+                  },
+                  {
+                    text: 'useNames',
+                    link: '/builderkits/onchainkit/identity/use-names',
                   },
                 ],
               },
@@ -436,11 +460,11 @@ export const sidebar: Sidebar = [
                 items: [
                   {
                     text: 'useTokenDetails',
-                    link: '/builderkits/onchainkit/mint/use-token-details',
+                    link: '/builderkits/onchainkit/hooks/use-token-details',
                   },
                   {
                     text: 'useMintDetails',
-                    link: '/builderkits/onchainkit/mint/use-mint-details',
+                    link: '/builderkits/onchainkit/hooks/use-mint-details',
                   },
                 ],
               },
@@ -537,6 +561,10 @@ export const sidebar: Sidebar = [
             ],
           },
         ],
+      },
+      {
+        text: 'MiniKit',
+        link: '/builderkits/minikit/getting-started',
       },
       {
         text: 'AgentKit (CDP) ↗',
