@@ -94,7 +94,7 @@ __metadata:
   dependencies:
     "@coinbase/cookie-banner": ^1.0.3
     "@coinbase/cookie-manager": ^1.1.1
-    "@coinbase/onchainkit": ^0.37.8
+    "@coinbase/onchainkit": ^0.37.5
     "@googleapis/sheets": ^5.0.5
     "@types/next": ^9.0.0
     "@types/node": ^22.13.4
@@ -1975,7 +1975,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@coinbase/onchainkit@npm:^0.37.8":
+"@coinbase/onchainkit@npm:^0.37.5, @coinbase/onchainkit@npm:^0.37.8":
   version: 0.37.8
   resolution: "@coinbase/onchainkit@npm:0.37.8"
   dependencies:

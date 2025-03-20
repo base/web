@@ -1,0 +1,251 @@
+# MiniKit Quickstart
+
+This guide shows you how to get started with MiniKit to create mini apps right in the social feed! We'll start by setting up the template project with the CLI tool and then explore both built-in and additional features of MiniKit.
+
+## Initial Setup
+
+:::steps
+
+## Create a new MiniKit project using the CLI:
+
+```bash
+npx create-onchain@alpha --mini
+```
+
+## When prompted, enter your CDP Client API key.
+
+You can get a CDP API key by going to the (CDP Portal)[portal.cdp.coinbase.com] and navigating API Keys -> Client API Key. Once that is added, you be asked if you'd like to set up your manifest. You can skip the manifest setup step as we'll handle that separately.
+
+## Navigate to your project directory and install dependencies:
+
+```bash
+cd your-project-name
+npm install
+```
+
+## Testing Your Frame
+
+To test your frame in Warpcast, follow these steps:
+
+1. Start your development server:
+
+```bash
+npm run dev
+```
+
+2. Install and start ngrok to create a tunnel to your local server:
+
+```bash
+# Install ngrok if you haven't already
+npm install -g ngrok
+
+# Create a tunnel to your local server (assuming it's running on port 3000)
+ngrok http 3000
+```
+
+3. Copy the HTTPS URL provided by ngrok (e.g., `https://your-tunnel.ngrok.io`)
+
+4. Visit [Warpcast Frames Developer Tools](https://warpcast.com/~/developers/frames)
+
+5. In the "Preview Frames" section, paste your ngrok URL to test your frame
+
+::::info
+The ngrok URL will change each time you restart ngrok. Make sure to update the URL in the Warpcast preview tool if you restart ngrok.
+::::
+
+## Exploring Built-in Features
+
+The template comes with several pre-implemented features. Let's explore where they are and how they work.
+
+### MiniKitProvider
+
+The `MiniKitProvider` is set up in your root layout file (`app/layout.tsx`). It wraps your application and provides global access to the SDK's context.
+
+```tsx [app/layout.tsx]
+import { MiniKitProvider } from '@coinbase/onchainkit/minikit'
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>
+        <MiniKitProvider
+          projectId={process.env.NEXT_PUBLIC_CDP_CLIENT_API_KEY!}
+          notificationProxyUrl="/api/notification"
+        >
+          {children}
+        </MiniKitProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+### useMiniKit
+
+The `useMiniKit` hook is implemented in your main page component (`app/page.tsx`). It handles initialization and provides access to the SDK context.
+
+```tsx [app/page.tsx]
+const { ready, isReady, context, updateClientContext } = useMiniKit()
+
+// The ready() function is called when your app is ready to be shown
+useEffect(() => {
+  if (!isReady) {
+    ready()
+  }
+}, [isReady, ready])
+```
+
+### useAddFrame
+
+The `useAddFrame` hook is used to add your application as a frame. It's implemented in your main page component.
+
+```tsx [app/page.tsx]
+
+const addFrame = useAddFrame()
+
+// Usage in a button click handler
+const handleAddFrame = async () => {
+  const result = await addFrame()
+  if (result) {
+    console.log('Frame added:', result.url, result.token)
+  }
+}
+```
+
+### useOpenUrl
+
+The `useOpenUrl` hook is used to open external URLs. It's implemented in your main page component.
+
+```tsx [app/page.tsx]
+const openUrl = useOpenUrl()
+
+// Usage in a button click handler
+<button onClick={() => openUrl('https://example.com')}>
+  Visit Website
+</button>
+```
+
+## Implementing Additional Features
+
+Now, let's implement additional hooks provided by the MiniKit library. We'll add these features one by one.
+
+### 1. `useNotification`
+
+First, let's add notification support:
+
+```tsx [app/page.tsx]
+import { useNotification } from '@coinbase/onchainkit/minikit'
+
+// Add state for notification tracking
+const [notificationSent, setNotificationSent] = useState(false)
+
+// Add the hook
+const sendNotification = useNotification()
+
+// Add the handler function
+const handleSendNotification = async () => {
+  if (notificationSent) return
+
+  try {
+    await sendNotification({
+      title: 'New High Score! 🎉',
+      body: 'Congratulations on achieving a new high score!'
+    })
+
+    setNotificationSent(true)
+    setTimeout(() => setNotificationSent(false), 30000)
+  } catch (error) {
+    console.error('Failed to send notification:', error)
+  }
+}
+
+// Add the button in your UI
+{context?.client.added && (
+  <button
+    type="button"
+    onClick={handleSendNotification}
+    disabled={notificationSent}
+    className="cursor-pointer bg-transparent font-semibold text-sm disabled:opacity-50"
+  >
+    {notificationSent ? 'NOTIFICATION SENT' : 'SEND NOTIFICATION'}
+  </button>
+)}
+```
+
+### 2. `useClose`
+
+Next, let's add the ability to close the application:
+
+```tsx [app/page.tsx]
+import { useClose } from '@coinbase/onchainkit/minikit'
+
+// Add the hook
+const close = useClose()
+
+// Add the button in your UI
+<button
+  type="button"
+  onClick={close}
+  className="cursor-pointer bg-transparent font-semibold text-sm"
+>
+  CLOSE
+</button>
+```
+
+### 3. `usePrimaryButton`
+
+Let's implement the primary button functionality:
+
+```tsx [app/page.tsx]
+import { usePrimaryButton } from '@coinbase/onchainkit/minikit'
+
+// Add state for game control
+const [isGameStarted, setIsGameStarted] = useState(false)
+
+// Add the hook
+usePrimaryButton(
+  { text: isGameStarted ? 'RESTART GAME' : 'START GAME' },
+  () => {
+    setIsGameStarted(!isGameStarted)
+  }
+)
+```
+
+### 4. `useViewProfile`
+
+Finally, let's add profile viewing capability:
+
+```tsx [app/page.tsx]
+import { useViewProfile } from '@coinbase/onchainkit/minikit'
+
+// Add the hook
+const viewProfile = useViewProfile()
+
+// Add the handler function
+const handleViewProfile = () => {
+  viewProfile()
+}
+
+// Add the button in your UI
+<button
+  type="button"
+  onClick={handleViewProfile}
+  className="cursor-pointer bg-transparent font-semibold text-sm"
+>
+  VIEW PROFILE
+</button>
+```
+
+## Next Steps
+
+Now that you have implemented all the MiniKit features, you can:
+
+1. Customize the UI and functionality to match your needs
+2. Add additional features using other MiniKit hooks
+3. Deploy your application to a hosting provider like Vercel
+
+Remember to handle errors appropriately and maintain a consistent user experience across different states of your application.

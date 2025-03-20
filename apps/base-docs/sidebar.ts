@@ -564,7 +564,17 @@ export const sidebar: Sidebar = [
       },
       {
         text: 'MiniKit',
-        link: '/builderkits/minikit/getting-started',
+        collapsed: true,
+        items: [
+          {
+            text: 'Overview',
+            link: '/builderkits/minikit/overview',
+          },
+          {
+            text: 'Quickstart',
+            link: '/builderkits/minikit/quickstart',
+          },
+        ],
       },
       {
         text: 'AgentKit (CDP) ↗',
