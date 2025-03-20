@@ -65,7 +65,7 @@ We have also distributed over $26M in builder grants to more than 1,000 builders
 
 - **[Builder Grants]:** Small, retroactive grants up to 2 ETH
 - **[/base-builds]:** Weekly grants by rounds to Warpcast builders
-- **[Optimism RPGF]:** Projects built on Base are eligible for Optimism RPFG
+- **[Optimism RPGF]:** Projects built on Base are eligible for Optimism RPGF
 - Other community-driven collaborations through based.management, [Bountycaster], and [Talent Protocol]
 
 Base offers builders access to a high-growth, high-signal community across multiple social platforms, including a Discord server with over 400,000 members, X, and Warpcast. We actively amplify impactful projects on these platforms, helping the community discover new innovations. We believe the developers behind these applications are the key to unlocking an onchain future for everyone.
