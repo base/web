@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { kv } from '@vercel/kv';
+import { redis } from 'apps/web/src/utils/redis';
 import { logger } from 'apps/web/src/utils/logger';
 
 type RequestBody = {
@@ -21,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { address } = req.body as RequestBody;
 
   try {
-    const proof = await kv.get<string[]>(`proof:${address}`);
+    const proof = await redis.get<string[]>(`proof:${address}`);
 
     if (proof) {
       return res.status(200).json({ result: proof });
