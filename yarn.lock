@@ -4781,9 +4781,9 @@ __metadata:
   linkType: hard
 
 "@mdn/browser-compat-data@npm:^5.3.13, @mdn/browser-compat-data@npm:^5.6.19":
-  version: 5.7.4
-  resolution: "@mdn/browser-compat-data@npm:5.7.4"
-  checksum: 6ab7dcdbc18cac53f97686e5bf90fe0b8ed6f589c5e6ac1a70aaaf50d2ee194f56cc814702549a7141e2030d0ac66d1b16a82d54e80e8e19d1f8a7ec362786cf
+  version: 5.7.5
+  resolution: "@mdn/browser-compat-data@npm:5.7.5"
+  checksum: 2b5341fd99e1c787e418fdc9af175dd428334f139f2a6a5bc518966608bdad7b5e30fcdf67229fd91ac07e858c18f25b92b08787a39af9eb7d6724957dd20924
   languageName: node
   linkType: hard
 
@@ -8281,11 +8281,11 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:>=13.7.0, @types/node@npm:^22.13.4":
-  version: 22.13.10
-  resolution: "@types/node@npm:22.13.10"
+  version: 22.13.11
+  resolution: "@types/node@npm:22.13.11"
   dependencies:
     undici-types: ~6.20.0
-  checksum: 1cd6b899df728732c60c0defad63e26ca18d87a3b81bd75666fe9aed6cdf9e488433976b22ffcabfdeef9d351cf8ff94853b0686e6708ef62065482ccf5b0a6e
+  checksum: 82d8e0ff385ddcdd0c4d07967ae1e1bbadf3b26143fbf9e16b35652c6080fd783333e9fc828188d8918e03c526433de6b5c0eaa07374873801982251568da030
   languageName: node
   linkType: hard
 
