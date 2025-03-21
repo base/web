@@ -1,4 +1,5 @@
 import Redis from 'ioredis';
+import { isDevelopment } from 'apps/web/src/constants';
 
 type SetCommandOptions = {
   get?: boolean;
@@ -61,12 +62,18 @@ type SetCommandOptions = {
       }
   );
 
+/**
+ * Provides a limited, safe interface to Redis operations.
+ * Intentionally restricts access to dangerous commands and raw client operations.
+ */
 class RedisManager {
   private client: Redis | null = null;
 
-  async getClient(): Promise<Redis> {
+  private async getClient(): Promise<Redis> {
     if (!this.client) {
-      this.client = new Redis(String(process.env.REDIS_URL));
+      this.client = new Redis(
+        String(isDevelopment ? process.env.KV_URL_DEVELOPMENT : process.env.REDIS_URL),
+      );
     }
 
     try {
@@ -90,8 +97,8 @@ class RedisManager {
     return client.set(
       key,
       JSON.stringify(value),
-      options as unknown as Parameters<Redis['set']>[2],  // options argument must satisfy any of the types
-                                                          // of the third parameter of the Redis client's set method
+      options as unknown as Parameters<Redis['set']>[2], // options argument must satisfy any of the types
+      // of the third parameter of the Redis client's set method
     );
   }
 }
