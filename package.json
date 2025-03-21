@@ -5,9 +5,9 @@
   "repository": "git@github.com::base/base-web.git",
   "license": "Apache-2.0",
   "scripts": {
-    "build": "yarn workspaces foreach run build",
-    "lint": "yarn workspaces foreach run lint",
-    "test": "yarn workspaces foreach run test",
+    "build": "yarn workspaces foreach --exclude @app/bridge run build",
+    "lint": "yarn workspaces foreach --exclude @app/bridge run lint",
+    "test": "yarn workspaces foreach --exclude @app/bridge run test",
     "postinstall": "sh -c 'if [ command -v ./node_modules/.bin/husky ]; then ./node_modules/.bin/husky install; fi;'",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable"

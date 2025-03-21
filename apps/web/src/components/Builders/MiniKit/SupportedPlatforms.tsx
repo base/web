@@ -75,7 +75,7 @@ export function SupportedPlatforms() {
           href="https://warpcast.com/"
         />
         <SupportedPlatformCard
-          description="Coming soon"
+          description="In Alpha"
           value="Coinbase Wallet"
           image={bg1}
           logo={

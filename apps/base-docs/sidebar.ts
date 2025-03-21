@@ -48,6 +48,10 @@ export const sidebar: Sidebar = [
                 text: 'OnchainKitProvider',
                 link: '/builderkits/onchainkit/config/onchainkit-provider',
               },
+              {
+                text: 'Custom Supplemental Providers',
+                link: '/builderkits/onchainkit/config/supplemental-providers',
+              },
             ],
           },
           {
@@ -559,6 +563,10 @@ export const sidebar: Sidebar = [
         ],
       },
       {
+        text: 'MiniKit',
+        link: '/builderkits/minikit/getting-started',
+      },
+      {
         text: 'AgentKit (CDP) ↗',
         link: 'https://docs.cdp.coinbase.com/agentkit/docs/welcome',
       },
@@ -866,7 +874,28 @@ export const sidebar: Sidebar = [
               },
               { text: 'Paymasters', link: '/identity/smart-wallet/guides/paymasters' },
               { text: 'ERC20 Paymasters', link: '/identity/smart-wallet/guides/erc20-paymasters' },
-              { text: 'Sub Accounts', link: '/identity/smart-wallet/guides/sub-accounts/overview' },
+              {
+                text: 'Sub Accounts',
+                collapsed: true,
+                items: [
+                  {
+                    text: 'Overview',
+                    link: '/identity/smart-wallet/guides/sub-accounts/overview',
+                  },
+                  {
+                    text: 'Setup',
+                    link: '/identity/smart-wallet/guides/sub-accounts/setup',
+                  },
+                  {
+                    text: 'Creating Sub Accounts',
+                    link: '/identity/smart-wallet/guides/sub-accounts/creating-sub-accounts',
+                  },
+                  {
+                    text: 'Using Sub Accounts',
+                    link: '/identity/smart-wallet/guides/sub-accounts/using-sub-accounts',
+                  },
+                ],
+              },
               {
                 text: 'Spend Permissions',
                 collapsed: true,
