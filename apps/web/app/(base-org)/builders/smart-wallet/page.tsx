@@ -28,6 +28,8 @@ export const metadata: Metadata = {
   },
 };
 
+const components = ['Wallet'];
+
 export default async function BaseWallet() {
   return (
     <Container>
@@ -92,7 +94,7 @@ export default async function BaseWallet() {
         <InfoCards />
         <Transactions />
         <LiveDemo
-          components={['Wallet']}
+          components={components}
           title="Unlock onboarding superpowers with a few lines of code"
           hideDescription
         />

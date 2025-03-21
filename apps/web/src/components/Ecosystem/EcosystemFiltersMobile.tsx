@@ -28,6 +28,8 @@ export default function EcosystemFiltersMobile({
     [onSubcategorySelect, selectedSubcategories],
   );
 
+  const handleClearFilters = useCallback(() => onSubcategorySelect([]), [onSubcategorySelect]);
+
   return (
     <div className="mr-auto sm:hidden">
       <button
@@ -45,7 +47,7 @@ export default function EcosystemFiltersMobile({
               <TagChip
                 tag="Clear filters"
                 isSelected={false}
-                selectTag={() => onSubcategorySelect([])}
+                selectTag={handleClearFilters}
                 className="text-xs"
               />
             ) : (

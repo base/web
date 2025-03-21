@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export function CodeSnippet({ code }: { code: string }) {
   const [highlightedCode, setHighlightedCode] = useState('');
@@ -39,6 +39,8 @@ export function CodeSnippet({ code }: { code: string }) {
     }
   }, [code]);
 
+  const htmlContent = useMemo(() => ({ __html: highlightedCode }), [highlightedCode]);
+
   if (!highlightedCode) {
     return (
       <div className="h-full overflow-auto rounded-lg transition-colors">
@@ -50,7 +52,8 @@ export function CodeSnippet({ code }: { code: string }) {
   return (
     <div
       className="code-snippet h-full overflow-auto rounded-lg transition-colors"
-      dangerouslySetInnerHTML={{ __html: highlightedCode }}
+      // eslint-disable-next-line react/no-danger -- necessary for shiki
+      dangerouslySetInnerHTML={htmlContent}
     />
   );
 }
