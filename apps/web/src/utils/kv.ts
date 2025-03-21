@@ -2,6 +2,10 @@ import Redis from 'ioredis';
 import { isDevelopment } from 'apps/web/src/constants';
 import { logger } from './logger';
 
+/**
+ * Pulled directly from `node_modules/@upstash/redis/zmscore-b6b93f14.d.ts`
+ * @see https://github.com/upstash/redis-js/blob/81544769cac75d7445f5741778ce8dd66ef39509/pkg/commands/set.ts#L4
+ */
 type SetCommandOptions = {
   get?: boolean;
 } & (
