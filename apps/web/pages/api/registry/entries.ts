@@ -1,12 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { db } from 'apps/web/src/utils/ocsRegistry';
-import { redis } from 'apps/web/src/utils/redis';
+import { kv } from 'apps/web/src/utils/kv';
 import { logger } from 'apps/web/src/utils/logger';
 import { withTimeout } from 'apps/web/pages/api/decorators';
 
 const pageKey = 'api.ocs_registry.entries';
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const redisClient = await redis.getClient();
   const { page = '1', limit = '10', category, curation } = req.query;
 
   const pageNum = parseInt(page as string, 10);
@@ -50,7 +49,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   };
 
   try {
-    await redisClient.incr(`stat:requests.${pageKey}`);
+    await kv.incr(`stat:requests.${pageKey}`);
   } catch (error) {
     logger.error('error getting registry entries', error);
   }
