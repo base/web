@@ -7,7 +7,7 @@ import type { CryptoProvidersProps } from './CryptoProviders';
 export function DynamicCryptoProviders({
   children,
   mode = 'light',
-  theme = 'default',
+  theme = 'base',
 }: CryptoProvidersProps) {
   const [CryptoProvidersDynamic, setCryptoProvidersDynamic] = useState<
     React.ComponentType<{

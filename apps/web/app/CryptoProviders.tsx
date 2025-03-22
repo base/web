@@ -61,7 +61,7 @@ export type CryptoProvidersProps = {
 export default function CryptoProviders({
   children,
   mode = 'light',
-  theme = 'default',
+  theme = 'base',
 }: CryptoProvidersProps) {
   const onchainKitConfig: AppConfig = useMemo(
     () => ({
