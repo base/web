@@ -7,8 +7,8 @@ import {
   TrackingPreference,
 } from '@coinbase/cookie-manager';
 import { Provider as TooltipProvider } from '@radix-ui/react-tooltip';
-import ExperimentsProvider from 'base-ui/contexts/Experiments';
-import useSprig from 'base-ui/hooks/useSprig';
+import ExperimentsProvider from 'apps/web/contexts/Experiments';
+import useSprig from 'apps/web/src/hooks/useSprig';
 import { useCallback, useRef } from 'react';
 import { cookieManagerConfig } from '../src/utils/cookieManagerConfig';
 import ClientAnalyticsScript from 'apps/web/src/components/ClientAnalyticsScript/ClientAnalyticsScript';

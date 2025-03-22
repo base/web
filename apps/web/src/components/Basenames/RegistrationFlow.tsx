@@ -30,7 +30,7 @@ import { InformationCircleIcon } from '@heroicons/react/16/solid';
 import Tooltip from 'apps/web/src/components/Tooltip';
 import RegistrationShareOnSocials from 'apps/web/src/components/Basenames/RegistrationShareOnSocials';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
-import { isDevelopment } from 'libs/base-ui/constants';
+import { isDevelopment } from 'apps/web/src/constants';
 import RegistrationLandingExplore from 'apps/web/src/components/Basenames/RegistrationLandingExplore';
 
 const RegistrationStateSwitcherDynamic = dynamic(

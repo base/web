@@ -26,7 +26,7 @@ import {
 import { useRentPrice } from 'apps/web/src/hooks/useRentPrice';
 import { formatBaseEthDomain, IS_EARLY_ACCESS } from 'apps/web/src/utils/usernames';
 import classNames from 'classnames';
-import { ActionType } from 'libs/base-ui/utils/logEvent';
+import { ActionType } from 'apps/web/src/utils/analytics/logEvent';
 import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { formatEther, zeroAddress } from 'viem';
 import { useAccount, useBalance, useReadContract, useSwitchChain } from 'wagmi';

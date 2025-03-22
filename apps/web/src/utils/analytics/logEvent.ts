@@ -1,4 +1,4 @@
-import { isDevelopment } from '../constants';
+import { isDevelopment } from '../../constants';
 
 declare const window: Window &
   typeof globalThis & {

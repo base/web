@@ -1,5 +1,5 @@
 'use client';
-import React, {
+import {
   createContext,
   useContext,
   useEffect,
@@ -10,8 +10,12 @@ import React, {
 } from 'react';
 import { Experiment, ExperimentClient } from '@amplitude/experiment-js-client';
 
-import { ampDeploymentKey } from '../constants';
-import logEvent, { ActionType, AnalyticsEventImportance, ComponentType } from '../utils/logEvent';
+import { ampDeploymentKey } from 'apps/web/src/constants';
+import logEvent, {
+  ActionType,
+  AnalyticsEventImportance,
+  ComponentType,
+} from 'apps/web/src/utils/analytics/logEvent';
 
 declare const window: WindowWithAnalytics;
 
@@ -23,7 +27,7 @@ const ExperimentsContext = createContext<ExperimentsContextProps>({
 
 export default function ExperimentsProvider({ children }: ExperimentsProviderProps) {
   const [isReady, setIsReady] = useState(false);
-  const [experimentClient, setExperimentClient] = useState<ExperimentClient>();
+  const [experimentClient, setExperimentClient] = useState<ExperimentClient | null>(null);
 
   useEffect(() => {
     const client = Experiment.initialize(ampDeploymentKey, {
@@ -54,7 +58,7 @@ export default function ExperimentsProvider({ children }: ExperimentsProviderPro
     });
 
     setExperimentClient(client);
-  }, [ampDeploymentKey]);
+  }, []);
 
   const startExperiment = useCallback(async () => {
     if (experimentClient) await experimentClient.start();
@@ -87,7 +91,7 @@ export default function ExperimentsProvider({ children }: ExperimentsProviderPro
 
   const values = useMemo(() => {
     return { experimentClient, isReady, getUserVariant };
-  }, [isReady, getUserVariant]);
+  }, [experimentClient, isReady, getUserVariant]);
 
   return <ExperimentsContext.Provider value={values}>{children}</ExperimentsContext.Provider>;
 }

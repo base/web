@@ -5,7 +5,7 @@ import useBaseEnsAvatar from 'apps/web/src/hooks/useBaseEnsAvatar';
 import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import { getBasenameImage } from 'apps/web/src/utils/usernames';
-import { truncateMiddle } from 'libs/base-ui/utils/string';
+import { truncateMiddle } from 'apps/web/src/utils/truncateMiddle';
 import Image from 'next/image';
 import { Address } from 'viem';
 import { mainnet } from 'viem/chains';

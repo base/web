@@ -114,14 +114,6 @@ const searchConfig: SearchCategory[] = [
         icon: 'backArrow',
         iconRotation: 'rotate-180',
       },
-
-      // TODO: Add back after launch
-      // {
-      //   label: 'Verifications',
-      //   href: '/builders/verifications',
-      //   icon: 'backArrow',
-      //   iconRotation: 'rotate-180',
-      // },
     ],
   },
   {
@@ -231,6 +223,10 @@ export function SearchModal({
     setIsOpen(true);
   }, [setIsOpen]);
 
+  const createCategoryClickHandler = (subCategory: SubCategory) => {
+    return subCategory.href === '' ? subCategory?.onClick : () => window.open(subCategory.href);
+  };
+
   if (!isOpen) {
     return null;
   }
@@ -286,11 +282,7 @@ export function SearchModal({
                           'flex items-center justify-between',
                           'hover:bg-dark-palette-backgroundAlternate active:bg-dark-palette-secondary',
                         )}
-                        onClick={
-                          subCategory.href
-                            ? () => window.open(subCategory.href)
-                            : subCategory?.onClick
-                        }
+                        onClick={createCategoryClickHandler(subCategory)}
                       >
                         <span className="tracking-wide">{subCategory.label}</span>
                         <div
