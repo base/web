@@ -50,6 +50,7 @@ type AvatarReact = {
 ```ts
 type BadgeReact = {
   className?: string; // Optional className override for top span element.
+  tooltip?: boolean | string; // Controls whether the badge shows a tooltip on hover. When true, the tooltip displays the attestation's name. When a string is provided, that text overrides the default display. Defaults to false.
 };
 ```
 
@@ -158,6 +159,18 @@ type GetNameReturnType = string | null;
 type GetNames = {
   addresses: Address[]; // Array of Ethereum addresses to resolve names for
   chain?: Chain; // Optional chain for domain resolution
+};
+```
+
+## `IdentityCardReact`
+
+```ts
+type IdentityCardReact = {
+  address?: Address;
+  chain?: Chain;
+  className?: string;
+  schemaId?: Address | null;
+  badgeTooltip?: boolean | string; // Controls whether the badge shows a tooltip on hover. When true, the tooltip displays the attestation's name. When a string is provided, that text overrides the default display. Defaults to false.
 };
 ```
 
