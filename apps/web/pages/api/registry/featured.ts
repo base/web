@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { db } from 'apps/web/src/utils/ocsRegistry';
-import { kv } from '@vercel/kv';
+import { kv } from 'apps/web/src/utils/kv';
 import { logger } from 'apps/web/src/utils/logger';
 import { withTimeout } from 'apps/web/pages/api/decorators';
 
