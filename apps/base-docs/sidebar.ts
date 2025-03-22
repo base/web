@@ -595,16 +595,11 @@ export const sidebar: Sidebar = [
           {
             text: 'Introduction',
             items: [
-              { text: 'Install for Web', link: '/identity/smart-wallet/introduction/install-web' },
-              {
-                text: 'Install for React Native',
-                link: '/identity/smart-wallet/introduction/install-react-native',
-              },
+              { text: 'Quickstart', link: '/identity/smart-wallet/quickstart' },
               {
                 text: 'Recommend Libraries',
                 link: '/identity/smart-wallet/introduction/recommended-libraries',
               },
-              { text: 'Starter Templates', link: '/identity/smart-wallet/introduction/templates' },
               {
                 text: 'Base Gasless Campaign',
                 link: '/identity/smart-wallet/introduction/base-gasless-campaign',
