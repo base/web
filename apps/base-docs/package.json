@@ -26,7 +26,6 @@
     "permissionless": "^0.1.29",
     "react": "18",
     "react-dom": "18",
-    "react-is": "^16.13.1",
     "react-markdown": "^9.0.3",
     "siwe": "^2.3.2",
     "typescript": "latest",
