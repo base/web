@@ -2688,6 +2688,14 @@
     "subcategory": "payments"
   },
   {
+    "name": "KwikClaim",
+    "description": "AI-powered tool that helps you find your unclaimed crypto airdrops, rewards, mints, quests, renewals and governance votes.",
+    "url": "https://kwikclaim.com",
+    "imageUrl": "/images/partners/kwikclaim.jpg",
+    "category": "defi",
+    "subcategory": "portfolio"
+  },
+  {
     "name": "Lossless",
     "description": "World's first unrivaled exploit identification and mitigation tools, designed to foolproof web3 from hacks. ",
     "url": "https://lossless.io/",
