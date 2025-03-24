@@ -2,7 +2,6 @@ import { Icon } from '../Icon/Icon';
 import ResourceCard from './ResourceCard/ResourceCard';
 import { FUNDING_SECTION_ID } from './Funding';
 import { GET_NOTICED_SECTION_ID } from './GetNoticed';
-import { GET_INVOLVED_SECTION_ID } from './GetInvolved';
 import { START_BUILDING_SECTION_ID } from './StartBuilding';
 import { gridClasses } from './styles';
 import Title from 'apps/web/src/components/base-org/typography/Title';
