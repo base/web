@@ -61,6 +61,10 @@ declare module "wagmi" {
 }
 ```
 
+<Callout type="info">
+The wagmi config is modified to include the Smart Wallet connector `cbWalletConnector`.
+</Callout>
+
 ## Step 3: Create Providers Component
 
 Create a file called `providers.tsx` in your `app/` directory:
@@ -114,7 +118,7 @@ export default function RootLayout(props: { children: ReactNode }) {
 }
 ```
 
-## Step 5: Create ConnectAndSIWE Component
+## Step 5: Create `ConnectAndSIWE` Component
 
 Create a component for wallet connection and Sign-In With Ethereum (SIWE):
 
