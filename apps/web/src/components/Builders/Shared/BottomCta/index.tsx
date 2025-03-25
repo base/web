@@ -18,7 +18,7 @@ export function BottomCta() {
   return (
     <CtaBanner
       title="What will you build?"
-      description="To start building, run the command in your terminal, explore docs, or use llms.txt to build with AI."
+      description="Run the command to start with a template, and explore the docs to guide your build."
       sectionClassName="my-24"
       cta={
         <>
@@ -57,7 +57,7 @@ export function BottomCta() {
             buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group"
             target="_blank"
             href="https://docs.base.org/llms.txt"
-            eventName="bottom-cta-llms-txt"
+            eventName="bottom-cta-ai-docs"
           >
             <div className="flex items-center justify-between gap-6">
               <span>AI docs</span>
