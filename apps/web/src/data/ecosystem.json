@@ -4030,5 +4030,13 @@
     "imageUrl": "/images/partners/ipor.svg",
     "category": "defi",
     "subcategory": "yield vault"
-  }
+  },
+  {
+  "name": "The Crypto Grid",
+  "category": "consumer",
+  "subcategory": "nft",
+  "description": "The Crypto Grid is a decentralized app for renting and customizing virtual regions",
+  "url": "https://www.thecryptogrid.app",
+  "imageUrl": "/images/partners/thecryptogrid.png"
+  } 
 ]
