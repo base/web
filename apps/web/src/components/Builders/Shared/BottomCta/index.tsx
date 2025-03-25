@@ -60,7 +60,7 @@ export function BottomCta() {
             eventName="bottom-cta-llms-txt"
           >
             <div className="flex items-center justify-between gap-6">
-              <span>llms.txt</span>
+              <span>AI docs</span>
               <div className="transition-transform duration-200">
                 <Icon name="ai" width={16} height={16} color="white" />
               </div>
