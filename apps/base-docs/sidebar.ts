@@ -858,8 +858,8 @@ export const sidebar: Sidebar = [
                 link: '/identity/smart-wallet/guides/react-native-integration',
               },
               {
-                text: 'Signature Verification',
-                link: '/identity/smart-wallet/guides/signature-verification',
+                text: 'Signing and Verifying Messages',
+                link: '/identity/smart-wallet/guides/signing-and-verifying-messages',
               },
               { text: 'Sign In With Ethereum', link: '/identity/smart-wallet/guides/siwe' },
               { text: 'MagicSpend', link: '/identity/smart-wallet/guides/magic-spend' },
