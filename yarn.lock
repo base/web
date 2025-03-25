@@ -87,7 +87,7 @@ __metadata:
   dependencies:
     "@coinbase/cookie-banner": ^1.0.3
     "@coinbase/cookie-manager": ^1.1.1
-    "@coinbase/onchainkit": ^0.38.0
+    "@coinbase/onchainkit": ^0.38.1
     "@googleapis/sheets": ^5.0.5
     "@types/next": ^9.0.0
     "@types/node": ^22.13.4
@@ -123,7 +123,7 @@ __metadata:
   dependencies:
     "@coinbase/cookie-banner": ^1.0.3
     "@coinbase/cookie-manager": ^1.1.1
-    "@coinbase/onchainkit": ^0.38.0
+    "@coinbase/onchainkit": ^0.38.1
     "@datadog/browser-logs": ^5.23.3
     "@datadog/browser-rum": ^5.23.3
     "@frames.js/render": ^0.5.5
@@ -1844,9 +1844,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@coinbase/onchainkit@npm:^0.38.0":
-  version: 0.38.0
-  resolution: "@coinbase/onchainkit@npm:0.38.0"
+"@coinbase/onchainkit@npm:^0.38.1":
+  version: 0.38.1
+  resolution: "@coinbase/onchainkit@npm:0.38.1"
   dependencies:
     "@farcaster/frame-sdk": ^0.0.28
     "@farcaster/frame-wagmi-connector": ^0.0.16
@@ -1863,7 +1863,7 @@ __metadata:
     "@types/react": ^18 || ^19
     react: ^18 || ^19
     react-dom: ^18 || ^19
-  checksum: 9a8b152c6ff737b84da091910ae56b3bf903b53aa7ced85a4fa91b9d7677e8dfb97ef460bb2a2763c6e7ca991329c4932e9b45c5981dfb9e3e6896d212c4ba9e
+  checksum: bdc109960a33edc4b46adc5f38871dccf45536826412a432df8f8fe450ebdbede35196429654b458625d27a08fb7ed1abc475bba8e212c0b5218c0a769ac7cca
   languageName: node
   linkType: hard
 

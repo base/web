@@ -15,7 +15,7 @@
   "dependencies": {
     "@coinbase/cookie-banner": "^1.0.3",
     "@coinbase/cookie-manager": "^1.1.1",
-    "@coinbase/onchainkit": "^0.38.0",
+    "@coinbase/onchainkit": "^0.38.1",
     "@datadog/browser-logs": "^5.23.3",
     "@datadog/browser-rum": "^5.23.3",
     "@frames.js/render": "^0.5.5",
