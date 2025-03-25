@@ -4030,5 +4030,21 @@
     "imageUrl": "/images/partners/ipor.svg",
     "category": "defi",
     "subcategory": "yield vault"
+  },
+  {
+    "name": "Eco Portal",
+    "description": "The Eco Portal allows easy stablecoin transfers across Arbitrum, Base, Optimism, and Mantle with one low fee powered by Eco Routes. Try out the Portal for the fastest, lowest fee stablecoin transfers.",
+    "url": "https://portal.eco.com/?dc=BASE",
+    "imageUrl": "/images/partners/portal-eco.png",
+    "category": "infra",
+    "subcategory": "bridge"
+  },
+  {
+    "name": "Eco Protocol",
+    "description": "Eco enables any onchain action to be a simple, one-click stablesend. With Eco, apps can easily accept anyone's preferred stablecoin, regardless of the network.",
+    "url": "https://eco.com/",
+    "imageUrl": "/images/partners/protocol-eco.png",
+    "category": "infra",
+    "subcategory": "bridge"
   }
 ]
