@@ -28,7 +28,7 @@ const searchConfig: SearchCategory[] = [
       {
         label: 'npm create onchain',
         description: (
-          <div className="px-3 pb-2 text-xs tracking-wide text-dark-palette-foregroundMuted mt-1">
+          <div className="px-3 pb-2 text-xs tracking-wide text-dark-palette-foregroundMuted mt-0.5">
             Run this command in your terminal to start building with
             <Link
               href="https://docs.base.org/builderkits/onchainkit/getting-started"
@@ -56,6 +56,11 @@ const searchConfig: SearchCategory[] = [
       },
       {
         label: 'AI docs',
+        description: (
+          <div className="px-3 pb-2 text-xs tracking-wide text-dark-palette-foregroundMuted mt-0.5">
+            Use this LLM-optimized context file to accelerate your workflow with AI
+          </div>
+        ),
         href: 'https://docs.base.org/llms.txt',
         icon: 'ai',
       },
