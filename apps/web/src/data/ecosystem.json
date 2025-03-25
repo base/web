@@ -4062,5 +4062,13 @@
     "imageUrl": "/images/partners/xception.png",
     "category": "defi",
     "subcategory": "dex aggregator"
+  },
+  {
+    "name": "AgentiPy",
+    "description": "AgentiPy is an open-source framework for connecting AI agents to any onchain app on Solana and Base - in Python. Instead of coding separately for each protocol, developers can access 41 protocols and 218+ actions (and growing) directly using our toolkit.",
+    "url": "https://agentipy.fun/",
+    "imageUrl": "/images/partners/agentipy.png",
+    "category": "infra",
+    "subcategory": "developer tool"
   }
 ]
