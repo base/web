@@ -4030,5 +4030,13 @@
     "imageUrl": "/images/partners/ipor.svg",
     "category": "defi",
     "subcategory": "yield vault"
+  },
+  {
+    "name": "TapBase",
+    "description": "TapBase is your gateway to Web3 and NFTs. Explore, create, and connect seamlessly.",
+    "url": "https://tapbaseapp.com/",
+    "imageUrl": "images/partners/tapbase.png",
+    "category": "consumer",
+    "subcategory": "social"
   }
 ]
