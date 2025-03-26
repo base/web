@@ -9,8 +9,6 @@ import { Icon } from 'apps/web/src/components/Icon/Icon';
 import { Hero } from 'apps/web/src/components/Builders/MiniKit/Hero';
 import minikitCover from './minikit.png';
 
-export const GET_STARTED_URL = 'https://docs.base.org/builderkits/minikit/getting-started';
-
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
   title: `Base | MiniKit`,
@@ -20,6 +18,8 @@ export const metadata: Metadata = {
     images: [minikitCover.src],
   },
 };
+
+export const GET_STARTED_URL = 'https://docs.base.org/builderkits/minikit/getting-started';
 
 export default function AgentKit() {
   return (
