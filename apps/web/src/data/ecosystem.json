@@ -8,12 +8,20 @@
     "subcategory": "developer tool"
   },
   {
-    "name": "Heurist AI",
-    "description": "Heurist is a decentralized AI-as-a-Service cloud. Run AI and Agents via API.",
-    "url": "https://heurist.ai",
-    "imageUrl": "/images/partners/heurist.png",
+    "name": "Ratio1",
+    "description": "A decentralized AI compute network ensuring trustless execution, data ownership, and linear scalability via a censorship-resistant, encrypted, and autonomous compute layer.",
+    "url": "https://ratio1.ai",
+    "imageUrl": "/images/partners/ratio1.png",
     "category": "ai",
     "subcategory": "ai"
+  },
+  {
+    "name": "Flaunch",
+    "description": "Flaunch lets anyone raise capital without owning or selling tokens. All revenue goes to the creator, with rights tokenized for secondary market value.",
+    "url": "https://flaunch.gg",
+    "imageUrl": "/images/partners/flaunch.png",
+    "category": "consumer",
+    "subcategory": "creator"
   },
   {
     "name": "3DNS",
@@ -102,6 +110,14 @@
     "category": "defi",
     "subcategory": "stablecoin",
     "imageUrl": "/images/partners/anzen.png"
+  },
+  {
+    "name": "MXNe",
+    "url": "https://brale.xyz/stablecoins/MXNe",
+    "description": "MXNe is a Mexican pesos-backed stablecoin issued by Brale in partnership with Etherfuse to grow onchain finance in Mexico.",
+    "category": "defi",
+    "subcategory": "stablecoin",
+    "imageUrl": "/images/partners/mxne.png"
   },
   {
     "name": "Connext",
@@ -4032,11 +4048,27 @@
     "subcategory": "consumer"
   },
   {
+    "name": "Nodit",
+    "description": "Nodit is a Web3 development platform offering enterprise-grade blockchain data APIs and reliable node services with 99.9% uptime, empowering developers with affordable and accessible multi-chain infrastructure.",
+    "url": "https://nodit.io/",
+    "imageUrl": "/images/partners/nodit.png",
+    "category": "infra",
+    "subcategory": "developer tool"
+  },    
+  {
     "name": "IPOR",
     "description": "IPOR offers two key products - IPOR Fusion: A composable vault stack optimized for modularity, security, and automation of sophisticated DeFi strategies. Asset managers can automate strategies, protocols can source liquidity, and LPs can get automated smart yield. Additionally, IPOR Derivatives: Earn token-boosted yield on stables and ETH. Trade plain-vanilla interest rate swaps onchain with up to 1000x leverage and 90-day maturity.",
     "url": "https://app.ipor.io/fusion?chains=8453",
     "imageUrl": "/images/partners/ipor.svg",
     "category": "defi",
     "subcategory": "yield vault"
+  },
+  {
+    "name": "XCeption",
+    "description": "Xception is a multi-chain DEX aggregator on Web & Telegram, offering fast trading, limit orders, sniping, and DCA. Built for traders and protocols, it ensures efficiency, security, and seamless execution.",
+    "url": "https://www.xceptionbot.io/",
+    "imageUrl": "/images/partners/xception.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
   }
 ]
