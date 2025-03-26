@@ -255,7 +255,7 @@ export const textRecordsCreativesKeywords = [
   'Digital art',
   'Photography',
 ];
-export const textRecordsCommunnicationKeywords = [
+export const textRecordsCommunicationKeywords = [
   'Community',
   'Product management',
   'Strategy',
@@ -267,7 +267,7 @@ export const textRecordsCommunnicationKeywords = [
 export const textRecordsKeywords = [
   ...textRecordsEngineersKeywords,
   ...textRecordsCreativesKeywords,
-  ...textRecordsCommunnicationKeywords,
+  ...textRecordsCommunicationKeywords,
 ];
 
 export type UsernameTextRecords = Record<UsernameTextRecordKeys, string>;
@@ -697,7 +697,7 @@ export async function getBasenameTextRecords(username: Basename) {
 }
 
 /*
-  Reclaim a Basename contrat write method
+  Reclaim a Basename contract write method
 */
 export function buildBasenameReclaimContract(
   username: Basename,

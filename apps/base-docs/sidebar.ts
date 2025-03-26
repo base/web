@@ -13,6 +13,10 @@ export const sidebar: Sidebar = [
     link: '/quickstart',
   },
   {
+    text: 'Bridges',
+    link: '/chain/bridges-mainnet',
+  },
+  {
     text: 'Builder Kits',
     items: [
       {
@@ -43,6 +47,10 @@ export const sidebar: Sidebar = [
               {
                 text: 'OnchainKitProvider',
                 link: '/builderkits/onchainkit/config/onchainkit-provider',
+              },
+              {
+                text: 'Custom Supplemental Providers',
+                link: '/builderkits/onchainkit/config/supplemental-providers',
               },
             ],
           },
@@ -91,6 +99,16 @@ export const sidebar: Sidebar = [
           {
             text: 'Components',
             items: [
+              {
+                text: 'Appchain',
+                collapsed: true,
+                items: [
+                  {
+                    text: 'Bridge',
+                    link: '/builderkits/onchainkit/appchain/bridge',
+                  },
+                ],
+              },
               {
                 text: 'Buy',
                 collapsed: true,
@@ -404,8 +422,16 @@ export const sidebar: Sidebar = [
                     link: '/builderkits/onchainkit/identity/get-avatar',
                   },
                   {
+                    text: 'getAvatars',
+                    link: '/builderkits/onchainkit/identity/get-avatars',
+                  },
+                  {
                     text: 'getName',
                     link: '/builderkits/onchainkit/identity/get-name',
+                  },
+                  {
+                    text: 'getNames',
+                    link: '/builderkits/onchainkit/identity/get-names',
                   },
                   {
                     text: 'useAddress',
@@ -416,8 +442,16 @@ export const sidebar: Sidebar = [
                     link: '/builderkits/onchainkit/identity/use-avatar',
                   },
                   {
+                    text: 'useAvatars',
+                    link: '/builderkits/onchainkit/identity/use-avatars',
+                  },
+                  {
                     text: 'useName',
                     link: '/builderkits/onchainkit/identity/use-name',
+                  },
+                  {
+                    text: 'useNames',
+                    link: '/builderkits/onchainkit/identity/use-names',
                   },
                 ],
               },
@@ -426,11 +460,11 @@ export const sidebar: Sidebar = [
                 items: [
                   {
                     text: 'useTokenDetails',
-                    link: '/builderkits/onchainkit/mint/use-token-details',
+                    link: '/builderkits/onchainkit/hooks/use-token-details',
                   },
                   {
                     text: 'useMintDetails',
-                    link: '/builderkits/onchainkit/mint/use-mint-details',
+                    link: '/builderkits/onchainkit/hooks/use-mint-details',
                   },
                 ],
               },
@@ -465,6 +499,10 @@ export const sidebar: Sidebar = [
               {
                 text: 'API',
                 link: '/builderkits/onchainkit/api/types',
+              },
+              {
+                text: 'Appchain',
+                link: '/builderkits/onchainkit/appchain/types',
               },
               {
                 text: 'Checkout',
@@ -525,7 +563,11 @@ export const sidebar: Sidebar = [
         ],
       },
       {
-        text: 'AgentKit ↗',
+        text: 'MiniKit',
+        link: '/builderkits/minikit/getting-started',
+      },
+      {
+        text: 'AgentKit (CDP) ↗',
         link: 'https://docs.cdp.coinbase.com/agentkit/docs/welcome',
       },
     ],
@@ -534,13 +576,13 @@ export const sidebar: Sidebar = [
     text: 'Blockspace Tools',
     items: [
       {
-        text: 'Paymaster ↗',
+        text: 'Paymaster (CDP) ↗',
         link: 'https://docs.cdp.coinbase.com/paymaster/docs/welcome',
       },
-      // { PENDING APPCHAIN RELEASE 2/25
-      //   text: 'Appchains ↗',
-      //   link: 'https://docs.cdp.coinbase.com/paymaster/docs/welcome',
-      // },
+      {
+        text: 'Appchains ↗',
+        link: 'https://docs.cdp.coinbase.com/appchains/docs/welcome',
+      },
     ],
   },
   {
@@ -553,16 +595,11 @@ export const sidebar: Sidebar = [
           {
             text: 'Introduction',
             items: [
-              { text: 'Install for Web', link: '/identity/smart-wallet/introduction/install-web' },
-              {
-                text: 'Install for React Native',
-                link: '/identity/smart-wallet/introduction/install-react-native',
-              },
+              { text: 'Quickstart', link: '/identity/smart-wallet/quickstart' },
               {
                 text: 'Recommend Libraries',
                 link: '/identity/smart-wallet/introduction/recommended-libraries',
               },
-              { text: 'Starter Templates', link: '/identity/smart-wallet/introduction/templates' },
               {
                 text: 'Base Gasless Campaign',
                 link: '/identity/smart-wallet/introduction/base-gasless-campaign',
@@ -607,6 +644,10 @@ export const sidebar: Sidebar = [
                     text: 'Custom Gas Tokens',
                     link: '/identity/smart-wallet/features/custom-gas-tokens',
                   },
+                  {
+                    text: 'Sub Accounts',
+                    link: '/identity/smart-wallet/features/sub-accounts',
+                  },
                 ],
               },
             ],
@@ -628,8 +669,179 @@ export const sidebar: Sidebar = [
             text: 'SDK',
             items: [
               {
-                text: 'createCoinbaseWalletSDK',
-                link: '/identity/smart-wallet/sdk/create-coinbase-wallet-sdk',
+                text: 'Install',
+                link: '/identity/smart-wallet/sdk/install',
+              },
+              {
+                text: 'Setup',
+                link: '/identity/smart-wallet/sdk/setup',
+              },
+              {
+                text: 'makeWeb3Provider',
+                link: '/identity/smart-wallet/sdk/make-web3-provider',
+              },
+              {
+                text: 'Upgrading from 3.x',
+                link: '/identity/smart-wallet/sdk/v3-to-v4-changes',
+              },
+              {
+                text: 'CoinbaseWalletProvider',
+                collapsed: true,
+                items: [
+                  {
+                    text: 'Overview',
+                    link: '/identity/smart-wallet/sdk/coinbasewalletprovider/overview',
+                  },
+                  {
+                    text: 'request',
+                    items: [
+                      {
+                        text: 'Overview',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/overview',
+                      },
+                      {
+                        text: 'eth_accounts',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_accounts',
+                      },
+                      {
+                        text: 'eth_blockNumber',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_blockNumber',
+                      },
+                      {
+                        text: 'eth_chainId',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_chainId',
+                      },
+                      {
+                        text: 'eth_coinbase',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_coinbase',
+                      },
+                      {
+                        text: 'eth_estimateGas',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_estimateGas',
+                      },
+                      {
+                        text: 'eth_feeHistory',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_feeHistory',
+                      },
+                      {
+                        text: 'eth_gasPrice',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_gasPrice',
+                      },
+                      {
+                        text: 'eth_getBalance',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getBalance',
+                      },
+                      {
+                        text: 'eth_getBlockByHash',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getBlockByHash',
+                      },
+                      {
+                        text: 'eth_getBlockByNumber',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getBlockByNumber',
+                      },
+                      {
+                        text: 'eth_getBlockTransactionCountByHash',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getBlockTransactionCountByHash',
+                      },
+                      {
+                        text: 'eth_getBlockTransactionCountByNumber',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getBlockTransactionCountByNumber',
+                      },
+                      {
+                        text: 'eth_getCode',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getCode',
+                      },
+                      {
+                        text: 'eth_getLogs',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getLogs',
+                      },
+                      {
+                        text: 'eth_getProof',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getProof',
+                      },
+                      {
+                        text: 'eth_getStorageAt',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getStorageAt',
+                      },
+                      {
+                        text: 'eth_getTransactionByBlockHashAndIndex',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getTransactionByBlockHashAndIndex',
+                      },
+                      {
+                        text: 'eth_getTransactionByBlockNumberAndIndex',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getTransactionByBlockNumberAndIndex',
+                      },
+                      {
+                        text: 'eth_getTransactionByHash',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getTransactionByHash',
+                      },
+                      {
+                        text: 'eth_getTransactionCount',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getTransactionCount',
+                      },
+                      {
+                        text: 'eth_getTransactionReceipt',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getTransactionReceipt',
+                      },
+                      {
+                        text: 'eth_getUncleCountByBlockHash',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getUncleCountByBlockHash',
+                      },
+                      {
+                        text: 'eth_getUncleCountByBlockNumber',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getUncleCountByBlockNumber',
+                      },
+                      {
+                        text: 'eth_requestAccounts',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_requestAccounts',
+                      },
+                      {
+                        text: 'eth_sendRawTransaction',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_sendRawTransaction',
+                      },
+                      {
+                        text: 'eth_sendTransaction',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_sendTransaction',
+                      },
+                      {
+                        text: 'eth_signTypedData_v4',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_signTypedData_v4',
+                      },
+                      {
+                        text: 'personal_sign',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/personal_sign',
+                      },
+                      {
+                        text: 'wallet_addEthereumChain',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_addEthereumChain',
+                      },
+                      {
+                        text: 'wallet_addSubAccount',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_addSubAccount',
+                      },
+                      {
+                        text: 'wallet_connect',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_connect',
+                      },
+                      {
+                        text: 'wallet_switchEthereumChain',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_switchEthereumChain',
+                      },
+                      {
+                        text: 'wallet_watchAsset',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_watchAsset',
+                      },
+                      {
+                        text: 'web3_clientVersion',
+                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/web3_clientVersion',
+                      },
+                    ],
+                  },
+                  {
+                    text: 'Sub Account Reference',
+                    link: '/identity/smart-wallet/sdk/sub-account-reference',
+                  },
+                ],
               },
             ],
           },
@@ -646,8 +858,8 @@ export const sidebar: Sidebar = [
                 link: '/identity/smart-wallet/guides/react-native-integration',
               },
               {
-                text: 'Signature Verification',
-                link: '/identity/smart-wallet/guides/signature-verification',
+                text: 'Signing and Verifying Messages',
+                link: '/identity/smart-wallet/guides/signing-and-verifying-messages',
               },
               { text: 'Sign In With Ethereum', link: '/identity/smart-wallet/guides/siwe' },
               { text: 'MagicSpend', link: '/identity/smart-wallet/guides/magic-spend' },
@@ -655,7 +867,62 @@ export const sidebar: Sidebar = [
                 text: 'Batch Transactions',
                 link: '/identity/smart-wallet/guides/batch-transactions',
               },
+              { text: 'Paymasters', link: '/identity/smart-wallet/guides/paymasters' },
               { text: 'ERC20 Paymasters', link: '/identity/smart-wallet/guides/erc20-paymasters' },
+              {
+                text: 'Sub Accounts',
+                collapsed: true,
+                items: [
+                  {
+                    text: 'Overview',
+                    link: '/identity/smart-wallet/guides/sub-accounts/overview',
+                  },
+                  {
+                    text: 'Setup',
+                    link: '/identity/smart-wallet/guides/sub-accounts/setup',
+                  },
+                  {
+                    text: 'Creating Sub Accounts',
+                    link: '/identity/smart-wallet/guides/sub-accounts/creating-sub-accounts',
+                  },
+                  {
+                    text: 'Using Sub Accounts',
+                    link: '/identity/smart-wallet/guides/sub-accounts/using-sub-accounts',
+                  },
+                ],
+              },
+              {
+                text: 'Spend Permissions',
+                collapsed: true,
+                items: [
+                  {
+                    text: 'Overview',
+                    link: '/identity/smart-wallet/guides/spend-permissions/overview',
+                  },
+                  {
+                    text: 'Quickstart',
+                    link: '/identity/smart-wallet/guides/spend-permissions/quick-start',
+                  },
+                  {
+                    text: 'API Reference',
+                    collapsed: true,
+                    items: [
+                      {
+                        text: 'Client Resources',
+                        link: '/identity/smart-wallet/guides/spend-permissions/api-reference/client-resources',
+                      },
+                      {
+                        text: 'Coinbase Fetch Permissions',
+                        link: '/identity/smart-wallet/guides/spend-permissions/api-reference/coinbase-fetchpermissions',
+                      },
+                      {
+                        text: 'Spend Permissions Manager',
+                        link: '/identity/smart-wallet/guides/spend-permissions/api-reference/spendpermissionmanager',
+                      },
+                    ],
+                  },
+                ],
+              },
             ],
           },
         ],
@@ -684,7 +951,7 @@ export const sidebar: Sidebar = [
         ],
       },
       {
-        text: 'Verifications ↗',
+        text: 'Verifications (CDP)↗',
         link: 'https://docs.cdp.coinbase.com/verifications/docs/welcome',
       },
     ],
@@ -1524,6 +1791,11 @@ export const sidebar: Sidebar = [
         link: 'https://discord.com/invite/buildonbase',
       },
     ],
+  },
+  {
+    text: 'Buildathons',
+    collapsed: true,
+    items: [{ text: '2025-02-flash', link: '/buildathons/2025-02-flash' }],
   },
   {
     text: 'Feedback',

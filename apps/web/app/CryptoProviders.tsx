@@ -2,10 +2,6 @@
 
 import { AppConfig, OnchainKitProvider } from '@coinbase/onchainkit';
 import { connectorsForWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { isDevelopment } from 'apps/web/src/constants';
-import { createConfig, http, WagmiProvider } from 'wagmi';
-import { base, baseSepolia, mainnet } from 'wagmi/chains';
 import {
   coinbaseWallet,
   metaMaskWallet,
@@ -14,6 +10,11 @@ import {
   uniswapWallet,
   walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useMemo } from 'react';
+import { createConfig, http, WagmiProvider } from 'wagmi';
+import { base, baseSepolia, mainnet } from 'wagmi/chains';
+import { isDevelopment } from 'apps/web/src/constants';
 
 const connectors = connectorsForWallets(
   [
@@ -51,17 +52,30 @@ const config = createConfig({
 });
 const queryClient = new QueryClient();
 
-type CryptoProvidersProps = {
+export type CryptoProvidersProps = {
   children: React.ReactNode;
+  mode?: 'light' | 'dark';
+  theme?: 'default' | 'base' | 'cyberpunk' | 'hacker';
 };
 
-const onchainKitConfig: AppConfig = {
-  appearance: {
-    mode: 'light',
-  },
-};
+export default function CryptoProviders({
+  children,
+  mode = 'light',
+  theme = 'base',
+}: CryptoProvidersProps) {
+  const onchainKitConfig: AppConfig = useMemo(
+    () => ({
+      appearance: {
+        mode,
+        theme,
+      },
+      wallet: {
+        display: 'modal',
+      },
+    }),
+    [mode, theme],
+  );
 
-export default function CryptoProviders({ children }: CryptoProvidersProps) {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
@@ -69,6 +83,7 @@ export default function CryptoProviders({ children }: CryptoProvidersProps) {
           chain={isDevelopment ? baseSepolia : base}
           apiKey={process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY}
           config={onchainKitConfig}
+          projectId={process.env.NEXT_PUBLIC_CDP_PROJECT_ID}
         >
           <RainbowKitProvider modalSize="compact">{children}</RainbowKitProvider>
         </OnchainKitProvider>

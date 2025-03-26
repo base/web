@@ -1,5 +1,21 @@
 [
   {
+    "name": "Ratio1",
+    "description": "A decentralized AI compute network ensuring trustless execution, data ownership, and linear scalability via a censorship-resistant, encrypted, and autonomous compute layer.",
+    "url": "https://ratio1.ai",
+    "imageUrl": "/images/partners/ratio1.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
+    "name": "Flaunch",
+    "description": "Flaunch lets anyone raise capital without owning or selling tokens. All revenue goes to the creator, with rights tokenized for secondary market value.",
+    "url": "https://flaunch.gg",
+    "imageUrl": "/images/partners/flaunch.png",
+    "category": "consumer",
+    "subcategory": "creator"
+  },
+  {
     "name": "3DNS",
     "description": "3DNS is a decentralized domain name service (DNS) that can power real web domains. Users can import an existing domain or register a new one and bring the domain onchain via 3DNS.",
     "url": "https://3dns.box",
@@ -14,6 +30,14 @@
     "imageUrl": "/images/partners/infinity-wallet.png",
     "category": "wallet",
     "subcategory": "self-custody"
+  },
+  {
+    "name": "CoW Swap",
+    "description": "CoW Swap is an intent-based meta-DEX aggregator that leverages CoW Protocol's bespoke batch/solver ecosystem. With built in MEV protection, CoW Swap lets traders big and small do more and worry less",
+    "url": "https://swap.cow.fi",
+    "imageUrl": "/images/partners/cowswap.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
   },
   {
     "name": "Arcadia Games",
@@ -78,6 +102,14 @@
     "category": "defi",
     "subcategory": "stablecoin",
     "imageUrl": "/images/partners/anzen.png"
+  },
+  {
+    "name": "MXNe",
+    "url": "https://brale.xyz/stablecoins/MXNe",
+    "description": "MXNe is a Mexican pesos-backed stablecoin issued by Brale in partnership with Etherfuse to grow onchain finance in Mexico.",
+    "category": "defi",
+    "subcategory": "stablecoin",
+    "imageUrl": "/images/partners/mxne.png"
   },
   {
     "name": "Connext",
@@ -942,6 +974,14 @@
     "imageUrl": "/images/partners/appicon.webp",
     "category": "consumer",
     "subcategory": "social"
+  },
+  {
+    "name": "Swan",
+    "description": "Swan is a protocol where people try to convince AI agents to buy their artifacts, and profit from them. Each agent has its own budget and the world simulation evolves with each artifact.",
+    "url": "https://swan.my/",
+    "imageUrl": "/images/partners/swan-logo.png",
+    "category": "ai",
+    "subcategory": "ai"
   },
   {
     "name": "Bitget Wallet",
@@ -3584,6 +3624,14 @@
     "imageUrl": "/images/partners/phantom.svg"
   },
   {
+    "name": "20lab",
+    "description": "20lab.app is a customizable ERC-20, SPL (Solana) & Sui token generator with over 17 extendable features. Test our generator for free and manage functions via token owner dashboard.",
+    "url": "https://20lab.app/generate/erc20-token/base/",
+    "imageUrl": "/images/partners/20lab.png",
+    "category": "infra",
+    "subcategory": "developer tool"
+  },
+  {
     "name": "Bend",
     "description": "A free payments app that allows anyone to easily send money worldwide-no bank account required.",
     "category": "wallet",
@@ -3620,7 +3668,7 @@
     "category": "defi",
     "subcategory": "stablecoin",
     "description": "ZARP is a stablecoin pegged to the price of the South African Rand (ZAR).",
-    "url": "https://zarp.io/",
+    "url": "https://www.zarpstablecoin.com/",
     "imageUrl": "/images/partners/zarp.png"
   },
   {
@@ -3760,10 +3808,10 @@
     "subcategory": "ai"
   },
   {
-    "name": "PeakChain MoveUp",
-    "description": "Peakchain MoveUp: A Move-to-Earn app rewarding sustainable travel with tokens, points & NFTs, driving eco-friendly mobility & sustainability!",
+    "name": "MoveUP",
+    "description": "MoveUP: The first AI-powered Move-to-Earn app on Base, rewarding users with tokens, points, and NFTs, while providing AI-driven insights to enhance their experience!",
     "url": "https://peakchain.network/base",
-    "imageUrl": "/images/partners/peakchain-moveup.png",
+    "imageUrl": "/images/partners/moveUP-logo.png",
     "category": "consumer",
     "subcategory": "real world"
   },
@@ -3806,14 +3854,6 @@
     "imageUrl": "/images/partners/pulsarfinance.png",
     "category": "defi",
     "subcategory": "portfolio"
-  },
-  {
-    "name": "20lab",
-    "description": "20lab.app is a customizable ERC-20, SPL (Solana) & Sui token generator with over 17 extendable features. Test our generator for free and manage functions via token owner dashboard.",
-    "url": "https://20lab.app/generate/erc20-token/base/",
-    "imageUrl": "/images/partners/20lab.png",
-    "category": "infra",
-    "subcategory": "developer tool"
   },
   {
     "name": "based.gift",
@@ -4006,5 +4046,29 @@
     "imageUrl": "/images/partners/fashion-fun.png",
     "category": "consumer",
     "subcategory": "nft"
+  },
+  {
+    "name": "Nodit",
+    "description": "Nodit is a Web3 development platform offering enterprise-grade blockchain data APIs and reliable node services with 99.9% uptime, empowering developers with affordable and accessible multi-chain infrastructure.",
+    "url": "https://nodit.io/",
+    "imageUrl": "/images/partners/nodit.png",
+    "category": "infra",
+    "subcategory": "developer tool"
+  },
+  {
+    "name": "IPOR",
+    "description": "IPOR offers two key products - IPOR Fusion: A composable vault stack optimized for modularity, security, and automation of sophisticated DeFi strategies. Asset managers can automate strategies, protocols can source liquidity, and LPs can get automated smart yield. Additionally, IPOR Derivatives: Earn token-boosted yield on stables and ETH. Trade plain-vanilla interest rate swaps onchain with up to 1000x leverage and 90-day maturity.",
+    "url": "https://app.ipor.io/fusion?chains=8453",
+    "imageUrl": "/images/partners/ipor.svg",
+    "category": "defi",
+    "subcategory": "yield vault"
+  },
+  {
+    "name": "XCeption",
+    "description": "Xception is a multi-chain DEX aggregator on Web & Telegram, offering fast trading, limit orders, sniping, and DCA. Built for traders and protocols, it ensures efficiency, security, and seamless execution.",
+    "url": "https://www.xceptionbot.io/",
+    "imageUrl": "/images/partners/xception.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
   }
 ]

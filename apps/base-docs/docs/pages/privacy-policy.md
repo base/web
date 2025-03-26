@@ -51,13 +51,13 @@ We collect the following personal information when providing the Services:
 
 We may use your personal information for the following purposes or as otherwise described at the time of collection. If you reside outside the United Kingdom or European Economic Area (“**EEA”)**, the legal bases on which we rely in your country may differ from those listed below.
 
-|                                                                                                                                                                          |                                                            |                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- | --------------------- |
-| **Purpose**                                                                                                                                                              | **Information Used**                                       | **Our Legal Basis**   |
+|                                                                                                                                                                          |                                                             |                       |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- | --------------------- |
+| **Purpose**                                                                                                                                                              | **Information Used**                                        | **Our Legal Basis**   |
 | To provide you with the Base Services We use certain information that is necessary to conclude and perform our Terms of Service or other relevant contract(s) with you.  | Wallet Address Blockchain Data                              | Contractual Necessity |
 | To promote the safety, security and integrity of our Services                                                                                                            | Basic User Information Information from Analytics Providers | Contractual Necessity |
-| To allow Users or Developers to build more effectively on the Base platform                                                                                              | Error Tracking Data                                        | Legitimate Interests  |
-| To send you Base Forms for marketing and product development                                                                                                             | Basic User Information                                     | Legitimate Interests  |
+| To allow Users or Developers to build more effectively on the Base platform                                                                                              | Error Tracking Data                                         | Legitimate Interests  |
+| To send you Base Forms for marketing and product development                                                                                                             | Basic User Information                                      | Legitimate Interests  |
 
 # 3. HOW AND WHY WE SHARE YOUR INFORMATION 
 
