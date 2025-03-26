@@ -65,9 +65,7 @@ export default function App({ children }: { children: ReactNode }) {
             },
           }}
         >
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {children}
-          </div>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>{children}</div>
         </OnchainKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
