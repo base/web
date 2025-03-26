@@ -22,6 +22,7 @@ The `IdentityCard` component provides a comprehensive way to display user identi
 - **Avatar Support:** Displays ENS and chain-specific avatars
 - **Flexible Display:** Customizable layout and styling options
 - **Chain-Aware:** Works across different EVM chains that support name resolution
+- **Tooltip Support:** Displays attestation information on badge hover
 
 ## Usage
 
@@ -44,6 +45,58 @@ import { base } from 'viem/chains';
     address="0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF"
     chain={base}
     className="max-w-[300px]"
+  />
+</App>
+
+### Badge Tooltip
+
+You can enable a tooltip for the attestation badge to provide context about what the badge represents:
+
+```tsx twoslash
+// @noErrors: 2305 2657
+import { IdentityCard } from '@coinbase/onchainkit/identity';
+import { base } from 'viem/chains';
+
+<IdentityCard 
+  address="0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF"
+  chain={base}
+  schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
+  badgeTooltip={true} // [!code focus]
+/>
+```
+
+<App>
+  <IdentityCard 
+    schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
+    address="0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF"
+    chain={base}
+    className="max-w-[300px]"
+    badgeTooltip={true}
+  />
+</App>
+
+You can also provide custom tooltip text:
+
+```tsx twoslash
+// @noErrors: 2305 2657
+import { IdentityCard } from '@coinbase/onchainkit/identity';
+import { base } from 'viem/chains';
+
+<IdentityCard 
+  address="0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF"
+  chain={base}
+  schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
+  badgeTooltip="Coinbase Verified" // [!code focus]
+/>
+```
+
+<App>
+  <IdentityCard 
+    schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
+    address="0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF"
+    chain={base}
+    className="max-w-[300px]"
+    badgeTooltip="Coinbase Verified"
   />
 </App>
 
@@ -83,13 +136,15 @@ import { mainnet } from 'viem/chains'; // [!code focus]
 
 ## Props
 
-The `IdentityCard` component accepts the following props:
+[`IdentityCardReact`](/builderkits/onchainkit/identity/types#identitycardreact)
 
 | Prop | Type | Description |
 |------|------|-------------|
 | `address` | `string` | The wallet address to display identity for |
 | `chain` | `Chain` | The chain to resolve the identity on |
 | `className` | `string` | Additional CSS classes to apply |
+| `schemaId` | `Address \| null` | The schema ID for attestation |
+| `badgeTooltip` | `boolean \| string` | When `true`, displays the attestation name in tooltip. When a string is provided, shows that custom text instead. Defaults to `false` |
 
 ## Error Handling
 
@@ -104,12 +159,13 @@ The component handles various error states gracefully:
 
 1. Always provide a valid chain object from viem/chains
 2. Handle loading states in parent components when address might be undefined
-4. Implement proper error boundaries in parent components
-5. Consider mobile responsiveness when styling
+3. Implement proper error boundaries in parent components
+4. Consider mobile responsiveness when styling
+5. Use `badgeTooltip` to provide context about what the verification badge represents
 
 ## Related Components
 
-- [`<Avatar>`](avatar) - Displays user avatars
-- [`<Name>`](name) - Displays resolved names
-- [`<Identity>`](identity) - Simplified identity display
+- [`<Avatar>`](/builderkits/onchainkit/identity/avatar) - Displays user avatars
+- [`<Name>`](/builderkits/onchainkit/identity/name) - Displays resolved names
+- [`<Identity>`](/builderkits/onchainkit/identity/identity) - Simplified identity display
 

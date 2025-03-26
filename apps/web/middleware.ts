@@ -339,6 +339,14 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  if (url.pathname.startsWith('/builder-anniversary-nft')) {
+    url.host = 'docs.base.org';
+    url.pathname = `/chain/builder-anniversary-nft`;
+    url.port = '443';
+
+    return NextResponse.redirect(url);
+  }
+
   if (
     process.env.APP_STAGE !== 'production' ||
     process.env.AUTH_ENABLED === 'false' ||
