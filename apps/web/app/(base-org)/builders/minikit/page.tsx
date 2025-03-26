@@ -9,7 +9,7 @@ import { Icon } from 'apps/web/src/components/Icon/Icon';
 import { Hero } from 'apps/web/src/components/Builders/MiniKit/Hero';
 import minikitCover from './minikit.png';
 
-const GET_STARTED_URL = 'https://replit.com/@tina-he/ock-frames-template?v=1#README.md';
+const GET_STARTED_URL = 'https://docs.base.org/builderkits/minikit/getting-started';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
