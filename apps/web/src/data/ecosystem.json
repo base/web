@@ -8,6 +8,14 @@
     "subcategory": "ai"
   },
   {
+    "name": "MemeKult",
+    "description": "Launch your Coin on Ethereum for Free. No Gas. Instantly tradable. From Base to Ethereum.",
+    "url": "https://memekult.com",
+    "imageUrl": "/images/partners/memekult.png",
+    "category": "consumer",
+    "subcategory": "creator"
+  },
+  {
     "name": "Flaunch",
     "description": "Flaunch lets anyone raise capital without owning or selling tokens. All revenue goes to the creator, with rights tokenized for secondary market value.",
     "url": "https://flaunch.gg",
