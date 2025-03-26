@@ -1,5 +1,7 @@
 'use client';
 
+import Image, { StaticImageData } from 'next/image';
+import { useCallback, useState } from 'react';
 import { ButtonVariants } from 'apps/web/src/components/base-org/Button/types';
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
@@ -7,9 +9,7 @@ import { ButtonWithLinkAndEventLogging } from 'apps/web/src/components/Button/Bu
 import { HeaderAnimation } from 'apps/web/src/components/Builders/MiniKit/HeaderAnimation';
 import minikit from 'apps/web/src/components/Builders/MiniKit/minikit.svg';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
-import Image, { StaticImageData } from 'next/image';
-import { useCallback, useState } from 'react';
-const GET_STARTED_URL = 'https://replit.com/@tina-he/ock-frames-template?v=1#README.md';
+import { GET_STARTED_URL } from 'apps/web/app/(base-org)/builders/minikit/page';
 
 const MINIKIT_COMMAND = 'npx create-onchain@alpha --mini';
 
