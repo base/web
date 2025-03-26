@@ -104,7 +104,7 @@ export const BADGE_INFO: Record<
     name: 'Base Learn Newcomer',
     title: 'Base Learn Newcomer',
     description:
-      'You completed these Base Learn Modules: Basic Contracts, Storage, Control Structures, Arrays, Inheritance, Mappings, Structs, Error Triags, New Keyword, and Imports.',
+      'You completed these Base Learn Modules: Basic Contracts, Storage, Control Structures, Arrays, Inheritance, Mappings, Structs, Error Flags, New Keyword, and Imports.',
     cta: 'Go to Base Learn',
     ctaLink: 'https://guild.xyz/base/base-learn',
     image: baseLearnNewcomer,

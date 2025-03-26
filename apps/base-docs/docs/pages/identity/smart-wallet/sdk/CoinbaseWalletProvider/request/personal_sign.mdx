@@ -1,0 +1,29 @@
+# personal_sign
+
+Defined in [EIP-191](https://eips.ethereum.org/EIPS/eip-191)
+
+> Signs data using a specific account. This method calculates an Ethereum specific signature with: `sign(keccak256("\x19Ethereum Signed Message:\n" + len(message) + message)))`.
+
+## Parameters
+
+`Array<string, string>`
+
+An array containing two elements:
+
+1. The data to sign, in hexadecimal format
+2. The address of the account that should sign the data
+
+## Returns
+
+`string`
+
+A signature string in hexadecimal format.
+
+## Errors
+
+| Code | Message                        |
+| ---- | ------------------------------ |
+| 4001 | User denied signature request  |
+| 4100 | Requested method not supported |
+| 4200 | Wallet not connected           |
+| 4300 | Invalid parameters             |

@@ -1,0 +1,8 @@
+# Gas-free Transactions
+
+Smart Wallet enables apps to pay for users' transaction gas fees, allowing free transactions or removing the need for users to hold native tokens.
+
+## Technical Details
+- Sponsored transactions are facilitated onchain via [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337) compliant paymasters.
+- Apps must have a [ERC-7677](https://eips.ethereum.org/EIPS/eip-7677) compliant paymaster service. 
+- Apps can share this paymaster to Smart Wallet via the ERC-7677 `paymasterService` capability on a `wallet_sendCalls` request.

@@ -1,0 +1,121 @@
+import SdkParameters from './snippets/sdk-parameters.mdx'
+
+# Getting Started
+
+::::steps
+
+## Install `@coinbase/wallet-sdk`
+
+:::code-group
+
+```bash [npm]
+npm i @coinbase/wallet-sdk
+```
+
+```bash [pnpm]
+pnpm i @coinbase/wallet-sdk
+```
+
+```bash [yarn]
+yarn add @coinbase/wallet-sdk
+```
+
+```bash [bun]
+bun i @coinbase/wallet-sdk
+```
+
+:::
+
+## Create a new sdk object
+
+```ts twoslash filename="setup.ts" [setup.ts]
+import { createCoinbaseWalletSDK } from '@coinbase/wallet-sdk';
+
+export const sdk = createCoinbaseWalletSDK({
+    appName: "My App",
+    appLogoUrl: "https://example.com/logo.png",
+    appChainIds: [8453],
+    preference: {
+        options: "smartWalletOnly",
+        attribution: {
+            auto: true,
+        }
+    },
+});
+```
+
+## Create a new provider object
+
+:::code-group
+
+```ts twoslash filename="provider.ts" [provider.ts]
+import { sdk } from './setup'
+
+// Create provider
+export const provider = sdk.getProvider();
+// Use provider
+const addresses = provider.request({ method: 'eth_requestAccounts' });
+```
+
+```ts twoslash filename="setup.ts" [setup.ts]
+import { createCoinbaseWalletSDK } from '@coinbase/wallet-sdk';
+
+export const sdk = createCoinbaseWalletSDK({
+    appName: "My App",
+    appLogoUrl: "https://example.com/logo.png",
+    appChainIds: [8453],
+    preference: {
+        options: "smartWalletOnly",
+        attribution: {
+            auto: true,
+        }
+    },
+});
+```
+
+:::
+
+::::
+
+## `createCoinbaseWalletSDK` Returns
+
+An object with related SDK methods
+
+```ts
+type CreateAccount = {
+  type: 'create';
+  keys: {
+    type: 'address' | 'p256' | 'webcrypto-p256' | 'webauthn-p256';
+    key: `0x${string}`;
+  }[];
+};
+
+type SubAccountInfo = {
+  address: `0x${string}`;
+  factory?: `0x${string}`;
+  factoryData?: `0x${string}`;
+}
+
+type AddOwnerParams = {
+    address: `0x${string}`;
+    publicKey?: never;
+    chainId: number;
+} | {
+    address?: never;
+    publicKey: `0x${string}`;
+    chainId: number;
+}
+
+type CoinbaseWalletSDK = {
+  getProvider: () => CoinbaseWalletProvider;
+  // Only available v4.4.0+
+  subaccount: {
+    setSigner: (() => Promise<OneOf<LocalAccount, WebAuthnAccount>>) => void;
+    create: (account: CreateAccount) => Promise<SubAccountInfo>;
+    get: () => Promise<SubAccountInfo>;
+    addOwner: (params: AddOwnerParams) => Promise<void>;
+  }
+}
+```
+
+<SdkParameters />

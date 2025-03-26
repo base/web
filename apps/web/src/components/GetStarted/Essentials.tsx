@@ -2,7 +2,6 @@ import { Icon } from '../Icon/Icon';
 import ResourceCard from './ResourceCard/ResourceCard';
 import { FUNDING_SECTION_ID } from './Funding';
 import { GET_NOTICED_SECTION_ID } from './GetNoticed';
-import { GET_INVOLVED_SECTION_ID } from './GetInvolved';
 import { START_BUILDING_SECTION_ID } from './StartBuilding';
 import { gridClasses } from './styles';
 import Title from 'apps/web/src/components/base-org/typography/Title';
@@ -26,24 +25,24 @@ export default async function Essentials() {
       </h2>
       <div className={gridClasses}>
         <ResourceCard
+          title="Join the Builder Network"
+          description="Apply to join the Builder Network to access community forums and programs"
+          href="https://forms.gle/AQhuzEZvXx9VYrer7/?utm_source=dotorg&medium=builderkit"
+          topLeft={<Icon name="people" color="white" />}
+          classnames="bg-purple-60 border-purple-60"
+        />
+        <ResourceCard
           title="Create your profile"
           description="Claim a Basename and create your Based Profile to connect with other Builders"
           href="/names?utm_source=dotorg&utm_medium=builderkit"
           topLeft={<Icon name="basenamesIcon" color="white" />}
-          classnames="bg-purple-60 border-purple-60"
-        />
-        <ResourceCard
-          title="Office Hours"
-          description="Check out our Office Hours schedule to ask your questions live"
-          href="https://lu.ma/base-officehours/?utm_source=dotorg&medium=builderkit"
-          topLeft={<Icon name="dotGrid" color="white" />}
           classnames="bg-purple-80 border-purple-80"
         />
         <ResourceCard
-          title="Get Involved"
-          description="Become an active participant in the Base community"
-          href={`#${GET_INVOLVED_SECTION_ID}`}
-          topLeft={<Icon name="people" color="white" />}
+          title="Virtual Events"
+          description="Check out our Virtual Events schedule to ask your questions live"
+          href="https://lu.ma/base-virtualevents/?utm_source=dotorg&medium=builderkit"
+          topLeft={<Icon name="dotGrid" color="white" />}
           classnames="bg-purple-60 border-purple-60"
         />
         <ResourceCard

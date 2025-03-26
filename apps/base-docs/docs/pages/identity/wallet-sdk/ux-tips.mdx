@@ -1,0 +1,35 @@
+---
+title: "UX Guidelines"
+sidebar_label: "UX Guidelines"
+slug: "ux-tips"
+---
+
+:::tip
+Coinbase Wallet SDK, or Wallet SDK, has been fully rebranded from its former name of WalletLink.
+:::
+
+## Mobile UX guidance
+
+- Use [responsive web design](https://developer.mozilla.org/docs/Learn/CSS/CSS_layout/Responsive_Design) to ensure your app is easy to use on mobile.
+- Consider implementing autoconnect/1-click connect on mobile, to simplify the wallet connection experience.
+  - **Autoconnect:** Your app automatically connects to the injected provider with no user action needed.
+    1. On page load, check if an injected wallet is present
+    2. If yes, then on page load immediately call `ethereum.request({ method: 'eth_requestAccounts' })` using either
+       - Coinbase Wallet SDK or
+       - the injected provider
+  - **1-click connect:** Your app provides one "Connect to Wallet" button.
+    1. Provide one button for the user to press to connect their wallet
+    1. On click, check if an injected wallet is present and if so, call `ethereum.request({ method: 'eth_requestAccounts' })` using either
+       - Coinbase Wallet SDK or
+       - the injected provider
+  
+  For either option, if no injected wallet is present, use whatever wallet flow you prefer.
+
+## Other guidance
+
+- Label the connection as “Coinbase Wallet” for clarity to users.
+
+- Download the Coinbase Wallet icon set: [coinbase_wallet_logo_kit.zip](https://github.com/coinbase/coinbase-wallet-sdk/raw/master/assets/coinbase_wallet_logo_kit.zip).
+  
+- Have Coinbase Wallet appear above the fold for users to discover without clicking on “Show More”.
+

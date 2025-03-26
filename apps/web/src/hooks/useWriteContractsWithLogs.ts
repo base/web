@@ -38,7 +38,7 @@ export enum BatchCallsStatus {
   Processing = 'processing',
   Reverted = 'reverted',
 
-  // UserOperationEvent and top transaction are successfull
+  // UserOperationEvent and top transaction are successful
   Failed = 'failed',
   Success = 'success',
 }

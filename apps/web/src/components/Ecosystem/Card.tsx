@@ -12,6 +12,8 @@ type Props = {
   subcategory: string;
 };
 
+const MAX_DESCRIPTION_LENGTH = 200;
+
 function getNiceDomainDisplayFromUrl(url: string) {
   return url.replace('https://', '').replace('http://', '').replace('www.', '').split('/')[0];
 }
@@ -24,6 +26,11 @@ export default function EcosystemCard({
   category,
   subcategory,
 }: Props) {
+  const truncatedDescription =
+    description.length > MAX_DESCRIPTION_LENGTH
+      ? description.slice(0, MAX_DESCRIPTION_LENGTH) + '...'
+      : description;
+
   return (
     <Card innerClassName="p-4 group/ecosystem-card">
       <a
@@ -58,9 +65,11 @@ export default function EcosystemCard({
               </span>
             </div>
             <div className="flex h-6 flex-col justify-center rounded-[100px] bg-black px-2 py-1">
-              <span className="rounded-full border border-gray-muted px-2 py-1 font-mono text-[10px] uppercase text-gray-muted">
-                {subcategory}
-              </span>
+              {subcategory !== category && (
+                <span className="rounded-full border border-gray-muted px-2 py-1 font-mono text-[10px] uppercase text-gray-muted">
+                  {subcategory}
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -71,7 +80,9 @@ export default function EcosystemCard({
               {getNiceDomainDisplayFromUrl(url)}
             </span>
           </div>
-          <Text className="opacity-80 group-hover/ecosystem-card:opacity-100">{description}</Text>
+          <Text className="opacity-80 group-hover/ecosystem-card:opacity-100">
+            {truncatedDescription}
+          </Text>
         </div>
       </a>
     </Card>

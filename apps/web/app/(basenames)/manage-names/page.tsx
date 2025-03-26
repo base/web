@@ -1,6 +1,5 @@
 import ErrorsProvider from 'apps/web/contexts/Errors';
 import type { Metadata } from 'next';
-import { initialFrame } from 'apps/web/pages/api/basenames/frame/frameResponses';
 import NamesList from 'apps/web/src/components/Basenames/ManageNames/NamesList';
 
 export const metadata: Metadata = {
@@ -15,9 +14,6 @@ export const metadata: Metadata = {
   twitter: {
     site: '@base',
     card: 'summary_large_image',
-  },
-  other: {
-    ...(initialFrame as Record<string, string>),
   },
 };
 

@@ -36,7 +36,7 @@ export default async function BaseOrgLayout({
 
       {/* Line between content & footer */}
       <Container>
-        <hr className="opacity-50" />
+        <hr className="border-palette-line/60" />
       </Container>
     </div>
   );

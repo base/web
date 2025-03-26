@@ -1,0 +1,64 @@
+# Feedback Widget Setup
+
+This feedback widget allows users to provide feedback on documentation pages and stores the responses in a Google Sheet.
+
+## Setup Instructions
+
+1. Create a Google Cloud Project and enable the Google Sheets API
+   - Go to [Google Cloud Console](https://console.cloud.google.com)
+   - Create a new project or select an existing one
+   - Enable the Google Sheets API for your project
+
+2. Create Service Account Credentials
+   - In the Google Cloud Console, go to "APIs & Services" > "Credentials"
+   - Click "Create Credentials" > "Service Account"
+   - Fill in the service account details and create it
+   - Create a new key for the service account (JSON format)
+   - Download the JSON key file
+
+3. Create a Google Sheet
+   - Create a new Google Sheet
+   - Share it with the service account email (with editor permissions)
+   - Note the Sheet ID from the URL (the long string between /d/ and /edit)
+
+4. Set up Environment Variables
+   Add the following environment variables to your Vercel project:
+
+   ```bash
+   GOOGLE_SERVICE_ACCOUNT_KEY=<base64_encoded_service_account_json>
+   GOOGLE_SHEETS_ID=<your_sheet_id>
+   ```
+
+   To encode your service account JSON:
+   ```bash
+   cat service-account.json | base64
+   ```
+
+5. Install Dependencies
+   ```bash
+   npm install
+   ```
+
+## Sheet Structure
+
+The feedback data is stored in the following columns:
+- Timestamp (ISO format)
+- URL
+- IP Address
+- Like/Dislike
+- Selected Categories (comma-separated)
+- Comment
+
+## Development
+
+The feedback system consists of:
+- `FeedbackWidget/` - UI components
+- `hooks/useFeedback.ts` - Client-side logic
+- `api/submitFeedback.ts` - Serverless function for Google Sheets integration
+
+## Testing
+
+To test locally:
+1. Set up the environment variables in a `.env.local` file
+2. Run the development server: `npm run dev`
+3. Submit test feedback and verify it appears in your Google Sheet 

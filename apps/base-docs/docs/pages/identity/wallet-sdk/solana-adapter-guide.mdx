@@ -1,0 +1,254 @@
+---
+title: 'Getting started guide'
+sidebar_label: 'Getting started guide'
+slug: 'solana-adapter-guide'
+---
+
+The Solana Foundation provides a set of modular TypeScript wallet adapters and components for Solana web applications. These packages are useful for developers who want to support multiple Solana wallets.
+
+The following sections describe how to integrate multiple wallets such as Coinbase Wallet, Phantom, and Solflare into your Solana app using the [Solana wallet adapter](https://github.com/solana-labs/wallet-adapter) packages.
+
+## Prerequisites
+
+This guide assumes you are using React, and have a working React application.
+
+To set up a new React app, run:
+
+```bash
+npx create-react-app <app-name>
+```
+
+:::info
+For additional front-end framework support, visit the Solana wallet adapter [documentation](https://github.com/solana-labs/wallet-adapter#solanawallet-adapter) to find more [starter projects](https://github.com/solana-labs/wallet-adapter#starter-projects) and [packages](https://github.com/solana-labs/wallet-adapter#starter-projects).
+:::
+
+## Install
+
+Install the [Solana JavaScript API](https://solana-labs.github.io/solana-web3.js/):
+
+```bash
+yarn add @solana/web3.js
+```
+
+Install the following [Solana wallet adapter](https://github.com/solana-labs/wallet-adapter) dependencies:
+
+```bash
+yarn add @solana/wallet-adapter-base \
+               @solana/wallet-adapter-react \
+               @solana/wallet-adapter-react-ui \
+               @solana/wallet-adapter-wallets \
+               @solana-mobile/wallet-adapter-mobile
+```
+
+## Step 1: Create a new component
+
+Create a new file named `WalletAdapter.js` that defines a new `WalletAdapter` React component that renders the components of your app.
+
+We use this component to set up the adapters for each Solana wallet we want to support.
+
+```javascript
+import { useMemo } from 'react';
+import App from './App';
+
+export default function WalletAdapter() {
+  return <App />;
+}
+```
+
+## Step 2: Add UI components and styling
+
+The Solana wallet adapter library provides UI components for common UI frameworks. For this guide, we use the basic React package for styling (no UI framework).
+
+In your `WalletAdapter.js` file, import the `WalletModalProvider` and the default CSS styles from the `@solana/wallet-adapter-react-ui` package. Wrap the `WalletModalProvider` around your app’s components.
+
+```javascript
+…
+import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
+
+require("@solana/wallet-adapter-react-ui/styles.css");
+
+export default function WalletAdapter() {
+  return (
+    <WalletModalProvider>
+      <App />
+    </WalletModalProvider>
+  );
+}
+```
+
+:::info
+
+For additional UI framework support, such as [Material UI](https://mui.com/) and [Ant Design](https://ant.design/), visit the Solana wallet adapter [documentation](https://github.com/solana-labs/wallet-adapter#ui-components).
+
+:::
+
+## Step 3: Configure wallets
+
+To configure which wallets you want to support in your application, use the `WalletProvider` component.
+
+In your `WalletAdapter.js` file, import the `WalletProvider` component from the `@solana/wallet-adapter-react` package. Wrap the `WalletProvider` component around the `WalletModalProvider` component.
+
+```javascript
+…
+import { WalletProvider } from "@solana/wallet-adapter-react";
+
+export default function WalletAdapter() {
+  return (
+    <WalletProvider>
+      <WalletModalProvider>
+        <App />
+      </WalletModalProvider>
+   </WalletProvider>
+  );
+}
+
+```
+
+The `WalletProvider` component accepts a list of wallets as a prop. To add wallets, import adapters from the `@solana/wallet-adapter-wallets` package for each wallet you want to support, and pass a list of the wallet adapters as a prop into the `WalletProvider` component.
+
+```javascript
+…
+import { useMemo } from "react";
+import { WalletProvider } from "@solana/wallet-adapter-react";
+import {
+  CoinbaseWalletAdapter,
+  PhantomWalletAdapter,
+  TorusWalletAdapter
+} from "@solana/wallet-adapter-wallets";
+
+export default function WalletAdapter() {
+
+  // Add adapters to list of supported wallets
+  const wallets = useMemo(
+    () => [
+      new CoinbaseWalletAdapter(),
+      new PhantomWalletAdapter(),
+      new TorusWalletAdapter()
+    ],
+    []
+  );
+
+  return (
+    // Pass wallets as a prop to WalletProvider
+    <WalletProvider wallets={wallets} autoconnect>
+      <WalletModalProvider>
+        <App />
+      </WalletModalProvider>
+   </WalletProvider>
+  );
+}
+
+```
+
+:::info
+You can also specify the `autoconnect` attribute on the `WalletProvider` component to automatically attempt to reconnect a user wallet upon a page refresh.
+:::
+
+## Step 4: Configure network connection
+
+To configure which network you want wallets to establish a connection to, use the `ConnectionProvider` component.
+
+In your `WalletAdapter.js` file, import the `ConnectionProvider` component from the `@solana/wallet-adapter-react` package. Wrap the `ConnectionProvider` component around the `WalletProvider` component.
+
+```javascript
+…
+import {
+  ConnectionProvider,
+  WalletProvider
+} from "@solana/wallet-adapter-react";
+
+export default function WalletAdapter() {
+  …
+
+  return (
+    <ConnectionProvider>
+      <WalletProvider wallets={wallets}>
+        <WalletModalProvider>
+          <App />
+        </WalletModalProvider>
+     </WalletProvider>
+   </ConnectionProvider>
+  );
+}
+
+```
+
+The `ConnectionProvider` component accepts a network endpoint as a prop. You can set your network to `devnet`, `testnet`, `mainnet-beta`, or provide a custom RPC endpoint.
+
+```javascript
+…
+import { useMemo } from "react";
+import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import {
+  ConnectionProvider,
+  WalletProvider
+} from "@solana/wallet-adapter-react";
+import { clusterApiUrl } from "@solana/web3.js";
+
+export default function WalletAdapter() {
+  …
+  const network = WalletAdapterNetwork.Mainnet;
+
+  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+
+  return (
+   // Pass endpoint as prop
+    <ConnectionProvider endpoint={endpoint}>
+      <WalletProvider wallets={wallets}>
+        <WalletModalProvider>
+          <App />
+        </WalletModalProvider>
+     </WalletProvider>
+   </ConnectionProvider>
+  );
+}
+
+```
+
+## Step 5: Add wallet connection button
+
+To connect and disconnect user wallets, use the `WalletConnectButton` and `WalletDisconnectButton` components respectively, or the `WalletMultiButton` component which enables connecting and disconnecting using a single button. For this guide, we use `WalletMultiButton`.
+
+In your `App.js` file, import the `WalletMultiButton` component from the `@solana/wallet-adapter-react-ui` package. Include the `WalletMultiButton` component alongside the other components of your app.
+
+```javascript
+…
+import { useMemo } from "react";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+
+export default function App() {
+
+  return (
+   <div>
+     <WalletMultiButton />
+   </div>
+  );
+}
+```
+
+## Step 5: Use React hooks
+
+Once your application has a button that enables users to connect their wallets, you can use the `useWallet()` React hook to get a user's public key, check connection status of their wallet, as well as sign messages and send transactions on their behalf.
+
+In your `App.js` file, import the `userWallet` React hook from the `@solana/wallet-adapter-react` package, and use it to access the user's public key and other methods like `sendTransaction`.
+
+```javascript
+…
+import { useMemo } from "react";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+
+export default function App() {
+  const { connection } = useConnection();
+  const { publicKey, sendTransaction } = useWallet();
+
+  return (
+   <div>
+     <WalletMultiButton />
+   </div>
+  );
+}
+```
+
+For more examples on using the wallet adapter library, visit the Solana wallet adapter [documentation](https://solana-labs.github.io/wallet-adapter/).
+

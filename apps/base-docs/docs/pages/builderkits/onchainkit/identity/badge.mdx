@@ -1,0 +1,153 @@
+import { base } from 'viem/chains';
+import { Avatar, Badge, Name, Identity } from '@coinbase/onchainkit/identity';
+import App from '@/components/App';
+
+# `<Badge />`
+
+Use `Badge` component along with [`Avatar`](/builderkits/onchainkit/identity/avatar) or [`Name`](/builderkits/onchainkit/identity/name) components to display user attestations attached to their account
+
+## Usage
+
+Badge with default colors:
+
+:::code-group
+
+```tsx twoslash [tsx]
+import { Badge } from '@coinbase/onchainkit/identity';
+<Badge className="badge" /> // [!code focus]
+```
+
+```css [css]
+.badge {
+  background: #4F46E5;
+  path {
+    fill: #F9FAFB;
+  }
+}
+```
+
+:::
+
+<App>
+  <Badge className="badge" />
+</App>
+
+Badge with custom colors:
+
+```tsx twoslash
+import { Badge } from '@coinbase/onchainkit/identity';
+<Badge className="bg-blue-400 border-white"/> // [!code focus]
+```
+
+<App>
+  <Badge className="bg-blue-400 border-white"/>
+</App>
+
+## Badge with Tooltip
+
+You can enable a tooltip for the attestation badge to provide context about what the badge represents:
+
+```tsx twoslash
+// @noErrors: 2657
+import { Badge } from '@coinbase/onchainkit/identity';
+
+<Badge 
+  tooltip={true} // [!code focus]
+  className="badge"
+/>
+```
+
+<App>
+  <Badge tooltip={true} className="badge" />
+</App>
+
+With custom tooltip text:
+
+```tsx twoslash
+// @noErrors: 2657
+import { Badge } from '@coinbase/onchainkit/identity';
+
+<Badge 
+  tooltip="Coinbase Verified Account" // [!code focus]
+  className="badge"
+/>
+```
+
+<App>
+  <Badge tooltip="Coinbase Verified Account" className="badge" />
+</App>
+
+## Props
+
+[`BadgeReact`](/builderkits/onchainkit/identity/types#badgereact)
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `className` | `string` | Optional className override for top span element |
+| `tooltip` | `boolean \| string` | Controls whether the badge shows a tooltip on hover. When `true`, displays the attestation name. When a string is provided, shows that custom text instead. Defaults to `false` |
+
+## Badge on `<Name />` and `<Avatar />`
+
+Badge with [`<Name />`](/builderkits/onchainkit/identity/name), best used when [`<Name />`](/builderkits/onchainkit/identity/name) are displayed alongside [`<Avatar />`](/builderkits/onchainkit/identity/avatar) components.
+
+In both examples we use the Coinbase [Verified Account](https://base.easscan.org/schema/view/0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9) schema ID to show the Coinbase verified badge on the Name and Avatar components.
+
+```tsx twoslash
+// @noErrors: 2657
+import { base } from 'viem/chains';
+import { Badge, Name, Identity } from '@coinbase/onchainkit/identity';
+
+const address = '0x838aD0EAE54F99F1926dA7C3b6bFbF617389B4D9';
+const COINBASE_VERIFIED_ACCOUNT_SCHEMA_ID =
+  '0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9';
+
+<Identity
+  className="bg-transparent"
+  schemaId={COINBASE_VERIFIED_ACCOUNT_SCHEMA_ID}
+  address={address}
+>
+  <Name address={address}>
+    <Badge tooltip={true} /> {/* With tooltip that shows attestation name */}
+  </Name>
+</Identity>
+```
+
+<App>
+  <Identity
+    className="bg-transparent"
+    schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
+  >
+    <Name address="0x838aD0EAE54F99F1926dA7C3b6bFbF617389B4D9">
+      <Badge tooltip={true} />
+    </Name>
+  </Identity>
+</App>
+
+Badge with [`<Avatar />`](/builderkits/onchainkit/identity/avatar), best used when [`<Avatar />`](/builderkits/onchainkit/identity/avatar) is not paired with any labels.
+
+```tsx twoslash
+// @noErrors: 2657
+import { base } from 'viem/chains';
+import { Avatar, Badge, Identity } from '@coinbase/onchainkit/identity';
+
+const address = '0x838aD0EAE54F99F1926dA7C3b6bFbF617389B4D9';
+const COINBASE_VERIFIED_ACCOUNT_SCHEMA_ID =
+  '0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9';
+
+<Identity
+  className="bg-transparent"
+  schemaId={COINBASE_VERIFIED_ACCOUNT_SCHEMA_ID}
+>
+  <Avatar address={address}>
+    <Badge tooltip="Verified by Coinbase" /> {/* With custom tooltip text */}
+  </Avatar>
+</Identity>
+```
+
+<App>
+  <Identity schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9" className="bg-transparent">
+    <Avatar address="0x838aD0EAE54F99F1926dA7C3b6bFbF617389B4D9">
+      <Badge tooltip="Verified by Coinbase" />
+    </Avatar>
+  </Identity>
+</App>

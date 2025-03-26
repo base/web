@@ -1,7 +1,7 @@
 import { encodeUrlQueryParams } from 'apps/web/src/utils/urls';
 
-// TODO: There's way more that neymar returns but we only need this for now
-export type NeymarButton = {
+// TODO: There's way more that neynar returns but we only need this for now
+export type NeynarButton = {
   action_type: string;
   index: number;
   post_url: string;
@@ -10,7 +10,7 @@ export type NeymarButton = {
 };
 
 export type NeynarFrame = {
-  buttons: NeymarButton[];
+  buttons: NeynarButton[];
   frames_url: string;
   image: string;
   image_aspect_ratio: string;
@@ -24,11 +24,11 @@ export type NeynarEmbed = {
   url: string;
 };
 
-export type NeymarEmbedCast = {
+export type NeynarEmbedCast = {
   cast_id: { fid: number; hash: string };
 };
 
-export type NeymarCastData = {
+export type NeynarCastData = {
   cast: {
     frames: NeynarFrame[];
     embeds: NeynarEmbed[];
@@ -60,7 +60,7 @@ export async function fetchCast({
   };
   try {
     const response = await fetch(url, options);
-    const data = (await response.json()) as NeymarCastData;
+    const data = (await response.json()) as NeynarCastData;
     return data.cast;
   } catch (error) {}
 }

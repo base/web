@@ -1,0 +1,75 @@
+---
+title: "Switching or Adding EVM Chains"
+sidebar_label: "Switching or Adding EVM Chains"
+slug: "switching-chains"
+---
+
+This page explains how to configure your app so that it connects to supported networks, which include all EVM-compatible L1/L2 networks.
+
+## Switching or adding alternative EVM-compatible chains 
+
+Coinbase Wallet SDK and Coinbase Wallet clients support both <a href="https://eips.ethereum.org/EIPS/eip-3326" target="_blank" rel="noreferrer noopener">EIP-3326</a> `wallet_switchEthereumChain` and <a href="https://eips.ethereum.org/EIPS/eip-3085" target="_blank" rel="noreferrer noopener">EIP-3085</a> `wallet_addEthereumChain` requests for switching networks.
+
+For apps supporting multiple networks, Coinbase Wallet SDK only needs 1 rpcUrl -- the rpcUrl of the chain the app wishes to default users to.
+
+If Wallet SDK receives either a `wallet_switchEthereumChain` or `wallet_addEthereumChain` request for a [whitelisted network](./whitelisted-networks.mdx) then it switches the user to that network after asking approval from the user.
+
+Coinbase Wallet clients handle `wallet_addEthereumChain` requests for non-whitelisted networks (for example, a network such as `Harmony One` which is not currently supported by clients by default).
+
+An app can determine if a network is whitelisted or not by sending a `wallet_switchEthereumChain` request for that network. If error code 4092 is returned, then the network is not supported by default by the client wallet.
+
+### Example
+
+Here's how to request the wallet switch networks:
+
+```typescript
+ethereum.request({
+  method: 'wallet_switchEthereumChain',
+  params: [{ chainId: '0xA86A' }]
+}).then(response => console.log(response))
+```
+
+Here's how to request the client wallet add a new network
+
+```typescript
+ethereum.request({
+  method: 'wallet_addEthereumChain',
+  params: [{
+    chainId: '0x63564C40',
+    rpcUrls: ['https://api.harmony.one'],
+    chainName: 'Harmony Mainnet',
+    nativeCurrency: { name: 'ONE', decimals: 18, symbol: 'ONE' },
+    blockExplorerUrls: ['https://explorer.harmony.one'],
+    iconUrls: ['https://harmonynews.one/wp-content/uploads/2019/11/slfdjs.png'],
+  }],
+}).then(response => console.log(response))
+```
+
+Many apps attempt to switch to a network with `wallet_switchEthereumChain`, determine if the network is supported by the wallet based on the error code, and follow with a `wallet_addEthereumChain` request if the network is not supported. Here's an example:
+
+```typescript
+try {
+  // attempt to switch to Harmony One network
+  const result = await ethereum.send('wallet_switchEthereumChain', [{ chainId: `0x63564C40` }])
+} catch (switchError) {
+  // 4902 indicates that the client does not recognize the Harmony One network
+  if (switchError.code === 4902) {
+      await ethereum.request({
+        method: 'wallet_addEthereumChain',
+        params: [{
+          chainId: '0x63564C40',
+          rpcUrls: ['https://api.harmony.one'],
+          chainName: 'Harmony Mainnet',
+          nativeCurrency: { name: 'ONE', decimals: 18, symbol: 'ONE' },
+          blockExplorerUrls: ['https://explorer.harmony.one'],
+          iconUrls: ['https://harmonynews.one/wp-content/uploads/2019/11/slfdjs.png'],
+        }],
+      })
+  }
+}
+```
+
+**Next steps:** 
+
+- [Getting Ethereum Accounts](./getting-eth-accounts.mdx)
+

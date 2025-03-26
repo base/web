@@ -19,14 +19,12 @@ import { useMemo } from 'react';
 
 export type DiscountData = AttestationData & { discountKey: `0x${string}` };
 
-export type MappedDiscountData = {
-  [key in Discount]?: DiscountData;
-};
+export type MappedDiscountData = Partial<Record<Discount, DiscountData>>;
 
 export function findFirstValidDiscount(
   aggregatedData: MappedDiscountData,
 ): DiscountData | undefined {
-  const priorityOrder: Partial<{ [key in Discount]: number }> & { default: 3 } = {
+  const priorityOrder: Partial<Record<Discount, number>> & { default: 3 } = {
     [Discount.DISCOUNT_CODE]: 0,
     [Discount.BNS_NAME]: 1,
     [Discount.CB1]: 2,

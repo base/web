@@ -1,21 +1,52 @@
 {
-  "extends": "../../tsconfig.projectOptions.json",
   "compilerOptions": {
-    "outDir": "../../out/apps/base-docs",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable", "esnext"],
+    "module": "NodeNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "NodeNext",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "strictNullChecks": true,
+
+    "outDir": "./dist",
+    "esModuleInterop": true,
+
+    /* Path Aliases */
+    "baseUrl": ".",
     "paths": {
-      "base-ui": ["../../libs/base-ui"]
-    },
+      "@/*": ["docs/*"],
+      "@/components/*": ["docs/components/*"],
+      "@/pages/*": ["docs/pages/*"],
+      "@/styles/*": ["docs/styles/*"],
+      "@/lib/*": ["docs/lib/*"],
+      "@/utils/*": ["docs/utils/*"],
+      "@/types/*": ["docs/types/*"],
+      "@onchainkit/*": ["docs/pages/builderkits/onchainkit/*"]
+    }
   },
   "include": [
-    "**/*",
-    "**/*.json"
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.md",
+    "**/*.mdx",
   ],
-  "exclude": [
-    "dts"
-  ],
-  "references": [
-    {
-      "path": "../../libs/base-ui"
-    }
-  ]
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
 }

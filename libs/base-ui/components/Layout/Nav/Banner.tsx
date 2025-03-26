@@ -36,7 +36,7 @@ export default function Banner({ href, text, bannerName }: BannerProps) {
       },
       AnalyticsEventImportance.high,
     );
-  }, [logEvent, ActionType, ComponentType, AnalyticsEventImportance, bannerName]);
+  }, [logEvent, bannerName]);
 
   const hideBanner = useCallback(() => {
     setIsBannerVisible(false);

@@ -1,0 +1,212 @@
+import { Callout } from "vocs/components";
+
+# Add to Existing Next.js Project (with Wagmi)
+
+This option guides you through adding Smart Wallet to an existing
+[Next.js](https://nextjs.org/) application using [Wagmi](https://wagmi.sh/).
+
+## Step 1: Install Dependencies
+
+Let's start by navigating to your project directory and installing the dependencies:
+
+:::code-group
+
+```bash [npm]
+npm install @coinbase/wallet-sdk wagmi viem @tanstack/react-query
+```
+
+```bash [pnpm]
+pnpm add @coinbase/wallet-sdk wagmi viem @tanstack/react-query
+```
+
+```bash [yarn]
+yarn add @coinbase/wallet-sdk wagmi viem @tanstack/react-query
+```
+
+```bash [bun]
+bun add @coinbase/wallet-sdk wagmi viem @tanstack/react-query
+```
+
+:::
+
+## Step 2: Create Wagmi Config
+
+If your project does not have a Wagmi Config, create a file called `wagmi.ts` in the root directory of your project:
+
+```typescript
+import { http, createConfig } from "wagmi";
+import { baseSepolia } from "wagmi/chains";
+import { coinbaseWallet } from "wagmi/connectors";
+
+export const cbWalletConnector = coinbaseWallet({
+  appName: "Wagmi Smart Wallet",
+  preference: "smartWalletOnly",
+});
+
+export const config = createConfig({
+  chains: [baseSepolia],
+  // turn off injected provider discovery
+  multiInjectedProviderDiscovery: false,
+  connectors: [cbWalletConnector],
+  ssr: true,
+  transports: {
+    [baseSepolia.id]: http(),
+  },
+});
+
+declare module "wagmi" {
+  interface Register {
+    config: typeof config;
+  }
+}
+```
+
+<Callout type="info">
+The wagmi config is modified to include the Smart Wallet connector `cbWalletConnector`.
+</Callout>
+
+## Step 3: Create Providers Component
+
+Create a file called `providers.tsx` in your `app/` directory:
+
+```tsx
+"use client";
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState, type ReactNode } from "react";
+import { WagmiProvider } from "wagmi";
+
+import { config } from "@/wagmi";
+
+export function Providers(props: { children: ReactNode }) {
+  const [queryClient] = useState(() => new QueryClient());
+
+  return (
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        {props.children}
+      </QueryClientProvider>
+    </WagmiProvider>
+  );
+}
+```
+
+## Step 4: Add Providers to Root Layout
+
+Update your root layout file (`app/layout.tsx`):
+
+```tsx
+import "./globals.css";
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
+
+import { Providers } from "./providers";
+
+export const metadata: Metadata = {
+  title: "Smart Wallet App",
+  description: "Smart Wallet Next.js integration",
+};
+
+export default function RootLayout(props: { children: ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <Providers>{props.children}</Providers>
+      </body>
+    </html>
+  );
+}
+```
+
+## Step 5: Create `ConnectAndSIWE` Component
+
+Create a component for wallet connection and Sign-In With Ethereum (SIWE):
+
+```tsx
+import { useCallback, useEffect, useState } from "react";
+import type { Hex } from "viem";
+import { useAccount, useConnect, usePublicClient, useSignMessage } from "wagmi";
+import { SiweMessage } from "siwe";
+import { cbWalletConnector } from "@/wagmi";
+
+export function ConnectAndSIWE() {
+  const { connect } = useConnect({
+    mutation: {
+      onSuccess: (data) => {
+        const address = data.accounts[0];
+        const chainId = data.chainId;
+        const m = new SiweMessage({
+          domain: document.location.host,
+          address,
+          chainId,
+          uri: document.location.origin,
+          version: "1",
+          statement: "Smart Wallet SIWE Example",
+          nonce: "12345678",
+        });
+        setMessage(m);
+        signMessage({ message: m.prepareMessage() });
+      },
+    },
+  });
+  const account = useAccount();
+  const client = usePublicClient();
+  const [signature, setSignature] = useState<Hex | undefined>(undefined);
+  const { signMessage } = useSignMessage({
+    mutation: { onSuccess: (sig) => setSignature(sig) },
+  });
+  const [message, setMessage] = useState<SiweMessage | undefined>(undefined);
+
+  const [valid, setValid] = useState<boolean | undefined>(undefined);
+
+  const checkValid = useCallback(async () => {
+    if (!signature || !account.address || !client || !message) return;
+
+    client
+      .verifyMessage({
+        address: account.address,
+        message: message.prepareMessage(),
+        signature,
+      })
+      .then((v) => setValid(v));
+  }, [signature, account]);
+
+  useEffect(() => {
+    checkValid();
+  }, [signature, account]);
+
+  useEffect(() => {});
+
+  return (
+    <div>
+      <button onClick={() => connect({ connector: cbWalletConnector })}>
+        Connect + SIWE
+      </button>
+      <p>{}</p>
+      {valid != undefined && <p> Is valid: {valid.toString()} </p>}
+    </div>
+  );
+}
+```
+
+## Step 6: Use the Component in a Page
+
+Add the component to `app/page.tsx`:
+
+```tsx
+import { ConnectAndSIWE } from '../components/ConnectAndSIWE'
+
+export default function Home() {
+  return (
+    <main>
+      <h1>Smart Wallet Integration</h1>
+      <ConnectAndSIWE />
+    </main>
+  )
+}
+```
+
+<Callout type="success">
+Congratulations! You just integrated Smart Wallet in your app.
+You can now [Explore More Features](/identity/smart-wallet/quickstart#explore-more-features).
+</Callout>

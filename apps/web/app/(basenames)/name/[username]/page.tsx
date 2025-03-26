@@ -12,10 +12,11 @@ import classNames from 'classnames';
 import { Metadata } from 'next';
 
 export type UsernameProfileProps = {
-  params: { username: Basename };
+  params: Promise<{ username: Basename }>;
 };
 
-export async function generateMetadata({ params }: UsernameProfileProps): Promise<Metadata> {
+export async function generateMetadata(props: UsernameProfileProps): Promise<Metadata> {
+  const params = await props.params;
   const username = await formatDefaultUsername(params.username);
   const defaultDescription = `${username}, a Basename`;
   const description = await getBasenameTextRecord(username, UsernameTextRecordKeys.Description);
@@ -34,7 +35,8 @@ export async function generateMetadata({ params }: UsernameProfileProps): Promis
   };
 }
 
-export default async function Username({ params }: UsernameProfileProps) {
+export default async function Username(props: UsernameProfileProps) {
+  const params = await props.params;
   let username = await formatDefaultUsername(decodeURIComponent(params.username) as Basename);
   await redirectIfNotNameOwner(username);
 

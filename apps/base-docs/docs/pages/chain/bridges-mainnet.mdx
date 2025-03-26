@@ -1,0 +1,91 @@
+---
+title: Bridges
+description: Documentation for bridging assets to Base. This page covers how to bridge ETH and ERC-20s between Ethereum (L1) and Base along with essential information.
+
+---
+
+# Bridges
+
+While the bridge on bridge.base.org has been deprecated, there are many bridges
+that support moving assets between Base and other chains.
+
+For questions, see our [FAQ](#faq).
+
+## Superbridge
+
+Superbridge enables you to bridge ETH and other supported assets from Ethereum mainnet (L1) directly to Base.
+
+#### Supported Networks
+
+- [Base Mainnet](https://superbridge.app/base)
+- [Base Sepolia (Testnet)](https://superbridge.app/base-sepolia)
+
+## Brid.gg
+
+Brid.gg is another option that also helps you bridge ETH and supported assets between Ethereum mainnet (L1) and Base.
+
+#### Supported Networks
+
+- [Base Mainnet](https://brid.gg/base)
+- [Base Sepolia (Testnet)](https://testnet.brid.gg/base-sepolia)
+
+
+## Disclaimer
+
+Coinbase Technologies, Inc., provides links to these independent service providers for your
+convenience but assumes no responsibility for their operations. Any interactions with these
+providers are solely between you and the provider.
+
+## Programmatic Bridging
+
+See the [sample code repository](https://github.com/base-org/guides/tree/main/bridge/native) to see how to bridge ETH and ERC-20s from Ethereum to Base.
+
+:::caution
+
+**Double check the token address for ERC-20s** You can use any ERC-20 that is
+supported on the network. You can check what assets are on Base and the
+corresponding contract address via [this hub](https://github.com/ethereum-optimism/ethereum-optimism.github.io/tree/master/data).
+Ensure there is an address for `base`, [example](https://github.com/ethereum-optimism/ethereum-optimism.github.io/blob/master/data/WETH/data.json#L16-L18).
+Always test with small amounts to ensure the system is working as expected.
+
+:::
+
+:::caution
+This implementation only can bridge assets to Base. Do not attempt to alter the
+code to withdraw the assets.
+
+:::
+
+## FAQ
+
+<details>
+<summary>**Can I still use the bridge on bridge.base.org?**</summary>
+<br/>
+No, the bridge on bridge.base.org has been deprecated.
+</details>
+
+<details>
+<summary>**I used bridge.base.org in the past, how do I find my deposit or withdrawal?**</summary>
+<br/>
+Navigate to one of the Superchain Bridges to look up your transaction.
+</details>
+
+<details>
+<summary>**Why has Base deprecated the bridge on bridge.base.org?**</summary>
+<br/>
+Base is committed to decentralization and the Superchain vision. Leveraging the community to bootstrap the Superchain bridges is a step in that direction; increasing censorship resistance and decentralization.
+</details>
+
+<details>
+<summary>**Who operates the Superchain Bridges like Superbridge.com and Brid.gg?**</summary>
+<br/>
+Superchain Bridges are operated by third parties, not by Coinbase Technologies, Inc. ("Coinbase"). Coinbase does not control, operate, or assume any responsibility for the performance of these external platforms. Before using any Superchain Bridge, you may be required to agree to their terms and conditions. We strongly recommend you review these terms carefully, as well as any privacy policies, to understand your rights and obligations. The integration or inclusion of the Superchain Bridges does not imply an endorsement or recommendation of any bridge by Coinbase.
+</details>
+
+<details>
+<summary>**What if I have a question, issue, or problem?**</summary>
+<br/>
+The [Base Discord](https://base.org/discord) community is available around the clock for general questions,
+assistance and support! You can create a support ticket in the #general-support
+channel.
+</details>

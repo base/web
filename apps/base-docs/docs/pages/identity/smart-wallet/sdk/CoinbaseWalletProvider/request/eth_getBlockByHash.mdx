@@ -1,0 +1,56 @@
+# eth_getBlockByHash
+
+Defined in the [Ethereum JSON-RPC Specification](https://ethereum.org/en/developers/docs/apis/json-rpc/)
+
+> Returns information about a block by block hash.
+
+## Parameters
+
+```ts
+type GetBlockByHashParams = [string, boolean]
+```
+
+1. `string` - Hash of a block
+2. `boolean` - If true, returns the full transaction objects; if false, only the hashes of the transactions
+
+### Example
+
+```json
+["0x1b4", true]
+```
+
+## Returns
+
+`object` or `null`
+
+Returns a block object, or `null` if no block was found:
+
+```typescript
+interface Block {
+  number: string; // The block number
+  hash: string; // Hash of the block
+  parentHash: string; // Hash of the parent block
+  nonce: string; // Hash of the generated proof-of-work
+  sha3Uncles: string; // SHA3 of the uncles data in the block
+  logsBloom: string; // The bloom filter for the logs of the block
+  transactionsRoot: string; // The root of the transaction trie of the block
+  stateRoot: string; // The root of the final state trie of the block
+  receiptsRoot: string; // The root of the receipts trie of the block
+  miner: string; // The address of the beneficiary to whom the mining rewards were given
+  difficulty: string; // Integer of the difficulty for this block
+  totalDifficulty: string; // Integer of the total difficulty of the chain until this block
+  extraData: string; // The "extra data" field of this block
+  size: string; // Integer the size of this block in bytes
+  gasLimit: string; // The maximum gas allowed in this block
+  gasUsed: string; // The total used gas by all transactions in this block
+  timestamp: string; // The unix timestamp for when the block was collated
+  transactions: Array<string | Transaction>; // Array of transaction objects, or 32-byte transaction hashes depending on the second parameter
+  uncles: Array<string>; // Array of uncle hashes
+}
+```
+
+## Errors
+
+| Code   | Message            |
+| ------ | ------------------ |
+| -32602 | Invalid parameters |

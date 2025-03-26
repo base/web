@@ -1,0 +1,67 @@
+
+## LangChain Local Environment Setup
+
+### TypeScript
+
+:::steps
+### Set Up Your Development Environment
+
+```bash [Terminal]
+node --version  # Should be 18+
+npm --version   # Should be 9.7.2+
+```
+
+### Clone and Set Up the Repository
+
+```bash [Terminal]
+git clone https://github.com/coinbase/agentkit.git
+cd agentkit
+npm install
+npm run build
+cd typescript/examples/langchain-cdp-chatbot
+```
+
+### Configure Environment Variables
+
+```bash [Terminal]
+cp .env.local .env
+# Edit .env with your credentials
+```
+
+### Run the Agent
+
+```bash [Terminal]
+npm run start
+```
+:::
+
+### Python
+
+:::steps
+### Set Up Your Development Environment
+
+```bash [Terminal]
+python --version  # Should be 3.10+
+poetry --version # Verify Poetry installation
+```
+
+### Clone and Set Up the Repository
+
+```bash [Terminal]
+git clone https://github.com/coinbase/agentkit.git
+cd agentkit/python/examples/cdp-langchain-chatbot
+```
+
+### Configure Environment Variables
+
+```bash [Terminal]
+cp .env.local .env
+# Edit .env with your credentials
+```
+
+### Run the Agent
+
+```bash [Terminal]
+poetry install
+poetry run python main.py
+```

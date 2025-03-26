@@ -12,6 +12,7 @@ module.exports = {
       ],
       rules: {
         'import/no-extraneous-dependencies': 'off',
+        'import/extensions': 'off',
       },
     },
   ],
@@ -29,6 +30,7 @@ module.exports = {
     'import/extensions': ['error', 'never'],
     'react/destructuring-assignment': 'off',
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx', '.mdx'] }],
+    'react/react-in-jsx-scope': 'off',
 
     // We utilize prop spreading
     'react/jsx-props-no-spreading': 'off',
@@ -36,7 +38,7 @@ module.exports = {
     // We utilize class properties
     'react/state-in-constructor': 'off',
 
-    // Dont use prop types since we are using TypeScript
+    // Don't use prop types since we are using TypeScript
     'react/default-props-match-prop-types': 'off',
     'react/forbid-foreign-prop-types': 'off',
     'react/forbid-prop-types': 'off',
@@ -66,7 +68,7 @@ module.exports = {
 
     'react/jsx-one-expression-per-line': 'off',
 
-    // We dont use flow
+    // We don't use flow
     'relay/generated-flow-types': 'off',
 
     // Shorthand types

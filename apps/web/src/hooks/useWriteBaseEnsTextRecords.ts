@@ -18,11 +18,11 @@ export type UseWriteBaseEnsTextRecordsProps = {
 /*
   A hook to set update TextRecords in a batch
 
-  Responsabilities:
+  Responsibilities:
   - Get existing TextRecords
   - Keep track of TextRecords updates
   - Wait for the transaction to be processed
-  - Refetch records on successfull request  
+  - Refetch records on successful request  
   - Log errors and analytics accordingly
 
 */
@@ -64,9 +64,9 @@ export default function useWriteBaseEnsTextRecords({
     ) as UsernameTextRecordKeys[];
     return keys.filter((key) => {
       const existingValue = existingTextRecords[key].trim();
-      const updatedValueValue = updatedTextRecords[key].trim();
+      const updatedValue = updatedTextRecords[key].trim();
 
-      return existingValue != updatedValueValue;
+      return existingValue != updatedValue;
     });
   }, [existingTextRecords, updatedTextRecords]);
 

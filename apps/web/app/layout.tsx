@@ -6,6 +6,16 @@ import localFont from 'next/font/local';
 import { Footer } from 'apps/web/src/components/Layout/Footer/Footer';
 import DatadogInit from 'apps/web/app/datadog';
 
+const GOOGLE_ANALYTICS_ID = 'G-D1QGEV3B07';
+const googleAnalyticsInitScriptContent = {
+  __html: `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${GOOGLE_ANALYTICS_ID}');
+  `,
+};
+
 const coinbaseDisplay = localFont({
   src: [
     {
@@ -87,6 +97,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <meta
           name="google-site-verification"
           content="lqwNRCxYlFLIcX9EiKAvE4k4ZT8JGpdWgehEIPA7y1Y"
+        />
+        <script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+          async
+          defer
+        />
+        <script
+          id="gtag-init"
+          // eslint-disable-next-line react/no-danger -- necessary for google analytics
+          dangerouslySetInnerHTML={googleAnalyticsInitScriptContent}
         />
       </head>
       <body className="flex min-h-screen flex-col">

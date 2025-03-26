@@ -1,0 +1,70 @@
+---
+title: 'Coinbase Wallet Injected Ethereum Provider'
+sidebar_label: 'Coinbase Wallet Injected Ethereum Provider'
+slug: 'injected-provider'
+---
+
+The Coinbase Wallet browser extension injects an Ethereum provider, as specified by [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193), into the browser at `window.ethereum`.
+
+You can use this provider in your app to request users' Ethereum accounts, read on-chain data, and have the user sign messages and transactions, without using the Coinbase Wallet SDK.
+
+## Benefits of using Coinbase Wallet SDK vs. the injected provider
+
+The basic functionality between Coinbase Wallet SDK and the Coinbase Wallet injected provider is very similar. However, the SDK provides some additional helpful features:
+
+- If Coinbase Wallet extension isn't installed, calling `ethereum.request({ method: 'eth_requestAccounts' })` will start a built-in onboarding flow.
+- On mobile, calling `ethereum.request({ method: 'eth_requestAccounts' })` will automatically deep-link to your app in the Coinbase Wallet native mobile app.
+
+## Multiple injected providers
+
+If the user has multiple wallet browser extensions installed that inject ethereum providers (e.g., both MetaMask and Coinbase Wallet), Coinbase Wallet's injected provider will construct a "multiprovider" array at `window.ethereum.providers` containing the injected provider from each wallet. Coinbase Wallet can be identified in this array by the `isCoinbaseWallet` property.
+
+More information can be found in our doc on [Handling Multiple Injected Extensions](./injected-provider-guidance.mdx).
+
+## Properties
+
+#### `isCoinbaseWallet`
+
+Identifies if this provider is Coinbase Wallet.
+
+## Methods
+
+#### `request(args)`
+
+```typescript
+interface RequestArguments {
+  method: string;
+  params?: any;
+}
+
+ethereum.request<T>(args: RequestArguments): Promise<T>;
+```
+
+Coinbase Wallet uses `request(args)` to wrap an RPC API. The params and return value vary by RPC method.
+
+If the request fails for any reason, the Promise will reject with an Ethereum RPC Error.
+
+Coinbase Wallet supports many standardized Ethereum RPC methods, including:
+
+- [`eth_requestAccounts`](./getting-eth-accounts.mdx)
+- [`wallet_addEthereumChain`](./switching-chains.mdx)
+- [`wallet_switchEthereumChain`](./switching-chains.mdx)
+- [`wallet_watchAsset`](./tracking-assets.mdx)
+- `eth_sendTransaction`
+- `eth_sendRawTransaction`
+- `eth_newFilter`
+- `eth_newBlockFilter`
+- `eth_newPendingTransactionFilter`
+- `eth_getFilterChanges`
+- `eth_getFilterLogs`
+
+As well as all standard signing methods:
+
+- `eth_sign`
+- `personal_sign`
+- `eth_signTypedData`
+- `eth_signTransaction`
+- `signTypedData_v1`
+- `signTypedData_v3`
+- `signTypedData_v4`
+

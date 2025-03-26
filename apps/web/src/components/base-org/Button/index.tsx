@@ -10,6 +10,7 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariants;
   size?: ButtonSizes;
   iconName?: IconProps['name'];
+  iconSize?: IconProps['width'];
   roundedFull?: boolean;
   fullWidth?: boolean;
 };
@@ -19,20 +20,22 @@ const variantStyles: Record<ButtonVariants, string> = {
   [ButtonVariants.Primary]:
     'bg-blue text-white border border-blue hover:bg-blue-80 active:bg-[#06318E]',
 
-  // White buton
+  // White button
   [ButtonVariants.Secondary]:
     'bg-white border border-white text-palette-foreground hover:bg-gray-15 active:bg-gray-30',
 
   // White outlined
   [ButtonVariants.Outlined]:
     'bg-transparent text-white border border-white hover:bg-white hover:text-black active:bg-[#E3E7E9]',
+  // Secondary Outlined
+  [ButtonVariants.SecondaryOutline]: 'bg-transparent border border-gray-muted/65 hover:bg-white/10',
 };
 
 const sizeStyles: Record<ButtonSizes, string> = {
   // Blue button
   [ButtonSizes.Medium]: 'text-md px-4 py-2 gap-3',
 
-  // White buton
+  // White button
   [ButtonSizes.Large]: 'text-lg px-6 py-4 gap-5',
 };
 
@@ -40,7 +43,7 @@ const sizeIconRatio: Record<ButtonSizes, string> = {
   // Blue button
   [ButtonSizes.Medium]: '0.75rem',
 
-  // White buton
+  // White button
   [ButtonSizes.Large]: '1rem',
 };
 
@@ -51,13 +54,14 @@ export default function Button({
   variant = ButtonVariants.Primary,
   size = ButtonSizes.Medium,
   iconName,
+  iconSize = sizeIconRatio[size],
   roundedFull = false,
   className,
   fullWidth = false,
 }: ButtonProps) {
   const buttonClasses = classNames(
     // Shared - base
-    'text-md px-4 py-2 whitespace-nowrap',
+    'text-base px-4 py-2 whitespace-nowrap',
 
     // Shared - layout
     'flex items-center justify-center',
@@ -81,8 +85,6 @@ export default function Button({
 
     className,
   );
-
-  const iconSize = sizeIconRatio[size];
 
   return (
     <button type="button" onClick={onClick} disabled={disabled} className={buttonClasses}>

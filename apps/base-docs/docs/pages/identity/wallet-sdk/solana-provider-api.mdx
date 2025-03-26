@@ -1,0 +1,122 @@
+---
+title: "Provider API reference"
+sidebar_label: "Provider API reference"
+slug: "solana-provider-api"
+---
+
+## Properties
+
+### publicKey
+
+#### `publicKey: PublicKey | null`
+
+The [PublicKey](https://solana-labs.github.io/solana-web3.js/classes/PublicKey.html) of the connected user account.
+
+### isConnected
+
+#### `isConnected: boolean`
+
+If `true`, the user account has established a connection. Otherwise, `false`.
+
+## Methods
+
+### connect
+
+#### `connect(): Promise<void>`
+
+Connects the user’s wallet.
+
+If successful, sets the `isConnected` property to `true`, and sets the `publicKey` property to the user’s public key.
+
+### disconnect
+
+#### `disconnect(): Promise<void>`
+
+Disconnects the user’s wallet.
+
+If successful, sets the `isConnected` property to `false`, and sets the `publicKey` property to `null`.
+:::info
+
+This method does not disconnect the app from the wallet under **Settings > Dapp Connections**.
+
+:::
+### sendTransaction
+
+#### `sendTransaction(transaction: Transaction, options?: SendOptions): Promise<{ signature: string }>`
+
+Sends a transaction.
+
+Returns a Promise for an object containing the signature.
+:::info
+
+[SendOptions](https://solana-labs.github.io/solana-web3.js/modules.html#SendOptions) can be specified as a optional second argument.
+
+:::
+#### Parameters
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| transaction | [Transaction](https://solana-labs.github.io/solana-web3.js/classes/Transaction.html) | The transaction to send. |
+| options *(optional)* | [SendOptions](https://solana-labs.github.io/solana-web3.js/modules.html#SendOptions) | Options for sending transactions. |
+
+### signAllTransactions
+
+#### `signAllTransactions(transactions: Transaction[]): Promise<Transaction[]>`
+
+Signs a list of transactions.
+
+Returns a Promise for the list of signed transactions.
+
+#### Parameters
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| transactions | [Transaction](https://solana-labs.github.io/solana-web3.js/classes/Transaction.html)[] | The list of transactions to sign. |
+
+### signAndSendTransaction
+
+#### `signAndSendTransaction(transaction: Transaction, options?: SendOptions): Promise<{ signature: string }>`
+
+Signs and sends a transaction.
+
+Returns a Promise for an object containing the signature.
+:::info
+
+[SendOptions](https://solana-labs.github.io/solana-web3.js/modules.html#SendOptions) can be specified as a optional second argument.
+
+:::
+#### Parameters
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| transaction | [Transaction](https://solana-labs.github.io/solana-web3.js/classes/Transaction.html) | The transaction to sign and send. |
+| options *(optional)* | [SendOptions](https://solana-labs.github.io/solana-web3.js/modules.html#SendOptions) | Options for sending transactions. |
+
+### signMessage
+
+#### `signMessage(message: Uint8Array): Promise<{ signature: Uint8Array}>`
+
+Signs a message.
+
+Returns a Promise for an object containing the signature.
+
+#### Parameters
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| message | [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) | The message to sign. |
+
+### signTransaction
+
+#### `signTransaction(transaction: Transaction): Promise<Transaction>`
+
+Signs a transaction.
+
+Returns a Promise for the signed transaction.
+
+#### Parameters
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| transaction | [Transaction](https://solana-labs.github.io/solana-web3.js/classes/Transaction.html) | The transaction to sign. |
+

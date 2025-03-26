@@ -94,7 +94,7 @@ export function useRegisterNameCallback(
       owner: address, // The address of the owner for the name.
       duration: secondsInYears(years), // The duration of the registration in seconds.
       resolver: USERNAME_L2_RESOLVER_ADDRESSES[basenameChain.id], // The address of the resolver to set for this name.
-      data: [addressData, nameData], //  Multicallable data bytes for setting records in the associated resolver upon reigstration.
+      data: [addressData, nameData], //  Multicallable data bytes for setting records in the associated resolver upon registration.
       reverseRecord, // Bool to decide whether to set this name as the "primary" name for the `owner`.
     };
 

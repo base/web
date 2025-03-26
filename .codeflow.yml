@@ -3,7 +3,7 @@ secure:
   required_reviews: 1
   requires_mfa: true
   requires_verified: true
-  upstream_repository: base-org/web
+  upstream_repository: base/web
 
 build:
   engines:
@@ -14,10 +14,6 @@ build:
     - BaldurECR:
         name: docs
         path: ./apps/base-docs/Dockerfile
-        architecture: amd64
-    - BaldurECR:
-        name: bridge
-        path: ./apps/bridge/Dockerfile
         architecture: amd64
   multi_arch: true
 

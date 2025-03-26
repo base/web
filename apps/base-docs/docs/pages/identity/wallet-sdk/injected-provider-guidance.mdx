@@ -1,0 +1,30 @@
+---
+title: 'Handling Multiple Injected Extensions'
+sidebar_label: 'Handling Multiple Injected Extensions'
+slug: 'injected-provider-guidance'
+---
+
+If a user has both Metamask and Coinbase Wallet extensions installed, connecting to the injected provider can lead to a situation where both extensions raise a pop-up window to connect wallet.
+
+If you are using `window.ethereum` to support Metamask on your app, you can prevent this scenario with the following code snippet, which specifies that your injected provider option only works with Metamask:
+
+```javascript
+const connectWallet = async () => {
+  if (typeof window.ethereum !== 'undefined') {
+    let provider = window.ethereum;
+    // edge case if MM and CBW are both installed
+    if (window.ethereum.providers?.length) {
+      window.ethereum.providers.forEach(async (p) => {
+        if (p.isMetaMask) provider = p;
+      });
+    }
+    await provider.request({
+      method: 'eth_requestAccounts',
+      params: [],
+    });
+  }
+};
+```
+
+Use this pattern to access your provider throughout the app.
+
