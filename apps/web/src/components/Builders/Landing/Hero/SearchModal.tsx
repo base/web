@@ -28,7 +28,7 @@ const searchConfig: SearchCategory[] = [
       {
         label: 'npm create onchain',
         description: (
-          <div className="px-3 pb-2 text-xs tracking-wide text-dark-palette-foregroundMuted">
+          <div className="px-3 pb-2 text-xs tracking-wide text-dark-palette-foregroundMuted mt-0.5">
             Run this command in your terminal to start building with
             <Link
               href="https://docs.base.org/builderkits/onchainkit/getting-started"
@@ -53,6 +53,16 @@ const searchConfig: SearchCategory[] = [
           };
           void copyCreateOnchain();
         },
+      },
+      {
+        label: 'AI docs',
+        description: (
+          <div className="px-3 pb-2 text-xs tracking-wide text-dark-palette-foregroundMuted mt-0.5">
+            Use this LLM-optimized context file to accelerate your workflow with AI
+          </div>
+        ),
+        href: 'https://docs.base.org/llms.txt',
+        icon: 'ai',
       },
     ],
   },
@@ -114,14 +124,6 @@ const searchConfig: SearchCategory[] = [
         icon: 'backArrow',
         iconRotation: 'rotate-180',
       },
-
-      // TODO: Add back after launch
-      // {
-      //   label: 'Verifications',
-      //   href: '/builders/verifications',
-      //   icon: 'backArrow',
-      //   iconRotation: 'rotate-180',
-      // },
     ],
   },
   {
@@ -130,32 +132,32 @@ const searchConfig: SearchCategory[] = [
       {
         label: 'Onboard everyone',
         href: 'https://docs.base.org/use-cases/onboard-any-user',
-        icon: 'diagonalUpArrow',
+        icon: 'arrowRight',
       },
       {
         label: 'Accept crypto payments',
         href: 'https://docs.base.org/use-cases/accept-crypto-payments',
-        icon: 'diagonalUpArrow',
+        icon: 'arrowRight',
       },
       {
         label: 'Launch AI Agents',
         href: 'https://docs.base.org/use-cases/launch-ai-agents',
-        icon: 'diagonalUpArrow',
+        icon: 'arrowRight',
       },
       {
         label: "Kickstart your app's growth",
         href: 'https://docs.base.org/use-cases/decentralize-social-app',
-        icon: 'diagonalUpArrow',
+        icon: 'arrowRight',
       },
       {
         label: 'Unlock the power of DeFi',
         href: 'https://docs.base.org/use-cases/defi-your-app',
-        icon: 'diagonalUpArrow',
+        icon: 'arrowRight',
       },
       {
         label: 'Remove first-timer friction',
         href: 'https://docs.base.org/use-cases/go-gasless',
-        icon: 'diagonalUpArrow',
+        icon: 'arrowRight',
       },
     ],
   },
@@ -231,6 +233,10 @@ export function SearchModal({
     setIsOpen(true);
   }, [setIsOpen]);
 
+  const createCategoryClickHandler = (subCategory: SubCategory) => {
+    return subCategory.href === '' ? subCategory?.onClick : () => window.open(subCategory.href);
+  };
+
   if (!isOpen) {
     return null;
   }
@@ -279,18 +285,11 @@ export function SearchModal({
                         className={classNames(
                           'group',
                           'w-full rounded-xl px-3 py-2',
-                          {
-                            'font-mono': searchCategory.category === 'Quickstart',
-                          },
                           'text-white',
                           'flex items-center justify-between',
                           'hover:bg-dark-palette-backgroundAlternate active:bg-dark-palette-secondary',
                         )}
-                        onClick={
-                          subCategory.href
-                            ? () => window.open(subCategory.href)
-                            : subCategory?.onClick
-                        }
+                        onClick={createCategoryClickHandler(subCategory)}
                       >
                         <span className="tracking-wide">{subCategory.label}</span>
                         <div
