@@ -6,7 +6,7 @@ import { InfoCards } from 'apps/web/src/components/Builders/MiniKit/InfoCards';
 import { SupportedPlatforms } from 'apps/web/src/components/Builders/MiniKit/SupportedPlatforms';
 import { CtaBanner } from 'apps/web/src/components/Builders/Shared/CtaBanner';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
-import { Hero } from 'apps/web/src/components/Builders/MiniKit/Hero';
+import { Hero, GET_STARTED_URL } from 'apps/web/src/components/Builders/MiniKit/Hero';
 import minikitCover from './minikit.png';
 
 export const metadata: Metadata = {
@@ -18,8 +18,6 @@ export const metadata: Metadata = {
     images: [minikitCover.src],
   },
 };
-
-export const GET_STARTED_URL = 'https://docs.base.org/builderkits/minikit/getting-started';
 
 export default function AgentKit() {
   return (

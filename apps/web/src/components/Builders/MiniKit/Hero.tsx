@@ -9,8 +9,8 @@ import { ButtonWithLinkAndEventLogging } from 'apps/web/src/components/Button/Bu
 import { HeaderAnimation } from 'apps/web/src/components/Builders/MiniKit/HeaderAnimation';
 import minikit from 'apps/web/src/components/Builders/MiniKit/minikit.svg';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
-import { GET_STARTED_URL } from 'apps/web/app/(base-org)/builders/minikit/page';
 
+export const GET_STARTED_URL = 'https://docs.base.org/builderkits/minikit/getting-started';
 const MINIKIT_COMMAND = 'npx create-onchain@alpha --mini';
 
 export function Hero() {
