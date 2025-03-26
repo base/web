@@ -50,6 +50,7 @@ type AvatarReact = {
 ```ts
 type BadgeReact = {
   className?: string; // Optional className override for top span element.
+  tooltip?: boolean | string; // Controls whether the badge shows a tooltip on hover. When true, the tooltip displays the attestation's name. When a string is provided, that text overrides the default display. Defaults to false.
 };
 ```
 
@@ -100,8 +101,8 @@ type EthBalanceReact = {
 
 ```ts
 type GetAddress = {
-  name: string | Basename;
-  chain?: Chain;
+  name: string | Basename; // Name to resolve
+  chain?: Chain; // Optional chain for domain resolution
 };
 ```
 
@@ -126,8 +127,8 @@ type GetAttestationsOptions = {
 
 ```ts
 type GetAvatar = {
-  chain?: Chain; // Optional chain for domain resolution
   ensName: string; // The ENS name to fetch the avatar for.
+  chain?: Chain; // Optional chain for domain resolution
 };
 ```
 
@@ -150,6 +151,27 @@ type GetName = {
 
 ```ts
 type GetNameReturnType = string | null;
+```
+
+## `GetNames`
+
+```ts
+type GetNames = {
+  addresses: Address[]; // Array of Ethereum addresses to resolve names for
+  chain?: Chain; // Optional chain for domain resolution
+};
+```
+
+## `IdentityCardReact`
+
+```ts
+type IdentityCardReact = {
+  address?: Address;
+  chain?: Chain;
+  className?: string;
+  schemaId?: Address | null;
+  badgeTooltip?: boolean | string; // Controls whether the badge shows a tooltip on hover. When true, the tooltip displays the attestation's name. When a string is provided, that text overrides the default display. Defaults to false.
+};
 ```
 
 ## `IdentityContextType`
@@ -203,12 +225,12 @@ type UseAvatarOptions = {
 };
 ```
 
-## `UseQueryOptions`
+## `UseAvatarsOptions`
 
 ```ts
-type UseQueryOptions = {
-  enabled?: boolean;
-  cacheTime?: number;
+type UseAvatarsOptions = {
+  ensNames: string[]; // Array of ENS names to resolve avatars for
+  chain?: Chain; // Optional chain for domain resolution
 };
 ```
 
@@ -216,8 +238,16 @@ type UseQueryOptions = {
 
 ```ts
 type UseNameOptions = {
-  address: Address; // The Ethereum address for which the ENS name is to be fetched.
+  address: Address; // The address for which the ENS or Basename is to be fetched.
   chain?: Chain; // Optional chain for domain resolution
 };
 ```
 
+## `UseNamesOptions`
+
+```ts
+type UseNamesOptions = {
+  addresses: Address[]; // Array of addresses to resolve ENS or Basenames for
+  chain?: Chain; // Optional chain for domain resolution
+};
+```

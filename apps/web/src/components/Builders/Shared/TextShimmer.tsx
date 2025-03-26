@@ -11,6 +11,9 @@ type TextShimmerProps = {
   spread?: number;
 };
 
+const initialValue = { backgroundPosition: '100% center' };
+const animateValue = { backgroundPosition: '0% center' };
+
 export function TextShimmer({
   children,
   as: Component = 'p',
@@ -24,6 +27,16 @@ export function TextShimmer({
     return children.length * spread;
   }, [children, spread]);
 
+  const transitionValue = useMemo(
+    () => ({
+      repeat: Infinity,
+      duration,
+      ease: 'linear',
+      repeatDelay: 1,
+    }),
+    [duration],
+  );
+
   return (
     <MotionComponent
       className={classNames(
@@ -33,14 +46,9 @@ export function TextShimmer({
         'dark:[--base-color:#71717a] dark:[--base-gradient-color:#ffffff] dark:[--bg:linear-gradient(90deg,#0000_calc(50%-var(--spread)),var(--base-gradient-color),#0000_calc(50%+var(--spread)))]',
         className,
       )}
-      initial={{ backgroundPosition: '100% center' }}
-      animate={{ backgroundPosition: '0% center' }}
-      transition={{
-        repeat: Infinity,
-        duration,
-        ease: 'linear',
-        repeatDelay: 1,
-      }}
+      initial={initialValue}
+      animate={animateValue}
+      transition={transitionValue}
       style={
         {
           '--spread': `${dynamicSpread}px`,

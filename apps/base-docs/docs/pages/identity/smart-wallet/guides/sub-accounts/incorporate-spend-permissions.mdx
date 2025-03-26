@@ -86,7 +86,7 @@ const createSubAccount = useCallback(async () => {
               keys: [
                 {
                   type: 'webauthn-p256',
-                  signer: signer.account?.publicKey,
+                  key: signer.account?.publicKey,
                 },
               ],
             },
@@ -285,7 +285,7 @@ const sendTransaction = useCallback(async () => {
 
 We just updated our sendTransaction function to do a few things. Firstly you probably noticed that we switched from using a single call to a batch call. We're actually performing 3 transactions in this call!
 
-1. Perform a transction on the Spend Permission Manager contract that approves using the spend permission you created earlier in this transction
+1. Perform a transaction on the Spend Permission Manager contract that approves using the spend permission you created earlier in this transaction
 2. Request some amount of funds from the user's Coinbase Smart Wallet to the Sub Account for this transaction
 3. Send the actual transaction to 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 (which is vitalik.eth)
 
