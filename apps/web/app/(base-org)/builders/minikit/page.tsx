@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AgentKit() {
+export default function MiniKit() {
   return (
     <Container>
       <main className="mb-32 flex min-h-screen w-full flex-col gap-40 bg-black px-2 pt-20 md:px-0">
