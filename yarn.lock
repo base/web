@@ -1843,7 +1843,6 @@ __metadata:
   checksum: 20a67646cf1f37a1db0eb0b2e2e6989f6f34b1a4881d81dead1829b44fe7400f2acf2ebdf2da049ce9804fca4b6f07e6b71b9fe44ffe01c231c1c95f01ea466a
   languageName: node
   linkType: hard
-
 "@coinbase/onchainkit@npm:^0.38.1":
   version: 0.38.1
   resolution: "@coinbase/onchainkit@npm:0.38.1"

@@ -95,14 +95,14 @@ MiniKit provides several utility hooks that wrap the SDK functionality, making i
 This hook handles initialization of the application and provides access to the SDK context.
 
 ```tsx
-const { ready, isReady, context, updateClientContext, notificationProxyUrl } = useMiniKit();
+const { setFrameReady, isFrameReady, context, updateClientContext, notificationProxyUrl } = useMiniKit();
 
-// Call ready() when your app is ready to be shown
+// Call setFrameReady() when your app is ready to be shown
 useEffect(() => {
-  if (!isReady) {
-    ready();
+  if (!isFrameReady) {
+    setFrameReady();
   }
-}, [isReady, ready]);
+}, [isFrameReady, setFrameReady]);
 ```
 
 **Returns:**
