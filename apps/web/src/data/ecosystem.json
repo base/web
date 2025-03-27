@@ -1,11 +1,43 @@
 [
   {
+    "name": "Ratio1",
+    "description": "A decentralized AI compute network ensuring trustless execution, data ownership, and linear scalability via a censorship-resistant, encrypted, and autonomous compute layer.",
+    "url": "https://ratio1.ai",
+    "imageUrl": "/images/partners/ratio1.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
+    "name": "Flaunch",
+    "description": "Flaunch lets anyone raise capital without owning or selling tokens. All revenue goes to the creator, with rights tokenized for secondary market value.",
+    "url": "https://flaunch.gg",
+    "imageUrl": "/images/partners/flaunch.png",
+    "category": "consumer",
+    "subcategory": "creator"
+  },
+  {
+    "name": "3DNS",
+    "description": "3DNS is a decentralized domain name service (DNS) that can power real web domains. Users can import an existing domain or register a new one and bring the domain onchain via 3DNS.",
+    "url": "https://3dns.box",
+    "imageUrl": "/images/partners/3dns.png",
+    "category": "consumer",
+    "subcategory": "nft"
+  },
+  {
     "name": "Infinity Wallet",
     "description": "Infinity Wallet is a decentralized all-in-one non-custodial wallet ecosystem and first-of-its-kind Web3 browser, providing a one-stop wallet & DeFi solution.",
     "url": "https://infinitywallet.io/",
     "imageUrl": "/images/partners/infinity-wallet.png",
     "category": "wallet",
     "subcategory": "self-custody"
+  },
+  {
+    "name": "CoW Swap",
+    "description": "CoW Swap is an intent-based meta-DEX aggregator that leverages CoW Protocol's bespoke batch/solver ecosystem. With built in MEV protection, CoW Swap lets traders big and small do more and worry less",
+    "url": "https://swap.cow.fi",
+    "imageUrl": "/images/partners/cowswap.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
   },
   {
     "name": "Arcadia Games",
@@ -70,6 +102,14 @@
     "category": "defi",
     "subcategory": "stablecoin",
     "imageUrl": "/images/partners/anzen.png"
+  },
+  {
+    "name": "MXNe",
+    "url": "https://brale.xyz/stablecoins/MXNe",
+    "description": "MXNe is a Mexican pesos-backed stablecoin issued by Brale in partnership with Etherfuse to grow onchain finance in Mexico.",
+    "category": "defi",
+    "subcategory": "stablecoin",
+    "imageUrl": "/images/partners/mxne.png"
   },
   {
     "name": "Connext",
@@ -324,7 +364,7 @@
     "description": "Brian offers a non custodial solution to perform transactions, research web3 info and deploy smart contracts via prompting.",
     "url": "https://www.brianknows.org/",
     "imageUrl": "/images/partners/brian.webp",
-    "category": "infra",
+    "category": "ai",
     "subcategory": "ai"
   },
   {
@@ -936,6 +976,14 @@
     "subcategory": "social"
   },
   {
+  "name": "Swan",
+  "description": "Swan is a protocol where people try to convince AI agents to buy their artifacts, and profit from them. Each agent has its own budget and the world simulation evolves with each artifact.",
+  "url": "https://swan.my/",
+  "imageUrl": "/images/partners/swan-logo.png",
+  "category": "ai",
+  "subcategory": "ai"
+  },
+  {
     "name": "Bitget Wallet",
     "url": "https://web3.bitget.com/",
     "description": "Ultimate Web3 Portal to the Crypto Universe with integrated Cross-Chain Swap, Nft Marketplace, Onramp, Dapp store, Defi, and Staking solution catering 12 million+ users across 168 countries.",
@@ -1387,7 +1435,7 @@
     "name": "Synapse Protocol",
     "url": "https://www.synapseprotocol.com",
     "description": "Synapse is comprised of a cross-chain messaging framework and an economically secure method to reach consensus on the validity of cross-chain transactions, enabling developers to build truly native cross-chain apps.",
-    "imageUrl": "/images/partners/synpase.webp",
+    "imageUrl": "/images/partners/synapse.webp",
     "category": "infra",
     "subcategory": "bridge"
   },
@@ -2428,7 +2476,7 @@
     "description": "Non-custodial trading bot powered by smart contract wallets. Offers advanced DEX trading tools: from limit and trailing orders to DCA, Grid, Gems Sniper bots and much more",
     "url": "https://goodcrypto.app/x",
     "imageUrl": "/images/partners/goodcryptox.png",
-    "category": "infra",
+    "category": "ai",
     "subcategory": "ai"
   },
   {
@@ -3036,7 +3084,7 @@
     "description": "OpenCoin AI is a series of AI-powered applications fueled by real-time cross-chain data.",
     "url": "https://opencoin.ai",
     "imageUrl": "/images/partners/opencoin.png",
-    "category": "infra",
+    "category": "ai",
     "subcategory": "ai"
   },
   {
@@ -3220,7 +3268,7 @@
     "description": "AI-Optimized Yield and Liquidity Strategies",
     "url": "https://mozaic.finance/",
     "imageUrl": "/images/partners/mozaic.jpg",
-    "category": "infra",
+    "category": "ai",
     "subcategory": "ai"
   },
   {
@@ -3544,7 +3592,7 @@
     "subcategory": "creator"
   },
   {
-    "name": "Lyvely ",
+    "name": "Lyvely",
     "description": "Lyvely is a disruptive SocialFi platform built for the trillion dollar creator and freelancer economy. \n\nThe ecosystem is powered by our native Utility Token, LVLY,  built on the Base network. \n\nLyvely is backed by institutional giants including the Phoenix group, who is publicly listed and top 5 largest Bitcoin miners in the world. Other institutional investors include M2, the UAE's fully regulated Crypto exchange, and Cypher Capital, a global Web3 VC fund. \n",
     "url": "https://get.lyvely.com/",
     "imageUrl": "/images/partners/lyvely.png",
@@ -3574,6 +3622,14 @@
     "description": "The friendly crypto wallet built for DeFi & NFTs.",
     "url": "https://phantom.app/",
     "imageUrl": "/images/partners/phantom.svg"
+  },
+  {
+    "name": "20lab",
+    "description": "20lab.app is a customizable ERC-20, SPL (Solana) & Sui token generator with over 17 extendable features. Test our generator for free and manage functions via token owner dashboard.",
+    "url": "https://20lab.app/generate/erc20-token/base/",
+    "imageUrl": "/images/partners/20lab.png",
+    "category": "infra",
+    "subcategory": "developer tool"
   },
   {
     "name": "Bend",
@@ -3612,7 +3668,7 @@
     "category": "defi",
     "subcategory": "stablecoin",
     "description": "ZARP is a stablecoin pegged to the price of the South African Rand (ZAR).",
-    "url": "https://zarp.io/",
+    "url": "https://www.zarpstablecoin.com/",
     "imageUrl": "/images/partners/zarp.png"
   },
   {
@@ -3649,7 +3705,7 @@
   },
   {
     "name": "BlockAI",
-    "category": "infra",
+    "category": "ai",
     "subcategory": "ai",
     "description": "BlockAI combines blockchain and AI to offer decentralized access to innovative tools like Text and image generation, video summarization, games, etc.",
     "url": "https://base.blockai.dev",
@@ -3664,8 +3720,16 @@
     "imageUrl": "/images/partners/turnkey.png"
   },
   {
+    "name": "We.Rich",
+    "description": "The User Generated Asset launchpad on Base. Anyone can be a founder. Anything is tradable.",
+    "url": "https://we.rich",
+    "imageUrl": "/images/partners/WeRich.svg",
+    "category": "consumer",
+    "subcategory": "social"
+  },
+  {
     "name": "Virtuals Protocol",
-    "category": "infra",
+    "category": "ai",
     "subcategory": "ai",
     "description": "Virtuals Protocol is building a Society of AI Agents onchain",
     "url": "https://app.virtuals.io/",
@@ -3686,5 +3750,317 @@
     "imageUrl": "/images/partners/songbirdz.png",
     "category": "consumer",
     "subcategory": "gaming"
+  },
+  {
+    "description": "Venice is a private, uncensored AI app with an API for agents and developers. Powered by decentralized inference and open-source models, Venice delivers unrestricted access to AI without storing your data.",
+    "imageUrl": "/images/partners/venice.svg",
+    "name": "Venice",
+    "category": "ai",
+    "subcategory": "ai",
+    "url": "https://venice.ai/"
+  },
+  {
+    "name": "Million Bit Homepage",
+    "description": "Own a bit of onchain history! Add your pixels to the homepage and receive an NFT of your plot.",
+    "url": "https://millionbithomepage.com/",
+    "imageUrl": "/images/partners/millionbithomepage.png",
+    "category": "consumer",
+    "subcategory": "nft"
+  },
+  {
+    "name": "Base Token Creator",
+    "description": "Easily Create your own Base ERC-20 Token in just 3+1 steps without Coding.",
+    "url": "https://tools.smithii.io/token-creator/base",
+    "imageUrl": "/images/partners/smithii.png",
+    "category": "infra",
+    "subcategory": "developer tools"
+  },
+  {
+    "name": "B3",
+    "description": "B3 is a layer 3 gaming ecosystem. We believe the future of gaming is open, connected, and shaped by the players themselves.",
+    "url": "https://www.b3.fun/",
+    "imageUrl": "/images/partners/b3.svg",
+    "category": "consumer",
+    "subcategory": "gaming"
+  },
+  {
+    "name": "Toucan",
+    "description": "Toucan provides onchain infrastructure and liquid markets for carbon removal credits, making climate action directly accessible to Base's users and decentralized apps.",
+    "url": "https://toucan.earth/",
+    "imageUrl": "/images/partners/toucan.png",
+    "category": "consumer",
+    "subcategory": "real world"
+  },
+  {
+    "name": "Valora",
+    "description": "Valora is a mobile app that makes crypto simple and accessible for all.",
+    "url": "https://valora.xyz/",
+    "imageUrl": "/images/partners/valora.png",
+    "category": "wallet",
+    "subcategory": "self-custody"
+  },
+  {
+    "name": "The Innovation Game",
+    "description": "TIG redefines the frontier of computational research by transforming proof-of-work into a global engine for open, autonomous innovation.",
+    "url": "https://www.tig.foundation/",
+    "imageUrl": "/images/partners/the-innovation-game.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
+    "name": "MoveUP",
+    "description": "MoveUP: The first AI-powered Move-to-Earn app on Base, rewarding users with tokens, points, and NFTs, while providing AI-driven insights to enhance their experience!",
+    "url": "https://peakchain.network/base",
+    "imageUrl": "/images/partners/moveUP-logo.png",
+    "category": "consumer",
+    "subcategory": "real world"
+  },
+  {
+    "name": "plant-based",
+    "description": "plant-based is a (re)generative art series that evolves, grows and stores carbon. Created by cyrus clarke in partnership with Toucan and fxHash.",
+    "url": "https://www.plantbased.art/",
+    "imageUrl": "/images/partners/plantbased.jpg",
+    "category": "consumer",
+    "subcategory": "nft"
+  },
+  {
+    "name": "zkCodex Wallet Tracker",
+    "description": "zkCodex is a Comprehensive Wallet Analysis platform that provides detailed insights across 12 Ethereum Layer 2 blockchains (6 of which are OP Stack). It allows users to easily monitor their wallet performance and activities, tracking key metrics such as Chain Score, Transaction Volume, Smart Contract Interactions...",
+    "url": "https://zkcodex.com/base",
+    "imageUrl": "/images/partners/zkcodex.png",
+    "category": "infra",
+    "subcategory": "data"
+  },
+  {
+    "name": "Garden",
+    "description": "Garden is the fastest Bitcoin bridge, enabling cross-chain swaps in as little as 30 secs. It is built using an intents-based architecture with trustless settlements, ensuring zero custody risk.",
+    "url": "https://garden.finance/",
+    "imageUrl": "/images/partners/garden.png",
+    "category": "infra",
+    "subcategory": "bridge"
+  },
+  {
+    "name": "Midas",
+    "description": "At Midas, we believe investing should be as open, accessible, and transparent as the Internet. Our mission is to pioneer internet-native investing, bringing investment-grade assets to the open web.",
+    "url": "https://midas.app",
+    "imageUrl": "/images/partners/midas.png",
+    "category": "defi",
+    "subcategory": "yield vault"
+  },
+  {
+    "name": "Pulsar Finance",
+    "url": "https://pulsar.finance",
+    "description": "The web3 portfolio manager that covers all your tokens, DeFi protocols and NFTs across 100+ blockchains.",
+    "imageUrl": "/images/partners/pulsarfinance.png",
+    "category": "defi",
+    "subcategory": "portfolio"
+  },
+  {
+    "name": "based.gift",
+    "description": "Send beautiful onchain gift cards on Base. Simple and an easy customizable way to give the gift of crypto for any occasion.",
+    "url": "https://based.gift",
+    "imageUrl": "/images/partners/basedgift.png",
+    "category": "consumer",
+    "subcategory": "nft"
+  },
+  {
+    "name": "OKX Wallet",
+    "description": "OKX Wallet is a universal crypto wallet available on multiple platforms, including as an app, web, and extension.",
+    "url": "https://www.okx.com/download",
+    "imageUrl": "/images/partners/okxwallet192.png",
+    "category": "wallet",
+    "subcategory": "self-custody"
+  },
+  {
+    "name": "Metacade",
+    "category": "consumer",
+    "subcategory": "gaming",
+    "description": "Play, Build, Connect and Earn Onchain.",
+    "url": "https://tournaments.metacade.co/",
+    "imageUrl": "/images/partners/metacade.png"
+  },
+  {
+    "name": "ShapeShift",
+    "description": "ShapeShift empowers users to self-custody and manage assets across top blockchains like Bitcoin, Ethereum, Base, and Cosmos. It's a hybrid app and wallet optimized for trading, earning, and more with digital assets.",
+    "url": "https://app.shapeshift.com/",
+    "imageUrl": "/images/partners/shapeshift.svg",
+    "category": "defi",
+    "subcategory": "dex aggregator"
+  },
+  {
+    "name": "Bario Entertainment System",
+    "category": "consumer",
+    "subcategory": "gaming",
+    "description": "Bario Entertainment System (Baes) is your gateway to onchain gaming. Mint games, and play. Baes is redefining what it means to own, play, and win on Base. No limits, just pure gaming excitement.",
+    "url": "https://baes.so/",
+    "imageUrl": "/images/partners/bario.png"
+  },
+  {
+    "name": "BSX",
+    "description": "BSX is developing the fastest, simplest, and most secure perpetuals DEX on the market. Backed by Coinbase Ventures, Blockchain Capital, and other prominent crypto VC investors.",
+    "url": "https://www.bsx.exchange",
+    "imageUrl": "/images/partners/bsx.png",
+    "category": "defi",
+    "subcategory": "dex"
+  },
+  {
+    "name": "Tokiemon",
+    "description": "Mint and battle (de)generative AI monsters.",
+    "url": "https://tokiemon.io",
+    "imageUrl": "/images/partners/tokiemon.png",
+    "category": "consumer",
+    "subcategory": "gaming"
+  },
+  {
+    "name": "Based Nebula",
+    "description": "Procedurally generated NFTs utilize the minter's wallet address as a seed to deterministically produce nebulae from perlin noise.",
+    "url": "https://nebula.foundnone.xyz",
+    "imageUrl": "/images/partners/based-nebulas.png",
+    "category": "consumer",
+    "subcategory": "nft"
+  },
+  {
+    "name": "Streamm.tv",
+    "description": "http://Streamm.tv - onchain livestreaming lunapark",
+    "url": "https://streamm.tv",
+    "imageUrl": "/images/partners/streamm-tv.png",
+    "category": "consumer",
+    "subcategory": "social"
+  },
+  {
+    "name": "Vaultleap.com",
+    "description": "Vaultleap: The all-in-one platform for SMBs to manage USDC payments. Designed for SMBs to securely pay teams, accept client funds, and automate W9, W8-BEN, and 1099 compliance",
+    "url": "https://vaultleap.com",
+    "imageUrl": "/images/partners/Vaultleap.png",
+    "category": "consumer",
+    "subcategory": "payments"
+  },
+  {
+    "name": "Send",
+    "url": "https://send.it",
+    "description": "Send is a payments app where users maintain full control of their assets. Using USDC stablecoin, Send enables instant, global transfers and provides banking features for the digital age.",
+    "category": "consumer",
+    "subcategory": "social",
+    "imageUrl": "/images/partners/send.png"
+  },
+  {
+    "name": "SubQuery",
+    "url": "https://subquery.network/",
+    "description": "SubQuery is a fast, flexible, and reliable open-source data decentralised infrastructure network, providing both RPC and indexed data to consumers around the world. The SubQuery Data Indexer is a open-source data indexer that provides you with custom APIs for your web3 project across all of our supported chains. SubQuery AI Apps framework makes building decentralised AI Applications fast and easy.",
+    "imageUrl": "/images/partners/subquery.png",
+    "category": "infra",
+    "subcategory": "data"
+  },
+  {
+    "name": "Masa",
+    "description": "Masa is a leading real-time data network for AI agents and applications. Get free, structured, high-quality, real-time data for your AI Agents today.",
+    "url": "https://masa.ai",
+    "imageUrl": "/images/partners/masa.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
+    "category": "infra",
+    "description": "Spheron network is one of the world's first DePIN based programmable compute networks, seamlessly connecting retail and data center-grade GPUs while enabling the orchestration of dynamic workloads with unmatched efficiency well suited for the AI agents, inferencing & fine-tuning.",
+    "imageUrl": "/images/partners/spheron.png",
+    "name": "Spheron",
+    "subcategory": "compute",
+    "url": "https://spheron.network/"
+  },
+  {
+    "name": "Moralis",
+    "description": "Moralis is an onchain analytics platform, providing data and powerful insights to traders and investors across major blockchains.",
+    "url": "https://moralis.com",
+    "imageUrl": "/images/partners/moralis.webp",
+    "category": "infra",
+    "subcategory": "data"
+  },
+  {
+    "name": "Ascii Cast",
+    "description": "Convert webcam feeds or any videos into ASCII art Animation and Mint to Base Network",
+    "url": "https://asciicast.com",
+    "imageUrl": "/images/partners/ascii-cast.png",
+    "category": "consumer",
+    "subcategory": "nft"
+  },
+  {
+    "name": "Ethereum Follow Protocol",
+    "description": "Onchain social graph protocol for Ethereum accounts. Complements ENS, SIWE, & other elements of the Ethereum identity stack.",
+    "url": "https://ethfollow.xyz/",
+    "imageUrl": "/images/partners/efp.png",
+    "category": "consumer",
+    "subcategory": "social"
+  },
+  {
+    "name": "Giza",
+    "description": "Xenocognitive Finance: Autonomous financial agents that transform DeFi complexity into optimized strategies, combining continuous market intelligence with non-custodial security.",
+    "url": "https://arma.xyz/",
+    "imageUrl": "/images/partners/giza.svg",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
+    "name": "Warden Agent Kit",
+    "description": "Warden Protocol enables developers to build autonomous, smart contract-native AI agents on Base. Our protocol seamlessly integrates verified AI inferences directly into smart contracts, allowing you to create sophisticated automated agents that execute complex strategies based on AI model outputs. With Warden, your agents can process and verify multiple AI inferences in a single transaction and make autonomous on-chain decisions. Build the next wave of AI agents on Base with enterprise-grade security and cross-chain compatibility.",
+    "url": "https://docs.wardenprotocol.org/build-an-agent/warden-agent-kit/introduction",
+    "imageUrl": "/images/partners/warden.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
+    "name": "Bitte Protocol",
+    "description": "Bitte Protocol powers embeddable AI agents, enabling your community to seamlessly chat and transact with any smart contract.",
+    "url": "https://bitte.ai/",
+    "imageUrl": "/images/partners/bitte-protocol.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
+    "name": "ArtGridz",
+    "description": "Onboard anyone to crypto with ArtGridz. Own pixels forever with a groundbreaking onchain storage approach. Create, Curate, trade, and even sell custom art on our integrated marketplace. Fee's are on us!",
+    "url": "https://gridz.art",
+    "imageUrl": "/images/partners/artgridz.png",
+    "category": "consumer",
+    "subcategory": "nft"
+  },
+  {
+    "name": "Token Generator",
+    "description": "Token Generator is a no-code platform that simplifies the creation of ERC20 tokens. Since 2018, it has supported thousands of projects and companies entering the Web3 ecosystem. With Token Generator, you can create ERC20 tokens securely in less than a minute.",
+    "url": "https://www.smartcontracts.tools/token-generator/create/base/",
+    "imageUrl": "/images/partners/tokengenerator.png",
+    "category": "infra",
+    "subcategory": "developer tool"
+  },
+  {
+    "name": "Unlock Protocol",
+    "description": "Unlock is an open-source, purpose-built protocol for creating onchain memberships and subscriptions as NFTs.",
+    "url": "https://unlock-protocol.com/",
+    "imageUrl": "/images/partners/unlockprotocol.png",
+    "category": "infra",
+    "subcategory": "consumer"
+  },
+  {
+    "name": "Nodit",
+    "description": "Nodit is a Web3 development platform offering enterprise-grade blockchain data APIs and reliable node services with 99.9% uptime, empowering developers with affordable and accessible multi-chain infrastructure.",
+    "url": "https://nodit.io/",
+    "imageUrl": "/images/partners/nodit.png",
+    "category": "infra",
+    "subcategory": "developer tool"
+  },    
+  {
+    "name": "IPOR",
+    "description": "IPOR offers two key products - IPOR Fusion: A composable vault stack optimized for modularity, security, and automation of sophisticated DeFi strategies. Asset managers can automate strategies, protocols can source liquidity, and LPs can get automated smart yield. Additionally, IPOR Derivatives: Earn token-boosted yield on stables and ETH. Trade plain-vanilla interest rate swaps onchain with up to 1000x leverage and 90-day maturity.",
+    "url": "https://app.ipor.io/fusion?chains=8453",
+    "imageUrl": "/images/partners/ipor.svg",
+    "category": "defi",
+    "subcategory": "yield vault"
+  },
+  {
+    "name": "XCeption",
+    "description": "Xception is a multi-chain DEX aggregator on Web & Telegram, offering fast trading, limit orders, sniping, and DCA. Built for traders and protocols, it ensures efficiency, security, and seamless execution.",
+    "url": "https://www.xceptionbot.io/",
+    "imageUrl": "/images/partners/xception.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
   }
 ]

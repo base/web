@@ -50,6 +50,9 @@ export function EcosystemFilters({
 
   const isAllActive = selectedSubcategories.length === 0;
 
+  const createCategoryClickHandler = (category: string) => () => handleCategorySelect(category);
+  const createSubcategoryClickHandler = (subcategory: string) => () => handleSubcategorySelect(subcategory);
+
   return (
     <div className="relative flex flex-col items-start gap-2">
       <div className="relative flex flex-wrap gap-2">
@@ -59,12 +62,27 @@ export function EcosystemFilters({
             <button
               type="button"
               key={category}
-              onClick={() => handleCategorySelect('all')}
+              onClick={createCategoryClickHandler('all')}
               className={classNames(
                 'h-10 whitespace-nowrap rounded-full border border-white/20 px-4 uppercase tracking-wider transition-colors',
                 {
                   'bg-white text-black': isAllActive,
                   'text-white/50 hover:bg-white/20 hover:text-white': !isAllActive,
+                },
+              )}
+            >
+              {category}
+            </button>
+          ) : category === 'ai' ? (
+            <button
+              type="button"
+              key={category}
+              onClick={createCategoryClickHandler('ai')}
+              className={classNames(
+                'h-10 whitespace-nowrap rounded-full border border-white/20 px-4 uppercase tracking-wider transition-colors',
+                {
+                  'bg-white text-black': categoryIsSelected,
+                  'text-white/50 hover:bg-white/20 hover:text-white': !categoryIsSelected,
                 },
               )}
             >
@@ -81,7 +99,7 @@ export function EcosystemFilters({
                       ? 'bg-white text-black'
                       : 'text-white/50 hover:bg-white/20 hover:text-white',
                   )}
-                  onClick={() => handleCategorySelect(category)}
+                  onClick={createCategoryClickHandler(category)}
                 >
                   {category}
                 </button>
@@ -106,7 +124,7 @@ export function EcosystemFilters({
 
               <Popover.Portal>
                 <Popover.Content className="z-50 w-64" sideOffset={5}>
-                  <Card radius={8} innerClassName="bg-[#191919] p-4">
+                  <Card radius={8} innerClassName="bg-dark-palette-backgroundAlternate p-4">
                     <div className="flex flex-col gap-2">
                       {config[category]?.map((subcategory) => {
                         const subcategoryIsSelected = selectedSubcategories.includes(subcategory);
@@ -114,7 +132,7 @@ export function EcosystemFilters({
                           <button
                             key={subcategory}
                             type="button"
-                            onClick={() => handleSubcategorySelect(subcategory)}
+                            onClick={createSubcategoryClickHandler(subcategory)}
                             className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-sm uppercase transition-colors hover:bg-white/10"
                           >
                             <div className="h-4 w-4 flex-shrink-0">

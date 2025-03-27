@@ -67,7 +67,7 @@ export default async function GET(request: Request) {
 
   const basenamePure = basenameFormatted?.replace(`.${baseDomainName}`, '');
   const basenameForUrl = chainId === base.id ? basenamePure : basenameFormatted;
-  const tokenMedata = {
+  const tokenMetadata = {
     // This is the URL to the image of the item.
     image: `${domainName}/api/basenames/${basenameFormatted}/assets/cardImage.svg`,
 
@@ -85,5 +85,5 @@ export default async function GET(request: Request) {
     // TODO: attributes?
   };
 
-  return NextResponse.json(tokenMedata);
+  return NextResponse.json(tokenMetadata);
 }
