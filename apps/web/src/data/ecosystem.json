@@ -4062,5 +4062,13 @@
     "imageUrl": "/images/partners/xception.png",
     "category": "defi",
     "subcategory": "dex aggregator"
+  },
+    {
+    "name": "ParaSwap",
+    "description": "The leading DeFi aggregator that unites the liquidity of decentralized exchanges and lending protocols into one comprehensive and secure interface and APIs.",
+    "url": "https://www.paraswap.xyz/",
+    "imageUrl": "/images/partners/paraswap.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
   }
 ]
