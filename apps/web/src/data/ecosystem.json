@@ -4062,5 +4062,13 @@
     "imageUrl": "/images/partners/xception.png",
     "category": "defi",
     "subcategory": "dex aggregator"
+  },
+  {
+    "name": "TapBase",
+    "description": "TapBase is your gateway to Web3 and NFTs. Explore, create, and connect seamlessly.",
+    "url": "https://tapbaseapp.com/",
+    "imageUrl": "images/partners/Tapbase.png",
+    "category": "consumer",
+    "subcategory": "nft"
   }
 ]
