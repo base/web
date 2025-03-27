@@ -29,6 +29,10 @@
     {
       "source": "/tutorials/deploy-with-remix",
       "destination": "/cookbook/smart-contract-development/remix/deploy-with-remix"
+    },
+    {
+      "source": "/docs/arbitration",
+      "destination": "/arbitration"
     }
   ]
 }

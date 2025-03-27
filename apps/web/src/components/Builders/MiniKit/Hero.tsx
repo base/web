@@ -1,5 +1,7 @@
 'use client';
 
+import Image, { StaticImageData } from 'next/image';
+import { useCallback, useState } from 'react';
 import { ButtonVariants } from 'apps/web/src/components/base-org/Button/types';
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
@@ -7,15 +9,15 @@ import { ButtonWithLinkAndEventLogging } from 'apps/web/src/components/Button/Bu
 import { HeaderAnimation } from 'apps/web/src/components/Builders/MiniKit/HeaderAnimation';
 import minikit from 'apps/web/src/components/Builders/MiniKit/minikit.svg';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
-import Image, { StaticImageData } from 'next/image';
-import { useCallback, useState } from 'react';
-const GET_STARTED_URL = 'https://replit.com/@tina-he/ock-frames-template?v=1#README.md';
+
+export const GET_STARTED_URL = 'https://docs.base.org/builderkits/minikit/getting-started';
+const MINIKIT_COMMAND = 'npx create-onchain@alpha --mini';
 
 export function Hero() {
   const [hasCopied, setHasCopied] = useState(false);
 
   const handleCopy = useCallback(() => {
-    void navigator.clipboard.writeText('npm create onchain --mini');
+    void navigator.clipboard.writeText(MINIKIT_COMMAND);
     setHasCopied(true);
     setTimeout(() => setHasCopied(false), 2000); // Reset after 2 seconds
   }, []);
@@ -52,7 +54,7 @@ export function Hero() {
             className="inline-flex items-center gap-2.5 rounded-lg bg-white px-4 pb-3 pt-3 font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90 max-sm:mr-auto"
             onClick={handleCopy}
           >
-            npm create onchain --mini
+            {MINIKIT_COMMAND}
             {hasCopied ? (
               <div className="text-green-60">
                 <Icon name="checkmark" width="16" height="16" color="currentColor" />
