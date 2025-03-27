@@ -155,7 +155,7 @@ export class KVManager {
 }
 
 function createDefaultKVManager() {
-  const url = process.env.KV_URL_DEVELOPMENT_VERCEL;
+  const url = isDevelopment ? process.env.KV_URL_DEVELOPMENT : process.env.KV_URL;
   if (!url) {
     throw new Error('No KV URL provided');
   }
