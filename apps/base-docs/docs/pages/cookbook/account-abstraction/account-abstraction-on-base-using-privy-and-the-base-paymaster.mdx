@@ -504,10 +504,34 @@ Simply grab the first wallet in the list (you'll want to do something more elega
 
 // Get a list of all of the wallets (EOAs) the user has connected to your site
 const { wallets } = useWallets();
+const [selectedWalletIndex, setSelectedWalletIndex] = useState(0);
 
-// Grab the first wallet on the list
-// TODO: Implement the option to allow the user to choose another wallet
-const wallet = wallets[0];
+// Use the wallet selected by user or the first one as default
+const wallet = wallets[selectedWalletIndex] || wallets[0];
+
+// WalletSelector component that can be added to UI for selecting the active wallet
+const WalletSelector = () => {
+  if (wallets.length <= 1) return null;
+  
+  return (
+    <div className="mt-4 mb-4">
+      <label className="block text-sm font-medium text-gray-700 mb-2">
+        Select wallet:
+      </label>
+      <select 
+        className="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-violet-500 focus:border-violet-500"
+        value={selectedWalletIndex}
+        onChange={(e) => setSelectedWalletIndex(Number(e.target.value))}
+      >
+        {wallets.map((w, index) => (
+          <option key={w.address} value={index}>
+            {w.address.slice(0, 6)}...{w.address.slice(-4)} ({w.walletClientType})
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
 ```
 
 Then, update the call at the bottom of `useEffect` to `createSmartWallet` if there is an `embeddedWallet` to instead create it if there is a `wallet`, using that `wallet`. You'll also need to update the dependency in the dependency array.
@@ -633,6 +657,10 @@ const onMint = async () => {
   if (!smartAccountProvider || !smartAccountAddress) return;
 
   try {
+    // Use the address from the selected wallet as the NFT recipient
+    // This gives users flexibility to choose which of their wallets receives the NFT
+    const targetAddress = wallet?.address || eoa?.address;
+    
     // From a viem `RpcTransactionRequest` (e.g. calling an ERC-721's `mint` method),
     // build and send a user operation. Gas fees will be sponsored by the Base Paymaster.
     const userOpHash = await sendSponsoredUserOperation({
@@ -640,8 +668,8 @@ const onMint = async () => {
       to: NFT_ADDRESS,
       data: encodeFunctionData({
         abi: ABI,
-        functionName: 'mint',
-        args: [eoa?.address],
+        functionName: "mint",
+        args: [targetAddress],
       }),
     });
 
@@ -663,13 +691,16 @@ const onMint = async () => {
 Finally, above where you added the addresses, add a button to call the function, and display the link to the transaction:
 
 ```tsx
+{/* Add the WalletSelector component here to select a wallet */}
+<WalletSelector />
+
 <button
   onClick={onMint}
   className="rounded-md bg-violet-600 px-4 py-2 text-sm text-white hover:bg-violet-700 disabled:bg-violet-400"
   disabled={!smartAccountProvider || !smartAccountAddress}
 >
   Mint NFT
-</button>;
+</button>
 {
   transactionLink;
 }
@@ -703,6 +734,28 @@ const userOpHash = await sendSponsoredUserOperation({
 :::caution
 
 The function in this example can only be called once per address. It will then fail, because one wallet cannot claim more than one batch of tokens.
+
+:::
+
+#### Benefits of User Wallet Selection
+
+Implementing wallet selection functionality offers several important advantages:
+
+1. **Enhanced User Experience**: Users can choose which specific wallet to use for different actions.
+
+2. **Asset Management Flexibility**: Users can separate their assets across different wallets based on purpose, such as one wallet for gaming NFTs and another for collectibles.
+
+3. **Improved Security**: The ability to use different wallets for different transaction types enhances the overall security of user assets.
+
+4. **Support for Multi-Wallet Strategy**: Many experienced blockchain users maintain multiple wallets, and this approach respects and accommodates this practice.
+
+#### Calling Another Function
+
+The [Base Paymaster] on Goerli is very permissive. To call another function, all you need to do is to change the `RpcTransactionRequest` in `sendSponsoredUserOperation` to match the address, abi, function name, and arguments of your function on your smart contract.
+
+:::caution
+
+For simplicity, we've stripped out the code to disable the button while it is minting. You'll want to implement your own solution to avoid confusing your users!
 
 :::
 
