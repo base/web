@@ -6,10 +6,8 @@ import { InfoCards } from 'apps/web/src/components/Builders/MiniKit/InfoCards';
 import { SupportedPlatforms } from 'apps/web/src/components/Builders/MiniKit/SupportedPlatforms';
 import { CtaBanner } from 'apps/web/src/components/Builders/Shared/CtaBanner';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
-import { Hero } from 'apps/web/src/components/Builders/MiniKit/Hero';
+import { Hero, GET_STARTED_URL } from 'apps/web/src/components/Builders/MiniKit/Hero';
 import minikitCover from './minikit.png';
-
-const GET_STARTED_URL = 'https://replit.com/@tina-he/ock-frames-template?v=1#README.md';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
@@ -21,7 +19,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AgentKit() {
+export default function MiniKit() {
   return (
     <Container>
       <main className="mb-32 flex min-h-screen w-full flex-col gap-40 bg-black px-2 pt-20 md:px-0">

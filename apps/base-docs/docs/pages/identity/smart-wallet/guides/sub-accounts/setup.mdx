@@ -14,9 +14,13 @@ By the end of this guide, you will:
 - Set up a NextJS project and configure it to work with Coinbase Smart Wallet
 - Create a Coinbase Wallet Context to manage the state and functions needed to interact with Coinbase Smart Wallet
 
-:::tip[Skip ahead]
+### Skip ahead
+
 Note: if you want to skip ahead and just get the final code, you can find it [here](https://github.com/montycheese/sub-account-starter-template).
-:::
+
+```bash
+git clone https://github.com/montycheese/sub-account-starter-template.git
+```
 
 ## Creating a New Project
 
@@ -67,7 +71,7 @@ app/
 
 This section will walk you through setting up Coinbase Wallet Context to manage the state and functions needed to interact with Coinbase Smart Wallet.
 
-Create a new directory called `context` under the `app` directory and add a React Context for the Coinbase SDK.
+Create a new directory called `context` under the `app` directory and add a React Context for the Coinbase SDK called [CoinbaseWalletContext](https://github.com/montycheese/sub-account-starter-template/blob/master/app/context/CoinbaseWalletContext.tsx).
 
 ```tsx
 // app/context/CoinbaseWalletContext.tsx
@@ -177,7 +181,7 @@ export function useCoinbaseWallet() {
 
 ## Creating the Provider Wrapper
 
-Create a providers file to wrap your application:
+Create a [providers file](https://github.com/montycheese/sub-account-starter-template/blob/master/app/providers.tsx) to wrap your application:
 
 ```tsx
 // app/providers.tsx
@@ -193,12 +197,11 @@ export default function Providers({ children }: { children: ReactNode }) {
 
 ## Updating the Root Layout
 
-Update your root layout to include the providers:
+Update your [root layout file](https://github.com/montycheese/sub-account-starter-template/blob/master/app/layout.tsx) to include the providers:
 
 ```tsx
 // app/layout.tsx
 import Providers from '@/app/providers';
-import { ReactNode } from 'react';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -213,7 +216,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
 ## Creating the Home Page
 
-Update your main page to include wallet connection functionality:
+Update your [main page](https://github.com/montycheese/sub-account-starter-template/blob/master/app/page.tsx) to include wallet connection functionality:
 
 ```tsx
 // app/page.tsx
