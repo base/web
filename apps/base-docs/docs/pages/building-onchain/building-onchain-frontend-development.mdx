@@ -1,0 +1,15 @@
+### **3.5 Connecting Your Frontend**
+
+Unlike Web2 frontends that primarily handle user input and REST API calls, onchain frontends must manage wallet connections, display onchain data in real time, and handle transaction flows. Fortunately, libraries like OnchainKit, wagmi, and Viem help you abstract away much of the complexity. Here, you’ll learn how to easily support multiple wallet types, show transaction status, and seamlessly integrate onchain actions into a modern UI.
+
+- **What’s Unique for Onchain Frontends?**
+  - Must handle user wallet connections (MetaMask, Smart Wallet, etc.).
+  - Must orchestrate contract calls, handle transaction states, and potentially manage tokens or NFT interactions.
+- **OnchainKit**
+  - A set of React components and TypeScript utilities for:
+    - Wallet connection flows (supporting multiple wallet types).
+    - Common onchain actions (swapping tokens, minting NFTs, sending transactions).
+    - Integrates with popular client libraries (e.g.[wagmi], [Viem]) and the Base Node under the hood, so you don’t have to worry about low-level RPC details.
+
+[wagmi]: https://wagmi.sh/react/getting-started
+[Viem]: https://viem.sh/docs/getting-started
