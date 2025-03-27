@@ -57,8 +57,11 @@ After running the command, follow the prompts to configure your project.
 
 :::info
 We recommend using [Vercel](https://vercel.com) to deploy your MiniKit app, as it integrates seamlessly with the upstash/redis backend required for stateful frames, webhooks, and notifications. The CLI will guide you through setting up the necessary environment variables for your Redis database.
+:::
 
-We recommend Vercel to test your mini app, however, for local development, you can use [ngrok](https://ngrok.com/). Note that ngrok URLs change each session unless using a paid account, which means you'll need to recreate the manifest each time you restart ngrok.
+:::warning[Tunneling Gotchas]
+For local development, while you can use [ngrok](https://ngrok.com/), note that the free tier adds a landing page that breaks Frames functionality. Use a paid ngrok account or alternatives like Tailscale funnel for proper testing.
+:::
 
 To deploy the example app to Vercel:
 1. Install Vercel CLI: `npm install -g vercel`
