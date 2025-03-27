@@ -98,7 +98,7 @@ export function CoinbaseWalletProvider({ children }: { children: ReactNode }) {
               keys: [
                 {
                   type: "webauthn-p256",
-                  signer: signer.account?.publicKey,
+                  key: signer.account?.publicKey,
                 }
               ],
             }

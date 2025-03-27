@@ -48,6 +48,10 @@ export const sidebar: Sidebar = [
                 text: 'OnchainKitProvider',
                 link: '/builderkits/onchainkit/config/onchainkit-provider',
               },
+              {
+                text: 'Custom Supplemental Providers',
+                link: '/builderkits/onchainkit/config/supplemental-providers',
+              },
             ],
           },
           {
@@ -559,6 +563,20 @@ export const sidebar: Sidebar = [
         ],
       },
       {
+        text: 'MiniKit',
+        collapsed: true,
+        items: [
+          {
+            text: 'Overview',
+            link: '/builderkits/minikit/overview',
+          },
+          {
+            text: 'Quickstart',
+            link: '/builderkits/minikit/quickstart',
+          },
+        ],
+      },
+      {
         text: 'AgentKit (CDP) ↗',
         link: 'https://docs.cdp.coinbase.com/agentkit/docs/welcome',
       },
@@ -587,16 +605,11 @@ export const sidebar: Sidebar = [
           {
             text: 'Introduction',
             items: [
-              { text: 'Install for Web', link: '/identity/smart-wallet/introduction/install-web' },
-              {
-                text: 'Install for React Native',
-                link: '/identity/smart-wallet/introduction/install-react-native',
-              },
+              { text: 'Quickstart', link: '/identity/smart-wallet/quickstart' },
               {
                 text: 'Recommend Libraries',
                 link: '/identity/smart-wallet/introduction/recommended-libraries',
               },
-              { text: 'Starter Templates', link: '/identity/smart-wallet/introduction/templates' },
               {
                 text: 'Base Gasless Campaign',
                 link: '/identity/smart-wallet/introduction/base-gasless-campaign',
@@ -851,12 +864,8 @@ export const sidebar: Sidebar = [
                 link: '/identity/smart-wallet/guides/update-existing-app',
               },
               {
-                text: 'React Native Integration',
-                link: '/identity/smart-wallet/guides/react-native-integration',
-              },
-              {
-                text: 'Signature Verification',
-                link: '/identity/smart-wallet/guides/signature-verification',
+                text: 'Signing and Verifying Messages',
+                link: '/identity/smart-wallet/guides/signing-and-verifying-messages',
               },
               { text: 'Sign In With Ethereum', link: '/identity/smart-wallet/guides/siwe' },
               { text: 'MagicSpend', link: '/identity/smart-wallet/guides/magic-spend' },
@@ -866,7 +875,28 @@ export const sidebar: Sidebar = [
               },
               { text: 'Paymasters', link: '/identity/smart-wallet/guides/paymasters' },
               { text: 'ERC20 Paymasters', link: '/identity/smart-wallet/guides/erc20-paymasters' },
-              { text: 'Sub Accounts', link: '/identity/smart-wallet/guides/sub-accounts/overview' },
+              {
+                text: 'Sub Accounts',
+                collapsed: true,
+                items: [
+                  {
+                    text: 'Overview',
+                    link: '/identity/smart-wallet/guides/sub-accounts/overview',
+                  },
+                  {
+                    text: 'Setup',
+                    link: '/identity/smart-wallet/guides/sub-accounts/setup',
+                  },
+                  {
+                    text: 'Creating Sub Accounts',
+                    link: '/identity/smart-wallet/guides/sub-accounts/creating-sub-accounts',
+                  },
+                  {
+                    text: 'Using Sub Accounts',
+                    link: '/identity/smart-wallet/guides/sub-accounts/using-sub-accounts',
+                  },
+                ],
+              },
               {
                 text: 'Spend Permissions',
                 collapsed: true,
