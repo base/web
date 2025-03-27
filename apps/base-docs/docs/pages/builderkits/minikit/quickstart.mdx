@@ -8,112 +8,75 @@ import { useMiniKit, useTBADeepLink, useAddFrame, useNotification, useOpenUrl, u
 
 # MiniKit
 
-MiniKit helps you build Mini Apps on Base without needing to know the SDK implementation details. It integrates with OnchainKit components and provides Coinbase Wallet-specific hooks that degrade gracefully on other clients like Warpcast.
+MiniKit is easiest way to build mini apps on Base, allowing developers to easily build applications without needing to know the details of the SDK implementation. It integrates seamlessly with [OnchainKit](https://www.base.org/builders/onchainkit) components and provides Coinbase Wallet-specific hooks that adapt smoothly to work with other clients such as Warpcast.
+
+## Prerequisites
+
+Before you begin developing with MiniKit, you'll need:
+
+1. **Warpcast Account**: Create an account on [Warpcast](https://warpcast.com/) to test and deploy your Frames.
+
+2. **Coinbase Developer Platform Account** (Optional): Sign up for a [Coinbase Developer Platform](https://www.coinbase.com/en-nl/developer-platform) account if you need CDP API key for additional functionalities.
+
+## What is a Mini App?
+A mini app is a lightweight web app that runs directly inside [Farcaster Frames](https://docs.farcaster.xyz/developers/frames/v2/), without needing to open a browser or download anything. Built using familiar tools like Next.js and minikit, mini apps behave just like normal apps — but launch instantly from posts, making them feel native to the Farcaster experience.
 
 ## Why MiniKit?
 
-- **Simplified Development:** Build with minimal Frames SDK knowledge
-- **Coinbase Wallet Integration:** Access specialized hooks with fallbacks on other clients
-- **Component Compatibility:** Use [OnchainKit](https://onchainkit.xyz/) components out of the box
-- **Automatic Setup:** CLI for project scaffolding with webhooks and notifications
+MiniKit streamlines app development by providing a comprehensive toolkit that makes the Frames SDK more intuitive:
+
+- **Simplified Development:** Build apps with minimal knowledge of the Frames SDK
+- **Coinbase Wallet Integration:** Access Coinbase Wallet-specific hooks that adapt smoothly to other clients
+- **Component Compatibility:** Use [OnchainKit](https://onchainkit.xyz/) components out of the box with MiniKit
+- **Automatic Setup:** CLI tool for quick project scaffolding with webhooks and notifications
 - **Account Association:** Simplified generation of account associations
 
 ## Use Cases
 
-- Gaming mini apps
-- Social mini apps
-- Payment mini apps
-- And more
+- Gaming
+- Social
+- Payments
+- And many more possibilities!
 
 ## Quick Start
 
-Bootstrap a new project using the CLI:
+The fastest way to get started with MiniKit is to use the CLI to bootstrap a new project:
 
 ```bash
 npx create-onchain@alpha --mini
 ```
 
-This sets up:
-- Frontend and backend components
-- Webhooks and notifications
-- Account association generation
-- A demo app showcasing OnchainKit capabilities
+This command will:
+
+1. Set up a new project with both frontend and backend components
+2. Configure webhooks and notifications
+3. Set up account association generation
+4. Create a demo app showcasing onchain abilities using OnchainKit
+
+After running the command, follow the prompts to configure your project.
 
 :::info
-We recommend [Vercel](https://vercel.com) for deployment as it works well with the upstash/redis backend required for frames, webhooks, and notifications.
+We recommend using [Vercel](https://vercel.com) to deploy your MiniKit app, as it integrates seamlessly with the upstash/redis backend required for stateful frames, webhooks, and notifications. The CLI will guide you through setting up the necessary environment variables for your Redis database.
+
+We recommend Vercel to test your mini app, however, for local development, you can use [ngrok](https://ngrok.com/). Note that ngrok URLs change each session unless using a paid account, which means you'll need to recreate the manifest each time you restart ngrok.
+
+To deploy the example app to Vercel:
+1. Install Vercel CLI: `npm install -g vercel`
+2. Deploy with the command: `vercel`
+3. Set environment variables in your Vercel project settings (you can use `vercel env add` to set these up via CLI):
+   - NEXT_PUBLIC_CDP_CLIENT_API_KEY (from [CDP Portal](https://portal.cdp.coinbase.com))
+   - NEXT_PUBLIC_URL (deployed app URL)
+   - NEXT_PUBLIC_IMAGE_URL (optional)
+   - NEXT_PUBLIC_SPLASH_IMAGE_URL (optional)
+   - NEXT_PUBLIC_SPLASH_BACKGROUND_COLOR
 :::
 
-## Initial Setup
+## Testing Your mini app in [Warpcast](https://warpcast.com/)
 
-:::steps
-
-## Create a new MiniKit project using the CLI:
-
-```bash
-npx create-onchain@alpha --mini
-```
-
-## Enter your CDP Client API key when prompted.
-
-Get a CDP API key from the [CDP Portal](https://portal.cdp.coinbase.com) under API Keys -> Client API Key.
-
-If skipped, add it manually in `.env.local`:
-
-```bash
-NEXT_PUBLIC_CDP_CLIENT_API_KEY=your-api-key-here
-```
-
-## Navigate to your project directory and install dependencies:
-
-```bash
-cd your-project-name
-npm install
-```
-
-:::
-
-## Deploying to Vercel
-
-:::steps
-
-## Install Vercel CLI
-
-```bash
-npm install -g vercel
-```
-
-## Deploy your project
-
-```bash
-vercel
-```
-
-Follow the prompts to log in, link your project, and accept defaults.
-
-## Set environment variables
-
-Add these in your Vercel project settings:
-
-| Variable | Description |
-| --- | --- |
-| NEXT_PUBLIC_CDP_CLIENT_API_KEY | Your CDP Client API Key |
-| NEXT_PUBLIC_URL | Deployed app URL |
-| NEXT_PUBLIC_IMAGE_URL | Frame image URL (optional) |
-| NEXT_PUBLIC_SPLASH_IMAGE_URL | Splash image URL (optional) |
-| NEXT_PUBLIC_SPLASH_BACKGROUND_COLOR | Hex color for splash background |
-
-:::
-
-## Testing Your Frame in Warpcast
-
-1. Copy your deployed URL
+1. Copy your deployed vercel URL
 2. Visit [Warpcast Frames Developer Tools](https://warpcast.com/~/developers/frames) on mobile
 3. Paste URL into "Preview Frames"
 4. Tap Launch
-
-::::info
-Vercel URLs are persistent. Ngrok URLs change each session unless using a paid account.
-::::
 
 ## Creating the Frame Manifest
 
@@ -129,20 +92,247 @@ Connect your Farcaster custody wallet, input your deployed URL, and sign the man
 With ngrok, you'll need to recreate the manifest each time you restart ngrok.
 :::
 
-## CLI Features
+## Provider
+
+The `MiniKitProvider` wraps your application and provides global access to the SDK's context. It handles initialization, events, and automatically applies client [safeAreaInsets](https://docs.farcaster.xyz/developers/frames/v2/spec) to ensure your app doesn't overlap parent application elements.
+
+```tsx
+import { MiniKitProvider } from '@coinbase/onchainkit/minikit';
+
+function App({ children }) {
+  return (
+    <MiniKitProvider
+      projectId="your-project-id"
+      notificationProxyUrl="/api/notification"
+    >
+      {children}
+    </MiniKitProvider>
+  );
+}
+```
+
+### Props
+
+The `MiniKitProvider` accepts the following props:
+
+```tsx
+export type MiniKitProviderReact = {
+  children: React.ReactNode;
+  notificationProxyUrl?: string;
+  ...OnchainKitProviderProps
+};
+```
+
+- `children`: React components to be wrapped by the provider
+- `notificationProxyUrl`: Optional URL to override the default `/api/notification` proxy
+- All props from `OnchainKitProvider` are also supported
+
+The provider sets up wagmi and react-query providers automatically. It configures connectors to use the Farcaster connector if `sdk.context` is set, with a fallback to CoinbaseWallet. This allows the same application to run both in frames and as a standalone application.
+
+## Hooks
+
+MiniKit provides several utility hooks that wrap the SDK functionality, making it easy to access different features.
+
+### useMiniKit
+
+This hook handles initialization of the application and provides access to the SDK context.
+
+```tsx
+const { ready, isReady, context, updateClientContext, notificationProxyUrl } = useMiniKit();
+
+// Call ready() when your app is ready to be shown
+useEffect(() => {
+  if (!isReady) {
+    ready();
+  }
+}, [isReady, ready]);
+```
+
+**Returns:**
+
+```tsx
+{
+  ready: () => Promise<MiniKitContextType>; // Removes splash screen and shows the application
+  isReady: boolean; // Whether the app is ready to be shown
+  context: FrameContext | null; // The current frame context
+  updateClientContext: (params: UpdateClientContextParams) => void; // Update client context
+  notificationProxyUrl: string; // The notification proxy URL
+}
+```
+
+### useTBADeepLink
+
+This hook wraps `sdk.actions.openUrl` and provides a map of all available TBA deep links. If a user is not in TBA, this hook will open an external browser and attempt to deep link to the TBA app.
+
+```tsx
+const openBuyLink = useTBADeepLink('buy');
+const openSwapLink = useTBADeepLink('swap');
+
+// Usage
+<button onClick={() => openBuyLink()}>Buy Tokens</button>
+<button onClick={() => openSwapLink()}>Swap Tokens</button>
+```
+
+### useAddFrame
+
+This hook adds a frame to the user's list of frames and returns notification details.
+
+```tsx
+const addFrame = useAddFrame();
+
+// Usage
+const handleAddFrame = async () => {
+  const result = await addFrame();
+  if (result) {
+    console.log('Frame added:', result.url, result.token);
+  }
+};
+```
+
+**Returns:**
+
+```tsx
+() => Promise<{
+  url: string;
+  token: string;
+} | null>
+```
+
+:::warning[Not for Production]
+In production, save these tokens in a database for sending notifications.
+:::
+
+### useNotification
+
+This hook allows sending notifications to users who have added your frame. It requires a token and URL, which are returned when a user adds your frame.
+
+```tsx
+const sendNotification = useNotification();
+
+// Usage
+const handleSendNotification = () => {
+  sendNotification({
+    title: 'New High Score!',
+    body: 'Congratulations on your new high score!'
+  });
+};
+```
+
+:::info
+Notifications require a backend proxy to avoid CORS restrictions. The CLI automatically sets up this proxy at `/api/notification`, but you can override this in the `MiniKitProvider`.
+:::
+
+### useOpenUrl
+
+This hook wraps `sdk.actions.openUrl` and falls back to `window.open` when outside a frame context.
+
+```tsx
+const openUrl = useOpenUrl();
+
+// Usage
+<button onClick={() => openUrl('https://example.com')}>Visit Website</button>
+```
+
+### useClose
+
+This hook wraps the `sdk.actions.close` functionality.
+
+```tsx
+const close = useClose();
+
+// Usage
+<button onClick={close}>Close</button>
+```
+
+### usePrimaryButton
+
+This hook accepts primary button options and a callback which will be called on click.
+
+```tsx
+usePrimaryButton(
+  { text: 'Submit Score' },
+  () => {
+    // Handle button click
+    submitScore();
+  }
+);
+```
+
+### useViewProfile
+
+This hook wraps `sdk.actions.viewProfile`, accepting an FID but falling back to the client's FID.
+
+```tsx
+const viewMyProfile = useViewProfile(); // Uses client's FID
+const viewUserProfile = useViewProfile(123456); // Uses specified FID
+
+// Usage
+<button onClick={viewMyProfile}>View My Profile</button>
+<button onClick={viewUserProfile}>View User Profile</button>
+```
+
+### useAuthenticate
+
+This hook allows users to sign in with Farcaster. It wraps the SDK's signIn message, adding a default nonce and verification.
+
+```tsx
+const authenticate = useAuthenticate();
+
+// Usage
+const handleSignIn = async () => {
+  const result = await authenticate({
+    domain: 'your-domain.com',
+    siweUri: 'https://your-domain.com/login'
+  });
+
+  if (result) {
+    // Handle successful authentication
+    console.log('Authenticated:', result);
+  }
+};
+```
+
+:::info
+Authentication requires additional setup utilizing an auth framework like next/auth or manually integrating session storage and route/component authentication.
+:::
+
+:::warning
+Our long-term recommended practice for Sign-In with Farcaster (SIWF) is to use the signIn RPC from Frames SDK. However, due to current limitations for Coinbase Wallet users, please temporarily implement authentication via [AuthKit](https://docs.farcaster.xyz/auth-kit/). This interim solution will soon become obsolete as we work on improving the authentication experience.
+
+Learn more about our upcoming solution [here](https://www.notion.so/Auth-Addresses-Proposal-c765eece3b5c4d4a95f5b067832cd521).
+:::
+
+## CLI
+
+The MiniKit CLI is the easiest way to get started. It automatically creates a sample application that integrates different parts of the SDK and some OnchainKit components.
+
+```bash
+npx create-onchain@alpha --mini
+```
+
+### Features
 
 The CLI creates an application with:
 
 1. **Frontend and Backend Integration**
-   - Setup for frames, webhooks, and notifications
-   - Uses upstash/redis for data storage
-   - Requires upstash/redis account credentials in .env
+
+   - Complete setup for adding frames, webhooks, and notifications
+   - Uses upstash/redis for data storage (compatible with Vercel)
+   - Requires users to sign up for an upstash/redis account and add their key and URL to the .env file
+
+   :::info
+   The CLI creates both frontend and backend components to support adding frames, webhooks, and notifications. While a frontend-only option was considered, the ability to add frames and handle notifications requires backend support. If you don't need these features, you can easily remove the database and related routes after project creation.
+   :::
 
 2. **Account Association Generation**
-   - Generates valid account associations
-   - Configures necessary environment variables
+
+  To prove domain ownership, a Farcaster account signs a JSON payload with its custody address. This verification process is called [account association](https://docs.farcaster.xyz/developers/frames/v2/spec) by Farcaster.
+
+   - Automatically generates valid account associations
+   - Configures the necessary environment variables
 
 3. **.well-known/farcaster.json Configuration**
+
    - Sets up the required configuration file:
 
    ```json
@@ -164,270 +354,29 @@ The CLI creates an application with:
    ```
 
 4. **Notification Proxy**
-   - Sets up proxy route at `/api/notification`
-   - Used by the `useNotification` hook
+
+   - Automatically sets up a proxy route at `/api/notification`
+   - Used by the `useNotification` hook when sending notifications
 
 5. **Webhooks**
-   - Implements webhooks with Farcaster key registry verification
-   - Handles events like `FRAME_ADDED`
+   - Implements webhooks using the Farcaster key registry contract for verification
+   - Allows applications to respond to events such as `FRAME_ADDED`
 
 ### Demo Application
 
-The CLI creates a demo snake game showcasing:
-- Frame adding and wallet connection
-- High score tracking with attestations using `<Transaction/>`
-- Score display using `<Identity/>` for ENS name resolution
-- Notifications for high scores
+The CLI also creates a demo snake game application that showcases:
 
-## Core Components and Hooks
-
-### MiniKitProvider
-
-Set up in `providers.tsx`, this wraps your application to handle initialization and events:
-
-```tsx [app/providers.tsx]
-import { MiniKitProvider } from '@coinbase/onchainkit/minikit';
-
-export function Providers(props: { children: ReactNode }) {
-  return (
-    <MiniKitProvider
-      apiKey={process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY}
-      chain={base}
-      config={{
-        appearance: {
-          mode: 'auto',
-          theme: 'snake',
-          name: process.env.NEXT_PUBLIC_ONCHAINKIT_PROJECT_NAME,
-          logo: process.env.NEXT_PUBLIC_ICON_URL,
-        },
-      }}
-    >
-      {props.children}
-    </MiniKitProvider>
-  );
-}
-```
-
-It also sets up wagmi and react-query providers automatically.
-
-#### Provider Props
-
-```tsx
-export type MiniKitProviderReact = {
-  children: React.ReactNode;
-  notificationProxyUrl?: string;
-  ...OnchainKitProviderProps
-};
-```
-
-### useMiniKit
-
-Handles initialization and provides SDK context access:
-
-```tsx [app/page.tsx]
-const { setFrameReady, isFrameReady, context } = useMiniKit();
-
-useEffect(() => {
-  if (!isFrameReady) {
-    setFrameReady();
-  }
-}, [setFrameReady, isFrameReady]);
-```
-
-**Returns:**
-
-```tsx
-{
-  ready: () => Promise<MiniKitContextType>; // Shows the application
-  isReady: boolean; // Ready state
-  context: FrameContext | null; // Frame context
-  updateClientContext: (params: UpdateClientContextParams) => void;
-  notificationProxyUrl: string;
-}
-```
-
-### Available Hooks
-
-#### useTBADeepLink
-
-Links to Coinbase Wallet TBA features:
-
-```tsx
-const openBuyLink = useTBADeepLink('buy');
-const openSwapLink = useTBADeepLink('swap');
-
-<button onClick={() => openBuyLink()}>Buy Tokens</button>
-```
-
-#### useAddFrame
-
-Adds frame to user's list and returns notification details:
-
-```tsx [app/page.tsx]
-const addFrame = useAddFrame()
-
-const handleAddFrame = async () => {
-  const result = await addFrame()
-  if (result) {
-    console.log('Frame added:', result.url, result.token)
-  }
-}
-```
-
-:::warning[Not for Production]
-In production, save these tokens in a database for sending notifications.
-:::
-
-#### useNotification
-
-Sends notifications to users who added your frame:
-
-```tsx [app/page.tsx]
-import {..., useNotification } from '@coinbase/onchainkit/minikit'
-
-const sendNotification = useNotification()
-
-const handleSendNotification = async () => {
-  try {
-    await sendNotification({
-      title: 'New High Score! 🎉',
-      body: 'Congratulations on achieving a new high score!'
-    })
-    setTimeout(() => setNotificationSent(false), 30000)
-  } catch (error) {
-    console.error('Failed to send notification:', error)
-  }
-}
-
-// Only display for users who added the frame
-{context?.client.added && (
-  <button
-    type="button"
-    onClick={handleSendNotification}
-    className="cursor-pointer bg-transparent font-semibold text-sm disabled:opacity-50"
-  >
-    SEND NOTIFICATION
-  </button>
-)}
-```
-
-:::info
-Notifications use the `/api/notification` proxy to avoid CORS restrictions.
-:::
-
-#### useOpenUrl
-
-Opens external URLs:
-
-```tsx [app/page.tsx]
-const openUrl = useOpenUrl()
-
-<button onClick={() => openUrl('https://example.com')}>
-  Visit Website
-</button>
-
-<footer className="absolute bottom-4 flex items-center w-screen max-w-[520px] justify-center">
-  <button
-    type="button"
-    className="mt-4 px-2 py-1 flex justify-start rounded-2xl font-semibold opacity-40 border border-black text-xs"
-    onClick={() => openUrl('https://base.org/builders/minikit')}
-    >
-    BUILT ON BASE WITH MINIKIT
-  </button>
-</footer>
-```
-
-#### useClose
-
-Closes the frame:
-
-```tsx [app/page.tsx]
-import { useMinikit, useAddFrame, useOpenUrl, useClose } from '@coinbase/onchainkit/minikit'
-
-const close = useClose()
-
-<div className="pr-1 justify-end">
-  {saveFrameButton}
-  <button
-    type="button"
-    className="cursor-pointer bg-transparent font-semibold text-sm pl-2"
-    onClick={close}
-    >
-    CLOSE
-  </button>
-</div>
-```
-
-#### usePrimaryButton
-
-Adds a button at the bottom of the frame:
-
-```tsx [/app/components/snake.tsx]
-import {usePrimaryButton } from '@coinbase/onchainkit/minikit'
-
-usePrimaryButton(
-  {text: gameState == GameState.RUNNING ? 'PAUSE GAME' : 'START GAME'},
-  () => {
-    setGameState(gameState == GameState.RUNNING ? GameState.PAUSED : GameState.RUNNING);
-  }
-)
-```
-
-Note: This takes up space at the bottom of the frame; adjust layout accordingly.
-
-#### useViewProfile
-
-Views user profiles by FID:
-
-```tsx [app/page.tsx]
-import { useViewProfile } from '@coinbase/onchainkit/minikit'
-
-const viewProfile = useViewProfile()
-
-const handleViewProfile = () => {
-  viewProfile()
-}
-
-<button
-  type="button"
-  onClick={handleViewProfile}
-  className="cursor-pointer bg-transparent font-semibold text-sm pl-2"
->
-  PROFILE
-</button>
-```
-
-#### useAuthenticate
-
-Enables Farcaster sign-in:
-
-```tsx
-const authenticate = useAuthenticate();
-
-const handleSignIn = async () => {
-  const result = await authenticate({
-    domain: 'your-domain.com',
-    siweUri: 'https://your-domain.com/login'
-  });
-
-  if (result) {
-    console.log('Authenticated:', result);
-  }
-};
-```
-
-:::warning
-Temporarily use [AuthKit](https://docs.farcaster.xyz/auth-kit/) for authentication until our solution resolves current Coinbase Wallet limitations.
-:::
+- Buttons to add the frame and connect your wallet
+- High score tracking with attestations using OnchainKit's `<Transaction/>` component
+- Score display using OnchainKit's `<Identity/>` components to resolve ENS names
+- Notifications for high scores (rate limited to one every 30 seconds)
 
 ## Next Steps
 
-1. Customize the UI and functionality
-2. Add features using other MiniKit hooks
-3. Deploy to Vercel
+Now that you have MiniKit set up, you can:
 
-## Resources
+1. Explore the demo application to understand how the hooks work
+2. Customize the application to fit your needs
+3. Deploy your application to a hosting provider like Vercel
 
-- [MiniKit Documentation](https://base.org/builderkits/minikit)
-- [Farcaster Frames Playground](https://warpcast.com/~/developers/frames)
-- [CDP Portal](https://portal.cdp.coinbase.com)
+Enjoy building!
