@@ -107,8 +107,8 @@ export default function SubAccount() {
   return subAccount ? (
     universalAccount && subAccount && (
       <SubAccountIllustration
-        universalAccount={<Address address={universalAccount} />}
-        subAccount={<Address address={subAccount} />}
+        universalAccount={<Address address={universalAccount} hasCopyAddressOnClick={false} />}
+        subAccount={<Address address={subAccount} hasCopyAddressOnClick={false} />}
         universalAccountSigning={universalAccountSigning}
         subAccountSigning={subAccountSigning}
       />
