@@ -43,6 +43,8 @@ the spend permission properties. This signature and the corresponding spend perm
 Users can revoke permissions at any time by calling `SpendPermissionManager.revoke`. Revocations are onchain calls that can be
 batched similar to other ERC-4337 transactions.
 
+Spenders can call `SpendPermissionManager.revokeAsSpender` to revoke their own permissions without requiring user interaction.
+
 Once a spend permission has been revoked, it can never be re-approved. Therefore, if a user wants to re-authorize a revoked spend permission,
 the spender will need to generate a new spend permission that has a unique hash from the original spend permission.
 If the parameters of the new spend permission are identical to the revoked permission, the `salt` field of the permission can be used to generate a unique hash.
