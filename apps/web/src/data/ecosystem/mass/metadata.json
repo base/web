@@ -1,0 +1,8 @@
+{
+  "name": "Mass",
+  "description": "Trade, on-ramp, off-ramp, set limit orders, and discover on-chain and off-chain data to empower your trading journey—all powered by account abstraction! Mass is available on both iOS and Android!",
+  "url": "https://mass.money",
+  "imageUrl": "/images/partners/mass.png",
+  "category": "onramp",
+  "subcategory": "fiat on-ramp"
+}

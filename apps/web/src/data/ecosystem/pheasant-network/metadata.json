@@ -1,0 +1,8 @@
+{
+  "name": "Pheasant Network",
+  "url": "https://pheasant.network/",
+  "description": "Pheasant Network is an optimistic bridge specialized for Layer 2. Cheap gas fees and strong security improve scalability and interoperability of Ethereum.",
+  "imageUrl": "/images/partners/pnetwork.webp",
+  "category": "infra",
+  "subcategory": "bridge"
+}

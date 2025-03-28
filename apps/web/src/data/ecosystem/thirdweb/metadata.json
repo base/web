@@ -1,0 +1,8 @@
+{
+  "name": "ThirdWeb",
+  "url": "https://thirdweb.com/",
+  "description": "thirdweb is a complete web3 development framework that provides everything you need to build, launch, and manage web3 apps. We provide dev tools (SDKs in common languages, plug-and-play UI components, ContractKit) and fully managed infrastructure services (storage, RPC nodes, onchain analytics, and more) to enable you to go-to-market faster.",
+  "imageUrl": "/images/partners/thirdweb.webp",
+  "category": "infra",
+  "subcategory": "developer tool"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "TBTC",
+  "url": "https://dashboard.threshold.network/tBTC/mint",
+  "description": "tBTC is a decentralized, permissionless, and scalable Bitcoin equivalent that allows users to access the Ethereum and the cross chain DeFi ecosystem. Each tBTC token is fully backed by 1 BTC held in reserve.\n\nThreshold Network, the builders of tBTC, replaces centralized intermediaries with a randomly selected group of node operators who secure users’ deposited Bitcoin through threshold cryptography.\n\nVisit https://threshold.network/ for more information.",
+  "imageUrl": "/images/partners/tbtc.webp",
+  "category": "infra",
+  "subcategory": "bridge"
+}
