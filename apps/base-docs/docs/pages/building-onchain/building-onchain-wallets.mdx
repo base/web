@@ -1,0 +1,18 @@
+### **3.1 Onchain Accounts (Wallets)**
+
+Onchain accounts, often called “wallets”, are the starting point for any onchain interaction. Unlike traditional accounts that store credentials in a database, onchain accounts authenticate and authorize transactions on the public network with credentials held by the user. The original onchain accounts (EOA’s) use private keys backed up by a sequence of 24 random words. Recently, with the introduction of modern accounts like Smart Wallet, the credentials are Passkeys which provide improved security and recoverability. This sub-section covers these two main wallet types, the differences in user experience and security, and how Base’s Smart Wallet SDK makes them easier to integrate.
+
+- **What’s Different?**  
+  Every onchain action requires an account (a wallet) to sign transactions. Onchain accounts can **hold funds** and also **authorize** transactions on a blockchain.
+- **Types of Onchain Accounts**
+  - **Externally Owned Accounts (EOAs)**:
+    - Traditional private key \+ seed phrase model (e.g., MetaMask, Rabby, Ledger).
+    - Commonly used today but can be cumbersome or risky for new users.
+    - Holds digital assets but has no account level logic
+    - Required for deploying smart contracts
+  - **Smart Wallets**:
+    - Modern accounts with their own logic enabling improved security, recoverability, and functionality.
+    - Adds built-in recovery features, passkey authentication, and improved onboarding experience for users.
+    - Can include advanced permissions (e.g., “SpendPermissions”) for fine-grained security and improved user experience
+
+If you’d like a deeper dive on EOAs vs. smart wallets, check out our \[Smart Wallet docs\] and recommended reading on \[Account Abstraction\]. Base provides an \[SDK\] to help you integrate Smart Wallets easily.

@@ -17,6 +17,54 @@ export const sidebar: Sidebar = [
     link: '/chain/bridges-mainnet',
   },
   {
+    text: 'Getting Started',
+    items: [
+      { text: 'Core Concepts', link: '/building-onchain/core-concepts' },
+      {
+        text: 'Onchain Tech Stack',
+        link: '/building-onchain/understanding-the-onchain-tech-stack',
+      },
+      {
+        text: 'Web2 vs Building Onchain',
+        collapsed: true,
+        items: [
+          { text: 'Onchain Accounts', link: '/builderkits/onchainkit/getting-started' },
+          {
+            text: 'Giving Onchain Accounts an Identity',
+            link: '/builderkits/onchainkit/guides/telemetry',
+          },
+          {
+            text: 'Paying for Onchain Transactions (Gas)',
+            link: '/builderkits/onchainkit/guides/troubleshooting',
+          },
+          {
+            text: 'Interacting with the Chain (Node Access)',
+            link: '/builderkits/onchainkit/guides/troubleshooting',
+          },
+          {
+            text: 'Connecting Your Frontend',
+            link: '/builderkits/onchainkit/guides/troubleshooting',
+          },
+          {
+            text: 'Funding Wallets (Onramps)',
+            link: '/builderkits/onchainkit/guides/troubleshooting',
+          },
+          {
+            text: 'Onchain Social Networks',
+            link: '/builderkits/onchainkit/guides/troubleshooting',
+          },
+          {
+            text: 'AI Onchain',
+            link: '/builderkits/onchainkit/guides/troubleshooting',
+          },
+        ],
+      },
+      { text: 'Development Flow', link: '/building-onchain/development-flow' },
+      { text: 'The Stack for Base', link: '/building-onchain/opinionated-stack' },
+      { text: 'Continuing Your Journey', link: '/building-onchain/continue-building-onchain' },
+    ],
+  },
+  {
     text: 'Builder Kits',
     items: [
       {

@@ -1,0 +1,12 @@
+### **3.4 Interacting with the Chain (Node Access)**
+
+Every time you read or write data on Base, you’re making calls to a blockchain node via RPC (Remote Procedure Call) endpoints. You can host your own node or rely on a service like Base Node (via CDP). This sub-section explains why node access is crucial, compares self-hosted vs. hosted node options, and shows you how to integrate an RPC endpoint in your application for stable, scalable onchain interactions.
+
+- **Why You Need a Node**
+  - Under the hood, apps read/write onchain data by making RPC calls to a blockchain node.
+  - You can self-host or use a managed service.
+- **Base Node** (via CDP)
+  - High-throughput, free tier available, plus enterprise-grade options.
+  - You’ll typically connect via `https://...` or `wss://...` endpoints for reading balances, sending transactions, etc.
+
+---

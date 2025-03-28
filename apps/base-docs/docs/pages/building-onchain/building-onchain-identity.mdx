@@ -1,0 +1,16 @@
+### **3.2 Giving Onchain Accounts an Identity**
+
+While blockchains publicly display wallet addresses by default, these long strings are not friendly for everyday use. Onchain naming systems like Basenames solve this by letting users register human-readable names (for example, “alice.base”). Beyond simple naming, onchain identity can be extended through verifications and attestations that prove additional facts (e.g., that a user is a verified account holder or resides in a specific country). Here, you’ll learn how Basenames and onchain verifications work together to make your app more user-friendly and trustworthy.
+
+- **Why Identity Matters**
+  - By default, wallet addresses are long, unreadable hex strings.
+  - Onchain names (like “alice.base”) make it easier to identify recipients or users.
+  - Attestations/Verifications allow your app to trust certain user attributes—without exposing personal data offchain.
+- **Basenames**
+  - **Human-Readable Names** for addresses on Base (akin to DNS for IPs).
+  - Users can register names, add a profile picture, and display them across all apps they connect to.
+  - Helps unify an onchain identity and reduce user friction.
+- **Onchain Verifications**
+  - The chain can’t natively see offchain data (e.g., your nationality or membership status).
+  - Verifications let you post attestations **onchain** so other contracts can read them without privacy risks.
+  - E.g., prove you’re a Coinbase user, or a resident of a certain country, and automatically unlock special privileges in dapps.

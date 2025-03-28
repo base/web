@@ -1,0 +1,40 @@
+## **Understanding Onchain in Your Tech Stack**
+
+In broad strokes, a traditional web application has a frontend, a backend, and a database. When we talk about “building onchain,” we’re adding a **blockchain** to that tech stack as globally accessible infrastructure that can provide both **logic** (smart contracts) and **data** (onchain state).
+
+1. **Traditional Stack**:
+   - **Frontend**: Usually React, Vue, or another framework.
+   - **Backend**: Node.js, Python, or similar, handling business logic.
+   - **Database**: A solution like Postgres or MongoDB for persistent storage.
+2. **Onchain as an Additional Layer**:
+   - **Smart Contracts**: Globally accessible logic.
+   - **Onchain State**: Data that lives on Base (balances, user profiles, etc.) and is accessible to any onchain or offchain application.
+
+What belongs onchain?
+
+Integrating a blockchain doesn’t necessarily **replace** your database or your entire backend. Instead, it augments your stack. For instance, some business logic might remain in your backend, and sensitive data may remain in a traditional database.
+
+**Onchain State**
+
+Onchain state has several notable properties. Its:
+
+- Immutable: once recorded, data can’t be deleted ensuring a permanent historical record
+- Transparent: All data is publicly viewable and verifiable
+- Global: data is stored across multiple nodes, eliminating single points of failure
+- Expensive: Storing data onchain is expensive because it must be stored by every node globally
+
+Because of these properties, carefully consider what data is stored onchain. Ask yourself if the data is necessary for onchain logic or if the data should be immutable. Alternatively, you may be able to store your data offchain in a traditional database or a decentralized file storage network such as [IPFS.](https://ipfs.tech/) If the state change is more informational, it may be best to emit an event, providing a more cost-effective alternative to direct onchain storage.
+
+**Onchain Events**
+
+Since storing data onchain is expensive, we oftentimes use a cheaper alternative: events. Events are not part of the state, which makes them optional to store when running a node. They are a lot cheaper to use than state storage.
+
+Events are triggered when an onchain method is called. Events can have different data formats. In order to make sure events follow the format we are looking to receive on the frontend, we often use data indexers. For that, you can build your own indexer or use one of the [existing tools](/chain/data-indexers).
+
+**Onchain Logic**
+
+Onchain logic is stored in smart contracts. Similar to onchain data, it is immutable, transparent, and global. By default, onchain logic is accessible to every network participant, but can be permissioned so that only certain participants can interact. This makes onchain logic highly composable where builders can leverage existing onchain logic and extend that logic in novel ways instead of building from scratch.
+
+Onchain logic allows you to transfer funds and digital assets, create onchain games, create content and social posts onchain, and more. Pretty much anything you can do offchain can be done onchain. It is important to note that because every node in the network needs to execute every transaction, each transaction has a cost dependent on the computational expense of the onchain logic being run in that transaction (more on this later).
+
+If you have proprietary logic which you don’t want public, this shouldn’t be onchain. Or if the logic doesn’t need to be decentralized and is computationally expensive, it may be better kept in a traditional backend opposed to onchain.
