@@ -6,7 +6,7 @@ import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { useUsernameProfile } from 'apps/web/src/components/Basenames/UsernameProfileContext';
 import { useFrameContext } from 'apps/web/src/components/Basenames/UsernameProfileSectionFrames/Context';
 import Frame from 'apps/web/src/components/Basenames/UsernameProfileSectionFrames/Frame';
-import { ActionType } from 'libs/base-ui/utils/logEvent';
+import { ActionType } from 'apps/web/src/utils/analytics/logEvent';
 import Image, { StaticImageData } from 'next/image';
 import { useCallback, useState } from 'react';
 import TrashIcon from './assets/trash-icon.svg';

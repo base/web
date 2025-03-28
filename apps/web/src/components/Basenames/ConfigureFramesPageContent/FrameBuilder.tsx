@@ -10,7 +10,7 @@ import { Button, ButtonSizes, ButtonVariants } from 'apps/web/src/components/But
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import Input from 'apps/web/src/components/Input';
 import { isValidUrl } from 'apps/web/src/utils/urls';
-import { ActionType } from 'libs/base-ui/utils/logEvent';
+import { ActionType } from 'apps/web/src/utils/analytics/logEvent';
 import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';

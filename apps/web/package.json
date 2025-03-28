@@ -13,6 +13,7 @@
     "fetch-mirror-blog": "node ./scripts/pullLatestBlogPosts.js"
   },
   "dependencies": {
+    "@amplitude/experiment-js-client": "^1.11.0",
     "@coinbase/cookie-banner": "^1.0.3",
     "@coinbase/cookie-manager": "^1.1.1",
     "@coinbase/onchainkit": "^0.38.2",
@@ -34,6 +35,7 @@
     "@react-three/fiber": "^9.0.0-alpha.8",
     "@react-three/postprocessing": "^3.0.0-rc.0",
     "@react-three/rapier": "1.1.1",
+    "@sprig-technologies/sprig-browser": "^2.29.0",
     "@tanstack/react-query": "^5",
     "@types/jsdom": "^21.1.7",
     "@types/jsonwebtoken": "^9.0.6",

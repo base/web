@@ -7,7 +7,7 @@ import UsernameProfileKeywords from 'apps/web/src/components/Basenames/UsernameP
 import { Button, ButtonVariants } from 'apps/web/src/components/Button/Button';
 import useReadBaseEnsTextRecords from 'apps/web/src/hooks/useReadBaseEnsTextRecords';
 import { buildBasenameReclaimContract, UsernameTextRecordKeys } from 'apps/web/src/utils/usernames';
-import { ActionType } from 'libs/base-ui/utils/logEvent';
+import { ActionType } from 'apps/web/src/utils/analytics/logEvent';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useAccount } from 'wagmi';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';

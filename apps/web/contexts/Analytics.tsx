@@ -5,7 +5,7 @@ import logEvent, {
   AnalyticsEventImportance,
   CCAEventData,
   AnalyticsEventContext,
-} from 'libs/base-ui/utils/logEvent';
+} from 'apps/web/src/utils/analytics/logEvent';
 import { ReactNode, createContext, useCallback, useContext, useMemo } from 'react';
 
 export type AnalyticsContextProps = {

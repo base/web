@@ -1,7 +1,7 @@
 import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { useUsernameProfile } from 'apps/web/src/components/Basenames/UsernameProfileContext';
 import ImageAdaptive from 'apps/web/src/components/ImageAdaptive';
-import { ActionType } from 'libs/base-ui/utils/logEvent';
+import { ActionType } from 'apps/web/src/utils/analytics/logEvent';
 import { StaticImageData } from 'next/image';
 import Link from 'next/link';
 import { useCallback } from 'react';

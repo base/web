@@ -3,7 +3,7 @@ import { Basename } from '@coinbase/onchainkit/identity';
 import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
 import BasenameAvatar from 'apps/web/src/components/Basenames/BasenameAvatar';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
-import { truncateMiddle } from 'libs/base-ui/utils/string';
+import { truncateMiddle } from 'apps/web/src/utils/truncateMiddle';
 import { useEnsAddress } from 'wagmi';
 
 export default function BasenameIdentity({ username }: { username: Basename }) {

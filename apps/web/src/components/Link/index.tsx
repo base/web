@@ -1,5 +1,5 @@
 'use client';
-import { ActionType, ComponentType } from 'libs/base-ui/utils/logEvent';
+import { ActionType, ComponentType } from 'apps/web/src/utils/analytics/logEvent';
 import NextLink, { LinkProps } from 'next/link';
 import { AnchorHTMLAttributes, MouseEvent, useCallback } from 'react';
 import { useAnalytics } from 'apps/web/contexts/Analytics';

@@ -22,7 +22,7 @@ import { useUsernameProfile } from 'apps/web/src/components/Basenames/UsernamePr
 import useBasenameChain, { isBasenameSupportedChain } from 'apps/web/src/hooks/useBasenameChain';
 import useReadBaseEnsTextRecords from 'apps/web/src/hooks/useReadBaseEnsTextRecords';
 import { UsernameTextRecordKeys } from 'apps/web/src/utils/usernames';
-import { ActionType } from 'libs/base-ui/utils/logEvent';
+import { ActionType } from 'apps/web/src/utils/analytics/logEvent';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { EstimateGasExecutionError, namehash } from 'viem';
 import { useAccount, useChainId, useConfig, useWriteContract } from 'wagmi';
@@ -139,7 +139,7 @@ export function FramesProvider({ children }: FramesProviderProps) {
           value: BigInt(params.value ?? 0),
         });
         logEventWithContext('basename_profile_frame_transacted', ActionType.process, {
-          context: frame.postUrl ?? frame.title,
+          context: frame?.postUrl ?? frame?.title,
         });
         return transactionId;
       } catch (error) {
@@ -150,7 +150,7 @@ export function FramesProvider({ children }: FramesProviderProps) {
         } else if (error instanceof EstimateGasExecutionError) {
           logEventWithContext('basename_profile_frame_insufficient_funds', ActionType.error);
         } else {
-          logError(error, `${frame.postUrl ?? frame.title} failed to complete a frame transaction`);
+          logError(error, `${frame?.postUrl ?? frame?.title} failed to complete a frame transaction`);
         }
 
         // intentional re-throw to be caught by individual frames
@@ -186,7 +186,7 @@ export function FramesProvider({ children }: FramesProviderProps) {
 
         return await signTypedData(config, params);
       } catch (error) {
-        logError(error, `${frame.postUrl ?? frame.title} failed to sign frame data`);
+        logError(error, `${frame?.postUrl ?? frame?.title} failed to sign frame data`);
         // intentional re-throw to be caught by individual frames
         throw error;
       }
@@ -290,6 +290,7 @@ export function FramesProvider({ children }: FramesProviderProps) {
       removeFrame,
       existingTextRecordsIsLoading,
       frameUrls: optimisticFrameUrls,
+      setFrameRecord,
     }),
     [
       currentWalletIsProfileOwner,
@@ -308,6 +309,7 @@ export function FramesProvider({ children }: FramesProviderProps) {
       removeFrame,
       existingTextRecordsIsLoading,
       optimisticFrameUrls,
+      setFrameRecord,
     ],
   );
 

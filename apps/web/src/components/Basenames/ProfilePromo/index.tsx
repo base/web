@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { useLocalStorage } from 'usehooks-ts';
 import { useCallback, useEffect } from 'react';
 import Link from 'next/link';
-import { ActionType, ComponentType } from 'libs/base-ui/utils/logEvent';
+import { ActionType, ComponentType } from 'apps/web/src/utils/analytics/logEvent';
 import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { useAccount } from 'wagmi';
 import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';

@@ -11,7 +11,7 @@ import {
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import { useRegisterNameCallback } from 'apps/web/src/hooks/useRegisterNameCallback';
 import { Discount, formatBaseEthDomain, isValidDiscount } from 'apps/web/src/utils/usernames';
-import { ActionType } from 'libs/base-ui/utils/logEvent';
+import { ActionType } from 'apps/web/src/utils/analytics/logEvent';
 import { useRouter } from 'next/navigation';
 import {
   Dispatch,
