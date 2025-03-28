@@ -26,13 +26,7 @@ App logo image URL. Favicon is used if unspecified.
 Local paths are not supported for `appLogoUrl` as the logo is presented on another window as popup. Please provide a non-local URL.
 :::
 
-### subaccount (optional)
-
-- Type: `object`
-
-Subaccount configuration. Available version 4.4.0+
-
-#### getSigner
+### toSubAccountSigner (optional)
 
 - Type: `() => Promise<OneOf<LocalAccount, WebAuthnAccount>>`
 

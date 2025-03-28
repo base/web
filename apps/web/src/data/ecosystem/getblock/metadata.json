@@ -1,0 +1,8 @@
+{
+  "name": "GetBlock",
+  "url": "https://getblock.io/",
+  "description": "GetBlock offers fast and cost-efficient RPC nodes for over 50 blockchains, including Base, catering to hundreds of dApps from diverse segments.",
+  "imageUrl": "/images/partners/getblock.webp",
+  "category": "infra",
+  "subcategory": "node provider"
+}

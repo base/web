@@ -1,0 +1,8 @@
+{
+  "name": "HERE Wallet",
+  "category": "wallet",
+  "subcategory": "self-custody",
+  "description": "HERE wallet is a MPC mobile and Telegram wallet built on HOT Protocol. HOT Protocol is a decentralized validator network for MPC wallets.",
+  "url": "https://hotdao.ai/",
+  "imageUrl": "/images/partners/here-wallet.jpeg"
+}

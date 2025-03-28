@@ -1,0 +1,8 @@
+{
+  "name": "Axelar",
+  "url": "https://axelar.network",
+  "description": "Axelar delivers secure interchain communication. That means dApp users can interact with any asset, any application, on any chain, with one click. You can think of it as Stripe for Web3.\n\nDevelopers interact with a simple API atop a permissionless network that routes messages and ensures network security via proof-of-stake consensus.",
+  "imageUrl": "/images/partners/axelar.webp",
+  "category": "infra",
+  "subcategory": "bridge"
+}
