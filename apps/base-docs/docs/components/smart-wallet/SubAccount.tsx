@@ -41,7 +41,7 @@ export default function SubAccount() {
     };
 
     void loadKey();
-  }, [setSigner]);
+  }, []);
 
   const createSubAccount = useCallback(async () => {
     if (!provider || !signer?.account) return;
