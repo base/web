@@ -86,7 +86,7 @@ const createSubAccount = useCallback(async () => {
               keys: [
                 {
                   type: 'webauthn-p256',
-                  signer: signer.account?.publicKey,
+                  key: signer.account?.publicKey,
                 },
               ],
             },
@@ -143,7 +143,7 @@ return (
 
 Now that we're finished with creating and storing Spend Permissions, lets use them within our app to actually send a transaction with value.
 
-// Create a file to store the Spend Permission Manager ABI
+Create an [ABI file](https://github.com/montycheese/sub-account-starter-template/blob/master/app/abi.ts) to store the Spend Permission Manager ABI
 
 ```tsx
 // app/abi.ts
@@ -285,10 +285,18 @@ const sendTransaction = useCallback(async () => {
 
 We just updated our sendTransaction function to do a few things. Firstly you probably noticed that we switched from using a single call to a batch call. We're actually performing 3 transactions in this call!
 
-1. Perform a transction on the Spend Permission Manager contract that approves using the spend permission you created earlier in this transction
+1. Perform a transaction on the Spend Permission Manager contract that approves using the spend permission you created earlier in this transaction
 2. Request some amount of funds from the user's Coinbase Smart Wallet to the Sub Account for this transaction
 3. Send the actual transaction to 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 (which is vitalik.eth)
 
 Boot up the app and watch everything work! Remember, you'll need to add at least 0.0001 Base Sepolia ETH to your Coinbase Smart Wallet (not Sub Account) to get this example working!
 
 Need free Base Sepolia ETH? Sign up on the [Coinbase Developer Platform](https://www.coinbase.com/developer-platform) to get access to a faucet.
+
+## Got stuck somewhere and need the final code?
+
+You can find the final, working code [here](https://github.com/montycheese/sub-account-starter-template).
+
+```bash
+git clone https://github.com/montycheese/sub-account-starter-template.git
+```

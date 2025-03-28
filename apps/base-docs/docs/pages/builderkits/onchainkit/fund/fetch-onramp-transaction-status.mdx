@@ -18,18 +18,18 @@ const transactions = await fetchOnrampTransactionStatus({
 
 ```json [return value]
 {
-  transactions: [
+  "transactions": [
     {
-      id: "tx123",
-      status: "ONRAMP_TRANSACTION_STATUS_SUCCESS",
-      purchaseAmount: { value: "0.1", currency: "ETH" },
-      paymentAmount: { value: "200.00", currency: "USD" },
-      network: "ethereum",
-      createdAt: "2024-01-01T12:00:00Z"
+      "id": "tx123",
+      "status": "ONRAMP_TRANSACTION_STATUS_SUCCESS",
+      "purchaseAmount": { "value": "0.1", "currency": "ETH" },
+      "paymentAmount": { "value": "200.00", "currency": "USD" },
+      "network": "ethereum",
+      "createdAt": "2024-01-01T12:00:00Z"
     }
   ],
-  nextPageKey: "next_page_token",
-  totalCount: "1"
+  "nextPageKey": "next_page_token",
+  "totalCount": "1"
 }
 ```
 
