@@ -117,19 +117,6 @@ useEffect(() => {
 }
 ```
 
-### useTBADeepLink
-
-This hook wraps `sdk.actions.openUrl` and provides a map of all available TBA deep links. If a user is not in TBA, this hook will open an external browser and attempt to deep link to the TBA app.
-
-```tsx
-const openBuyLink = useTBADeepLink('buy');
-const openSwapLink = useTBADeepLink('swap');
-
-// Usage
-<button onClick={() => openBuyLink()}>Buy Tokens</button>
-<button onClick={() => openSwapLink()}>Swap Tokens</button>
-```
-
 ### useAddFrame
 
 This hook adds a frame to the user's list of frames and returns notification details.
