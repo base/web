@@ -30,7 +30,7 @@ struct SpendPermission {
 ```
 
 Spend Permissions are managed by a single manager contract, the `SpendPermissionManager`, which tracks the approval/revocation
-statuses of all perissions and enforces accurate spending limits and accounting.
+statuses of all permissions and enforces accurate spending limits and accounting.
 
 ## Approving
 
@@ -60,7 +60,7 @@ at the beginning of the next period, allowing the spender to once again spend up
 This behavior is parameterized by the `start`, `end`, `period` and `allowance` properties of the permission.
 
 Note that spend permissions can be used for non-recurring allowances, either indefinite or with expiry, by setting
-a period durantion that spans the entire range between start and end.
+a period duration that spans the entire range between start and end.
 
 A comprehensive example of spend permission accounting can be found [here](https://github.com/coinbase/spend-permissions/blob/main/docs/SpendPermissionAccounting.md).
 
