@@ -15,7 +15,7 @@
   "dependencies": {
     "@coinbase/cookie-banner": "^1.0.3",
     "@coinbase/cookie-manager": "^1.1.1",
-    "@coinbase/onchainkit": "^0.38.0",
+    "@coinbase/onchainkit": "^0.38.2",
     "@datadog/browser-logs": "^5.23.3",
     "@datadog/browser-rum": "^5.23.3",
     "@frames.js/render": "^0.5.5",
@@ -51,6 +51,7 @@
     "ethers": "5.7.2",
     "framer-motion": "^11.9.0",
     "hls.js": "^1.5.14",
+    "ioredis": "^5.6.0",
     "ipaddr.js": "^2.2.0",
     "is-ipfs": "^8.0.4",
     "jose": "^5.4.1",
