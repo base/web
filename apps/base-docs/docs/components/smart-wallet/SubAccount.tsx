@@ -35,11 +35,12 @@ export default function SubAccount() {
 
     setProvider(walletProvider);
 
-    void getCryptoKeyAccount().then((cryptoKeyAccount) => {
-      console.log('loaded key', cryptoKeyAccount);
+    const loadKey = async () => {
+      const cryptoKeyAccount = await getCryptoKeyAccount();
       setSigner(cryptoKeyAccount);
-      console.log('signer');
-    });
+    };
+
+    void loadKey();
   }, [setSigner]);
 
   const createSubAccount = useCallback(async () => {
