@@ -223,7 +223,7 @@ export async function sybilResistantUsernameSigning(
     const claim: PreviousClaim = { address, signedMessage };
     previousClaims[discountType] = claim;
 
-    await kv.set(kvKey, previousClaims, { nx: true, ex: parseInt(EXPIRY) });
+    await kv.set<PreviousClaims>(kvKey, previousClaims, { nx: true, ex: parseInt(EXPIRY) });
 
     return {
       signedMessage: claim.signedMessage,
