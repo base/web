@@ -38,9 +38,6 @@ A user approves a spend permission by signing an [ERC-712](https://eips.ethereum
 the spend permission properties. This signature and the corresponding spend permission details are then submitted to
 `SpendPermissionManager.approveWithSignature` to approve the spend permission onchain.
 
-Multiple spend permissions can be batched and approved with a single signature by constructing a batch spend permission object
-and approving with `SpendPermissionManager.approveBatchWithSignature`.
-
 ## Revoking
 
 Users can revoke permissions at any time by calling `SpendPermissionManager.revoke`. Revocations are onchain calls that can be
