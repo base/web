@@ -1,0 +1,8 @@
+{
+  "name": "TransFi",
+  "description": "Buy or sell crypto with 100+ local payment methods in 40+ countries around the world.",
+  "url": "https://buy.transfi.com/",
+  "imageUrl": "/images/partners/transfi.png",
+  "category": "onramp",
+  "subcategory": "fiat on-ramp"
+}

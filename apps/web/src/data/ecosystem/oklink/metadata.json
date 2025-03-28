@@ -1,0 +1,8 @@
+{
+  "name": "OKLink",
+  "url": "https://www.oklink.com/base",
+  "description": "OKLink Base explorer is a multi-chain aggregated blockchain explorer that allows users to search through transactions, blocks, wallet addresses, smart contracts and other on-chain data covering 20+ mainstream chains including BTC, ETH, BSC, Base,Solana, polygon,etc. OKLink Base explorer is an intuitive and powerful explorer to be part of the Base ecosystem.",
+  "imageUrl": "/images/partners/oklink.webp",
+  "category": "infra",
+  "subcategory": "data"
+}

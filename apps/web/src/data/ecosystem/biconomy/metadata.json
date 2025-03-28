@@ -1,0 +1,8 @@
+{
+  "name": "Biconomy",
+  "url": "https://www.biconomy.io/",
+  "description": "Biconomy brings blockchain-agnostic, web2-like experiences to dApps in a non-custodial manner with our comprehensive software development kit which is built on top of ERC4337 and designed specifically for decentralized applications (dApps).",
+  "category": "wallet",
+  "subcategory": "account abstraction",
+  "imageUrl": "/images/partners/biconomy.webp"
+}

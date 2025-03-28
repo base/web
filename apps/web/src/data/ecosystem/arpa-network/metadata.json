@@ -1,0 +1,8 @@
+{
+  "name": "ARPA Network",
+  "url": "https://www.arpanetwork.io/en-US/randcast",
+  "description": "A secure computation network that builds Randcast, an onchain verifiable RNG for tamper-proof randomness in AW, gaming, and NFTs.",
+  "imageUrl": "/images/partners/arpa2.webp",
+  "category": "infra",
+  "subcategory": "developer tool"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "XMTP",
+  "url": "https://xmtp.org/",
+  "description": "A decentralized communication protocol for secure and private messaging. \n\n- XMTP does notifications, DMs, 1:many broadcast messages, and soon group chats across web3 wallets and applications.\n- Over 400+ developers building with XMTP today.\n- XMTP is the messaging layer for Lens apps.\n- XMTP provides messaging within the Coinbase Wallet.",
+  "imageUrl": "/images/partners/xmtp.webp",
+  "category": "consumer",
+  "subcategory": "messaging"
+}

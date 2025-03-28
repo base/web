@@ -1,0 +1,8 @@
+{
+  "name": "OKX DEX",
+  "url": "https://www.okx.com/web3/dex-swap#inputChain=1&inputCurrency=ETH&outputChain=1&outputCurrency=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+  "description": "OKX DEX is a cross-chain DEX Aggregator that provides users with the best possible prices on the market through an intelligent routing algorithm.",
+  "imageUrl": "/images/partners/okxdex.webp",
+  "category": "defi",
+  "subcategory": "dex aggregator"
+}

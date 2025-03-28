@@ -23,11 +23,9 @@ const sdk = createCoinbaseWalletSDK({
   appName: 'My Dapp',
   appLogoUrl: 'https://example.com/logo.png',
   // Set up Sub Account support with a signer function
-  subaccount: {
-    getSigner: async () => {
-      // Return a signer that can be used to authenticate operations
-      return await getCryptoKeyAccount();
-    },
+  toSubAccountSigner: async () => {
+    // Return a signer that can be used to authenticate operations
+    return await getCryptoKeyAccount();
   },
 });
 
@@ -104,9 +102,7 @@ const signature = await provider.request({
 createCoinbaseWalletSDK({
   appName: string,
   appLogoUrl: string,
-  subaccount: {
-    getSigner: () => Promise<{ account: { publicKey: string; address?: string } }>,
-  },
+  toSubAccountSigner: () => Promise<{ account: { publicKey: string; address?: string } }>,
 });
 ```
 
@@ -145,13 +141,13 @@ Parameters:
 
 Returns: `Promise<string>` - Response from the smart contract call
 
-#### `sdk.subaccount.setSigner(getSigner)`
+#### `sdk.subaccount.setSigner(toSubAccountSigner)`
 
 Sets the signer function for Sub Account operations.
 
 Parameters:
 
-- `getSigner`: Function that returns a Promise resolving to a signer object
+- `toSubAccountSigner`: Function that returns a Promise resolving to a signer object
 
 ## Technical Details
 

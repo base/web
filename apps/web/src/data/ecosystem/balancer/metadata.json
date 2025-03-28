@@ -1,0 +1,8 @@
+{
+  "name": "Balancer",
+  "url": "https://balancer.fi/",
+  "description": "Balancer is a decentralized automated market maker (AMM) protocol built on Ethereum that represents a flexible building block for programmable liquidity.\n\nBy separating the AMM curve logic and math from the core swapping functionality, Balancer becomes an extensible AMM that can incorporate any number of swap curves and pool types.",
+  "category": "defi",
+  "subcategory": "dex",
+  "imageUrl": "/images/partners/balancer.webp"
+}
