@@ -23,8 +23,9 @@ export const metadata: Metadata = {
   },
 };
 
-type PageProps = { searchParams?: { code?: string } };
-export default async function Page({ searchParams }: PageProps) {
+type PageProps = { searchParams?: Promise<{ code?: string }> };
+export default async function Page(props: PageProps) {
+  const searchParams = await props.searchParams;
   const code = searchParams?.code;
 
   return (

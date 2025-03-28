@@ -288,5 +288,5 @@ Congratulations! You’ve successfully deployed and verified a smart contract us
 [login to Basescan]: https://basescan.org/login/
 [Node product]: https://portal.cdp.coinbase.com/products/node/
 [deploy smart contracts]: https://docs.base.org/tutorials/deploy-with-foundry/
-[Base Learn]: https://docs.base.org/learn/welcome
+[Base Learn]: https://docs.base.org/learn/welcome/
 [Foundry]: https://book.getfoundry.sh/getting-started/installation
