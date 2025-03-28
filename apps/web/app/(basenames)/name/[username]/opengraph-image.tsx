@@ -24,7 +24,8 @@ const size = {
   height: 630,
 };
 
-export async function generateImageMetadata({ params }: UsernameProfileProps) {
+export async function generateImageMetadata(props: UsernameProfileProps) {
+  const params = await props.params;
   let username = params.username;
   if (
     username &&
