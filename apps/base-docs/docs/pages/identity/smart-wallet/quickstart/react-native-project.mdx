@@ -1,29 +1,49 @@
 import { Callout } from "vocs/components";
 
-# Create a React Native App
+# Add to Existing React Native App
+
+This guide helps you add support for Smart Wallet into a React Native app
+by integrating the
+[Mobile Wallet Protocol Client](https://www.npmjs.com/package/@mobile-wallet-protocol/client).
 
 <Callout type="info">
   This doc is updated for Mobile Wallet Protocol Client `v1.0.0`
 </Callout>
 
-This guide will walk you through adding support for Smart Wallet into a React Native app by integrating the [Mobile Wallet Protocol Client](https://www.npmjs.com/package/@mobile-wallet-protocol/client).
-
-<Callout type="success">
-  **Tips**: If you need a template or scaffold to start with, you can check out
-  the [Smart Wallet Expo
-  Example](https://github.com/MobileWalletProtocol/smart-wallet-expo-example).
-</Callout>
-
-::::steps
-
-## Prerequisites
-
-### Deeplink handling
-
-<Callout type="danger">
+<Callout type="danger" title="Deep Link Handling">
   Breaking change in v1.0.0: Universal Links and App Links requirements are
   removed in favor of custom schemes (e.g. `myapp://`).
 </Callout>
+
+## Before You Start
+
+This guide walks you through adding support for Smart Wallet into an existing React Native app or starter project.
+
+If you prefer to skip ahead and start with a working example, navigate to the [repository](https://github.com/MobileWalletProtocol/smart-wallet-expo-example.git) or run the following command to clone it locally:
+
+```bash
+git clone https://github.com/MobileWalletProtocol/smart-wallet-expo-example.git
+```
+
+If you are looking to integrate Smart Wallet into an existing React Native app or starter project, follow the instructions below.
+
+## Step 1: Install Mobile Wallet Protocol Client
+
+Add the latest version of [Mobile Wallet Protocol Client](https://mobilewalletprotocol.github.io/wallet-mobile-sdk/) to your project.
+
+:::code-group
+
+```zsh [npm]
+npm i @mobile-wallet-protocol/client@latest
+```
+
+```zsh [yarn]
+yarn add @mobile-wallet-protocol/client@latest
+```
+
+:::
+
+## Step 2: Add Polyfills
 
 ### Install peer dependencies
 
@@ -81,44 +101,19 @@ import { CoinbaseWalletSDK } from "@mobile-wallet-protocol/client";
 
 :::
 
-## Setup
-
-### Install Mobile Wallet Protocol Client
-
-Add the latest version of Mobile Wallet Protocol Client to your project.
-
-:::code-group
-
-```zsh [npm]
-npm i @mobile-wallet-protocol/client@latest
-```
-
-```zsh [yarn]
-yarn add @mobile-wallet-protocol/client@latest
-```
-
-:::
-
-### Configuration
-
-<Callout type="danger">
-  Breaking change in v1.0.0: `handleResponse` is removed. No need to handle
-  returned deeplinks as this is now handled by the SDK.
-</Callout>
-
-## Usage
+## Step 3: Usage
 
 Mobile Wallet Protocol Client provides 2 interfaces for mobile app to interact with the Smart Wallet, an EIP-1193 compliant provider interface and a wagmi connector.
 
 <Callout type="success">
-  If your app is using wallet aggregator, go straight to **Option 2: Wagmi
-  Connector** for 1-line integration. :)
+  If your app is using wallet aggregator, go straight to [**Option 2: Wagmi
+  Connector**](#option-2-wagmi-connector) for 1-line integration.
 </Callout>
 
 ### Option 1: EIP-1193 Provider
 
 <Callout type="warning">
-  the `app` prefix in SDK config params is removed in v1.0.0.
+  The `app` prefix in SDK config params is removed in v1.0.0.
 </Callout>
 
 Create a new `EIP1193Provider` instance, which is EIP-1193 compliant.

@@ -1,4 +1,5 @@
 'use client';
+
 import { useOnchainKit } from '@coinbase/onchainkit';
 import type { ReactNode } from 'react';
 import type { Address } from 'viem';
