@@ -976,12 +976,12 @@
     "subcategory": "social"
   },
   {
-  "name": "Swan",
-  "description": "Swan is a protocol where people try to convince AI agents to buy their artifacts, and profit from them. Each agent has its own budget and the world simulation evolves with each artifact.",
-  "url": "https://swan.my/",
-  "imageUrl": "/images/partners/swan-logo.png",
-  "category": "ai",
-  "subcategory": "ai"
+    "name": "Swan",
+    "description": "Swan is a protocol where people try to convince AI agents to buy their artifacts, and profit from them. Each agent has its own budget and the world simulation evolves with each artifact.",
+    "url": "https://swan.my/",
+    "imageUrl": "/images/partners/swan-logo.png",
+    "category": "ai",
+    "subcategory": "ai"
   },
   {
     "name": "Bitget Wallet",
@@ -4040,13 +4040,21 @@
     "subcategory": "consumer"
   },
   {
+    "name": "Fashion.Fun",
+    "description": "A financial fashion platform which combines digital fashion drops from leading creators with the opportunity to win prizes",
+    "url": "https://www.fashion.fun",
+    "imageUrl": "/images/partners/fashion-fun.png",
+    "category": "consumer",
+    "subcategory": "nft"
+  },
+  {
     "name": "Nodit",
     "description": "Nodit is a Web3 development platform offering enterprise-grade blockchain data APIs and reliable node services with 99.9% uptime, empowering developers with affordable and accessible multi-chain infrastructure.",
     "url": "https://nodit.io/",
     "imageUrl": "/images/partners/nodit.png",
     "category": "infra",
     "subcategory": "developer tool"
-  },    
+  },
   {
     "name": "IPOR",
     "description": "IPOR offers two key products - IPOR Fusion: A composable vault stack optimized for modularity, security, and automation of sophisticated DeFi strategies. Asset managers can automate strategies, protocols can source liquidity, and LPs can get automated smart yield. Additionally, IPOR Derivatives: Earn token-boosted yield on stables and ETH. Trade plain-vanilla interest rate swaps onchain with up to 1000x leverage and 90-day maturity.",
