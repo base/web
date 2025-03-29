@@ -1,3 +1,5 @@
+import SubAccount from '@/components/smart-wallet/SubAccount';
+
 # Sub Accounts
 
 Sub Accounts are hierarchical, app-specific accounts that extend from a user's primary Smart Wallet. Each Sub Account operates as a distinct account that can:
@@ -5,6 +7,10 @@ Sub Accounts are hierarchical, app-specific accounts that extend from a user's p
 - Execute transactions and sign messages
 - Maintain separate asset management
 - Be fully controlled by both the universal Smart Wallet and authorized application logic
+
+## Give it a try!
+
+<SubAccount />
 
 ## Technical Details
 
@@ -20,3 +26,7 @@ In the CoinbaseWalletSDK properties you can set the `keysUrl` to `https://keys-d
 
 If you would like to use Sub Accounts with Coinbase Smart Wallet in our production environment, please [reach out](https://discord.com/invite/buildonbase) to the Base team.
 :::
+
+## Sub Account scope
+
+Sub Accounts are currently scoped to an application's fully qualified domain name (FQDN). This means that a user has one sub account for your application, and it cannot be used on other applications on separate domains.
