@@ -10,9 +10,7 @@ export type AnalyticsContextProps = {
 };
 
 export const AnalyticsContext = createContext<AnalyticsContextProps>({
-  logEventWithContext: function () {
-    return undefined;
-  },
+  logEventWithContext: () => {},
   fullContext: '',
 });
 
