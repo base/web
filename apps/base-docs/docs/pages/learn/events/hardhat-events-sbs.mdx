@@ -130,13 +130,13 @@ describe("Lock tests", function () {
       const LockFactory = await ethers.getContractFactory("Lock", owner);
       const lock = await LockFactory.deploy(unlockTime, { value: lockedAmount });
 
-      const hash = await lock.deploymentTransaction()?.hash
+      const hash = lock.deploymentTransaction.hash;
       const receipt = await ethers.provider.getTransactionReceipt(hash as string)
 
       console.log("Sender Address", owner.address)
       console.log("Receipt.logs", receipt?.logs)
 
-      const defaultDecoder = ethers.AbiCoder.defaultAbiCoder()
+      const defaultDecoder = ethers.utils.defaultAbiCoder;
       const decodedData = defaultDecoder.decode(['address', 'uint256'], receipt?.logs[0].data as string)
       console.log("decodedData", decodedData)
     });
