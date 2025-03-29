@@ -88,6 +88,7 @@ __metadata:
     "@coinbase/cookie-banner": ^1.0.3
     "@coinbase/cookie-manager": ^1.1.1
     "@coinbase/onchainkit": ^0.38.2
+    "@coinbase/wallet-sdk-canary": "npm:@coinbase/wallet-sdk@4.4.0-canary.1"
     "@googleapis/sheets": ^5.0.5
     "@types/next": ^9.0.0
     "@types/node": ^22.13.4
@@ -1864,6 +1865,22 @@ __metadata:
     react: ^18 || ^19
     react-dom: ^18 || ^19
   checksum: f0dbb3cbb2cca74f7f992b736f1debcac7dbdcb615834f129c443fb27f4bf294cdef6b6f0ac908e2e67be801796612629c4bf3d82fd004fa24401a3a8775490c
+  languageName: node
+  linkType: hard
+
+"@coinbase/wallet-sdk-canary@npm:@coinbase/wallet-sdk@4.4.0-canary.1":
+  version: 4.4.0-canary.1
+  resolution: "@coinbase/wallet-sdk@npm:4.4.0-canary.1"
+  dependencies:
+    "@noble/hashes": 1.4.0
+    clsx: 1.2.1
+    eventemitter3: 5.0.1
+    idb-keyval: 6.2.1
+    ox: 0.6.9
+    preact: 10.24.2
+    viem: 2.22.17
+    zustand: 5.0.3
+  checksum: 0d01a8aee77e70c2f36964b531a1a682d2290a0fb0619eefec1e0823f1e0ad2e5ce34e57720e07c4691600a014a091a315e64c7530261cceca1bb45e6b733823
   languageName: node
   linkType: hard
 
@@ -10814,17 +10831,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clsx@npm:1.2.1, clsx@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "clsx@npm:1.2.1"
+  checksum: 30befca8019b2eb7dbad38cff6266cf543091dae2825c856a62a8ccf2c3ab9c2907c4d12b288b73101196767f66812365400a227581484a05f968b0307cfaf12
+  languageName: node
+  linkType: hard
+
 "clsx@npm:2.1.1, clsx@npm:^2.0.0, clsx@npm:^2.1.1":
   version: 2.1.1
   resolution: "clsx@npm:2.1.1"
   checksum: acd3e1ab9d8a433ecb3cc2f6a05ab95fe50b4a3cfc5ba47abb6cbf3754585fcb87b84e90c822a1f256c4198e3b41c7f6c391577ffc8678ad587fc0976b24fd57
-  languageName: node
-  linkType: hard
-
-"clsx@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "clsx@npm:1.2.1"
-  checksum: 30befca8019b2eb7dbad38cff6266cf543091dae2825c856a62a8ccf2c3ab9c2907c4d12b288b73101196767f66812365400a227581484a05f968b0307cfaf12
   languageName: node
   linkType: hard
 
@@ -15343,7 +15360,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"idb-keyval@npm:^6.2.1":
+"idb-keyval@npm:6.2.1, idb-keyval@npm:^6.2.1":
   version: 6.2.1
   resolution: "idb-keyval@npm:6.2.1"
   checksum: 7c0836f832096086e99258167740181132a71dd2694c8b8454a4f5ec69114ba6d70983115153306f0b6de1c8d3bad04f67eed3dff8f50c96815b9985d6d78470
@@ -19485,6 +19502,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ox@npm:0.6.9":
+  version: 0.6.9
+  resolution: "ox@npm:0.6.9"
+  dependencies:
+    "@adraffy/ens-normalize": ^1.10.1
+    "@noble/curves": ^1.6.0
+    "@noble/hashes": ^1.5.0
+    "@scure/bip32": ^1.5.0
+    "@scure/bip39": ^1.4.0
+    abitype: ^1.0.6
+    eventemitter3: 5.0.1
+  peerDependencies:
+    typescript: ">=5.4.0"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 6f35c9710ab3edb8146f0d2a7c482517c8e1cb2adf0cfb7aba23a17209cf7171546ad017cce98dd9e0f60cee5d77ddaaa72961023e4456de093d985b5712c546
+  languageName: node
+  linkType: hard
+
 "ox@npm:^0.4.4":
   version: 0.4.4
   resolution: "ox@npm:0.4.4"
@@ -20244,6 +20281,13 @@ __metadata:
   version: 2.1.0
   resolution: "pprof-format@npm:2.1.0"
   checksum: f51beeaeac6d1409571a64132836ec5c48ba11a29da9e8da12a61b9689c67933488df77efa644089218da7d54de96e4fafedeaef835dfdfc94da37016a1b64fa
+  languageName: node
+  linkType: hard
+
+"preact@npm:10.24.2":
+  version: 10.24.2
+  resolution: "preact@npm:10.24.2"
+  checksum: 429584bbe65d5322b4cd449abd54d61d777f329a23badead36ad510f91d04f42d0615ad2bc4d5e80c3c531be53081932a027ee5f2d6f2805e10666f2ac3d70db
   languageName: node
   linkType: hard
 
@@ -24455,6 +24499,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"viem@npm:2.22.17":
+  version: 2.22.17
+  resolution: "viem@npm:2.22.17"
+  dependencies:
+    "@noble/curves": 1.8.1
+    "@noble/hashes": 1.7.1
+    "@scure/bip32": 1.6.2
+    "@scure/bip39": 1.5.4
+    abitype: 1.0.8
+    isows: 1.0.6
+    ox: 0.6.7
+    ws: 8.18.0
+  peerDependencies:
+    typescript: ">=5.0.4"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: e333317ce613284d6d2fe157b190c93dcc97586cd4824e9dcc6a9ad5dd470e02d8a8fff8b158781cda95737eb6ca7ab414a2e2539ceb521896424c8a2c6dfb56
+  languageName: node
+  linkType: hard
+
 "viem@npm:2.x, viem@npm:^2.1.1, viem@npm:^2.17.4, viem@npm:^2.23.0, viem@npm:^2.7.8":
   version: 2.23.5
   resolution: "viem@npm:2.23.5"
@@ -25285,27 +25350,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zustand@npm:^4.3.2":
-  version: 4.5.6
-  resolution: "zustand@npm:4.5.6"
-  dependencies:
-    use-sync-external-store: ^1.2.2
-  peerDependencies:
-    "@types/react": ">=16.8"
-    immer: ">=9.0.6"
-    react: ">=16.8"
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-    immer:
-      optional: true
-    react:
-      optional: true
-  checksum: c4e9c809c92195fa2f9e8e0cd6631b6830fc9676343c8584c20cf26d402f220c54ae0479a299dbcd5e1cdfc5977f116838f1b5f39d6a4997ff727c6cebe60d3f
-  languageName: node
-  linkType: hard
-
-"zustand@npm:^5.0.1, zustand@npm:^5.0.3":
+"zustand@npm:5.0.3, zustand@npm:^5.0.1, zustand@npm:^5.0.3":
   version: 5.0.3
   resolution: "zustand@npm:5.0.3"
   peerDependencies:
@@ -25323,6 +25368,26 @@ __metadata:
     use-sync-external-store:
       optional: true
   checksum: 72da39ac3017726c3562c615a0f76cee0c9ea678d664f82ee7669f8cb5e153ee81059363473094e4154d73a2935ee3459f6792d1ec9d08d2e72ebe641a16a6ba
+  languageName: node
+  linkType: hard
+
+"zustand@npm:^4.3.2":
+  version: 4.5.6
+  resolution: "zustand@npm:4.5.6"
+  dependencies:
+    use-sync-external-store: ^1.2.2
+  peerDependencies:
+    "@types/react": ">=16.8"
+    immer: ">=9.0.6"
+    react: ">=16.8"
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    immer:
+      optional: true
+    react:
+      optional: true
+  checksum: c4e9c809c92195fa2f9e8e0cd6631b6830fc9676343c8584c20cf26d402f220c54ae0479a299dbcd5e1cdfc5977f116838f1b5f39d6a4997ff727c6cebe60d3f
   languageName: node
   linkType: hard
 
