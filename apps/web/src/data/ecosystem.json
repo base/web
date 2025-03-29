@@ -127,6 +127,14 @@
     "category": "infra",
     "subcategory": "bridge"
   },
+    {
+    "name": "TRAIN Protocol",
+    "description": "TRAIN is a trustless and permissionless cross-chain asset bridging and swapping protocol designed to securely scale across an unlimited number of chains.",
+    "url": "https://app.train.tech",
+    "imageUrl": "/images/partners/TRAIN-logo.png",
+    "category": "infra",
+    "subcategory": "bridge"
+  },
   {
     "name": "Infusion",
     "description": "Infusion is an AMM protocol that facilitates deep and stabilized liquidity. It's time-lock component that allows for liquidity to be utilized as an onchain primitive for DApps.",
