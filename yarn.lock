@@ -159,8 +159,8 @@ __metadata:
     "@typescript-eslint/type-utils": ^7.8.0
     "@typescript-eslint/types": ^7.8.0
     "@typescript-eslint/utils": ^7.8.0
-    "@upstash/redis": ^1.34.0
     "@vercel/blob": ^0.23.4
+    "@vercel/kv": ^1.0.1
     "@vercel/og": ^0.6.2
     "@vercel/postgres-kysely": ^0.8.0
     autoprefixer: ^10.4.13
@@ -8961,12 +8961,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@upstash/redis@npm:^1.34.0":
-  version: 1.34.6
-  resolution: "@upstash/redis@npm:1.34.6"
+"@upstash/redis@npm:1.25.1":
+  version: 1.25.1
+  resolution: "@upstash/redis@npm:1.25.1"
   dependencies:
     crypto-js: ^4.2.0
-  checksum: 3ce0d84c6d0c6005b3e21e0b2f98cc7791c065ff608478914a9dec086e8e128547d9e4ff35d74d9fac9070d3dfb0bbb78762e20fa4a6d4c2752618b74643f272
+  checksum: 694d9ff33b0a4bce95fa72effaface1b9c41cab7093d726fc1a9ef29eb5ac6eda3d4d0cc59c130bc6e62bf20eaa60a8ef423c257bac1484d3d76e73c56a3ea7e
   languageName: node
   linkType: hard
 
@@ -9121,6 +9121,15 @@ __metadata:
   version: 2.0.3
   resolution: "@vercel/error-utils@npm:2.0.3"
   checksum: cb631bb6cf9574b3f1ee64cca82e9c594fa0a0d44f1fa0e810d86a11a98935cc780b2b89ac303a18609aed3582907142b45a88641d55a15e628e7bea38669f22
+  languageName: node
+  linkType: hard
+
+"@vercel/kv@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@vercel/kv@npm:1.0.1"
+  dependencies:
+    "@upstash/redis": 1.25.1
+  checksum: 399ab8a846406cd61ea03909f04a5261ab0e06bac14e6a834f5292005305d9ee463179579fa74fe554db1cfecb706372bb4e9faa473433a146e2311095f6c29e
   languageName: node
   linkType: hard
 
