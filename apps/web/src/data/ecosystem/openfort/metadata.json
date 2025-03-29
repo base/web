@@ -1,0 +1,8 @@
+{
+  "name": "Openfort",
+  "url": "https://www.openfort.xyz",
+  "description": "Openfort is a headless wallet service for developers that want to offer a seamless experience to their players. It allows you to create and manage smart wallets powered by account abstraction.",
+  "category": "wallet",
+  "subcategory": "account abstraction",
+  "imageUrl": "/images/partners/openfort.webp"
+}

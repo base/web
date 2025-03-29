@@ -1,0 +1,8 @@
+{
+  "name": "Pintu Web3",
+  "category": "wallet",
+  "subcategory": "self-custody",
+  "description": "Pintu is an Indonesian-licensed crypto exchange that features an MPC wallet for easier Web3 access. It supports multiple blockchain networks, including Base, Ethereum, Polygon, Arbitrum, and Optimism.",
+  "url": "https://pintu.co.id/en/web3",
+  "imageUrl": "/images/partners/pintu.png"
+}
