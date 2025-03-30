@@ -69,7 +69,7 @@ With your contracts verified, you can interact with them using online tools and 
 
 [`sepolia.basescan.org`]: https://sepolia.basescan.org/
 [coinbase]: https://www.coinbase.com/wallet
-[faucet]: https://docs.base.org/tools/network-faucets
+[faucet]: https://docs.base.org/chain/network-faucets
 [set up]: 
 [coinbase settings]: https://docs.cloud.coinbase.com/wallet-sdk/docs/developer-settings
 [BaseScan]: https://sepolia.basescan.org/

@@ -27,7 +27,7 @@ Ensuring that your app is perceived as trustworthy and not flagged as malicious 
 
 ## Smart Contracts
 
-- **Verify Source Code:** Ensure that the source code of your contracts is verified and publicly available on [block explorers](https://docs.base.org/docs/tools/block-explorers/).
+- **Verify Source Code:** Ensure that the source code of your contracts is verified and publicly available on [block explorers](https://docs.base.org/chain/block-explorers).
 - **Audit Your Contracts**: Having your contracts audited by a reputable firm is crucial. Publish the audit report and provide a reference link to it, so users can easily find it. Audits show that you’ve taken extra steps to secure your smart contracts.
 - **Limit User Funds Exposure**: Design your contracts to minimize the exposure of user funds. Use efficient design to reduce any unnecessary risk. For example, request the minimum amount needed to fulfill the transaction.
 
