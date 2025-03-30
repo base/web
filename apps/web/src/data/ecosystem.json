@@ -1,4 +1,11 @@
-[
+[  {
+    "name": "RWAX Exchange",
+    "description": "The RWAX Exchange is the leading RWA perp dex where you can go long/short any RWA asset with up to 50x leverage.",
+    "url": "https://therwax.com/",
+    "imageUrl": "/images/partners/rwax.png",
+    "category": "defi",
+    "subcategory": "dex"
+  },
   {
     "name": "Ratio1",
     "description": "A decentralized AI compute network ensuring trustless execution, data ownership, and linear scalability via a censorship-resistant, encrypted, and autonomous compute layer.",
