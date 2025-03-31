@@ -249,12 +249,6 @@ const handleSignIn = async () => {
 Authentication requires additional setup utilizing an auth framework like next/auth or manually integrating session storage and route/component authentication.
 :::
 
-:::warning
-Our long-term recommended practice for Sign-In with Farcaster (SIWF) is to use the signIn RPC from Frames SDK. However, due to current limitations for Coinbase Wallet users, please temporarily implement authentication via [AuthKit](https://docs.farcaster.xyz/auth-kit/). This interim solution will soon become obsolete as we work on improving the authentication experience.
-
-Learn more about our upcoming solution [here](https://www.notion.so/Auth-Addresses-Proposal-c765eece3b5c4d4a95f5b067832cd521).
-:::
-
 ## CLI
 
 The MiniKit CLI is the easiest way to get started. It automatically creates a sample application that integrates different parts of the SDK and some OnchainKit components.
