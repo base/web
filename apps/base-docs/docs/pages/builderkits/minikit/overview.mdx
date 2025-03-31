@@ -9,14 +9,14 @@ description: Easiest way to build Mini Apps on Base
   src="/images/minikit/minikit-cli.gif"
   height="364"/>
 
-MiniKit is easiest way to build Mini Apps on Base, allowing developers to easily build applications without needing to know the details of the SDK implementation. It integrates seamlessly with OnchainKit components and provides Coinbase Wallet-specific hooks that degrade gracefully on other clients such as Warpcast.
+MiniKit is easiest way to build Mini Apps on Base, allowing developers to easily build applications without needing to know the details of the SDK implementation. It integrates seamlessly with OnchainKit components and provides Coinbase Wallet-specific hooks.
 
 ## Why MiniKit?
 
 MiniKit streamlines mini-app development by providing a comprehensive toolkit that makes complex Frames SDK interactions intuitive:
 
 - **Simplified Development:** Build apps with minimal knowledge of the Frames SDK
-- **Coinbase Wallet Integration:** Access Coinbase Wallet-specific hooks that degrade gracefully on other clients
+- **Coinbase Wallet Integration:** Access Coinbase Wallet-specific hooks
 - **Component Compatibility:** Use [OnchainKit](https://onchainkit.xyz/) components out of the box with MiniKit
 - **Automatic Setup:** CLI tool for quick project scaffolding with webhooks and notifications
 - **Account Association:** Simplified generation of account associations
@@ -115,19 +115,6 @@ useEffect(() => {
   updateClientContext: (params: UpdateClientContextParams) => void; // Update client context
   notificationProxyUrl: string; // The notification proxy URL
 }
-```
-
-### useTBADeepLink
-
-This hook wraps `sdk.actions.openUrl` and provides a map of all available TBA deep links. If a user is not in TBA, this hook will open an external browser and attempt to deep link to the TBA app.
-
-```tsx
-const openBuyLink = useTBADeepLink('buy');
-const openSwapLink = useTBADeepLink('swap');
-
-// Usage
-<button onClick={() => openBuyLink()}>Buy Tokens</button>
-<button onClick={() => openSwapLink()}>Swap Tokens</button>
 ```
 
 ### useAddFrame
@@ -247,12 +234,6 @@ const handleSignIn = async () => {
 
 :::info
 Authentication requires additional setup utilizing an auth framework like next/auth or manually integrating session storage and route/component authentication.
-:::
-
-:::warning
-Our long-term recommended practice for Sign-In with Farcaster (SIWF) is to use the signIn RPC from Frames SDK. However, due to current limitations for Coinbase Wallet users, please temporarily implement authentication via [AuthKit](https://docs.farcaster.xyz/auth-kit/). This interim solution will soon become obsolete as we work on improving the authentication experience.
-
-Learn more about our upcoming solution [here](https://www.notion.so/Auth-Addresses-Proposal-c765eece3b5c4d4a95f5b067832cd521).
 :::
 
 ## CLI

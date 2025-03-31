@@ -1,0 +1,8 @@
+{
+  "name": "ZKP2P",
+  "url": "https://zkp2p.xyz/",
+  "description": "ZKP2P is a trustless P2P fiat to crypto on/offramp powered by zero knowledge proofs. Convert USD in Venmo to USDC in 60 seconds!",
+  "imageUrl": "/images/partners/zkp2p.webp",
+  "category": "onramp",
+  "subcategory": "fiat on-ramp"
+}
