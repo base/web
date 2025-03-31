@@ -1,0 +1,8 @@
+{
+  "name": "Dockhive",
+  "description": "DockHive integrates Docker with blockchain for a decentralized cloud infrastructure, offering enhanced security, fault tolerance, dynamic scaling, and leveraging the DHT token for ecosystem transactions.",
+  "url": "https://dockhive.io",
+  "imageUrl": "/images/partners/dockhive.png",
+  "category": "infra",
+  "subcategory": "developer tool"
+}

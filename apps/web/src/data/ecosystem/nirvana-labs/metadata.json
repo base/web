@@ -1,0 +1,8 @@
+{
+  "name": "Nirvana Labs",
+  "description": "Built by crypto engineers and optimized for the bandwidth, storage, and compute workloads of blockchain transactions, Nirvana offers a bare metal cloud with vertically integrated managed RPC services.",
+  "url": "https://nirvanalabs.io/",
+  "imageUrl": "/images/partners/Nirvana.webp",
+  "category": "infra",
+  "subcategory": "node provider"
+}

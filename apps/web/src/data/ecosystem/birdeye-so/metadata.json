@@ -1,0 +1,8 @@
+{
+  "name": "Birdeye.so",
+  "description": "Birdeye is an on-chain crypto trading data aggregator that provides fair access to investment opportunities for all traders. We integrate with 200+ DEXes & AMMs on Solana, Sui, Ethereum, and other EVM chains, providing users with the most precise token and trading data they need.",
+  "url": "https://birdeye.so/",
+  "imageUrl": "/images/partners/birdeye.png",
+  "category": "defi",
+  "subcategory": "dex aggregator"
+}
