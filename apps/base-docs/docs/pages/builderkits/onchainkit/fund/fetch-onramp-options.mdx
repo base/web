@@ -12,6 +12,7 @@ import { fetchOnrampOptions } from '@coinbase/onchainkit/fund';
 const options = await fetchOnrampOptions({
   country: 'US',
   subdivision: 'CA', // Required for US residents
+  apiKey: 'your-api-key', //   Required when using without OnchainKitProvider or in non-React environment
 });
 ```
 
@@ -60,6 +61,12 @@ const options = await fetchOnrampOptions({
    * have state specific asset restrictions.
    */
   subdivision?: string;
+  /**
+   * Optional API key for Coinbase Onramp. If not provided, the API key from
+   * OnchainKitProvider will be used. Required when using the utility without
+   * OnchainKitProvider or in a non-React environment.
+   */
+  apiKey?: string;
 }
 ```
 
