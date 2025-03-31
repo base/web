@@ -54,11 +54,10 @@ import AppWithWalletModal from '@/components/AppWithWalletModal';
       mode: 'auto',                 // 'light' | 'dark' | 'auto'
       theme: 'default',             // 'default' or custom theme
     },
-    wallet: {
-      display: 'modal',
-      termsUrl: 'https://example.com/terms',
-      privacyUrl: 'https://example.com/privacy',
-    },
+    wallet: { // [!code focus]
+      display: 'modal', // [!code focus]
+      termsUrl: 'https://...', // [!code focus]
+      privacyUrl: 'https://...', // [!code focus]
   }}
 >
   {children}
@@ -146,8 +145,8 @@ By default, the wallet modal includes Coinbase Wallet, MetaMask, and Phantom as 
     },
     wallet: {
       display: 'modal',
-      termsUrl: 'https://example.com/terms',
-      privacyUrl: 'https://example.com/privacy',
+      termsUrl: 'https://...',
+      privacyUrl: 'https://...',
       supportedWallets: { // [!code focus]
         rabby: true, // [!code focus]
         trust: true, // [!code focus]
