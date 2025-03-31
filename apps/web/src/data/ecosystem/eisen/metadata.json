@@ -1,0 +1,8 @@
+{
+  "name": "Eisen",
+  "url": "http://app.eisenfinance.com",
+  "description": "Eisen is a multichain DEX aggregator expanding in V2 to unify CEX/DEX spot and derivatives, enabling advanced strategies like delta-neutral farming for safer, optimized DeFi yields.",
+  "imageUrl": "/images/partners/eisen.png",
+  "category": "defi",
+  "subcategory": "dex aggregator"
+}
