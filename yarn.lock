@@ -1868,30 +1868,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@coinbase/onchainkit@npm:^0.38.4":
-  version: 0.38.4
-  resolution: "@coinbase/onchainkit@npm:0.38.4"
-  dependencies:
-    "@farcaster/frame-core": ^0.0.26
-    "@farcaster/frame-sdk": ^0.0.28
-    "@farcaster/frame-wagmi-connector": ^0.0.16
-    "@tanstack/react-query": ^5
-    "@wagmi/core": ^2.16.7
-    clsx: ^2.1.1
-    graphql: ^14 || ^15 || ^16
-    graphql-request: ^6.1.0
-    qrcode: ^1.5.4
-    tailwind-merge: ^2.3.0
-    viem: ^2.23.0
-    wagmi: ^2.14.11
-  peerDependencies:
-    "@types/react": ^18 || ^19
-    react: ^18 || ^19
-    react-dom: ^18 || ^19
-  checksum: 99abe1bc50106e9b4009901607966a6084731e799484bd172ae8975333aa63171cdea556dfe91b1c7720ab00e17be7d53ad19c5e5769d1a1950f704ab72f3c10
-  languageName: node
-  linkType: hard
-
 "@coinbase/wallet-sdk-canary@npm:@coinbase/wallet-sdk@4.4.0-canary.1":
   version: 4.4.0-canary.1
   resolution: "@coinbase/wallet-sdk@npm:4.4.0-canary.1"
