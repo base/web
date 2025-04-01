@@ -33,6 +33,10 @@
     {
       "source": "/docs/arbitration",
       "destination": "/arbitration"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/react-native-integration",
+      "destination": "/identity/smart-wallet/quickstart/react-native-project"
     }
   ]
 }
