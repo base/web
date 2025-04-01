@@ -87,7 +87,7 @@ __metadata:
   dependencies:
     "@coinbase/cookie-banner": ^1.0.3
     "@coinbase/cookie-manager": ^1.1.1
-    "@coinbase/onchainkit": ^0.38.2
+    "@coinbase/onchainkit": ^0.38.4
     "@coinbase/wallet-sdk-canary": "npm:@coinbase/wallet-sdk@4.4.0-canary.1"
     "@googleapis/sheets": ^5.0.5
     "@types/next": ^9.0.0
@@ -124,7 +124,7 @@ __metadata:
   dependencies:
     "@coinbase/cookie-banner": ^1.0.3
     "@coinbase/cookie-manager": ^1.1.1
-    "@coinbase/onchainkit": ^0.38.2
+    "@coinbase/onchainkit": ^0.38.4
     "@datadog/browser-logs": ^5.23.3
     "@datadog/browser-rum": ^5.23.3
     "@frames.js/render": ^0.5.5
@@ -1845,26 +1845,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@coinbase/onchainkit@npm:^0.38.2":
-  version: 0.38.2
-  resolution: "@coinbase/onchainkit@npm:0.38.2"
+"@coinbase/onchainkit@npm:^0.38.4":
+  version: 0.38.4
+  resolution: "@coinbase/onchainkit@npm:0.38.4"
   dependencies:
+    "@farcaster/frame-core": ^0.0.26
     "@farcaster/frame-sdk": ^0.0.28
     "@farcaster/frame-wagmi-connector": ^0.0.16
     "@tanstack/react-query": ^5
+    "@wagmi/core": ^2.16.7
     clsx: ^2.1.1
     graphql: ^14 || ^15 || ^16
     graphql-request: ^6.1.0
     qrcode: ^1.5.4
     tailwind-merge: ^2.3.0
-    tailwindcss-animate: ^1.0.7
     viem: ^2.23.0
     wagmi: ^2.14.11
   peerDependencies:
     "@types/react": ^18 || ^19
     react: ^18 || ^19
     react-dom: ^18 || ^19
-  checksum: f0dbb3cbb2cca74f7f992b736f1debcac7dbdcb615834f129c443fb27f4bf294cdef6b6f0ac908e2e67be801796612629c4bf3d82fd004fa24401a3a8775490c
+  checksum: 99abe1bc50106e9b4009901607966a6084731e799484bd172ae8975333aa63171cdea556dfe91b1c7720ab00e17be7d53ad19c5e5769d1a1950f704ab72f3c10
   languageName: node
   linkType: hard
 
@@ -3185,7 +3186,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@farcaster/frame-core@npm:0.0.26":
+"@farcaster/frame-core@npm:0.0.26, @farcaster/frame-core@npm:^0.0.26":
   version: 0.0.26
   resolution: "@farcaster/frame-core@npm:0.0.26"
   dependencies:
@@ -8978,6 +8979,26 @@ __metadata:
     typescript:
       optional: true
   checksum: ed110e48ed5921d92adf598bc57fc5eac39d11a793fba70e813c8228940116d0f95963e25eee73a8f95572c34630ff3715e93f93b05008f9dcaaaff3ed9676f3
+  languageName: node
+  linkType: hard
+
+"@wagmi/core@npm:^2.16.7":
+  version: 2.16.7
+  resolution: "@wagmi/core@npm:2.16.7"
+  dependencies:
+    eventemitter3: 5.0.1
+    mipd: 0.0.7
+    zustand: 5.0.0
+  peerDependencies:
+    "@tanstack/query-core": ">=5.0.0"
+    typescript: ">=5.0.4"
+    viem: 2.x
+  peerDependenciesMeta:
+    "@tanstack/query-core":
+      optional: true
+    typescript:
+      optional: true
+  checksum: a1497934a59ad35b512c9d772e3f9b103a860e245879b413161cf5fe9f897a2f69f79fd5ec464c20cc6bb6c47291958e036e1c26d44eaab853bf19745cb77df9
   languageName: node
   linkType: hard
 
