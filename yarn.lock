@@ -122,6 +122,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@app/web@workspace:apps/web"
   dependencies:
+    "@amplitude/experiment-js-client": ^1.11.0
     "@coinbase/cookie-banner": ^1.0.3
     "@coinbase/cookie-manager": ^1.1.1
     "@coinbase/onchainkit": ^0.38.2
@@ -143,6 +144,7 @@ __metadata:
     "@react-three/fiber": ^9.0.0-alpha.8
     "@react-three/postprocessing": ^3.0.0-rc.0
     "@react-three/rapier": 1.1.1
+    "@sprig-technologies/sprig-browser": ^2.29.0
     "@tanstack/react-query": ^5
     "@testing-library/jest-dom": ^6.5.0
     "@testing-library/react": ^16.0.1

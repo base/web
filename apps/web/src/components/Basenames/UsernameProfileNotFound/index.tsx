@@ -7,7 +7,7 @@ import { redirect, useSearchParams } from 'next/navigation';
 import ImageWithLoading from 'apps/web/src/components/ImageWithLoading';
 import { useIsNameAvailable } from 'apps/web/src/hooks/useIsNameAvailable';
 import classNames from 'classnames';
-import { Icon } from 'libs/base-ui';
+import { Icon } from 'apps/web/src/components/Icon/Icon';
 
 const spinnerWrapperClasses = classNames('flex w-full items-center justify-center');
 

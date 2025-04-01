@@ -1,9 +1,0 @@
-{
-  "extends": "../../tsconfig.projectOptions.json",
-  "compilerOptions": {
-    "outDir": "../../out/libs/base-ui"
-  },
-  "include": [
-    "**/*"
-  ]
-}

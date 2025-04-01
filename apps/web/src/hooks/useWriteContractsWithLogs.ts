@@ -1,7 +1,7 @@
 import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { useErrors } from 'apps/web/contexts/Errors';
 import { decodeRawLog, USER_OPERATION_EVENT_LOG_NAME } from 'apps/web/src/utils/transactionLogs';
-import { ActionType } from 'libs/base-ui/utils/logEvent';
+import { ActionType } from 'apps/web/src/utils/analytics/logEvent';
 import { useCallback, useEffect, useState } from 'react';
 import { Chain } from 'viem';
 import { WriteContractsParameters } from 'viem/experimental';
@@ -23,7 +23,7 @@ import useCapabilitiesSafe from 'apps/web/src/hooks/useCapabilitiesSafe';
 
   - Requirement for a "true" batch calls success:
   -- statusStatus.data === 'CONFIRMED'
-  -- transactionReceipt.status === 'success' 
+  -- transactionReceipt.status === 'success'
   -- decodedUserOperationEventLog.args.success === true
 */
 

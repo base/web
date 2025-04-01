@@ -10,7 +10,7 @@ import FarcasterAccountModal from 'apps/web/src/components/Basenames/UsernamePro
 import FrameListItem from 'apps/web/src/components/Basenames/UsernameProfileSectionFrames/FrameListItem';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import ImageAdaptive from 'apps/web/src/components/ImageAdaptive';
-import { ActionType } from 'libs/base-ui/utils/logEvent';
+import { ActionType } from 'apps/web/src/utils/analytics/logEvent';
 import { StaticImageData } from 'next/image';
 import Link from 'next/link';
 import { useCallback } from 'react';

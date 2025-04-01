@@ -7,7 +7,7 @@ import { isBasename, isEnsName } from 'apps/web/src/utils/usernames';
 import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
-import { truncateMiddle } from 'libs/base-ui/utils/string';
+import { truncateMiddle } from 'apps/web/src/utils/truncateMiddle';
 import Link from 'next/link';
 import Hint from 'apps/web/src/components/Hint';
 import Fieldset from 'apps/web/src/components/Fieldset';

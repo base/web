@@ -20,8 +20,8 @@ import { UserAvatar } from 'apps/web/src/components/ConnectWalletButton/UserAvat
 import { useMediaQuery } from 'usehooks-ts';
 import classNames from 'classnames';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
-import logEvent, { ActionType, AnalyticsEventImportance, identify } from 'base-ui/utils/logEvent';
-import sanitizeEventString from 'base-ui/utils/sanitizeEventString';
+import logEvent, { ActionType, AnalyticsEventImportance, identify } from 'apps/web/src/utils/analytics/logEvent';
+import sanitizeEventString from 'apps/web/src/utils/analytics/sanitizeEventString';
 import { CustomWalletAdvancedAddressDetails } from './CustomWalletAdvancedAddressDetails';
 
 export enum ConnectWalletButtonVariants {

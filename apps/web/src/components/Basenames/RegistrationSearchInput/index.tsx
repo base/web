@@ -8,7 +8,7 @@ import { useFocusWithin } from 'apps/web/src/hooks/useFocusWithin';
 import { useIsNameAvailable } from 'apps/web/src/hooks/useIsNameAvailable';
 import { formatBaseEthDomain, validateEnsDomainName } from 'apps/web/src/utils/usernames';
 import classNames from 'classnames';
-import { ActionType } from 'libs/base-ui/utils/logEvent';
+import { ActionType } from 'apps/web/src/utils/analytics/logEvent';
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { useDebounceValue } from 'usehooks-ts';
 import Tooltip from 'apps/web/src/components/Tooltip';

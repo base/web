@@ -8,7 +8,7 @@ import {
   socialPlatformIconName,
   socialPlatformShareLinkFunction,
 } from 'apps/web/src/utils/socialPlatforms';
-import { ActionType } from 'libs/base-ui/utils/logEvent';
+import { ActionType } from 'apps/web/src/utils/analytics/logEvent';
 import Link from 'next/link';
 
 import { useCallback } from 'react';

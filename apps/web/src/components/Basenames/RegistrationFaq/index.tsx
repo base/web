@@ -1,6 +1,6 @@
 'use client';
 import { useState, useCallback } from 'react';
-import { Icon } from 'base-ui';
+import { Icon } from 'apps/web/src/components/Icon/Icon';
 import {
   RegistrationSteps,
   useRegistration,

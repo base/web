@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 
 type SprigEnvironmentId = string | undefined;
+
 const isDevelopment = process.env.NODE_ENV === 'development';
+
 export default function useSprig(environmentId: SprigEnvironmentId) {
   const [Sprig, setSprig] = useState<unknown>(null);
 
@@ -28,7 +30,7 @@ export default function useSprig(environmentId: SprigEnvironmentId) {
     };
 
     void loadSprig();
-  }, []);
+  }, [environmentId]);
 
   return Sprig;
 }

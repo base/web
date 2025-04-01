@@ -1,5 +1,5 @@
 import { pinata } from 'apps/web/src/utils/pinata';
-import { isDevelopment } from 'libs/base-ui/constants';
+import { isDevelopment } from 'apps/web/src/constants';
 import { NextResponse, NextRequest } from 'next/server';
 
 export const ALLOWED_IMAGE_TYPE = [

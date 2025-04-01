@@ -4,7 +4,7 @@ import {
   useRegistration,
 } from 'apps/web/src/components/Basenames/RegistrationContext';
 import { Button, ButtonVariants } from 'apps/web/src/components/Button/Button';
-import { ActionType } from 'libs/base-ui/utils/logEvent';
+import { ActionType } from 'apps/web/src/utils/analytics/logEvent';
 import { useCallback, useState } from 'react';
 import { useAccount } from 'wagmi';
 import USDCClaimModal from './USDCClaimModal';

@@ -1,14 +1,14 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import Link from 'next/link';
 import { useLocalStorage } from 'usehooks-ts';
 import { usePathname } from 'next/navigation';
 
-import { Icon } from '../../../Icon';
+import { Icon } from 'apps/web/src/components/Icon/Icon';
 import logEvent, {
   ActionType,
   AnalyticsEventImportance,
   ComponentType,
-} from '../../../utils/logEvent';
+} from 'apps/web/src/utils/analytics/logEvent';
 
 type BannerName = `${string}Banner`;
 
@@ -19,10 +19,7 @@ type BannerProps = {
 };
 
 export default function Banner({ href, text, bannerName }: BannerProps) {
-  const [isBannerVisible, setIsBannerVisible] = useLocalStorage(
-    `${bannerName}Visible`,
-    true,
-  );
+  const [isBannerVisible, setIsBannerVisible] = useLocalStorage(`${bannerName}Visible`, true);
   const pathname = usePathname();
   const isOnPage = pathname === href.split('?')[0];
 
@@ -36,7 +33,7 @@ export default function Banner({ href, text, bannerName }: BannerProps) {
       },
       AnalyticsEventImportance.high,
     );
-  }, [logEvent, bannerName]);
+  }, [bannerName]);
 
   const hideBanner = useCallback(() => {
     setIsBannerVisible(false);
@@ -47,8 +44,8 @@ export default function Banner({ href, text, bannerName }: BannerProps) {
   }
 
   return (
-    <div className="bg-yellow-20 z-10 flex w-full flex-row justify-center text-black">
-      <div className="bg-yellow-20 z-10 flex w-full max-w-[1440px] flex-row items-center justify-between self-center p-2 pl-8 pr-6">
+    <div className="z-10 flex w-full flex-row justify-center bg-yellow-20 text-black">
+      <div className="z-10 flex w-full max-w-[1440px] flex-row items-center justify-between self-center bg-yellow-20 p-2 pl-8 pr-6">
         <Link href={href} onClick={linkClick}>
           <span className="text-xs underline md:text-base">{text}</span>
         </Link>

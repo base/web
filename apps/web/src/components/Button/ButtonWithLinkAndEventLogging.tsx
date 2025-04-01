@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback } from 'react';
-import { ActionType, ComponentType } from 'base-ui/utils/logEvent';
+import { ActionType, ComponentType } from 'apps/web/src/utils/analytics/logEvent';
 import { useAnalytics } from '../../../contexts/Analytics';
 import { ButtonWithLink, ButtonWithLinkProps } from './ButtonWithLink';
 import { IconProps } from 'apps/web/src/components/Icon/Icon';

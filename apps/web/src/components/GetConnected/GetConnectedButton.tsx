@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react';
 import Link from 'apps/web/node_modules/next/link';
-import { ActionType, ComponentType } from 'base-ui/utils/logEvent';
+import { ActionType, ComponentType } from 'apps/web/src/utils/analytics/logEvent';
 import { useAnalytics } from '../../../contexts/Analytics';
 import { Icon } from '../Icon/Icon';
 

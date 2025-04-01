@@ -1,7 +1,7 @@
 import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import classNames from 'classnames';
-import { ActionType } from 'libs/base-ui/utils/logEvent';
+import { ActionType } from 'apps/web/src/utils/analytics/logEvent';
 import { useEffect } from 'react';
 import { ContractFunctionExecutionError, TransactionExecutionError } from 'viem';
 

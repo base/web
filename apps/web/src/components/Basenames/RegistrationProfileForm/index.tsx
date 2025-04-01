@@ -18,7 +18,7 @@ import {
   textRecordsSocialFieldsEnabled,
 } from 'apps/web/src/utils/usernames';
 import classNames from 'classnames';
-import { ActionType } from 'libs/base-ui/utils/logEvent';
+import { ActionType } from 'apps/web/src/utils/analytics/logEvent';
 import { useCallback, useEffect, useState } from 'react';
 
 export enum FormSteps {
