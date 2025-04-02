@@ -12,10 +12,10 @@ async function removeFeedbackWidget(file: string) {
     }
 
     // Remove the import statement
-    content = content.replace(/import\s*{\s*FeedbackWidget\s*}\s*from\s*['"].*?['"]\s*\n?/g, '')
+    content = content.replace(/import\s+{[^}]*\bFeedbackWidget\b[^}]*}\s+from\s+['"][^'"]+['"];\s*\n?/g, '')
 
     // Remove the FeedbackWidget component
-    content = content.replace(/<FeedbackWidget\s*\/>\s*\n?/g, '')
+    content = content.replace(/<FeedbackWidget\b[^>]*\/>\s*\n?/g, '')
 
     // Clean up any double newlines that might have been created
     content = content.replace(/\n{3,}/g, '\n\n')
