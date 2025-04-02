@@ -7,16 +7,16 @@ import { Buy } from '@coinbase/onchainkit/buy';
 import { Checkout, CheckoutButton } from '@coinbase/onchainkit/checkout';
 import { Earn } from '@coinbase/onchainkit/earn';
 import { FundCard } from '@coinbase/onchainkit/fund';
-import { SwapDefault } from '@coinbase/onchainkit/swap';
-import { TransactionDefault } from '@coinbase/onchainkit/transaction';
+import { Swap } from '@coinbase/onchainkit/swap';
+import { Transaction } from '@coinbase/onchainkit/transaction';
 import {
   ConnectWallet,
   Wallet,
-  WalletAdvanced,
   WalletAdvancedAddressDetails,
   WalletAdvancedTokenHoldings,
   WalletAdvancedTransactionActions,
   WalletAdvancedWalletActions,
+  WalletDropdown,
 } from '@coinbase/onchainkit/wallet';
 import { Name } from '@coinbase/onchainkit/identity';
 import Title from 'apps/web/src/components/base-org/typography/Title';
@@ -86,12 +86,12 @@ export function LiveDemo({ components, title, hideDescription = false }: LiveDem
               <UserAvatar />
               <Name />
             </ConnectWallet>
-            <WalletAdvanced>
+            <WalletDropdown>
               <WalletAdvancedWalletActions />
               <WalletAdvancedAddressDetails classNames={walletAdvancedAddressDetailsClasses} />
               <WalletAdvancedTransactionActions />
               <WalletAdvancedTokenHoldings />
-            </WalletAdvanced>
+            </WalletDropdown>
           </Wallet>
         );
       case 'Buy':
@@ -103,7 +103,7 @@ export function LiveDemo({ components, title, hideDescription = false }: LiveDem
           </Checkout>
         );
       case 'Swap':
-        return <SwapDefault to={swappableTokens} from={swappableTokens} className="w-full" />;
+        return <Swap to={swappableTokens} from={swappableTokens} className="w-full" />;
       case 'Earn':
         return <Earn vaultAddress={earnVaultAddress} />;
       case 'Mint':
@@ -119,7 +119,7 @@ export function LiveDemo({ components, title, hideDescription = false }: LiveDem
           />
         );
       case 'Transact':
-        return <TransactionDefault calls={CLICK_CALLS} className="mr-auto w-auto" />;
+        return <Transaction calls={CLICK_CALLS} className="mr-auto w-auto" />;
       default:
         return null;
     }
