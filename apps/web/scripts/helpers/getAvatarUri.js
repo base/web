@@ -14,7 +14,7 @@ const erc1155Abi = [
 function getGatewayUrl(uri, tokenId) {
   const match = /([a-z]+)(?::\/\/|\/)(.*)/.exec(uri);
 
-  if (!match || match.length < 3) {
+  if (!match || !match[2]) {
     return uri;
   }
 
