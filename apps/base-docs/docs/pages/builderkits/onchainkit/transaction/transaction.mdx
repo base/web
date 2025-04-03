@@ -7,7 +7,6 @@ import { Avatar, Name } from '@coinbase/onchainkit/identity';
 import {
   Transaction,
   TransactionButton,
-  TransactionDefault,
   TransactionSponsor,
   TransactionStatus,
   TransactionStatusAction,
@@ -29,17 +28,17 @@ Before using them, ensure you've completed all [Getting Started steps](/builderk
 
 ## Quick start
 
-The `TransactionDefault` component is a simplified version of the `Transaction` component, designed to streamline the integration process for developers. Instead of manually defining each subcomponent and prop, developers can use this shorthand version which renders our suggested implementation of the component and includes the `TransactionButton` and `TransactionToast` components.
+The `Transaction` component now supports a simplified shorthand version to streamline the integration process for developers. Instead of manually defining each subcomponent and prop, you can render `Transaction` without children, and it will automatically include our suggested implementation — complete with the `TransactionButton` and `TransactionToast` components.
 
-If you'd like more customization, follow the implementation guide for our `Swap` component below.
+If you'd like more customization, follow the implementation guide for our `Transaction` components below.
 
 ```tsx twoslash
 // @noErrors: 1109 - Cannot find name 'contracts'
-import { TransactionDefault } from "@coinbase/onchainkit/transaction"
+import { Transaction } from "@coinbase/onchainkit/transaction"
 
 const calls = [...];
 
-<TransactionDefault calls={calls} />
+<Transaction calls={calls} />
 ```
 
 <App>
@@ -47,7 +46,7 @@ const calls = [...];
     {({ address, contracts, onStatus }) => {
       if (address) {
         return (
-          <TransactionDefault
+          <Transaction
             isSponsored={true}
             chainId={BASE_SEPOLIA_CHAIN_ID}
             calls={contracts}
@@ -70,7 +69,7 @@ const calls = [...];
 
 ### Props
 
-[`TransactionDefaultReact`](/builderkits/onchainkit/transaction/types#transactiondefaultreact)
+[`TransactionReact`](/builderkits/onchainkit/transaction/types#transactionreact)
 
 ## Walkthrough
 

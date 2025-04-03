@@ -564,7 +564,17 @@ export const sidebar: Sidebar = [
       },
       {
         text: 'MiniKit',
-        link: '/builderkits/minikit/getting-started',
+        collapsed: true,
+        items: [
+          {
+            text: 'Overview',
+            link: '/builderkits/minikit/overview',
+          },
+          {
+            text: 'Quickstart',
+            link: '/builderkits/minikit/quickstart',
+          },
+        ],
       },
       {
         text: 'AgentKit (CDP) ↗',
@@ -852,10 +862,6 @@ export const sidebar: Sidebar = [
               {
                 text: 'Update Existing App',
                 link: '/identity/smart-wallet/guides/update-existing-app',
-              },
-              {
-                text: 'React Native Integration',
-                link: '/identity/smart-wallet/guides/react-native-integration',
               },
               {
                 text: 'Signing and Verifying Messages',

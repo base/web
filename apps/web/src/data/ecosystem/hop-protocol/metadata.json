@@ -1,0 +1,8 @@
+{
+  "name": "Hop Protocol",
+  "url": "https://hop.exchange/",
+  "description": "A protocol for sending tokens across rollups and their shared layer-1 network in a quick and trustless manner.",
+  "imageUrl": "/images/partners/hop_protocol.webp",
+  "category": "infra",
+  "subcategory": "bridge"
+}

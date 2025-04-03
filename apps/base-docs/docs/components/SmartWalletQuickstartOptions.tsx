@@ -7,18 +7,18 @@ export default function SmartWalletQuickstartOptions() {
   return (
     <div className="grid grid-cols-2 gap-4">
       <FrameworkCard
-        name="Quick Demo (5 mins)"
+        name="Quick Demo (15 mins)"
         href="/identity/smart-wallet/quickstart/quick-demo"
         icon={<OnchainKitSvgSW />}
       />
       <FrameworkCard
-        name="Next.js Integration (15 mins)"
+        name="Next.js Integration (30 mins)"
         href="/identity/smart-wallet/quickstart/nextjs-project"
         icon={<NextjsSvgSW />}
       />
       <FrameworkCard
-        name="React Native Integration"
-        href="/identity/smart-wallet/introduction/install-react-native"
+        name="React Native Integration (30 mins)"
+        href="/identity/smart-wallet/quickstart/react-native-project"
         icon={<ReactNativeSvg />}
       />
     </div>
