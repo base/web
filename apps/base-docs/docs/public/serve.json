@@ -8,35 +8,1084 @@
   "redirects": [
     {
       "source": "/docs/network-information",
-      "destination": "/chain/network-information"
+      "destination": "/chain/network-information",
+      "statusCode": 301
     },
     {
       "source": "/docs/tools/network-faucets",
-      "destination": "/chain/network-faucets"
+      "destination": "/chain/network-faucets",
+      "statusCode": 301
     },
     {
       "source": "/tutorials/deploy-with-foundry",
-      "destination": "/cookbook/smart-contract-development/foundry/deploy-with-foundry"
+      "destination": "/cookbook/smart-contract-development/foundry/deploy-with-foundry",
+      "statusCode": 301
     },
     {
       "source": "/guides/run-a-base-node",
-      "destination": "/chain/run-a-base-node"
+      "destination": "/chain/run-a-base-node",
+      "statusCode": 301
     },
     {
       "source": "/network-information",
-      "destination": "/chain/network-information"
+      "destination": "/chain/network-information",
+      "statusCode": 301
     },
     {
       "source": "/tutorials/deploy-with-remix",
-      "destination": "/cookbook/smart-contract-development/remix/deploy-with-remix"
+      "destination": "/cookbook/smart-contract-development/remix/deploy-with-remix",
+      "statusCode": 301
     },
     {
       "source": "/docs/arbitration",
-      "destination": "/arbitration"
+      "destination": "/arbitration",
+      "statusCode": 301
     },
     {
       "source": "/identity/smart-wallet/guides/react-native-integration",
-      "destination": "/identity/smart-wallet/quickstart/react-native-project"
+      "destination": "/identity/smart-wallet/quickstart/react-native-project",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/why-base",
+      "destination": "/why-base",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/structs/structs-sbs",
+      "destination": "/base-learn/docs/structs/structs",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/add-frames-to-basename",
+      "destination": "/tutorials/frames/add-frames-to-basename",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/security/app-blocklist",
+      "destination": "/security/app-blocklist",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/storage/simple-storage-sbs",
+      "destination": "/base-learn/docs/storage/simple-storage",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/frontend-setup/overview",
+      "destination": "/base-learn/docs/frontend-setup/introduction",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/reading-and-displaying-data/useAccount",
+      "destination": "/base-learn/docs/reading-and-displaying-data/useAccount",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/hardhat-deploy/setup-deploy-script-vid",
+      "destination": "/base-learn/docs/hardhat-deploy/setup-deploy-script",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/writing-to-contracts/useWriteContract",
+      "destination": "/base-learn/docs/writing-to-contracts/useWriteContract",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/tools/registry-faq",
+      "destination": "/tools/registry-faq",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/oracles-supra-vrf",
+      "destination": "/tutorials/oracles/using-supra-vrf",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/quickstart",
+      "destination": "/quickstart",
+      "statusCode": 301
+    },
+    {
+      "source": "/identity/smart-wallet/sdk/legacy-setup",
+      "destination": "/identity/smart-wallet/sdk/setup",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/basenames-tutorial-with-onchainkit",
+      "destination": "/tutorials/basenames/with-onchainkit",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/inheritance/multiple-inheritance",
+      "destination": "/base-learn/docs/inheritance/multiple-inheritance",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/arrays/filtering-an-array-sbs",
+      "destination": "/base-learn/docs/arrays/filtering-an-array",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/progress",
+      "destination": "/base-learn/track-progress",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/storage/how-storage-works",
+      "destination": "/base-learn/docs/storage/how-storage-works",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/erc-721-token/erc-721-exercise",
+      "destination": "/base-learn/docs/erc-721-token/exercises",
+      "statusCode": 301
+    },
+    {
+      "source": "/identity/smart-wallet/sdk/create-coinbase-wallet-sdk",
+      "destination": "/identity/smart-wallet/sdk/setup",
+      "statusCode": 301
+    },
+    {
+      "source": "/guides/account-abstraction-with-biconomy",
+      "destination": "/guides/account-abstraction/biconomy",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/smart-wallet-and-eoa-with-onchainkit",
+      "destination": "/tutorials/smart-wallet/with-onchainkit",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/tools/bridges",
+      "destination": "/tools/bridges",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/tokens/wallet",
+      "destination": "/tokens/wallet",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/shopify-storefront-commerce",
+      "destination": "/tutorials/commerce/shopify-storefront",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-camp/docs/etherscan/etherscan-sbs",
+      "destination": "/base-camp/docs/etherscan/verifying-contracts",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/introduction-to-solidity/solidity-overview",
+      "destination": "/base-learn/docs/introduction-to-solidity/overview",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/reading-and-displaying-data/useAccount",
+      "destination": "/base-learn/docs/reading-and-displaying-data/useAccount",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/tools/registry-faq",
+      "destination": "/tools/registry-faq",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/cross-chain-with-ccip",
+      "destination": "/tutorials/cross-chain/with-ccip",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/security/report",
+      "destination": "/security/report",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/create-basename-profile-component",
+      "destination": "/tutorials/basenames/create-profile-component",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/create-custom-themed-swap-component",
+      "destination": "/tutorials/swap/create-custom-themed-component",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/farcaster-frames-transactions",
+      "destination": "/tutorials/frames/transactions",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/hardhat-deploy/setup-deploy-script-vid",
+      "destination": "/base-learn/docs/hardhat-deploy/setup-deploy-script",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/hardhat-profiling-size",
+      "destination": "/tutorials/hardhat/profiling-size",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/arrays/arrays-in-solidity",
+      "destination": "/base-learn/docs/arrays/introduction",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn",
+      "destination": "/base-learn/introduction",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/contracts-and-basic-functions/basic-functions-exercise",
+      "destination": "/base-learn/docs/contracts-and-basic-functions/exercises",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials",
+      "destination": "/tutorials/introduction",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/event-gate-with-nouns",
+      "destination": "/tutorials/events/gate-with-nouns",
+      "statusCode": 301
+    },
+    {
+      "source": "/using-base",
+      "destination": "/getting-started",
+      "statusCode": 301
+    },
+    {
+      "source": "/tools/oracles",
+      "destination": "/tools/oracles/overview",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/intro-to-providers",
+      "destination": "/tutorials/providers/introduction",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/imports/imports-sbs",
+      "destination": "/base-learn/docs/imports/imports",
+      "statusCode": 301
+    },
+    {
+      "source": "/hardhat-tools-and-testing/hardhat-profiling-size/manual-contract-optimizations-vid",
+      "destination": "/hardhat-tools-and-testing/profiling-size/manual-optimizations",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/tools/basenames-faq",
+      "destination": "/tools/basenames-faq",
+      "statusCode": 301
+    },
+    {
+      "source": "/tools/bridge-faq",
+      "destination": "/tools/bridges/faq",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/new-keyword/new-keyword-exercise",
+      "destination": "/base-learn/docs/new-keyword/exercises",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/dynaimc-nfts",
+      "destination": "/tutorials/nfts/dynamic-nfts",
+      "statusCode": 301
+    },
+    {
+      "source": "/contracts",
+      "destination": "/contracts/introduction",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/new-keyword/new-keyword-exercise",
+      "destination": "/base-learn/docs/new-keyword/exercises",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/storage/storage-exercise",
+      "destination": "/base-learn/docs/storage/exercises",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-camp",
+      "destination": "/base-camp/introduction",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-camp/docs/writing-to-contracts/useContractWrite",
+      "destination": "/base-camp/docs/writing-to-contracts/useContractWrite",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/control-structures/control-structures-exercise",
+      "destination": "/base-learn/docs/control-structures/exercises",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/create-subscription-payments-with-spend-permissions",
+      "destination": "/tutorials/payments/create-subscription-with-spend-permissions",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/hardhat-profiling-gas",
+      "destination": "/tutorials/hardhat/profiling-gas",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/tags/onchain-summer",
+      "destination": "/tutorials/tags/onchain-summer",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/interfaces/contract-to-contract-interaction",
+      "destination": "/base-learn/docs/interfaces/contract-interaction",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/inheritance/inheritance-vid",
+      "destination": "/base-learn/docs/inheritance/inheritance",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/tools/account-abstraction",
+      "destination": "/tools/account-abstraction",
+      "statusCode": 301
+    },
+    {
+      "source": "/builderkits/onchainkit/identity/identity-card/name",
+      "destination": "/builderkits/onchainkit/identity/name",
+      "statusCode": 301
+    },
+    {
+      "source": "/builderkits/onchainkit/identity/identity-card/identity",
+      "destination": "/builderkits/onchainkit/identity/identity",
+      "statusCode": 301
+    },
+    {
+      "source": "/builderkits/onchainkit/identity/identity-card/avatar",
+      "destination": "/builderkits/onchainkit/identity/avatar",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/inheritance/multiple-inheritance",
+      "destination": "/base-learn/docs/inheritance/multiple-inheritance",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-camp/docs/deployment-to-testnet/deployment-to-base-sepolia-sbs",
+      "destination": "/base-camp/docs/deployment-to-testnet/deploy-to-base-sepolia",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/deployment-to-testnet/deployment-to-testnet-exercise",
+      "destination": "/base-learn/docs/deployment-to-testnet/exercises",
+      "statusCode": 301
+    },
+    {
+      "source": "/guides/cross-chain-with-layerzero",
+      "destination": "/guides/cross-chain/layerzero",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/using-base",
+      "destination": "/getting-started",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/intro-to-providers",
+      "destination": "/tutorials/providers/introduction",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/imports/imports-sbs",
+      "destination": "/base-learn/docs/imports/imports",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/farcaster-frames-nocode-minting",
+      "destination": "/tutorials/frames/nocode-minting",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/verify-smart-contract-using-basescan",
+      "destination": "/tutorials/verification/using-basescan",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/onchain-email-campaigns-using-resend",
+      "destination": "/tutorials/email/using-resend",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/deployment-to-testnet/contract-verification-sbs",
+      "destination": "/base-learn/docs/deployment-to-testnet/contract-verification",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/introduction-to-solidity/deployment-in-remix",
+      "destination": "/base-learn/docs/introduction-to-solidity/deploy-in-remix",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/advanced-functions/function-visibility",
+      "destination": "/base-learn/docs/advanced-functions/visibility",
+      "statusCode": 301
+    },
+    {
+      "source": "/hardhat-tools-and-testing/hardhat-profiling-gas/installing-the-gas-analyzer-vid",
+      "destination": "/hardhat-tools-and-testing/profiling-gas/installing-analyzer",
+      "statusCode": 301
+    },
+    {
+      "source": "/tokens/list",
+      "destination": "/tokens/list",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/tags/cross-chain",
+      "destination": "/tutorials/tags/cross-chain",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/farcaster-cast-actions-simple",
+      "destination": "/tutorials/farcaster/cast-actions",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/control-structures/control-structures-exercise",
+      "destination": "/base-learn/docs/control-structures/exercises",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/cookie-policy",
+      "destination": "/legal/cookie-policy",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/onchain-email-campaigns-using-resend",
+      "destination": "/tutorials/email/using-resend",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-camp/docs/inheritance/multiple-inheritance-vid",
+      "destination": "/base-camp/docs/inheritance/multiple-inheritance",
+      "statusCode": 301
+    },
+    {
+      "source": "/guides/magic-spend",
+      "destination": "/guides/account-abstraction/magic-spend",
+      "statusCode": 301
+    },
+    {
+      "source": "/guides/signature-verification",
+      "destination": "/guides/security/signature-verification",
+      "statusCode": 301
+    },
+    {
+      "source": "/wallet-library-support",
+      "destination": "/wallets/supported-libraries",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/decommissioning-public-geth-archive-snapshots",
+      "destination": "/chain/decommissioning-public-geth-archive-snapshots",
+      "statusCode": 301
+    },
+    {
+      "source": "/hardhat-tools-and-testing/hardhat-profiling-gas/installing-the-gas-analyzer-vid",
+      "destination": "/hardhat-tools-and-testing/profiling-gas/installing-analyzer",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn",
+      "destination": "/base-learn/introduction",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/signature-mint-nft",
+      "destination": "/tutorials/nfts/signature-minting",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/erc-20-token/erc-20-exercise",
+      "destination": "/base-learn/docs/erc-20-token/exercises",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/security/bounty",
+      "destination": "/security/bounty",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/linked-minting-frame",
+      "destination": "/tutorials/frames/linked-minting",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/events/hardhat-events-sbs",
+      "destination": "/base-learn/docs/events/hardhat-events",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/hardhat-testing/hardhat-testing-sbs",
+      "destination": "/base-learn/docs/hardhat-testing/testing",
+      "statusCode": 301
+    },
+    {
+      "source": "/guides/deploy-with-tenderly",
+      "destination": "/guides/deployment/tenderly",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/tools/registry-api",
+      "destination": "/tools/registry-api",
+      "statusCode": 301
+    },
+    {
+      "source": "/tools/web3",
+      "destination": "/tools/web3/overview",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-contracts",
+      "destination": "/contracts/base-contracts",
+      "statusCode": 301
+    },
+    {
+      "source": "/guides/deploy-with-remix",
+      "destination": "/guides/deployment/remix",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-camp/docs/welcome",
+      "destination": "/base-camp/introduction",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-camp/docs/advanced-functions/function-visibility-vid",
+      "destination": "/base-camp/docs/advanced-functions/visibility",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/minimal-tokens/minimal-tokens-exercise",
+      "destination": "/base-learn/docs/minimal-tokens/exercises",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/control-structures/require-revert-error-vid",
+      "destination": "/base-learn/docs/control-structures/require-revert-error",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/intro-to-foundry-setup",
+      "destination": "/tutorials/foundry/setup",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/help-on-discord",
+      "destination": "/support/discord",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/frontend-setup/building-an-onchain-app",
+      "destination": "/base-learn/docs/frontend-setup/building-apps",
+      "statusCode": 301
+    },
+    {
+      "source": "/building-with-base/guides/hyperframes",
+      "destination": "/building-with-base/guides/frames/hyperframes",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/erc-721-token/erc-721-exercise",
+      "destination": "/base-learn/docs/erc-721-token/exercises",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-camp/docs/introduction-to-ethereum/ethereum-applications",
+      "destination": "/base-camp/docs/introduction-to-ethereum/applications",
+      "statusCode": 301
+    },
+    {
+      "source": "/tools/bridges",
+      "destination": "/tools/bridges/overview",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/docs/reading-and-displaying-data/useReadContract",
+      "destination": "/base-learn/docs/reading-and-displaying-data/useReadContract",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn",
+      "destination": "/base-learn/introduction",
+      "statusCode": 301
+    },
+    {
+      "source": "/base-learn/progress",
+      "destination": "/base-learn/track-progress",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials",
+      "destination": "/tutorials/introduction",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/arbitration",
+      "destination": "/arbitration",
+      "statusCode": 301
+    },
+    {
+      "source": "/fees",
+      "destination": "/chain/fees",
+      "statusCode": 301
+    },
+    {
+      "source": "/tutorials/accept-crypto-payments",
+      "destination": "/tutorials/payments/accept-crypto"
+    },
+    {
+      "source": "/tutorials/tags/erc-20",
+      "destination": "/tutorials/tags/erc-20"
+    },
+    {
+      "source": "/base-learn/docs/etherscan/etherscan-sbs",
+      "destination": "/base-learn/docs/etherscan/verifying-contracts"
+    },
+    {
+      "source": "/docs/tools/oracles",
+      "destination": "/tools/oracles/overview"
+    },
+    {
+      "source": "/tools/oracles",
+      "destination": "/tools/oracles/overview"
+    },
+    {
+      "source": "/docs/tools/data-indexers",
+      "destination": "/tools/data-indexers"
+    },
+    {
+      "source": "/base-learn/docs/address-and-payable",
+      "destination": "/base-learn/docs/address-and-payable"
+    },
+    {
+      "source": "/base-learn/docs/hardhat-deploy/hardhat-deploy-sbs",
+      "destination": "/base-learn/docs/hardhat-deploy/deployment",
+      "statusCode": 301
+    },
+    {
+      "source": "/tools/bridges",
+      "destination": "/tools/bridges/overview"
+    },
+    {
+      "source": "/tutorials/deploy-with-hardhat",
+      "destination": "/tutorials/hardhat/deployment"
+    },
+    {
+      "source": "/docs/fees",
+      "destination": "/chain/fees"
+    },
+    {
+      "source": "/base-learn/docs/deployment-to-testnet/deployment-to-base-sepolia-sbs",
+      "destination": "/base-learn/docs/deployment-to-testnet/deploy-to-base-sepolia"
+    },
+    {
+      "source": "/base-learn/docs/welcome",
+      "destination": "/base-learn/introduction"
+    },
+    {
+      "source": "/tutorials/intro-to-foundry-testing",
+      "destination": "/tutorials/foundry/testing"
+    },
+    {
+      "source": "/base-learn/docs/erc-721-token/erc-721-sbs",
+      "destination": "/base-learn/docs/erc-721-token/erc-721-standard"
+    },
+    {
+      "source": "/docs/tools/network-faucets/Bitlayer",
+      "destination": "/chain/network-faucets/bitlayer"
+    },
+    {
+      "source": "/docs/basenames-tutorial-using-wagmi",
+      "destination": "/tutorials/basenames/with-wagmi"
+    },
+    {
+      "source": "/tutorials/create-basename-profile-component",
+      "destination": "/tutorials/basenames/create-profile-component"
+    },
+    {
+      "source": "/tutorials/hardhat-debugging",
+      "destination": "/tutorials/hardhat/debugging"
+    },
+    {
+      "source": "/base-learn",
+      "destination": "/base-learn/introduction"
+    },
+    {
+      "source": "/docs/tokens/wallet",
+      "destination": "/tokens/wallet"
+    },
+    {
+      "source": "/tutorials/create-custom-themed-swap-component",
+      "destination": "/tutorials/swap/create-custom-themed-component"
+    },
+    {
+      "source": "/tutorials/tags/actions",
+      "destination": "/tutorials/tags/actions"
+    },
+    {
+      "source": "/base-camp/docs/minimal-tokens/creating-a-minimal-token-vid",
+      "destination": "/base-camp/docs/minimal-tokens/creating-token"
+    },
+    {
+      "source": "/base-learn/hardhat-tools-and-testing/overview",
+      "destination": "/base-learn/docs/hardhat-tools-and-testing/overview"
+    },
+    {
+      "source": "/tutorials/account-abstraction-with-biconomy",
+      "destination": "/tutorials/account-abstraction/biconomy"
+    },
+    {
+      "source": "/tools/network-faucets",
+      "destination": "/chain/network-faucets"
+    },
+    {
+      "source": "/base-learn/docs/development-tools/overview",
+      "destination": "/base-learn/docs/development-tools/overview"
+    },
+    {
+      "source": "/tutorials/build-smart-wallet-funding-app",
+      "destination": "/tutorials/smart-wallet/funding-app"
+    },
+    {
+      "source": "/docs/tools/onboarding",
+      "destination": "/tools/onboarding"
+    },
+    {
+      "source": "/base-learn/docs/structs/structs-vid",
+      "destination": "/base-learn/docs/structs/structs"
+    },
+    {
+      "source": "/docs/tools/thirdweb-cli",
+      "destination": "/tools/thirdweb-cli"
+    },
+    {
+      "source": "/tutorials/farcaster-frames-deploy-to-vercel",
+      "destination": "/tutorials/frames/deploy-to-vercel"
+    },
+    {
+      "source": "/tutorials/event-gate-with-nouns",
+      "destination": "/tutorials/events/gate-with-nouns"
+    },
+    {
+      "source": "/tutorials/deploy-with-tenderly",
+      "destination": "/tutorials/deployment/tenderly"
+    },
+    {
+      "source": "/docs/tools/onramps",
+      "destination": "/tools/onramps"
+    },
+    {
+      "source": "/base-camp/docs/erc-20-token/erc-20-standard",
+      "destination": "/base-camp/docs/erc-20-token/standard"
+    },
+    {
+      "source": "/base-learn/docs/writing-to-contracts/useSimulateContract",
+      "destination": "/base-learn/docs/writing-to-contracts/useSimulateContract"
+    },
+    {
+      "source": "/tutorials/tags/actions",
+      "destination": "/tutorials/tags/actions"
+    },
+    {
+      "source": "/base-learn/docs/hardhat-deploy/hardhat-deploy-sbs",
+      "destination": "/base-learn/docs/hardhat-deploy/deployment"
+    },
+    {
+      "source": "/tutorials/enable-erc20-gas-payments",
+      "destination": "/tutorials/payments/erc20-gas"
+    },
+    {
+      "source": "/tools/thirdweb-sdk",
+      "destination": "/tools/thirdweb/sdk"
+    },
+    {
+      "source": "/tutorials/farcaster-frames-hyperframes",
+      "destination": "/tutorials/frames/hyperframes"
+    },
+    {
+      "source": "/guides/update-existing-app",
+      "destination": "/guides/updating-apps"
+    },
+    {
+      "source": "/hardhat-tools-and-testing/hardhat-profiling-size/manual-contract-optimizations-vid",
+      "destination": "/hardhat-tools-and-testing/profiling-size/manual-optimizations"
+    },
+    {
+      "source": "/cookbook/use-case-guides/nft-minting/simple-onchain-nfts",
+      "destination": "/cookbook/nfts/simple-onchain-nfts"
+    },
+    {
+      "source": "/cookbook/use-case-guides/no-code-minting/farcaster-frames-nft-minting",
+      "destination": "/cookbook/nfts/farcaster-frames-minting"
+    },
+    {
+      "source": "/cookbook/nfts/simple-onchain-nfts/thirdweb-unreal-nft-items",
+      "destination": "/cookbook/nfts/thirdweb-unreal-items"
+    },
+    {
+      "source": "/cookbook/nfts/simple-onchain-nfts/coinbase-smart-wallet",
+      "destination": "/cookbook/nfts/coinbase-smart-wallet"
+    },
+    {
+      "source": "/cookbook/nfts/simple-onchain-nfts/complex-onchain-nfts",
+      "destination": "/cookbook/nfts/complex-onchain-nfts"
+    },
+    {
+      "source": "/base-learn/docs/frontend-setup/overview",
+      "destination": "/base-learn/docs/frontend-setup/introduction"
+    },
+    {
+      "source": "/base-learn/docs/erc-721-token/erc-721-standard",
+      "destination": "/base-learn/docs/erc-721-token/standard"
+    },
+    {
+      "source": "/tutorials/account-abstraction-with-particle-network",
+      "destination": "/tutorials/account-abstraction/particle-network"
+    },
+    {
+      "source": "/tutorials/farcaster-frames-nft-minting",
+      "destination": "/tutorials/frames/nft-minting"
+    },
+    {
+      "source": "/base-camp/docs/introduction-to-ethereum/gas-use-in-eth-transactions",
+      "destination": "/base-camp/docs/introduction-to-ethereum/gas"
+    },
+    {
+      "source": "/base-learn/docs/frontend-setup/wallet-connectors",
+      "destination": "/base-learn/docs/frontend-setup/connectors"
+    },
+    {
+      "source": "/tutorials/smart-wallet-and-rainbowkit",
+      "destination": "/tutorials/smart-wallet/with-rainbowkit"
+    },
+    {
+      "source": "/tutorials/build-with-thirdweb",
+      "destination": "/tutorials/thirdweb/build"
+    },
+    {
+      "source": "/base-learn/docs/development-tools/overview",
+      "destination": "/base-learn/docs/development-tools/overview"
+    },
+    {
+      "source": "/docs/cookie-policy",
+      "destination": "/legal/cookie-policy"
+    },
+    {
+      "source": "/tutorials/thirdweb-unreal-nft-items",
+      "destination": "/tutorials/nfts/thirdweb-unreal-items"
+    },
+    {
+      "source": "/tutorials/oracles-pyth-price-feeds",
+      "destination": "/tutorials/oracles/pyth-price-feeds"
+    },
+    {
+      "source": "/builderkits/onchaink",
+      "destination": "/builderkits/onchainkit"
+    },
+    {
+      "source": "/base-camp/docs/hardhat-forking",
+      "destination": "/base-camp/docs/hardhat/forking"
+    },
+    {
+      "source": "/tutorials/tags/shopify",
+      "destination": "/tutorials/tags/shopify"
+    },
+    {
+      "source": "/docs/privacy-policy",
+      "destination": "/legal/privacy-policy"
+    },
+    {
+      "source": "/cookbook/smart-contract-development/hardhat/reducing-contract-size/hardhat-profiling-gas",
+      "destination": "/cookbook/smart-contract-development/hardhat/profiling-gas"
+    },
+    {
+      "source": "/cookbook/use-case-guides/retaining-users",
+      "destination": "/cookbook/guides/retaining-users"
+    },
+    {
+      "source": "/tutorials/tags/account-abstraction",
+      "destination": "/tutorials/tags/account-abstraction"
+    },
+    {
+      "source": "/docs/tools/block-explorers",
+      "destination": "/tools/block-explorers"
+    },
+    {
+      "source": "/tutorials/simple-onchain-nfts",
+      "destination": "/tutorials/nfts/simple-onchain"
+    },
+    {
+      "source": "/docs/tools/thirdweb-sdk",
+      "destination": "/tools/thirdweb/sdk"
+    },
+    {
+      "source": "/tutorials/dynamic-nfts",
+      "destination": "/tutorials/nfts/dynamic"
+    },
+    {
+      "source": "/tutorials/tags",
+      "destination": "/tutorials/tags/overview"
+    },
+    {
+      "source": "/tutorials/gasless-transaction-on-base-using-a-paymaster",
+      "destination": "/tutorials/account-abstraction/gasless-transactions"
+    },
+    {
+      "source": "/tools/network-faucets",
+      "destination": "/chain/network-faucets"
+    },
+    {
+      "source": "/tutorials/build-with-thirdweb",
+      "destination": "/tutorials/thirdweb/build"
+    },
+    {
+      "source": "/docs/contracts",
+      "destination": "/contracts/overview"
+    },
+    {
+      "source": "/tutorials/tags/shopify",
+      "destination": "/tutorials/tags/shopify"
+    },
+    {
+      "source": "/tutorials/cross-chain-with-ccip",
+      "destination": "/tutorials/cross-chain/with-ccip"
+    },
+    {
+      "source": "/docs/terms-of-service",
+      "destination": "/legal/terms-of-service"
+    },
+    {
+      "source": "/tutorials/coinbase-smart-wallet",
+      "destination": "/tutorials/smart-wallet/coinbase"
+    },
+    {
+      "source": "/tutorials/deploy-with-thirdweb",
+      "destination": "/tutorials/thirdweb/deploy"
+    },
+    {
+      "source": "/docs/tools/node-providers",
+      "destination": "/tools/node-providers"
+    },
+    {
+      "source": "/tutorials/tags/account-abstraction",
+      "destination": "/tutorials/tags/account-abstraction"
+    },
+    {
+      "source": "/tutorials/account-abstraction-with-privy-and-base-paymaster",
+      "destination": "/tutorials/account-abstraction/privy-paymaster"
+    },
+    {
+      "source": "/guides/cross-chain-with-ccip",
+      "destination": "/guides/cross-chain/ccip"
+    },
+    {
+      "source": "/base-learn/docs/introduction-to-ethereum/gas-use-in-eth-transactions",
+      "destination": "/base-learn/docs/introduction-to-ethereum/gas"
+    },
+    {
+      "source": "/tutorials/gasless-transaction-on-base-using-a-paymaster",
+      "destination": "/tutorials/account-abstraction/gasless-transactions"
+    },
+    {
+      "source": "/guides/using-pyth-price-feeds",
+      "destination": "/guides/oracles/pyth-price-feeds"
+    },
+    {
+      "source": "/tutorials/account-abstraction-with-privy-and-base-paymaster",
+      "destination": "/tutorials/account-abstraction/privy-paymaster"
+    },
+    {
+      "source": "/tutorials/build-with-thirdweb",
+      "destination": "/tutorials/thirdweb/build"
+    },
+    {
+      "source": "/tutorials/dynamic-nfts",
+      "destination": "/tutorials/nfts/dynamic"
+    },
+    {
+      "source": "/tutorials/tags",
+      "destination": "/tutorials/tags/overview"
+    },
+    {
+      "source": "/tools/network-faucets",
+      "destination": "/chain/network-faucets"
+    },
+    {
+      "source": "/docs/contracts",
+      "destination": "/contracts/overview"
+    },
+    {
+      "source": "/tutorials/cross-chain-with-ccip",
+      "destination": "/tutorials/cross-chain/with-ccip"
+    },
+    {
+      "source": "/docs/terms-of-service",
+      "destination": "/legal/terms-of-service"
+    },
+    {
+      "source": "/tutorials/coinbase-smart-wallet",
+      "destination": "/tutorials/smart-wallet/coinbase"
+    },
+    {
+      "source": "/tutorials/deploy-with-thirdweb",
+      "destination": "/tutorials/thirdweb/deploy"
+    },
+    {
+      "source": "/docs/tools/node-providers",
+      "destination": "/tools/node-providers"
+    },
+    {
+      "source": "/tutorials/tags/account-abstraction",
+      "destination": "/tutorials/tags/account-abstraction"
+    },
+    {
+      "source": "/tutorials/account-abstraction-with-privy-and-base-paymaster",
+      "destination": "/tutorials/account-abstraction/privy-paymaster"
+    },
+    {
+      "source": "/guides/cross-chain-with-ccip",
+      "destination": "/guides/cross-chain/ccip"
+    },
+    {
+      "source": "/guides/using-pyth-price-feeds",
+      "destination": "/guides/oracles/pyth-price-feeds"
+    },
+    {
+      "source": "/base-learn/docs/writing-to-contracts/useWriteContract",
+      "destination": "/base-learn/docs/writing-to-contracts/useWriteContract"
+    },
+    {
+      "source": "/base-learn/docs/reading-and-displaying-data/useReadContract",
+      "destination": "/base-learn/docs/reading-and-displaying-data/useReadContract"
+    },
+    {
+      "source": "/base-learn/docs/reading-and-displaying-data/useAccount",
+      "destination": "/base-learn/docs/reading-and-displaying-data/useAccount"
+    },
+    {
+      "source": "/base-learn/docs/writing-to-contracts/useSimulateContract",
+      "destination": "/base-learn/docs/writing-to-contracts/useSimulateContract"
+    },
+    {
+      "source": "/base-learn/docs/hardhat-deploy/hardhat-deploy-sbs",
+      "destination": "/base-learn/docs/hardhat-deploy/deployment"
     }
   ]
 }

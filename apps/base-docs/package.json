@@ -5,13 +5,13 @@
   "scripts": {
     "dev": "vocs dev",
     "build": "vocs build",
-    "preview": "vocs preview",
+    "preview": "serve docs/dist -p 4173",
     "inject-feedback": "node --loader ts-node/esm scripts/inject-feedback.ts",
     "fix-feedback": "node --loader ts-node/esm scripts/fix-feedback-import.ts",
     "clean-frontmatter": "node --loader ts-node/esm scripts/clean-frontmatter.ts",
     "docs:dev": "vocs dev",
     "docs:build": "vocs build",
-    "docs:preview": "vocs preview"
+    "docs:preview": "serve docs/dist -p 4173"
   },
   "dependencies": {
     "@coinbase/cookie-banner": "^1.0.3",
@@ -24,18 +24,19 @@
     "classnames": "^2.5.1",
     "framer-motion": "^11.11.11",
     "lucide-react": "^0.468.0",
+    "node-fetch": "^3.3.2",
     "permissionless": "^0.1.29",
     "react": "18",
     "react-dom": "18",
     "react-markdown": "^9.0.3",
+    "serve": "^14.2.1",
     "siwe": "^2.3.2",
-    "typescript": "latest",
     "usehooks-ts": "^3.1.0",
     "vocs": "1.0.0-alpha.62"
   },
   "devDependencies": {
     "@types/next": "^9.0.0",
-    "@types/node": "^22.13.4",
+    "@types/node": "^22.14.0",
     "autoprefixer": "^10.4.20",
     "chokidar": "^3.6.0",
     "concurrently": "^8.2.2",
@@ -45,6 +46,7 @@
     "tailwindcss": "^3.4.14",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
+    "typescript": "^5.8.2",
     "vite-plugin-svgr": "^4.3.0"
   },
   "packageManager": "yarn@3.5.0"

@@ -10,6 +10,7 @@ docs/build/
 !.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
+yarn.lock
 
 # Environment variables
 .env*.local
