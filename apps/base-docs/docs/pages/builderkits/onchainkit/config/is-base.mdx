@@ -10,16 +10,13 @@ The `isBase` utility is designed to verify if the chain id is a valid Base or Ba
 import { isBase } from '@coinbase/onchainkit';
 
 // Base Mainnet (chain ID: 8453)
-const isMainnet = isBase({ chainId: 8453 });
-console.log('Is Base Mainnet:', isMainnet); // true
+isBase({ chainId: 8453 }); // returns true
 
 // Base Sepolia (chain ID: 84532)
-const isSepolia = isBase({ chainId: 84532 });
-console.log('Is Base Sepolia:', isSepolia); // true
+isBase({ chainId: 84532 }); // returns true
 
 // Ethereum (chain ID: 1)
-const isEth = isBase({ chainId: 1 });
-console.log('Is Base:', isEth); // false
+isBase({ chainId: 1 }); // returns false
 ```
 
 ```ts [return value]
