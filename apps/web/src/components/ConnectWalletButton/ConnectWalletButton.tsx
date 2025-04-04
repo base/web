@@ -2,11 +2,10 @@ import { Name } from '@coinbase/onchainkit/identity';
 import {
   ConnectWallet,
   Wallet,
-  WalletAdvanced,
   WalletAdvancedWalletActions,
   WalletAdvancedTransactionActions,
   WalletAdvancedTokenHoldings,
-  ConnectWalletText,
+  WalletDropdown,
 } from '@coinbase/onchainkit/wallet';
 import { DynamicCryptoProviders } from 'apps/web/app/CryptoProviders.dynamic';
 import useBasenameChain, { supportedChainIds } from 'apps/web/src/hooks/useBasenameChain';
@@ -104,22 +103,22 @@ export function ConnectWalletButton({
 
   return (
     <Wallet>
-      <ConnectWallet className={buttonClasses}>
-        <ConnectWalletText className="font-sans text-base font-normal">
-          {connectWalletButtonVariant === ConnectWalletButtonVariants.BaseOrg
-            ? 'Connect'
-            : 'Sign In'}
-        </ConnectWalletText>
+      <ConnectWallet
+        className={buttonClasses}
+        disconnectedLabel={
+          connectWalletButtonVariant === ConnectWalletButtonVariants.BaseOrg ? 'Connect' : 'Sign In'
+        }
+      >
         <UserAvatar />
         {isDesktop && <Name chain={basenameChain} className={userAddressClasses} />}
         {showChainSwitcher && <ChainDropdown />}
       </ConnectWallet>
-      <WalletAdvanced>
+      <WalletDropdown>
         <WalletAdvancedWalletActions />
         <CustomWalletAdvancedAddressDetails />
         <WalletAdvancedTransactionActions />
         <WalletAdvancedTokenHoldings />
-      </WalletAdvanced>
+      </WalletDropdown>
     </Wallet>
   );
 }
