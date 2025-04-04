@@ -1,0 +1,9 @@
+# https://docs.base.org/builderkits/minikit/llms.txt
+
+## MiniKit Documentation
+
+[Placeholder for MiniKit-specific LLM documentation]
+
+This file contains structured documentation for AI assistants about MiniKit, a toolkit for building mini applications that can be featured on Warpcast and Coinbase Wallet with minimal code.
+
+Please refer to https://docs.base.org/llms-full.txt for the complete Base documentation.
