@@ -1,7 +1,0 @@
-# OnchainKit LLM Documentation
-
-This is a placeholder file for OnchainKit LLM documentation. 
-
-OnchainKit is a comprehensive SDK for building onchain applications. The library provides components and utilities for wallet connection, identity management, transactions, swaps, frames, and more.
-
-Detailed documentation will be added in a future step. 

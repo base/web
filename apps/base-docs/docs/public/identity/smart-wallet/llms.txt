@@ -1,7 +1,0 @@
-# Smart Wallet LLM Documentation
-
-This is a placeholder file for Smart Wallet LLM documentation.
-
-Smart Wallet is a solution for identity management and wallet interactions in blockchain applications.
-
-Detailed documentation will be added in a future step. 
