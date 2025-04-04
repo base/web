@@ -1,0 +1,7 @@
+# MiniKit LLM Documentation
+
+This is a placeholder file for MiniKit LLM documentation.
+
+MiniKit is a lightweight toolkit for building blockchain applications with minimal setup.
+
+Detailed documentation will be added in a future step. 
