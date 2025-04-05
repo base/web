@@ -1,5 +1,13 @@
 [
   {
+    "name": "Size Credit",
+    "description": "Size is a fixed-rate credit marketplace featuring an order book where offers are expressed like yield curves, allowing capital-efficient continuous pricing across markets and maturities.",
+    "url": "https://app.size.credit",
+    "imageUrl": "/images/partners/size.png",
+    "category": "defi",
+    "subcategory": "lending/borrowing"
+  },
+  {
     "name": "Ratio1",
     "description": "A decentralized AI compute network ensuring trustless execution, data ownership, and linear scalability via a censorship-resistant, encrypted, and autonomous compute layer.",
     "url": "https://ratio1.ai",
