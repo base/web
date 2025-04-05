@@ -4062,5 +4062,13 @@
     "imageUrl": "/images/partners/xception.png",
     "category": "defi",
     "subcategory": "dex aggregator"
+  },
+  {
+     "name": "coNFT",
+      "description": "coNFT - a Multi-Chain Web3 Utility Hub offering comprehensive services such as Web3 Name Service, NFT Aggregator, and Launchpad.)",
+      "url": "https://conft.app",
+      "imageUrl": "/images/partners/conft.png",
+      "category": "consumer",
+      "subcategory": "nft"
   }
 ]
