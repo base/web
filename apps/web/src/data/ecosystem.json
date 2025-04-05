@@ -1,5 +1,13 @@
 [
   {
+    "name": "A0x",
+    "description": "Agentic no-code platform to build tokenized social media ai-agents in Farcaster, X and Telegram.",
+    "url": "https://a0x.co",
+    "imageUrl": "/images/partners/a0x.png",
+    "category": "ai",
+    "subcategory": "social"
+  },
+  {
     "name": "Ratio1",
     "description": "A decentralized AI compute network ensuring trustless execution, data ownership, and linear scalability via a censorship-resistant, encrypted, and autonomous compute layer.",
     "url": "https://ratio1.ai",
