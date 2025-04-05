@@ -16,7 +16,7 @@ If Wallet SDK receives either a `wallet_switchEthereumChain` or `wallet_addEther
 
 Coinbase Wallet clients handle `wallet_addEthereumChain` requests for non-whitelisted networks (for example, a network such as `Harmony One` which is not currently supported by clients by default).
 
-An app can determine if a network is whitelisted or not by sending a `wallet_switchEthereumChain` request for that network. If error code 4092 is returned, then the network is not supported by default by the client wallet.
+An app can determine if a network is whitelisted or not by sending a `wallet_switchEthereumChain` request for that network. If error code 4902 is returned, then the network is not supported by default by the client wallet.
 
 ### Example
 
