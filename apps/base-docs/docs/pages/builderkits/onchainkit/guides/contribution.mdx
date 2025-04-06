@@ -14,17 +14,9 @@ In this guide, you will learn how to:
 - [Accomplish various workflows](#workflows)
 - [Submit a feature request](#feature-request)
 
-## Overview
-
-This project is a monorepo managed with pnpm. The `@coinbase/onchainkit` package is located in:
-
-```bash
-packages/onchainkit/
-```
-
 ## Setup
 
-### Clone this repo
+### Clone the repo
 
 ```bash
 git clone git@github.com:coinbase/onchainkit.git
@@ -32,9 +24,9 @@ git clone git@github.com:coinbase/onchainkit.git
 
 ### Install Node and pnpm
 
-Use nvm, mise, n or whatever works for you to install Node.js.
+Use nvm, mise, n or your favorite version manager to install Node.js.
 
-For pnpm, see the installation instructions at https://pnpm.io/installation
+For pnpm, see the installation instructions on the [pnpm website](https://pnpm.io/installation).
 
 ### Install dependencies
 
@@ -46,7 +38,13 @@ pnpm install
 
 ## Codebase
 
-Here is a rough layout of this codebase:
+This project is a monorepo managed with pnpm. The `@coinbase/onchainkit` package is located in:
+
+```bash
+packages/onchainkit/
+```
+
+Here is a rough layout of the codebase:
 
 ```bash
 packages/onchainkit/
@@ -80,6 +78,8 @@ pnpm f:ock dev
 ```
 
 This will start a development environment where you can see your components in action.
+
+Navigate to [http://localhost:3000](http://localhost:3000) to open the playground.
 
 ### Building
 
