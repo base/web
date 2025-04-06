@@ -683,6 +683,24 @@ export const sidebar: Sidebar = [
                   },
                 ],
               },
+              {
+                text: 'Usage Details',
+                collapsed: true,
+                items: [
+                  {
+                    text: 'Signature Verification',
+                    link: '/identity/smart-wallet/usage-details/signature-verification',
+                  },
+                  { text: 'Popups', link: '/identity/smart-wallet/usage-details/popups' },
+                  { text: 'Simulations', link: '/identity/smart-wallet/usage-details/Simulations' },
+                  { text: 'Gas Usage', link: '/identity/smart-wallet/usage-details/gas-usage' },
+                  { text: 'Self Calls', link: '/identity/smart-wallet/usage-details/self-calls' },
+                ],
+              },
+              {
+                text: 'Base Gasless Campaign',
+                link: '/identity/smart-wallet/concepts/base-gasless-campaign',
+              },
             ],
           },
           {
@@ -863,7 +881,7 @@ export const sidebar: Sidebar = [
                 ],
               },
               {
-                text: 'SpendPermissionsManager',
+                text: 'SpendPermissionsManager.sol',
                 link: '/identity/smart-wallet/technical-reference/spend-permissions/spendpermissionmanager',
               },
             ],
