@@ -603,366 +603,31 @@ export const sidebar: Sidebar = [
         collapsed: true,
         items: [
           {
-            text: 'Introduction',
-            items: [
-              { text: 'Quickstart', link: '/identity/smart-wallet/quickstart' },
-              {
-                text: 'Recommend Libraries',
-                link: '/identity/smart-wallet/introduction/recommended-libraries',
-              },
-              {
-                text: 'Base Gasless Campaign',
-                link: '/identity/smart-wallet/introduction/base-gasless-campaign',
-              },
-            ],
-          },
-
-          {
-            text: 'Features',
-            items: [
-              {
-                text: 'Built-in Features',
-                collapsed: true,
-                items: [
-                  {
-                    text: 'Single Sign On',
-                    link: '/identity/smart-wallet/features/single-sign-on',
-                  },
-                  { text: 'Networks', link: '/identity/smart-wallet/features/networks' },
-                  { text: 'Passkeys', link: '/identity/smart-wallet/features/passkeys' },
-                  { text: 'Recovery', link: '/identity/smart-wallet/features/recovery-keys' },
-                  { text: 'MagicSpend', link: '/identity/smart-wallet/features/MagicSpend' },
-                ],
-              },
-              {
-                text: 'Optional Features',
-                collapsed: true,
-                items: [
-                  {
-                    text: 'Gas-free Transactions',
-                    link: '/identity/smart-wallet/features/gas-free-transactions',
-                  },
-                  {
-                    text: 'Spend Permissions',
-                    link: '/identity/smart-wallet/features/spend-permissions',
-                  },
-                  {
-                    text: 'Batch Transactions',
-                    link: '/identity/smart-wallet/features/batch-operations',
-                  },
-                  {
-                    text: 'Custom Gas Tokens',
-                    link: '/identity/smart-wallet/features/custom-gas-tokens',
-                  },
-                  {
-                    text: 'Sub Accounts',
-                    link: '/identity/smart-wallet/features/sub-accounts',
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            text: 'Usage Details',
-            items: [
-              {
-                text: 'Signature Verification',
-                link: '/identity/smart-wallet/usage-details/signature-verification',
-              },
-              { text: 'Popups', link: '/identity/smart-wallet/usage-details/popups' },
-              { text: 'Simulations', link: '/identity/smart-wallet/usage-details/Simulations' },
-              { text: 'Gas Usage', link: '/identity/smart-wallet/usage-details/gas-usage' },
-              { text: 'Self Calls', link: '/identity/smart-wallet/usage-details/self-calls' },
-            ],
-          },
-          {
-            text: 'SDK',
-            items: [
-              {
-                text: 'Install',
-                link: '/identity/smart-wallet/sdk/install',
-              },
-              {
-                text: 'Setup',
-                link: '/identity/smart-wallet/sdk/setup',
-              },
-              {
-                text: 'makeWeb3Provider',
-                link: '/identity/smart-wallet/sdk/make-web3-provider',
-              },
-              {
-                text: 'Upgrading from 3.x',
-                link: '/identity/smart-wallet/sdk/v3-to-v4-changes',
-              },
-              {
-                text: 'CoinbaseWalletProvider',
-                collapsed: true,
-                items: [
-                  {
-                    text: 'Overview',
-                    link: '/identity/smart-wallet/sdk/coinbasewalletprovider/overview',
-                  },
-                  {
-                    text: 'request',
-                    items: [
-                      {
-                        text: 'Overview',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/overview',
-                      },
-                      {
-                        text: 'eth_accounts',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_accounts',
-                      },
-                      {
-                        text: 'eth_blockNumber',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_blockNumber',
-                      },
-                      {
-                        text: 'eth_chainId',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_chainId',
-                      },
-                      {
-                        text: 'eth_coinbase',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_coinbase',
-                      },
-                      {
-                        text: 'eth_estimateGas',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_estimateGas',
-                      },
-                      {
-                        text: 'eth_feeHistory',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_feeHistory',
-                      },
-                      {
-                        text: 'eth_gasPrice',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_gasPrice',
-                      },
-                      {
-                        text: 'eth_getBalance',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getBalance',
-                      },
-                      {
-                        text: 'eth_getBlockByHash',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getBlockByHash',
-                      },
-                      {
-                        text: 'eth_getBlockByNumber',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getBlockByNumber',
-                      },
-                      {
-                        text: 'eth_getBlockTransactionCountByHash',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getBlockTransactionCountByHash',
-                      },
-                      {
-                        text: 'eth_getBlockTransactionCountByNumber',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getBlockTransactionCountByNumber',
-                      },
-                      {
-                        text: 'eth_getCode',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getCode',
-                      },
-                      {
-                        text: 'eth_getLogs',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getLogs',
-                      },
-                      {
-                        text: 'eth_getProof',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getProof',
-                      },
-                      {
-                        text: 'eth_getStorageAt',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getStorageAt',
-                      },
-                      {
-                        text: 'eth_getTransactionByBlockHashAndIndex',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getTransactionByBlockHashAndIndex',
-                      },
-                      {
-                        text: 'eth_getTransactionByBlockNumberAndIndex',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getTransactionByBlockNumberAndIndex',
-                      },
-                      {
-                        text: 'eth_getTransactionByHash',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getTransactionByHash',
-                      },
-                      {
-                        text: 'eth_getTransactionCount',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getTransactionCount',
-                      },
-                      {
-                        text: 'eth_getTransactionReceipt',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getTransactionReceipt',
-                      },
-                      {
-                        text: 'eth_getUncleCountByBlockHash',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getUncleCountByBlockHash',
-                      },
-                      {
-                        text: 'eth_getUncleCountByBlockNumber',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_getUncleCountByBlockNumber',
-                      },
-                      {
-                        text: 'eth_requestAccounts',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_requestAccounts',
-                      },
-                      {
-                        text: 'eth_sendRawTransaction',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_sendRawTransaction',
-                      },
-                      {
-                        text: 'eth_sendTransaction',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_sendTransaction',
-                      },
-                      {
-                        text: 'eth_signTypedData_v4',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/eth_signTypedData_v4',
-                      },
-                      {
-                        text: 'personal_sign',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/personal_sign',
-                      },
-                      {
-                        text: 'wallet_addEthereumChain',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_addEthereumChain',
-                      },
-                      {
-                        text: 'wallet_addSubAccount',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_addSubAccount',
-                      },
-                      {
-                        text: 'wallet_connect',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_connect',
-                      },
-                      {
-                        text: 'wallet_switchEthereumChain',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_switchEthereumChain',
-                      },
-                      {
-                        text: 'wallet_watchAsset',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/wallet_watchAsset',
-                      },
-                      {
-                        text: 'web3_clientVersion',
-                        link: '/identity/smart-wallet/sdk/coinbasewalletprovider/request/web3_clientVersion',
-                      },
-                    ],
-                  },
-                  {
-                    text: 'Sub Account Reference',
-                    link: '/identity/smart-wallet/sdk/sub-account-reference',
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            text: 'Tutorials',
-            collapsed: true,
-            items: [
-              {
-                text: 'Update Existing App',
-                link: '/identity/smart-wallet/guides/update-existing-app',
-              },
-              {
-                text: 'Signing and Verifying Messages',
-                link: '/identity/smart-wallet/guides/signing-and-verifying-messages',
-              },
-              { text: 'Sign In With Ethereum', link: '/identity/smart-wallet/guides/siwe' },
-              { text: 'MagicSpend', link: '/identity/smart-wallet/guides/magic-spend' },
-              {
-                text: 'Batch Transactions',
-                link: '/identity/smart-wallet/guides/batch-transactions',
-              },
-              { text: 'Paymasters', link: '/identity/smart-wallet/guides/paymasters' },
-              { text: 'ERC20 Paymasters', link: '/identity/smart-wallet/guides/erc20-paymasters' },
-              {
-                text: 'Sub Accounts',
-                collapsed: true,
-                items: [
-                  {
-                    text: 'Overview',
-                    link: '/identity/smart-wallet/guides/sub-accounts/overview',
-                  },
-                  {
-                    text: 'Setup',
-                    link: '/identity/smart-wallet/guides/sub-accounts/setup',
-                  },
-                  {
-                    text: 'Creating Sub Accounts',
-                    link: '/identity/smart-wallet/guides/sub-accounts/creating-sub-accounts',
-                  },
-                  {
-                    text: 'Using Sub Accounts',
-                    link: '/identity/smart-wallet/guides/sub-accounts/using-sub-accounts',
-                  },
-                ],
-              },
-              {
-                text: 'Spend Permissions',
-                collapsed: true,
-                items: [
-                  {
-                    text: 'Overview',
-                    link: '/identity/smart-wallet/guides/spend-permissions/overview',
-                  },
-                  {
-                    text: 'Quickstart',
-                    link: '/identity/smart-wallet/guides/spend-permissions/quick-start',
-                  },
-                  {
-                    text: 'API Reference',
-                    collapsed: true,
-                    items: [
-                      {
-                        text: 'Client Resources',
-                        link: '/identity/smart-wallet/guides/spend-permissions/api-reference/client-resources',
-                      },
-                      {
-                        text: 'Coinbase Fetch Permissions',
-                        link: '/identity/smart-wallet/guides/spend-permissions/api-reference/coinbase-fetchpermissions',
-                      },
-                      {
-                        text: 'Spend Permissions Manager',
-                        link: '/identity/smart-wallet/guides/spend-permissions/api-reference/spendpermissionmanager',
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-      {
-        text: 'Smart Wallet (NEW)',
-        collapsed: true,
-        items: [
-          {
             text: 'Quickstart',
-            link: '/identity/smart-wallet-new/quickstart',
+            link: '/identity/smart-wallet/quickstart',
             items: [
-              { text: 'OnchainKit', link: '/identity/smart-wallet-new/quickstart/quick-demo' },
+              { text: 'OnchainKit', link: '/identity/smart-wallet/quickstart/quick-demo' },
               {
                 text: 'Next.js Project',
-                link: '/identity/smart-wallet-new/quickstart/nextjs-project',
+                link: '/identity/smart-wallet/quickstart/nextjs-project',
               },
               {
                 text: 'React Native Project',
-                link: '/identity/smart-wallet-new/quickstart/react-native-project',
+                link: '/identity/smart-wallet/quickstart/react-native-project',
               },
             ],
           },
           {
             text: 'Concepts',
-            link: '/identity/smart-wallet-new/concepts',
+            link: '/identity/smart-wallet/concepts',
             items: [
               {
                 text: 'What is Smart Wallet?',
-                link: '/identity/smart-wallet-new/concepts/what-is-sw',
+                link: '/identity/smart-wallet/concepts/what-is-sw',
               },
               {
                 text: 'Features',
-                link: '/identity/smart-wallet-new/features',
+                link: '/identity/smart-wallet/features',
                 items: [
                   {
                     text: 'Built-in Features',
@@ -970,23 +635,23 @@ export const sidebar: Sidebar = [
                     items: [
                       {
                         text: 'Single Sign On',
-                        link: '/identity/smart-wallet-new/concepts/features/single-sign-on',
+                        link: '/identity/smart-wallet/concepts/features/single-sign-on',
                       },
                       {
                         text: 'Networks',
-                        link: '/identity/smart-wallet-new/concepts/features/networks',
+                        link: '/identity/smart-wallet/concepts/features/networks',
                       },
                       {
                         text: 'Passkeys',
-                        link: '/identity/smart-wallet-new/concepts/features/passkeys',
+                        link: '/identity/smart-wallet/concepts/features/passkeys',
                       },
                       {
                         text: 'Recovery',
-                        link: '/identity/smart-wallet-new/concepts/features/recovery-keys',
+                        link: '/identity/smart-wallet/concepts/features/recovery-keys',
                       },
                       {
                         text: 'MagicSpend',
-                        link: '/identity/smart-wallet-new/concepts/features/MagicSpend',
+                        link: '/identity/smart-wallet/concepts/features/MagicSpend',
                       },
                     ],
                   },
@@ -996,23 +661,23 @@ export const sidebar: Sidebar = [
                     items: [
                       {
                         text: 'Gas-free Transactions',
-                        link: '/identity/smart-wallet-new/concepts/features/gas-free-transactions',
+                        link: '/identity/smart-wallet/concepts/features/gas-free-transactions',
                       },
                       {
                         text: 'Spend Permissions',
-                        link: '/identity/smart-wallet-new/concepts/features/spend-permissions',
+                        link: '/identity/smart-wallet/concepts/features/spend-permissions',
                       },
                       {
                         text: 'Batch Transactions',
-                        link: '/identity/smart-wallet-new/concepts/features/batch-operations',
+                        link: '/identity/smart-wallet/concepts/features/batch-operations',
                       },
                       {
                         text: 'Custom Gas Tokens',
-                        link: '/identity/smart-wallet-new/concepts/features/custom-gas-tokens',
+                        link: '/identity/smart-wallet/concepts/features/custom-gas-tokens',
                       },
                       {
                         text: 'Sub Accounts',
-                        link: '/identity/smart-wallet-new/concepts/features/sub-accounts',
+                        link: '/identity/smart-wallet/concepts/features/sub-accounts',
                       },
                     ],
                   },
@@ -1022,185 +687,184 @@ export const sidebar: Sidebar = [
           },
           {
             text: 'Guides',
-            link: '/identity/smart-wallet-new/guides',
+            link: '/identity/smart-wallet/guides',
             items: [
-              { text: 'Sign In With Ethereum', link: '/identity/smart-wallet-new/guides/siwe' },
+              { text: 'Sign In With Ethereum', link: '/identity/smart-wallet/guides/siwe' },
               {
                 text: 'Signing and Verifying Messages',
-                link: '/identity/smart-wallet-new/guides/signing-and-verifying-messages',
+                link: '/identity/smart-wallet/guides/signing-and-verifying-messages',
               },
-              { text: 'MagicSpend', link: '/identity/smart-wallet-new/guides/magic-spend' },
+              { text: 'MagicSpend', link: '/identity/smart-wallet/guides/magic-spend' },
               {
                 text: 'Batch Transactions',
-                link: '/identity/smart-wallet-new/guides/batch-transactions',
+                link: '/identity/smart-wallet/guides/batch-transactions',
               },
-              { text: 'Paymasters', link: '/identity/smart-wallet-new/guides/paymasters' },
+              { text: 'Paymasters', link: '/identity/smart-wallet/guides/paymasters' },
               {
                 text: 'ERC20 Paymasters',
-                link: '/identity/smart-wallet-new/guides/erc20-paymasters',
+                link: '/identity/smart-wallet/guides/erc20-paymasters',
               },
               {
                 text: 'Sub Accounts',
-                link: '/identity/smart-wallet-new/guides/sub-accounts',
+                link: '/identity/smart-wallet/guides/sub-accounts',
               },
               {
                 text: 'Spend Permissions',
                 collapsed: true,
-                link: '/identity/smart-wallet-new/guides/spend-permissions',
+                link: '/identity/smart-wallet/guides/spend-permissions',
               },
             ],
           },
-          { text: 'Examples', link: '/identity/smart-wallet-new/examples' },
           {
             text: 'Technical Reference',
-            link: '/identity/smart-wallet-new/technical-reference',
+            link: '/identity/smart-wallet/technical-reference',
             items: [
               {
                 text: '@coinbase/wallet-sdk',
                 collapsed: true,
-                link: '/identity/smart-wallet-new/technical-reference/sdk',
+                link: '/identity/smart-wallet/technical-reference/sdk',
                 items: [
                   {
                     text: 'request.eth_accounts',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_accounts',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_accounts',
                   },
                   {
                     text: 'request.eth_blockNumber',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_blockNumber',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_blockNumber',
                   },
                   {
                     text: 'request.eth_chainId',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_chainId',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_chainId',
                   },
                   {
                     text: 'request.eth_coinbase',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_coinbase',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_coinbase',
                   },
                   {
                     text: 'request.eth_estimateGas',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_estimateGas',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_estimateGas',
                   },
                   {
                     text: 'request.eth_feeHistory',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_feeHistory',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_feeHistory',
                   },
                   {
                     text: 'request.eth_gasPrice',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_gasPrice',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_gasPrice',
                   },
                   {
                     text: 'request.eth_getBalance',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_getBalance',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_getBalance',
                   },
                   {
                     text: 'request.eth_getBlockByHash',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_getBlockByHash',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_getBlockByHash',
                   },
                   {
                     text: 'request.eth_getBlockByNumber',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_getBlockByNumber',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_getBlockByNumber',
                   },
                   {
                     text: 'request.eth_getBlockTransactionCountByHash',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_getBlockTransactionCountByHash',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_getBlockTransactionCountByHash',
                   },
                   {
                     text: 'request.eth_getBlockTransactionCountByNumber',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_getBlockTransactionCountByNumber',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_getBlockTransactionCountByNumber',
                   },
                   {
                     text: 'request.eth_getCode',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_getCode',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_getCode',
                   },
                   {
                     text: 'request.eth_getLogs',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_getLogs',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_getLogs',
                   },
                   {
                     text: 'request.eth_getProof',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_getProof',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_getProof',
                   },
                   {
                     text: 'request.eth_getStorageAt',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_getStorageAt',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_getStorageAt',
                   },
                   {
                     text: 'request.eth_getTransactionByBlockHashAndIndex',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_getTransactionByBlockHashAndIndex',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_getTransactionByBlockHashAndIndex',
                   },
                   {
                     text: 'request.eth_getTransactionByBlockNumberAndIndex',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_getTransactionByBlockNumberAndIndex',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_getTransactionByBlockNumberAndIndex',
                   },
                   {
                     text: 'request.eth_getTransactionByHash',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_getTransactionByHash',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_getTransactionByHash',
                   },
                   {
                     text: 'request.eth_getTransactionCount',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_getTransactionCount',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_getTransactionCount',
                   },
                   {
                     text: 'request.eth_getTransactionReceipt',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_getTransactionReceipt',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_getTransactionReceipt',
                   },
                   {
                     text: 'request.eth_getUncleCountByBlockHash',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_getUncleCountByBlockHash',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_getUncleCountByBlockHash',
                   },
                   {
                     text: 'request.eth_getUncleCountByBlockNumber',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_getUncleCountByBlockNumber',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_getUncleCountByBlockNumber',
                   },
                   {
                     text: 'request.eth_requestAccounts',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_requestAccounts',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_requestAccounts',
                   },
                   {
                     text: 'request.eth_sendRawTransaction',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_sendRawTransaction',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_sendRawTransaction',
                   },
                   {
                     text: 'request.eth_sendTransaction',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_sendTransaction',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_sendTransaction',
                   },
                   {
                     text: 'request.eth_signTypedData_v4',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/eth_signTypedData_v4',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/eth_signTypedData_v4',
                   },
                   {
                     text: 'request.personal_sign',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/personal_sign',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/personal_sign',
                   },
                   {
                     text: 'request.wallet_addEthereumChain',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/wallet_addEthereumChain',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/wallet_addEthereumChain',
                   },
                   {
                     text: 'request.wallet_addSubAccount',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/wallet_addSubAccount',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/wallet_addSubAccount',
                   },
                   {
                     text: 'request.wallet_connect',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/wallet_connect',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/wallet_connect',
                   },
                   {
                     text: 'request.wallet_switchEthereumChain',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/wallet_switchEthereumChain',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/wallet_switchEthereumChain',
                   },
                   {
                     text: 'request.wallet_watchAsset',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/wallet_watchAsset',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/wallet_watchAsset',
                   },
                   {
                     text: 'request.web3_clientVersion',
-                    link: '/identity/smart-wallet-new/technical-reference/sdk/coinbasewalletprovider/web3_clientVersion',
+                    link: '/identity/smart-wallet/technical-reference/sdk/coinbasewalletprovider/web3_clientVersion',
                   },
                 ],
               },
               {
                 text: 'SpendPermissionsManager',
-                link: '/identity/smart-wallet-new/technical-reference/spend-permissions/spendpermissionmanager',
+                link: '/identity/smart-wallet/technical-reference/spend-permissions/spendpermissionmanager',
               },
             ],
           },

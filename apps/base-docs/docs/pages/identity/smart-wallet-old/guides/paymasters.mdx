@@ -1,12 +1,12 @@
 import { Callout } from "vocs/components"
 
-# Build with Paymasters (Sponsored Transactions)
+# Paymasters (Sponsored Transactions)
 
 One of the biggest UX enhancements unlocked by Smart Wallet is the ability for app developers to sponsor their users' transactions.
 If your app supports Smart Wallet, you can start sponsoring your users'
 transactions by using [standardized Paymaster service communication](https://erc7677.xyz) enabled by [new wallet RPC methods](https://eip5792.xyz).
 
-This guide is specific to using Smart Wallet, you can find our more about using Paymasters with Base in
+This guide is specific to using Smart Wallet, you can find our more about using Paymasters with Base in 
 the [Base Go Gasless page](https://docs.base.org/use-cases/go-gasless).
 
 The code below is also in our [Wagmi Smart Wallet template](https://github.com/wilsoncusack/wagmi-scw/).
@@ -61,7 +61,6 @@ For local development, you can use the same URL for the Paymaster service and th
 
 We also created a [minimalist proxy API](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/app/api/Paymaster/route.ts)
 which you can use as the `PaymasterServiceUrl` in the [`TransactWithPaymaster` component](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/TransactWithPaymaster.tsx).
-
 </Callout>
 
 Once you have your Paymaster service URL, you can proceed to setting up your contracts allowlist.
@@ -88,12 +87,11 @@ more control over the policy enforcement.
 
 `willSponsor` is most likely not needed if you are using [Coinbase Developer Platform](https://www.coinbase.com/developer-platform) as it has built-in policy enforcement features,
 but know that this is still possible if you need it.
-
 </Callout>
 
 ### Create Wagmi and Viem clients
 
-This section shows you how to create Wagmi and Viem clients to interact with Smart Wallet using
+This section shows you how to create Wagmi and Viem clients to interact with Smart Wallet using 
 the Paymaster service you set up in the previous steps.
 
 :::code-group
@@ -140,11 +138,10 @@ export const PaymasterClient = createPaymasterClient({
 
 export const bundlerClient = createBundlerClient({
   chain: baseSepolia,
-  Paymaster: PaymasterClient,
+  Paymaster: PaymasterClient, 
   transport: http(PaymasterService),
 })
 ```
-
 :::
 
 ### Send EIP-5792 requests with a Paymaster service capability
@@ -155,7 +152,6 @@ Once you have your Paymaster service set up, you can now pass its URL along to W
 **Pass in the proxy URL**
 
 If you set up a proxy in your app's backend as recommended in step (2) above, you'll want to pass in the proxy URL you created.
-
 </Callout>
 
 :::code-group
@@ -246,7 +242,6 @@ export const myNFTAddress = "0x119Ea671030FBf79AB93b436D2E20af6ea469a19";
 
 The `useWriteContracts` and `useCapabilities` hooks used below rely on new wallet RPC and are not yet supported in most wallets.
 It is recommended to have a fallback function if your app supports wallets other than Smart Wallet.
-
 </Callout>
 
 <Callout type="success">
@@ -258,7 +253,6 @@ The code above is a simplified version of the code in the
 In the template, we create a [`TransactWithPaymaster`](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/TransactWithPaymaster.tsx) component that uses the `useWriteContracts` hook to send a transaction with a Paymaster.
 
 The [`TransactWithPaymaster`](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/TransactWithPaymaster.tsx) component is used in the [`page.tsx`](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/app/page.tsx) file.
-
 </Callout>
 
 That's it! Smart Wallet will handle the rest. If your Paymaster service is able to sponsor the transaction,
