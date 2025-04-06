@@ -688,12 +688,21 @@ export const sidebar: Sidebar = [
                 items: [
                   {
                     text: 'Signature Verification',
-                    link: '/identity/smart-wallet/usage-details/signature-verification',
+                    link: '/identity/smart-wallet/concepts/usage-details/signature-verification',
                   },
-                  { text: 'Popups', link: '/identity/smart-wallet/usage-details/popups' },
-                  { text: 'Simulations', link: '/identity/smart-wallet/usage-details/Simulations' },
-                  { text: 'Gas Usage', link: '/identity/smart-wallet/usage-details/gas-usage' },
-                  { text: 'Self Calls', link: '/identity/smart-wallet/usage-details/self-calls' },
+                  { text: 'Popups', link: '/identity/smart-wallet/concepts/usage-details/popups' },
+                  {
+                    text: 'Simulations',
+                    link: '/identity/smart-wallet/concepts/usage-details/Simulations',
+                  },
+                  {
+                    text: 'Gas Usage',
+                    link: '/identity/smart-wallet/concepts/usage-details/gas-usage',
+                  },
+                  {
+                    text: 'Self Calls',
+                    link: '/identity/smart-wallet/concepts/usage-details/self-calls',
+                  },
                 ],
               },
               {
@@ -882,6 +891,10 @@ export const sidebar: Sidebar = [
               {
                 text: 'SpendPermissionsManager.sol',
                 link: '/identity/smart-wallet/technical-reference/spend-permissions/spendpermissionmanager',
+              },
+              {
+                text: 'Sub Account Reference',
+                link: '/identity/smart-wallet/technical-reference/sdk/sub-account-reference',
               },
             ],
           },
