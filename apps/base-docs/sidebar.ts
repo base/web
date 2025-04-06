@@ -1056,7 +1056,7 @@ export const sidebar: Sidebar = [
             link: '/identity/smart-wallet-new/technical-reference',
             items: [
               {
-                text: 'Coinbase Wallet SDK',
+                text: '@coinbase/wallet-sdk',
                 collapsed: true,
                 link: '/identity/smart-wallet-new/technical-reference/sdk',
                 items: [
@@ -1199,8 +1199,8 @@ export const sidebar: Sidebar = [
                 ],
               },
               {
-                text: 'Spend Permissions',
-                link: '/identity/smart-wallet-new/technical-reference/spend-permissions',
+                text: 'SpendPermissionsManager',
+                link: '/identity/smart-wallet-new/technical-reference/spend-permissions/spendpermissionmanager',
               },
             ],
           },
