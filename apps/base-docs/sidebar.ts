@@ -627,7 +627,6 @@ export const sidebar: Sidebar = [
               },
               {
                 text: 'Features',
-                link: '/identity/smart-wallet/features',
                 items: [
                   {
                     text: 'Built-in Features',
@@ -635,23 +634,23 @@ export const sidebar: Sidebar = [
                     items: [
                       {
                         text: 'Single Sign On',
-                        link: '/identity/smart-wallet/concepts/features/single-sign-on',
+                        link: '/identity/smart-wallet/concepts/features/built-in/single-sign-on',
                       },
                       {
                         text: 'Networks',
-                        link: '/identity/smart-wallet/concepts/features/networks',
+                        link: '/identity/smart-wallet/concepts/features/built-in/networks',
                       },
                       {
                         text: 'Passkeys',
-                        link: '/identity/smart-wallet/concepts/features/passkeys',
+                        link: '/identity/smart-wallet/concepts/features/built-in/passkeys',
                       },
                       {
-                        text: 'Recovery',
-                        link: '/identity/smart-wallet/concepts/features/recovery-keys',
+                        text: 'Recovery Keys',
+                        link: '/identity/smart-wallet/concepts/features/built-in/recovery-keys',
                       },
                       {
                         text: 'MagicSpend',
-                        link: '/identity/smart-wallet/concepts/features/MagicSpend',
+                        link: '/identity/smart-wallet/concepts/features/built-in/MagicSpend',
                       },
                     ],
                   },
@@ -661,23 +660,23 @@ export const sidebar: Sidebar = [
                     items: [
                       {
                         text: 'Gas-free Transactions',
-                        link: '/identity/smart-wallet/concepts/features/gas-free-transactions',
+                        link: '/identity/smart-wallet/concepts/features/optional/gas-free-transactions',
                       },
                       {
                         text: 'Spend Permissions',
-                        link: '/identity/smart-wallet/concepts/features/spend-permissions',
+                        link: '/identity/smart-wallet/concepts/features/optional/spend-permissions',
                       },
                       {
                         text: 'Batch Transactions',
-                        link: '/identity/smart-wallet/concepts/features/batch-operations',
+                        link: '/identity/smart-wallet/concepts/features/optional/batch-operations',
                       },
                       {
                         text: 'Custom Gas Tokens',
-                        link: '/identity/smart-wallet/concepts/features/custom-gas-tokens',
+                        link: '/identity/smart-wallet/concepts/features/optional/custom-gas-tokens',
                       },
                       {
                         text: 'Sub Accounts',
-                        link: '/identity/smart-wallet/concepts/features/sub-accounts',
+                        link: '/identity/smart-wallet/concepts/features/optional/sub-accounts',
                       },
                     ],
                   },
