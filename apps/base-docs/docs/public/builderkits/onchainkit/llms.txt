@@ -1,25 +1,3 @@
-[Skip to content](https://docs.base.org/builderkits/onchainkit/getting-started#vocs-content)
-
-Search
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
-
 Getting Started
 
 # https://docs.base.org/builderkits/onchainkit/llms.txt
@@ -239,25 +217,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/installation/astro#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Astro
 
@@ -470,25 +430,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/installation/remix#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Remix
 
@@ -2338,25 +2280,6 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/api/build-deposit-to-morpho-tx#vocs-content)
 
-Search
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 buildDepositToMorphoTx
 
@@ -2397,25 +2320,6 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/api/build-mint-transaction#vocs-content)
 
-Search
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 buildMintTransaction
 
@@ -2467,25 +2371,6 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/api/build-swap-transaction#vocs-content)
 
-Search
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 buildSwapTransaction
 
@@ -2559,25 +2444,6 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/earn/types#vocs-content)
 
-Search
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Earn
 
@@ -3096,25 +2962,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/api/get-swap-quote#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 getSwapQuote
 
@@ -3187,25 +3035,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/api/get-token-details#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 getTokenDetails
 
@@ -3254,25 +3084,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/api/get-tokens#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 getTokens
 
@@ -3357,25 +3169,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/api/types#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 API
 
@@ -3561,25 +3355,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/appchain/bridge#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Bridge
 
@@ -3814,25 +3590,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/appchain/types#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Appchain
 
@@ -4055,25 +3813,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/buy/buy#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Buy
 
@@ -4165,25 +3905,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/checkout/checkout#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Checkout
 
@@ -4541,25 +4263,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/checkout/types#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Checkout
 
@@ -4646,25 +4350,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/config/is-base#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 isBase
 
@@ -4709,25 +4395,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/config/is-ethereum#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 isEthereum
 
@@ -4770,25 +4438,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/config/onchainkit-provider#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 OnchainKitProvider
 
@@ -4940,25 +4590,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/config/supplemental-providers#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Custom Supplemental Providers
 
@@ -5031,25 +4663,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/config/types#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Config
 
@@ -5137,25 +4751,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/earn/earn#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Earn
 
@@ -5392,25 +4988,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/earn/types#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Earn
 
@@ -5741,25 +5319,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/fund/fetch-onramp-config#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 fetchOnrampConfig
 
@@ -5811,25 +5371,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/fund/fetch-onramp-options#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 fetchOnrampOptions
 
@@ -5895,25 +5437,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/fund/fetch-onramp-quote#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 fetchOnrampQuote
 
@@ -6014,25 +5538,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/fund/fetch-onramp-transaction-status#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 fetchOnrampTransactionStatus
 
@@ -6096,25 +5602,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/fund/fund-button#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 FundButton
 
@@ -6248,25 +5736,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/fund/fund-card#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 FundCard
 
@@ -6452,25 +5922,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/fund/get-onramp-buy-url#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 getOnrampBuyUrl
 
@@ -6522,25 +5974,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/fund/setup-onramp-event-listeners#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 setupOnrampEventListeners
 
@@ -6610,25 +6044,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/fund/types#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Fund
 
@@ -7026,25 +6442,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/hooks/use-build-deposit-to-morpho-tx#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 useBuildDepositToMorphoTx
 
@@ -7090,25 +6488,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/hooks/use-build-withdraw-from-morpho-tx#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 useBuildWithdrawFromMorphoTx
 
@@ -7155,25 +6535,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/hooks/use-earn-context#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 useEarnContext
 
@@ -7221,25 +6583,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/hooks/use-mint-details#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 useMintDetails
 
@@ -7291,25 +6635,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/hooks/use-morpho-vault#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 useMorphoVault
 
@@ -7353,25 +6679,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/hooks/use-token-details#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 useTokenDetails
 
@@ -7422,25 +6730,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/address#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Address
 
@@ -7500,25 +6790,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/avatar#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Avatar
 
@@ -7626,25 +6898,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/badge#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Badge
 
@@ -7759,25 +7013,7 @@ const COINBASE_VERIFIED_ACCOUNT_SCHEMA_ID =
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/get-address#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 getAddress
 
@@ -7831,25 +7067,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/get-attestations#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 getAttestations
 
@@ -7930,25 +7148,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/get-avatar#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 getAvatar
 
@@ -8008,25 +7208,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/get-avatars#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 getAvatars
 
@@ -8103,25 +7285,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/get-name#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 getName
 
@@ -8195,25 +7359,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/mint/types#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Mint
 
@@ -8371,25 +7517,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/get-names#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 getNames
 
@@ -8474,25 +7602,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/identity-card#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 IdentityCard
 
@@ -8658,25 +7768,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/identity#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Identity
 
@@ -8837,25 +7929,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/name#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Name
 
@@ -8943,25 +8017,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/socials#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Socials
 
@@ -9103,25 +8159,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/types#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Identity
 
@@ -9410,25 +8448,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/use-address#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 useAddress
 
@@ -9470,25 +8490,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/use-avatar#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 useAvatar
 
@@ -9531,25 +8533,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/use-avatars#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 useAvatars
 
@@ -9614,25 +8598,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/use-name#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 useName
 
@@ -9697,25 +8663,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/identity/use-names#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 useNames
 
@@ -9786,25 +8734,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/mint/nft-card#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 NFTCard
 
@@ -10080,25 +9010,7 @@ Manage settings
 Accept all
 [Skip to content](https://docs.base.org/builderkits/onchainkit/mint/nft-mint-card#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 NFTMintCard
 
@@ -10389,25 +9301,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/mint/types#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Mint
 
@@ -10565,25 +9459,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/swap/swap-settings#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 SwapSettings
 
@@ -10711,25 +9587,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/swap/swap#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Swap
 
@@ -11017,25 +9875,7 @@ The components are designed to work together hierarchically. For each component,
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/swap/types#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Swap
 
@@ -11298,25 +10138,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/token/format-amount#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 formatAmount
 
@@ -11354,25 +10176,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/token/token-chip#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 TokenChip
 
@@ -11415,25 +10219,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/token/token-image#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 TokenImage
 
@@ -11519,25 +10305,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/token/token-row#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 TokenRow
 
@@ -11615,25 +10383,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/token/token-search#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 TokenSearch
 
@@ -11688,25 +10438,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/token/token-select-dropdown#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 TokenSelectDropdown
 
@@ -11777,25 +10509,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/token/types#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Token
 
@@ -11924,25 +10638,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/transaction/transaction#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Transaction
 
@@ -12217,25 +10913,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/transaction/types#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Transaction
 
@@ -12467,25 +11145,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/wallet/is-valid-aa-entrypoint#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 isValidAAEntrypoint
 
@@ -12530,25 +11190,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/wallet/is-wallet-a-coinbase-smart-wallet#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 isWalletACoinbaseSmartWallet
 
@@ -12601,25 +11243,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/wallet/types#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Wallet
 
@@ -12802,25 +11426,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/wallet/wallet-dropdown-basename#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 WalletDropdownBasename
 
@@ -12905,25 +11511,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/wallet/wallet-dropdown-disconnect#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 WalletDropdownDisconnect
 
@@ -13014,25 +11602,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/wallet/wallet-dropdown-fund-link#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 WalletDropdownFundLink
 
@@ -13163,25 +11733,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/wallet/wallet-dropdown-link#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 WalletDropdownLink
 
@@ -13300,25 +11852,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/wallet/wallet-island#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 WalletIsland
 
@@ -13545,25 +12079,7 @@ Accept all
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/wallet/wallet-modal#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 WalletModal
 
@@ -13695,25 +12211,7 @@ Each wallet can be individually enabled or disabled as needed. If no `supportedW
 
 [Skip to content](https://docs.base.org/builderkits/onchainkit/wallet/wallet#vocs-content)
 
-Search
 
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[GitHub](https://github.com/base)
-
-[X](http://x.com/buildonbase)
-
-[Warpcast](https://warpcast.com/buildonbase)
-
-[Discord](https://discord.com/invite/buildonbase)
-
-[![Logo](https://docs.base.org/logo.svg)](https://docs.base.org/)
-
-[Get help](https://discord.com/invite/buildonbase?utm_source=dotorg&utm_medium=nav)
-
-[GitHub](https://github.com/base) [X](http://x.com/buildonbase) [Warpcast](https://warpcast.com/buildonbase) [Discord](https://discord.com/invite/buildonbase)
-
-Menu
 
 Wallet
 
