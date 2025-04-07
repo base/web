@@ -10,7 +10,7 @@ type KvConstructorParam =
  * Provides a limited, type-safe interface to Redis operations.
  * Intentionally restricts access to dangerous commands and raw client operations.
  */
-export class KVManager {
+class KVManager {
   private client: RedisType | null = null;
 
   private readonly connectionArg: KvConstructorParam;
