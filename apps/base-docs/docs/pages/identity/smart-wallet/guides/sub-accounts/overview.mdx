@@ -1,0 +1,42 @@
+---
+title: 'Creating Sub Accounts with Coinbase Smart Wallet'
+description: 'Learn how to create and manage Sub Accounts using Coinbase Smart Wallet'
+---
+
+# Creating Sub Accounts with Coinbase Smart Wallet
+
+## Overview
+
+Coinbase Smart Wallet's self-custodial design requires a user passkey prompt for each wallet interaction that the user is presented with, such as a transaction or message signing. While this helps ensure the user is aware and required to approve of every interaction with their wallet, this also impacts user experience when using applications that may require frequent wallet interactions.
+
+To support using Coinbase Smart Wallet with user experiences that require more developer control over the wallet interactions, we've built Sub Accounts in conjunction with [ERC-7895](https://eip.tools/eip/7895), a new wallet RPC for creating hierarchical relationships between wallet accounts.
+
+Sub Accounts allow you to provision wallet accounts that are directly embedded in your application for your users. You can control when a Sub Account is created for your user, and can interact with them just as you would with another wallet via the wallet provider, or other popular web3 libraries like OnchainKit, wagmi, viem, etc.
+
+These Sub Accounts are linked to the end user's Coinbase Smart wallet through an onchain relationship. When combined with our [Spend Permission feature](/identity/smart-wallet/guides/spend-permissions/overview), this creates a powerful foundation for provisioning and funding app accounts, securely, while giving you, the developer, ample control over building the user experience that makes the most sense for your application.
+
+If you would like to see a live demo of Sub Accounts in action, check out our [Sub Accounts Demo](https://sub-account-demo.com).
+
+## What You'll Build
+
+In this guide, we'll set up a basic React app using NextJS that:
+
+- Lets users log in with their Coinbase Smart Wallet
+- Creates a Sub Account scoped to the app
+- Requests a Spend Permission for the Sub Account to have a daily allowance
+- Uses the Sub Account to perform popup-less transactions
+
+### Skip ahead
+
+Note: if you want to skip ahead and just get the final code, you can find it [here](https://github.com/montycheese/sub-account-starter-template).
+
+```bash
+git clone https://github.com/montycheese/sub-account-starter-template.git
+```
+
+## Guide Sections
+
+1. [Project Setup](/identity/smart-wallet/guides/sub-accounts/setup)
+2. [Creating Sub Accounts](/identity/smart-wallet/guides/sub-accounts/creating-sub-accounts)
+3. [Using Sub Accounts](/identity/smart-wallet/guides/sub-accounts/using-sub-accounts)
+4. [Incorporating Spend Permissions](/identity/smart-wallet/guides/sub-accounts/incorporate-spend-permissions)

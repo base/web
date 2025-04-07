@@ -2,8 +2,8 @@
 
 import { ButtonHTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { ButtonVariants, ButtonSizes } from 'apps/web/src/components/base-org/Button/types';
-import { Icon, IconProps } from 'apps/web/src/components/Icon/Icon';
+import { Icon, IconProps } from '../base-org/Icon/Icon.tsx';
+import { ButtonVariants, ButtonSizes } from './types.ts';
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   connectWallet?: boolean;
@@ -19,7 +19,7 @@ const variantStyles: Record<ButtonVariants, string> = {
   [ButtonVariants.Primary]:
     'bg-blue text-white border border-blue hover:bg-blue-80 active:bg-[#06318E]',
 
-  // White buton
+  // White button
   [ButtonVariants.Secondary]:
     'bg-white border border-white text-palette-foreground hover:bg-zinc-15 active:bg-zinc-30',
 
@@ -32,7 +32,7 @@ const sizeStyles: Record<ButtonSizes, string> = {
   // Blue button
   [ButtonSizes.Medium]: 'text-md px-4 py-2 gap-3',
 
-  // White buton
+  // White button
   [ButtonSizes.Large]: 'text-lg px-6 py-4 gap-5',
 };
 
@@ -40,7 +40,7 @@ const sizeIconRatio: Record<ButtonSizes, string> = {
   // Blue button
   [ButtonSizes.Medium]: '0.75rem',
 
-  // White buton
+  // White button
   [ButtonSizes.Large]: '1rem',
 };
 
@@ -87,7 +87,9 @@ export default function Button({
   return (
     <button type="button" onClick={onClick} disabled={disabled} className={buttonClasses}>
       <span>{children}</span>
-      {iconName && <Icon name={iconName} width={iconSize} height={iconSize} color="currentColor" />}
+      {iconName && (
+        <Icon name={iconName as string} width={iconSize} height={iconSize} color="currentColor" />
+      )}
     </button>
   );
 }

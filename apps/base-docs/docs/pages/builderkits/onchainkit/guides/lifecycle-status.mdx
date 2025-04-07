@@ -9,7 +9,7 @@ OnchainKit Lifecycle Status allows you to manage the state of APIs and onchain t
 
 ## How to listen to the Lifecycle Status
 
-The Lifecycle Status is a TypeScript object that provides easy access to the `statusName` and `statusData` properties, 
+The Lifecycle Status is a TypeScript object that provides easy access to the `statusName` and `statusData` properties,
 allowing you to stay informed and responsive.
 
 ```tsx twoslash
@@ -57,7 +57,7 @@ The component has successfully completed its main action, such as `swap` or `tra
 
 ### `error`
 
-The component has encountered an issue while fetching API data, executing an onchain operation, 
+The component has encountered an issue while fetching API data, executing an onchain operation,
 or needs to display a visual message to the user.
 
 ```ts
@@ -70,8 +70,6 @@ or needs to display a visual message to the user.
   };
 }
 ```
-
-<br />
 
 Each component brings its own unique experience, and we have explored both the swap and transaction processes.
 
@@ -96,7 +94,7 @@ Any of the Swap Input fields have been updated.
 
 ### `transactionPending`
 
-The transaction has been submitted to the network but has not yet been confirmed to be included in a block. 
+The transaction has been submitted to the network but has not yet been confirmed to be included in a block.
 During this pending state, the transaction is waiting to be validated by the network's consensus mechanism.
 
 ```ts
@@ -149,7 +147,7 @@ The transaction component is waiting for the user to take action.
 
 ### `transactionPending`
 
-The transaction has been submitted to the network but has not yet been confirmed to be included in a block. 
+The transaction has been submitted to the network but has not yet been confirmed to be included in a block.
 During this pending state, the transaction is waiting to be validated by the network's consensus mechanism.
 
 ```ts

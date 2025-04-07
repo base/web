@@ -1,0 +1,8 @@
+{
+  "name": "Brave",
+  "url": "https://brave.com",
+  "description": "Brave is on a mission to protect your privacy online. We make a suite of internet privacy tools—including our browser and search engine—that shield you from the ads, trackers, and other creepy stuff trying to follow you across the web.",
+  "category": "wallet",
+  "subcategory": "self-custody",
+  "imageUrl": "/images/partners/brave.webp"
+}

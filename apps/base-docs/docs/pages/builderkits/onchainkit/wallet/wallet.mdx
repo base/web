@@ -7,7 +7,6 @@ import {
   ConnectWallet,
   ConnectWalletText,
   Wallet,
-  WalletDefault,
   WalletDropdown,
   WalletDropdownBasename,
   WalletDropdownFundLink,
@@ -37,21 +36,19 @@ Before using them, ensure you've completed all [Getting Started steps](/builderk
 
 ## Quick start
 
-The `WalletDefault` component is a simplified version of the `Wallet` component, designed to streamline the integration process for developers. Instead of manually defining each subcomponent and prop, developers can use this shorthand version which renders our suggested implementation of the component.
+To streamline the integration process and integrate a simplified version of the `Wallet` component, you can render the `Wallet` component without children. 
 
-If you'd like more customization, follow the implementation guide for our `Wallet` component below.
+If you'd like more customization, follow the implementation guide for our `Wallet` component below where you can manually define each subcomponent and prop.
 
 ```tsx twoslash
-import { WalletDefault } from '@coinbase/onchainkit/wallet';
+import { Wallet } from '@coinbase/onchainkit/wallet';
 
-<WalletDefault />
+<Wallet />
 ```
 
-
 <WalletComponents>
-  <WalletDefault />
+  <Wallet />
 </WalletComponents>
-
 
 ## Walkthrough
 
@@ -93,7 +90,7 @@ function App({ children }: { children: ReactNode }) {
 
 Experience the magic by simply dropping in the `<Wallet />` component
 and watch it seamlessly come to life.
-<br />
+
 Additionally, you can see the [`<Identity>`](/builderkits/onchainkit/identity/identity) components
 like [`<Avatar>`](/builderkits/onchainkit/identity/avatar), [`<Name>`](/builderkits/onchainkit/identity/name),
 and [`<Address>`](/builderkits/onchainkit/identity/address) are used in a composable way.
@@ -157,9 +154,9 @@ export function WalletComponents() {
 
 Expand the user experience with pre-made components like [`<WalletDropdownLink>`](/builderkits/onchainkit/wallet/wallet-dropdown-link),
 [`<WalletDropdownBasename>`](/builderkits/onchainkit/wallet/wallet-dropdown-basename),
- [`<WalletDropdownFundLink>`](/builderkits/onchainkit/wallet/wallet-dropdown-fund-link),
- or `<EthBalance>`, to help you build a seamless wallet experience for your users.
-<br />
+[`<WalletDropdownFundLink>`](/builderkits/onchainkit/wallet/wallet-dropdown-fund-link),
+or `<EthBalance>`, to help you build a seamless wallet experience for your users.
+
 The `<WalletDropdownLink>` is highly versatile and will likely be your go-to choice
 for adding more links to the dropdown, connecting your users to various pages of your onchain app.
 

@@ -1,13 +1,13 @@
 ---
-title: <WalletAdvanced /> · OnchainKit
-description: The `<WalletAdvanced />` components provide an advanced Wallet interface for users.
+title: <WalletIsland /> · OnchainKit
+description: The `<WalletIsland />` component provides an advanced Wallet interface for users.
 ---
 
 import {
   ConnectWallet,
   ConnectWalletText,
   Wallet,
-  WalletAdvanced,
+  WalletDropdown,
   WalletAdvancedDefault,
   WalletAdvancedAddressDetails,
   WalletAdvancedTransactionActions,
@@ -32,8 +32,8 @@ import AppWithWalletModal from '@/components/AppWithWalletModal';
   src="/images/onchainkit/wallet-island.gif"
   height="364"/>
 
-`WalletIsland` is our flagship implementation of the new `<WalletAdvanced />`
-component, providing an advanced Wallet interface for users, including:
+`WalletIsland` is our flagship implementation of the new advanced Wallet
+components, providing an advanced Wallet interface for users, including:
 
 - a QR code for receiving funds
 - a link to buy crypto with fiat
@@ -58,7 +58,7 @@ You can control the network in the `OnchainKitProvider` by setting the `chain` p
 
 ## Quick start
 
-`WalletAdvanced` has two default implementations:
+Advanced `Wallet` has two default implementations:
 
 - `WalletAdvancedDefault`
 - `WalletIsland`
@@ -103,31 +103,28 @@ different positions depending on the component's location in the window:
 If you are attempting to use this component and the Buy button is not working,
 make sure you have a `projectId` configured correctly in your providers.
 
-<br />
 If transaction history is not loading, make sure you have an `apiKey` configured
 correctly in your providers.
 :::
 
-## Configuring `WalletIsland` and `WalletAdvanced`
+## Configuring `WalletIsland` and advanced `Wallet`
 
-Experience the magic by simply dropping in `<Wallet />` and `<WalletAdvanced />`
+Experience the magic by simply dropping in `<Wallet />` and advanced `Wallet`
 components, and watch your component seamlessly come to life.
 
-<br />
 As with [`WalletDefault`](/builderkits/onchainkit/wallet/wallet) , `WalletAdvancedDefault` leverages
 several [`<Identity>`](/builderkits/onchainkit/identity/identity) components like [`<Avatar>`](/builderkits/onchainkit/identity/avatar),
 [`<Name>`](/builderkits/onchainkit/identity/name), and [`<Address>`](/builderkits/onchainkit/identity/address).
 
-<br />
-And `WalletAdvanced` introduces several advanced wallet components, including
-`<WalletIslandAddressDetails>`, `<WalletIslandTokenHoldings>`, and
-`<WalletIslandTransactionActions>`.
+We've introduces several advanced wallet components, including
+`<WalletAdvancedAddressDetails>`, `<WalletAdvancedTokenHoldings>`, and
+`<WalletAdvancedTransactionActions>`.
 
 ```tsx twoslash
 import {
   ConnectWallet,
   Wallet,
-  WalletAdvanced,
+  WalletDropdown,
   WalletAdvancedAddressDetails,
   WalletAdvancedTokenHoldings,
   WalletAdvancedTransactionActions,
@@ -144,12 +141,12 @@ export function YourWalletAdvanced() {
           <Avatar className="h-6 w-6" />
           <Name />
         </ConnectWallet>
-        <WalletAdvanced>
+        <WalletDropdown>
           <WalletAdvancedWalletActions />
           <WalletAdvancedAddressDetails />
           <WalletAdvancedTransactionActions />
           <WalletAdvancedTokenHoldings />
-        </WalletAdvanced>
+        </WalletDropdown>
       </Wallet>
     </div>
   );
@@ -163,16 +160,16 @@ export function YourWalletAdvanced() {
       <Avatar className="h-6 w-6" />
       <Name />
     </ConnectWallet>
-    <WalletAdvanced>
+    <WalletDropdown>
       <WalletAdvancedWalletActions />
       <WalletAdvancedAddressDetails />
       <WalletAdvancedTransactionActions />
       <WalletAdvancedTokenHoldings />
-    </WalletAdvanced>
+    </WalletDropdown>
   </Wallet>
 </WalletComponents>
 
-When customizing your `WalletAdvanced` implementation, use the `draggable` prop on
+When customizing your advanced `Wallet` implementation, use the `draggable` prop on
 `Wallet` to enable draggability. `draggable` defaults to `false`, but
 when `draggable` is set to `true`, you can also set a `draggableStartingPosition` prop to
 specify the initial position of your `WalletIsland`.
@@ -181,7 +178,7 @@ specify the initial position of your `WalletIsland`.
 import {
   ConnectWallet,
   Wallet,
-  WalletAdvanced,
+  WalletDropdown,
   WalletAdvancedAddressDetails,
   WalletAdvancedTokenHoldings,
   WalletAdvancedTransactionActions,
@@ -204,12 +201,12 @@ export function DraggableWalletAdvanced() {
           <Avatar className="h-6 w-6" />
           <Name />
         </ConnectWallet>
-        <WalletAdvanced>
+        <WalletDropdown>
           <WalletAdvancedWalletActions />
           <WalletAdvancedAddressDetails />
           <WalletAdvancedTransactionActions />
           <WalletAdvancedTokenHoldings />
-        </WalletAdvanced>
+        </WalletDropdown>
       </Wallet>
     </div>
   );
@@ -248,14 +245,13 @@ check out our [SIWE example](/builderkits/onchainkit/wallet/wallet#usage-with-si
 The components are designed to work together hierarchically. For each component, ensure the following:
 
 - `<Wallet />` - Serves as the main container for all wallet-related components.
-- `<WalletAdvanced />` - Contains additional wallet information and options. Place inside the `<Wallet />` component.
-- `<WalletAdvancedWalletActions />` - Provides wallet actions like View Transaction History, view QR Code, and Disconnect wallet. Place inside the `<WalletAdvanced />` component.
-- `<WalletAdvancedAddressDetails />` - Displays user address, avatar, and portfolio balance in fiat. Place inside the `<WalletAdvanced />` component.
-- `<WalletAdvancedTransactionActions />` - Buttons for buying crypto with fiat, transferring crypto, and swapping. Place inside the `<WalletAdvanced />` component.
-- `<WalletAdvancedTokenHoldings />` - Displays token balances and their value in fiat. Place inside the `<WalletAdvanced />` component.
+- `<WalletDropdown />` - Contains additional wallet information and options. Place inside the `<Wallet />` component.
+- `<WalletAdvancedWalletActions />` - Provides wallet actions like View Transaction History, view QR Code, and Disconnect wallet. Place inside the `<WalletDropdown />` component.
+- `<WalletAdvancedAddressDetails />` - Displays user address, avatar, and portfolio balance in fiat. Place inside the `<WalletDropdown />` component.
+- `<WalletAdvancedTransactionActions />` - Buttons for buying crypto with fiat, transferring crypto, and swapping. Place inside the `<WalletDropdown />` component.
+- `<WalletAdvancedTokenHoldings />` - Displays token balances and their value in fiat. Place inside the `<WalletDropdown />` component.
 - `<ConnectWallet />` - Handles the wallet connection process. Place child components inside to customize the connect button appearance.
 - `<AppWithWalletModal />` - Enables a wallet aggregation experience.
-- `<WalletDropdown />` - Contains additional wallet information and options. Place inside the `<Wallet />` component.
 - `<Identity />` - Displays user identity information. Place inside `<WalletDropdown />` for a complete profile view.
 - `<WalletDropdownBasename />` - Displays the user's Basename within the dropdown.
 - `<WalletDropdownLink />` - Creates a custom link within the dropdown. Use the `icon` prop to add an icon, and `href` to specify the destination.
@@ -275,8 +271,6 @@ to provide a complete wallet interaction experience.
 
 ## Component types
 
-- [`WalletAdvancedReact`](/builderkits/onchainkit/wallet/types#walletadvancedreact)
-- [`WalletAdvancedContextType`](/builderkits/onchainkit/wallet/types#walletadvancedcontexttype)
 - [`WalletReact`](/builderkits/onchainkit/wallet/types#walletreact)
 - [`ConnectWalletReact`](/builderkits/onchainkit/wallet/types#connectwalletreact)
 - [`WalletDropdownReact`](/builderkits/onchainkit/wallet/types#walletdropdownreact)

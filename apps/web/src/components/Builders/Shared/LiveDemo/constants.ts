@@ -172,7 +172,7 @@ function CheckoutDemo() {
 // Follow docs.base.org/builderkits/onchainkit/getting-started
 // to install dependencies
 
-import { SwapDefault } from '@coinbase/onchainkit/swap';
+import { Swap } from '@coinbase/onchainkit/swap';
 import type { Token } from '@coinbase/onchainkit/token';
 
 function SwapDemo() {
@@ -195,7 +195,7 @@ function SwapDemo() {
   }];
   const swappableTokens: Token[] = [ETHToken, USDCToken];
   return (
-    <SwapDefault
+    <Swap
       from={swappableTokens}
       to={swappableTokens}
     />
@@ -208,7 +208,7 @@ function SwapDemo() {
 import {
   ConnectWallet,
   Wallet,
-  WalletAdvanced,
+  WalletDropdown,
   WalletAdvancedAddressDetails,
   WalletAdvancedTokenHoldings,
   WalletAdvancedTransactionActions,
@@ -223,12 +223,12 @@ function WalletAdvancedDemo() {
         <Avatar />
         <Name />
       </ConnectWallet>
-      <WalletAdvanced>
+      <WalletDropdown>
         <WalletAdvancedWalletActions />
         <WalletAdvancedAddressDetails />
         <WalletAdvancedTransactionActions />
         <WalletAdvancedTokenHoldings />
-      </WalletAdvanced>
+      </WalletDropdown>
     </Wallet>
   )
 }
@@ -315,12 +315,12 @@ function NFTMintDemo() {
 // to install dependencies
 
 import {
-  TransactionDefault
+  Transaction
 } from "@coinbase/onchainkit/transaction"
 
-function TransactDefaultDemo() {
+function TransactDemo() {
   const calls = [...];
-  return <TransactionDefault calls={calls} />
+  return <Transaction calls={calls} />
 }
   `,
 };
