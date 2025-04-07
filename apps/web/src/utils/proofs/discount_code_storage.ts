@@ -1,19 +1,7 @@
 import { createKysely } from '@vercel/postgres-kysely';
+import { vercelDb as db } from 'apps/web/src/utils/datastores/rds';
+import type { Database } from 'apps/web/src/utils/datastores/rds/types';
 
-type DiscountCodesTable = {
-  code: string;
-  expires_at: Date;
-  usage_limit: number;
-  usage_count: number;
-};
-
-type Database = {
-  'public.basenames_discount_codes': DiscountCodesTable;
-};
-
-export enum DiscountCodeTableNamespace {
-  DiscountCodes = 'basenames_discount_codes',
-}
 const publicTableName = 'public.basenames_discount_codes';
 
 export async function getDiscountCode(code: string) {
@@ -22,7 +10,6 @@ export async function getDiscountCode(code: string) {
 }
 
 export async function incrementDiscountCodeUsage(code: string) {
-  const db = createKysely<Database>();
   const tableName = publicTableName;
 
   // Perform the update and return the updated row in a single query
