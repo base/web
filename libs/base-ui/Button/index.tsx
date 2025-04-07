@@ -9,6 +9,7 @@ export type ButtonProps = {
   onClick?: () => void;
   disabled?: boolean;
   className?: string;
+  children: React.ReactNode;
   children: string;
   variant?: 'primary' | 'secondary';
 };
