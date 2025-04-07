@@ -1,1 +1,3969 @@
- 
+ # https://docs.base.org/builderkits/identity/smart-wallet/llms.txt
+
+## OnchainKit Documentation
+
+This file contains structured documentation for AI assistants about Smart Wallet, Smart Wallet is a multi-chain self-custodial cryptocurrency wallet. It enables users to create an account in seconds with no app or extension required, thanks to its reliance on Passkeys.
+
+Please refer to https://docs.base.org/llms-full.txt for the complete Base documentation.
+
+# Quick Start 
+You can try Smart Wallet today on [any supported chain](./FAQ#what-networks-are-supported)! Checkout our guides 
+- [Create a new app using Onchain App Template](./guides/create-app/using-onchain-app-template)
+- [Create a new app using Wagmi Template](./guides/create-app/using-wagmi)
+- [Update an existing app](./guides/update-existing-app)
+
+Reach out to us in the `#smart-wallet` channel on [Discord](https://discord.com/invite/cdp/) if you have any questions.
+
+# Recommended Libraries
+
+| Library | Description |
+|---------|-------------|
+| [OnchainKit](https://onchainkit.xyz/) | Ready made React components for wallet connection, transacting, and more. |
+| [Wagmi](https://wagmi.sh/) | React and Vite tools that provides hooks for wallet connection, contract interaction, and more.|
+| [Viem](https://viem.sh/) | TypeScript Interface for Ethereum that provides low-level primitives and wallet client abstractions. |
+
+## Wallet Aggregators
+[Dynamic](https://docs.dynamic.xyz/wallets/advanced-wallets/coinbase-smart-wallet)
+
+[Privy]( https://docs.privy.io/guide/react/recipes/misc/coinbase-smart-wallets)
+
+[ThirdWeb](http://portal.thirdweb.com/connect)
+
+[ConnectKit](https://docs.family.co/connectkit)
+
+[Web3Modal](https://docs.reown.com/web3modal/react/smart-accounts)
+
+[Web3-Onboard](https://www.blocknative.com/coinbase-wallet-integration)
+
+[RainbowKit](https://www.rainbowkit.com/)
+
+# Base Gasless Campaign
+
+Base is offering gas credits to help developers make the most of 
+Smart Wallet's [paymaster (sponsored transactions)](/identity/smart-wallet/features/gas-free-transactions) features. 
+
+| Partner Tier | Base Gas Credit Incentive | Requirements | Actions |
+|--------------|---------------------------|--------------|----------|
+| 1            | $15k                      | <ul><li>- Support Coinbase Smart Wallet</li><li>- Onboard to Coinbase Paymaster</li><li>- Preferred placement in your UI (ie "Create Wallet" button)</li></ul>      | <ol><li>1. Bump your Coinbase SDK to add Coinbase Smart Wallet to your app, or bump to latest version of any [supporting wallet library](/identity/smart-wallet/wallet-library-support).</li><li>2. Sign in / up for [Coinbase Developer Platform](https://www.coinbase.com/developer-platform) (takes less than 2 minutes). No KYC needed - just email and phone.</li><li>3. Check out the Paymaster product where the Base Mainnet Paymaster is enabled by default. Set and change your gas policy at any time.</li><li>4. Complete [this form](https://docs.google.com/forms/d/1yPnBFW0bVUNLUN_w3ctCqYM9sjdIQO3Typ53KXlsS5g/viewform?edit_requested=true)</li><li>Credits will land within 1 week of completion</li></ol>  |
+| 2            | $10k                      | <ul><li>- Support Coinbase Smart Wallet</li><li>- Onboard to Coinbase Paymaster</li></ul>  | <ol><li>1. Bump your Coinbase SDK to add Coinbase Smart Wallet to your app, or bump to latest version of any [supporting wallet library](/identity/smart-wallet/wallet-library-support).</li><li>2. Sign in / up for [Coinbase Developer Platform](https://www.coinbase.com/developer-platform) (takes less than 2 minutes). No KYC needed - just email and phone.</li><li>3. Check out the Paymaster product where the Base Mainnet Paymaster is enabled by default. Set and change your gas policy at any time.</li><li>4. Complete [this form](https://docs.google.com/forms/d/1yPnBFW0bVUNLUN_w3ctCqYM9sjdIQO3Typ53KXlsS5g/viewform?edit_requested=true)</li><li>Credits will land within 1 week of completion</li></ol>    |
+| Bonus        | $1k                       | <ul><li>- Release demo</li></ul>      | Create a demo of your Coinbase Smart wallet integration, post on social (Warpcast and/or X) and tag Coinbase Wallet and/or Base|
+
+
+# Single Sign On
+
+Smart Wallet is a single sign on for onchain apps. Users bring the same account, identity, and assets across apps.
+
+## How it works
+
+1. Smart Wallet relies on [passkeys](/identity/smart-wallet/features/passkeys), stored on users' devices, which can be used on our website (keys.coinbase.com) and [mobile app](https://www.coinbase.com/wallet). 
+2. Our SDK, which developers integrate into their apps, uses keys.coinbase.com popups to allow users to see requests and sign with their passkey. 
+3. The SDK and the popup use cross domain messaging to share information back to the app.
+
+import { Callout } from "vocs/components";
+
+# Networks
+The Smart Wallet contracts can be [permissionlessly deployed](https://github.com/coinbase/smart-wallet/tree/main?tab=readme-ov-file#deployments) on any EVM-compatible network.
+Our SDK and client support the following networks.
+
+## Mainnet Networks
+- Base
+- Arbitrum
+- Optimism
+- Zora 
+- Polygon 
+- BNB
+- Avalanche
+- Ethereum mainnet ([not recommended due to costs](/identity/smart-wallet/faq/why-does-it-cost-more-on-ethereum-l1))
+
+## Testnet Networks
+- Sepolia 
+- Base Sepolia
+- Optimism Sepolia
+
+import { Callout } from "vocs/components";
+
+## Passkeys
+
+Passkeys enable instant account creation and seamless authentication for Smart Wallet users, dramatically simplifying onboarding. By leveraging FIDO2-compliant authentication, passkeys eliminate seed phrases while providing enterprise-grade security for both wallet access and onchain ownership.
+
+During account creation, a cryptographic key pair is generated and the private key is securely stored on the user's device, while the public key is registered onchain as an owner of the user's Smart Wallet. The passkey serves two core functions:
+
+1. **Authentication**: Replaces passwords for wallet access.
+2. **Transaction Signing**: Functions as the signing key for onchain transactions, replacing private keys and seed phrases.
+
+### Cross-Device Support
+
+Passkeys leverage platform authenticator APIs for cross-device synchronization through:
+- iCloud Keychain (Apple devices)
+- Google Password Manager
+- 1Password
+- Any WebAuthn-compatible password manager
+
+This enables seamless multi-device support without exposing the underlying cryptographic material.
+
+<Callout type="warning">
+  Account Recovery Considerations
+
+  Without access to their passkey or a configured recovery key, users will permanently lose wallet access.
+</Callout>
+
+import { Callout } from "vocs/components";
+
+# Recovery Keys
+
+Recovery keys provide a fallback authentication and signing mechanism for Smart Wallets when passkey access is lost.
+
+## Implementation
+A recovery key is a standard Ethereum private key. When generated, its corresponding Ethereum address is registered onchain as an owner of the Smart Wallet. This enables two key capabilities:
+
+1. In the event a user loses their passkey, the recovery key can be used to add new passkey owners to the Smart Wallet through the [wallet recovery flow](https://help.coinbase.com/en/wallet/getting-started/smart-wallet-recovery).
+2. The recovery key can be used to sign transactions as an owner of the Smart Wallet without the use of our website (though specialized wallet software is needed to properly construct the Smart Wallet transactions).
+
+## Technical Details
+- The recovery key has equivalent permissions to passkey owners at the contract level.
+- Recovery keys use standard ECDSA signatures, making them compatible with existing Ethereum tooling.
+- Multiple recovery keys can be registered to a single Smart Wallet.
+- Recovery keys can be added or removed by any existing owner of the Smart Wallet.
+
+# MagicSpend
+
+MagicSpend enables Smart Wallet users to spend their Coinbase balances directly onchain. Users can connect their Coinbase account during the transaction flow, eliminating the need for manual onramps or transfers.
+
+## Benefits for Your App
+- Remove funding friction for new users
+- Tap into Coinbase's massive user base
+- Enable instant transactions without waiting for onramps
+
+## Supported Assets and Networks
+- Assets: ETH
+- Networks: Base
+
+## Best Practices
+Some apps check user's onchain balance and block certain interactions if the user
+has insufficient funds. This is a problem for MagicSpend users, who can access
+their Coinbase funds during the transaction flow.
+
+Apps can detect whether the connected address may have other funds accessible 
+via `auxiliaryFunds` capability, which can be discovered via a [`wallet_getCapabilities` RPC call](https://eip5792.xyz/reference/getCapabilities).
+If a user has `auxiliaryFunds`, apps should not block interactions based on onchain balance.
+
+# Gas-free Transactions
+
+Smart Wallet enables apps to pay for users' transaction gas fees, allowing free transactions or removing the need for users to hold native tokens.
+
+## Technical Details
+- Sponsored transactions are facilitated onchain via [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337) compliant paymasters.
+- Apps must have a [ERC-7677](https://eips.ethereum.org/EIPS/eip-7677) compliant paymaster service. 
+- Apps can share this paymaster to Smart Wallet via the ERC-7677 `paymasterService` capability on a `wallet_sendCalls` request.
+
+# Spend Permissions
+
+Spend Permissions enable third-party signers to spend assets (native and ERC-20 tokens) from a user's Smart Wallet. Once granted, Spend Permissions
+allow developers to move users' assets without any further signatures, unlocking use cases like subscriptions & trading bots. 
+
+## Technical Details
+
+- Spend Permissions **supports all ERC-20 assets**
+- Spend Permissions **enable spending native tokens**
+- Spend Permissions offers granular **controls for recurrence**, e.g. "10 USDC per week"
+
+# Batch Operations
+
+Smart Wallet supports batch operations, which allow developers to perform multiple operations in a single transaction. 
+This is useful for reducing the number of transactions required to perform a complex operation, such as a swap or a multi-step transaction.
+
+## Technical Details
+
+- Batch operations are facilitated via the [wallet_sendCalls](https://www.eip5792.xyz/reference/sendCalls) RPC.
+
+# ERC20 Paymasters 
+
+Smart Wallet enables users to pay for gas in ERC20 tokens! This enables users to use app-specific tokens as payment for gas.
+
+
+## Technical Details
+
+- We recommend the [Coinbase Developer Platform](https://www.coinbase.com/developer-platform) paymaster, as it is [fully set up to work with Smart Wallet ERC-20 token gas payments](https://docs.base.org/tutorials/enable-erc20-gas-payments/).
+- Developers pay gas for their users in ETH and choose an exchange rate at which to receive an ERC-20 token as payment. 
+
+import SubAccount from '@/components/smart-wallet/SubAccount';
+
+# Sub Accounts
+
+Sub Accounts are hierarchical, app-specific accounts that extend from a user's primary Smart Wallet. Each Sub Account operates as a distinct account that can:
+
+- Execute transactions and sign messages
+- Maintain separate asset management
+- Be fully controlled by both the universal Smart Wallet and authorized application logic
+
+## Give it a try!
+
+<SubAccount />
+
+## Technical Details
+
+- Smart Wallet Ownership: The user's Smart Wallet acts as an owner of the Sub Account, allowing it to manage assets on the Sub Account and make calls from it.
+- App-Signer Agnostic: Sub Accounts are designed to be agnostic to whatever signing software an app wants to use: whether in-browser CryptoKey or server signers from teams like Privy or Turnkey.
+- When an app requests a Sub Account creation and the user approves, all future signing and transaction requests will use the Sub Account.
+
+Refer to the [Sub Account Reference](/identity/smart-wallet/sdk/sub-account-reference) for more details on how to create and manage Sub Accounts.
+
+:::tip[Development]
+Note: Sub Accounts are currently only available in the Coinbase Smart Wallet development environment.
+In the CoinbaseWalletSDK properties you can set the `keysUrl` to `https://keys-dev.coinbase.com/connect` to use this environment.
+
+If you would like to use Sub Accounts with Coinbase Smart Wallet in our production environment, please [reach out](https://discord.com/invite/buildonbase) to the Base team.
+:::
+
+## Sub Account scope
+
+Sub Accounts are currently scoped to an application's fully qualified domain name (FQDN). This means that a user has one sub account for your application, and it cannot be used on other applications on separate domains.
+
+# Signature Verification
+
+There are important details to verifying smart contract wallet signatures. The smart contract itself
+cannot produce a signature. Instead, the contract has a function
+```solidity
+function isValidSignature(bytes32 _hash, bytes memory _signature) returns (bytes4 magicValue);
+```
+which can be called to determine if signature should be considered valid (defined in [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271)).
+
+In the case of Smart Wallet, a signature is considered valid if it was signed by a current signer (aka "owner") of the Smart Wallet.
+For example, a user can sign a message with their passkey, and when `isValidSignature` is called on their Smart Wallet,
+it would return that the signature is valid because their passkey is an owner.  
+
+There is also an additional complexity: users receive their Smart Wallet address immediately upon passkey registration,
+and are able to begin signing for their Smart Wallet,
+but their Smart Wallet is not deployed on a chain until the first transaction on that chain.
+
+[ERC-6492](https://eips.ethereum.org/EIPS/eip-6492) describes 
+> With the rising popularity of account abstraction, we often find that the best user experience 
+for contract wallets is to defer contract deployment until the first user transaction, 
+therefore not burdening the user with an additional deploy step before they can use their account. 
+However, at the same time, many dApps expect signatures, not only for interactions, but also just for logging in.
+
+So the challenge is, how do we verify signatures in a way that works for both deployed and undeployed Smart Wallets?
+ERC-6492 has a solution for this, which Smart Wallet has adopted. 
+We won't go unto all the details here, read the ERC linked above, if you're looking for that.
+Below we cover the minimum work needed to support on and off chain signature validation for Smart Wallet.
+
+## Offchain
+For purely offchain signature verification––such as "Sign-In With Ethereum"––ensure you are using 
+a ERC-6492-compliant signature verification library. 
+We recommend Viem's [`verifyMessage`](https://viem.sh/docs/actions/public/verifyMessage#verifymessage) ([example](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/SignMessage.tsx#L28)) 
+and [verifyTypedData](https://viem.sh/docs/actions/public/verifyTypedData) ([example](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/TypedSign.tsx#L46)).
+
+
+## Onchain
+For signatures that will be used onchain, such as with [Permit2](https://github.com/Uniswap/permit2) 
+or [Seaport](https://github.com/ProjectOpenSea/seaport) developers will need to inspect the signature offchain 
+and remove unneeded ERC-6492 data, if it is present. 
+We recommend using the [parseErc6492Signature](https://viem.sh/docs/utilities/parseErc6492Signature#parseerc6492signature) 
+util from Viem. 
+
+# Popup Tips
+
+## Overview
+When a Smart Wallet is connected and Coinbase Wallet SDK receives a request, it opens 
+[keys.coinbase.com](https://keys.coinbase.com/) in a popup window and passes the request to the popup for handling. 
+Keep the following points in mind when working with the Smart Wallet popup.
+
+## Default blocking behavior
+- Most modern browsers block all popups by default, unless they are triggered by a click. 
+- If a popup is blocked the browser shows a notification to the user, allowing them to manage popup settings.
+
+### What to do about it
+- Ensure there is no additional logic between the button click and the request to open the Smart Wallet popup, 
+as browsers might perceive the request as programmatically initiated. 
+- If logic is unavoidable, keep it minimal and test thoroughly in all supported browsers.
+
+## `Cross-Origin-Opener-Policy` 
+If the Smart Wallet popup opens and displays an error or infinite spinner, it may be due to the dapp's `Cross-Origin-Opener-Policy`. Be sure to use a directive that allows the Smart Wallet popup to function. 
+
+- ✅ Allows Smart Wallet popup to function
+  - `unsafe-none` (default)
+  - `same-origin-allow-popups` (recommended)
+- ❌ Breaks Smart Wallet popup
+  - `same-origin`
+
+For more detailed information refer to the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy).
+
+
+## Smart Wallet popup 'linger' behavior
+- Sometimes a dapp may programmatically make a followup request based on the response to a previous request. 
+Normally, browsers block these programmatic requests to open popups. 
+- To address this, after the Smart Wallet popup responds to a request, it will linger for 200ms to listen for another incoming request before closing. 
+  - If a request is received *during* this 200ms window, it will be received and handled within the same popup window. 
+  - If a request is received *after* the 200ms window and the popup has closed, opening the Smart Wallet popup will be blocked by the browser. 
+
+  # Transaction Simulation Data
+There is a hidden feature which enables you to easily copy transaction simulation request and response data which can then be pasted it in a text editor to inspect.
+
+## Instructions
+- Click the area defined in red **_five times_**, then paste the copied data in a text editor.
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <div style={{ width: 450 }}>
+    ![Copy transaction simulation data click zone](/images/smart-wallet/copyTxnSimClickZone.png)
+  </div>
+</div>
+
+# Gas Usage
+
+Smart Wallets use more gas for transactions than traditional Ethereum accounts. On L2 networks, the cost difference to the user is a matter of cents. 
+The gas difference is due to the additional overhead required for:
+
+1. **ERC-4337 Bundling**
+2. **Smart Contract Operations**, including one time deployment of the Smart Wallet contract
+3. **Signature Verification**
+
+## Gas Usage Breakdown
+
+Here's a rough comparison of gas usage per account:
+
+| Operation Type | Traditional Ethereum Account | Smart Wallet |
+|---------------|------------|--------------|
+| Native Token Transfer | ~21,000 gas | ~100,000 gas |
+| ERC-20 Token Transfer | ~65,000 gas | ~150,000 gas |
+| First Deployment | N/A | ~300,000+ gas |
+
+# Popup Tips
+
+## Overview
+When a Smart Wallet is connected and Coinbase Wallet SDK receives a request, it opens 
+[keys.coinbase.com](https://keys.coinbase.com/) in a popup window and passes the request to the popup for handling. 
+Keep the following points in mind when working with the Smart Wallet popup.
+
+## Default blocking behavior
+- Most modern browsers block all popups by default, unless they are triggered by a click. 
+- If a popup is blocked the browser shows a notification to the user, allowing them to manage popup settings.
+
+### What to do about it
+- Ensure there is no additional logic between the button click and the request to open the Smart Wallet popup, 
+as browsers might perceive the request as programmatically initiated. 
+- If logic is unavoidable, keep it minimal and test thoroughly in all supported browsers.
+
+## `Cross-Origin-Opener-Policy` 
+If the Smart Wallet popup opens and displays an error or infinite spinner, it may be due to the dapp's `Cross-Origin-Opener-Policy`. Be sure to use a directive that allows the Smart Wallet popup to function. 
+
+- ✅ Allows Smart Wallet popup to function
+  - `unsafe-none` (default)
+  - `same-origin-allow-popups` (recommended)
+- ❌ Breaks Smart Wallet popup
+  - `same-origin`
+
+For more detailed information refer to the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy).
+
+
+## Smart Wallet popup 'linger' behavior
+- Sometimes a dapp may programmatically make a followup request based on the response to a previous request. 
+Normally, browsers block these programmatic requests to open popups. 
+- To address this, after the Smart Wallet popup responds to a request, it will linger for 200ms to listen for another incoming request before closing. 
+  - If a request is received *during* this 200ms window, it will be received and handled within the same popup window. 
+  - If a request is received *after* the 200ms window and the popup has closed, opening the Smart Wallet popup will be blocked by the browser. 
+
+  # Install
+
+## Command
+
+:::code-group
+
+```bash [npm]
+npm i @coinbase/wallet-sdk
+```
+
+```bash [pnpm]
+pnpm i @coinbase/wallet-sdk
+```
+
+```bash [yarn]
+yarn add @coinbase/wallet-sdk
+```
+
+```bash [bun]
+bun i @coinbase/wallet-sdk
+```
+
+:::
+
+# Setup
+
+Create a new `CoinbaseWalletSDK` instance.
+
+```ts twoslash
+import { CoinbaseWalletSDK } from '@coinbase/wallet-sdk'
+
+const sdk = new CoinbaseWalletSDK({
+  appName: 'My App Name',
+  appChainIds: [8453]
+});
+```
+
+## Parameters
+
+### appName (optional)
+
+- Type: `string`
+
+The app name. This will be displayed to users on connection, transacting, and signing requests.
+
+### appChainIds (optional)
+
+- Type: `number[]`
+
+Array of chain IDs your app supports. Default value is `[1]`.
+
+### appLogoUrl (optional)
+
+- Type: `string`
+
+App logo image URL. Favicon is used if unspecified.
+
+# makeWeb3Provider 
+Creates a new `CoinbaseWalletProvider` instance using a `CoinbaseWalletSDK` instance. 
+
+## Usage
+:::code-group
+```ts twoslash [provider.ts]
+import {sdk} from "./setup";
+
+// Create provider
+const provider = sdk.makeWeb3Provider({options: 'smartWalletOnly'});
+// Use provider
+const addresses = provider.request({method: 'eth_requestAccounts'});
+```
+```ts twoslash [setup.ts] filename="setup.ts"
+import { CoinbaseWalletSDK } from '@coinbase/wallet-sdk'
+
+export const sdk = new CoinbaseWalletSDK({
+  appName: 'My App Name',
+  appChainIds: [8453]
+});
+```
+:::
+
+## Returns 
+A new `CoinbaseWalletProvider` instance, which is an [Ethereum Javascript provider](https://eips.ethereum.org/EIPS/eip-1193) provider.
+
+## Parameters 
+
+### options (optional)
+- Type: `'all' | 'smartWalletOnly' | 'eoaOnly'`
+
+Determines which connection options users will see. Defaults to `all`. 
+
+
+#### `all`
+Users will see Smart Wallet and mobile app connection options. 
+
+:::info
+If a user is using a browser with Coinbase Wallet Extension installed, they will be taken straight to the 
+Coinbase Wallet Extension and not see any choice. 
+:::
+
+#### `smartWalletOnly`
+With this option, users will only see an option to create a Smart Wallet or sign into their Smart Wallet. 
+
+#### `eoaOnly`
+Users will only see the mobile app connection option. If the user is on mobile, they will be taken directly 
+to the Coinbase Wallet app. If the user is using a browser with Coinbase Wallet Extension, they will be taken 
+directly to the Extension.
+
+### attribution (optional)
+- Type: `Attribution`
+
+This option only applies to Coinbase Smart Wallet. When a valid data suffix is supplied, it is appended to the initCode and executeBatch calldata.
+
+```ts twoslash
+type Attribution = {
+    auto: boolean;
+    dataSuffix?: never;
+} | {
+    auto?: never;
+    dataSuffix: `0x${string}`;
+}
+```
+
+##### `auto` (optional)
+- Type: `boolean`
+
+If auto is true, the Smart Wallet will generate a 16 byte hex string from the apps origin.
+
+##### `dataSuffix` (optional)
+- Type: `0x${string}`
+
+Smart Wallet expects a 16 byte hex string. If the data suffix is not a 16 byte hex string, the Smart Wallet will ignore the property. 
+
+# CoinbaseWalletSDK Changes (v3 to v4)
+
+This page details changes between versions 3.x and 4.x of the [Coinbase Wallet SDK](https://github.com/coinbase/coinbase-wallet-sdk).
+
+## CoinbaseWalletSDK
+
+### CoinbaseWalletSDKOptions
+
+```ts
+// v4
+type CoinbaseWalletSDKOptions = {
+  appName?: string | undefined;
+  appLogoUrl?: string | null | undefined;
+  appChainIds?: number[] | undefined;
+};
+```
+
+#### New (v4 only):
+
+- `appChainIds?: number[]`
+  - An array of chain IDs your dapp supports
+  - The first chain in this array will be used as the default chain.
+  - Removes the need for non-mainnet dapps to request switching chains before making first request.
+  - Default value is `[1]` (mainnet)
+
+#### Deprecated (v3 only):
+
+- `enableMobileWalletLink` (enabled by default in v4)
+- `jsonRpcUrl`
+- `reloadOnDisconnect`
+- `uiConstructor`
+- `overrideIsMetaMask`
+- `overrideIsCoinbaseWallet`
+- `diagnosticLogger`
+- `reloadOnDisconnect`
+- `headlessMode`
+
+### Deprecated functions
+- `CoinbaseWalletSDK.disconnect()` is deprecated
+  - dapps should call `CoinbaseWalletProvider.disconnect()` instead
+- `CoinbaseWalletSDK.setAppInfo()` is deprecated
+  - Dapps should pass in `appName` and `appLogoUrl` via `CoinbaseWalletSDKOptions`
+
+### `makeWeb3Provider`
+
+#### Signature
+    ```ts
+    // v3
+    makeWeb3Provider(jsonRpcUrl?: string, chainId?: number): CoinbaseWalletProvider
+
+    // v4 // [!code focus]
+    makeWeb3Provider(preference: Preference = { options: 'all' }): ProviderInterface // [!code focus]
+    ```
+#### Parameters
+      ```ts
+      interface Preference {
+        options: 'all' | 'smartWalletOnly' | 'eoaOnly';
+      }
+      ```
+      - `options`
+        - `'all'` (default) show both smart wallet and EOA options
+        - `'smartWalletOnly'` only show smart wallet option
+        - `'eoaOnly'` only show EOA option
+
+#### Return type
+      ```ts
+      export interface ProviderInterface extends EventEmitter {
+        request<T>(args: RequestArguments): Promise<T>;
+        disconnect(): Promise<void>;
+        on(event: 'connect', listener: (info: ProviderConnectInfo) => void): this;
+        on(event: 'disconnect', listener: (error: ProviderRpcError) => void): this;
+        on(event: 'chainChanged', listener: (chainId: string) => void): this;
+        on(event: 'accountsChanged', listener: (accounts: string[]) => void): this;
+        on(event: 'message', listener: (message: ProviderMessage) => void): this;
+      }
+      ```
+
+## CoinbaseWalletProvider
+
+### `connect` event fix
+- v3 returned `chainIdStr` instead of `chainId`.
+- v4 is [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193#connect) compliant.
+
+```ts
+// v4
+interface ProviderConnectInfo { readonly chainId: string; } 
+on(event: 'connect', listener: (info: ProviderConnectInfo) => void): this; 
+```
+
+### `eth_accounts` when disconnected
+- v3 returned an empty array.
+- v4 throws an error.
+  - `Error: Must call 'eth_requestAccounts' before other methods`
+
+
+
+### Deprecated functionality
+
+#### Instance properties
+
+- `isCoinbaseBrowser: boolean`
+- `qrUrl?: string | null`
+- `reloadOnDisconnect: boolean`
+
+#### Getter methods
+
+- `selectedAddress`
+- `networkVersion`
+- `isWalletLink`
+- `ismetaMask`
+- `host`
+
+#### Methods
+
+- `disableReloadOnDisconnect`
+- `setProviderInfo`
+- `setAppInfo`
+- `close`
+- `send`
+- `sendAsync`
+- `scanQRCode`
+- `genericRequest`
+- `connectAndSignIn`
+- `selectProvider`
+- `supportsSubscriptions`
+- `subscribe`
+- `unsubscribe`
+
+# makeWeb3Provider 
+Creates a new `CoinbaseWalletProvider` instance using a `CoinbaseWalletSDK` instance. 
+
+## Usage
+:::code-group
+```ts twoslash [provider.ts]
+import {sdk} from "./setup";
+
+// Create provider
+const provider = sdk.makeWeb3Provider({options: 'smartWalletOnly'});
+// Use provider
+const addresses = provider.request({method: 'eth_requestAccounts'});
+```
+```ts twoslash [setup.ts] filename="setup.ts"
+import { CoinbaseWalletSDK } from '@coinbase/wallet-sdk'
+
+export const sdk = new CoinbaseWalletSDK({
+  appName: 'My App Name',
+  appChainIds: [8453]
+});
+```
+:::
+
+## Returns 
+A new `CoinbaseWalletProvider` instance, which is an [Ethereum Javascript provider](https://eips.ethereum.org/EIPS/eip-1193) provider.
+
+## Parameters 
+
+### options (optional)
+- Type: `'all' | 'smartWalletOnly' | 'eoaOnly'`
+
+Determines which connection options users will see. Defaults to `all`. 
+
+
+#### `all`
+Users will see Smart Wallet and mobile app connection options. 
+
+:::info
+If a user is using a browser with Coinbase Wallet Extension installed, they will be taken straight to the 
+Coinbase Wallet Extension and not see any choice. 
+:::
+
+#### `smartWalletOnly`
+With this option, users will only see an option to create a Smart Wallet or sign into their Smart Wallet. 
+
+#### `eoaOnly`
+Users will only see the mobile app connection option. If the user is on mobile, they will be taken directly 
+to the Coinbase Wallet app. If the user is using a browser with Coinbase Wallet Extension, they will be taken 
+directly to the Extension.
+
+### attribution (optional)
+- Type: `Attribution`
+
+This option only applies to Coinbase Smart Wallet. When a valid data suffix is supplied, it is appended to the initCode and executeBatch calldata.
+
+```ts twoslash
+type Attribution = {
+    auto: boolean;
+    dataSuffix?: never;
+} | {
+    auto?: never;
+    dataSuffix: `0x${string}`;
+}
+```
+
+##### `auto` (optional)
+- Type: `boolean`
+
+If auto is true, the Smart Wallet will generate a 16 byte hex string from the apps origin.
+
+##### `dataSuffix` (optional)
+- Type: `0x${string}`
+
+Smart Wallet expects a 16 byte hex string. If the data suffix is not a 16 byte hex string, the Smart Wallet will ignore the property. 
+
+# Overview
+
+The request method allows apps to make Ethereum RPC requests to the wallet.
+
+## Specification
+
+```typescript
+interface RequestArguments {
+readonly method: string;
+readonly params?: readonly unknown[] | object;
+}
+
+interface ProviderRpcError extends Error {
+code: number;
+data?: unknown;
+}
+
+interface CoinbaseWalletProvider {
+/\*\*
+
+- @param {RequestArguments} args request arguments.
+- @returns A promise that resolves with the result.
+- @throws {ProviderRpcError} incase of error.
+- @fires CoinbaseWalletProvider#connect When the provider successfully connects.
+  \*/
+  request: (args: RequestArguments) => Promise<unknown>
+  }
+```
+
+## Example
+
+:::code-group
+
+```typescript [example.ts]
+
+import {provider} from "./setup";
+
+const addresses = await provider.request({method: 'eth_requestAccounts'});
+const txHash = await provider.request({
+method: 'eth_sendTransaction',
+params: [{from: addresses[0], to: addresses[0], value: 1}]
+}
+);
+```
+
+```typescript [setup.ts]
+
+import { CoinbaseWalletSDK } from '@coinbase/wallet-sdk'
+
+const baseSepoliaChainId = 84532;
+
+export const sdk = new CoinbaseWalletSDK({
+  appName: 'My App Name',
+  appChainIds: [baseSepoliaChainId]
+});
+
+const provider = sdk.makeWeb3Provider();
+```
+
+:::
+
+## Request Handling
+
+Requests are handled in one of three ways
+
+Sent to the Wallet application (Wallet mobile app, extension, or popup window).
+Handled locally by the SDK.
+Passed onto default RPC provider for the given chain, if it exists.
+
+### 1. Sent to the Wallet application
+
+The following RPC requests are sent to the Wallet application:
+
+- eth_ecRecover
+- personal_sign
+- personal_ecRecover
+- eth_signTransaction
+- eth_sendTransaction
+- eth_signTypedData_v1
+- eth_signTypedData_v3
+- eth_signTypedData_v4
+- eth_signTypedData
+- wallet_addEthereumChain
+- wallet_watchAsset
+- wallet_sendCalls
+- wallet_showCallsStatus
+
+### 2. Handled Locally by the SDK
+
+The following requests are handled locally by the SDK, with no external calls.
+
+- eth_requestAccounts
+- eth_accounts
+- eth_coinbase
+- net_version
+- eth_chainId
+- wallet_getCapabilities
+- wallet_switchEthereumChain
+
+```
+
+```
+
+# eth_accounts
+
+Defined in [EIP-1474](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1474.md)
+
+> Returns a list of addresses owned by the connected wallet. Unlike `eth_requestAccounts`, this method returns an empty array if no accounts are available or if the user has not authorized any accounts to the caller. This method does not prompt the user to approve connection.
+
+## Parameters
+
+None. This method does not accept any parameters.
+
+## Returns
+
+`Array<string>`
+
+An array of Ethereum addresses (hexadecimal strings), which the connected user controls. The array will typically contain a single address, which is the currently selected account in the wallet. If the wallet is not connected or no accounts are authorized, this method returns an empty array.
+
+## Example
+
+Request:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "eth_accounts",
+  "params": []
+}
+```
+
+Response:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": ["0xabc123..."]
+}
+```
+
+If no accounts are connected:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": []
+}
+```
+
+## Errors
+
+| Code | Message                        | Description                                             |
+| ---- | ------------------------------ | ------------------------------------------------------- |
+| 4100 | Requested method not supported | The provider does not support the `eth_accounts` method |
+| 4900 | Disconnected                   | The provider is disconnected from the wallet            |
+
+# eth_blockNumber
+
+> Returns the number of the most recent block.
+
+## Returns
+
+`string`
+
+A hexadecimal string representing the integer of the current block number the client is on.
+
+### Example
+
+```
+"0x4b7" // 1207
+```
+
+## Errors
+
+This method does not typically return errors.
+
+# eth_chainId
+
+Defined in [EIP-695](https://eips.ethereum.org/EIPS/eip-695)
+
+> Returns the currently configured chain ID, a value used in replay-protected transaction signing as introduced by [EIP-155](https://eips.ethereum.org/EIPS/eip-155).
+
+## Returns
+
+`string`
+
+A hexadecimal string representation of the integer chain ID.
+
+### Example
+
+```
+"0x1" // Ethereum Mainnet
+"0x14a34" // Base Sepolia (84532)
+"0x14a33" // Base Mainnet (84531)
+```
+
+## Errors
+
+This method does not typically return errors.
+
+# eth_coinbase
+
+Returns the current coinbase address, which is the account the wallet will use as the default sender.
+
+## Returns
+
+`string`
+
+The current Ethereum address that is set as the coinbase (default sender).
+
+## Errors
+
+This method does not typically return errors.
+
+# eth_estimateGas
+
+> Generates and returns an estimate of how much gas is necessary to allow the transaction to complete.
+
+## Parameters
+
+```typescript
+interface TransactionParams {
+  from?: string; // The address the transaction is sent from
+  to?: string; // The address the transaction is directed to
+  gas?: string; // Hexadecimal string of the gas provided for the transaction execution
+  gasPrice?: string; // Hexadecimal string of the gasPrice used for each paid gas
+  value?: string; // Hexadecimal string of the value sent with this transaction
+  data?: string; // The compiled code of a contract or the hash of the invoked method signature and encoded parameters
+}
+```
+
+## Returns
+
+`string`
+
+A hexadecimal string indicating the estimated gas required for the transaction to complete. This is not the exact gas amount that will be used by the transaction when it executes, but should be used as a gas limit when sending the transaction.
+
+## Errors
+
+| Code   | Message                        |
+| ------ | ------------------------------ |
+| -32000 | Transaction execution error    |
+| -32602 | Invalid transaction parameters |
+| -32603 | Internal error                 |
+
+# eth_feeHistory
+
+> Returns a collection of historical gas information from which you can recompute gas costs.
+
+## Parameters
+
+1. `string` - Number of blocks in the requested range (in hexadecimal)
+2. `string` - Highest block number in the requested range (in hexadecimal) or "latest"
+3. `array` - Percentile values to sample from each block's effective priority fees
+
+### Example
+
+```json
+["0x5", "latest", [20, 70]]
+```
+
+## Returns
+
+`object`
+
+Returns an object with fee history data:
+
+```typescript
+interface FeeHistory {
+  oldestBlock: string; // Lowest block number in the range
+  baseFeePerGas: Array<string>; // Array of block base fees per gas
+  gasUsedRatio: Array<number>; // Array of block gas utilization ratios
+  reward?: Array<Array<string>>; // Array of effective priority fee per gas data points for each block
+}
+```
+
+### Example
+
+```json
+{
+  "oldestBlock": "0x1",
+  "baseFeePerGas": [
+    "0x3b9aca00",
+    "0x3ba1f3e2",
+    "0x3a6db1e6"
+  ],
+  "gasUsedRatio": [
+    0.5265,
+    0.4858,
+    0.6124
+  ],
+  "reward": [
+    [
+      "0x3b9aca00",
+      "0x3b9aca00"
+    ],
+    [
+      "0x3ba1f3e2",
+      "0x3b9aca00"
+    ],
+    [
+      "0x3a6db1e6",
+      "0x3b9aca00"
+    ]
+  ]
+}
+```
+
+## Errors
+
+| Code   | Message            |
+| ------ | ------------------ |
+| -32602 | Invalid parameters |
+
+# eth_gasPrice
+
+> Returns the current price per gas in wei.
+
+## Returns
+
+`string`
+
+A hexadecimal string representing the integer value of the current gas price in wei.
+
+### Example
+
+```
+"0x09184e72a000" // 10000000000000
+```
+
+## Errors
+
+This method does not typically return errors.
+
+# eth_getBalance
+
+> Returns the balance of the account of given address.
+
+## Parameters
+
+1. `string` - The address to check for balance.
+2. `string` - Integer block number, or the string "latest", "earliest" or "pending".
+
+### Example
+
+```json
+["0x407d73d8a49eeb85d32cf465507dd71d507100c1", "latest"]
+```
+
+## Returns
+
+`string`
+
+A hexadecimal string representing the current balance in wei.
+
+### Example
+
+```
+"0x0234c8a3397aab58" // 158972490234375000
+```
+
+## Errors
+
+| Code   | Message                            |
+| ------ | ---------------------------------- |
+| -32602 | Invalid address or block parameter |
+
+# eth_getBlockByHash
+
+Defined in the [Ethereum JSON-RPC Specification](https://ethereum.org/en/developers/docs/apis/json-rpc/)
+
+> Returns information about a block by block hash.
+
+## Parameters
+
+```ts
+type GetBlockByHashParams = [string, boolean]
+```
+
+1. `string` - Hash of a block
+2. `boolean` - If true, returns the full transaction objects; if false, only the hashes of the transactions
+
+### Example
+
+```json
+["0x1b4", true]
+```
+
+## Returns
+
+`object` or `null`
+
+Returns a block object, or `null` if no block was found:
+
+```typescript
+interface Block {
+  number: string; // The block number
+  hash: string; // Hash of the block
+  parentHash: string; // Hash of the parent block
+  nonce: string; // Hash of the generated proof-of-work
+  sha3Uncles: string; // SHA3 of the uncles data in the block
+  logsBloom: string; // The bloom filter for the logs of the block
+  transactionsRoot: string; // The root of the transaction trie of the block
+  stateRoot: string; // The root of the final state trie of the block
+  receiptsRoot: string; // The root of the receipts trie of the block
+  miner: string; // The address of the beneficiary to whom the mining rewards were given
+  difficulty: string; // Integer of the difficulty for this block
+  totalDifficulty: string; // Integer of the total difficulty of the chain until this block
+  extraData: string; // The "extra data" field of this block
+  size: string; // Integer the size of this block in bytes
+  gasLimit: string; // The maximum gas allowed in this block
+  gasUsed: string; // The total used gas by all transactions in this block
+  timestamp: string; // The unix timestamp for when the block was collated
+  transactions: Array<string | Transaction>; // Array of transaction objects, or 32-byte transaction hashes depending on the second parameter
+  uncles: Array<string>; // Array of uncle hashes
+}
+```
+
+## Errors
+
+| Code   | Message            |
+| ------ | ------------------ |
+| -32602 | Invalid parameters |
+
+# eth_getBlockByNumber
+
+> Returns information about a block by block number.
+
+## Parameters
+
+1. `string` - Integer block number, or the string "latest", "earliest" or "pending"
+2. `boolean` - If true, returns the full transaction objects; if false, only the hashes of the transactions
+
+### Example
+
+```json
+["0x1b4", true]
+```
+
+## Returns
+
+`object` or `null`
+
+Returns a block object, or `null` if no block was found:
+
+```typescript
+interface Block {
+  number: string; // The block number
+  hash: string; // Hash of the block
+  parentHash: string; // Hash of the parent block
+  nonce: string; // Hash of the generated proof-of-work
+  sha3Uncles: string; // SHA3 of the uncles data in the block
+  logsBloom: string; // The bloom filter for the logs of the block
+  transactionsRoot: string; // The root of the transaction trie of the block
+  stateRoot: string; // The root of the final state trie of the block
+  receiptsRoot: string; // The root of the receipts trie of the block
+  miner: string; // The address of the beneficiary to whom the mining rewards were given
+  difficulty: string; // Integer of the difficulty for this block
+  totalDifficulty: string; // Integer of the total difficulty of the chain until this block
+  extraData: string; // The "extra data" field of this block
+  size: string; // Integer the size of this block in bytes
+  gasLimit: string; // The maximum gas allowed in this block
+  gasUsed: string; // The total used gas by all transactions in this block
+  timestamp: string; // The unix timestamp for when the block was collated
+  transactions: Array<string | Transaction>; // Array of transaction objects, or 32-byte transaction hashes depending on the second parameter
+  uncles: Array<string>; // Array of uncle hashes
+}
+```
+
+## Errors
+
+| Code   | Message            |
+| ------ | ------------------ |
+| -32602 | Invalid parameters |
+
+```
+
+```
+
+# eth_getBlockTransactionCountByHash
+
+Defined in the [Ethereum JSON-RPC Specification](https://ethereum.org/en/developers/docs/apis/json-rpc/)
+
+> Returns the number of transactions in a block from a block matching the given block hash.
+
+## Parameters
+
+```ts
+type GetBlockTransactionCountByHashParams = [string]
+```
+
+An array containing a single string: the hash of the block.
+
+## Returns
+
+`string`
+
+The number of transactions in the specified block, encoded as a hexadecimal.
+
+## Example
+
+```
+"0x10" // 16 transactions in the block
+```
+
+## Errors
+
+| Code | Message            |
+| ---- | ------------------ |
+| 4200 | Unsupported method |
+
+```
+
+```
+
+# eth_getBlockTransactionCountByNumber
+
+Defined in the [Ethereum JSON-RPC Specification](https://ethereum.org/en/developers/docs/apis/json-rpc/)
+
+> Returns the number of transactions in a block matching the given block number.
+
+## Parameters
+
+```ts
+type GetBlockTransactionCountByNumberParams = [string]
+```
+
+An array containing a single string: the block number (as a hexadecimal) or tag.
+
+Valid tags: `"earliest"`, `"latest"`, `"pending"`, `"safe"`, `"finalized"`
+
+## Returns
+
+`string`
+
+The number of transactions in the specified block, encoded as a hexadecimal.
+
+## Example
+
+```
+"0x10" // 16 transactions in the block
+```
+
+## Errors
+
+| Code | Message            |
+| ---- | ------------------ |
+| 4200 | Unsupported method |
+
+# eth_getCode
+
+> Returns the bytecode at a given address.
+
+## Parameters
+
+1. `string` - The address to get the code from
+2. `string` - Integer block number, or the string "latest", "earliest" or "pending"
+
+### Example
+
+```json
+["0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b", "0x2"]
+```
+
+## Returns
+
+`string`
+
+The bytecode at the given address. Returns "0x" if the account has no bytecode.
+
+### Example
+
+```
+"0x606060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680635fd8c710146100675780637c68f6ab146100905780638da5cb5b146100c9578063dc10753b1461011e575b600080fd5b341561007257600080fd5b61007a610145565b6040518082815260200191505060405180910390f35b341561009b57600080fd5b6100b3600480803560ff169060200190919050506101e9565b6040518082815260200191505060405180910390f35b34156100d457600080fd5b6100dc610290565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561012957600080fd5b610143600480803560001916906020019091905050610297565b005b6000600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561065d57600080fd5b600060149054906101000a900460ff16156101ae57600080fd5b60011515600060159054906101000a900460ff1615151415156101d057600080fd5b680c7d713b49da0000009050600060149054906101000a900460ff16156101e657806000819055505b80905090565b60006101f36102b8565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561024f57600080fd5b600060149054906101000a900460ff161561026957600080fd5b60011515600060159054906101000a900460ff16151514151561028b57600080fd5b819050919050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b80600019166001816000191690919091019190915550565b6000806000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561031757600080fd5b600060149054906101000a900460ff161561033157600080fd5b60011515600060159054906101000a900460ff16151514151561035357600080fd5b6000600554111561070657600554600454111561071857600454600554111561072a576000600554111561073c5760006004541115610751576000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905080915050905600a165627a"
+```
+
+## Errors
+
+| Code   | Message            |
+| ------ | ------------------ |
+| -32602 | Invalid parameters |
+
+# eth_getLogs
+
+> Returns an array of all logs matching the given filter object.
+
+## Parameters
+
+1. `object` - The filter object:
+   - `fromBlock` (optional) - `string`: Integer block number, or "latest", "earliest" or "pending"
+   - `toBlock` (optional) - `string`: Integer block number, or "latest", "earliest" or "pending"
+   - `address` (optional) - `string` or `array`: Contract address or array of addresses from which logs should originate
+   - `topics` (optional) - `array`: Array of 32-byte DATA topics. Topics are order-dependent
+   - `blockHash` (optional) - `string`: Hash of the block to get logs from (overrides fromBlock/toBlock)
+
+### Example
+
+```json
+[{
+  "fromBlock": "0x1",
+  "toBlock": "0x2",
+  "address": "0x8888f1f195afa192cfee860698584c030f4c9db1",
+  "topics": [
+    "0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+    null,
+    [
+      "0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+      "0x0000000000000000000000000aff3454fce5edbc8cca8697c15331677e6ebccc"
+    ]
+  ]
+}]
+```
+
+## Returns
+
+`array`
+
+An array of log objects, each containing:
+
+```typescript
+interface Log {
+  removed: boolean; // Whether the log was removed due to a chain reorganization
+  logIndex: string; // Integer of the log index position in the block
+  transactionIndex: string; // Integer of the transaction's index position the log was created from
+  transactionHash: string; // Hash of the transaction this log was created from
+  blockHash: string; // Hash of the block where this log was in
+  blockNumber: string; // The block number where this log was in
+  address: string; // Address from which this log originated
+  data: string; // Contains non-indexed parameters of the log
+  topics: Array<string>; // Array of up to 4 32-byte topics, topic[0] is the event signature
+}
+```
+
+## Errors
+
+| Code   | Message                |
+| ------ | ---------------------- |
+| -32602 | Invalid parameters     |
+| -32005 | Filter not found       |
+| -32000 | Log response too large |
+
+# eth_getProof
+
+Defined in [EIP-1186](https://eips.ethereum.org/EIPS/eip-1186)
+
+> Returns the account and storage values of the specified account including the Merkle-proof.
+
+## Parameters
+
+```ts
+type GetProofParams = [string, string[], string]
+```
+
+1. The address of the account
+2. Array of storage-keys which should be proofed and included
+3. Block number or tag (as hexadecimal string)
+
+## Returns
+
+```ts
+interface ProofResult {
+  /**
+   * The address of the account being proved.
+   */
+  address: string
+  /**
+   * The balance of the account.
+   */
+  balance: string
+  /**
+   * The hash of the code of the account.
+   */
+  codeHash: string
+  /**
+   * The nonce of the account.
+   */
+  nonce: string
+  /**
+   * The storage hash of the account.
+   */
+  storageHash: string
+  /**
+   * Array of storage entries as requested.
+   */
+  storageProof: StorageProofEntry[]
+}
+
+interface StorageProofEntry {
+  /**
+   * The storage key.
+   */
+  key: string
+  /**
+   * The storage value.
+   */
+  value: string
+  /**
+   * Array of rlp-serialized MerkleTree-Nodes, starting with the stateRoot-Node.
+   */
+  proof: string[]
+}
+```
+
+## Errors
+
+| Code | Message            |
+| ---- | ------------------ |
+| 4200 | Unsupported method |
+
+# eth_getStorageAt
+
+Defined in the [Ethereum JSON-RPC Specification](https://ethereum.org/en/developers/docs/apis/json-rpc/)
+
+> Returns the value from a storage position at a given address.
+
+## Parameters
+
+```ts
+type GetStorageAtParams = [string, string, string]
+```
+
+1. The address of the storage
+2. Integer of the position in the storage (hexadecimal)
+3. Block number or tag (as hexadecimal string)
+
+Valid tags: `"earliest"`, `"latest"`, `"pending"`, `"safe"`, `"finalized"`
+
+## Returns
+
+`string`
+
+The value at this storage position.
+
+## Example
+
+```
+"0x0000000000000000000000000000000000000000000000000000000000000004"
+```
+
+## Errors
+
+| Code | Message            |
+| ---- | ------------------ |
+| 4200 | Unsupported method |
+
+```
+
+```
+
+# eth_getTransactionByBlockHashAndIndex
+
+Defined in the [Ethereum JSON-RPC Specification](https://ethereum.org/en/developers/docs/apis/json-rpc/)
+
+> Returns information about a transaction by block hash and transaction index position.
+
+## Parameters
+
+```ts
+type GetTransactionByBlockHashAndIndexParams = [string, string]
+```
+
+1. Hash of a block
+2. Integer of the transaction index position (hexadecimal)
+
+## Returns
+
+```ts
+interface Transaction {
+  hash: string             // Hash of the transaction
+  nonce: string           // The number of transactions made by the sender prior to this one
+  blockHash: string | null // Hash of the block where this transaction was in. null if pending
+  blockNumber: string | null // Block number where this transaction was in. null if pending
+  transactionIndex: string | null // Integer of the transaction's index position in the block. null if pending
+  from: string            // Address of the sender
+  to: string | null       // Address of the receiver. null when it's a contract creation transaction
+  value: string           // Value transferred in wei
+  gasPrice: string        // Gas price provided by the sender in wei
+  gas: string             // Gas provided by the sender
+  input: string           // The data sent along with the transaction
+  v: string               // ECDSA recovery id
+  r: string               // ECDSA signature r
+  s: string               // ECDSA signature s
+}
+```
+
+Returns `null` when no transaction was found.
+
+## Errors
+
+| Code | Message            |
+| ---- | ------------------ |
+| 4200 | Unsupported method |
+
+```
+
+```
+
+# eth_getTransactionByBlockNumberAndIndex
+
+Defined in the [Ethereum JSON-RPC Specification](https://ethereum.org/en/developers/docs/apis/json-rpc/)
+
+> Returns information about a transaction by block number and transaction index position.
+
+## Parameters
+
+```ts
+type GetTransactionByBlockNumberAndIndexParams = [string, string]
+```
+
+1. Block number or tag (as hexadecimal string)
+2. Integer of the transaction index position (hexadecimal)
+
+Valid tags: `"earliest"`, `"latest"`, `"pending"`, `"safe"`, `"finalized"`
+
+## Returns
+
+```ts
+interface Transaction {
+  hash: string             // Hash of the transaction
+  nonce: string           // The number of transactions made by the sender prior to this one
+  blockHash: string | null // Hash of the block where this transaction was in. null if pending
+  blockNumber: string | null // Block number where this transaction was in. null if pending
+  transactionIndex: string | null // Integer of the transaction's index position in the block. null if pending
+  from: string            // Address of the sender
+  to: string | null       // Address of the receiver. null when it's a contract creation transaction
+  value: string           // Value transferred in wei
+  gasPrice: string        // Gas price provided by the sender in wei
+  gas: string             // Gas provided by the sender
+  input: string           // The data sent along with the transaction
+  v: string               // ECDSA recovery id
+  r: string               // ECDSA signature r
+  s: string               // ECDSA signature s
+}
+```
+
+Returns `null` when no transaction was found.
+
+## Errors
+
+| Code | Message            |
+| ---- | ------------------ |
+| 4200 | Unsupported method |
+
+```
+
+```
+
+# eth_getTransactionByHash
+
+> Returns information about a transaction by transaction hash.
+
+## Parameters
+
+1. `string` - The transaction hash
+
+### Example
+
+```json
+["0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b"]
+```
+
+## Returns
+
+`object` or `null`
+
+Returns a transaction object, or `null` if no transaction was found:
+
+```typescript
+interface Transaction {
+  blockHash: string | null; // Hash of the block. null when pending
+  blockNumber: string | null; // Number of the block. null when pending
+  from: string; // Address of the sender
+  gas: string; // Gas provided by the sender
+  gasPrice: string; // Gas price provided by the sender
+  hash: string; // Hash of the transaction
+  input: string; // The data sent along with the transaction
+  nonce: string; // Number of transactions from the sender prior to this one
+  to: string | null; // Address of the receiver. null when creating a contract
+  transactionIndex: string | null; // Integer of the transaction's index position in the block. null when pending
+  value: string; // Value transferred in wei
+  v: string; // ECDSA recovery ID
+  r: string; // ECDSA signature r
+  s: string; // ECDSA signature s
+}
+```
+
+## Errors
+
+| Code   | Message           |
+| ------ | ----------------- |
+| -32602 | Invalid parameter |
+
+# eth_getTransactionCount
+
+> Returns the number of transactions sent from an address.
+
+## Parameters
+
+1. `string` - The address to get the transaction count for
+2. `string` - Integer block number, or the string "latest", "earliest" or "pending"
+
+### Example
+
+```json
+["0xc94770007dda54cF92009BFF0dE90c06F603a09f", "latest"]
+```
+
+## Returns
+
+`string`
+
+A hexadecimal string representing the number of transactions sent from this address.
+
+### Example
+
+```
+"0x1" // 1
+```
+
+## Errors
+
+| Code   | Message                            |
+| ------ | ---------------------------------- |
+| -32602 | Invalid address or block parameter |
+
+
+# eth_getTransactionReceipt
+
+> Returns the receipt of a transaction by transaction hash.
+
+## Parameters
+
+1. `string` - The transaction hash
+
+### Example
+
+```json
+["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"]
+```
+
+## Returns
+
+`object` or `null`
+
+Returns a transaction receipt object, or `null` if no receipt was found:
+
+```typescript
+interface TransactionReceipt {
+  transactionHash: string; // Hash of the transaction
+  transactionIndex: string; // Integer of the transaction's index position in the block
+  blockHash: string; // Hash of the block where this transaction was in
+  blockNumber: string; // Block number where this transaction was in
+  from: string; // Address of the sender
+  to: string | null; // Address of the receiver. null when it's a contract creation transaction
+  cumulativeGasUsed: string; // The total amount of gas used in the block up to and including this transaction
+  gasUsed: string; // The amount of gas used by this specific transaction
+  contractAddress: string | null; // The contract address created, if the transaction was a contract creation, otherwise null
+  logs: Array<Log>; // Array of log objects, which this transaction generated
+  logsBloom: string; // Bloom filter for light clients to quickly retrieve related logs
+  status: string; // Either '0x1' (success) or '0x0' (failure)
+}
+
+interface Log {
+  removed: boolean; // Whether the log was removed due to a chain reorganization
+  logIndex: string; // Integer of the log index position in the block
+  transactionIndex: string; // Integer of the transaction's index position the log was created from
+  transactionHash: string; // Hash of the transaction this log was created from
+  blockHash: string; // Hash of the block where this log was in
+  blockNumber: string; // The block number where this log was in
+  address: string; // Address from which this log originated
+  data: string; // Contains non-indexed parameters of the log
+  topics: Array<string>; // Array of up to 4 32-byte topics, topic[0] is the event signature
+}
+```
+
+## Errors
+
+| Code   | Message           |
+| ------ | ----------------- |
+| -32602 | Invalid parameter |
+
+# eth_getUncleCountByBlockHash
+
+Defined in the [Ethereum JSON-RPC Specification](https://ethereum.org/en/developers/docs/apis/json-rpc/)
+
+> Returns the number of uncles in a block from a block matching the given block hash.
+
+## Parameters
+
+```ts
+type GetUncleCountByBlockHashParams = [string]
+```
+
+An array containing a single string: the hash of the block.
+
+## Returns
+
+`string`
+
+The number of uncles in the specified block, encoded as a hexadecimal.
+
+## Example
+
+```
+"0x1" // 1 uncle
+```
+
+## Errors
+
+| Code | Message            |
+| ---- | ------------------ |
+| 4200 | Unsupported method |
+
+```
+
+```
+
+# eth_getUncleCountByBlockNumber
+
+Defined in the [Ethereum JSON-RPC Specification](https://ethereum.org/en/developers/docs/apis/json-rpc/)
+
+> Returns the number of uncles in a block from a block matching the given block number.
+
+## Parameters
+
+```ts
+type GetUncleCountByBlockNumberParams = [string]
+```
+
+An array containing a single string: the block number (as a hexadecimal) or tag.
+
+Valid tags: `"earliest"`, `"latest"`, `"pending"`, `"safe"`, `"finalized"`
+
+## Returns
+
+`string`
+
+The number of uncles in the specified block, encoded as a hexadecimal.
+
+## Example
+
+```
+"0x1" // 1 uncle
+```
+
+## Errors
+
+| Code | Message            |
+| ---- | ------------------ |
+| 4200 | Unsupported method |
+
+```
+
+```
+
+# eth_requestAccounts
+
+Defined in [EIP-1102](https://eips.ethereum.org/EIPS/eip-1102)
+
+> Requests that the user provides an Ethereum address to be identified by. This method is used to request the user's accounts and trigger wallet connection. Calling this method may trigger a user interface that allows the user to approve or reject account access for the dApp.
+
+## Parameters
+
+None. This method does not accept any parameters.
+
+## Returns
+
+`Array<string>`
+
+An array of Ethereum addresses (hexadecimal strings), which the connected user controls. The array will typically contain a single address, which is the currently selected account in the wallet.
+
+## Example
+
+Request:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "eth_requestAccounts",
+  "params": []
+}
+```
+
+Response:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": ["0xabc123..."]
+}
+```
+
+## Errors
+
+| Code | Message                        | Description                                                 |
+| ---- | ------------------------------ | ----------------------------------------------------------- |
+| 4001 | User denied connection request | The user rejected the request to connect with your dApp     |
+| 4100 | Unauthorized                   | The requested method and/or account has not been authorized |
+| 4900 | Disconnected                   | The provider is disconnected from the wallet                |
+
+# eth_sendRawTransaction
+
+> Submits a pre-signed transaction for broadcast to the Ethereum network.
+
+## Parameters
+
+1. `string` - The signed transaction data
+
+### Example
+
+```json
+["0xf86c098504a817c800825208943535353535353535353535353535353535353535880de0b6b3a76400008025a028ef61340bd939bc2195fe537567866003e1a15d3c71ff63e1590620aa636276a067cbe9d8997f761aecb703304b3800ccf555c9f3dc64214b297fb1966a3b6d83"]
+```
+
+## Returns
+
+`string`
+
+A 32-byte hex string containing the transaction hash.
+
+### Example
+
+```
+"0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
+```
+
+## Errors
+
+| Code   | Message              |
+| ------ | -------------------- |
+| -32000 | Invalid transaction  |
+| -32003 | Transaction rejected |
+| -32010 | Gas price too low    |
+| -32603 | Internal error       |
+
+# eth_sendTransaction
+
+Defined in [EIP-1474](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1474.md)
+
+> Creates, signs, and sends a new transaction to the network.
+
+## Parameters
+
+`Array<TransactionConfig>`
+
+An array containing a single transaction object with the following fields:
+
+| Field                | Type   | Description                                                           |
+| -------------------- | ------ | --------------------------------------------------------------------- |
+| from                 | string | The address the transaction is sent from                              |
+| to                   | string | (Optional) The address the transaction is directed to                 |
+| gas                  | string | (Optional) Integer of the gas provided for the transaction            |
+| gasPrice             | string | (Optional) Integer of the gas price in wei                            |
+| value                | string | (Optional) Integer of the value sent with this transaction            |
+| data                 | string | (Optional) Hash of the method signature and encoded parameters        |
+| nonce                | string | (Optional) Integer of a nonce used to prevent transaction replay      |
+| maxFeePerGas         | string | (Optional) The maximum fee per gas for EIP-1559 transactions          |
+| maxPriorityFeePerGas | string | (Optional) The maximum priority fee per gas for EIP-1559 transactions |
+
+## Returns
+
+`string`
+
+A transaction hash.
+
+## Errors
+
+| Code | Message                           |
+| ---- | --------------------------------- |
+| 4001 | User denied transaction signature |
+| 4100 | Requested method not supported    |
+| 4200 | Wallet not connected              |
+
+# eth_signTypedData_v4
+
+Defined in [EIP-712](https://eips.ethereum.org/EIPS/eip-712)
+
+> Signs EIP-712 typed data. The signing account must be unlocked. This method allows applications to create more user-friendly signing requests by providing structured data with type information, domain separation, and a robust hashing mechanism for the data. This is the most up-to-date version of the EIP-712 signing method.
+
+## Parameters
+
+```ts
+type SignTypedDataV4Params = [string, TypedData]
+
+interface TypedData {
+  /**
+   * The typed data domain
+   */
+  domain: TypedDataDomain
+  /**
+   * The primary type of the message
+   */
+  primaryType: string
+  /**
+   * Type definitions for all types used in the message
+   */
+  types: Record<string, TypedDataField[]>
+  /**
+   * The message to be signed
+   */
+  message: Record<string, unknown>
+}
+
+interface TypedDataDomain {
+  /**
+   * The name of the domain
+   */
+  name?: string
+  /**
+   * The version of the domain
+   */
+  version?: string
+  /**
+   * The chain ID of the domain
+   */
+  chainId?: number | string
+  /**
+   * The verifying contract address
+   */
+  verifyingContract?: string
+  /**
+   * A salt used to disambiguate the domain
+   */
+  salt?: string
+}
+
+interface TypedDataField {
+  /**
+   * The name of the field
+   */
+  name: string
+  /**
+   * The type of the field
+   */
+  type: string
+}
+```
+
+## Returns
+
+`string`
+
+A signature string in hexadecimal format. The signature conforms to the standard Ethereum signature format: a 65-byte array represented as a hexadecimal string with `0x` prefix. The signature can be broken down into:
+
+- `r`: The first 32 bytes
+- `s`: The second 32 bytes
+- `v`: The final 1 byte (recovery ID)
+
+## Example
+
+Request:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "eth_signTypedData_v4",
+  "params": [
+    "0x8eeC87D46108b8A3763Dda3A24A0D3e038C6996F",
+    {
+      "domain": {
+        "name": "My Dapp",
+        "version": "1",
+        "chainId": 1,
+        "verifyingContract": "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC"
+      },
+      "message": {
+        "from": {
+          "name": "Alice",
+          "wallets": [
+            "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826",
+            "0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF"
+          ]
+        },
+        "to": {
+          "name": "Bob",
+          "wallets": [
+            "0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB",
+            "0xB0BdaBea57B0BDABeA57b0bdABEA57b0BDabEa57"
+          ]
+        },
+        "contents": "Hello, Bob!"
+      },
+      "primaryType": "Mail",
+      "types": {
+        "EIP712Domain": [
+          { "name": "name", "type": "string" },
+          { "name": "version", "type": "string" },
+          { "name": "chainId", "type": "uint256" },
+          { "name": "verifyingContract", "type": "address" }
+        ],
+        "Mail": [
+          { "name": "from", "type": "Person" },
+          { "name": "to", "type": "Person" },
+          { "name": "contents", "type": "string" }
+        ],
+        "Person": [
+          { "name": "name", "type": "string" },
+          { "name": "wallets", "type": "address[]" }
+        ]
+      }
+    }
+  ]
+}
+```
+
+Response:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": "0x4355c47d63924e8a72e509b65029052eb6c299d53a04e167c5775fd466751c9d07299936d304c153f6443dfa05f40ff007d72911b6f72307f996231605b915621c"
+}
+```
+
+## Usage Example
+
+```js
+// Request to sign typed data
+const signature = await ethereum.request({
+  method: 'eth_signTypedData_v4',
+  params: [
+    '0x8eeC87D46108b8A3763Dda3A24A0D3e038C6996F', // The signer's address
+    JSON.stringify({
+      domain: {
+        name: 'My Dapp',
+        version: '1',
+        chainId: 1,
+        verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC'
+      },
+      message: {
+        // The data to sign
+        value: '100000000000000000', // 0.1 ETH in wei
+        recipient: '0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB',
+        timestamp: 1647032970
+      },
+      primaryType: 'Transaction',
+      types: {
+        EIP712Domain: [
+          { name: 'name', type: 'string' },
+          { name: 'version', type: 'string' },
+          { name: 'chainId', type: 'uint256' },
+          { name: 'verifyingContract', type: 'address' }
+        ],
+        Transaction: [
+          { name: 'value', type: 'string' },
+          { name: 'recipient', type: 'address' },
+          { name: 'timestamp', type: 'uint256' }
+        ]
+      }
+    })
+  ]
+});
+console.log('Signature:', signature);
+```
+
+## Errors
+
+| Code | Message                        | Description                                                     |
+| ---- | ------------------------------ | --------------------------------------------------------------- |
+| 4001 | User denied signature request  | The user rejected the request to sign the data                  |
+| 4100 | Requested method not supported | The provider does not support the `eth_signTypedData_v4` method |
+| 4200 | Wallet not connected           | The wallet is not connected to the dApp                         |
+| 4300 | Invalid parameters             | The parameters provided are invalid                             |
+
+# Overview
+
+The request method allows apps to make Ethereum RPC requests to the wallet.
+
+## Specification
+
+```typescript
+interface RequestArguments {
+readonly method: string;
+readonly params?: readonly unknown[] | object;
+}
+
+interface ProviderRpcError extends Error {
+code: number;
+data?: unknown;
+}
+
+interface CoinbaseWalletProvider {
+/\*\*
+
+- @param {RequestArguments} args request arguments.
+- @returns A promise that resolves with the result.
+- @throws {ProviderRpcError} incase of error.
+- @fires CoinbaseWalletProvider#connect When the provider successfully connects.
+  \*/
+  request: (args: RequestArguments) => Promise<unknown>
+  }
+```
+
+## Example
+
+:::code-group
+
+```typescript [example.ts]
+
+import {provider} from "./setup";
+
+const addresses = await provider.request({method: 'eth_requestAccounts'});
+const txHash = await provider.request({
+method: 'eth_sendTransaction',
+params: [{from: addresses[0], to: addresses[0], value: 1}]
+}
+);
+```
+
+```typescript [setup.ts]
+
+import { CoinbaseWalletSDK } from '@coinbase/wallet-sdk'
+
+const baseSepoliaChainId = 84532;
+
+export const sdk = new CoinbaseWalletSDK({
+  appName: 'My App Name',
+  appChainIds: [baseSepoliaChainId]
+});
+
+const provider = sdk.makeWeb3Provider();
+```
+
+:::
+
+## Request Handling
+
+Requests are handled in one of three ways
+
+Sent to the Wallet application (Wallet mobile app, extension, or popup window).
+Handled locally by the SDK.
+Passed onto default RPC provider for the given chain, if it exists.
+
+### 1. Sent to the Wallet application
+
+The following RPC requests are sent to the Wallet application:
+
+- eth_ecRecover
+- personal_sign
+- personal_ecRecover
+- eth_signTransaction
+- eth_sendTransaction
+- eth_signTypedData_v1
+- eth_signTypedData_v3
+- eth_signTypedData_v4
+- eth_signTypedData
+- wallet_addEthereumChain
+- wallet_watchAsset
+- wallet_sendCalls
+- wallet_showCallsStatus
+
+### 2. Handled Locally by the SDK
+
+The following requests are handled locally by the SDK, with no external calls.
+
+- eth_requestAccounts
+- eth_accounts
+- eth_coinbase
+- net_version
+- eth_chainId
+- wallet_getCapabilities
+- wallet_switchEthereumChain
+
+```
+
+```
+
+# personal_sign
+
+Defined in [EIP-191](https://eips.ethereum.org/EIPS/eip-191)
+
+> Signs data using a specific account. This method calculates an Ethereum specific signature with: `sign(keccak256("\x19Ethereum Signed Message:\n" + len(message) + message)))`.
+
+## Parameters
+
+`Array<string, string>`
+
+An array containing two elements:
+
+1. The data to sign, in hexadecimal format
+2. The address of the account that should sign the data
+
+## Returns
+
+`string`
+
+A signature string in hexadecimal format.
+
+## Errors
+
+| Code | Message                        |
+| ---- | ------------------------------ |
+| 4001 | User denied signature request  |
+| 4100 | Requested method not supported |
+| 4200 | Wallet not connected           |
+| 4300 | Invalid parameters             |
+
+# Overview
+
+The `request` method allows apps to make make Ethereum RPC requests to the wallet.
+
+## Specification
+
+```ts twoslash
+interface RequestArguments {
+  readonly method: string;
+  readonly params?: readonly unknown[] | object;
+}
+
+interface ProviderRpcError extends Error {
+  code: number;
+  data?: unknown;
+}
+
+interface CoinbaseWalletProvider {
+  /**
+   * @param {RequestArguments} args request arguments.
+   * @returns A promise that resolves with the result.
+   * @throws {ProviderRpcError} incase of error.
+   * @fires CoinbaseWalletProvider#connect When the provider successfully connects.
+   */
+  request: (args: RequestArguments) => Promise<unknown>
+}
+```
+
+### Example
+
+:::code-group
+
+```ts twoslash [example.ts]
+import {provider} from "./setup";
+
+const addresses = await provider.request({method: 'eth_requestAccounts'});
+const txHash = await provider.request({
+    method: 'eth_sendTransaction',
+    params: [{from: addresses[0], to: addresses[0], value: 1}]
+  }
+);
+```
+
+```ts twoslash [setup.ts] filename="setup.ts"
+import { CoinbaseWalletSDK } from '@coinbase/wallet-sdk'
+
+const baseSepoliaChainId = 84532;
+
+export const sdk = new CoinbaseWalletSDK({
+  appName: 'My App Name',
+  appChainIds: [baseSepoliaChainId]
+});
+
+const provider = sdk.makeWeb3Provider();
+```
+
+:::
+
+## Request Handling
+
+Requests are handled in one of three ways
+
+1. Sent to the Wallet application (Wallet mobile app, extension, or popup window).
+2. Handled locally by the SDK.
+3. Passed onto default RPC provider for the given chain, if it exists.
+
+### 1. Sent to the Wallet application
+
+The following RPC requests are sent to the Wallet application:
+
+- eth_ecRecover
+- personal_sign
+- personal_ecRecover
+- eth_signTransaction
+- eth_sendTransaction
+- eth_signTypedData_v1
+- eth_signTypedData_v3
+- eth_signTypedData_v4
+- eth_signTypedData
+- wallet_addEthereumChain
+- wallet_watchAsset
+- wallet_sendCalls
+- wallet_showCallsStatus
+
+### 2. Handled Locally by the SDK
+
+The following requests are handled locally by the SDK, with no external calls.
+
+- eth_requestAccounts
+- eth_accounts
+- eth_coinbase
+- net_version
+- eth_chainId
+- wallet_getCapabilities
+- wallet_switchEthereumChain
+
+# wallet_addEthereumChain
+
+Defined in [EIP-3085](https://eips.ethereum.org/EIPS/eip-3085)
+
+> Requests that the wallet adds the specified chain to the wallet.
+
+## Parameters
+
+`Array<AddEthereumChainParameter>`
+
+An array containing a single object with the following fields:
+
+| Field             | Type            | Description                                        |
+| ----------------- | --------------- | -------------------------------------------------- |
+| chainId           | string          | The chain ID as a 0x-prefixed hexadecimal string   |
+| chainName         | string          | The name of the chain to display to the user       |
+| nativeCurrency    | NativeCurrency  | Information about the chain's native currency      |
+| rpcUrls           | `Array<string>` | Array of RPC endpoint URLs for the chain           |
+| blockExplorerUrls | `Array<string>` | (Optional) Array of block explorer URLs            |
+| iconUrls          | `Array<string>` | (Optional) Array of icon URLs for the chain's icon |
+
+The `NativeCurrency` object should contain:
+
+| Field    | Type   | Description                                              |
+| -------- | ------ | -------------------------------------------------------- |
+| name     | string | The name of the native currency                          |
+| symbol   | string | The symbol of the native currency (2-6 characters)       |
+| decimals | number | The number of decimals of the native currency (e.g., 18) |
+
+## Returns
+
+`null`
+
+Returns null if the request was successful.
+
+## Errors
+
+| Code | Message                        |
+| ---- | ------------------------------ |
+| 4001 | User rejected the request      |
+| 4100 | Requested method not supported |
+| 4200 | Wallet not connected           |
+| 4300 | Invalid parameters             |
+| 4901 | Chain already added            |
+| 4902 | Chain couldn't be added        |
+
+\# wallet_addSubAccount
+
+Experimental RPC Defined in [EIP-7895](https://eip.tools/eip/7895)
+
+> Requests that the wallet adds the specified sub-account to the wallet.
+
+## Parameters
+
+`Array<AddSubAccountParameter>`
+
+```ts
+type AccountCreate = {
+  type: 'create';
+  keys: {
+    type: 'address' | 'p256' | 'webcrypto-p256' | 'webauthn-p256';
+    key: `0x${string}`;
+  }[];
+};
+
+type AccountDeployed = {
+  type: 'deployed';
+  address: Address;
+};
+
+type AccountUndeployed = {
+  type: 'undeployed';
+  address?: Address;
+  factory?: Address;
+  factoryData?: Hex;
+  chainId?: Hex;
+};
+
+type AddSubAccountParameter = {
+  version: '1';
+  account: AddSubAccountAccount;
+};
+```
+
+## Returns
+
+```ts
+type AddSubAccountResponse = {
+  address: Address;
+  chainId?: Hex;
+  factory?: Address;
+  factoryData?: Hex;
+};
+```
+
+Returns null if the request was successful.
+
+## Errors
+
+| Code | Message                        |
+| ---- | ------------------------------ |
+| 4001 | User rejected the request      |
+| 4100 | Requested method not supported |
+
+# wallet_connect
+
+Experimental RPC defined in [ERC-7846](https://github.com/ethereum/ERCs/pull/779)
+
+> Requests that the wallet connects to the specified provider with an emphasis on extensibility.
+
+## Parameters
+
+`Array<ConnectParameter>`
+
+```ts
+type SignInWithEthereumCapabilityRequest = {
+  nonce: string;
+  chainId: string; // EIP-155 hex-encoded
+  version?: string;
+  scheme?: string;
+  domain?: string;
+  uri?: string;
+  statement?: string;
+  issuedAt?: string;
+  expirationTime?: string;
+  notBefore?: string;
+  requestId?: string;
+  resources?: string[];
+};
+
+type SpendPermissionsCapabilityRequest = {
+  token: `0x${string}`;
+  allowance: string;
+  period: number;
+  salt?: `0x${string}`;
+  extraData?: `0x${string}`;
+};
+
+type AddSubAccountCapabilityRequest = {
+  // See wallet_addSubAccount
+  account: AddSubAccountAccount;
+};
+
+type ConnectParameter = {
+  version: string;
+  // Optional capabilities to request (e.g. Sign In With Ethereum).
+  capabilities?: {
+    addSubAccount?: AddSubAccountCapabilityRequest;
+    getSubAccounts?: boolean;
+    spendPermissions?: SpendPermissionsCapabilityRequest;
+    signInWithEthereum?: SignInWithEthereumCapabilityRequest;
+  };
+};
+
+```
+
+## Returns
+
+```ts
+type SignInWithEthereumCapabilityResponse = {
+  message: string;
+  signature: `0x${string}`;
+};
+
+type SpendPermissionsCapabilityResponse = {
+  signature: `0x${string}`;
+};
+
+type AddSubAccountCapabilityResponse = {
+  address: `0x${string}`;
+  chainId?: `0x${string}`;
+  factory?: `0x${string}`;
+  factoryData?: `0x${string}`;
+};
+
+type ConnectResponse = {
+  accounts: {
+    // Address of the connected account.
+    address: `0x${string}`;
+    // Capabilities granted that is associated with this account.
+    capabilities?: {
+      addSubAccount?: AddSubAccountCapabilityResponse | SerializedEthereumRpcError;
+      getSubAccounts?: AddSubAccountCapabilityResponse[];
+      spendPermissions?: SpendPermissionsCapabilityResponse | SerializedEthereumRpcError;
+      signInWithEthereum?: SignInWithEthereumCapabilityResponse | SerializedEthereumRpcError;
+    };
+  }[];
+};
+```
+
+Returns null if the request was successful.
+
+## Errors
+
+| Code | Message                        |
+| ---- | ------------------------------ |
+| 4001 | User rejected the request      |
+| 4100 | Requested method not supported |
+
+# wallet_switchEthereumChain
+
+Defined in [EIP-3326](https://github.com/ethereum/EIPs/pull/3326)
+
+> Requests that the wallet switches to the specified chain. This method is used to request that the user changes the connected chain in their wallet. If the requested chain is not available in the wallet, this method may return a 4902 error, which can be used as a signal to call `wallet_addEthereumChain`.
+
+## Parameters
+
+```ts
+interface SwitchEthereumChainParameter {
+  /**
+   * The chain ID as a 0x-prefixed hexadecimal string
+   */
+  chainId: string
+}
+
+type SwitchEthereumChainParams = [SwitchEthereumChainParameter]
+```
+
+## Returns
+
+`null`
+
+Returns null if the request was successful, indicating that the wallet has switched to the requested chain.
+
+## Example
+
+Request:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "wallet_switchEthereumChain",
+  "params": [{ "chainId": "0x1" }]
+}
+```
+
+Response:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": null
+}
+```
+
+## Handling Chain Not Found
+
+If the requested chain is not available in the wallet, the method will return a 4902 error. In this case, you may want to prompt the user to add the chain using `wallet_addEthereumChain`.
+
+```js
+try {
+  await ethereum.request({
+    method: 'wallet_switchEthereumChain',
+    params: [{ chainId: '0x89' }], // Polygon
+  });
+} catch (error) {
+  // This error code indicates that the chain has not been added to the wallet
+  if (error.code === 4902) {
+    await ethereum.request({
+      method: 'wallet_addEthereumChain',
+      params: [{
+        chainId: '0x89',
+        chainName: 'Polygon Mainnet',
+        // ...other chain parameters
+      }],
+    });
+  }
+}
+```
+
+## Errors
+
+| Code | Message                        | Description                                                           |
+| ---- | ------------------------------ | --------------------------------------------------------------------- |
+| 4001 | User rejected the request      | The user rejected the request to switch networks                      |
+| 4100 | Requested method not supported | The provider does not support the `wallet_switchEthereumChain` method |
+| 4200 | Wallet not connected           | The wallet is not connected to the dApp                               |
+| 4300 | Invalid parameters             | The parameters provided are invalid                                   |
+| 4902 | Unrecognized chain ID          | The chain ID is not recognized by the wallet                          |
+
+# wallet_watchAsset
+
+Defined in [EIP-747](https://eips.ethereum.org/EIPS/eip-747)
+
+> Allows suggesting a token to be added to a user's wallet. This method is used to request that the user tracks a specific token in their wallet. The wallet may prompt the user to approve the addition of the token and may reject the request if the token is already being tracked or if the parameters are invalid.
+
+## Parameters
+
+```ts
+interface WatchAssetParams {
+  /**
+   * The type of asset to watch
+   * Currently only 'ERC20' is supported
+   */
+  type: string
+  /**
+   * The options for the asset being watched
+   */
+  options: {
+    /**
+     * The token contract address
+     */
+    address: string
+    /**
+     * A ticker symbol or shorthand, up to 11 characters
+     */
+    symbol: string
+    /**
+     * The number of token decimals
+     */
+    decimals: number
+    /**
+     * A string URL of the token logo
+     */
+    image?: string
+  }
+}
+
+type WatchAssetParamsType = [WatchAssetParams]
+```
+
+## Returns
+
+`boolean`
+
+Returns `true` if the token was added successfully (the user approved the request and the token was successfully added to their wallet), `false` otherwise (the request was rejected or failed).
+
+## Example
+
+Request:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "wallet_watchAsset",
+  "params": {
+    "type": "ERC20",
+    "options": {
+      "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "symbol": "USDT",
+      "decimals": 6,
+      "image": "https://static.alchemyapi.io/images/assets/825.png"
+    }
+  }
+}
+```
+
+Response:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": true
+}
+```
+
+## Usage Example
+
+```js
+// Request to watch a token
+const wasAdded = await ethereum.request({
+  method: 'wallet_watchAsset',
+  params: {
+    type: 'ERC20',
+    options: {
+      address: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+      symbol: 'USDT',
+      decimals: 6,
+      image: 'https://static.alchemyapi.io/images/assets/825.png'
+    }
+  }
+});
+
+if (wasAdded) {
+  console.log('Token was added successfully');
+} else {
+  console.log('Token was not added');
+}
+```
+
+## Errors
+
+| Code | Message                       | Description                                                      |
+| ---- | ----------------------------- | ---------------------------------------------------------------- |
+| 4001 | User rejected the request     | The user rejected the request to add the token                   |
+| 4200 | Unsupported asset type        | The specified asset type is not supported (only ERC20 currently) |
+| 4100 | Missing or invalid parameters | The parameters provided are missing required fields or invalid   |
+
+# web3_clientVersion
+
+Defined in the [Ethereum JSON-RPC Specification](https://ethereum.org/en/developers/docs/apis/json-rpc/)
+
+> Returns the current client version.
+
+## Returns
+
+`string`
+
+The current client version as a string.
+
+## Example
+
+```
+"MetaMask/v10.8.1"
+```
+
+## Errors
+
+| Code | Message            |
+| ---- | ------------------ |
+| 4200 | Unsupported method |
+
+import SubAccount from '@/components/smart-wallet/SubAccount';
+
+# Sub Accounts
+
+Sub Accounts are hierarchical, app-specific accounts that extend from a user's primary Smart Wallet. Each Sub Account operates as a distinct account that can:
+
+- Execute transactions and sign messages
+- Maintain separate asset management
+- Be fully controlled by both the universal Smart Wallet and authorized application logic
+
+## Give it a try!
+
+<SubAccount />
+
+## Technical Details
+
+- Smart Wallet Ownership: The user's Smart Wallet acts as an owner of the Sub Account, allowing it to manage assets on the Sub Account and make calls from it.
+- App-Signer Agnostic: Sub Accounts are designed to be agnostic to whatever signing software an app wants to use: whether in-browser CryptoKey or server signers from teams like Privy or Turnkey.
+- When an app requests a Sub Account creation and the user approves, all future signing and transaction requests will use the Sub Account.
+
+Refer to the [Sub Account Reference](/identity/smart-wallet/sdk/sub-account-reference) for more details on how to create and manage Sub Accounts.
+
+:::tip[Development]
+Note: Sub Accounts are currently only available in the Coinbase Smart Wallet development environment.
+In the CoinbaseWalletSDK properties you can set the `keysUrl` to `https://keys-dev.coinbase.com/connect` to use this environment.
+
+If you would like to use Sub Accounts with Coinbase Smart Wallet in our production environment, please [reach out](https://discord.com/invite/buildonbase) to the Base team.
+:::
+
+## Sub Account scope
+
+Sub Accounts are currently scoped to an application's fully qualified domain name (FQDN). This means that a user has one sub account for your application, and it cannot be used on other applications on separate domains.
+
+# Update an Existing Project
+
+## Direct dependency 
+Follow the [installation instructions](/identity/smart-wallet/introduction/install-web).
+
+## Wagmi 
+1. Upgrade Wagmi to version `2.9.5` or higher. 
+
+import { Callout } from "vocs/components";
+
+# Sign Messages Using Smart Wallet
+
+Smart contract wallets introduce a few differences in how messages are signed compared to traditional Externally Owned Accounts (EOAs). This guide explains how to properly implement message signing using Smart Wallet, covering both standard messages and typed data signatures, as well as some edge cases.
+
+## Introduction
+
+Before walking through the details of how to sign and verify messages using Smart Wallet, it's important to understand some of the use cases of signing messages with wallets, as well as the key differences between EOAs and smart contracts when it comes to signing messages.
+
+### Use Cases for Wallet Signatures
+
+Blockchain-based apps use wallet signatures for two main categories:
+
+1. **Signatures for offchain verification**: Used for authenticating users in onchain apps (e.g., Sign-In with Ethereum) to avoid spoofing. The signature is not used for any onchain action.
+
+2. **Signatures for onchain verification**: Used for signing onchain permissions (e.g., [Permit2](https://github.com/Uniswap/permit2)) or batching transactions. The signature is usually stored for future transactions.
+
+### Smart Contract Wallet Differences
+
+Smart contract wallets handle signatures differently from EOAs in several ways:
+
+- The contract itself doesn't produce signatures - instead, the owner (e.g., passkey) signs messages
+- Verification happens through the `isValidSignature` function defined in [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271)
+- Smart contract wallet addresses are often deterministic, allowing signature support before deployment via [ERC-6492](https://eips.ethereum.org/EIPS/eip-6492)
+
+## Signing Offchain Messages using Wagmi/Viem
+
+### Prerequisites
+
+Before implementing message signing, ensure:
+
+- Your project can use Wagmi/Viem
+- You're signing an offchain message
+- Your Smart Wallet can be deployed or undeployed (methods are ERC-6492 compatible)
+
+:::info
+If your implementation is more complicated and is not covered by the above assumptions, please refer to the [Handling Advanced Cases section](#handling-advanced-cases) below.
+:::
+
+### Signing a Simple Message (Sign-In with Ethereum)
+
+The following example demonstrates how to implement basic message signing using a Smart Wallet.
+It is a typical Sign-In with Ethereum (SIWE) implementation as detailed in [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361):
+
+<details style={{ 
+  backgroundColor: 'transparent', 
+  padding: '1rem', 
+  border: '1px solid #e9ecef',
+  borderRadius: '8px',
+  marginBottom: '1rem'
+}}>
+<summary style={{
+  cursor: 'pointer',
+  fontWeight: 'bold',
+  padding: '0.5rem',
+  color: 'white'
+}}>SignMessage.tsx:  👉 Click to expand/collapse</summary>
+
+```tsx [SignMessage.tsx]
+import { useCallback, useEffect, useMemo, useState } from "react";
+import type { Hex } from "viem";
+import { useAccount, usePublicClient, useSignMessage } from "wagmi";
+import { SiweMessage } from "siwe";
+
+export function SignMessage() {
+  const account = useAccount();
+  const client = usePublicClient();
+  const [signature, setSignature] = useState<Hex | undefined>(undefined);
+  const { signMessage } = useSignMessage({
+    mutation: { onSuccess: (sig) => setSignature(sig) },
+  });
+  const message = useMemo(() => {
+    return new SiweMessage({
+      domain: document.location.host,
+      address: account.address,
+      chainId: account.chainId,
+      uri: document.location.origin,
+      version: "1",
+      statement: "Smart Wallet SIWE Example",
+      nonce: "12345678",
+    });
+  }, []);
+
+  const [valid, setValid] = useState<boolean | undefined>(undefined);
+
+  const checkValid = useCallback(async () => {
+    if (!signature || !account.address || !client) return;
+
+    client
+      .verifyMessage({
+        address: account.address,
+        message: message.prepareMessage(),
+        signature,
+      })
+      .then((v) => setValid(v));
+  }, [signature, account]);
+
+  useEffect(() => {
+    checkValid();
+  }, [signature, account]);
+
+  return (
+    <div>
+      <h2>Sign Message (Sign In with Ethereum)</h2>
+      <button
+        onClick={() => signMessage({ message: message.prepareMessage() })}
+      >
+        Sign
+      </button>
+      <p>{}</p>
+      {signature && <p>Signature: {signature}</p>}
+      {valid != undefined && <p> Is valid: {valid.toString()} </p>}
+    </div>
+  );
+}
+```
+
+</details>
+
+To run this example:
+
+1. Clone the repo: `git clone https://github.com/wilsoncusack/wagmi-scw/`
+2. Install bun: `curl -fsSL https://bun.sh/install | bash`
+3. Install packages: `bun i`
+4. Run next app: `bun run dev`
+
+<Callout type="info">
+The example above is a typical Sign-In with Ethereum (SIWE) implementation as detailed in [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361).
+</Callout>
+
+### Signing Typed Data (EIP-712)
+
+For structured data signing, implement the following:
+
+<details style={{ 
+  backgroundColor: 'transparent', 
+  padding: '1rem', 
+  border: '1px solid #e9ecef',
+  borderRadius: '8px',
+  marginBottom: '1rem'
+}}>
+<summary style={{
+  cursor: 'pointer',
+  fontWeight: 'bold',
+  padding: '0.5rem',
+  color: 'white'
+}}>TypedSign.tsx:  👉 Click to expand/collapse</summary>
+
+```tsx [TypedSign.tsx]
+import { useCallback, useEffect, useState } from "react";
+import type { Address, Hex } from "viem";
+import { useAccount, usePublicClient, useSignTypedData } from "wagmi";
+
+export const domain = {
+  name: "Ether Mail",
+  version: "1",
+  chainId: 1,
+  verifyingContract: "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC",
+} as const;
+
+export const types = {
+  Person: [
+    { name: "name", type: "string" },
+    { name: "wallet", type: "address" },
+  ],
+  Mail: [
+    { name: "from", type: "Person" },
+    { name: "to", type: "Person" },
+    { name: "contents", type: "string" },
+  ],
+} as const;
+
+export function TypedSign() {
+  const account = useAccount();
+  const client = usePublicClient();
+  const [signature, setSignature] = useState<Hex | undefined>(undefined);
+  const { signTypedData } = useSignTypedData({
+    mutation: { onSuccess: (sig) => setSignature(sig) },
+  });
+  const message = {
+    from: {
+      name: "Cow",
+      wallet: "0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826" as Address,
+    },
+    to: {
+      name: "Bob",
+      wallet: "0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB" as Address,
+    },
+    contents: "Hello, Bob!",
+  };
+
+  const [valid, setValid] = useState<boolean | undefined>(undefined);
+
+  const checkValid = useCallback(async () => {
+    if (!signature || !account.address) return;
+
+    client
+      .verifyTypedData({
+        address: account.address,
+        types,
+        domain,
+        primaryType: "Mail",
+        message,
+        signature,
+      })
+      .then((v) => setValid(v));
+  }, [signature, account]);
+
+  useEffect(() => {
+    checkValid();
+  }, [signature, account]);
+
+  return (
+    <div>
+      <h2>Sign Typed Data</h2>
+      <button
+        onClick={() =>
+          signTypedData({ domain, types, message, primaryType: "Mail" })
+        }
+      >
+        Sign
+      </button>
+      <p>{}</p>
+      {signature && <p>Signature: {signature}</p>}
+      {valid != undefined && <p> Is valid: {valid.toString()} </p>}
+    </div>
+  );
+}
+```
+
+</details>
+
+Key points about typed data signatures:
+
+- Uses wagmi's `useSignTypedData` hook for structured data signing
+- Defines domain and types for EIP-712 typed data
+- Verifies the signature using the public client
+- Provides user feedback on signature validity
+
+## Handling Advanced Cases
+
+### Onchain Signatures
+
+If you are looking to handle onchain signatures (eg. [Permit2](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/Permit2.tsx)), you can sign them in the same way as above.
+However, you should be careful when looking to validate the signatures:
+
+- ERC-6492-compatible signatures contain other elements that are not useful for onchain signatures (magicBytes, create2Factory, factoryCalldata). In order to understand the complete logic of how ERC-6492-compatible signatures work,
+  please refer to the ["Verifier Side" section of the EIP](https://eips.ethereum.org/EIPS/eip-6492#verifier-side).
+- Use Viem's [`parseErc6492Signature`](https://viem.sh/docs/utilities/parseErc6492Signature#parseerc6492signature) utility to parse these elements
+- For non-Viem implementations, see alternative approaches below
+
+:::info
+There is an example implementation of Permit2 using Wagmi in the [wagmi-scw repository](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/Permit2.tsx).
+:::
+
+### Alternative Frameworks
+
+To aid in the verification of smart account signatures, ERC-6492 includes a singleton contract that can validate ERC-6492 signatures.
+This singleton contract is called [`UniversalSigValidator`](https://eips.ethereum.org/EIPS/eip-6492#reference-implementation).
+
+If you are using a different framework other than Viem, or you find it impossible to use Viem, you can do one of the following:
+
+1. Deploy [`UniversalSigValidator`](https://eips.ethereum.org/EIPS/eip-6492#reference-implementation) and call the view function `isValidSig`. It accepts a signer,
+   hash, and signature and returns a boolean of whether the signature is valid or not.
+   This method may revert if the underlying calls revert.
+2. If you would like to avoid deploying the contract, the ERC-6492 contract has a ValidateSigOffchain
+   helper contract that allows you to validate a signature in one eth_call without deploying the smart account. Below is a reference implementation in ethers for this second case.
+
+```typescript [ethers-example.ts]
+const isValidSignature = '0x01' === await provider.call({
+  data: ethers.utils.concat([
+    validateSigOffchainBytecode,
+    (new ethers.utils.AbiCoder()).encode(['address', 'bytes32', 'bytes'], [signer, hash, signature])
+  ])
+})
+```
+
+### Server-side Verification
+
+You can handle server-side verification using NextJS edge functions such as shown [here](https://github.com/youssefea/ethden2025-sign-tx-csw/blob/main/src/app/api/verify/route.ts):
+
+<details style={{ 
+  backgroundColor: 'transparent', 
+  padding: '1rem', 
+  border: '1px solid #e9ecef',
+  borderRadius: '8px',
+  marginBottom: '1rem'
+}}>
+<summary style={{
+  cursor: 'pointer',
+  fontWeight: 'bold',
+  padding: '0.5rem',
+  color: 'white'
+}}>route.ts:  👉 Click to expand/collapse</summary>
+
+```typescript [route.ts]
+import { NextRequest, NextResponse } from 'next/server';
+import { createPublicClient, http } from 'viem';
+import { baseSepolia, base } from 'viem/chains';
+
+export async function POST(request: NextRequest) {
+  try {
+    const { address, message, signature } = await request.json();
+    const CHAIN = process.env.NODE_ENV === 'production' ? base : baseSepolia
+
+    const publicClient = createPublicClient({
+      chain: CHAIN,
+      transport: http(),
+    });
+
+
+    const valid = await publicClient.verifyMessage({
+        address: address,
+        message: message,
+        signature: signature,
+    });
+    console.log("valid", valid);
+
+    if (valid){
+        return NextResponse.json({ 
+            success: true, 
+            message: 'Signature verified',
+            address: address 
+        });
+    } else {
+        return NextResponse.json(
+            { success: false, message: 'Invalid signature' },
+            { status: 400 }
+        );
+    }
+  } catch (error) {
+    console.error('Error verifying signature:', error);
+    return NextResponse.json(
+      { success: false, message: 'Invalid signature' },
+      { status: 400 }
+    );
+  }
+}
+```
+
+</details>
+
+:::warning
+Storing signatures safely requires advanced security guarantees. Ensure your database cannot be tampered with.
+:::
+
+
+import { Callout } from 'vocs/components';
+
+# Using Smart Wallet with Sign-In with Ethereum
+
+This guide covers creating a new Sign-In with Ethereum template project that uses Smart Wallet.
+
+<Callout type="info">
+  This simple implementation is for demo purposes only and is not meant to be an example of a
+  production app. A production app should: 1. Generate a random nonce for each message on the
+  backend. 2. Check the nonce and verify the message signature on the backend as specified in
+  [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361). 3. Invalidate nonces on logout to prevent
+  replay attacks through session duplication.
+</Callout>
+
+::::steps
+## Create a project
+
+Follow the [Wagmi guide](/identity/smart-wallet/guides/create-app/using-wagmi) to set up a template project and connect a Smart Wallet.
+
+## Install dependencies
+
+:::code-group
+
+```bash [pnpm]
+pnpm install siwe
+```
+
+```bash [bun]
+bun install siwe
+```
+
+:::
+
+
+## Create a new SIWE component
+
+:::code-group
+
+
+```tsx twoslash [src/SignInWithEthereum.tsx]
+import React from 'react';
+
+export function SignInWithEthereum() {
+  return (
+    <div>
+      <h2>SIWE Example</h2>
+    </div>
+  );
+}
+```
+
+```tsx [src/App.tsx]
+import React from 'react'
+import { useAccount, useConnect, useDisconnect } from 'wagmi'
+import { SignInWithEthereum } from './SignInWithEthereum'; // [!code focus]
+
+function App() {
+  const account = useAccount()
+  const { connector, connect, status, error } = useConnect()
+  const { disconnect } = useDisconnect()
+
+  return (
+    <>
+      <div>
+        <h2>Account</h2>
+        <div>
+          status: {account.status}
+          <br />
+          addresses: {JSON.stringify(account.addresses)}
+          <br />
+          chainId: {account.chainId}
+        </div>
+        <button type="button" onClick={() => disconnect()}>
+          Disconnect
+        </button>
+      </div >
+      <div>
+        <h2>Connect</h2>
+        {connectors.map((connector) => (
+          <button
+            key={connector.uid}
+            onClick={() => connect({ connector })}
+            type="button"
+          >
+            {connector.name}
+          </button>
+        ))}
+        <div>{status}</div>
+        <div>{error?.message}</div>
+      </div>
+      <SignInWithEthereum />
+    </>
+  )
+}
+
+export default App
+
+```
+
+:::
+
+
+## Prompt to sign and store signature
+Wagmi's `signMessage` function will open the Smart Wallet popup to sign the message. The signature is stored in the component's state.
+
+```tsx twoslash [src/SignInWithEthereum.tsx]
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useAccount, usePublicClient, useSignMessage } from 'wagmi';
+import { SiweMessage } from 'siwe';
+import type { Hex } from 'viem';
+
+export function SignInWithEthereum() {
+  const [signature, setSignature] = useState<Hex | undefined>(undefined);
+  const { signMessage } = useSignMessage({ mutation: { onSuccess: (sig) => setSignature(sig) } });
+  const account = useAccount();
+
+  const siweMessage = useMemo(() => {
+    return new SiweMessage({
+      domain: document.location.host,
+      address: account.address,
+      chainId: account.chainId,
+      uri: document.location.origin,
+      version: '1',
+      statement: 'Smart Wallet SIWE Example',
+      nonce: '12345678', // replace with nonce generated by your backend
+    });
+  }, []);
+
+  const promptToSign = () => {
+    signMessage({ message: siweMessage.prepareMessage() });
+  };
+
+  return (
+    <div>
+      <h2>SIWE Example</h2>
+      <button onClick={promptToSign}>Sign In with Ethereum</button>
+      {signature && <p>Signature: {signature}</p>}
+    </div>
+  );
+}
+```
+
+## Verify the message signature
+
+For Smart Wallet, [ERC-1271](https://eips.ethereum.org/EIPS/eip-1271) should be used to verify the SIWE message signature.
+
+<Callout type="warning">
+  This simple example does not check the nonce during verification, all production implementations
+  should. Furthermore, nonces should be invalidated on logout to prevent replay attacks through
+  session duplication (e.g. store expired nonce and make sure they can't be used again). In
+  production apps, SIWE message verification is generally handled on the backend.
+</Callout>
+
+```tsx twoslash [src/SignInWithEthereum.tsx]
+// @noErrors: 2339
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import type { Hex } from 'viem';
+import { useAccount, usePublicClient, useSignMessage } from 'wagmi';
+import { SiweMessage } from 'siwe';
+export function SignInWithEthereum() {
+  const [signature, setSignature] = useState<Hex | undefined>(undefined);
+  const [valid, setValid] = useState<boolean | undefined>(undefined); // [!code focus]
+  const client = usePublicClient(); // [!code focus]
+  const { signMessage } = useSignMessage({ mutation: { onSuccess: (sig) => setSignature(sig) } });
+  const account = useAccount();
+
+  const message = useMemo(() => {
+    return new SiweMessage({
+      domain: document.location.host,
+      address: account.address,
+      chainId: account.chainId,
+      uri: document.location.origin,
+      version: '1',
+      statement: 'Smart Wallet SIWE Example',
+      nonce: '12345678', // replace with nonce generated by your backend
+    });
+  }, []);
+
+  const checkValid = useCallback(async () => { // [!code focus]
+    if (!signature || !account.address || !client) return; // [!code focus]
+    const isValid = await client.verifyMessage({  // [!code focus]
+      // [!code focus]
+      address: account.address, // [!code focus]
+      message: message.prepareMessage(), // [!code focus]
+      signature, // [!code focus]
+    }); // [!code focus]
+    setValid(isValid); // [!code focus]
+  }, [signature, account]); // [!code focus]
+
+  useEffect(() => { // [!code focus]
+    checkValid(); // [!code focus]
+  }, [signature, account]); // [!code focus]
+
+  const promptToSign = () => {
+    signMessage({ message: message.prepareMessage() });
+  };
+  return (
+    <div>
+      <h2>SIWE Example</h2>
+      <button onClick={promptToSign}>Sign In with Ethereum</button>
+      {signature && <p>Signature: {signature}</p>}
+      {valid !== undefined && <p>Is valid: {valid.toString()}</p>}{/* // [!code focus] */}
+    </div>
+  );
+}
+```
+
+## Sign in with Ethereum
+Visit your local server and click "Sign In with Ethereum"
+::::
+
+# MagicSpend
+
+With MagicSpend, Smart Wallet users can use their Coinbase balances onchain. This means users can easily start using onchain apps without needing to onramp funds into their wallet.
+
+This also means that apps might not have all the balance information typically available to them by reading onchain data. Smart Wallet indicates that this is the case by responding to [`wallet_getCapabilities` RPC calls](https://eip5792.xyz/reference/getCapabilities) with the `auxiliaryFunds` capability for each chain Smart Wallet users can use their Coinbase balances on.
+
+If your app supports Smart Wallet, it should not assume it knows the full balances available to a user if the `auxiliaryFunds` capability is present on a given chain.
+
+## Using Wagmi
+
+```ts twoslash [App.tsx]
+// @filename: App.tsx
+import React from 'react'
+// ---cut---
+import { useCapabilities } from 'wagmi/experimental'
+
+function App() {
+  const { data: capabilities } = useCapabilities()
+// @log:   {
+// @log:     84532: {
+// @log:       auxiliaryFunds: {
+// @log:         supported: true,
+// @log:       },
+// @log:     }  
+// @log:   }
+
+  return <div />
+}
+```
+
+If your app supports Smart Wallet and sees that the `auxiliaryFunds` capability is supported on a given chain, 
+it means that a user might have funds available for use onchain on Coinbase. 
+As a result, your app should not block user actions on the basis of balance checks.
+
+# Batch Transactions
+
+With Smart Wallet, you can send multiple onchain calls in a single transaction. Doing so improves the UX of multi-step interactions by reducing them to a single click. A common example of where you might want to leverage batch transactions is an ERC-20 `approve` followed by a swap.
+
+You can submit batch transactions by using new `wallet_sendCalls` RPC, defined [here](https://eip5792.xyz/reference/sendCalls).
+
+## Using Wagmi
+
+:::warning
+The `useWriteContracts` and `useCapabilities` hooks used below rely on new wallet RPC and are not yet supported in most wallets. 
+It is recommended to have a fallback function if your app supports wallets other than Smart Wallet. 
+:::
+
+:::steps
+### (Optional) Check for atomic batching support
+
+Smart Wallet will submit multiple calls as part of a single transaction. However, if your app supports other wallets, and you want to check that multiple calls will be submitted atomically (in a single transaction), check the wallet's capabilities.
+
+```ts twoslash [App.tsx]
+// @filename: App.tsx
+import React from 'react'
+// ---cut---
+import { useCapabilities } from 'wagmi/experimental'
+
+function App() {
+  const { data: capabilities } = useCapabilities() // [!code hl]
+// @log:   {
+// @log:     84532: {
+// @log:       atomicBatch: {
+// @log:         supported: true,
+// @log:       },
+// @log:     }  
+// @log:   }
+
+  return <div />
+}
+```
+
+The `useCapabilities` method will return, per chain, the capabilities that the connected wallet supports. If the connected wallet supports atomic batching, it will return an `atomicBatch` capability with a `supported` field equal to `true` for each chain it supports atomic batching on.
+
+### Send the calls
+
+If you have your smart contract ABIs, the easiest way to send multiple calls is to use the Wagmi `useWriteContracts` hook.
+
+```ts twoslash [App.tsx]
+// @filename: App.tsx
+import React from 'react'
+// ---cut---
+import { useAccount } from 'wagmi'
+import { useWriteContracts } from 'wagmi/experimental'
+
+const abi = [
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [{ name: 'to', type: 'address' }],
+    name: 'safeMint',
+    outputs: [],
+  }
+] as const
+
+function App() {
+  const account = useAccount()
+  const { writeContracts } = useWriteContracts() // [!code hl]
+
+  const handleMint = () => {
+    writeContracts({ // [!code hl]
+      contracts: [ // [!code hl]
+        { // [!code hl]
+          address: "0x119Ea671030FBf79AB93b436D2E20af6ea469a19", // [!code hl]
+          abi, // [!code hl]
+          functionName: "safeMint", // [!code hl]
+          args: [account.address], // [!code hl]
+        }, // [!code hl]
+        { // [!code hl]
+          address: "0x119Ea671030FBf79AB93b436D2E20af6ea469a19", // [!code hl]
+          abi, // [!code hl]
+          functionName: "safeMint", // [!code hl]
+          args: [account.address], // [!code hl]
+        } // [!code hl]
+      ], // [!code hl]
+    }) // [!code hl]
+  }
+
+  return ( 
+    <div>
+      <button onClick={handleMint}>Mint</button>
+    </div>
+  )
+}
+```
+
+### Check on the status of your calls
+
+The `useWriteContracts` hook returns an object with a `data` field. This `data` is a call bundle identifier. Use the Wagmi `useCallsStatus` hook with this identifier to check on the status of your calls.
+
+This will return a `PENDING` or `CONFIRMED` status along with a subset of a transaction receipt.
+
+```ts twoslash [App.tsx]
+// @filename: App.tsx
+import React from 'react'
+// ---cut---
+import { useAccount } from 'wagmi'
+import { useWriteContracts, useCallsStatus } from 'wagmi/experimental'
+
+const abi = [
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [{ name: 'to', type: 'address' }],
+    name: 'safeMint',
+    outputs: [],
+  }
+] as const
+
+function App() {
+  const account = useAccount()
+  const { data: id, writeContracts } = useWriteContracts()
+  const { data: callsStatus } = useCallsStatus({ // [!code hl]
+    id: id as string, // [!code hl]
+    query: { // [!code hl]
+      enabled: !!id, // [!code hl]
+      // Poll every second until the calls are confirmed // [!code hl]
+      refetchInterval: (data) => // [!code hl]
+        data.state.data?.status === "CONFIRMED" ? false : 1000, // [!code hl]
+    }, // [!code hl]
+  }); // [!code hl]
+// @log:   {
+// @log:     status: 'CONFIRMED',
+// @log:     receipts: [
+// @log:       {
+// @log:         logs: [
+// @log:           {
+// @log:             address: '0x...',
+// @log:             topics: [
+// @log:               '0x...'
+// @log:             ],
+// @log:             data: '0x...'
+// @log:           },
+// @log:         ],
+// @log:         status: 'success',
+// @log:         blockHash: '0x...',
+// @log:         blockNumber: 122414523n,
+// @log:         gasUsed: 390000n,
+// @log:         transactionHash: '0x...'
+// @log:       }
+// @log:     ]
+// @log:   }
+
+  const handleMint = () => {
+    writeContracts({
+      contracts: [
+        {
+          address: "0x...",
+          abi,
+          functionName: "safeMint",
+          args: [account.address],
+        },
+        {
+          address: "0x...",
+          abi,
+          functionName: "safeMint",
+          args: [account.address],
+        }
+      ],
+    })
+  }
+
+  return ( 
+    <div>
+      <button onClick={handleMint}>Mint</button>
+      {callsStatus && <div> Status: {callsStatus.status}</div>}
+    </div>
+  )
+}
+```
+
+:::
+
+import { Callout } from "vocs/components"
+
+# Paymasters (Sponsored Transactions)
+
+One of the biggest UX enhancements unlocked by Smart Wallet is the ability for app developers to sponsor their users' transactions.
+If your app supports Smart Wallet, you can start sponsoring your users'
+transactions by using [standardized Paymaster service communication](https://erc7677.xyz) enabled by [new wallet RPC methods](https://eip5792.xyz).
+
+This guide is specific to using Smart Wallet, you can find our more about using Paymasters with Base in 
+the [Base Go Gasless page](https://docs.base.org/use-cases/go-gasless).
+
+The code below is also in our [Wagmi Smart Wallet template](https://github.com/wilsoncusack/wagmi-scw/).
+
+## Skip ahead and clone the template
+
+If you are looking for a complete example, you can skip the steps below and clone the [Wagmi Smart Wallet template](https://github.com/wilsoncusack/wagmi-scw/). Simply open a terminal and run:
+
+```bash
+git clone https://github.com/wilsoncusack/wagmi-scw.git
+```
+
+Follow the instructions in the README to install the dependencies and run the app.
+
+## Add Support in your Next.js app (using Wagmi/Viem)
+
+::::steps
+
+### Set up your Paymaster service
+
+As a prerequisite, you'll need to obtain a Paymaster service URL from a Paymaster service provider.
+
+We'll use [Coinbase Developer Platform](https://www.coinbase.com/developer-platform) as a Paymaster service provider,
+currently offering up to $15k in gas credits as part of the [Base Gasless Campaign](/identity/smart-wallet/introduction/base-gasless-campaign).
+
+<Callout type="warning">
+**ERC-7677-Compliant Paymaster Providers**
+
+If you choose to use a different Paymaster service provider, ensure they are [ERC-7677-compliant](https://www.erc7677.xyz/ecosystem/Paymasters).
+
+</Callout>
+
+Once you have signed up for [Coinbase Developer Platform](https://www.coinbase.com/developer-platform), you get your Paymaster service URL by navigating to **Onchain Tools > Paymaster** as shown below:
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <img
+    alt="Paymaster CDP"
+    src="/images/smart-wallet/PaymasterCDP.png"
+    width="1000"
+    loading="lazy"
+  />
+  <em>How to get your Paymaster service URL</em>
+</div>
+
+<Callout type="warning">
+**Should you create a proxy for your Paymaster service?**
+
+As you can see in the Paymaster transaction [component](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/TransactWithPaymaster.tsx), we use a proxy to protect
+the Paymaster service URL to prevent it from being exposed/leaked on a frontend client
+
+For local development, you can use the same URL for the Paymaster service and the proxy.
+
+We also created a [minimalist proxy API](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/app/api/Paymaster/route.ts)
+which you can use as the `PaymasterServiceUrl` in the [`TransactWithPaymaster` component](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/TransactWithPaymaster.tsx).
+</Callout>
+
+Once you have your Paymaster service URL, you can proceed to setting up your contracts allowlist.
+This is a list of contracts and function calls that you want to be sponsored by the Paymaster.
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <img
+    alt="Paymaster CDP Allowlist"
+    src="/images/smart-wallet/PaymasterAllowlist.png"
+    width="1000"
+    loading="lazy"
+  />
+  <em>How to set your Paymaster contracts allowlist</em>
+</div>
+
+Congrats! You've set up your Paymaster service and contracts allowlist.
+It's time to create Wagmi and Viem clients.
+
+<Callout type="success">
+**You can also choose to create custom advanced policies !**
+
+For example, in the [template](https://github.com/wilsoncusack/wagmi-scw), we create a `willSponsor` function in [`utils.ts`](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/app/api/utils.ts) to add some extra validation if you need
+more control over the policy enforcement.
+
+`willSponsor` is most likely not needed if you are using [Coinbase Developer Platform](https://www.coinbase.com/developer-platform) as it has built-in policy enforcement features,
+but know that this is still possible if you need it.
+</Callout>
+
+### Create Wagmi and Viem clients
+
+This section shows you how to create Wagmi and Viem clients to interact with Smart Wallet using 
+the Paymaster service you set up in the previous steps.
+
+:::code-group
+
+```ts twoslash [wagmi.ts] filename="wagmi.ts"
+// @noErrors
+import { http, createConfig } from "wagmi";
+import { baseSepolia } from "wagmi/chains";
+import { coinbaseWallet } from "wagmi/connectors";
+
+export const cbWalletConnector = coinbaseWallet({
+  appName: "Wagmi Smart Wallet",
+  preference: "smartWalletOnly",
+});
+
+export const config = createConfig({
+  chains: [baseSepolia],
+  // turn off injected provider discovery
+  multiInjectedProviderDiscovery: false,
+  connectors: [cbWalletConnector],
+  ssr: true,
+  transports: {
+    [baseSepolia.id]: http(),
+  },
+});
+```
+
+```ts twoslash [app/config.ts] filename="app/config.ts"
+// @noErrors
+import { createClient, createPublicClient, http } from "viem";
+import { baseSepolia } from "viem/chains";
+import { entryPoint06Address, createPaymasterClient, createBundlerClient } from "viem/account-abstraction";
+
+export const client = createPublicClient({
+  chain: baseSepolia,
+  transport: http(),
+});
+
+const PaymasterService = process.env.PAYMASTER_SERVICE_URL!;
+
+export const PaymasterClient = createPaymasterClient({
+  transport: http(PaymasterService),
+});
+
+export const bundlerClient = createBundlerClient({
+  chain: baseSepolia,
+  Paymaster: PaymasterClient, 
+  transport: http(PaymasterService),
+})
+```
+:::
+
+### Send EIP-5792 requests with a Paymaster service capability
+
+Once you have your Paymaster service set up, you can now pass its URL along to Wagmi's `useWriteContracts` hook.
+
+<Callout type="info">
+**Pass in the proxy URL**
+
+If you set up a proxy in your app's backend as recommended in step (2) above, you'll want to pass in the proxy URL you created.
+</Callout>
+
+:::code-group
+
+```ts twoslash [page.tsx] filename="page.tsx"
+// @noErrors
+import { useAccount } from "wagmi";
+import { useCapabilities, useWriteContracts } from "wagmi/experimental";
+import { useMemo, useState } from "react";
+import { CallStatus } from "./CallStatus";
+import { myNFTABI, myNFTAddress } from "./myNFT";
+
+export function App() {
+  const account = useAccount();
+  const [id, setId] = useState<string | undefined>(undefined);
+  const { writeContracts } = useWriteContracts({
+    mutation: { onSuccess: (id) => setId(id) },
+  });
+  const { data: availableCapabilities } = useCapabilities({
+    account: account.address,
+  });
+  const capabilities = useMemo(() => {
+    if (!availableCapabilities || !account.chainId) return {};
+    const capabilitiesForChain = availableCapabilities[account.chainId];
+    if (
+      capabilitiesForChain["PaymasterService"] &&
+      capabilitiesForChain["PaymasterService"].supported
+    ) {
+      return {
+        const PaymasterServiceUrl = process.env.NEXT_PUBLIC_PAYMASTER_PROXY_SERVER_URL
+        PaymasterService: {
+          url: PaymasterServiceUrl // You can also use the minimalist proxy we created: `${document.location.origin}/api/Paymaster`
+        },
+      };
+    }
+    return {};
+  }, [availableCapabilities, account.chainId]);
+
+  return (
+    <div>
+      <h2>Transact With Paymaster</h2>
+      <p>{JSON.stringify(capabilities)}</p>
+      <div>
+        <button
+          onClick={() => {
+            writeContracts({
+              contracts: [
+                {
+                  address: myNFTAddress,
+                  abi: myNFTABI,
+                  functionName: "safeMint",
+                  args: [account.address],
+                },
+              ],
+              capabilities,
+            });
+          }}
+        >
+          Mint
+        </button>
+        {id && <CallStatus id={id} />}
+      </div>
+    </div>
+  );
+}
+```
+
+```ts twoslash [myNFT.ts] filename="myNFT.ts"
+// @noErrors
+export const myNFTABI = [
+  {
+    stateMutability: "nonpayable",
+    type: "function",
+    inputs: [{ name: "to", type: "address" }],
+    name: "safeMint",
+    outputs: [],
+  },
+] as const;
+
+export const myNFTAddress = "0x119Ea671030FBf79AB93b436D2E20af6ea469a19";
+
+```
+
+:::
+
+<Callout type="warning">
+**About The Hooks Used Above**
+
+The `useWriteContracts` and `useCapabilities` hooks used below rely on new wallet RPC and are not yet supported in most wallets.
+It is recommended to have a fallback function if your app supports wallets other than Smart Wallet.
+</Callout>
+
+<Callout type="success">
+**How to find this code in the repository?**
+
+The code above is a simplified version of the code in the
+[template](https://github.com/wilsoncusack/wagmi-scw/).
+
+In the template, we create a [`TransactWithPaymaster`](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/TransactWithPaymaster.tsx) component that uses the `useWriteContracts` hook to send a transaction with a Paymaster.
+
+The [`TransactWithPaymaster`](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/TransactWithPaymaster.tsx) component is used in the [`page.tsx`](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/app/page.tsx) file.
+</Callout>
+
+That's it! Smart Wallet will handle the rest. If your Paymaster service is able to sponsor the transaction,
+in the UI Smart Wallet will indicate to your user that the transaction is sponsored.
+
+::::
+
+# ERC20 Paymasters 
+
+Smart Wallet enables users to pay for gas in ERC20 tokens! 
+Tokens can be accepted for payment by passed in app paymasters in addition to a set of universally supported tokens, such as USDC (this set to be expanded soon).
+
+This guide outlines how to set up your own app paymaster which will accept your token as payment. 
+
+### Choose a paymaster service provider
+
+As a prerequisite, you'll need to obtain a paymaster service URL from a paymaster service provider. ERC20 paymasters have additional requirements that will be outlined below. 
+
+We recommend the [Coinbase Developer Platform](https://www.coinbase.com/developer-platform) paymaster as it is fully set up to work with Smart Wallet ERC20 token gas payments out of the box. CDP is also offering up to $15k in gas credits as part of the [Base Gasless Campaign](/identity/smart-wallet/introduction/base-gasless-campaign).
+
+Otherwise if using a different paymaster provider, it must conform to the specification outlined in [ERC20 Compatible Paymasters](#erc20-compatible-paymasters) to correctly work with Smart Wallet.
+
+### App setup for custom token
+
+Once you have a paymaster that is compatible with ERC20 gas payments on Smart Wallet, you are only responsible for including the approvals to the paymaster for your token. It is recommended to periodically top up the allowance once they hit some threshold.
+
+```js
+
+const tokenDecimals = 6
+const minTokenThreshold = 1 * 10 ** tokenDecimals // $1 
+const tokenApprovalTopUp = 20 * 10 ** tokenDecimals // $20
+const tokenAddress = "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"
+const nftContractAddress = "0x66519FCAee1Ed65bc9e0aCc25cCD900668D3eD49"
+const paymasterAddress = "0x2FAEB0760D4230Ef2aC21496Bb4F0b47D634FD4c"
+
+const mintTo = {
+  abi: abi,
+  functionName: "mintTo",
+  to: nftContractAddress,
+  args: [account.address, 1],
+};
+
+calls = [mintTo]
+
+// Checks for allowance
+const allowance = await client.readContract({
+  abi: parseAbi(["function allowance(address owner, address spender) returns (uint256)"]),
+  address: tokenAddress,
+  functionName: "allowance",
+  args: [account.address, paymasterAddress],
+})
+
+if (allowance < minTokenThreshold) {
+   // include approval for $20 in calls so that the paymaster will be able to move the token to accept payment
+   calls.push({
+        abi: ["function approve(address,uint)"],
+        functionName: "approve",
+        to: nftContractAddress,
+        args: [paymasterAddress, tokenApprovalTopUp],
+    })
+}
+```
+
+That is it! Smart Wallet will handle the rest as long as it is compatible as outlined below.
+
+### ERC20 Compatible Paymasters
+Coinbase Developer Platform is compatible out of the box and we will be working with other teams to include support soon!
+
+The paymaster must handle the `pm_getPaymasterStubData` and `pm_getPaymasterData` JSON-RPC requests specified by ERC-7677 in addition to `pm_getAcceptedPaymentTokens`. We step through each request and response below. 
+
+#### pm_getPaymasterStubData and pm_getPaymasterData
+
+1. The paymaster must use the specified ERC20 for payment if specified in the 7677 context field under `erc20`.
+2. Upon rejection / failure the paymaster should return a `data` field in the JSONRPC response which could be used to approve the paymaster and includes:
+- `acceptedTokens` array which is a struct including the token address 
+- `paymasterAddress` field which is the paymaster address which will perform the token transfers. 
+3. Upon success the paymaster must return a `tokenPayment` field in the result. This includes: 
+- `tokenAddress` address of the token used for payment
+- `maxFee` the maximum fee to show in the UI
+- `decimals` decimals to use in the UI 
+- `name` name of the token
+
+Smart wallet will simulate the transaction to ensure success and accurate information.
+
+##### Request 
+
+This is a standard V0.6 Entrypoint request example with the additional context for the specified token to be used. 
+
+```json 
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "pm_getPaymasterData",
+  "params": [
+    {
+      "sender": "0xe62B4aD6A7c079F47D77a9b939D5DC67A0dcdC2B",
+      "nonce": "0x4e",
+      "initCode": "0x",
+      "callData": "0xb61d27f60000000000000000000000007746371e8df1d7099a84c20ed72e3335fb016b23000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000",
+      "callGasLimit": "0x113e10",
+      "verificationGasLimit": "0x113e10",
+      "preVerificationGas": "0x113e10",
+      "maxFeePerGas": "0x113e10",
+      "maxPriorityFeePerGas": "0x113e10",
+      "paymasterAndData": "0x",
+      "signature": "0x5ee079a5dec73fe39c1ce323955fb1158fc1b9a6b2ddbec104cd5cfec740fa5531584f098b0ca95331b6e316bd76091e3ab75a7bc17c12488664d27caf19197e1c"
+    },
+    "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789",
+    "0x2105",
+    {
+      "erc20": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"
+    }
+  ]
+}
+```
+
+##### Response 
+
+Successful response:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "paymasterAndData": "0x2faeb0760d4230ef2ac21496bb4f0b47d634fd4c0000670fdc98000000000000494b3b6e1d074fbca920212019837860000100833589fcd6edb6e08f4c7c32d4f71b54bda029137746371e8df1d7099a84c20ed72e3335fb016b23000000000000000000000000000000000000000000000000000000009b75458400000000697841102cd520d4e0171a58dadc3e6086111a49a90826cb0ad25579f25f1652081f68c17d8652387a33bf8880dc44ecf95be4213e786566d755baa6299f477b0bb21c",
+    "tokenPayment": {
+      "name": "USDC",
+      "address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "maxFee": "0xa7c8",
+      "decimals": 6
+    }
+  }
+}
+```
+
+Rejection response:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32002,
+    "message": "request denied - no sponsorship and address can not pay with accepted token",
+    "data": {
+      "acceptedTokens": [
+        {
+          "name": "USDC",
+          "address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+        }
+      ]
+    }
+  }
+}
+```
+
+#### pm_getAcceptedPaymentTokens
+
+`pm_getAcceptedPaymentTokens` returns an array of tokens the paymaster will accept for payment. 
+The request contains the entrypoint and the chain id with optional context. 
+
+##### Request 
+```json
+{
+  "jsonrpc": "2.0", "id": 1,
+  "method": "pm_getAcceptedPaymentTokens",
+  "params": [ "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789", "0x2105", {}]
+}
+```
+
+##### Response 
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "acceptedTokens": [
+      {
+        "name": "USDC",
+        "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"
+      }
+    ]
+  }
+}
+```

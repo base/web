@@ -22,6 +22,15 @@ Menu
 
 Getting Started
 
+# https://docs.base.org/builderkits/onchainkit/llms.txt
+
+## OnchainKit Documentation
+
+This file contains structured documentation for AI assistants about OnchainKit, OnchainKit streamlines app development by providing a comprehensive toolkit that combines powerful onchain features with developer-friendly design:
+
+Please refer to https://docs.base.org/llms-full.txt for the complete Base documentation.
+
+
 On this page
 Chevron Right
 
