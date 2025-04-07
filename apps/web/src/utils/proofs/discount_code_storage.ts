@@ -1,11 +1,9 @@
-import { createKysely } from '@vercel/postgres-kysely';
 import { vercelDb as db } from 'apps/web/src/utils/datastores/rds';
-import type { Database } from 'apps/web/src/utils/datastores/rds/types';
 
 const publicTableName = 'public.basenames_discount_codes';
 
 export async function getDiscountCode(code: string) {
-  let query = createKysely<Database>().selectFrom(publicTableName).where('code', 'ilike', code);
+  let query = db.selectFrom(publicTableName).where('code', 'ilike', code);
   return query.selectAll().limit(1).execute();
 }
 
