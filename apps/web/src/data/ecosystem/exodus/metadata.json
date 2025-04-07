@@ -1,0 +1,8 @@
+{
+  "name": "Exodus",
+  "url": "https://www.exodus.com/",
+  "description": "Exodus lets users secure, manage, and swap cryptocurrencies like Bitcoin, Ethereum, & more across 10,000+ asset pairs from a beautiful, easy-to-use wallet. Available for desktop, mobile, and browser.",
+  "category": "wallet",
+  "subcategory": "self-custody",
+  "imageUrl": "/images/partners/exodus.webp"
+}

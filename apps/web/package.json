@@ -15,7 +15,7 @@
   "dependencies": {
     "@coinbase/cookie-banner": "^1.0.3",
     "@coinbase/cookie-manager": "^1.1.1",
-    "@coinbase/onchainkit": "^0.38.1",
+    "@coinbase/onchainkit": "^0.38.5",
     "@datadog/browser-logs": "^5.23.3",
     "@datadog/browser-rum": "^5.23.3",
     "@frames.js/render": "^0.5.5",
@@ -29,7 +29,6 @@
     "@radix-ui/react-collapsible": "^1.1.0",
     "@radix-ui/react-popover": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.2",
-    "@rainbow-me/rainbowkit": "^2.1.5",
     "@react-three/drei": "^9.113.0",
     "@react-three/fiber": "^9.0.0-alpha.8",
     "@react-three/postprocessing": "^3.0.0-rc.0",

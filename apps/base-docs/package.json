@@ -16,7 +16,8 @@
   "dependencies": {
     "@coinbase/cookie-banner": "^1.0.3",
     "@coinbase/cookie-manager": "^1.1.1",
-    "@coinbase/onchainkit": "^0.38.1",
+    "@coinbase/onchainkit": "^0.38.5",
+    "@coinbase/wallet-sdk-canary": "npm:@coinbase/wallet-sdk@4.4.0-canary.1",
     "@googleapis/sheets": "^5.0.5",
     "@types/react": "latest",
     "@vercel/node": "^3.0.17",
