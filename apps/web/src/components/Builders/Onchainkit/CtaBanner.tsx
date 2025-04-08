@@ -7,7 +7,6 @@ import { useCallback, useState } from 'react';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 
 const ONCHAINKIT_DOCS_LINK = 'https://docs.base.org/builderkits/onchainkit/getting-started';
-const ONCHAINKIT_GITHUB_LINK = 'https://github.com/coinbase/onchainkit';
 const ONCHAINKIT_AI_DOCS_LINK = 'https://docs.base.org/builderkits/onchainkit/llms.txt';
 
 export function CtaBanner() {
