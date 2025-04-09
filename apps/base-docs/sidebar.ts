@@ -623,7 +623,7 @@ export const sidebar: Sidebar = [
             items: [
               {
                 text: 'What is Smart Wallet?',
-                link: '/identity/smart-wallet/concepts/what-is-sw',
+                link: '/identity/smart-wallet/concepts/what-is-smart-wallet',
               },
               {
                 text: 'Features',
