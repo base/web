@@ -11,7 +11,8 @@ description: Glossary of Types.
 type ConnectWalletReact = {
   children?: React.ReactNode; // Children can be utilized to display customized content when the wallet is connected.
   className?: string; // Optional className override for button element
-  text?: string; // Optional text override for button. Note: Prefer using `ConnectWalletText` component instead as this will be deprecated in a future version.
+  text?: string; // Optional text override for button. Note: Prefer using `disconnectedLabel` prop instead as this will be deprecated in a future version.
+  disconnectedLabel?: React.ReactNode; // Optional text override for button.
   onConnect?: () => void; // Optional callback function that is called when the wallet is connected. Can be used to trigger SIWE prompts or other actions.
 };
 ```
@@ -57,6 +58,19 @@ type WalletContextType = {
   connectRef: React.RefObject<HTMLDivElement>;
   showSubComponentAbove: boolean;
   alignSubComponentRight: boolean;
+  activeFeature: WalletAdvancedFeature | null;
+  setActiveFeature: Dispatch<SetStateAction<WalletAdvancedFeature | null>>;
+  isActiveFeatureClosing: boolean;
+  setIsActiveFeatureClosing: Dispatch<SetStateAction<boolean>>;
+  tokenBalances: PortfolioTokenWithFiatValue[] | undefined;
+  portfolioFiatValue: number | undefined;
+  isFetchingPortfolioData: boolean;
+  portfolioDataUpdatedAt: number | undefined;
+  refetchPortfolioData: () => Promise<QueryObserverResult<Portfolio, Error>>;
+  animations: {
+    container: string;
+    content: string;
+  };
 };
 ```
 
@@ -64,7 +78,7 @@ type WalletContextType = {
 
 ```ts
 type WalletReact = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
 } & (
   | { draggable?: true; draggableStartingPosition?: { x: number; y: number } }
@@ -84,8 +98,14 @@ type WalletDropdownBasenameReact = {
 
 ```ts
 type WalletDropdownReact = {
-  children: React.ReactNode;
-  className?: string; // Optional className override for top div element
+  children?: React.ReactNode;
+  className?: string; // Optional className override for top div element;
+  classNames?: {
+    container?: string;
+    qr?: WalletAdvancedQrReceiveProps['classNames'];
+    swap?: WalletAdvancedSwapProps['classNames'];
+  };
+  swappableTokens?: Token[];
 };
 ```
 
@@ -129,7 +149,7 @@ export type WalletDropdownLinkReact = {
 
 ```ts
 export type WalletAdvancedReact = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   swappableTokens?: Token[];
 };
 ```

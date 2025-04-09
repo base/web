@@ -129,7 +129,7 @@ const links: TopNavigationLink[] = [
       {
         name: 'Events',
         description: 'Connect with the Base community',
-        href: '/resources#GetInvolved',
+        href: 'https://lu.ma/base-virtualevents',
       },
       {
         name: 'Media Kit',
