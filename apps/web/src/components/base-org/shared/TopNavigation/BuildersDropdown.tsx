@@ -13,6 +13,8 @@ import blockchain from 'apps/web/src/components/base-org/shared/TopNavigation/as
 import gitHubLogo from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/gitHubLogo.svg';
 import blog from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/blog.svg';
 import bridging from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/bridging.svg';
+import chartVolume from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/chartVolume.svg';
+import baseBatches from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/baseBatches.svg';
 import Link from 'apps/web/src/components/Link';
 import Card from 'apps/web/src/components/base-org/Card';
 import basenet from 'apps/web/src/components/Builders/Appchains/basenet.svg';
@@ -121,12 +123,6 @@ export function BuildersDropdown({ onLinkClick }: BuildersDropdownProps) {
                 onLinkClick={onLinkClick}
               />
               <FooterCard
-                label="Mainnet Stats"
-                icon={options as StaticImageData}
-                href="https://www.base.org/stats"
-                onLinkClick={onLinkClick}
-              />
-              <FooterCard
                 label="Bug bounty"
                 icon={bug as StaticImageData}
                 href="https://hackerone.com/coinbase"
@@ -154,6 +150,18 @@ export function BuildersDropdown({ onLinkClick }: BuildersDropdownProps) {
                 label="Builder stories"
                 icon={bridging as StaticImageData}
                 href="/builders/stories"
+                onLinkClick={onLinkClick}
+              />
+              <FooterCard
+                label="Base Stats"
+                icon={chartVolume as StaticImageData}
+                href="https://www.base.org/stats"
+                onLinkClick={onLinkClick}
+              />
+              <FooterCard
+                label="Base Batches"
+                icon={baseBatches as StaticImageData}
+                href="https://www.basebatches.xyz"
                 onLinkClick={onLinkClick}
               />
             </div>
