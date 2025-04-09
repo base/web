@@ -39,6 +39,30 @@
       "destination": "/identity/smart-wallet/quickstart/react-native-project"
     },
     {
+      "source": "/identity/smart-wallet/FAQ",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/checklist",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/index",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/quick-start",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/wallet-library-support",
+      "destination": "/identity/smart-wallet/concepts/usage-details/wallet-library-support"
+    },
+    {
+      "source": "/identity/smart-wallet/why",
+      "destination": "/identity/smart-wallet/concepts/what-is-smart-wallet"
+    },
+    {
       "source": "/identity/smart-wallet/features/MagicSpend",
       "destination": "/identity/smart-wallet/concepts/features/built-in/MagicSpend"
     },
@@ -59,12 +83,24 @@
       "destination": "/identity/smart-wallet/concepts/features/built-in/single-sign-on"
     },
     {
+      "source": "/identity/smart-wallet/features/batch-operations",
+      "destination": "/identity/smart-wallet/concepts/features/optional/batch-operations"
+    },
+    {
+      "source": "/identity/smart-wallet/features/custom-gas-tokens",
+      "destination": "/identity/smart-wallet/concepts/features/optional/custom-gas-tokens"
+    },
+    {
       "source": "/identity/smart-wallet/features/gas-free-transactions",
       "destination": "/identity/smart-wallet/concepts/features/optional/gas-free-transactions"
     },
     {
+      "source": "/identity/smart-wallet/features/spend-permissions",
+      "destination": "/identity/smart-wallet/concepts/features/optional/spend-permissions"
+    },
+    {
       "source": "/identity/smart-wallet/features/sub-accounts",
-      "destination": "/identity/smart-wallet/guides/sub-accounts"
+      "destination": "/identity/smart-wallet/concepts/features/optional/sub-accounts"
     },
     {
       "source": "/identity/smart-wallet/introduction/base-gasless-campaign",
