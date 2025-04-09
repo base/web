@@ -1,3 +1,0 @@
-# Guides
-
-Lorem ipsum
