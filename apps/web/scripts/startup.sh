@@ -1,8 +1,10 @@
+#!/bin/bash
+
 # Wait for config service to map env vars
-until [ -f /var/env/config_service_env ]; do
+until [ -f /var/env/.env ]; do
   sleep 5
 done
-source /var/env/config_service_env
+source /var/env/.env
 
 # Start the application
 yarn workspace @app/web next build
