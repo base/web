@@ -103,6 +103,26 @@
       "destination": "/identity/smart-wallet/concepts/features/optional/sub-accounts"
     },
     {
+      "source": "/identity/smart-wallet/guides/sub-accounts/:path*",
+      "destination": "/identity/smart-wallet/guides/sub-accounts/"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/tips/:path*",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/spend-permissions/:path*",
+      "destination": "/identity/smart-wallet/guides/spend-permissions/"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/create-app/:path*",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
       "source": "/identity/smart-wallet/introduction/base-gasless-campaign",
       "destination": "/identity/smart-wallet/concepts/base-gasless-campaign"
     },
