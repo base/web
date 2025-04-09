@@ -31,7 +31,7 @@ type ToolMiniCardProps = {
 
 type FooterCardProps = {
   label: string;
-  icon: StaticImageData;
+  icon?: StaticImageData;
   href: string;
   onLinkClick: () => void;
 };
@@ -115,9 +115,15 @@ export function BuildersDropdown({ onLinkClick }: BuildersDropdownProps) {
           <div className="flex items-center justify-between rounded-lg bg-dark-palette-secondary py-3">
             <div className="grid w-full grid-cols-2 gap-x-1 gap-y-2.5">
               <FooterCard
-                label="Status"
+                label="Status Page"
                 icon={options as StaticImageData}
                 href="https://status.base.org/"
+                onLinkClick={onLinkClick}
+              />
+              <FooterCard
+                label="Mainnet Stats"
+                icon={options as StaticImageData}
+                href="https://www.base.org/stats"
                 onLinkClick={onLinkClick}
               />
               <FooterCard
@@ -195,7 +201,7 @@ function FooterCard({ label, icon, href, onLinkClick }: FooterCardProps) {
       onClick={onLinkClick}
       className="flex items-center gap-2 px-4"
     >
-      <Image src={icon} alt={label} width={16} height={16} />
+      {icon && <Image src={icon} alt={label} width={16} height={16} />}
       <Title level={TitleLevel.Headline} className="text-sm font-normal tracking-normal">
         {label}
       </Title>
