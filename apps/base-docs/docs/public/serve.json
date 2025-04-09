@@ -107,6 +107,10 @@
       "destination": "/identity/smart-wallet/guides/sub-accounts/"
     },
     {
+      "source": "/identity/smart-wallet/guides/update-existing-app",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
       "source": "/identity/smart-wallet/guides/tips/:path*",
       "destination": "/identity/smart-wallet/quickstart"
     },
