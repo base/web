@@ -33,11 +33,6 @@ export type UseWriteContractWithReceiptProps = {
   eventName: string;
 };
 
-// Extend ContractFunctionParameters to include value property
-export type PayableContractFunctionParameters = ContractFunctionParameters & {
-  value?: bigint;
-};
-
 export default function useWriteContractWithReceipt({
   chain,
   eventName,
@@ -81,7 +76,7 @@ export default function useWriteContractWithReceipt({
   const { switchChainAsync } = useSwitchChain();
 
   const initiateTransaction = useCallback(
-    async (contractParameters: PayableContractFunctionParameters) => {
+    async (contractParameters: ContractFunctionParameters) => {
       if (!connectedChain) return;
       if (connectedChain.id !== chain.id) {
         await switchChainAsync({ chainId: chain.id });
