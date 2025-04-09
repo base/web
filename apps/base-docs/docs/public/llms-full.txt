@@ -40,7 +40,7 @@ Enable gasless transactions and account abstraction solutions.](https://docs.bas
 \\
 Build an app in 10 minutes with this all-in-one toolkit and full-stack components.](https://docs.base.org/builderkits/onchainkit/getting-started) [**Smart Wallet** \\
 \\
-A passkey-based universal account to connect with the onchain world.](https://docs.base.org/identity/smart-wallet/introduction/install-web) [**AgentKit** \\
+A passkey-based universal account to connect with the onchain world.](https://docs.base.org/identity/smart-wallet/quickstart) [**AgentKit** \\
 \\
 Give every AI agent a crypto wallet and the ability to transact and interact onchain.](https://docs.cdp.coinbase.com/agentkit/docs/welcome) [**Paymaster** \\
 \\
