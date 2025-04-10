@@ -1,0 +1,8 @@
+{
+  "name": "Amped Finance",
+  "description": "Amped combines decentralized, self-custodial trading with Pyth's real-time price feeds to deliver superior on-chain trading execution compared to traditional AMM solutions. The platform features zero price impact trading, competitive fees, and full user custody of assets.",
+  "url": "https://amped.finance",
+  "imageUrl": "/images/partners/amped.png",
+  "category": "defi",
+  "subcategory": "dex"
+}
