@@ -202,6 +202,10 @@ export const sidebar: Sidebar = [
                 ],
               },
               {
+                text: 'Signature',
+                link: '/builderkits/onchainkit/signature/signature',
+              },
+              {
                 text: 'Swap',
                 collapsed: true,
                 items: [
@@ -527,6 +531,10 @@ export const sidebar: Sidebar = [
               {
                 text: 'Mint',
                 link: '/builderkits/onchainkit/mint/types',
+              },
+              {
+                text: 'Signature',
+                link: '/builderkits/onchainkit/signature/types',
               },
               {
                 text: 'Swap',
