@@ -7,7 +7,7 @@ This file contains structured documentation for AI assistants about MiniKit, a t
 Please refer to https://docs.base.org/llms-full.txt for the complete Base documentation.
 
 ---
-title: MiniKit Alpha | Getting started 
+title: MiniKit Alpha | Getting started
 description: Easiest way to build Mini Apps on Base
 ---
 
@@ -31,7 +31,7 @@ MiniKit streamlines mini-app development by providing a comprehensive toolkit th
 
 ## Use Cases
 
-- Gaming mini apps 
+- Gaming mini apps
 - Social mini apps
 - Payment mini apps
 - And many more possibilities!
@@ -41,7 +41,7 @@ MiniKit streamlines mini-app development by providing a comprehensive toolkit th
 The fastest way to get started with MiniKit is to use the CLI to bootstrap a new project:
 
 ```bash
-npx create-onchain template=minikit-basic
+npx create-onchain --mini
 ```
 
 This command will:
@@ -249,7 +249,7 @@ Authentication requires additional setup utilizing an auth framework like next/a
 The MiniKit CLI is the easiest way to get started. It automatically creates a sample application that integrates different parts of the SDK and some OnchainKit components.
 
 ```bash
-npx create-onchain template=minikit-basic
+npx create-onchain --mini
 ```
 
 ### Features
@@ -343,7 +343,7 @@ A mini app is a lightweight web app that runs directly inside [Farcaster Frames]
 ## Create a new MiniKit project using the CLI:
 
 ```bash
-npx create-onchain template=minikit-basic
+npx create-onchain --mini
 ```
 
 ## When prompted, enter your CDP Client API key.

@@ -2601,7 +2601,7 @@ The fastest way to get started with MiniKit is to use the CLI to bootstrap a new
 
 ```vocs_Code
 
-Copynpx create-onchain template=minikit-basic
+Copynpx create-onchain --mini
 ```
 
 This command will:
@@ -2810,7 +2810,7 @@ The MiniKit CLI is the easiest way to get started. It automatically creates a sa
 
 ```vocs_Code
 
-Copynpx create-onchain template=minikit-basic
+Copynpx create-onchain --mini
 ```
 
 ### Features
