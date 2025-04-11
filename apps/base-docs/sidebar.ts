@@ -655,6 +655,7 @@ export const sidebar: Sidebar = [
                   },
                   {
                     text: 'Optional Features',
+                    collapsed: true,
                     items: [
                       {
                         text: 'Gas-free Transactions',
