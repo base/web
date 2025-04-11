@@ -168,17 +168,16 @@ class KVManager {
 }
 
 function createDefaultKVManager() {
-  const host = isDevelopment ? process.env.KV_HOST_DEVELOPMENT : process.env.KV_HOST_CBHQ;
+  const host = isDevelopment ? process.env.KV_HOST_DEVELOPMENT : process.env.KV_HOST;
   const port = isDevelopment
     ? Number(process.env.KV_PORT_DEVELOPMENT)
-    : Number(process.env.KV_PORT_CBHQ);
+    : Number(process.env.KV_PORT);
 
   if (!host || !port) {
     throw new Error('No KV host or port provided');
   }
 
   return new KVManager({ host, port });
-
 }
 
 function createVercelKVManager() {
