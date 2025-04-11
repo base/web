@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { ConnectWallet, ConnectWalletText } from '@coinbase/onchainkit/wallet';
+import { ConnectWallet } from '@coinbase/onchainkit/wallet';
 import { Button, ButtonSizes, ButtonVariants } from 'apps/web/src/components/Button/Button';
 import { useAccount } from 'wagmi';
 
@@ -28,11 +28,8 @@ export function RegistrationButton({
           'px-10 py-3.5 text-sm md:text-lg', // ButtonSizes.Medium
           'rounded-full', // rounded
         )}
-      >
-        <ConnectWalletText className="font-display font-normal">
-          Connect wallet
-        </ConnectWalletText>
-      </ConnectWallet>
+        disconnectedLabel="Connect wallet"
+      />
     );
   }
 

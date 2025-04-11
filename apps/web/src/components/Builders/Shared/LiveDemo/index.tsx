@@ -18,7 +18,6 @@ import {
   WalletAdvancedWalletActions,
   WalletDropdown,
 } from '@coinbase/onchainkit/wallet';
-import { Name } from '@coinbase/onchainkit/identity';
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
 import {
@@ -41,7 +40,6 @@ import { DynamicCryptoProviders } from 'apps/web/app/CryptoProviders.dynamic';
 import Text from 'apps/web/src/components/base-org/typography/Text';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/Text/types';
 import Link from 'apps/web/src/components/Link';
-import { UserAvatar } from 'apps/web/src/components/ConnectWalletButton/UserAvatar';
 import { NFTDemo } from './NFTDemo';
 
 type LiveDemoProps = {
@@ -82,10 +80,7 @@ export function LiveDemo({ components, title, hideDescription = false }: LiveDem
       case 'Wallet':
         return (
           <Wallet>
-            <ConnectWallet>
-              <UserAvatar />
-              <Name />
-            </ConnectWallet>
+            <ConnectWallet />
             <WalletDropdown>
               <WalletAdvancedWalletActions />
               <WalletAdvancedAddressDetails classNames={walletAdvancedAddressDetailsClasses} />
@@ -264,6 +259,18 @@ function DesktopDemo({
               )}
             >
               Docs
+            </Link>
+            <Link
+              href="https://docs.base.org/builderkits/onchainkit/llms.txt"
+              target="_blank"
+              className={classNames(
+                'rounded-lg border px-3 py-1 transition-colors',
+                mode === 'dark'
+                  ? 'border-dark-palette-line/20 hover:bg-white/10'
+                  : 'border-dark-palette-line/20 text-dark-palette-backgroundAlternate hover:bg-white/10',
+              )}
+            >
+              AI docs
             </Link>
             <Link
               href="https://onchainkit.xyz/playground"
