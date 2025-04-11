@@ -1,19 +1,9 @@
 ---
 title: <Signature /> · OnchainKit
-description: The `<Signature />` components provide a high-level wrap around the entire transaction flow. It handles the transaction lifecycle, including gas estimation, fee sponsorship, and status updates.
+description: The `<Signature />` component supports signing EIP712 and personal_sign messages.
 ---
 
-import { Avatar, Name } from '@coinbase/onchainkit/identity';
-import {
-  Signature,
-  SignatureButton,
-  SignatureStatus,
-  SignatureLabel,
-  SignatureToast,
-  SignatureIcon,
-} from '@coinbase/onchainkit/signature';
-import { Wallet, ConnectWallet } from '@coinbase/onchainkit/wallet';
-import TransactionWrapper from '@/components/TransactionWrapper';
+import { EIP712Signature, PersonalSignSignature } from '@/components/SignatureComponents';
 
 # `<Signature />`
 
@@ -70,7 +60,9 @@ export const message = {
 <Signature
   domain={domain}
   types={types}
+  primaryType="Attest"
   message={message}
+  label="Sign EIP712"
   onSuccess={(signature: string) => console.log(signature)}
 />
 ```
@@ -112,16 +104,21 @@ export const message = {
 
 :::
 
+<EIP712Signature />
+
 ### Default implementation for personal_sign messages
 
-```tsx twoslash
+```tsx twoslash [Signature.tsx]
 import { Signature } from '@coinbase/onchainkit/signature';
 
 <Signature
   message="Hello, OnchainKit!"
+  label="Personal_Sign me"
   onSuccess={(signature: string) => console.log(signature)}
 />
 ```
+
+<PersonalSignSignature />
 
 ## Components
 
@@ -140,7 +137,7 @@ The Signature components provide a complete signature flow:
 ### `<SignatureStatus />` and `<SignatureToast />` subcomponents
 
 - `<SignatureLabel />` - Displays status text ("Success", "Confirm in wallet", etc.)
-- `<SignatureIcon />` - Shows status icons (spinner, success, error)
+- `<SignatureIcon />` - Shows status icons (pending, success, error)
 
 ## Component API
 
@@ -160,6 +157,7 @@ Main wrapper component that manages the signature flow.
   message="Hello World"
 
   // Optional props
+  label="Sign"
   onSuccess={(signature: string) => {}}
   onError={(error: APIError) => {}}
   onStatus={(status: LifecycleStatus) => {}}
@@ -260,7 +258,7 @@ Custom error handling:
 
 ## Message Types
 
-The component supports two types of signatures:
+The `<Signature />` component supports two types of messages:
 
 ### EIP-712 Typed Data
 
