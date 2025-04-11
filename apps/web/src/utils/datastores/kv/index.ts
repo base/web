@@ -180,16 +180,5 @@ function createDefaultKVManager() {
   return new KVManager({ host, port });
 }
 
-function createVercelKVManager() {
-  const url = isDevelopment ? process.env.KV_URL_DEVELOPMENT : process.env.KV_URL;
-  if (!url) {
-    throw new Error('No KV URL provided');
-  }
-  return new KVManager({ url, tls: true });
-}
-
-// Exports an instance of KVManager with the default vercel KV URL
-export const kv = createVercelKVManager();
-
 // Exports an instance of KVManager with the default CBHQ KV URL
-export const cbhqKv = createDefaultKVManager();
+export const kv = createDefaultKVManager();
