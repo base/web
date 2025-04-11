@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { kv } from '@vercel/kv';
+import { kv } from 'apps/web/src/utils/datastores/kv';
 import { logger } from 'apps/web/src/utils/logger';
 
 type RequestBody = {

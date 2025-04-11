@@ -56,7 +56,7 @@ export function BottomCta() {
             linkClassNames="text-base font-medium text-white block"
             buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group"
             target="_blank"
-            href="https://docs.base.org/llms.txt"
+            href="https://docs.base.org/llms-full.txt"
             eventName="bottom-cta-ai-docs"
           >
             <div className="flex items-center justify-between gap-6">
