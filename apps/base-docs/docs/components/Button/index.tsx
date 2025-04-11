@@ -2,8 +2,8 @@
 
 import { ButtonHTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { ButtonVariants, ButtonSizes } from 'apps/web/src/components/base-org/Button/types';
-import { Icon, IconProps } from 'apps/web/src/components/Icon/Icon';
+import { Icon, IconProps } from '../base-org/Icon/Icon.tsx';
+import { ButtonVariants, ButtonSizes } from './types.ts';
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   connectWallet?: boolean;
@@ -87,7 +87,9 @@ export default function Button({
   return (
     <button type="button" onClick={onClick} disabled={disabled} className={buttonClasses}>
       <span>{children}</span>
-      {iconName && <Icon name={iconName} width={iconSize} height={iconSize} color="currentColor" />}
+      {iconName && (
+        <Icon name={iconName as string} width={iconSize} height={iconSize} color="currentColor" />
+      )}
     </button>
   );
 }

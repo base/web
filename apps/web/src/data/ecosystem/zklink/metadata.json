@@ -1,0 +1,8 @@
+{
+  "name": "zkLink",
+  "url": "https://zk.link/",
+  "description": "zkLink is a unified multi-chain trading infrastructure secured with zk-SNARKS, empowering the next-generation of decentralized trading products such as order book DEX, NFT marketplaces, and more.",
+  "imageUrl": "/images/partners/zklink.webp",
+  "category": "infra",
+  "subcategory": "bridge"
+}

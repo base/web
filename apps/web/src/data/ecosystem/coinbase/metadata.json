@@ -1,0 +1,8 @@
+{
+  "name": "Coinbase",
+  "url": "https://www.coinbase.com",
+  "description": "Coinbase is a secure online platform for buying, selling, transferring, and storing cryptocurrency.",
+  "imageUrl": "/images/partners/wallet-retail.webp",
+  "category": "wallet",
+  "subcategory": "centralized exchange"
+}
