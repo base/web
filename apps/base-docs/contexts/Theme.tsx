@@ -14,14 +14,11 @@ type ThemeContextProps = {
   toggleTheme: () => void;
 };
 
-export const ThemeContext = createContext<ThemeContextProps>({
-  theme: 'dark',
-  toggleTheme: () => {},
-});
+export const ThemeContext = createContext<ThemeContextProps | null>(null);
 
 export function useTheme() {
   const context = useContext(ThemeContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useTheme must be used within a ThemeProvider');
   }
   return context;
@@ -31,27 +28,23 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>('dark');
 
   const toggleTheme = useCallback(() => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    document.documentElement.classList.toggle('dark');
   }, []);
 
   useEffect(() => {
     const rootElement = document.documentElement;
-    const observer = new MutationObserver(() => {
-      if (rootElement.classList.contains('dark')) {
-        setTheme('dark');
-      } else {
-        setTheme('light');
-      }
-    });
+    if (!rootElement) return;
 
-    observer.observe(rootElement, {
-      attributes: true,
-      attributeFilter: ['class'],
-    });
+    const updateTheme = () => {
+      requestAnimationFrame(() => {
+        setTheme(rootElement.classList.contains('dark') ? 'dark' : 'light');
+      });
+    };
 
-    if (rootElement.classList.contains('dark')) {
-      setTheme('dark');
-    }
+    const observer = new MutationObserver(updateTheme);
+    observer.observe(rootElement, { attributes: true, attributeFilter: ['class'] });
+
+    updateTheme();
 
     return () => observer.disconnect();
   }, []);
