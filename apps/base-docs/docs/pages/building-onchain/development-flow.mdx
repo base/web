@@ -1,0 +1,45 @@
+## The Development Flow
+
+## Client-side Development
+
+If you're focusing on the front end or building a user interface, Kits like OnchainKit provide an opinionated, model-agnostic setup for handling user authentication, contract interactions, and transaction status updates. With a client-side approach:
+
+1. **Set up an RPC endpoint** to read chain data.
+2. **Use OnchainKit** (or an equivalent framework) to handle function calls, sign messages, or sponsor gas if you've integrated Paymaster solutions.
+3. **Incorporate Identity Solutions** like Basenames or Onchain Profiles for more user-friendly experiences.
+
+**Check out these guides to quicky build Onchain Apps**:
+
+- [Build an eCommerce Store with OnchainKit](https://docs.base.org/tutorials/coinbase-commerce-onchainkit-checkout/)
+- [Base Learn: Onchain App Development](https://docs.base.org/base-learn/docs/frontend-setup/overview)
+- [OnchainKit NFT App Template](https://ock-mint.vercel.app/)
+- [AgentKit Quickstart](https://docs.cdp.coinbase.com/agentkit/docs/quickstart)
+- [Add Frames to a Basename](https://docs.base.org/tutorials/add-frames-to-basename/)
+- [Create a Basename Profile Component](https://docs.base.org/tutorials/create-basename-profile-component/)
+
+## Smart Contract Development
+
+Base is an EVM-equivalent chain, so you can build or reuse your smart contracts written in Solidity. Typical steps include:
+
+1. **Choose a development environment** such as Hardhat or Foundry.
+2. **Write and compile your contracts** in Solidity.
+3. **Test locally** or on a testnet before pushing to mainnet.
+4. **Deploy to Base** using your EOA wallet (or specialized deployment tooling).
+
+Smart wallets, Paymaster services, and other infrastructure components on Base can significantly streamline the user experience around your onchain programs.
+
+**Check out these guides to jump start your Smart Contract Development**:
+
+- [Quickstart: Deploy on Base](https://docs.base.org/docs/quickstart)
+- [Foundry Tutorial](https://docs.base.org/tutorials/deploy-with-foundry/)
+- [Base Learn: Development with HardHat](https://docs.base.org/base-learn/docs/hardhat-setup-overview/hardhat-overview-vid)
+- [Base Learn: Development with Foundry](https://docs.base.org/tutorials/intro-to-foundry-setup/)
+- [Verify a Smart Contract using Basescan API](https://docs.base.org/tutorials/verify-smart-contract-using-basescan/)
+
+## Developer Environments
+
+Base offers multiple environments to help you iterate quickly:
+
+- **Mainnet**: Production environment, where real-value transactions occur.
+- **Testnets (e.g., Base testnet on Sepolia)**: Great for QA or staging.
+- **Local Development**: You can run a local EVM environment with Hardhat or similar tools to test your contracts before deploying.
