@@ -123,7 +123,7 @@
       "destination": "/identity/smart-wallet/quickstart"
     },
     {
-      "source": "/identity/smart-wallet/",
+      "source": "/identity/smart-wallet",
       "destination": "/identity/smart-wallet/quickstart"
     },
     {

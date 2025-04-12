@@ -202,6 +202,10 @@ export const sidebar: Sidebar = [
                 ],
               },
               {
+                text: 'Signature',
+                link: '/builderkits/onchainkit/signature/signature',
+              },
+              {
                 text: 'Swap',
                 collapsed: true,
                 items: [
@@ -529,6 +533,10 @@ export const sidebar: Sidebar = [
                 link: '/builderkits/onchainkit/mint/types',
               },
               {
+                text: 'Signature',
+                link: '/builderkits/onchainkit/signature/types',
+              },
+              {
                 text: 'Swap',
                 link: '/builderkits/onchainkit/swap/types',
               },
@@ -619,7 +627,6 @@ export const sidebar: Sidebar = [
           },
           {
             text: 'Concepts',
-            link: '/identity/smart-wallet/concepts',
             items: [
               {
                 text: 'What is Smart Wallet?',
@@ -713,7 +720,6 @@ export const sidebar: Sidebar = [
           },
           {
             text: 'Guides',
-            link: '/identity/smart-wallet/guides',
             items: [
               { text: 'Sign In With Ethereum', link: '/identity/smart-wallet/guides/siwe' },
               {
@@ -743,7 +749,6 @@ export const sidebar: Sidebar = [
           },
           {
             text: 'Technical Reference',
-            link: '/identity/smart-wallet/technical-reference',
             items: [
               {
                 text: '@coinbase/wallet-sdk',
