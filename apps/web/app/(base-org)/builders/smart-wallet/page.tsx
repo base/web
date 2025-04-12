@@ -69,7 +69,7 @@ export default async function BaseWallet() {
               A single sign-on for the open internet. Simple, secure, powerful — no app or extension
               required.
             </Title>
-            <div className="flex gap-6 pt-5">
+            <div className="flex gap-4 pt-5">
               <ButtonWithLinkAndEventLogging
                 target="_blank"
                 variant={ButtonVariants.Secondary}
@@ -84,6 +84,20 @@ export default async function BaseWallet() {
                   </div>
                 </div>
               </ButtonWithLinkAndEventLogging>
+              <ButtonWithLinkAndEventLogging
+            href="https://docs.base.org/identity/smart-wallet/llms.txt"
+            target="_blank"
+            variant={ButtonVariants.SecondaryOutline}
+            buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
+            eventName="smart-wallet-ai-docs"
+          >
+            <div className="flex items-center justify-between gap-6">
+              <span>AI docs</span>
+              <div className="transition-transform duration-200">
+                <Icon name="ai" width={16} height={16} color="white" />
+              </div>
+            </div>
+          </ButtonWithLinkAndEventLogging>
             </div>
           </div>
 
@@ -118,6 +132,20 @@ export default async function BaseWallet() {
                   </div>
                 </div>
               </ButtonWithLinkAndEventLogging>
+              <ButtonWithLinkAndEventLogging
+                href="https://docs.base.org/identity/smart-wallet/llms.txt"
+                target="_blank"
+                variant={ButtonVariants.SecondaryOutline}
+                buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
+                eventName="smart-wallet-ai-docs"
+              >
+              <div className="flex items-center justify-between gap-6">
+                <span>AI docs</span>
+              <div className="transition-transform duration-200">
+                <Icon name="ai" width={16} height={16} color="white" />
+              </div>
+            </div>
+          </ButtonWithLinkAndEventLogging>
             </div>
           }
         />
