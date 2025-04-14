@@ -700,7 +700,7 @@ export const sidebar: Sidebar = [
                   { text: 'Popups', link: '/identity/smart-wallet/concepts/usage-details/popups' },
                   {
                     text: 'Simulations',
-                    link: '/identity/smart-wallet/concepts/usage-details/Simulations',
+                    link: '/identity/smart-wallet/concepts/usage-details/simulations',
                   },
                   {
                     text: 'Gas Usage',
