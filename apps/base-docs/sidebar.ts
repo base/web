@@ -738,6 +738,7 @@ export const sidebar: Sidebar = [
               },
               {
                 text: 'Sub Accounts',
+                collapsed: true,
                 link: '/identity/smart-wallet/guides/sub-accounts',
                 items: [
                   {
