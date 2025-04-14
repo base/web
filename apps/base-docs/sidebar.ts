@@ -898,6 +898,16 @@ export const sidebar: Sidebar = [
               },
             ],
           },
+          {
+            text: 'Contribute',
+            collapsed: true,
+            items: [
+              {
+                text: 'How to Contribute to Docs',
+                link: '/identity/smart-wallet/contribute/how-to-contribute-to-docs',
+              },
+            ],
+          },
         ],
       },
       {
