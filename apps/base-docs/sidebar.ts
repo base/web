@@ -943,10 +943,6 @@ export const sidebar: Sidebar = [
                 text: 'Security and Bug Bounty',
                 link: '/identity/smart-wallet/contribute/security-and-bug-bounty',
               },
-              {
-                text: 'Feature Requests',
-                link: '/identity/smart-wallet/contribute/feature-requests',
-              },
             ],
           },
         ],
