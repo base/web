@@ -915,7 +915,6 @@ export const sidebar: Sidebar = [
               {
                 text: 'Spend Permissions',
                 collapsed: true,
-                link: '/identity/smart-wallet/technical-reference/spend-permissions',
                 items: [
                   {
                     text: 'Smart Contract Reference',
@@ -924,8 +923,8 @@ export const sidebar: Sidebar = [
                   {
                     text: 'Fetch Permissions API',
                     link: '/identity/smart-wallet/technical-reference/spend-permissions/coinbase-fetchpermissions',
-                  }
-                ]
+                  },
+                ],
               },
               {
                 text: 'Sub Account Reference',
