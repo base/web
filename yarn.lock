@@ -161,7 +161,6 @@ __metadata:
     "@typescript-eslint/types": ^7.8.0
     "@typescript-eslint/utils": ^7.8.0
     "@vercel/blob": ^0.23.4
-    "@vercel/kv": ^1.0.1
     "@vercel/og": ^0.6.2
     "@vercel/postgres-kysely": ^0.8.0
     autoprefixer: ^10.4.13
@@ -183,7 +182,7 @@ __metadata:
     jose: ^5.4.1
     jsdom: ^25.0.0
     jsonwebtoken: ^9.0.2
-    kysely: ^0.27.3
+    kysely: ^0.27.6
     motion: ^12.3.1
     next: ^15.1.6
     node-fetch: ^3.3.0
@@ -8644,15 +8643,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@upstash/redis@npm:1.25.1":
-  version: 1.25.1
-  resolution: "@upstash/redis@npm:1.25.1"
-  dependencies:
-    crypto-js: ^4.2.0
-  checksum: 694d9ff33b0a4bce95fa72effaface1b9c41cab7093d726fc1a9ef29eb5ac6eda3d4d0cc59c130bc6e62bf20eaa60a8ef423c257bac1484d3d76e73c56a3ea7e
-  languageName: node
-  linkType: hard
-
 "@use-gesture/core@npm:10.3.1":
   version: 10.3.1
   resolution: "@use-gesture/core@npm:10.3.1"
@@ -8775,15 +8765,6 @@ __metadata:
   version: 2.0.3
   resolution: "@vercel/error-utils@npm:2.0.3"
   checksum: cb631bb6cf9574b3f1ee64cca82e9c594fa0a0d44f1fa0e810d86a11a98935cc780b2b89ac303a18609aed3582907142b45a88641d55a15e628e7bea38669f22
-  languageName: node
-  linkType: hard
-
-"@vercel/kv@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@vercel/kv@npm:1.0.1"
-  dependencies:
-    "@upstash/redis": 1.25.1
-  checksum: 399ab8a846406cd61ea03909f04a5261ab0e06bac14e6a834f5292005305d9ee463179579fa74fe554db1cfecb706372bb4e9faa473433a146e2311095f6c29e
   languageName: node
   linkType: hard
 
@@ -11236,13 +11217,6 @@ __metadata:
   dependencies:
     uncrypto: ^0.1.3
   checksum: 390c71a597b410f44e94cc60e247f9beca25d36e863e1a6d8933c5090e70afbd905a263f4af9f737fafd618855ce85790757c98c17f27eaabfbace64b236f157
-  languageName: node
-  linkType: hard
-
-"crypto-js@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "crypto-js@npm:4.2.0"
-  checksum: f051666dbc077c8324777f44fbd3aaea2986f198fe85092535130d17026c7c2ccf2d23ee5b29b36f7a4a07312db2fae23c9094b644cc35f7858b1b4fcaf27774
   languageName: node
   linkType: hard
 
@@ -17066,10 +17040,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kysely@npm:^0.27.3":
-  version: 0.27.5
-  resolution: "kysely@npm:0.27.5"
-  checksum: 0801e5f46b989beba033ab6a636bd17ab24174d7228eec7a7567eb6fb56e53c3a61f54f39155217adcbe10f030f2b4cdcc17c4dc0b3a6fcd15407eb5e07d3773
+"kysely@npm:^0.27.6":
+  version: 0.27.6
+  resolution: "kysely@npm:0.27.6"
+  checksum: 537d4950c8e09ca1fbe1c8b7ea8d6152b1edc1bc544e013fa2b8b5e98c6c9d1ab4bd7976c8c1f0e8112c6fb42800a773a8f03a480977b793efd85182f382f5e6
   languageName: node
   linkType: hard
 
