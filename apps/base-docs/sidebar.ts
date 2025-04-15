@@ -934,10 +934,9 @@ export const sidebar: Sidebar = [
           },
           {
             text: 'Contribute',
-            collapsed: true,
             items: [
               {
-                text: 'How to Contribute to Docs',
+                text: 'Contribute to Smart Wallet Docs',
                 link: '/identity/smart-wallet/contribute/contribute-to-smart-wallet-docs',
               },
               {
