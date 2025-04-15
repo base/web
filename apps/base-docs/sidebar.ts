@@ -751,7 +751,7 @@ export const sidebar: Sidebar = [
             text: 'Technical Reference',
             items: [
               {
-                text: '@coinbase/wallet-sdk',
+                text: 'Coinbase Wallet SDK',
                 collapsed: true,
                 link: '/identity/smart-wallet/technical-reference/sdk',
                 items: [
