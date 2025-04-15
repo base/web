@@ -894,8 +894,19 @@ export const sidebar: Sidebar = [
                 ],
               },
               {
-                text: 'SpendPermissionsManager.sol',
-                link: '/identity/smart-wallet/technical-reference/spend-permissions/spendpermissionmanager',
+                text: 'Spend Permissions',
+                collapsed: true,
+                link: '/identity/smart-wallet/technical-reference/spend-permissions',
+                items: [
+                  {
+                    text: 'Smart Contract Reference',
+                    link: '/identity/smart-wallet/technical-reference/spend-permissions/spendpermissionmanager',
+                  },
+                  {
+                    text: 'Fetch Permissions API',
+                    link: '/identity/smart-wallet/technical-reference/spend-permissions/coinbase-fetchpermissions',
+                  }
+                ]
               },
               {
                 text: 'Sub Account Reference',
