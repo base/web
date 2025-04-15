@@ -906,6 +906,10 @@ export const sidebar: Sidebar = [
                 text: 'How to Contribute to Docs',
                 link: '/identity/smart-wallet/contribute/contribute-to-smart-wallet-docs',
               },
+              {
+                text: 'Security and Bug Bounty',
+                link: '/identity/smart-wallet/contribute/security-and-bug-bounty',
+              },
             ],
           },
         ],
