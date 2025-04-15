@@ -904,7 +904,7 @@ export const sidebar: Sidebar = [
             items: [
               {
                 text: 'How to Contribute to Docs',
-                link: '/identity/smart-wallet/contribute/how-to-contribute-to-docs',
+                link: '/identity/smart-wallet/contribute/contribute-to-smart-wallet-docs',
               },
             ],
           },

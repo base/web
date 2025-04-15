@@ -1,0 +1,165 @@
+import { Callout } from 'vocs/components'
+
+# Contribute to the Smart Wallet Docs
+
+This guide is intended for all contributors who are adding new features, content, or making updates to the Smart Wallet documentation.
+Following these guidelines ensures consistency and maintains
+the documentation structure, making it easier for developers to find information.
+
+<Callout type="success">
+**Why Documentation is Important**
+
+Good documentation significantly accelerates developer adoption. Focus on creating content that helps developers understand and implement Smart Wallet features efficiently, while maintaining the documentation's structural integrity.
+
+</Callout>
+
+## Documentation Structure Guidelines
+
+### Core Principle: Maintain Existing Structure
+
+The Smart Wallet documentation is organized into the following main sections:
+
+1. **Quickstart**
+2. **Concepts**
+3. **Guides**
+4. **Examples**
+5. **Technical Reference**
+6. **Contribute**
+
+<Callout type="warning">
+  **Avoid creating new top-level sections at all costs**
+  
+  All new content must fit within these existing sections.
+
+</Callout>
+
+### Section Purpose and Content Placement
+
+When adding new content, determine the appropriate section based on the following criteria:
+
+#### Quickstart
+
+- End-to-end guides for getting developers up and running quickly
+- Should remain focused and concise
+- Update only when there are fundamental changes to the initial setup process
+
+#### Concepts
+
+- Explanatory content about Smart Wallet components, architecture, and design philosophy
+- Add new concept documentation when introducing fundamentally new capabilities or paradigms
+- Subsections include:
+  - Intro
+  - Built-in Features
+  - Optional Features
+  - Additional conceptual topics as needed
+
+#### Guides
+
+- Step-by-step tutorials for specific tasks and implementation scenarios
+- **All guides should live under the main "Guides" section**
+- Avoid creating deep hierarchical subsections unless absolutely necessary
+- Try to keep the number of subsections to a minimum, preferably only one page per guide
+- Although not required, guides should preferably have an accompanying GitHub repository
+- Name guides clearly with action-oriented titles (e.g., "Implementing Multi-Signature Verification" rather than "Multi-Sig Guide")
+
+#### Examples
+
+- Complete, working code examples demonstrating real-world use cases
+- Each example should be self-contained and fully functional
+- Each example should have an accompanying GitHub repository
+- Include comments explaining key implementation details
+- Examples should cover all of the built-in and optional features of the Smart Wallet
+
+#### Technical Reference
+
+- Comprehensive technical documentation of APIs, methods, components, and configurations
+- Structured reference material rather than tutorial content
+- Include parameter descriptions, return values, and usage examples
+- All technical specifications for new features go here, not in separate sections
+
+#### Contribute
+
+- Information for contributors to the Smart Wallet project
+- Update when contribution processes change
+
+<Callout type="warning">
+**Avoiding Subsection Proliferation**
+- **For Guides**: Keep all guides at the same level under the Guides section
+- **For Technical Reference**: Organize by component or feature, not by use case
+- When tempted to add a new subsection, consider if the content could be reorganized to fit existing sections
+- Use cross-referencing between related content rather than creating new organizational structures
+
+</Callout>
+
+## Documentation Style Guidelines
+
+### Writing Style
+
+1. **Be concise**: Use simple, direct language. Avoid unnecessary words.
+2. **Consistency**: Maintain consistent terminology throughout documentation.
+3. **Persona-focused**: Think about the persona of the reader and write accordingly.
+4. **Happy Path**: Focus on the happy path, but don't forget to mention the alternative paths.
+5. **AI-friendly**: Write in a way that is easy for AI to understand and follow:
+
+#### AI-friendly writing tips
+
+- Make sure you use explicit language in your file names, headings, and content.
+- Make active linking references to the relevant guides and examples.
+- Use bulleted lists for steps or options.
+- Explicitely name and reference the libraries you are using.
+- Use code blocks to highlight code.
+
+<Callout type="success">
+  **Think like a Large Language Model**
+
+When writing documentation, think about how a Large Language Model would understand the content.
+
+You should continuously ask yourself:
+
+- "Would a Large Language Model be able to understand this content?"
+- "Would a Large Language Model be able to follow this content?"
+- "Would a Large Language Model be able to use this content?"
+
+If you can't answer yes to all of these questions, you need to rewrite the content.
+
+</Callout>
+
+### Formatting
+
+1. **Markdown usage**:
+
+   - Use proper heading hierarchy (# for main titles, ## for section headings, etc.)
+   - Use code blocks with language specification (```javascript)
+   - Use tables for parameter references
+   - Use bulleted lists for steps or options
+
+2. **Code examples**:
+   - Include complete, working code examples
+   - Comment code thoroughly
+   - Follow the project's coding style guide
+
+### Abbreviations and Terminology
+
+1. **First reference**: The first time you use an abbreviation or technical term, spell it out followed by the abbreviation in parentheses. Example: "Account Abstraction (AA)"
+2. **Consistency**: Use the same term for the same concept throughout the documentation
+3. **Technical Reference**: Keep the guides and examples to a minimal size. Put the comprehensive technical details in the Technical Reference section.
+
+## Review Checklist Before Submission
+
+- [ ] Content fits within existing structure
+- [ ] No new top-level sections created
+- [ ] Minimal subsection creation
+- [ ] Consistent terminology used throughout
+- [ ] Abbreviations properly introduced
+- [ ] Code examples are complete and functional
+- [ ] Cross-references to related documentation added
+- [ ] Documentation follows style guidelines
+- [ ] Documentation is written in a way that is easy for AI to understand and follow
+
+## Submission Process
+
+1. Create a documentation Pull Request (PR) to the [repository](https://github.com/base/web) with your changes
+2. Ensure your PR includes updates to all relevant sections and respects the instructions in this guide
+3. Request review from the documentation team
+4. Address feedback and make necessary revisions
+5. Once approved, the PR will be merged and published
