@@ -915,7 +915,6 @@ export const sidebar: Sidebar = [
               {
                 text: 'Spend Permissions',
                 collapsed: true,
-                link: '/identity/smart-wallet/technical-reference/spend-permissions',
                 items: [
                   {
                     text: 'Smart Contract Reference',
@@ -924,12 +923,25 @@ export const sidebar: Sidebar = [
                   {
                     text: 'Fetch Permissions API',
                     link: '/identity/smart-wallet/technical-reference/spend-permissions/coinbase-fetchpermissions',
-                  }
-                ]
+                  },
+                ],
               },
               {
                 text: 'Sub Account Reference',
                 link: '/identity/smart-wallet/technical-reference/sdk/sub-account-reference',
+              },
+            ],
+          },
+          {
+            text: 'Contribute',
+            items: [
+              {
+                text: 'Contribute to Smart Wallet Docs',
+                link: '/identity/smart-wallet/contribute/contribute-to-smart-wallet-docs',
+              },
+              {
+                text: 'Security and Bug Bounty',
+                link: '/identity/smart-wallet/contribute/security-and-bug-bounty',
               },
             ],
           },
