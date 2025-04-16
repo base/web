@@ -1,50 +1,38 @@
 [
   {
-    "title": "Base is meeting builders around the world",
-    "url": "https://base.mirror.xyz/Fk1jnSmh84MlauA1z-UogFjjNBu5VLF4JrKgyqVYhWA",
-    "imageUrl": "https://images.mirror-media.xyz/publication-images/1Cxg_Y7RMiduOfaHGovI-.png",
-    "publicImagePath": "/images/blog/base-is-meeting-builders-around-the-world-cover.png"
+    "title": "Base Batches: Join a Buildathon and compete for up to $1m",
+    "url": "https://www.basebatches.xyz/",
+    "imageUrl": "",
+    "publicImagePath": "/images/blog/BASE_Batches_Social.png"
   },
   {
-    "title": "Summer never ends",
-    "url": "https://base.mirror.xyz/mNTd8oYnl6RJZNWM_5Nxig2g6er9TUDNTOYZYRHLXog",
-    "imageUrl": "https://images.mirror-media.xyz/publication-images/U6ffOmo6-8RJrUUz76nvq.png",
-    "publicImagePath": "/images/blog/summer-never-ends-cover.png"
+    "title": "Base is building for the long-term",
+    "url": "https://base.mirror.xyz/HwG1GQ5hoxz0OTOF_nQhNcVTk4Ae9cRIrcqVQ14N4-c",
+    "imageUrl": "https://images.mirror-media.xyz/publication-images/k5PiNZB2l6b_mXEZjaBqN.png?height=960&width=1920",
+    "publicImagePath": "/images/blog/base-is-building-for-long-term.png"
   },
   {
-    "title": "Scaling Base: Looking towards the upcoming Pectra upgrade",
-    "url": "https://base.mirror.xyz/6NDvVKw8x5obo3h1OgQx582hF73m81CnJabgbRneW2Q",
-    "imageUrl": "https://images.mirror-media.xyz/publication-images/busMgf5msKPumSDaXnxlT.png",
-    "publicImagePath": "/images/blog/scaling-base-looking-towards-the-upcoming-pectra-upgrade-cover.png"
+    "title": "Evolving Coinbase Wallet to bring the world onchain",
+    "url": "https://base.mirror.xyz/AStCR6Mtv7U6yEL0K4tpeXvrKaN_LbGySt0tPfn_Eyw",
+    "imageUrl": "https://images.mirror-media.xyz/publication-images/qdv_qdDARX7vuky8oqV7p.png?height=1055&width=2110",
+    "publicImagePath": "/images/blog/evolving-coinbase-wallet.png"
   },
   {
-    "title": "Build your onchain identity with Basenames",
-    "url": "https://base.mirror.xyz/ofu68-hGbQuf-_oNsMNTVM373lByUVjcHDh5CF2KSNQ",
-    "imageUrl": "https://images.mirror-media.xyz/publication-images/fGNciT-vIGdgZUehLol6P.png",
-    "publicImagePath": "/images/blog/build-your-onchain-identity-with-basenames-cover.png"
+    "title": "Base 2025 Mission, Vision, and Strategy",
+    "url": "https://base.mirror.xyz/gFOLgyrs8jtX4Eqt4Kh6ikWhB3tqrhQoKfddeqZIECs",
+    "imageUrl": "https://images.mirror-media.xyz/publication-images/VUpFnGMjf-su56w6zO7SY.png?height=960&width=1920",
+    "publicImagePath": "/images/blog/base-2025-mission-vision-strategy.png"
   },
   {
-    "title": "Announcing the Onchain Summer Buildathon Winners",
-    "url": "https://base.mirror.xyz/p_A3ZxaBUEcpWwTf9_Yg-jnlOro8m8Ypc8LEDnA_ZRk",
-    "imageUrl": "https://images.mirror-media.xyz/publication-images/U4fz9OvwkECe7DIdswXjE.png",
-    "publicImagePath": "/images/blog/announcing-the-onchain-summer-buildathon-winners-cover.png"
+    "title": "Reflections from Base Around the World",
+    "url": "https://base.mirror.xyz/IbZFySAH2vbXOE-jYb3fYtVneL8czBoOuSS90FlOUYc",
+    "imageUrl": "https://images.mirror-media.xyz/publication-images/BFQVsKFFAHfK2z7kNkHzP.png?height=2111&width=4221",
+    "publicImagePath": "/images/blog/reflections-base-around-the-world.png"
   },
   {
-    "title": "Introducing the Onchain Content Network",
-    "url": "https://base.mirror.xyz/fD9-3Bl_3PLoUw7T8St6a6UpDIiPxJ-itzmME-b5pwA",
-    "imageUrl": "https://images.mirror-media.xyz/publication-images/hvmtoI_4GVnlmTiDhFHrm.png",
-    "publicImagePath": "/images/blog/introducing-the-onchain-content-network-cover.png"
-  },
-  {
-    "title": "Stage 1 Decentralization is Coming to Base",
-    "url": "https://base.mirror.xyz/Odr64Blt1YLjR2U-5iXr84dg00Bttz2jnYwvaLGoTY0",
-    "imageUrl": "https://images.mirror-media.xyz/publication-images/QlkofrR1_uVgDmLw8h7gQ.png",
-    "publicImagePath": "/images/blog/stage-1-decentralization-is-coming-to-base-cover.png"
-  },
-  {
-    "title": "Introducing BaseCamp 001: onchain–offgrid",
-    "url": "https://base.mirror.xyz/GL6dd2CfZuG3dVd_jZAZJLjYP8h7NRk0falVV6O7RqQ",
-    "imageUrl": "https://images.mirror-media.xyz/publication-images/pPSZUytFEk-ACzTlt1F6O.jpg",
-    "publicImagePath": "/images/blog/introducing-basecamp-001-onchain-offgrid-cover.png"
+    "title": "Fault proofs are now live on Base Mainnet",
+    "url": "https://base.mirror.xyz/eOsedW4tm8MU5OhdGK107A9wsn-aU7MAb8f3edgX5Tk",
+    "imageUrl": "https://images.mirror-media.xyz/publication-images/-yNIrOG-8wJpmegHxqZwq.png?height=2111&width=4221",
+    "publicImagePath": "/images/blog/fault-proofs-are-live-base-mainnet.png"
   }
 ]

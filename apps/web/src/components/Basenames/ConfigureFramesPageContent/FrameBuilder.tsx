@@ -23,6 +23,7 @@ import mintMe from './ui/mint-me.svg';
 import nftProduct from './ui/nftProduct.svg';
 import previewBackground from './ui/preview-background.svg';
 import emptyPreviewFrame from './ui/preview-frame.svg';
+import { WalletModal } from '@coinbase/onchainkit/wallet';
 
 export default function FrameBuilder() {
   const params = useParams();
@@ -111,7 +112,8 @@ export default function FrameBuilder() {
     [logEventWithContext],
   );
 
-  const { pendingFrameChange, addFrame } = useFrameContext();
+  const { frameConfig, pendingFrameChange, addFrame } = useFrameContext();
+  const { isConnectModalOpen, closeConnectModal } = frameConfig;
 
   const handlePaycasterClick = useCallback(() => {
     if (basename) {
@@ -363,6 +365,7 @@ export default function FrameBuilder() {
           Show Preview
         </Button>
       </SuggestionCard>
+      <WalletModal isOpen={isConnectModalOpen} onClose={closeConnectModal} />
     </>
   );
 

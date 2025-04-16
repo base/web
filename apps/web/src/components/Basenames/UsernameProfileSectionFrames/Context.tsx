@@ -13,7 +13,6 @@ import {
   useFarcasterIdentity,
 } from '@frames.js/render/identity/farcaster';
 import { useFrame } from '@frames.js/render/use-frame';
-import { useConnectModal } from '@rainbow-me/rainbowkit';
 import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { useErrors } from 'apps/web/contexts/Errors';
 import L2ResolverAbi from 'apps/web/src/abis/L2Resolver';
@@ -24,6 +23,7 @@ import useReadBaseEnsTextRecords from 'apps/web/src/hooks/useReadBaseEnsTextReco
 import { UsernameTextRecordKeys } from 'apps/web/src/utils/usernames';
 import { ActionType } from 'libs/base-ui/utils/logEvent';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { useBoolean } from 'usehooks-ts';
 import { EstimateGasExecutionError, namehash } from 'viem';
 import { useAccount, useChainId, useConfig, useWriteContract } from 'wagmi';
 import { sendTransaction, signTypedData, switchChain } from 'wagmi/actions';
@@ -57,6 +57,8 @@ export type FrameContextValue = {
     'homeframeUrl' | 'signerState' | 'frameContext'
   > & {
     frameContext: FarcasterFrameContext;
+    isConnectModalOpen: boolean;
+    closeConnectModal: () => void;
   };
   farcasterSignerState: FarcasterSignerInstance;
   anonSignerState: SignerStateInstance<AnonymousSigner>;
@@ -113,7 +115,7 @@ export function FramesProvider({ children }: FramesProviderProps) {
 
   const currentChainId = useChainId();
   const config = useConfig();
-  const { openConnectModal } = useConnectModal();
+  const { value: isConnectModalOpen, setTrue: openConnectModal, setFalse: closeConnectModal } = useBoolean();
 
   const onTransaction: OnTransactionFunc = useCallback(
     async ({ transactionData, frame }) => {
@@ -281,6 +283,8 @@ export function FramesProvider({ children }: FramesProviderProps) {
         onError,
         onSignature,
         onConnectWallet: openConnectModal,
+        isConnectModalOpen,
+        closeConnectModal,
         frameContext: farcasterFrameContext,
       },
       showFarcasterQRModal,
@@ -308,6 +312,8 @@ export function FramesProvider({ children }: FramesProviderProps) {
       removeFrame,
       existingTextRecordsIsLoading,
       optimisticFrameUrls,
+      isConnectModalOpen,
+      closeConnectModal,
     ],
   );
 

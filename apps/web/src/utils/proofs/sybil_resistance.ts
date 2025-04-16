@@ -1,5 +1,5 @@
 import { getAttestations } from '@coinbase/onchainkit/identity';
-import { kv } from '@vercel/kv';
+import { kv } from 'apps/web/src/utils/datastores/kv';
 import { CoinbaseProofResponse } from 'apps/web/pages/api/proofs/coinbase';
 import RegistrarControllerABI from 'apps/web/src/abis/RegistrarControllerABI';
 import {

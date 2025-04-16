@@ -9,17 +9,19 @@ The `isEthereum` utility is designed to verify if the chain id is a valid Ethere
 ```tsx twoslash [code]
 import { isEthereum } from '@coinbase/onchainkit';
 
-const chainId = 1;
+// Ethereum Mainnet (chain ID: 1)
+isEthereum({ chainId: 1 }); // returns true
 
-if (isEthereum({ chainId })) {
-  console.log('The chainId is Ethereum Mainnet or Ethereum Sepolia.');
-} else {
-  console.log('The chainId is not Ethereum.');
-}
+// Ethereum Sepolia (chain ID: 11155111)
+isEthereum({ chainId: 11155111 }); // returns true
+
+// Base (chain ID: 8453)
+isEthereum({ chainId: 8453 }); // returns false
 ```
 
 ```ts [return value]
-true;
+true; // When chainId is 1 (Ethereum Mainnet) or 11155111 (Ethereum Sepolia)
+false; // For all other chain IDs
 ```
 
 :::

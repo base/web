@@ -11,7 +11,7 @@ import minikit from 'apps/web/src/components/Builders/MiniKit/minikit.svg';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 
 export const GET_STARTED_URL = 'https://docs.base.org/builderkits/minikit/overview';
-const MINIKIT_COMMAND = 'npx create-onchain@alpha --mini';
+const MINIKIT_COMMAND = 'npx create-onchain --mini';
 
 export function Hero() {
   const [hasCopied, setHasCopied] = useState(false);
