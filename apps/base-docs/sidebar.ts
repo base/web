@@ -627,6 +627,10 @@ export const sidebar: Sidebar = [
                 text: 'React Native Project',
                 link: '/identity/smart-wallet/quickstart/react-native-project',
               },
+              {
+                text: 'AI Tools',
+                link: '/identity/smart-wallet/quickstart/ai-tools-available-for-devs',
+              },
             ],
           },
           {
@@ -690,10 +694,6 @@ export const sidebar: Sidebar = [
                         link: '/identity/smart-wallet/concepts/features/optional/sub-accounts',
                       },
                     ],
-                  },
-                  {
-                    text: 'AI Tools for Smart Wallet Developers',
-                    link: '/identity/smart-wallet/concepts/features/ai-tools-available-for-devs',
                   },
                 ],
               },
