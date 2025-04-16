@@ -693,7 +693,7 @@ export const sidebar: Sidebar = [
                   },
                   {
                     text: 'AI Tools for Smart Wallet Developers',
-                    link: '/identity/smart-wallet/concepts/features/ai-tools',
+                    link: '/identity/smart-wallet/concepts/features/ai-tools-available-for-devs',
                   },
                 ],
               },
