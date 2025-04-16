@@ -927,7 +927,7 @@ export const sidebar: Sidebar = [
                 ],
               },
               {
-                text: 'Sub Account Reference',
+                text: 'Sub Accounts Reference',
                 link: '/identity/smart-wallet/technical-reference/sdk/sub-account-reference',
               },
             ],
