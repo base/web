@@ -1,0 +1,8 @@
+{
+  "name": "ParkSwap",
+  "url": "https://www.parkswap.io",
+  "description": "ParkSwap is a DeFi aggregator on Base that simplifies cryptocurrency trading by finding the best rates across multiple DEXs while optimizing for low fees. Built on the principle of least action, our platform centralizes essential DeFi functionalities in one intuitive interface, allowing users to accomplish more with fewer steps. ParkSwap combines powerful aggregation technology with a seamless user experience, making decentralized finance accessible to both beginners and experienced traders",
+  "imageUrl": "/images/partners/parkswap.png",
+  "category": "defi",
+  "subcategory": "dex aggregator"
+}
