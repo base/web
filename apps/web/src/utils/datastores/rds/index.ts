@@ -9,7 +9,7 @@ const poolConfig = isDevelopment
       connectionString: process.env.POSTGRES_URL_DEVELOPMENT_CBHQ,
     }
   : {
-      connectionString: process.env.POSTGRES_URL_CBHQ,
+      connectionString: `postgresql://${process.env.RDS_USER}:${process.env.RDS_PASSWORD}@${process.env.RDS_HOST}:5432/${process.env.RDS_DB_NAME}`,
       ssl: {
         rejectUnauthorized: false,
       },
