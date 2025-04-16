@@ -1,0 +1,8 @@
+{
+  "name": "Okto",
+  "category": "wallet",
+  "subcategory": "account abstraction",
+  "description": "At Okto, we are dedicated to enhancing the web3 onboarding experience by building a comprehensive orchestration layer that simplifies chain, account, transaction, and fee abstraction for both users and developers. Our platform features a self-custody MPC wallet that supports a single asset portfolio with seamless interoperability across more than 15 chains, including EVM, Solana, Aptos, Cosmos, and others. Additionally, we offer regulated on-ramp and off-ramp features and a gas station service that allows users to pay gas fees with any stable token they possess on any chain. Our SDK allows the Okto wallet to be embedded in any web2 app transforming it almost instantly to web3 without the web2 developers having to learn web3 concepts. Our wallet is currently utilized by over 1.5 million users and has witnessed significant transaction volume, reflecting our rapid growth. More details about our products and journey can be found on our website, okto.tech.",
+  "url": "https://okto.tech",
+  "imageUrl": "/images/partners/okto.png"
+}

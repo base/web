@@ -1,0 +1,8 @@
+{
+  "name": "BlockPI Network",
+  "description": "BlockPI is a top infra provider in APAC. With 6+ years of experience, BlockPI currently offers one-stop high performance infra services including but not limited to RPC service, validator service, relayer service, account abstraction services across 50+ networks and helps in building the infras for more than 10 public blockchains (Berachain, Blast, Merlin Chain, Taiko, ZetaChain, etc) as their official infra partner. BlockPI also closely partners with over 300+ well-known projects and developers communities. With millions of public users and over 35,000 registered users, BlockPI stably processes 60B+ monthly requests.",
+  "url": "https://blockpi.io/",
+  "imageUrl": "/images/partners/blockpi.png",
+  "category": "infra",
+  "subcategory": "node provider"
+}

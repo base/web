@@ -30,20 +30,37 @@ export default function MiniKit() {
           title="Grow your app's audience"
           description="Start building with a starter template or see documentation."
           cta={
-            <ButtonWithLinkAndEventLogging
-              variant={ButtonVariants.Secondary}
-              buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
-              href={GET_STARTED_URL}
-              target="_blank"
-              eventName="minikit-get-started"
-            >
-              <div className="flex items-center gap-4">
-                <span>Get started</span>
-                <div className="transition-transform duration-200 group-hover:translate-x-1">
-                  <Icon name="arrowRight" width={16} height={16} color="black" />
+            <div className="flex gap-4">
+              <ButtonWithLinkAndEventLogging
+                variant={ButtonVariants.Secondary}
+                buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium bg-transparent"
+                href={GET_STARTED_URL}
+                target="_blank"
+                eventName="minikit-get-started"
+              >
+                <div className="flex items-center gap-4">
+                  <span>Get started</span>
+                  <div className="transition-transform duration-200 group-hover:translate-x-1">
+                    <Icon name="arrowRight" width={16} height={16} color="black" />
+                  </div>
                 </div>
-              </div>
-            </ButtonWithLinkAndEventLogging>
+              </ButtonWithLinkAndEventLogging>
+
+              <ButtonWithLinkAndEventLogging
+                variant={ButtonVariants.SecondaryOutline}
+                buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium bg-transparent"
+                href="https://docs.base.org/builderkits/minikit/llms.txt"
+                target="_blank"
+                eventName="minikit-ai-docs"
+              >
+                <div className="flex items-center gap-4">
+                  <span>AI docs</span>
+                  <div className="transition-transform duration-200">
+                    <Icon name="ai" width={16} height={16} color="white" />
+                  </div>
+                </div>
+              </ButtonWithLinkAndEventLogging>
+            </div>
           }
         />
       </main>

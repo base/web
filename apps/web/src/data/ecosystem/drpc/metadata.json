@@ -1,0 +1,8 @@
+{
+  "name": "DRPC",
+  "url": "https://drpc.org",
+  "description": "Reliable, Scalable & Cost-efficient RPC solution for EVM-based networks.",
+  "imageUrl": "/images/partners/drpc.webp",
+  "category": "infra",
+  "subcategory": "node provider"
+}

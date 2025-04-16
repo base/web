@@ -1,0 +1,8 @@
+{
+  "name": "Trust Wallet",
+  "url": "https://trustwallet.com/",
+  "description": "Trust Wallet is a multi-chain, self-custody wallet with 60M+ users. Supporting 70+ chains & 8M+ digital assets; you can manage crypto & NFTs, explore DeFi and connect to dApps safely & securely.",
+  "category": "wallet",
+  "subcategory": "self-custody",
+  "imageUrl": "/images/partners/trust_wallet.webp"
+}

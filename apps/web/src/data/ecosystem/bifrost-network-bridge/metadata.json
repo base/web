@@ -1,0 +1,8 @@
+{
+  "name": "Bifrost Network Bridge",
+  "url": "https://www.bifrostnetwork.com/bridge",
+  "description": "Bifrost bridge allows users to bridge their assets across the chains with enhanced security. Unlike the other bridges that use backend solutions, our bridge is validated by Bifrost network nodes.",
+  "imageUrl": "/images/partners/bifrostbridge.webp",
+  "category": "infra",
+  "subcategory": "bridge"
+}
