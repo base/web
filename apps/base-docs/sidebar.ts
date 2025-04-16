@@ -582,6 +582,10 @@ export const sidebar: Sidebar = [
             text: 'Quickstart',
             link: '/builderkits/minikit/quickstart',
           },
+          {
+            text: 'Debugging',
+            link: '/builderkits/minikit/debugging',
+          },
         ],
       },
       {
