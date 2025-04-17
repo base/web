@@ -77,7 +77,6 @@ export function Hero() {
               </div>
             </div>
           </ButtonWithLinkAndEventLogging>
-          
         </div>
       </div>
 
