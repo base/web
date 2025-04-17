@@ -12,8 +12,8 @@ async function handler(req: NextRequest) {
   const page = req.nextUrl.searchParams.get('page') ?? '1';
   const limit = req.nextUrl.searchParams.get('limit') ?? '10';
 
-  const pageNum = parseInt(page as string, 10);
-  const limitNum = parseInt(limit as string, 10);
+  const pageNum = parseInt(page, 10);
+  const limitNum = parseInt(limit, 10);
   const offset = (pageNum - 1) * limitNum;
 
   // Base query for filtering by category if provided

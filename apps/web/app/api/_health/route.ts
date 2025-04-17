@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export default function handler(_: NextRequest) {
+export default function handler() {
   return new NextResponse('OK');
 }
