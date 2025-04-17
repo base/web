@@ -40,7 +40,7 @@ Enable gasless transactions and account abstraction solutions.](https://docs.bas
 \\
 Build an app in 10 minutes with this all-in-one toolkit and full-stack components.](https://docs.base.org/builderkits/onchainkit/getting-started) [**Smart Wallet** \\
 \\
-A passkey-based universal account to connect with the onchain world.](https://docs.base.org/identity/smart-wallet/introduction/install-web) [**AgentKit** \\
+A passkey-based universal account to connect with the onchain world.](https://docs.base.org/identity/smart-wallet/quickstart) [**AgentKit** \\
 \\
 Give every AI agent a crypto wallet and the ability to transact and interact onchain.](https://docs.cdp.coinbase.com/agentkit/docs/welcome) [**Paymaster** \\
 \\
@@ -2601,7 +2601,7 @@ The fastest way to get started with MiniKit is to use the CLI to bootstrap a new
 
 ```vocs_Code
 
-Copynpx create-onchain@alpha --mini
+Copynpx create-onchain --mini
 ```
 
 This command will:
@@ -2810,7 +2810,7 @@ The MiniKit CLI is the easiest way to get started. It automatically creates a sa
 
 ```vocs_Code
 
-Copynpx create-onchain@alpha --mini
+Copynpx create-onchain --mini
 ```
 
 ### Features
@@ -2942,7 +2942,7 @@ Navigate to one of the Superchain Bridges to look up your transaction.
 
 Base is committed to decentralization and the Superchain vision. Leveraging the community to bootstrap the Superchain bridges is a step in that direction; increasing censorship resistance and decentralization.
 
-**Who operates the Superchain Bridges like Superbridge.com and Brid.gg?**
+**Who operates the Superchain Bridges like Superbridge.app and Brid.gg?**
 
 Superchain Bridges are operated by third parties, not by Coinbase Technologies, Inc. ("Coinbase"). Coinbase does not control, operate, or assume any responsibility for the performance of these external platforms. Before using any Superchain Bridge, you may be required to agree to their terms and conditions. We strongly recommend you review these terms carefully, as well as any privacy policies, to understand your rights and obligations. The integration or inclusion of the Superchain Bridges does not imply an endorsement or recommendation of any bridge by Coinbase.
 
