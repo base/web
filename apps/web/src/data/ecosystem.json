@@ -4042,7 +4042,7 @@
   {
     "name": "ECOIN Wallet",
     "description": "ECOIN Wallet is a multichain, user-friendly crypto wallet designed with the Samsung One UI design. It gives you complete control of your crypto assets and private keys, enabling you to securely buy, sell, swap, bridge, store, and transfer cryptocurrencies. Currently, it supports Bitcoin, BNB Chain, Ethereum, Polygon, ZetaChain, and Base. Rediscover what a #CryptoWallet is!",
-    "url": "https://ecoinwallet.org",
+    "url": "https://ecoinwallet.org/base-wallet",
     "imageUrl": "/images/partners/ecoinwallet.png",
     "category": "wallet",
     "subcategory": "self-custody"
