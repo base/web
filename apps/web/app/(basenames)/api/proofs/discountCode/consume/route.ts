@@ -1,6 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 import { logger } from 'apps/web/src/utils/logger';
-import { withTimeout } from 'apps/web/pages/api/decorators';
+import { withTimeout } from 'apps/web/app/api/decorators';
 import { incrementDiscountCodeUsage } from 'apps/web/src/utils/proofs/discount_code_storage';
 
 /*
@@ -11,26 +11,26 @@ type DiscountCodeRequest = {
   code: string;
 };
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextRequest) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
   }
 
   try {
-    const { code } = req.body as DiscountCodeRequest;
+    const { code } = (await req.json()) as DiscountCodeRequest;
 
     if (!code || typeof code !== 'string') {
-      return res.status(500).json({ error: 'Invalid request' });
+      return NextResponse.json({ error: 'Invalid request' }, { status: 500 });
     }
 
     await incrementDiscountCodeUsage(code);
 
-    return res.status(200).json({ success: true });
+    return NextResponse.json({ success: true });
   } catch (error: unknown) {
     logger.error('error incrementing the discount code', error);
   }
   // If error is not an instance of Error, return a generic error message
-  return res.status(500).json({ error: 'An unexpected error occurred' });
+  return NextResponse.json({ error: 'An unexpected error occurred' }, { status: 500 });
 }
 
-export default withTimeout(handler);
+export const POST = withTimeout(handler);

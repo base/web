@@ -1,7 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 import { proofValidation, signDiscountMessageWithTrustedSigner } from 'apps/web/src/utils/proofs';
 import { logger } from 'apps/web/src/utils/logger';
-import { withTimeout } from 'apps/web/pages/api/decorators';
+import { withTimeout } from 'apps/web/app/api/decorators';
 import { Address, Hash, stringToHex } from 'viem';
 import { USERNAME_DISCOUNT_CODE_VALIDATORS } from 'apps/web/src/addresses/usernames';
 import { getDiscountCode } from 'apps/web/src/utils/proofs/discount_code_storage';
@@ -15,20 +15,22 @@ export type DiscountCodeResponse = {
 /*
 this endpoint returns whether or a discount code is valid
 */
-async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextRequest) {
   if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'method not allowed' });
+    return NextResponse.json({ error: 'method not allowed' }, { status: 405 });
   }
-  const { address, chain, code } = req.query;
-  const validationErr = proofValidation(address, chain);
+  const address = req.nextUrl.searchParams.get('address');
+  const chain = req.nextUrl.searchParams.get('chain');
+  const code = req.nextUrl.searchParams.get('code');
+  const validationErr = proofValidation(address ?? '', chain ?? '');
   if (validationErr) {
-    return res.status(validationErr.status).json({ error: validationErr.error });
+    return NextResponse.json({ error: validationErr.error }, { status: validationErr.status });
   }
 
   const chainId = parseInt(chain as string);
 
   if (!code || typeof code !== 'string') {
-    return res.status(500).json({ error: 'Discount code invalid' });
+    return NextResponse.json({ error: 'Discount code invalid' }, { status: 500 });
   }
 
   try {
@@ -37,19 +39,19 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     // 2. Validation: Coupon exists
     if (!discountCodes || discountCodes.length === 0) {
-      return res.status(500).json({ error: 'Discount code invalid' });
+      return NextResponse.json({ error: 'Discount code invalid' }, { status: 500 });
     }
 
     const discountCode = discountCodes[0];
 
     // 2.1 Validation: Coupon is expired
     if (new Date(discountCode.expires_at) < new Date()) {
-      return res.status(500).json({ error: 'Discount code invalid' });
+      return NextResponse.json({ error: 'Discount code invalid' }, { status: 500 });
     }
 
     // 2.2 Validation: Coupon can be redeemed
     if (Number(discountCode.usage_count) >= Number(discountCode.usage_limit)) {
-      return res.status(500).json({ error: 'Discount code invalid' });
+      return NextResponse.json({ error: 'Discount code invalid' }, { status: 500 });
     }
 
     // 3. Sign the validationData
@@ -70,12 +72,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       signedMessage: signature,
     };
 
-    return res.status(200).json(result);
+    return NextResponse.json(result);
   } catch (error: unknown) {
     logger.error('error getting proofs for discount code', error);
   }
   // If error is not an instance of Error, return a generic error message
-  return res.status(500).json({ error: 'An unexpected error occurred' });
+  return NextResponse.json({ error: 'An unexpected error occurred' }, { status: 500 });
 }
 
-export default withTimeout(handler);
+export const GET = withTimeout(handler);

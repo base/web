@@ -1,9 +1,9 @@
-import { withTimeout } from 'apps/web/pages/api/decorators';
+import { NextRequest, NextResponse } from 'next/server';
+import { withTimeout } from 'apps/web/app/api/decorators';
 import { trustedSignerPKey } from 'apps/web/src/constants';
 import { logger } from 'apps/web/src/utils/logger';
 import { DiscountType, ProofsException, proofValidation } from 'apps/web/src/utils/proofs';
 import { sybilResistantUsernameSigning } from 'apps/web/src/utils/proofs/sybil_resistance';
-import type { NextApiRequest, NextApiResponse } from 'next';
 
 /**
  * This endpoint checks if the provided address has access to the cb1 attestation.
@@ -33,17 +33,18 @@ import type { NextApiRequest, NextApiResponse } from 'next';
  *   "discountValidatorAddress": "0x502df754f25f492cad45ed85a4de0ee7540717e7"
  * }
  */
-async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextRequest) {
   if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'method not allowed' });
+    return NextResponse.json({ error: 'method not allowed' }, { status: 405 });
   }
-  const { address, chain } = req.query;
-  const validationErr = proofValidation(address, chain);
+  const address = req.nextUrl.searchParams.get('address');
+  const chain = req.nextUrl.searchParams.get('chain');
+  const validationErr = proofValidation(address ?? '', chain ?? '');
   if (validationErr) {
-    return res.status(validationErr.status).json({ error: validationErr.error });
+    return NextResponse.json({ error: validationErr.error }, { status: validationErr.status });
   }
   if (!trustedSignerPKey) {
-    return res.status(500).json({ error: 'currently unable to sign' });
+    return NextResponse.json({ error: 'currently unable to sign' }, { status: 500 });
   }
   try {
     const result = await sybilResistantUsernameSigning(
@@ -51,16 +52,16 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       DiscountType.CB1,
       parseInt(chain as string),
     );
-    return res.status(200).json(result);
+    return NextResponse.json(result);
   } catch (error) {
     logger.error('error getting proofs for cb1 discount', error);
     if (error instanceof ProofsException) {
-      return res.status(error.statusCode).json({ error: error.message });
+      return NextResponse.json({ error: error.message }, { status: error.statusCode });
     }
   }
 
   // If error is not an instance of Error, return a generic error message
-  return res.status(500).json({ error: 'An unexpected error occurred' });
+  return NextResponse.json({ error: 'An unexpected error occurred' }, { status: 500 });
 }
 
-export default withTimeout(handler);
+export const GET = withTimeout(handler);

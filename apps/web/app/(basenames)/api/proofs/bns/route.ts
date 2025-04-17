@@ -1,4 +1,5 @@
-import { withTimeout } from 'apps/web/pages/api/decorators';
+import { NextRequest, NextResponse } from 'next/server';
+import { withTimeout } from 'apps/web/app/api/decorators';
 import { logger } from 'apps/web/src/utils/logger';
 import {
   getWalletProofs,
@@ -6,12 +7,11 @@ import {
   ProofTableNamespace,
   proofValidation,
 } from 'apps/web/src/utils/proofs';
-import { NextApiRequest, NextApiResponse } from 'next';
 
 /*
 this endpoint returns whether or not the account has a bns account
 if result array is empty, user has no bns account
-example return: 
+example return:
 {
   "address": "0xB18e4C959bccc8EF86D78DC297fb5efA99550d85",
   "namespace": "bns_discount",
@@ -19,14 +19,15 @@ example return:
   "discountValidatorAddress": "0x..."
 }
 */
-async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextRequest) {
   if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'method not allowed' });
+    return NextResponse.json({ error: 'method not allowed' }, { status: 405 });
   }
-  const { address, chain } = req.query;
-  const validationErr = proofValidation(address, chain);
+  const address = req.nextUrl.searchParams.get('address');
+  const chain = req.nextUrl.searchParams.get('chain');
+  const validationErr = proofValidation(address ?? '', chain ?? '');
   if (validationErr) {
-    return res.status(validationErr.status).json({ error: validationErr.error });
+    return NextResponse.json({ error: validationErr.error }, { status: validationErr.status });
   }
 
   try {
@@ -36,16 +37,16 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       ProofTableNamespace.BNSDiscount,
     );
 
-    return res.status(200).json(responseData);
+    return NextResponse.json(responseData);
   } catch (error: unknown) {
     if (error instanceof ProofsException) {
-      return res.status(error.statusCode).json({ error: error.message });
+      return NextResponse.json({ error: error.message }, { status: error.statusCode });
     }
     logger.error('error getting proofs for bns discount', error);
   }
 
   // If error is not an instance of Error, return a generic error message
-  return res.status(500).json({ error: 'An unexpected error occurred' });
+  return NextResponse.json({ error: 'An unexpected error occurred' }, { status: 500 });
 }
 
-export default withTimeout(handler);
+export const GET = withTimeout(handler);
