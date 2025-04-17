@@ -6,6 +6,9 @@ import { Address, Hash, stringToHex } from 'viem';
 import { USERNAME_DISCOUNT_CODE_VALIDATORS } from 'apps/web/src/addresses/usernames';
 import { getDiscountCode } from 'apps/web/src/utils/proofs/discount_code_storage';
 
+// Use force-dynamic to prevent build-time evaluation of env vars
+export const dynamic = 'force-dynamic';
+
 export type DiscountCodeResponse = {
   discountValidatorAddress: Address;
   address: Address;

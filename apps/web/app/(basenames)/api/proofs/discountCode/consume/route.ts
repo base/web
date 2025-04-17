@@ -3,14 +3,16 @@ import { logger } from 'apps/web/src/utils/logger';
 import { withTimeout } from 'apps/web/app/api/decorators';
 import { incrementDiscountCodeUsage } from 'apps/web/src/utils/proofs/discount_code_storage';
 
-/*
-  this endpoint will increment the discount code usage to prevent abuse
-*/
+// Use force-dynamic to prevent build-time evaluation of env vars
+export const dynamic = 'force-dynamic';
 
 type DiscountCodeRequest = {
   code: string;
 };
 
+/*
+  this endpoint will increment the discount code usage to prevent abuse
+*/
 async function handler(req: NextRequest) {
   if (req.method !== 'POST') {
     return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });

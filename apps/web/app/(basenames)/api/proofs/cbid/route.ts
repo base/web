@@ -8,6 +8,9 @@ import {
 import { logger } from 'apps/web/src/utils/logger';
 import { withTimeout } from 'apps/web/app/api/decorators';
 
+// Use force-dynamic to prevent build-time evaluation of env vars
+export const dynamic = 'force-dynamic';
+
 /*
 this endpoint returns whether or not the account has a cb.id
 if result array is empty, user has no cb.id
