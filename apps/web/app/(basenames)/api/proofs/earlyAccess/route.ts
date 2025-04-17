@@ -8,6 +8,9 @@ import {
   proofValidation,
 } from 'apps/web/src/utils/proofs';
 
+// Use force-dynamic to prevent build-time evaluation of env vars
+export const dynamic = 'force-dynamic';
+
 /*
 this endpoint returns whether or not the account has early access
 if result array is empty, user has no early access
