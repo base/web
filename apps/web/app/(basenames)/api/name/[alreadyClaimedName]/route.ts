@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { queryCbGpt } from 'apps/web/src/cdp/api/cb-gpt';
 import { logger } from 'apps/web/src/utils/logger';
-import { withTimeout } from 'apps/web/pages/api/decorators';
+import { withTimeout } from 'apps/web/app/api/decorators';
 
 export type NameSuggestionResponseData = {
   suggestion: string[];
