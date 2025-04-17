@@ -17,7 +17,7 @@ export const sidebar: Sidebar = [
     link: '/chain/bridges-mainnet',
   },
   {
-    text: 'Status',
+    text: 'Status ↗',
     link: 'https://status.base.org/',
   },
   {
@@ -1041,7 +1041,7 @@ export const sidebar: Sidebar = [
         ],
       },
       {
-        text: 'Chain Stats',
+        text: 'Chain Stats ↗',
         link: 'https://www.base.org/stats',
 
         text: 'Flashblocks',
