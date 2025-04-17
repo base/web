@@ -17,6 +17,10 @@ export const sidebar: Sidebar = [
     link: '/chain/bridges-mainnet',
   },
   {
+    text: 'Status',
+    link: 'https://status.base.org/',
+  },
+  {
     text: 'Builder Kits',
     items: [
       {
@@ -965,6 +969,10 @@ export const sidebar: Sidebar = [
   {
     text: 'Chain',
     items: [
+      {
+        text: 'Chain Stats',
+        link: 'https://www.base.org/stats',
+      },
       {
         text: 'General',
         collapsed: true,
