@@ -970,10 +970,6 @@ export const sidebar: Sidebar = [
     text: 'Chain',
     items: [
       {
-        text: 'Chain Stats',
-        link: 'https://www.base.org/stats',
-      },
-      {
         text: 'General',
         collapsed: true,
         items: [
@@ -1021,6 +1017,10 @@ export const sidebar: Sidebar = [
             link: '/chain/security/app-blocklist',
           },
         ],
+      },
+      {
+        text: 'Chain Stats',
+        link: 'https://www.base.org/stats',
       },
       {
         text: 'Base Contracts',
