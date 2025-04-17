@@ -8,6 +8,8 @@ import {
   proofValidation,
 } from 'apps/web/src/utils/proofs';
 
+export const dynamic = 'force-dynamic';
+
 /*
 this endpoint returns whether or not the account has a base eth nft
 if result array is empty, user has no base eth nft
