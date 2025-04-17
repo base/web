@@ -586,6 +586,10 @@ export const sidebar: Sidebar = [
             text: 'Debugging',
             link: '/builderkits/minikit/debugging',
           },
+          {
+            text: 'Thinking Social',
+            link: '/builderkits/minikit/thinking-social',
+          },
         ],
       },
       {
