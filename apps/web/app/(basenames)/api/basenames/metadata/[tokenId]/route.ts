@@ -1,37 +1,42 @@
-import { Basename } from '@coinbase/onchainkit/identity';
-import { premintMapping } from 'apps/web/pages/api/basenames/metadata/premintsMapping';
-import L2Resolver from 'apps/web/src/abis/L2Resolver';
-import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
-import { isDevelopment } from 'apps/web/src/constants';
-import { getBasenamePublicClient } from 'apps/web/src/hooks/useBasenameChain';
-import { logger } from 'apps/web/src/utils/logger';
+import { NextRequest, NextResponse } from 'next/server';
+import { base } from 'viem/chains';
 import {
   formatBaseEthDomain,
   getBasenameNameExpires,
   USERNAME_DOMAINS,
 } from 'apps/web/src/utils/usernames';
-import { NextResponse } from 'next/server';
 import { encodePacked, keccak256, namehash, toHex } from 'viem';
-import { base } from 'viem/chains';
+import { getBasenamePublicClient } from 'apps/web/src/hooks/useBasenameChain';
+import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
+import L2Resolver from 'apps/web/src/abis/L2Resolver';
+import { Basename } from '@coinbase/onchainkit/identity';
+import { logger } from 'apps/web/src/utils/logger';
+import { premintMapping } from 'apps/web/app/(basenames)/api/basenames/metadata/premintsMapping';
+import { getChain } from 'apps/web/src/utils/basenames/getChain';
+import { getDomain } from 'apps/web/src/utils/basenames/getDomain';
 
-export const config = {
-  runtime: 'edge',
-};
+export const runtime = 'edge';
 
-export default async function GET(request: Request) {
-  const url = new URL(request.url);
+export async function GET(request: NextRequest) {
+  const domainName = getDomain(request);
 
-  const domainName = isDevelopment ? `${url.protocol}//${url.host}` : 'https://www.base.org';
-  let tokenId = url.searchParams.get('tokenId');
-  if (tokenId?.endsWith('.json')) tokenId = tokenId.slice(0, -5);
-  const chainIdFromParams = url.searchParams.get('chainId');
-  const chainId = chainIdFromParams ? Number(chainIdFromParams) : base.id;
+  let tokenId = request.nextUrl.searchParams.get('tokenId');
+  if (tokenId?.endsWith('.json')) {
+    tokenId = tokenId.slice(0, -5);
+  }
+  if (!tokenId) {
+    return NextResponse.json({ error: '400: tokenId is missing' }, { status: 400 });
+  }
+
+  const chainId = getChain(request);
+  if (!chainId) {
+    return NextResponse.json({ error: '400: chainId is missing' }, { status: 400 });
+  }
+
   const baseDomainName = USERNAME_DOMAINS[chainId];
-
-  if (!tokenId) return NextResponse.json({ error: '406: tokenId is missing' }, { status: 406 });
-  if (!chainId) return NextResponse.json({ error: '406: chainId is missing' }, { status: 406 });
-  if (!baseDomainName)
-    return NextResponse.json({ error: '406: base domain name is missing' }, { status: 406 });
+  if (!baseDomainName) {
+    return NextResponse.json({ error: '400: base domain name is missing' }, { status: 400 });
+  }
 
   // Get labelhash from tokenId
   const labelhash = toHex(BigInt(tokenId), { size: 32 });
@@ -41,8 +46,7 @@ export default async function GET(request: Request) {
     encodePacked(['bytes32', 'bytes32'], [namehash(baseDomainName), labelhash]),
   );
 
-  let basenameFormatted = undefined;
-  let nameExpires = undefined;
+  let basenameFormatted, nameExpires;
   try {
     const client = getBasenamePublicClient(chainId);
     basenameFormatted = await client.readContract({
@@ -65,7 +69,7 @@ export default async function GET(request: Request) {
     return NextResponse.json({ error: '404: Basename not found' }, { status: 404 });
   }
 
-  const basenamePure = basenameFormatted?.replace(`.${baseDomainName}`, '');
+  const basenamePure = basenameFormatted.replace(`.${baseDomainName}`, '');
   const basenameForUrl = chainId === base.id ? basenamePure : basenameFormatted;
   const tokenMetadata = {
     // This is the URL to the image of the item.
