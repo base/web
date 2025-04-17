@@ -1,11 +1,12 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
 import { vercelDb as db } from 'apps/web/src/utils/datastores/rds';
 import { kv } from 'apps/web/src/utils/datastores/kv';
 import { logger } from 'apps/web/src/utils/logger';
-import { withTimeout } from 'apps/web/pages/api/decorators';
+import { withTimeout } from 'apps/web/app/api/decorators';
 
-const pageKey = 'api.ocs_registry.featured';
-async function handler(req: NextApiRequest, res: NextApiResponse) {
+const PAGE_KEY = 'api.ocs_registry.featured';
+
+async function handler() {
   const content = await db
     .selectFrom('content')
     .where('is_featured', '=', true)
@@ -20,14 +21,17 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   };
 
   try {
-    await kv.incr(`stat:requests.${pageKey}`);
+    await kv.incr(`stat:requests.${PAGE_KEY}`);
   } catch (error) {
     logger.error('error getting featured registry entries', error);
   }
 
   // Set caching headers
-  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate');
-  res.status(200).json(response);
+  return NextResponse.json(response, {
+    headers: {
+      'Cache-Control': 's-maxage=300, stale-while-revalidate',
+    },
+  });
 }
 
-export default withTimeout(handler);
+export const GET = withTimeout(handler);
