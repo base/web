@@ -99,8 +99,16 @@ export const RegistrationContext = createContext<RegistrationContextProps>({
   discount: undefined,
   allActiveDiscounts: new Set(),
   registerName: function () {
+    return Promise.resolve();
+  },
+  reverseRecord: false,
+  setReverseRecord: function () {
     return undefined;
   },
+  hasExistingBasename: false,
+  registerNameIsPending: false,
+  registerNameError: null,
+  code: undefined,
 });
 
 type RegistrationProviderProps = {

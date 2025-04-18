@@ -4,8 +4,8 @@ import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames
 import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import useCapabilitiesSafe from 'apps/web/src/hooks/useCapabilitiesSafe';
-import useWriteContractsWithLogs from 'apps/web/src/hooks/useWriteContractsWithLogs';
-import useWriteContractWithReceipt from 'apps/web/src/hooks/useWriteContractWithReceipt';
+import useWriteContractsWithLogs, { BatchCallsStatus } from 'apps/web/src/hooks/useWriteContractsWithLogs';
+import useWriteContractWithReceipt, { WriteTransactionWithReceiptStatus } from 'apps/web/src/hooks/useWriteContractWithReceipt';
 import {
   formatBaseEthDomain,
   IS_EARLY_ACCESS,
@@ -13,9 +13,20 @@ import {
   REGISTER_CONTRACT_ABI,
   REGISTER_CONTRACT_ADDRESSES,
 } from 'apps/web/src/utils/usernames';
-import { useCallback, useMemo, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
 import { encodeFunctionData, namehash } from 'viem';
 import { useAccount } from 'wagmi';
+
+type UseRegisterNameCallbackReturnType = {
+  callback: () => Promise<void>;
+  isPending: boolean;
+  error: Error | null;
+  reverseRecord: boolean;
+  setReverseRecord: Dispatch<SetStateAction<boolean>>
+  hasExistingBasename: boolean;
+  batchCallsStatus: BatchCallsStatus;
+  registerNameStatus: WriteTransactionWithReceiptStatus;
+}
 
 function secondsInYears(years: number): bigint {
   const secondsPerYear = 365.25 * 24 * 60 * 60; // .25 accounting for leap years
@@ -28,7 +39,7 @@ export function useRegisterNameCallback(
   years: number,
   discountKey?: `0x${string}`,
   validationData?: `0x${string}`,
-) {
+): UseRegisterNameCallbackReturnType {
   const { address } = useAccount();
   const { basenameChain } = useBasenameChain();
   const { logError } = useErrors();
@@ -61,7 +72,7 @@ export function useRegisterNameCallback(
     transactionStatus: registerNameStatus,
     transactionIsLoading: registerNameIsLoading,
     transactionError: registerNameError,
-  } = useWriteContractWithReceipt({
+  } = useWriteContractWithReceipt<typeof REGISTER_CONTRACT_ABI, 'register'>({
     chain: basenameChain,
     eventName: 'register_name',
   });
