@@ -60,26 +60,15 @@ export function useRenewBasename({ name, years }: UseRenewBasenameProps) {
       return;
     }
 
-    const addressData = encodeFunctionData({
-      abi: L2ResolverAbi,
-      functionName: 'setAddr',
-      args: [namehash(formatBaseEthDomain(name, basenameChain.id)), address],
-    });
-
-    const nameData = encodeFunctionData({
-      abi: L2ResolverAbi,
-      functionName: 'setName',
-      args: [
-        namehash(formatBaseEthDomain(name, basenameChain.id)),
-        formatBaseEthDomain(name, basenameChain.id),
-      ],
-    });
-
     const renewRequest = [normalizedName, secondsInYears(years)];
 
     try {
       if (!paymasterServiceEnabled) {
-        console.log('Renewing name without paymaster');
+        console.log('Renewing name without paymaster', {
+          renewRequest,
+          totalPrice,
+          contractAddress: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
+        });
         await initiateRenewName({
           abi: REGISTER_CONTRACT_ABI,
           address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
