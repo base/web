@@ -46,8 +46,7 @@ export function useRenewBasename({ name, years }: UseRenewBasenameProps) {
 
   // Params
   const normalizedName = normalizeEnsDomainName(name);
-  const { basePrice, premiumPrice } = useRentPrice(normalizedName, years);
-  const totalPrice = basePrice + premiumPrice;
+  const { basePrice: price } = useRentPrice(normalizedName, years);
 
   // Callback
   const renewName = useCallback(async () => {
@@ -61,7 +60,7 @@ export function useRenewBasename({ name, years }: UseRenewBasenameProps) {
       if (!paymasterServiceEnabled) {
         console.log('Renewing name without paymaster', {
           renewRequest,
-          totalPrice,
+          price,
           contractAddress: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
         });
         await initiateRenewName({
@@ -69,7 +68,7 @@ export function useRenewBasename({ name, years }: UseRenewBasenameProps) {
           address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
           functionName: 'renew',
           args: renewRequest,
-          value: totalPrice,
+          value: price,
         });
       } else {
         console.log('Renewing name with paymaster');
@@ -80,7 +79,7 @@ export function useRenewBasename({ name, years }: UseRenewBasenameProps) {
               address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
               functionName: 'renew',
               args: renewRequest,
-              value: totalPrice,
+              value: price,
             },
           ],
           account: address,
@@ -99,15 +98,13 @@ export function useRenewBasename({ name, years }: UseRenewBasenameProps) {
     name,
     normalizedName,
     paymasterServiceEnabled,
-    totalPrice,
+    price,
     years,
   ]);
 
   return {
     callback: renewName,
-    totalPrice,
-    basePrice,
-    premiumPrice,
+    price,
     isPending: renewNameIsLoading || batchCallsIsLoading,
     error: renewNameError ?? batchCallsError,
     renewNameStatus,

@@ -45,9 +45,7 @@ export default function UsernameProfileRenewalModal({
 
   const {
     callback: renewBasename,
-    totalPrice,
-    basePrice,
-    premiumPrice,
+    price,
     isPending,
     error,
     renewNameStatus,
@@ -101,7 +99,7 @@ export default function UsernameProfileRenewalModal({
           <p>
             Renew {name} for {years} {years === 1 ? 'year' : 'years'}
           </p>
-          <p>Renewal Price: {totalPrice ? formatEther(totalPrice) : 0} ETH</p>
+          <p>Renewal Price: {price ? formatEther(price) : '...'} ETH</p>
           <Button variant={ButtonVariants.Black} fullWidth rounded onClick={renewBasename}>
             Continue
           </Button>
