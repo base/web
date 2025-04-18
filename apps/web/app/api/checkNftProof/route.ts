@@ -7,7 +7,7 @@ type RequestBody = {
   address: Address;
 };
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   const { address } = (await request.json()) as RequestBody;
   if (!address) {
     return NextResponse.json({ error: '400: address is required' }, { status: 400 });
