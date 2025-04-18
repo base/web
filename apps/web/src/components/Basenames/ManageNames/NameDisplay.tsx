@@ -44,6 +44,7 @@ type NameDisplayProps = {
 
 export default function NameDisplay({ domain, isPrimary, tokenId, expiresAt }: NameDisplayProps) {
   const expirationText = formatDistanceToNow(parseISO(expiresAt), { addSuffix: true });
+  const name = domain.split('.')[0];
 
   const { setPrimaryUsername } = useUpdatePrimaryName(domain as Basename);
 
@@ -117,7 +118,7 @@ export default function NameDisplay({ domain, isPrimary, tokenId, expiresAt }: N
           />
         </ProfileTransferOwnershipProvider>
         <UsernameProfileRenewalModal
-          name={domain as Basename}
+          name={name}
           isOpen={isRenewalModalOpen}
           onClose={closeRenewalModal}
           // onSuccess={removeNameFromUI}
