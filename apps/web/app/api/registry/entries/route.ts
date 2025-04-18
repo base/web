@@ -17,54 +17,60 @@ async function handler(req: NextRequest) {
   const offset = (pageNum - 1) * limitNum;
 
   // Base query for filtering by category if provided
-  const db = getVercelDb();
-  let baseQuery = db.selectFrom('content');
-
-  if (category) {
-    baseQuery = baseQuery.where('category', 'ilike', `%${category}%`);
-  }
-
-  if (curation) {
-    baseQuery = baseQuery.where('curation', 'ilike', `%${curation}%`);
-  }
-
-  // Fetch total records count
-  const totalRecordsQuery = baseQuery.select(db.fn.count('id').as('count'));
-  const totalRecords = await totalRecordsQuery.execute();
-  const totalRecordsCount = parseInt(totalRecords[0].count as string, 10);
-
-  // Fetch paginated content
-  const contentQuery = baseQuery.selectAll().limit(limitNum).offset(offset);
-  const content = await contentQuery.execute();
-
-  const response = {
-    data: content.map((row) => ({
-      id: row.id,
-      category: row.category,
-      content: row.content,
-      updated_at: row.updated_at,
-      created_at: row.created_at,
-    })),
-    pagination: {
-      total_records: totalRecordsCount,
-      current_page: pageNum,
-      total_pages: Math.ceil(totalRecordsCount / limitNum),
-      limit: limitNum,
-    },
-  };
-
   try {
+    const db = getVercelDb();
+    let baseQuery = db.selectFrom('content');
+
+    if (category) {
+      baseQuery = baseQuery.where('category', 'ilike', `%${category}%`);
+    }
+
+    if (curation) {
+      baseQuery = baseQuery.where('curation', 'ilike', `%${curation}%`);
+    }
+
+    // Fetch total records count
+    const totalRecordsQuery = baseQuery.select(db.fn.count('id').as('count'));
+    const totalRecords = await totalRecordsQuery.execute();
+    const totalRecordsCount = parseInt(totalRecords[0].count as string, 10);
+
+    // Fetch paginated content
+    const contentQuery = baseQuery.selectAll().limit(limitNum).offset(offset);
+    const content = await contentQuery.execute();
+
+    const response = {
+      data: content.map((row) => ({
+        id: row.id,
+        category: row.category,
+        content: row.content,
+        updated_at: row.updated_at,
+        created_at: row.created_at,
+      })),
+      pagination: {
+        total_records: totalRecordsCount,
+        current_page: pageNum,
+        total_pages: Math.ceil(totalRecordsCount / limitNum),
+        limit: limitNum,
+      },
+    };
+
+    // Increment request count
     const kv = getKv();
     await kv.incr(`stat:requests.${PAGE_KEY}`);
+
+    // Set caching headers
+    return NextResponse.json(response, {
+      headers: {
+        'Cache-Control': 's-maxage=300, stale-while-revalidate',
+      },
+    });
   } catch (error) {
     logger.error('error getting registry entries', error);
+    return NextResponse.json(
+      { error: `Error fetching registry entries: ${error}` },
+      { status: 500 },
+    );
   }
-  // Set caching headers
-  return NextResponse.json(response, {
-    headers: {
-      'Cache-Control': 's-maxage=300, stale-while-revalidate',
-    },
-  });
 }
 
 export const GET = withTimeout(handler);
