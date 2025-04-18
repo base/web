@@ -168,17 +168,22 @@ class KVManager {
 }
 
 function createDefaultKVManager() {
-  const host = isDevelopment ? process.env.KV_HOST_DEVELOPMENT : process.env.KV_HOST;
-  const port = isDevelopment
-    ? Number(process.env.KV_PORT_DEVELOPMENT)
-    : Number(process.env.KV_PORT);
+  try {
+    const host = isDevelopment ? process.env.KV_HOST_DEVELOPMENT : process.env.KV_HOST;
+    const port = isDevelopment
+      ? Number(process.env.KV_PORT_DEVELOPMENT)
+      : Number(process.env.KV_PORT);
 
-  if (!host || !port) {
-    throw new Error('No KV host or port provided');
+    if (!host || !port) {
+      throw new Error('No KV host or port provided');
+    }
+
+    return new KVManager({ host, port });
+  } catch (error) {
+    logger.error('Failed to create KV manager', error);
   }
-
-  return new KVManager({ host, port });
 }
 
 // Exports an instance of KVManager with the default CBHQ KV URL
-export const kv = createDefaultKVManager();
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+export const kv = createDefaultKVManager()!;
