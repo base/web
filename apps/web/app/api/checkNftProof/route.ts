@@ -3,6 +3,9 @@ import { Address } from 'viem';
 import { kv } from 'apps/web/src/utils/datastores/kv';
 import { logger } from 'apps/web/src/utils/logger';
 
+// Use edge runtime to prevent build-time evaluation of env vars
+export const runtime = 'edge';
+
 type RequestBody = {
   address: Address;
 };

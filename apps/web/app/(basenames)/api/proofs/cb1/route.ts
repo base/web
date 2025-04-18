@@ -5,8 +5,8 @@ import { logger } from 'apps/web/src/utils/logger';
 import { DiscountType, ProofsException, proofValidation } from 'apps/web/src/utils/proofs';
 import { sybilResistantUsernameSigning } from 'apps/web/src/utils/proofs/sybil_resistance';
 
-// Use force-dynamic to prevent build-time evaluation of env vars
-export const dynamic = 'force-dynamic';
+// Use edge runtime to prevent build-time evaluation of env vars
+export const runtime = 'edge';
 
 /**
  * This endpoint checks if the provided address has access to the cb1 attestation.
