@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import UsernameProfileProvider from 'apps/web/src/components/Basenames/UsernameProfileContext';
+import UsernameProfileRenewalModal from 'apps/web/src/components/Basenames/UsernameProfileRenewalModal';
 import ProfileTransferOwnershipProvider from 'apps/web/src/components/Basenames/UsernameProfileTransferOwnershipModal/context';
 import UsernameProfileTransferOwnershipModal from 'apps/web/src/components/Basenames/UsernameProfileTransferOwnershipModal';
 import BasenameAvatar from 'apps/web/src/components/Basenames/BasenameAvatar';
@@ -46,11 +47,16 @@ export default function NameDisplay({ domain, isPrimary, tokenId, expiresAt }: N
 
   const { setPrimaryUsername } = useUpdatePrimaryName(domain as Basename);
 
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const openModal = useCallback(() => setIsOpen(true), []);
-  const closeModal = useCallback(() => setIsOpen(false), []);
-
+  // Transfer state and callbacks
+  const [isTransferModalOpen, setIsTransferModalOpen] = useState<boolean>(false);
+  const openTransferModal = useCallback(() => setIsTransferModalOpen(true), []);
+  const closeTransferModal = useCallback(() => setIsTransferModalOpen(false), []);
   const { removeNameFromUI } = useRemoveNameFromUI(domain as Basename);
+
+  // Renewal state and callbacks
+  const [isRenewalModalOpen, setIsRenewalModalOpen] = useState<boolean>(false);
+  const openRenewalModal = useCallback(() => setIsRenewalModalOpen(true), []);
+  const closeRenewalModal = useCallback(() => setIsRenewalModalOpen(false), []);
 
   return (
     <li key={tokenId} className={pillNameClasses}>
@@ -78,7 +84,7 @@ export default function NameDisplay({ domain, isPrimary, tokenId, expiresAt }: N
               <Icon name="verticalDots" color="currentColor" width="2rem" height="2rem" />
             </DropdownToggle>
             <DropdownMenu>
-              <DropdownItem onClick={openModal}>
+              <DropdownItem onClick={openTransferModal}>
                 <span className="flex flex-row items-center gap-2">
                   <Icon name="transfer" color="currentColor" width="1rem" height="1rem" /> Transfer
                   name
@@ -93,6 +99,11 @@ export default function NameDisplay({ domain, isPrimary, tokenId, expiresAt }: N
                   </span>
                 </DropdownItem>
               ) : null}
+              <DropdownItem onClick={openRenewalModal}>
+                <span className="flex flex-row items-center gap-2">
+                  <Icon name="clock" color="currentColor" width="1rem" height="1rem" /> Renew Name
+                </span>
+              </DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </div>
@@ -100,11 +111,17 @@ export default function NameDisplay({ domain, isPrimary, tokenId, expiresAt }: N
       <UsernameProfileProvider username={domain as Basename}>
         <ProfileTransferOwnershipProvider>
           <UsernameProfileTransferOwnershipModal
-            isOpen={isOpen}
-            onClose={closeModal}
+            isOpen={isTransferModalOpen}
+            onClose={closeTransferModal}
             onSuccess={removeNameFromUI}
           />
         </ProfileTransferOwnershipProvider>
+        <UsernameProfileRenewalModal
+          name={domain as Basename}
+          isOpen={isRenewalModalOpen}
+          onClose={closeRenewalModal}
+          // onSuccess={removeNameFromUI}
+        />
       </UsernameProfileProvider>
     </li>
   );
