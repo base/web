@@ -17,6 +17,10 @@ export const sidebar: Sidebar = [
     link: '/chain/bridges-mainnet',
   },
   {
+    text: 'Status ↗',
+    link: 'https://status.base.org/',
+  },
+  {
     text: 'Builder Kits',
     items: [
       {
@@ -76,6 +80,10 @@ export const sidebar: Sidebar = [
               {
                 text: 'Use AI-powered IDEs',
                 link: '/builderkits/onchainkit/guides/using-ai-powered-ides',
+              },
+              {
+                text: 'AI Prompting Guide',
+                link: '/builderkits/onchainkit/guides/ai-prompting-guide',
               },
             ],
           },
@@ -627,6 +635,10 @@ export const sidebar: Sidebar = [
                 text: 'React Native Project',
                 link: '/identity/smart-wallet/quickstart/react-native-project',
               },
+              {
+                text: 'AI Tools',
+                link: '/identity/smart-wallet/quickstart/ai-tools-available-for-devs',
+              },
             ],
           },
           {
@@ -931,7 +943,7 @@ export const sidebar: Sidebar = [
                 ],
               },
               {
-                text: 'Sub Account Reference',
+                text: 'Sub Accounts Reference',
                 link: '/identity/smart-wallet/technical-reference/sdk/sub-account-reference',
               },
             ],
@@ -1031,6 +1043,14 @@ export const sidebar: Sidebar = [
             link: '/chain/security/app-blocklist',
           },
         ],
+      },
+      {
+        text: 'Chain Stats ↗',
+        link: 'https://www.base.org/stats',
+      },
+      {
+        text: 'Flashblocks ↗',
+        link: '/chain/flashblocks',
       },
       {
         text: 'Base Contracts',
