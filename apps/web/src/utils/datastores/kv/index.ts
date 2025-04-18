@@ -185,9 +185,7 @@ function createDefaultKVManager() {
   }
 }
 
-// Exports an instance of KVManager with the default CBHQ KV URL
-// export const kv = createDefaultKVManager();
-
+// Exports getKv function that returns the default singleton instance of KVManager
 let kv: KVManager | undefined = undefined;
 export function getKv() {
   if (!kv) {
