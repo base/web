@@ -79,5 +79,4 @@ async function handler(request: NextRequest) {
   }
 }
 
-// TODO: add timeout
 export const GET = withTimeout(handler);
