@@ -43,5 +43,7 @@ function createVercelRDSManager() {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 export const db = createDefaultRDSManager()!;
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 export const vercelDb = createVercelRDSManager()!;
