@@ -3,8 +3,8 @@ import { Address } from 'viem';
 import { kv } from 'apps/web/src/utils/datastores/kv';
 import { logger } from 'apps/web/src/utils/logger';
 
-// Use edge runtime to prevent build-time evaluation of env vars
-export const runtime = 'edge';
+// Use force-dynamic to prevent build-time evaluation of env vars
+export const dynamic = 'force-dynamic';
 
 type RequestBody = {
   address: Address;

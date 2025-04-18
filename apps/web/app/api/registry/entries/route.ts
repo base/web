@@ -4,8 +4,8 @@ import { kv } from 'apps/web/src/utils/datastores/kv';
 import { logger } from 'apps/web/src/utils/logger';
 import { withTimeout } from 'apps/web/app/api/decorators';
 
-// Use edge runtime to prevent build-time evaluation of env vars
-export const runtime = 'edge';
+// Use force-dynamic to prevent build-time evaluation of env vars
+export const dynamic = 'force-dynamic';
 
 const PAGE_KEY = 'api.ocs_registry.entries';
 
