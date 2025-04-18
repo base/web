@@ -2942,7 +2942,7 @@ Navigate to one of the Superchain Bridges to look up your transaction.
 
 Base is committed to decentralization and the Superchain vision. Leveraging the community to bootstrap the Superchain bridges is a step in that direction; increasing censorship resistance and decentralization.
 
-**Who operates the Superchain Bridges like Superbridge.com and Brid.gg?**
+**Who operates the Superchain Bridges like Superbridge.app and Brid.gg?**
 
 Superchain Bridges are operated by third parties, not by Coinbase Technologies, Inc. ("Coinbase"). Coinbase does not control, operate, or assume any responsibility for the performance of these external platforms. Before using any Superchain Bridge, you may be required to agree to their terms and conditions. We strongly recommend you review these terms carefully, as well as any privacy policies, to understand your rights and obligations. The integration or inclusion of the Superchain Bridges does not imply an endorsement or recommendation of any bridge by Coinbase.
 
