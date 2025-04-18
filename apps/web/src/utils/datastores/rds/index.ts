@@ -26,7 +26,7 @@ function createDefaultRDSManager() {
     } else {
       logger.error('Failed to connect to RDS', error);
     }
-    // throw new Error(`Failed to connect to RDS: ${error}`);
+    throw new Error(`Failed to connect to RDS: ${error}`);
   }
 }
 
@@ -39,11 +39,22 @@ function createVercelRDSManager() {
     } else {
       logger.error('Failed to connect to Vercel Postgres', error);
     }
-    // throw new Error(`Failed to connect to Vercel Postgres: ${error}`);
+    throw new Error(`Failed to connect to Vercel Postgres: ${error}`);
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-export const db = createDefaultRDSManager()!;
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-export const vercelDb = createVercelRDSManager()!;
+let db: Kysely<Database> | undefined = undefined;
+export function getDb() {
+  if (!db) {
+    db = createDefaultRDSManager();
+  }
+  return db;
+}
+
+let vercelDb: Kysely<Database> | undefined = undefined;
+export function getVercelDb() {
+  if (!vercelDb) {
+    vercelDb = createVercelRDSManager();
+  }
+  return vercelDb;
+}
