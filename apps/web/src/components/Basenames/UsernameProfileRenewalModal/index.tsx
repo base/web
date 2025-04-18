@@ -61,6 +61,10 @@ export default function UsernameProfileRenewalModal({
     setCurrentRenewalStep(RenewalSteps.Confirm);
   }, []);
 
+  if (!address) {
+    return null;
+  }
+
   return (
     <Modal
       isOpen={isOpen}

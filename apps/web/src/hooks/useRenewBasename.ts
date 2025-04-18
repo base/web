@@ -1,7 +1,4 @@
-import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { useErrors } from 'apps/web/contexts/Errors';
-import L2ResolverAbi from 'apps/web/src/abis/L2Resolver';
-import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import useCapabilitiesSafe from 'apps/web/src/hooks/useCapabilitiesSafe';
 import { useRentPrice } from 'apps/web/src/hooks/useRentPrice';
@@ -9,14 +6,12 @@ import useWriteContractsWithLogs from 'apps/web/src/hooks/useWriteContractsWithL
 import useWriteContractWithReceipt from 'apps/web/src/hooks/useWriteContractWithReceipt';
 import { secondsInYears } from 'apps/web/src/utils/secondsInYears';
 import {
-  formatBaseEthDomain,
   normalizeEnsDomainName,
   REGISTER_CONTRACT_ABI,
   REGISTER_CONTRACT_ADDRESSES,
 } from 'apps/web/src/utils/usernames';
 import { useCallback } from 'react';
-import { encodeFunctionData, namehash } from 'viem';
-import { useAccount, useSwitchChain } from 'wagmi';
+import { useAccount } from 'wagmi';
 
 type UseRenewBasenameProps = {
   name: string;
