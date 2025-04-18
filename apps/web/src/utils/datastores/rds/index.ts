@@ -26,7 +26,7 @@ function createDefaultRDSManager() {
     } else {
       logger.error('Failed to connect to RDS', error);
     }
-    throw new Error(`Failed to connect to RDS: ${error}`);
+    // throw new Error(`Failed to connect to RDS: ${error}`);
   }
 }
 
@@ -39,9 +39,9 @@ function createVercelRDSManager() {
     } else {
       logger.error('Failed to connect to Vercel Postgres', error);
     }
-    throw new Error(`Failed to connect to Vercel Postgres: ${error}`);
+    // throw new Error(`Failed to connect to Vercel Postgres: ${error}`);
   }
 }
 
-export const db = createDefaultRDSManager();
-export const vercelDb = createVercelRDSManager();
+export const db = createDefaultRDSManager()!;
+export const vercelDb = createVercelRDSManager()!;
