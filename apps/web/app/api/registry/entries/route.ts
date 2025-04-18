@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { vercelDb as db } from 'apps/web/src/utils/datastores/rds';
-import { kv } from 'apps/web/src/utils/datastores/kv';
+import { getVercelDb } from 'apps/web/src/utils/datastores/rds';
+import { getKv } from 'apps/web/src/utils/datastores/kv';
 import { logger } from 'apps/web/src/utils/logger';
 import { withTimeout } from 'apps/web/app/api/decorators';
-
-// Use force-dynamic to prevent build-time evaluation of env vars
-export const dynamic = 'force-dynamic';
 
 const PAGE_KEY = 'api.ocs_registry.entries';
 
@@ -20,6 +17,7 @@ async function handler(req: NextRequest) {
   const offset = (pageNum - 1) * limitNum;
 
   // Base query for filtering by category if provided
+  const db = getVercelDb();
   let baseQuery = db.selectFrom('content');
 
   if (category) {
@@ -56,6 +54,7 @@ async function handler(req: NextRequest) {
   };
 
   try {
+    const kv = getKv();
     await kv.incr(`stat:requests.${PAGE_KEY}`);
   } catch (error) {
     logger.error('error getting registry entries', error);

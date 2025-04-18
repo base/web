@@ -181,9 +181,17 @@ function createDefaultKVManager() {
     return new KVManager({ host, port });
   } catch (error) {
     logger.error('Failed to create KV manager', error);
+    throw new Error(`Failed to create KV manager: ${error}`);
   }
 }
 
 // Exports an instance of KVManager with the default CBHQ KV URL
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-export const kv = createDefaultKVManager()!;
+// export const kv = createDefaultKVManager();
+
+let kv: KVManager | undefined = undefined;
+export function getKv() {
+  if (!kv) {
+    kv = createDefaultKVManager();
+  }
+  return kv;
+}

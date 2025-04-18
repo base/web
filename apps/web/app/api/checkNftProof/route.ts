@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Address } from 'viem';
-import { kv } from 'apps/web/src/utils/datastores/kv';
+import { getKv } from 'apps/web/src/utils/datastores/kv';
 import { logger } from 'apps/web/src/utils/logger';
-
-// Use force-dynamic to prevent build-time evaluation of env vars
-export const dynamic = 'force-dynamic';
 
 type RequestBody = {
   address: Address;
@@ -17,6 +14,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    const kv = getKv();
     const proof = await kv.get<string[]>(`proof:${address}`);
     if (!proof) {
       return NextResponse.json(

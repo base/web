@@ -1,15 +1,13 @@
 import { NextResponse } from 'next/server';
-import { vercelDb as db } from 'apps/web/src/utils/datastores/rds';
-import { kv } from 'apps/web/src/utils/datastores/kv';
+import { getVercelDb } from 'apps/web/src/utils/datastores/rds';
+import { getKv } from 'apps/web/src/utils/datastores/kv';
 import { logger } from 'apps/web/src/utils/logger';
 import { withTimeout } from 'apps/web/app/api/decorators';
-
-// Use force-dynamic to prevent build-time evaluation of env vars
-export const dynamic = 'force-dynamic';
 
 const PAGE_KEY = 'api.ocs_registry.featured';
 
 async function handler() {
+  const db = getVercelDb();
   const content = await db
     .selectFrom('content')
     .where('is_featured', '=', true)
@@ -24,6 +22,7 @@ async function handler() {
   };
 
   try {
+    const kv = getKv();
     await kv.incr(`stat:requests.${PAGE_KEY}`);
   } catch (error) {
     logger.error('error getting featured registry entries', error);
