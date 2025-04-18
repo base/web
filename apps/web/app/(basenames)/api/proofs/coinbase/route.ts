@@ -11,8 +11,8 @@ import {
 import { sybilResistantUsernameSigning } from 'apps/web/src/utils/proofs/sybil_resistance';
 import { Address } from 'viem';
 
-// Use edge runtime to prevent build-time evaluation of env vars
-export const runtime = 'edge';
+// Use force-dynamic to prevent build-time evaluation of env vars
+export const dynamic = 'force-dynamic';
 
 // Coinbase verified account *and* CB1 structure
 export type CoinbaseProofResponse = {

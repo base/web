@@ -8,8 +8,8 @@ import {
   proofValidation,
 } from 'apps/web/src/utils/proofs';
 
-// Use edge runtime to prevent build-time evaluation of env vars
-export const runtime = 'edge';
+// Use force-dynamic to prevent build-time evaluation of env vars
+export const dynamic = 'force-dynamic';
 
 /*
 this endpoint returns whether or not the account has a base eth nft
