@@ -1,0 +1,8 @@
+{
+  "name": "The Graph",
+  "url": "https://thegraph.com/",
+  "description": "The Graph is the indexing and query layer of web3. Developers build and publish open APIs, called subgraphs, that applications can query using GraphQL. The Graph currently supports indexing data from over 40 different networks including Ethereum, NEAR, Arbitrum, Optimism, ZkSync, Polygon, Avalanche, Celo, Fantom, Moonbeam, IPFS, Cosmos Hub and PoA with more networks coming soon. To date, 88,900+ subgraphs have been deployed on the hosted service. Tens of thousands of developers use The Graph for applications such as Uniswap, Synthetix, KnownOrigin, Art Blocks, Gnosis, Balancer, Livepeer, DAOstack, Audius, Decentraland, and many others.\n\nThe Graph Network’s self service experience for developers launched in July 2021; since then over 800+ subgraphs have migrated to the Network, with 450+ Indexers serving subgraph queries, 11,300+ Delegators, and 2,500+ Curators to date. More than 5.6+ million GRT has been signaled to date.",
+  "imageUrl": "/images/partners/the_graph.webp",
+  "category": "infra",
+  "subcategory": "data"
+}

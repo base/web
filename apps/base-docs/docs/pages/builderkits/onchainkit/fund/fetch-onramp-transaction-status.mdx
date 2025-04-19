@@ -13,23 +13,24 @@ const transactions = await fetchOnrampTransactionStatus({
   partnerUserId: 'user123',
   nextPageKey: '',
   pageSize: '10',
+  apiKey: 'your-api-key', // Required when using without OnchainKitProvider or in non-React environment
 });
 ```
 
 ```json [return value]
 {
-  transactions: [
+  "transactions": [
     {
-      id: "tx123",
-      status: "ONRAMP_TRANSACTION_STATUS_SUCCESS",
-      purchaseAmount: { value: "0.1", currency: "ETH" },
-      paymentAmount: { value: "200.00", currency: "USD" },
-      network: "ethereum",
-      createdAt: "2024-01-01T12:00:00Z"
+      "id": "tx123",
+      "status": "ONRAMP_TRANSACTION_STATUS_SUCCESS",
+      "purchaseAmount": { "value": "0.1", "currency": "ETH" },
+      "paymentAmount": { "value": "200.00", "currency": "USD" },
+      "network": "ethereum",
+      "createdAt": "2024-01-01T12:00:00Z"
     }
   ],
-  nextPageKey: "next_page_token",
-  totalCount: "1"
+  "nextPageKey": "next_page_token",
+  "totalCount": "1"
 }
 ```
 
@@ -48,6 +49,12 @@ const transactions = await fetchOnrampTransactionStatus({
   partnerUserId: string; // Your unique identifier for the user
   nextPageKey: string;   // Token for pagination
   pageSize: string;      // Number of transactions per page
+  /**
+   * Optional API key for Coinbase Onramp. If not provided, the API key from
+   * OnchainKitProvider will be used. Required when using the utility without
+   * OnchainKitProvider or in a non-React environment.
+   */
+  apiKey?: string;
 }
 ```
 

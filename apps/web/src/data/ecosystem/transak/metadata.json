@@ -1,0 +1,8 @@
+{
+  "name": "Transak",
+  "url": "https://transak.com/",
+  "description": "Transak is a global web3 payment and onboarding infrastructure provider, facilitating seamless transactions between traditional finance and crypto assets.\n\nWeb3 platforms using Transak can embed the best way to onboard users by enabling them to buy or sell crypto assets from 150+ countries, as Transak abstracts away the complexity of user KYC, risk monitoring, compliance, payment methods and customer support.\n\nTransak’s product suite includes robust fiat-to-crypto services (On/Off-Ramps), a fiat-to-smart-contract solution (Transak One), and a fiat-to-NFT checkout solution.\n\nAs a regulated, non-custodial payments layer, Transak supports onboarding to 160+ crypto assets across 75+ blockchains. Trusted by over 350+ applications, including MetaMask and Coinbase Wallet, Transak is making web3 applications more accessible.\n\nFor more information, visit transak.com or follow us on twitter.com/transak",
+  "imageUrl": "/images/partners/transak.webp",
+  "category": "onramp",
+  "subcategory": "fiat on-ramp"
+}

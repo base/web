@@ -172,23 +172,23 @@ Now lets connect the frontend to interact with your recently deployed contract.
 
 ## Interacting with your contract
 
-To interact with the smart contract logic, we need to submit an onchain transaction. We can do this easily with the `TransactionDefault` component. This is a simplified version of the `Transaction` component, designed to streamline the integration process. Instead of manually defining each subcomponent and prop, we can use this shorthand version which renders our suggested implementation of the component and includes the `TransactionButton` and `TransactionToast` components.
+To interact with the smart contract logic, we need to submit an onchain transaction. We can do this easily with the `Transaction` component. This is a simplified version of the `Transaction` component, designed to streamline the integration process. Instead of manually defining each subcomponent and prop, we can use this shorthand version which renders our suggested implementation of the component and includes the `TransactionButton` and `TransactionToast` components.
 
 ::::steps
 
-### Add the `TransactionDefault` component
+### Add the `Transaction` component
 
-Lets add the `TransactionDefault` component to our `page.tsx` file. Delete the existing content in the `main` tag and replace it with the snippet below.
+Lets add the `Transaction` component to our `page.tsx` file. Delete the existing content in the `main` tag and replace it with the snippet below.
 
 ```tsx twoslash [page.tsx]
 // @noErrors: 2307 - Cannot find module '@/calls'
-import { TransactionDefault } from '@coinbase/onchainkit/transaction';
+import { Transaction } from '@coinbase/onchainkit/transaction';
 import { calls } from '@/calls';
 
 <main className="flex flex-grow items-center justify-center">
   <div className="w-full max-w-4xl p-4">
     <div className="mx-auto mb-6 w-1/3">
-      <TransactionDefault calls={calls} />
+      <Transaction calls={calls} />
     </div>
   </div>
 </main>;

@@ -1,0 +1,8 @@
+{
+  "name": "TokenPocket",
+  "url": "https://www.tokenpocket.pro/",
+  "description": "TokenPocket is the world's leading multi-chain self-custodial wallet, which supports mainstream public chains including Ethereum, BASE, BNB Chain, Polygon, TRON, Optimism, Arbitrum, etc.",
+  "category": "wallet",
+  "subcategory": "self-custody",
+  "imageUrl": "/images/partners/tokenpocket.webp"
+}

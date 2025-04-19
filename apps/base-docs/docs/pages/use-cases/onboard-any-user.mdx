@@ -15,6 +15,7 @@ In onchain apps, the wallet is at the center of your user model. Onboarding requ
 ## How It Works
 
 The component offers:
+
 - Smooth onboarding for new users with guided Smart Wallet creation
 - Quick connection for existing wallets
 - Consistent handling of connection states with a responsive UI
@@ -42,11 +43,11 @@ npm create onchain@latest
       mode: 'auto',                 // 'light' | 'dark' | 'auto'
       theme: 'default',             // 'default' or custom theme
     },
-    // configure the wallet modal below 
+    // configure the wallet modal below
     wallet: {
-      display: 'modal',       
-      termsUrl: 'https://...', 
-      privacyUrl: 'https://...', 
+      display: 'modal',
+      termsUrl: 'https://...',
+      privacyUrl: 'https://...',
     },
   }}
 >
@@ -122,8 +123,9 @@ Ensure that the Wallet Modal is globally accessible by wrapping your key UI comp
   </div>
 </AppWithWalletModal>
 
-You now have an interface to streamline user onboarding! The `WalletModal` component handles: 
-- Smart wallet createion for new signups 
+You now have an interface to streamline user onboarding! The `WalletModal` component handles:
+
+- Smart wallet creation for new signups
 - Quick connection for existing wallets
 - Wallet connection states
 - Error handling
@@ -131,18 +133,16 @@ You now have an interface to streamline user onboarding! The `WalletModal` compo
 - Theme customization
 - Terms/privacy policy display
 
-
-
 ## Why Smart Wallet for new signups?
 
 In addition to providing a secure and feature-rich wallet experience, Smart Wallets provide a streamlined onboarding experience through account creation with Passkeys. This allows anyone to securely create a new wallet and begin transacting without ever leaving your app.
 
 :::info[More on Smart Wallets]
 
-Smart Wallet has advanced features such as sponsored transactions, spend permissions, and Magic Spend. [Learn more about Smart Wallet here](/identity/smart-wallet/introduction/install-web).
+Smart Wallet has advanced features such as sponsored transactions, spend permissions, and Magic Spend. [Learn more about Smart Wallet here](/identity/smart-wallet/quickstart/).
 
 :::
 
 ## Conclusion
 
-By integrating  `<WalletModal />`, you offer a robust and user-friendly wallet onboarding experience. First-time users benefit from a seamless Smart Wallet creation flow, while returning users can quickly connect their wallets to get started with your onchain app.
+By integrating `<WalletModal />`, you offer a robust and user-friendly wallet onboarding experience. First-time users benefit from a seamless Smart Wallet creation flow, while returning users can quickly connect their wallets to get started with your onchain app.
