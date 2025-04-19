@@ -1,0 +1,118 @@
+# Common Issues & Debugging
+
+This section outlines frequent issues encountered during the development of Mini Apps and how to resolve them.
+
+## Previews Not Rendering
+
+**Issue:** The app embed does not appear when previewed.
+
+<img
+  alt="Manifest Embed Example"
+  src="/images/minikit/example_embed.png"
+  height="364"
+/>
+
+**Cause:** This is typically due to an incorrectly formatted or unreachable splashImageUrl in the farcaster.json manifest.
+
+### Correct Format
+
+```json
+"splashImageUrl": "https://www.example.com/splash_image.png"
+```
+
+### Common Mistake
+
+```json
+"splashImageUrl": "https://www.example.com//splash_image.png"
+```
+
+### Best Practices:
+
+- Ensure the url is correct without typos. Double slashes, like seen above, will break the mini app preview.
+- Ensure the image is hosted at a publicly accessible URL.
+- Confirm that the image meets the requirements: 200x200 pixels, under 1MB, and in PNG or JPG format.
+
+### Preview Tool
+
+To verify your embed, use the Warpcast Frame Developer Tool:
+
+[Embed Debugging](https://warpcast.com/~/developers/mini-apps/embed)
+
+## Manifest Debugging (farcaster.json)
+
+Ensure your domain's manifest at `/.well-known/farcaster.json` is properly configured.
+
+### Example Manifest
+
+```json
+{
+  "accountAssociation": {
+    "header": "BASE64_HEADER_STRING",
+    "payload": "BASE64_PAYLOAD_STRING",
+    "signature": "BASE64_SIGNATURE_STRING"
+  },
+  "frame": {
+    "version": "next",
+    "name": "MiniKit",
+    "iconUrl": "https://example.com/icon.png",
+    "splashImageUrl": "https://example.com/splash.png",
+    "splashBackgroundColor": "#000000",
+    "homeUrl": "https://your-app.com"
+  }
+}
+```
+
+### Checklist:
+
+- The domain in the payload must match the domain serving the manifest.
+- Ensure all asset URLs (icon, splash) are reachable and correctly formatted.
+
+## Incorrect FID or Signature Errors
+
+This is often caused by a farcaster.json file that was signed using the wrong wallet. The signing wallet must match the custody address associated with your Farcaster account.
+
+**Issue:** You encounter errors related to an invalid FID or failed signature validation.
+
+**Cause:** The signing wallet does not match the Farcaster custody wallet.
+
+### Resolution
+
+To sign with the correct identity, import your Farcaster custody key into an external wallet:
+
+:::info
+
+To sign with the correct identity, import your Farcaster custody key into an external wallet:
+
+1. Open the Warpcast mobile app
+
+2. Navigate to: `Settings → Advanced → Farcaster Recovery Phrase`
+
+3. Copy the 24-word seed phrase
+
+4. Import the phrase into a compatible wallet (e.g., Coinbase Wallet Mobile App, MetaMask or Rabby)
+
+5. Use this wallet for signing the `accountAssociation` payload
+
+:::
+
+### Manifest Signing Utility
+
+Run the following to initiate the manifest signing workflow:
+
+```bash
+ npx create-onchain --manifest
+```
+
+This CLI will open the signing UI in your browser and update local .env values automatically.
+
+:::info
+This is required for generating valid signed manifests that link your domain to your Farcaster identity.
+:::
+
+## Developer Tools
+
+### Warpcast Frame Debugger
+
+Preview how your Mini App renders inside Farcaster:
+
+[Farcaster Debugging](https://warpcast.com/~/developers/frames)
