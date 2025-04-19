@@ -1,0 +1,8 @@
+{
+  "name": "SafeSwap",
+  "description": "SafeSwap is a decentralized atomic swap bridge for native tokens. The Atomic Swap protocol enables builders to transport their native tokens to other EVM-based blockchains, without having to rely on wrapped tokens.",
+  "url": "http://safeswap.io/",
+  "imageUrl": "/images/partners/safeswap.webp",
+  "category": "infra",
+  "subcategory": "bridge"
+}

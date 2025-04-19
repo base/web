@@ -13,9 +13,10 @@ This guide covers creating a new Sign-In with Ethereum template project that use
 </Callout>
 
 ::::steps
+
 ## Create a project
 
-Follow the [Wagmi guide](/identity/smart-wallet/guides/create-app/using-wagmi) to set up a template project and connect a Smart Wallet.
+Follow the [Wagmi guide](/identity/smart-wallet/quickstart/nextjs-project) to set up a template project and connect a Smart Wallet.
 
 ## Install dependencies
 
@@ -31,11 +32,9 @@ bun install siwe
 
 :::
 
-
 ## Create a new SIWE component
 
 :::code-group
-
 
 ```tsx twoslash [src/SignInWithEthereum.tsx]
 import React from 'react';
@@ -99,8 +98,8 @@ export default App
 
 :::
 
-
 ## Prompt to sign and store signature
+
 Wagmi's `signMessage` function will open the Smart Wallet popup to sign the message. The signature is stored in the component's state.
 
 ```tsx twoslash [src/SignInWithEthereum.tsx]
@@ -206,5 +205,6 @@ export function SignInWithEthereum() {
 ```
 
 ## Sign in with Ethereum
+
 Visit your local server and click "Sign In with Ethereum"
 ::::

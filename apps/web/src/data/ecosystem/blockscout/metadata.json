@@ -1,0 +1,8 @@
+{
+  "name": "Blockscout",
+  "url": "https://www.blockscout.com/",
+  "description": "Blockscout is a comprehensive open-source tool for viewing blockchain data, including transactions, addresses, and contracts. Plus, it offers easy-to-use APIs.",
+  "imageUrl": "/images/partners/blockscout.webp",
+  "category": "infra",
+  "subcategory": "data"
+}

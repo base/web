@@ -1,8 +1,7 @@
 import { CookieManagerProvider } from '@/components/CookieManager/CookieManagerProvider.tsx';
 import ClientAnalyticsScript from '@/components/ClientAnalyticsScript/ClientAnalyticsScript.tsx';
 import { isDevelopment } from '@/constants.ts';
-
-/**
+/*
  * CJS import
  * This import structure for CookieBanner is necessary because in prod, direct
  * destructuring from @coinbase/cookie-banner fails.
