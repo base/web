@@ -115,6 +115,10 @@ Project names must be unique. If a project with your name already exists, please
      - `onramp`: _One_ of `centralized exchange`, `fiat on-ramp`
      - `wallet`: _One_ of `account abstraction`, `multisig`, `self-custody`
 
+If your app supports multiple networks, ensure the URL provided points to a page
+with Base already selected as the network, for people who will be visiting from
+base.org.
+
 5. Add your project's logo:
    - Place a 192x192 pixel PNG/WebP file in `apps/web/public/images/partners/`
    - Name should match what you specified in imageUrl

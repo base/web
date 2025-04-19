@@ -1,0 +1,8 @@
+{
+  "name": "Inco",
+  "description": "Confidential compute infrastructure that extends Base with private data types, computation, and data structures - unlocking new use cases in private payments, DeFi, governance, and gaming.",
+  "url": "https://www.inco.org/",
+  "imageUrl": "/images/partners/inco-logo-192.png",
+  "category": "infra",
+  "subcategory": "developer tool"
+}

@@ -29,8 +29,8 @@ function validateApp(app: unknown): app is EcosystemApp {
 }
 
 export function generateEcosystem(): boolean {
-  const ecosystemDir = path.join(process.cwd(), 'src/data/ecosystem');
-  const outputFile = path.join(process.cwd(), 'src/data/ecosystem.json');
+  const ecosystemDir = path.resolve(__dirname, '../data/ecosystem');
+  const outputFile = path.resolve(__dirname, '../data/ecosystem.json');
 
   try {
     const apps = fs
