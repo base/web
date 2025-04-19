@@ -726,6 +726,10 @@ export const sidebar: Sidebar = [
                     text: 'Self Calls',
                     link: '/identity/smart-wallet/concepts/usage-details/self-calls',
                   },
+                  {
+                    text: 'Validation and Opcode Rules',
+                    link: '/identity/smart-wallet/concepts/usage-details/validation-rules',
+                  },
                 ],
               },
               {
