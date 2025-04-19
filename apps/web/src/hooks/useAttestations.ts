@@ -1,6 +1,6 @@
 import { useErrors } from 'apps/web/contexts/Errors';
-import { CoinbaseProofResponse } from 'apps/web/pages/api/proofs/coinbase';
-import { DiscountCodeResponse } from 'apps/web/pages/api/proofs/discountCode';
+import { CoinbaseProofResponse } from 'apps/web/app/(basenames)/api/proofs/coinbase/route';
+import { DiscountCodeResponse } from 'apps/web/app/(basenames)/api/proofs/discountCode/route';
 import AttestationValidatorABI from 'apps/web/src/abis/AttestationValidator';
 import CBIDValidatorABI from 'apps/web/src/abis/CBIdDiscountValidator';
 import EarlyAccessValidatorABI from 'apps/web/src/abis/EarlyAccessValidator';
