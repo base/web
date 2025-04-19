@@ -1,4 +1,4 @@
-import { vercelDb as db } from 'apps/web/src/utils/datastores/rds';
+import { db } from 'apps/web/src/utils/datastores/rds';
 import { Address } from 'viem';
 
 export enum ProofTableNamespace {

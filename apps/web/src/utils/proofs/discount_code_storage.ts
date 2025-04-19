@@ -1,4 +1,4 @@
-import { vercelDb as db } from 'apps/web/src/utils/datastores/rds';
+import { db } from 'apps/web/src/utils/datastores/rds';
 
 const publicTableName = 'public.basenames_discount_codes';
 

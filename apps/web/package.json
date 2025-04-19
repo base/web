@@ -40,7 +40,6 @@
     "@types/three": "0.153.0",
     "@vercel/blob": "^0.23.4",
     "@vercel/og": "^0.6.2",
-    "@vercel/postgres-kysely": "^0.8.0",
     "base-ui": "0.1.1",
     "classnames": "^2.5.1",
     "cloudinary": "^2.5.1",

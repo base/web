@@ -1,4 +1,3 @@
-import { createKysely } from '@vercel/postgres-kysely';
 import { Kysely, PostgresDialect } from 'kysely';
 import { Pool } from 'pg';
 import { isDevelopment } from 'apps/web/src/constants';
@@ -20,4 +19,3 @@ const pool = new Pool(poolConfig);
 const dialect = new PostgresDialect({ pool });
 
 export const db = new Kysely<Database>({ dialect });
-export const vercelDb = createKysely<Database>();
