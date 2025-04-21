@@ -77,7 +77,7 @@ Syncing your node may take **days** and will consume a vast amount of your reque
 
 :::info
 
-Geth Archive Snapshots were deprecated on _December 15, 2024_. For Archive nodes, we recommend transitioning to Reth, which offers superior performance for Base’s high-throughput environment. Geth Full and Reth Archive snapshots continue to be maintained and are available below.
+Geth Archive Nodes are no longer supported. For Archive functionality, use Reth, which provides significantly better performance in Base’s high-throughput environment.
 
 :::
 
@@ -90,10 +90,8 @@ In the home directory of your Base Node, create a folder named `geth-data` or `r
 | Network | Client | Snapshot Type | Command                                                                                                               |
 | ------- | ------ | ------------- | --------------------------------------------------------------------------------------------------------------------- |
 | Testnet | Geth   | Full          | `wget https://sepolia-full-snapshots.base.org/$(curl https://sepolia-full-snapshots.base.org/latest)`                 |
-| Testnet | Geth   | Archive       | No longer supported                                                                                                   |
 | Testnet | Reth   | Archive       | `wget https://sepolia-reth-archive-snapshots.base.org/$(curl https://sepolia-reth-archive-snapshots.base.org/latest)` |
 | Mainnet | Geth   | Full          | `wget https://mainnet-full-snapshots.base.org/$(curl https://mainnet-full-snapshots.base.org/latest)`                 |
-| Mainnet | Geth   | Archive       | No longer supported                                                                                                   |
 | Mainnet | Reth   | Archive       | `wget https://mainnet-reth-archive-snapshots.base.org/$(curl https://mainnet-reth-archive-snapshots.base.org/latest)` |
 
 You'll then need to untar the downloaded snapshot and place the `geth` subfolder inside of it in the `geth-data` folder you created (unless you changed the location of your data directory).

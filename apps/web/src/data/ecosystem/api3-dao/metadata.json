@@ -1,8 +1,8 @@
 {
-  "name": "API3 DAO",
+  "name": "Api3",
   "url": "https://api3.org/",
-  "description": "API3 is a collaborative project to deliver API services to smart contract platforms in a decentralized and trust-minimized way. It is governed by a decentralized autonomous organization (DAO), namely the API3 DAO.",
-  "imageUrl": "/images/partners/API3.webp",
+  "description": "Api3 delivers first-party oracles that pay you — connecting real-world data directly to smart contracts while reclaiming lost value through Oracle Extractable Value (OEV).",
+  "imageUrl": "/images/partners/Api3.png",
   "category": "infra",
   "subcategory": "data"
 }
