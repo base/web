@@ -960,12 +960,12 @@
     "subcategory": "social"
   },
   {
-  "name": "Swan",
-  "description": "Swan is a protocol where people try to convince AI agents to buy their artifacts, and profit from them. Each agent has its own budget and the world simulation evolves with each artifact.",
-  "url": "https://swan.my/",
-  "imageUrl": "/images/partners/swan-logo.png",
-  "category": "ai",
-  "subcategory": "ai"
+    "name": "Swan",
+    "description": "Swan is a protocol where people try to convince AI agents to buy their artifacts, and profit from them. Each agent has its own budget and the world simulation evolves with each artifact.",
+    "url": "https://swan.my/",
+    "imageUrl": "/images/partners/swan-logo.png",
+    "category": "ai",
+    "subcategory": "ai"
   },
   {
     "name": "Bitget Wallet",
@@ -4039,6 +4039,7 @@
     "category": "consumer",
     "subcategory": "dao"
   },
+  {
     "name": "IPOR",
     "description": "IPOR offers two key products - IPOR Fusion: A composable vault stack optimized for modularity, security, and automation of sophisticated DeFi strategies. Asset managers can automate strategies, protocols can source liquidity, and LPs can get automated smart yield. Additionally, IPOR Derivatives: Earn token-boosted yield on stables and ETH. Trade plain-vanilla interest rate swaps onchain with up to 1000x leverage and 90-day maturity.",
     "url": "https://app.ipor.io/fusion?chains=8453",
