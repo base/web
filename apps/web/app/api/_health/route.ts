@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
 
-export default function handler() {
+export async function GET() {
   return new NextResponse('OK');
 }
