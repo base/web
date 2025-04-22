@@ -10,6 +10,7 @@ import { useCallback, useState } from 'react';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 
 const ONCHAINKIT_DOCS_LINK = 'https://docs.base.org/builderkits/onchainkit/getting-started';
+const ONCHAINKIT_GITHUB_LINK = 'https://github.com/coinbase/onchainkit';
 
 export function Hero() {
   const [hasCopied, setHasCopied] = useState(false);
@@ -47,7 +48,7 @@ export function Hero() {
       <div className="flex gap-4 pt-5 max-sm:max-w-[240px] max-sm:flex-col">
         <button
           type="button"
-          className="inline-flex items-center gap-2.5 rounded-lg bg-white px-4 pb-2.5 pt-3 font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90 max-sm:mr-auto"
+          className="inline-flex items-center gap-2.5 rounded-lg bg-white px-4 pb-3 pt-3 font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90 max-sm:mr-auto"
           onClick={handleCopy}
         >
           npm create onchain
@@ -59,20 +60,33 @@ export function Hero() {
             <Icon name="copy" width="16" height="16" color="currentColor" />
           )}
         </button>
-        <ButtonWithLinkAndEventLogging
-          variant={ButtonVariants.SecondaryOutline}
-          buttonClassNames="flex items-center justify-between px-4 pb-2.5 pt-3 group font-medium"
-          href={ONCHAINKIT_DOCS_LINK}
-          eventName="onchainkit-documentation-click"
-          target="_blank"
-        >
-          <div className="flex items-center justify-between gap-6">
-            <span>Docs</span>
-            <div className="transition-transform duration-200 group-hover:translate-x-1">
-              <Icon name="arrowRight" width={16} height={16} color="white" />
+        <div className="flex gap-3 items-center">
+          <ButtonWithLinkAndEventLogging
+            variant={ButtonVariants.SecondaryOutline}
+            buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
+            href={ONCHAINKIT_DOCS_LINK}
+            eventName="onchainkit-documentation-click"
+            target="_blank"
+          >
+            <div className="flex items-center justify-between gap-6">
+              <span>Docs</span>
+              <div className="transition-transform duration-200 group-hover:translate-x-1">
+                <Icon name="arrowRight" width={16} height={16} color="white" />
+              </div>
             </div>
-          </div>
-        </ButtonWithLinkAndEventLogging>
+          </ButtonWithLinkAndEventLogging>
+          <ButtonWithLinkAndEventLogging
+            variant={ButtonVariants.SecondaryOutline}
+            buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
+            href={ONCHAINKIT_GITHUB_LINK}
+            eventName="onchainkit-github-click"
+            target="_blank"
+          >
+            <div className="flex items-center justify-between py-1 px-0.5"> 
+              <Icon name="github" width={16} height={16} color="white" />  
+            </div>
+          </ButtonWithLinkAndEventLogging>
+        </div>
       </div>
     </div>
   );

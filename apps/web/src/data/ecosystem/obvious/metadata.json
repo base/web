@@ -1,0 +1,8 @@
+{
+  "name": "Obvious",
+  "url": "https://www.obvious.technology",
+  "description": "Obvious is a ERC-4337 compatible smart contract wallet focused on simplifying transaction experience.",
+  "category": "wallet",
+  "subcategory": "account abstraction",
+  "imageUrl": "/images/partners/obvious.webp"
+}

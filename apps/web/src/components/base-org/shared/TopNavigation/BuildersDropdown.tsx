@@ -13,8 +13,11 @@ import blockchain from 'apps/web/src/components/base-org/shared/TopNavigation/as
 import gitHubLogo from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/gitHubLogo.svg';
 import blog from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/blog.svg';
 import bridging from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/bridging.svg';
+import chartVolume from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/chartVolume.svg';
+import baseBatches from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/baseBatches.svg';
 import Link from 'apps/web/src/components/Link';
 import Card from 'apps/web/src/components/base-org/Card';
+import basenet from 'apps/web/src/components/Builders/Appchains/basenet.svg';
 
 type BuildersDropdownProps = {
   onLinkClick: () => void;
@@ -30,7 +33,7 @@ type ToolMiniCardProps = {
 
 type FooterCardProps = {
   label: string;
-  icon: StaticImageData;
+  icon?: StaticImageData;
   href: string;
   onLinkClick: () => void;
 };
@@ -43,30 +46,32 @@ export function BuildersDropdown({ onLinkClick }: BuildersDropdownProps) {
           <Link
             href="/builders"
             onClick={onLinkClick}
-            className="flex items-center justify-between rounded-lg bg-dark-palette-secondary px-4 pb-2.5 pt-3 hover:bg-white/10"
+            className="flex items-center justify-between rounded-lg bg-dark-palette-secondary px-4 pb-3 pt-3 hover:bg-[#3A3D45]"
           >
             <div className="flex flex-col justify-center">
-              <Title level={TitleLevel.Headline} className="text-sm leading-none">
+              <Title level={TitleLevel.Headline} className="text-sm tracking-normal">
                 Builders
               </Title>
-              <span className="text-sm text-dark-palette-foregroundMuted ">
+              {/* use tracking-wide to temporary offset the odd tight letter-spacing */}
+              <p className="text-sm tracking-wide text-dark-palette-foregroundMuted">
                 Start building with Base tools
-              </span>
+              </p>
             </div>
             <Icon name="arrowRight" height={16} width={16} />
           </Link>
           <Link
             href="https://docs.base.org"
             onClick={onLinkClick}
-            className="flex items-center justify-between rounded-lg bg-dark-palette-secondary px-4 pb-2.5 pt-3 hover:bg-white/10"
+            className="flex items-center justify-between rounded-lg bg-dark-palette-secondary px-4 pb-3 pt-3 hover:bg-[#3A3D45]"
           >
             <div className="flex flex-col justify-center">
-              <Title level={TitleLevel.Headline} className="text-sm leading-none">
-                Documentation
+              <Title level={TitleLevel.Headline} className="text-sm tracking-normal">
+                Docs
               </Title>
-              <span className="text-sm text-dark-palette-foregroundMuted ">
+              {/* use tracking-wide to temporary offset the odd tight letter-spacing */}
+              <p className="text-sm tracking-wide text-dark-palette-foregroundMuted">
                 Dive into the developer docs
-              </span>
+              </p>
             </div>
             <Icon name="arrowRight" height={16} width={16} />
           </Link>
@@ -87,17 +92,24 @@ export function BuildersDropdown({ onLinkClick }: BuildersDropdownProps) {
                 onLinkClick={onLinkClick}
               />
               <ToolMiniCard
-                title="MiniKit"
-                description="Build once. Deploy anywhere"
-                icon={miniKit as StaticImageData}
-                href="/builders/minikit"
-                onLinkClick={onLinkClick}
-              />
-              <ToolMiniCard
                 title="Smart Wallet"
                 description="Seamless self-custody"
                 icon={baseWallet as StaticImageData}
                 href="/builders/smart-wallet"
+                onLinkClick={onLinkClick}
+              />
+              <ToolMiniCard
+                title="Base Appchains"
+                description="Scale your app"
+                icon={basenet as StaticImageData}
+                href="/builders/base-appchains"
+                onLinkClick={onLinkClick}
+              />
+              <ToolMiniCard
+                title="MiniKit"
+                description="Build once. Deploy anywhere"
+                icon={miniKit as StaticImageData}
+                href="/builders/minikit"
                 onLinkClick={onLinkClick}
               />
             </div>
@@ -105,7 +117,7 @@ export function BuildersDropdown({ onLinkClick }: BuildersDropdownProps) {
           <div className="flex items-center justify-between rounded-lg bg-dark-palette-secondary py-3">
             <div className="grid w-full grid-cols-2 gap-x-1 gap-y-2.5">
               <FooterCard
-                label="Status"
+                label="Status Page"
                 icon={options as StaticImageData}
                 href="https://status.base.org/"
                 onLinkClick={onLinkClick}
@@ -113,7 +125,7 @@ export function BuildersDropdown({ onLinkClick }: BuildersDropdownProps) {
               <FooterCard
                 label="Bug bounty"
                 icon={bug as StaticImageData}
-                href="https://hackerone.com/base"
+                href="https://hackerone.com/coinbase"
                 onLinkClick={onLinkClick}
               />
               <FooterCard
@@ -140,6 +152,18 @@ export function BuildersDropdown({ onLinkClick }: BuildersDropdownProps) {
                 href="/builders/stories"
                 onLinkClick={onLinkClick}
               />
+              <FooterCard
+                label="Base Stats"
+                icon={chartVolume as StaticImageData}
+                href="https://www.base.org/stats"
+                onLinkClick={onLinkClick}
+              />
+              <FooterCard
+                label="Base Batches"
+                icon={baseBatches as StaticImageData}
+                href="https://www.basebatches.xyz"
+                onLinkClick={onLinkClick}
+              />
             </div>
           </div>
         </div>
@@ -154,20 +178,20 @@ function ToolMiniCard({ title, description, icon, href, onLinkClick }: ToolMiniC
     <Link
       href={href}
       onClick={onLinkClick}
-      className="flex cursor-pointer flex-col gap-4 rounded-lg px-4 py-2 transition-all duration-200 hover:bg-white/10"
+      className="flex cursor-pointer flex-col gap-4 rounded-lg px-3 py-2 transition-all duration-200 hover:bg-[#32353D]"
     >
       <div className="flex items-center gap-4">
         <div className="rounded-lg">
           <Image src={icon} alt={title} width={24} height={24} className="h-8 w-8" />
         </div>
-        <div className="flex flex-col gap-1">
-          <Title level={TitleLevel.Headline} className="text-sm font-bold leading-none text-white">
+        <div className="flex flex-col">
+          <Title level={TitleLevel.Headline} className="text-sm font-bold text-white">
             {title}
           </Title>
           <Title
             level={TitleLevel.Headline}
             as="p"
-            className="text-sm font-normal leading-none text-dark-palette-foregroundMuted"
+            className="text-sm font-normal tracking-normal text-dark-palette-foregroundMuted"
           >
             {description}
           </Title>
@@ -185,8 +209,8 @@ function FooterCard({ label, icon, href, onLinkClick }: FooterCardProps) {
       onClick={onLinkClick}
       className="flex items-center gap-2 px-4"
     >
-      <Image src={icon} alt={label} width={16} height={16} />
-      <Title level={TitleLevel.Headline} className="text-sm font-normal leading-none">
+      {icon && <Image src={icon} alt={label} width={16} height={16} />}
+      <Title level={TitleLevel.Headline} className="text-sm font-normal tracking-normal">
         {label}
       </Title>
     </Link>

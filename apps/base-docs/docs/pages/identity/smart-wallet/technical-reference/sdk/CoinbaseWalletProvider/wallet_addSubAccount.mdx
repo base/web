@@ -1,0 +1,57 @@
+# wallet_addSubAccount
+
+Experimental RPC Defined in [EIP-7895](https://eip.tools/eip/7895)
+
+> Requests that the wallet adds the specified sub-account to the wallet.
+
+## Parameters
+
+`Array<AddSubAccountParameter>`
+
+```ts
+type AccountCreate = {
+  type: 'create';
+  keys: {
+    type: 'address' | 'p256' | 'webcrypto-p256' | 'webauthn-p256';
+    key: `0x${string}`;
+  }[];
+};
+
+type AccountDeployed = {
+  type: 'deployed';
+  address: Address;
+};
+
+type AccountUndeployed = {
+  type: 'undeployed';
+  address?: Address;
+  factory?: Address;
+  factoryData?: Hex;
+  chainId?: Hex;
+};
+
+type AddSubAccountParameter = {
+  version: '1';
+  account: AddSubAccountAccount;
+};
+```
+
+## Returns
+
+```ts
+type AddSubAccountResponse = {
+  address: Address;
+  chainId?: Hex;
+  factory?: Address;
+  factoryData?: Hex;
+};
+```
+
+Returns null if the request was successful.
+
+## Errors
+
+| Code | Message                        |
+| ---- | ------------------------------ |
+| 4001 | User rejected the request      |
+| 4100 | Requested method not supported |

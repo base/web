@@ -7,7 +7,7 @@ content:
   verticalPadding: 0px
 ---
 
-<style>
+<style type="text/css">
   {`
   .vocs_DocsLayout_gutterRight,
   .vocs_DocsLayout_gutterRight_withSidebar {
@@ -34,17 +34,13 @@ import { paymasterSvg } from '@/components/svg/paymasterSvg';
 <div className="min-h-screen bg-white dark:bg-black">
   <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div className="space-y-8">
-      {/* Title and Description */}
       <div className="space-y-6">
         <h1 className="text-3xl font-bold tracking-tight">Base Documentation</h1>
         <div className="space-y-4 text-lg text-zinc-600 dark:text-zinc-400">
-          <p>
             Base is a secure, low-cost, builder-friendly Ethereum L2 built to bring the next billion users onchain.
-          </p>
-          <p>
+
             Base is incubated within Coinbase and plans to progressively decentralize in the years ahead. We believe that
             decentralization is critical to creating an open, global cryptocurrency that is accessible to everyone.
-          </p>
         </div>
       </div>
 
@@ -105,7 +101,7 @@ import { paymasterSvg } from '@/components/svg/paymasterSvg';
             title="Smart Wallet"
             description="A passkey-based universal account to connect with the onchain world."
             icon={smartWalletSvg}
-            href="/identity/smart-wallet/introduction/install-web"
+            href="/identity/smart-wallet/quickstart"
           />
           <BrowseCard
             title="AgentKit"

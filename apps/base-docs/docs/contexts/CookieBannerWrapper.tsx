@@ -1,6 +1,15 @@
-import { CookieBanner } from '@coinbase/cookie-banner';
 import { CookieManagerProvider } from '@/components/CookieManager/CookieManagerProvider.tsx';
 import ClientAnalyticsScript from '@/components/ClientAnalyticsScript/ClientAnalyticsScript.tsx';
+import { isDevelopment } from '@/constants.ts';
+/*
+ * CJS import
+ * This import structure for CookieBanner is necessary because in prod, direct
+ * destructuring from @coinbase/cookie-banner fails.
+ * However in dev, the import fails because the pkg is not found.
+ * This structure allows the import to work in prod, and disables the banner in dev.
+ */
+import pkg from '@coinbase/cookie-banner';
+const { CookieBanner } = isDevelopment ? {} : pkg;
 
 export const cookieBannerTheme = {
   colors: {
@@ -51,7 +60,8 @@ export const cookieBannerTheme = {
 };
 
 export default function CookieBannerWrapper() {
-  if (typeof window === 'undefined') return null;
+  if (isDevelopment || typeof window === 'undefined') return null;
+
   return (
     <CookieManagerProvider>
       <ClientAnalyticsScript />

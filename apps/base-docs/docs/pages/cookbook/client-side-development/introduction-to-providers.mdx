@@ -52,7 +52,7 @@ You'll encounter providers divided into three general categories: Public Provide
 
 Many tutorials and guides, including the getting started guide for [wagmi], use a _Public Provider_ as the default to get you up and running. Public means that they're open, permissionless, and free, so the guides will also usually warn you that you need to add another provider if you don't want to run into rate limiting. Listen to these warnings! The rate-limits of public providers are severe, and you'll start getting limited very quickly.
 
-In wagmi, a public client is automatically included in the default confit. This client is just a wrapper setting up a [JSON RPC] provider using the `chain` and `rpcUrls` listed in Viem's directory of chain information. You can view the [data for Base Sepolia here].
+In wagmi, a public client is automatically included in the default config. This client is just a wrapper setting up a [JSON RPC] provider using the `chain` and `rpcUrls` listed in Viem's directory of chain information. You can view the [data for Base Sepolia here].
 
 Most chains will list this information in their docs as well. For example, on the network information pages for [Base] and [Optimism]. If you wanted, you could manually set up a `jsonRpcProvider` in wagmi using this information.
 
@@ -268,7 +268,7 @@ As before, you can confirm the Alchemy Provider is working by running the app an
 
 In this tutorial, you've learned how Providers supply blockchain connection as a service, eliminating the need for developers to run and maintain their own nodes. You also learned how to connect your app to the blockchain using several different providers, including the public provider(s).
 
-[Base Learn]: https://base.org/learn
+[Base Learn]: https://docs.base.org/learn/welcome
 [Next.js]: https://nextjs.org/
 [RainbowKit]: https://rainbowkit.com/
 [wagmi]: https://wagmi.sh/
@@ -276,7 +276,7 @@ In this tutorial, you've learned how Providers supply blockchain connection as a
 [wagmi]: https://wagmi.sh
 [quick start]: https://www.rainbowkit.com/docs/installation
 [context providers]: https://react.dev/learn/passing-data-deeply-with-context
-[WalletConnect]: https://cloud.walletconnect.com/
+[WalletConnect]: https://cloud.reown.com/
 [JSON RPC provider]: https://wagmi.sh/react/providers/jsonRpc
 [Alchemy]: https://www.alchemy.com/
 [QuickNode]: https://www.quicknode.com/
@@ -284,7 +284,7 @@ In this tutorial, you've learned how Providers supply blockchain connection as a
 [smart contract development]: https://base.org/learn
 [Subgraph]: https://thegraph.com/docs/en/developing/creating-a-subgraph/
 [data for Base Sepolia here]: https://github.com/wagmi-dev/viem/blob/main/src/chains/definitions/baseSepolia.ts
-[Base]: https://docs.base.org/network-information
+[Base]: https://docs.base.org/chain/network-information
 [Optimism]: https://docs.optimism.io/chain/networks
 [EIP-1193]: https://eips.ethereum.org/EIPS/eip-1193
 [QuickNode]: https://www.quicknode.com/
@@ -295,7 +295,7 @@ In this tutorial, you've learned how Providers supply blockchain connection as a
 [smart contract development]: https://base.org/camp
 [run your own node]: https://docs.base.org/guides/run-a-base-node
 [React Context API]: https://react.dev/learn/passing-data-deeply-with-context
-[Building an Onchain App]: https://docs.base.org/base-learn/docs/frontend-setup/building-an-onchain-app
+[Building an Onchain App]: https://docs.base.org/learn/frontend-setup/building-an-onchain-app
 [`createConfig`]: https://wagmi.sh/react/api/createConfig
 [`transports`]: https://wagmi.sh/react/api/transports
 [`fallback`]: https://wagmi.sh/core/api/transports/fallback

@@ -1,4 +1,5 @@
 'use client';
+
 import { OnchainKitProvider } from '@coinbase/onchainkit';
 import '@coinbase/onchainkit/styles.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -7,10 +8,27 @@ import { http, WagmiProvider, createConfig } from 'wagmi';
 import { base, baseSepolia } from 'wagmi/chains';
 import { coinbaseWallet } from 'wagmi/connectors';
 import { useTheme } from '../contexts/Theme.tsx';
+import { defineChain } from 'viem';
+
 const queryClient = new QueryClient();
 
+export const SANDBOX_CHAIN = defineChain({
+  id: 8453200058,
+  name: 'Sandbox Network',
+  nativeCurrency: {
+    name: 'Ethereum',
+    symbol: 'ETH',
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://sandbox-rpc-testnet.appchain.base.org'],
+    },
+  },
+});
+
 const wagmiConfig = createConfig({
-  chains: [base, baseSepolia],
+  chains: [base, baseSepolia, SANDBOX_CHAIN],
   connectors: [
     coinbaseWallet({
       appName: 'OnchainKit',
@@ -20,6 +38,7 @@ const wagmiConfig = createConfig({
   transports: {
     [base.id]: http(),
     [baseSepolia.id]: http(),
+    [SANDBOX_CHAIN.id]: http(),
   },
 });
 
@@ -48,9 +67,7 @@ export default function App({ children }: { children: ReactNode }) {
             },
           }}
         >
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {children}
-          </div>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>{children}</div>
         </OnchainKitProvider>
       </QueryClientProvider>
     </WagmiProvider>

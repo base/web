@@ -3,7 +3,7 @@ title: Wallet Modal · OnchainKit
 description: The Wallet Modal provides users with multiple wallet connection options in a polished interface.
 ---
 
-import { 
+import {
   ConnectWallet,
   Wallet,
   WalletDropdown,
@@ -23,17 +23,19 @@ import AppWithWalletModal from '@/components/AppWithWalletModal';
 
 <img 
   alt="Wallet Modal"
-  src="https://onchainkit.xyz/assets/wallet-modal.png"
+  src="/images/onchainkit/wallet-modal.png"
   height="364"
   width="364"
   className="mx-auto"
 />
 
-`WalletModal` offers users multiple wallet connection options. The modal automatically appears when users click the `ConnectWallet` component and provides three distinct connection paths:
+`WalletModal` offers users multiple wallet connection options. The modal automatically appears when users click the `ConnectWallet` component and provides several connection paths:
 
 1. Quickly create a new smart wallet for new users
 2. Coinbase Wallet connection (supporting both smart wallets and EOA)
-3. MetaMask and Phantom connection
+3. MetaMask connection
+4. Phantom connection
+5. Rabby, Frame, and Trust Wallet connections (optional)
 
 ## Walkthrough
 
@@ -54,9 +56,9 @@ import AppWithWalletModal from '@/components/AppWithWalletModal';
     },
     wallet: { // [!code focus]
       display: 'modal', // [!code focus]
-      termsUrl: 'https://...', // [!code focus] 
+      termsUrl: 'https://...', // [!code focus]
       privacyUrl: 'https://...', // [!code focus]
-    },
+      },
   }}
 >
   {children}
@@ -116,13 +118,47 @@ The Wallet Modal components are designed to work together hierarchically:
   - Coinbase Wallet connection
   - MetaMask connection
   - Phantom connection
+  - Rabby, Trust, and Frame Wallet connections (if enabled)
   - Terms and privacy policy links
 
 The modal automatically handles:
+
 - Wallet connection states
 - Error handling
 - Mobile/desktop responsive behavior
 - Theme customization
 - Terms/privacy policy display
 
+## Additional Wallet Support
+
+By default, the wallet modal includes Coinbase Wallet, MetaMask, and Phantom as connection options. You can enable additional wallet support by configuring the `supportedWallets` object in the `OnchainKitProvider`:
+
+```tsx
+<OnchainKitProvider
+  apiKey={process.env.ONCHAINKIT_API_KEY}
+  chain={base}
+  config={{
+    appearance: {
+      name: 'Your App Name',
+      logo: 'https://your-logo.com',
+      mode: 'auto',
+      theme: 'default',
+    },
+    wallet: {
+      display: 'modal',
+      termsUrl: 'https://...',
+      privacyUrl: 'https://...',
+      supportedWallets: { // [!code focus]
+        rabby: true, // [!code focus]
+        trust: true, // [!code focus]
+        frame: true, // [!code focus]
+      }, // [!code focus]
+    },
+  }}
+>
+  {children}
+</OnchainKitProvider>
+```
+
+Each wallet can be individually enabled or disabled as needed. If no `supportedWallets` configuration is provided, the additional wallets will be disabled by default.
 ::::

@@ -540,7 +540,12 @@ const ICONS: Record<string, (props: SvgProps) => React.ReactNode> = {
   ),
 };
 
-export function Icon({ name, color = 'white', width = '24', height = '24' }: IconProps) {
+export function Icon({
+  name,
+  color = 'white',
+  width = '24',
+  height = '24',
+}: IconProps): React.ReactNode {
   const icon = ICONS[name];
   if (icon) {
     return icon({ color, width, height });
