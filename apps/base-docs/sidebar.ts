@@ -17,6 +17,10 @@ export const sidebar: Sidebar = [
     link: '/chain/bridges-mainnet',
   },
   {
+    text: 'Service Hub',
+    link: '/base-services-hub',
+  },
+  {
     text: 'Status ↗',
     link: 'https://status.base.org/',
   },
