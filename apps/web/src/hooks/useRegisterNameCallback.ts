@@ -7,6 +7,7 @@ import useCapabilitiesSafe from 'apps/web/src/hooks/useCapabilitiesSafe';
 import useWriteContractsWithLogs from 'apps/web/src/hooks/useWriteContractsWithLogs';
 import useWriteContractWithReceipt from 'apps/web/src/hooks/useWriteContractWithReceipt';
 import {
+  convertChainIdToCoinTypeUint,
   formatBaseEthDomain,
   IS_EARLY_ACCESS,
   normalizeEnsDomainName,
@@ -78,6 +79,16 @@ export function useRegisterNameCallback(
       abi: L2ResolverAbi,
       functionName: 'setAddr',
       args: [namehash(formatBaseEthDomain(name, basenameChain.id)), address],
+    });
+
+    const baseCointypeData = encodeFunctionData({
+      abi: L2ResolverAbi,
+      functionName: 'setAddr',
+      args: [
+        namehash(formatBaseEthDomain(name, basenameChain.id)),
+        BigInt(convertChainIdToCoinTypeUint(basenameChain.id)),
+        address,
+      ],
     });
 
     const nameData = encodeFunctionData({
