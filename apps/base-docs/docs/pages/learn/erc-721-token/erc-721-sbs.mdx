@@ -42,8 +42,9 @@ Start by opening the [OpenZeppelin] ERC-721 in Github. Copy the link and use it 
 pragma solidity ^0.8.17;
 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
 
-contract MyERC721Token is ERC721 {
+contract MyERC721Token is ERC721, Ownable {
     constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) {
 
     }
@@ -199,8 +200,7 @@ function _baseURI() internal override view returns(string memory) {
     }
 }
 
-function switchURI() public {
-    // TODO: Limit to contract owner
+function switchURI() public onlyOwner {
     nftMetadata = nftMetadata == NFTMetadata.BAYC ? NFTMetadata.DOODLES : NFTMetadata.BAYC;
 }
 ```
