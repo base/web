@@ -34,6 +34,7 @@ export default function CryptoProviders({
       appearance: {
         mode,
         theme,
+        name: 'Base',
       },
       wallet: {
         display: 'modal',
