@@ -1,0 +1,170 @@
+import GithubRepoCard from "@/components/GithubRepoCard"
+
+# Coin Your Bangers: Turn Your Jokes into Coins
+
+This tutorial walks through building a full onchain app that lets users turn their jokes into coins on Base.
+The app uses OpenAI to generate coin metadata and the Zora Protocol to coin the content.
+
+<GithubRepoCard
+  title="Coin Your Bangers"
+  githubUrl="https://github.com/base/demos/tree/master/smart-wallet/coin-your-joke"
+/>
+
+## Overview
+
+[Coin Your Bangers](https://github.com/base/demos/tree/master/smart-wallet/coin-your-joke) is a fun onchain application which allows users to:
+
+1. Input a joke or funny content
+2. Generate coin metadata using AI
+3. Deploy a new Zora Coin on Base
+4. Get transaction confirmation and links
+5. Start earning referal fees from your the app
+6. Start earning trading fees from your Coin
+
+<iframe 
+  width="100%" 
+  height="400" 
+  src="https://www.youtube.com/embed/M3SWv2gJ3lc" 
+  title="Coin Your Bangers Demo"
+  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowFullScreen
+></iframe>
+
+## Run the app
+
+Open a terminal and run the following commands:
+
+### Clone the repository
+
+```bash
+git clone https://github.com/base/demos.git
+cd demos/smart-wallet/coin-your-joke
+```
+
+### Install dependencies
+
+```bash
+pnpm install
+```
+
+### Set environment variables
+
+```bash
+cp .env.example .env
+```
+
+Edit the `.env` file with your own values as specified in the README.
+
+```
+ENV=local or prod
+NEXT_PUBLIC_URL=your_deployment_url (http://localhost:3000 for local development)
+OPENAI_API_KEY=your_openai_api_key
+NEXT_TELEMETRY_DISABLED=1
+```
+
+### Run the app
+
+```bash
+pnpm dev
+```
+
+## Key Components
+
+### Wagmi Config (`wagmi.ts`)
+
+The wagmi config is used to set up the Smart Wallet client.
+
+```ts
+import { http, cookieStorage, createConfig, createStorage } from "wagmi";
+import { base, baseSepolia } from "wagmi/chains";
+import { coinbaseWallet } from "wagmi/connectors";
+
+export const cbWalletConnector = coinbaseWallet({
+  appName: "Smart Wallet Zora Coiner",
+  preference: "smartWalletOnly",
+});
+
+export function getConfig() {
+  return createConfig({
+    chains: [base, baseSepolia],
+    connectors: [cbWalletConnector],
+    // ... other config options
+  });
+}
+
+// ... other wagmi config options
+```
+
+### CoinButton Component (`CoinButton.tsx`)
+
+The deployment button component handles the actual token creation:
+
+```tsx
+export function CoinButton({
+  name,
+  symbol,
+  uri,
+  initialPurchaseWei = BigInt(0),
+  onSuccess,
+  onError,
+  className
+}: CreateCoinArgs) {
+  // ... implementation
+}
+```
+
+Key features:
+
+- Using Zora's [`createCoin`](https://docs.zora.co/coins/sdk/create-coin) function to create a new coin
+- Using Smart Wallet and Wagmi to submit the transaction
+- Loading states and error handling
+- Transaction status tracking
+
+### Metadata Generation API
+
+The API endpoint uses OpenAI to generate creative coin metadata:
+
+```typescript
+// Example API structure
+async function generateMetadata(joke: string) {
+  // 1. Process the joke using OpenAI
+  // 2. Generate coin name and symbol
+  // 3. Create metadata JSON
+  // 4. Return coin parameters
+}
+```
+
+Features:
+
+- OpenAI integration for creative naming
+- Metadata JSON generation
+- URI creation for token metadata
+- Error handling and validation
+
+## Technical Stack
+
+- **Frontend**: Next.js 13+ with App Router
+- **Styling**: Tailwind CSS
+- **Onchain tools**:
+  - Smart Wallet for Sign In
+  - Wagmi for contract interactions
+  - Zora SDK for coining content
+- **AI**: OpenAI API for metadata generation
+- **Network**: Base
+
+## Deployment
+
+You can deploy your app to Vercel by following the instructions [here](https://vercel.com/docs/deployments).
+
+## Conclusion
+
+This example demonstrates how to build a full-featured onchain application that combines:
+
+- Smart Wallet for Sign In
+- AI capabilities
+- Coin creation with [Zora's SDK](https://docs.zora.co/coins/sdk/create-coin)
+- Wagmi for contract interactions
+- Error handling
+- Transaction management
+
+The modular architecture makes it easy to extend or modify for other use cases beyond joke tokenization.
