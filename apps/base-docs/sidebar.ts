@@ -611,6 +611,15 @@ export const sidebar: Sidebar = [
     ],
   },
   {
+    text: 'Wallet App',
+    items: [
+      {
+        text: 'Mini Apps',
+        link: '/wallet-app/mini-apps',
+      },
+    ],
+  },
+  {
     text: 'Blockspace Tools',
     items: [
       {
