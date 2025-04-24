@@ -149,6 +149,14 @@
     {
       "source": "/identity/smart-wallet/faq/:path*",
       "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/sub-accounts/creating-sub-accounts",
+      "destination": "/identity/smart-wallet/guides/sub-accounts/"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/sub-accounts/incorporate-spend-permissions",
+      "destination": "/identity/smart-wallet/guides/sub-accounts/"
     }
   ]
 }
