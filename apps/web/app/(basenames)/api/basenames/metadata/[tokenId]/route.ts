@@ -20,10 +20,9 @@ export const runtime = 'edge';
 export async function GET(request: NextRequest) {
   const domainName = getDomain(request);
 
-  let tokenId = request.nextUrl.searchParams.get('tokenId');
-  if (tokenId?.endsWith('.json')) {
-    tokenId = tokenId.slice(0, -5);
-  }
+  const tokenId = request.nextUrl.searchParams
+    .get('tokenId')
+    ?.replace(/\.json$/, '');
   if (!tokenId) {
     return NextResponse.json({ error: '400: tokenId is missing' }, { status: 400 });
   }

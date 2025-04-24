@@ -8,12 +8,12 @@ type RequestBody = {
 };
 
 export async function POST(request: NextRequest) {
-  const { address } = (await request.json()) as RequestBody;
-  if (!address) {
-    return NextResponse.json({ error: '400: address is required' }, { status: 400 });
-  }
-
   try {
+    const { address } = (await request.json()) as RequestBody;
+    if (!address) {
+      return NextResponse.json({ error: '400: address is required' }, { status: 400 });
+    }
+
     const kv = getKv();
     const proof = await kv.get<string[]>(`proof:${address}`);
     if (!proof) {
