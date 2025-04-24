@@ -770,16 +770,8 @@ export const sidebar: Sidebar = [
                     link: '/identity/smart-wallet/guides/sub-accounts/setup',
                   },
                   {
-                    text: 'Creating Sub Accounts',
-                    link: '/identity/smart-wallet/guides/sub-accounts/creating-sub-accounts',
-                  },
-                  {
                     text: 'Using Sub Accounts',
                     link: '/identity/smart-wallet/guides/sub-accounts/using-sub-accounts',
-                  },
-                  {
-                    text: 'Incorporate Spend Permissions',
-                    link: '/identity/smart-wallet/guides/sub-accounts/incorporate-spend-permissions',
                   },
                 ],
               },
