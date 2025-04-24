@@ -1,18 +1,33 @@
 import GithubRepoCard from "@/components/GithubRepoCard"
+import { Callout } from 'vocs/components'
 
 # Coin Your Bangers: Turn Your Jokes into Coins
 
-This tutorial walks through building a full onchain app that lets users turn their jokes into coins on Base.
-The app uses OpenAI to generate coin metadata and the Zora Protocol to coin the content.
+Regardless of the ongoing debate around the utility of memecoins, no one can deny that memecoin and culturecoin trading has been a big catalyst for the onchain economy.
+If this shows anything, it is that people are looking to rally around something that is fun and engaging, with a potential upside.
 
-<GithubRepoCard
-  title="Coin Your Bangers"
-  githubUrl="https://github.com/base/demos/tree/master/smart-wallet/coin-your-joke"
-/>
+While memecoins are great for long term community building and overall representation of a culture onchain,
+contentcoins seem to be a better option to value individual pieces of content.
+It is often thought that memecoins are an aggregate representation of all the content created by a community,
+while contentcoins are a representation of one piece of content:
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '2rem 0' }}>
+  <img
+    alt="Table showing the difference between memecoins and contentcoins"
+    src="/images/smart-wallet/meme-vs-content.png"
+    style={{ maxWidth: '400px', width: '100%' }}
+  />
+  <em style={{ marginTop: '1rem' }}>A Table showing the difference between memecoins and contentcoins</em>
+</div>
+
+Apps like [Zora](https://zora.co/) or [Flaunch](https://flaunch.gg/) illustrate the power of contentcoins.
+They create a new category of apps that we may call "contentcoin apps".
 
 ## Overview
 
-[Coin Your Bangers](https://github.com/base/demos/tree/master/smart-wallet/coin-your-joke) is a fun onchain application which allows users to:
+This example explains "Coin Your Bangers", a full onchain app that lets users turn their jokes into coins on Base.
+The app uses OpenAI to generate coin metadata and the [Zora SDK](https://docs.zora.co/coins/sdk/create-coin) to coin the content.
+From the user's perspective, the process is simple:
 
 1. Input a joke or funny content
 2. Generate coin metadata using AI
@@ -20,6 +35,25 @@ The app uses OpenAI to generate coin metadata and the Zora Protocol to coin the 
 4. Get transaction confirmation and links
 5. Start earning referal fees from your the app
 6. Start earning trading fees from your Coin
+
+The full codebase of this app is available on Github:
+
+<GithubRepoCard
+  title="Coin Your Bangers"
+  githubUrl="https://github.com/base/demos/tree/master/smart-wallet/coin-your-joke"
+/>
+
+## Why use Smart Wallet to build your contentcoin app?
+
+Onboarding users to end-consumer onchain apps has always been a challenge, mainly
+due to the need for a wallet. In the case of web apps, this has always come in the form of a
+new browser extension to install or a new mobile app to download.
+In order to solve this, Smart Wallet was created.
+
+Smart Wallet in a new way to universally sign in into any onchain app.
+This example shows how Smart Wallet can seamlessly onboard users without the need for an installation.
+If you are building an app for creators and end-consumers, it is important to meet them where they are.
+Smart Wallet allows you to onboard them with passkeys, a simple pop-up, and no new extension to install.
 
 <iframe 
   width="100%" 
@@ -30,30 +64,35 @@ The app uses OpenAI to generate coin metadata and the Zora Protocol to coin the 
   allowFullScreen
 ></iframe>
 
+<Callout type="success">
+**Does Zora use Smart Wallet?**
+
+Yes, Zora integrates Smart Wallet smart contracts directly into their protocol.
+This allows users to sign in to the app and create contentcoins without any additional steps.
+
+You can see the share of Zora from Smart Wallet transactions on the [Dune Dashboard](https://dune.com/wilsoncusack/coinbase-smart-wallet-kpis).
+
+</Callout>
+
 ## Run the app
 
-Open a terminal and run the following commands:
+1. Open a terminal and run the following commands:
 
-### Clone the repository
-
-```bash
+```bash [Terminal]
+# Clone the repository
 git clone https://github.com/base/demos.git
+
+# Navigate to the app
 cd demos/smart-wallet/coin-your-joke
-```
 
-### Install dependencies
-
-```bash
+# Install dependencies
 pnpm install
-```
 
-### Set environment variables
-
-```bash
+# Copy the environment variables
 cp .env.example .env
 ```
 
-Edit the `.env` file with your own values as specified in the README.
+2. Open the repository in your favorite editor (eg. Cursor, VSCode, etc.) and edit the `.env` file with your own values as specified in the [README](https://github.com/base/demos/blob/master/smart-wallet/coin-your-joke/README.md).
 
 ```
 ENV=local or prod
@@ -62,9 +101,9 @@ OPENAI_API_KEY=your_openai_api_key
 NEXT_TELEMETRY_DISABLED=1
 ```
 
-### Run the app
+3. Run the app
 
-```bash
+```bash [Terminal]
 pnpm dev
 ```
 
