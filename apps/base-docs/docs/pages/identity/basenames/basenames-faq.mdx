@@ -1,3 +1,5 @@
+import { Callout } from 'vocs/components'
+
 ---
 title: Basenames FAQ
 slug: /tools/basenames-faq
@@ -59,17 +61,41 @@ Basenames are fully onchain, and therefore any information you publish is record
 
 ### 9. How do I set my Basename as my primary name for my address?
 
-You can set your Name as your primary name by updating this in Profile Management. If you set your Basename as your primary name, it will be displayed on any wallet or app that has added support for Basenames.
+You can set your Basename as your primary name by updating this in Profile Management. If you set your Basename as your primary name, it will be displayed on any wallet or app that has added support for Basenames.
+
+**To set a basename as your primary name:**
+
+* Navigate to [base.org/names](http://base.org/names)  
+* Sign in with the wallet that now owns the basename  
+* Click “My Basenames”  
+* Click “Set as primary” and sign the transaction
 
 ### 10. How do I transfer my Basename to another address?
 
 You can transfer your Basename to another address through Profile Management:
 
-1. Transfer token ownership - transfers ownership of the Basename token and associated permissions.
-2. Transfer management - transfers ability to manage and update profile records.
-3. Change address resolution - Basename will resolve to a new address.
+<Callout type="warning">
+  **Do not send the Basename NFT on OpenSea**
+</Callout>
 
+Transfer token ownership \- transfers ownership of the Basename token and associated permissions.  
+Transfer management \- transfers ability to manage and update profile records.  
+Change address resolution \- Basename will resolve to a new address.  
 Transferring all 3 to the same address will fully transfer ownership of the Basename to that address.
+
+Step by step:
+
+* Navigate to [base.org/names](http://base.org/names)
+* Sign in with wallet that owns the basename  
+* Click “My Basenames” in the top right corner  
+* Click the three dots of the basename you want to transfer and click transfer name  
+* Paste the ENS or address of the wallet you want to transfer the basename to  
+* Proceed to sign all four transactions to properly update the basename address, ownership, and profile records. The last transaction will be sending the NFT.  
+
+<Callout type="info">
+
+**For the new owner to use the basename they will need to confirm by setting it as their [primary name](#9-how-do-i-set-my-basename-as-my-primary-name-for-my-address).**
+</Callout>
 
 ### 11. What happens if I forget to renew my Basename?
 
