@@ -791,6 +791,15 @@ export const sidebar: Sidebar = [
             ],
           },
           {
+            text: 'Examples',
+            items: [
+              {
+                text: 'Coin Your Bangers',
+                link: '/identity/smart-wallet/examples/coin-a-joke-app',
+              },
+            ],
+          },
+          {
             text: 'Technical Reference',
             items: [
               {
