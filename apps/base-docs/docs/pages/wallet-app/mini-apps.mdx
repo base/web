@@ -12,38 +12,40 @@ If you're already using MiniKit and experiencing issues, you can refer to the [D
 
 ## Authentication
 
-As a general rule of thumb for building any mini app, we recommend that you do not automatically request that the user logs in/signs a message and instead that authentication is only used when it's needed(eg. signing up for an event, viewing authenticated resources, etc).
+As a general rule of thumb for building any mini app, we recommend that you do not automatically request that the user logs in/signs a message and instead that authentication is only used when it's needed (e.g. signing up for an event, viewing authenticated resources, etc).
 Below we will quickly cover the different methods of authentication offered for mini apps and how well each of them work in Coinbase Wallet:
 
 ### Wallet
 
 Because users in Coinbase Wallet have an in-app smart wallet that doesn't require any app switching, we recommend wallet authentication as the primary method of authentication for developers looking to create a persisted session for the mini app user.
 
-As described below we don't think it's the best practice to prompt the user to log in before that authentication will allow them to do something else in your mini app, but for cases where do you want a secure, persisted session, using a wallet connection is a great option.
+As described below, we don't think it's the best practice to prompt the user to log in before that authentication will allow them to do something else in your mini app, but for cases where do you want a secure, persisted session, using a wallet connection is a great option.
 
 ### Context Data
 
-All mini app host apps(including Coinbase Wallet) return [context data](https://miniapps.farcaster.xyz/docs/sdk/context), which tells developers about the app/mini app host the user is accessing their mini app in, as well as **which user** is interacting with their mini app.
+All mini app host apps (including Coinbase Wallet) return [context data](https://miniapps.farcaster.xyz/docs/sdk/context), which tells developers about the app/mini app host the user is accessing their mini app in, as well as **which user** is interacting with their mini app.
 
-While this data can technically be spoofed, not only can you be sure that Coinbase Wallet will always give you the accurate data as a developer but also making use of this context data is super helpful because it doesn't require any other action from the user.
+A common flow that other mini app developers follow is using the context data to either track analytics metrics or create an authentication session via a [JWT](https://jwt.io/introduction). This allows you to still track analytics/offer certain authenticated services to your users without the extra friction of signing a message or deeplinking to another app.
 
-A common flow that other mini app developers follow is using the context data to either track analytics metrics or create an authentication session via a [JWT](https://jwt.io/introduction). This allows you to still track analytics/offer authenticated services to your users without the extra friction of signing a message or deeplinking to another app.
+Something important to note is that because of how the current mini app spec is written, context data can technically be spoofed by any developer who makes their own mini app host. Because of this, we recommend that context data is not used as the **primary** method of authentication.
 
 ### Sign In with Farcaster
 
-Currently, using Sign In with Farcaster inside of Coinbase Wallet is **not recommended as the primary method of authentication**. This is because for Farcaster accounts that were created in Warpcast(which many current accounts were), using Sign In with Farcaster will require deeplinking the user to Warpcast and then back to Coinbase Wallet. While this flow still works inside of Coinbase Wallet, we recommend either wallet auth or creating an auth strategy around the context data(eg. a custom JWT with context data) for a more optimal UX.
+Currently, using Sign In with Farcaster inside of Coinbase Wallet is **not recommended as the primary method of authentication**. This is because, for Farcaster accounts that were created in Warpcast (which many current accounts were), using Sign In with Farcaster will require deeplinking the user to Warpcast and then back to Coinbase Wallet. While this flow still works inside of Coinbase Wallet, we recommend either wallet auth or creating an auth strategy around the context data (eg. a custom JWT with context data) for a more optimal UX.
 
+:::info
 Note: The Sign In with Farcaster flow will no longer require a deeplink to Warpcast when the [auth addresses FIP](https://github.com/farcasterxyz/protocol/discussions/225) lands, which will allow a set of delegated wallets to take actions on behalf of a Farcaster account's custody wallet.
+:::
 
 ## Deeplinks and SDK Actions
 
-The official mini apps SDK offers a [set of actions](https://miniapps.farcaster.xyz/docs/specification#actions)(which MiniKit offers as well) so that users of your mini app can be led to do things back in clients like Coinbase Wallet(eg. compose a cast, view a profile, etc).
+The official mini apps SDK offers a [set of actions](https://miniapps.farcaster.xyz/docs/specification#actions) (which MiniKit offers as well) so that users of your mini app can be led to do things back in clients like Coinbase Wallet (e.g. compose a cast, view a profile, etc).
 
-Although a few other mini app developers have used the workaround of inserting Warpcast-specific deeplinks in the `openUrl` function of the SDK for certain actions, **it is highly recommended that you make use of all official SDK functions instead of using Warpcast-specific deeplinks in your mini app**. This is because certain Warpcast deeplinks might lead to dead ends/unpleasent experiences, and using SDK functions instead will ensure your users have the best viewing experience possible in Coinbase Wallet.
+Although a few other mini app developers have used the workaround of inserting Warpcast-specific deeplinks in the `openUrl` function of the SDK for certain actions, **it is highly recommended that you make use of all official SDK functions instead of using Warpcast-specific deeplinks in your mini app**. This is because Warpcast-specific deeplinks might not always match Coinbase Wallet-specific deeplinks, and this could lead to a UX where the user is dead-ended from taking further action in a mini app. Using SDK functions instead will ensure your users have the best viewing experience possible in Coinbase Wallet.
 
 ## Metadata
 
-Farcaster has recently [extended the metadata spec for mini apps](https://github.com/farcasterxyz/miniapps/discussions/191), which allows developers to add screenshot links, categories, and more to their manifest(farcaster.json) file. Making use of these new metadata fields is highly recommended for increasing the chance that your mini app could be featured throughout Coinbase Wallet.
+Farcaster has recently [extended the metadata spec for mini apps](https://github.com/farcasterxyz/miniapps/discussions/191), which allows developers to add screenshot links, categories, and more to their manifest (farcaster.json) file. Making use of these new metadata fields is highly recommended for increasing the chance that your mini app could be featured throughout Coinbase Wallet.
 
 Below is a table of the new metadata fields introduced, what they mean/could potentially be used for, and an example of what a manifest file could look like with these new fields (all taken from the [official spec](https://github.com/farcasterxyz/miniapps/discussions/191))
 
