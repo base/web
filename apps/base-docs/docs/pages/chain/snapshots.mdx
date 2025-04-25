@@ -1,0 +1,40 @@
+---
+title: Snapshots
+slug: /snapshots
+description: Information for how to restore a base node from a snapshots
+author: taycaldwell & wbnns
+---
+
+# Snapshots
+
+:::warning
+
+Geth Archive Nodes are no longer supported. For Archive functionality, use Reth, which provides significantly better performance in Base’s high-throughput environment.
+
+:::
+
+If you're a prospective or current Base Node operator and would like to restore from a snapshot to save time on the initial sync, it's possible to always get the latest available snapshot of the Base chain on mainnet and/or testnet by using the following CLI commands. The snapshots are updated every week.
+
+#### Restoring from snapshot
+
+In the home directory of your Base Node, create a folder named `geth-data` or `reth-data`. If you already have this folder, remove it to clear the existing state and then recreate it. Next, run the following code and wait for the operation to complete.
+
+| Network | Client | Snapshot Type | Command                                                                                                               |
+| ------- | ------ | ------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Testnet | Geth   | Full          | `wget https://sepolia-full-snapshots.base.org/$(curl https://sepolia-full-snapshots.base.org/latest)`                 |
+| Testnet | Reth   | Archive       | `wget https://sepolia-reth-archive-snapshots.base.org/$(curl https://sepolia-reth-archive-snapshots.base.org/latest)` |
+| Mainnet | Geth   | Full          | `wget https://mainnet-full-snapshots.base.org/$(curl https://mainnet-full-snapshots.base.org/latest)`                 |
+| Mainnet | Reth   | Archive       | `wget https://mainnet-reth-archive-snapshots.base.org/$(curl https://mainnet-reth-archive-snapshots.base.org/latest)` |
+
+You'll then need to untar the downloaded snapshot and place the `geth` subfolder inside of it in the `geth-data` folder you created (unless you changed the location of your data directory).
+
+Return to the root of your Base node folder and start your node.
+
+```bash [Terminal]
+cd ..
+docker compose up --build
+```
+
+Your node should begin syncing from the last block in the snapshot.
+
+Check the latest block to make sure you're syncing from the snapshot and that it restored correctly. If so, you can remove the snapshot archive that you downloaded.

@@ -1010,19 +1010,34 @@ export const sidebar: Sidebar = [
           { text: 'Why Base?', link: '/chain/why-base' },
           { text: 'Using Base', link: '/chain/using-base' },
           { text: 'Deploy on Base', link: '/chain/deploy-on-base-quickstart' },
-          { text: 'Network Information', link: '/chain/network-information' },
           { text: 'Fees', link: '/chain/fees' },
           {
             text: 'Differences Between Ethereum and Base',
             link: '/chain/differences-between-ethereum-and-base',
           },
-          { text: 'Run a Base Node', link: '/chain/run-a-base-node' },
+          { text: 'Flashblocks', link: '/chain/flashblocks' },
           { text: 'Bridge an L1 Token to Base', link: '/chain/bridge-an-l1-token-to-base' },
           { text: 'Adding tokens to Coinbase Wallet', link: '/chain/wallet' },
-          {
-            text: 'Decentralizing Base with Optimism↗',
-            link: 'https://base.mirror.xyz/H_KPwV31M7OJT-THUnU7wYjOF16Sy7aWvaEr5cgHi8I',
-          },
+        ],
+      },
+      {
+        text: 'Network Information',
+        collapsed: true,
+        items: [
+          { text: 'Connecting to Base', link: '/chain/connecting' },
+          { text: 'Base Contracts', link: '/chain/base-contracts' },
+          { text: 'Chain Stats ↗', link: 'https://www.base.org/stats' },
+          { text: 'Status Page ↗', link: 'https://status.base.org' },
+        ],
+      },
+      {
+        text: 'Node Operators',
+        collapsed: true,
+        items: [
+          { text: 'Run a Base Node', link: '/chain/run-a-base-node' },
+          { text: 'Snapshots', link: '/chain/snapshots' },
+          { text: 'Node Performance', link: '/chain/node-performance' },
+          { text: 'Troubleshooting', link: '/chain/troubleshooting' },
         ],
       },
       {
@@ -1053,16 +1068,8 @@ export const sidebar: Sidebar = [
         ],
       },
       {
-        text: 'Chain Stats ↗',
-        link: 'https://www.base.org/stats',
-      },
-      {
         text: 'Flashblocks ↗',
         link: '/chain/flashblocks',
-      },
-      {
-        text: 'Base Contracts',
-        link: '/chain/base-contracts',
       },
     ],
   },

@@ -1,0 +1,72 @@
+---
+title: Node Performance
+slug: /node-performance
+description: Guides on how to improve syncing performance of Base node clients
+---
+
+import { Button } from 'vocs/components'
+
+# Node Performance
+
+## Hardware
+
+We recommend the following hardware configuration to run a Base mainnet node:
+
+1.  A modern multi-core CPU with good single-core performance
+2.  At least 16 GB RAM (32 GB recommended)
+3.  A locally attached NVMe SSD drive
+4.  Adequate storage capacity to accommodate both the snapshot restoration process (if restoring from snapshot) and chain data, plus a 20% buffer for growth.
+
+:::info
+
+If utilizing Amazon Elastic Block Store (EBS), io2 Block Express is recommended to ensure timing buffered disk reads are fast enough in order to avoid latency issues alongside the rate of new blocks added to Base during the initial synchronization process.
+
+**The Base team highly recommends using locally attached NVMe SSD drives rather than networked storage.**
+
+:::
+
+## Client Software
+
+The [Base Node](https://github.com/base/node) repository contains the current stable configurations.
+
+#### Supported Clients
+
+Reth is currently the most performant client for running Base nodes. Future optimizations will be made
+primarily to Reth. You can read more about our migration to Reth [here](https://blog.base.dev/scaling-base-with-reth)
+
+| Type    | Supported Clients                                                                                        |
+| :------ | :------------------------------------------------------------------------------------------------------- |
+| Full    | [Reth](https://github.com/base/node/tree/main/reth), [Geth](https://github.com/base/node/tree/main/geth) |
+| Archive | [Reth](https://github.com/base/node/tree/main/reth)                                                      |
+
+## Geth LevelDB Tuning
+
+For teams running Geth with leveldb, the following patch can be used to set leveldb initialization parameters via environment variables:
+
+[https://github.com/0x00101010/goleveldb/commit/55ef34](https://github.com/0x00101010/goleveldb/commit/55ef3429673fb70d389d052a15a4423e13d8b43c)
+
+This patch can be applied with a replace directive for leveldb in go.mod go.mod when building op-geth.
+Here is how that can be done via the Dockerfile:
+
+```docker
+RUN git clone $REPO --branch $VERSION --single-branch . && \
+    git switch -c branch-$VERSION $COMMIT && \
+    bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
+
+RUN echo '' >> go.mod && \ // [!code ++]
+    echo 'replace github.com/syndtr/goleveldb => github.com/0x00101010/goleveldb v1.0.4-param-customization' >> go.mod && \ // [!code ++]
+    go mod tidy \ // [!code ++]
+
+# Continue building op-geth
+COPY op-geth/ ./
+RUN go run build/ci.go install -static ./cmd/geth
+```
+
+Sensible values for leveldb with this patch are as follows:
+
+```bash
+LDB_BLOCK_SIZE="524288" #Maximizes IO efficiency, 512 KiB block size which equals our raid 0 config chunk size shown in `cat /proc/mdstat`. See http://go/leveldb for detailed explanation
+LDB_COMPACTION_TABLE_SIZE="8388608" #8 MiB, default is 2 MiB for leveldb. See http://go/leveldb for detailed explanation
+LDB_COMPACTION_TOTAL_SIZE="41943040" #40 MiB, default is 8 MiB for leveldb. See http://go/leveldb for detailed explanation
+LDB_DEBUG_OPTIONS="1" #Emit leveldb debug logs
+```
