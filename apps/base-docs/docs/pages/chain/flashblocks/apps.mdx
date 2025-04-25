@@ -97,9 +97,42 @@ curl https://sepolia-preconf.base.org -X POST -H "Content-Type: application/json
 For popular libraries, they sometimes require additional RPC support for transaction preconfirmation to work properly.
 We are working on adding Flashblocks support to the following libraries:
 
-- [Ethers](https://github.com/ethers-io/ethers.js) (Completed 🟢)
-- [viem](https://github.com/viem/viem) (Coming soon 🟡)
-- [wagmi](https://github.com/wagmi-dev/wagmi) (Coming soon 🟡)
+#### [Ethers](https://github.com/ethers-io/ethers.js) (Completed 🟢)
+
+```
+  const providerA = new ethers.JsonRpcProvider(
+    "https://sepolia-preconf.base.org"
+  );
+
+  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, providerA);
+
+  try {
+    // Create a simple transaction (sending 0.001 ETH to a random address)
+    const tx = {
+      to: "<SOME ADDRESS>",
+      value: ethers.parseEther("0.0000001"),
+    };
+
+    // Submit transaction
+    const submissionTime = new Date();
+    const transaction = await wallet.sendTransaction(tx);
+
+    console.log(`Submitting transaction at: ${submissionTime.toISOString()}`);
+    console.log(`Transaction hash: ${transaction.hash}`);
+
+    await transaction.wait(0); // Make sure to set the confirmation count to 0
+
+    console.log("Transaction confirmed");
+    const confirmationTime = new Date();
+    console.log(`Transaction confirmed at: ${confirmationTime.toISOString()}`);
+    console.log(`Time difference: ${confirmationTime - submissionTime}ms`);
+  }
+```
+You should see the confirmation time significantly lower than the standard RPC endpoint.
+
+#### Viem (Coming soon 🟡)
+
+#### Wagmi (Coming soon 🟡)
 
 ### WebSocket API
 
