@@ -110,7 +110,7 @@ The template comes with several pre-implemented features. Let's explore where th
 
 ### MiniKitProvider
 
-The `MiniKitProvider` is set up in your `providers.tsx` file. It wraps your application to handle initialization, events, and automatically applie client safeAreaInsets to ensure your app doesn't overlap parent application elements.
+The `MiniKitProvider` is set up in your `providers.tsx` file. It wraps your application to handle initialization, events, and automatically applies client safeAreaInsets to ensure your app doesn't overlap parent application elements.
 
 ```tsx [app/providers.tsx]
 import { MiniKitProvider } from '@coinbase/onchainkit/minikit';
@@ -135,7 +135,7 @@ export function Providers(props: { children: ReactNode }) {
 }
 ```
 
-The MiniKitProvider also sets up your wagmi and react-query providers automatically, elimintaing that initial setup work.
+The MiniKitProvider also sets up your wagmi and react-query providers automatically, eliminating that initial setup work.
 
 ### useMiniKit
 
@@ -170,7 +170,7 @@ Enter `y` to proceed with the setup and your browser will open to the following 
   height="364"
 />
 
-The wallet that you connect must be your Farcaster custody wallet. You can import this wallet to your prefered wallet using the recovery phrase. You can find your recovery phrase in the Warpcast app under Settings -> Advanced -> Farcster recovery phrase.
+The wallet that you connect must be your Farcaster custody wallet. You can import this wallet to your prefered wallet using the recovery phrase. You can find your recovery phrase in the Warpcast app under Settings -> Advanced -> Farcaster recovery phrase.
 
 Once connected, add the vercel url and sign the manifest. This will automatically update your .env variables locally, but we'll need to update Vercel's .env variables.
 
@@ -229,7 +229,7 @@ const openUrl = useOpenUrl()
 </footer>
 ```
 
-Now that we've reviewed the MiniKit teamplate and the functionality already implemented, lets add some additional MiniKit features.
+Now that we've reviewed the MiniKit template and the functionality already implemented, lets add some additional MiniKit features.
 
 ## Additional MiniKit Features
 
@@ -280,7 +280,7 @@ usePrimaryButton(
 )
 ```
 
-You'll notice that adding the Primary button takes up space at the bottom of the frame, which causes the "BUILT ON BASE WITH MINIKIT" button to move upwards and overlap with the contorls.
+You'll notice that adding the Primary button takes up space at the bottom of the frame, which causes the "BUILT ON BASE WITH MINIKIT" button to move upwards and overlap with the controls.
 We can quickly fix that by changing the text to "BUILT WITH MINIKIT" and removing the `ml-4` style in the `className` of the `<button>`
 
 ### `useViewProfile`
@@ -310,7 +310,7 @@ const handleViewProfile = () => {
 
 ### `useNotification`
 
-One of the major benefits of mini apps is that you can send notifications to your users through their socail app.
+One of the major benefits of mini apps is that you can send notifications to your users through their social app.
 
 Recall the token and url we saved in the [useAddFrame section](docs.base.org/builderkits/minikit/quickstart#useaddframe)? We'll use those now to send a user a notification. In this guide, we'll simply send a test notification unrelated to the game activity.
 
