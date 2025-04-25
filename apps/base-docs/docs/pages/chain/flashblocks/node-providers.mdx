@@ -1,0 +1,51 @@
+---
+title: Flashblocks
+slug: /flashblocks/node-providers
+description: Experience lightning-fast transaction confirmations on Base by using Flashblocks. Preconfirmations happen in just 200 milliseconds—designed for real-time apps, games, and seamless UX.
+---
+
+# How to host Flashblocks-aware RPC nodes
+
+## Quick Start
+
+1. **Prerequisites**:
+
+   - Docker and Docker Compose
+   - Minimum hardware requirements (see [node README](https://github.com/base/node?tab=readme-ov-file#hardware-requirements))
+   - Access to a Flashblocks websocket endpoint, we provide public endpoints in the env files in the repo
+
+2. **Set Up Environment**:
+
+   ```bash
+   # Clone the repository
+   git clone https://github.com/base/node.git
+   cd node
+   ```
+
+3. **Start the Node with Flashblocks Support**:
+   ```bash
+   NODE_TYPE=base CLIENT=reth docker-compose up
+   ```
+
+## Configuration Options
+
+- **Node Type**: Use `NODE_TYPE=base` to enable base reth node withFlashblocks functionality
+- **Network**: Use `NETWORK_ENV=.env.mainnet` for mainnet or `NETWORK_ENV=.env.sepolia` for testnet
+
+## Verifying Flashblocks Functionality
+
+Test that your node is properly supporting Flashblocks by querying a pending block:
+
+```bash
+curl -X POST \
+  --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["pending", false],"id":1}' \
+  http://localhost:8545
+```
+
+## Available RPC Methods
+
+Flashblocks-aware nodes provide all standard Ethereum JSON-RPC methods plus specialized Flashblocks endpoints. For more details, see the [Flashblocks RPC API documentation](https://docs.base.org/chain/flashblocks/apps#rpc-api).
+
+## Further Resources
+
+For detailed information about node setup, including hardware requirements and additional configuration options, refer to the [Reth node README](https://github.com/base/op-geth/blob/main/node/reth/README.md).

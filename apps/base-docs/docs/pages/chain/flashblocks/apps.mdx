@@ -1,6 +1,6 @@
 ---
 title: Flashblocks
-slug: /flashblocks
+slug: /flashblocks/apps
 description: Experience lightning-fast transaction confirmations on Base by using Flashblocks. Preconfirmations happen in just 200 milliseconds—designed for real-time apps, games, and seamless UX.
 ---
 
@@ -14,9 +14,87 @@ Flashblocks enable up to 200 millisecond transaction confirmations on Base by le
 
 Flashblocks is enabled for developers on Base Sepolia with full support for mainnet coming very soon. There are two ways you can integrate with Flashblocks data. You can either use the WebSocket API to stream real-time block updates, or use the RPC API to query the Flashblocks-aware RPC endpoint.
 
+### RPC API
+
+You can utilize our Flashblock aware RPC endpoint at `https://sepolia-preconf.base.org`.
+
+In addition to these flashblock-specific methods, all standard Ethereum JSON-RPC methods are supported as usual.
+
+#### eth_getBlockByNumber
+
+Use the `pending` tag to retrieve the latest Flashblock:
+```
+curl https://sepolia-preconf.base.org -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["pending",true],"id":1}'
+```
+
+**Example Response**
+```
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "number": "0x1234",
+    "hash": "0x...",
+    "transactions": [...]
+  }
+}
+```
+
+#### eth_getTransactionReceipt
+
+Use the existing receipt RPC to get preconfirmed receipts:
+```
+curl https://sepolia-preconf.base.org -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getTransactionReceipt","params":["0x..."],"id":1}'
+```
+
+**Example Response**
+```
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "transactionHash": "0x...",
+    "blockNumber": "0x1234",
+    "status": "0x1"
+  }
+}
+```
+
+#### eth_getBalance
+
+Use the `pending` tag to get the address balance in the latest Flashblock:
+```
+curl https://sepolia-preconf.base.org -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x...","pending"],"id":1}'
+```
+
+**Example Response**
+```
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x0234"
+}
+```
+
+#### eth_getTransactionCount
+
+Use the `pending` tag to get the address nonce in the latest Flashblock:
+```
+curl https://sepolia-preconf.base.org -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["0x...","pending"],"id":1}'
+```
+
+**Example Response**
+```
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x1b" // 27 transactions
+}
+```
+
 ### WebSocket API
 
-Use our API to stream realtime block updates over a WebSocket.
+You can also use our WebSocket API to stream realtime flashblocks updates.
 
 You can connect to the websocket endpoint with any WebSocket library of CLI tool. The endpoint is available at wss://sepolia.flashblocks.base.org/ws.
 
@@ -114,83 +192,7 @@ To minimize the amount of data sent to clients, each Flashblock only includes th
 }
 ```
 
-### RPC API
 
-You can also utilize our Flashblock aware RPC endpoint at `https://sepolia-preconf.base.org`.
-
-In addition to these flashblock-specific methods, all standard Ethereum JSON-RPC methods are supported as usual.
-
-#### eth_getBlockByNumber
-
-Use the `pending` tag to retrieve the latest Flashblock:
-```
-curl https://sepolia-preconf.base.org -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["pending",true],"id":1}'
-```
-
-**Example Response**
-```
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": {
-    "number": "0x1234",
-    "hash": "0x...",
-    "transactions": [...]
-  }
-}
-```
-
-#### eth_getTransactionReceipt
-
-Use the existing receipt RPC to get preconfirmed receipts:
-```
-curl https://sepolia-preconf.base.org -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getTransactionReceipt","params":["0x..."],"id":1}'
-```
-
-**Example Response**
-```
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": {
-    "transactionHash": "0x...",
-    "blockNumber": "0x1234",
-    "status": "0x1"
-  }
-}
-```
-
-#### eth_getBalance
-
-Use the `pending` tag to get the address balance in the latest Flashblock:
-```
-curl https://sepolia-preconf.base.org -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x...","pending"],"id":1}'
-```
-
-**Example Response**
-```
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": "0x0234"
-}
-```
-
-#### eth_getTransactionCount
-
-Use the `pending` tag to get the address nonce in the latest Flashblock:
-```
-curl https://sepolia-preconf.base.org -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["0x...","pending"],"id":1}'
-```
-
-**Example Response**
-```
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": "0x1b" // 27 transactions
-}
-```
 
 ## Support
 
