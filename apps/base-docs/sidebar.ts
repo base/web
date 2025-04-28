@@ -783,6 +783,15 @@ export const sidebar: Sidebar = [
             ],
           },
           {
+            text: 'Examples',
+            items: [
+              {
+                text: 'Coin Your Bangers',
+                link: '/identity/smart-wallet/examples/coin-a-joke-app',
+              },
+            ],
+          },
+          {
             text: 'Technical Reference',
             items: [
               {
@@ -989,6 +998,15 @@ export const sidebar: Sidebar = [
       {
         text: 'Verifications (CDP)↗',
         link: 'https://docs.cdp.coinbase.com/verifications/docs/welcome',
+      },
+    ],
+  },
+  {
+    text: 'Wallet App',
+    items: [
+      {
+        text: 'Mini Apps',
+        link: '/wallet-app/mini-apps',
       },
     ],
   },
