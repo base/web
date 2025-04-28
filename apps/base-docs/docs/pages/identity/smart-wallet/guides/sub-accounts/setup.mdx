@@ -46,16 +46,21 @@ Navigate into the project directory:
 cd my-app
 ```
 
-Install Coinbase Wallet SDK (only on canary version for now)
+Let's override the default `@coinbase/wallet-sdk` version with the latest canary version:
 
 ```bash [Terminal]
-npm install @coinbase/wallet-sdk@canary
+npm pkg set overrides.@coinbase/wallet-sdk=canary
 ```
 
-Install viem for onchain interactions
+:::warning[Override before installing]
+Sub Accounts are currently only available in the Smart Wallet development environment (Canary).
+Make sure to override the `@coinbase/wallet-sdk` version BEFORE installing the packages.
+:::
+
+Install packages
 
 ```bash [Terminal]
-npm install viem
+npm install
 ```
 
 ## Setting up the Wagmi config
@@ -63,28 +68,33 @@ npm install viem
 After running these commands, it is time to set up the Wagmi config.
 
 ```ts [wagmi.ts]
-import { http, cookieStorage, createConfig, createStorage } from 'wagmi'
-import { baseSepolia, base } from 'wagmi/chains'
-import { coinbaseWallet } from 'wagmi/connectors'
+import { http, cookieStorage, createConfig, createStorage } from "wagmi";
+import { baseSepolia, base } from "wagmi/chains";
+import { coinbaseWallet } from "wagmi/connectors";
+import { parseEther, toHex } from "viem";
 
 export function getConfig() {
   return createConfig({
     chains: [baseSepolia, base],
     connectors: [
       coinbaseWallet({
-        appName: 'My Subaccount Demo',
+        appName: "My Sub Account Demo",
         preference: {
-          keysUrl: 'https://keys-dev.coinbase.com/connect',
-          options: 'smartWalletOnly',
-          enableAutomaticSubAccountCreation: true,
-          spendPermissionConfig: {
-            '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE': {
-              token: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
-              allowance: '0x2386f26fc10000',
-              period: 86400,
-            },
+          keysUrl: "https://keys-dev.coinbase.com/connect",
+          options: "smartWalletOnly",
+        },
+        subAccounts: {
+          enableAutoSubAccounts: true,
+          defaultSpendLimits: {
+            8453: [
+              {
+                token: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+                allowance: toHex(parseEther('0.01')), // 0.01 ETH
+                period: 86400, // 24h
+              },
+            ],
           },
-        }
+        },
       }),
     ],
     storage: createStorage({
@@ -95,12 +105,12 @@ export function getConfig() {
       [baseSepolia.id]: http(),
       [base.id]: http(),
     },
-  })
+  });
 }
 
-declare module 'wagmi' {
+declare module "wagmi" {
   interface Register {
-    config: ReturnType<typeof getConfig>
+    config: ReturnType<typeof getConfig>;
   }
 }
 ```
@@ -109,16 +119,17 @@ Let's break down the key preference parameters:
 
 - `keysUrl`: Points to the development environment for Smart Wallet testing
 - `options: 'smartWalletOnly'`: Ensures only Smart Wallet mode is used
-- `enableAutomaticSubAccountCreation`: When set to true, automatically creates a Sub Account at connection
-- `spendPermissionConfig`: Configures Spend Permissions for Sub Account, including:
+- `enableAutoSubAccounts: true`: When set to true, automatically creates a Sub Account at connection
+- `defaultSpendLimits`: Configures Spend Limits for Sub Account, including:
   - Token address (In this case, `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` represents the native ETH)
-  - Allowance amount (in hex)
+  - Allowance WEI amount (in Hex)
   - Time period for the allowance (in seconds, e.g., 86400 for 24 hours)
 
 <Callout type="warning">
 **About `keysUrl`**
 
-Sub Accounts are currently only available in the Smart Wallet development environment. To use this environment, you need to set the `keysUrl` to `https://keys-dev.coinbase.com/connect` in your configuration.
+Sub Accounts are currently only available in the Smart Wallet development environment.
+To use this environment, you need to set the `keysUrl` to `https://keys-dev.coinbase.com/connect` in your configuration.
 
 </Callout>
 
