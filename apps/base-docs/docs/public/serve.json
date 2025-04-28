@@ -15,6 +15,10 @@
       "destination": "/chain/network-faucets"
     },
     {
+      "source": "/tutorials/",
+      "destination": "/"
+    },
+    {
       "source": "/tutorials/deploy-with-foundry",
       "destination": "/cookbook/smart-contract-development/foundry/deploy-with-foundry"
     },

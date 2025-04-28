@@ -1,0 +1,208 @@
+import GithubRepoCard from "@/components/GithubRepoCard"
+import { Callout } from 'vocs/components'
+
+# Coin Your Bangers: Turn Your Jokes into Coins
+
+In this guide we illustrate how to use Smart Wallet and Zora's content coin SDK to create an engaging consumer application with great UX.
+
+Memecoins and culturecoins have been catalysts of the onchain economy, allowing people to rally around concepts that are fun and engaging with a potential upside.
+
+Memecoins are great for long term community and culture building onchain.
+Contentcoins are an emergent category of coins focused on valuing individual pieces of content and providing monetization for creators.
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '2rem 0' }}>
+  <img
+    alt="Table showing the difference between memecoins and contentcoins"
+    src="/images/smart-wallet/meme-vs-content.png"
+    style={{ maxWidth: '400px', width: '100%' }}
+  />
+  <em style={{ marginTop: '1rem' }}>A Table showing the difference between memecoins and contentcoins</em>
+</div>
+
+Apps like [Zora](https://zora.co/) or [Flaunch](https://flaunch.gg/) illustrate the power of contentcoins.
+They create a new category of apps that we may call "contentcoin apps".
+
+## Overview
+
+This example explains "Coin Your Bangers", a full onchain app that lets users turn their jokes into coins on Base.
+The app uses OpenAI to generate coin metadata and the [Zora SDK](https://docs.zora.co/coins/sdk/create-coin) to coin the content.
+From the user's perspective, the process is simple:
+
+1. Input a joke or funny content
+2. Generate coin metadata using AI
+3. Deploy a new Zora Coin on Base
+4. Get transaction confirmation and links
+5. Start earning referal fees from your the app
+6. Start earning trading fees from your Coin
+
+The full codebase of this app is available on Github:
+
+<GithubRepoCard
+  title="Coin Your Bangers"
+  githubUrl="https://github.com/base/demos/tree/master/smart-wallet/coin-your-joke"
+/>
+
+## Why use Smart Wallet to build your contentcoin app?
+
+Onboarding users to end-consumer onchain apps has always been a challenge, mainly
+due to the need for a wallet. In the case of web apps, this has always come in the form of a
+new browser extension to install or a new mobile app to download.
+In order to solve this, Smart Wallet was created.
+
+Smart Wallet is a new way to universally sign in into any onchain app.
+This example shows how Smart Wallet can seamlessly onboard users without the need for an installation.
+If you are building an app for creators and end-consumers, it is important to meet them where they are.
+Smart Wallet allows you to onboard them with passkeys, a simple pop-up, and no new extension to install.
+
+<iframe 
+  width="100%" 
+  height="400" 
+  src="https://www.youtube.com/embed/M3SWv2gJ3lc" 
+  title="Coin Your Bangers Demo"
+  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowFullScreen
+></iframe>
+
+<Callout type="success">
+**Does Zora use Smart Wallet?**
+
+Yes, Zora integrates Smart Wallet smart contracts directly into their protocol.
+This allows users to sign in to the app and create contentcoins without any additional steps.
+
+You can see the share of Zora from Smart Wallet transactions on the [Dune Dashboard](https://dune.com/wilsoncusack/coinbase-smart-wallet-kpis).
+
+</Callout>
+
+## Run the app
+
+1. Open a terminal and run the following commands:
+
+```bash [Terminal]
+# Clone the repository
+git clone https://github.com/base/demos.git
+
+# Navigate to the app
+cd demos/smart-wallet/coin-your-joke
+
+# Install dependencies
+pnpm install
+
+# Copy the environment variables
+cp .env.example .env
+```
+
+2. Open the repository in your favorite editor (eg. Cursor, VSCode, etc.) and edit the `.env` file with your own values as specified in the [README](https://github.com/base/demos/blob/master/smart-wallet/coin-your-joke/README.md).
+
+```
+ENV=local or prod
+NEXT_PUBLIC_URL=your_deployment_url (http://localhost:3000 for local development)
+OPENAI_API_KEY=your_openai_api_key
+NEXT_TELEMETRY_DISABLED=1
+```
+
+3. Run the app
+
+```bash [Terminal]
+pnpm dev
+```
+
+## Key Components
+
+### Wagmi Config (`wagmi.ts`)
+
+The wagmi config is used to set up the Smart Wallet client.
+
+```ts
+import { http, cookieStorage, createConfig, createStorage } from "wagmi";
+import { base, baseSepolia } from "wagmi/chains";
+import { coinbaseWallet } from "wagmi/connectors";
+
+export const cbWalletConnector = coinbaseWallet({
+  appName: "Smart Wallet Zora Coiner",
+  preference: "smartWalletOnly",
+});
+
+export function getConfig() {
+  return createConfig({
+    chains: [base, baseSepolia],
+    connectors: [cbWalletConnector],
+    // ... other config options
+  });
+}
+
+// ... other wagmi config options
+```
+
+### CoinButton Component (`CoinButton.tsx`)
+
+The deployment button component handles the actual token creation:
+
+```tsx
+export function CoinButton({
+  name,
+  symbol,
+  uri,
+  initialPurchaseWei = BigInt(0),
+  onSuccess,
+  onError,
+  className
+}: CreateCoinArgs) {
+  // ... implementation
+}
+```
+
+Key features:
+
+- Using Zora's [`createCoin`](https://docs.zora.co/coins/sdk/create-coin) function to create a new coin
+- Using Smart Wallet and Wagmi to submit the transaction
+- Loading states and error handling
+- Transaction status tracking
+
+### Metadata Generation API
+
+The API endpoint uses OpenAI to generate creative coin metadata:
+
+```typescript
+// Example API structure
+async function generateMetadata(joke: string) {
+  // 1. Process the joke using OpenAI
+  // 2. Generate coin name and symbol
+  // 3. Create metadata JSON
+  // 4. Return coin parameters
+}
+```
+
+Features:
+
+- OpenAI integration for creative naming
+- Metadata JSON generation
+- URI creation for token metadata
+- Error handling and validation
+
+## Technical Stack
+
+- **Frontend**: Next.js 13+ with App Router
+- **Styling**: Tailwind CSS
+- **Onchain tools**:
+  - Smart Wallet for Sign In
+  - Wagmi for contract interactions
+  - Zora SDK for coining content
+- **AI**: OpenAI API for metadata generation
+- **Network**: Base
+
+## Deployment
+
+You can deploy your app to Vercel by following the instructions [here](https://vercel.com/docs/deployments).
+
+## Conclusion
+
+This example demonstrates how to build a full-featured onchain application that combines:
+
+- Smart Wallet for Sign In
+- AI capabilities
+- Coin creation with [Zora's SDK](https://docs.zora.co/coins/sdk/create-coin)
+- Wagmi for contract interactions
+- Error handling
+- Transaction management
+
+The modular architecture makes it easy to extend or modify for other use cases beyond joke tokenization.
