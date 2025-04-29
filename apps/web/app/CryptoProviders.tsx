@@ -38,6 +38,7 @@ export default function CryptoProviders({
         mode,
         theme,
         name: 'Base',
+        logo: 'https://base.org/images/base-logo.svg',
       },
       wallet: {
         display: 'modal',
