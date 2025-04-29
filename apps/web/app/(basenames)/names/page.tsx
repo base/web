@@ -6,7 +6,6 @@ import RegistrationFlow from 'apps/web/src/components/Basenames/RegistrationFlow
 import RegistrationValueProp from 'apps/web/src/components/Basenames/RegistrationValueProp';
 import type { Metadata } from 'next';
 import basenameCover from './basename_cover.png';
-import { initialFrame } from 'apps/web/pages/api/basenames/frame/frameResponses';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
@@ -22,13 +21,11 @@ export const metadata: Metadata = {
     site: '@base',
     card: 'summary_large_image',
   },
-  other: {
-    ...(initialFrame as Record<string, string>),
-  },
 };
 
-type PageProps = { searchParams?: { code?: string } };
-export default async function Page({ searchParams }: PageProps) {
+type PageProps = { searchParams?: Promise<{ code?: string }> };
+export default async function Page(props: PageProps) {
+  const searchParams = await props.searchParams;
   const code = searchParams?.code;
 
   return (

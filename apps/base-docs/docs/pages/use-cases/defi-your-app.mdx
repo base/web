@@ -1,0 +1,301 @@
+---
+title: Defi your app
+description: Add common financial features like token swaps and yield generating strategies to your app with pre-built React components from OnchainKit.q
+---
+
+import { Avatar, Name } from '@coinbase/onchainkit/identity';
+import { Swap, SwapAmountInput, SwapButton, SwapDefault, SwapMessage, SwapToggleButton, SwapToast } from '@coinbase/onchainkit/swap';
+import { EarnMain, EarnDeposit, RearrangedEarnDeposit, PredefinedInputDeposit } from '@/components/EarnComponents';
+import { Buy } from '@coinbase/onchainkit/buy';
+import { FundCard } from '@coinbase/onchainkit/fund';
+import { Wallet, ConnectWallet } from '@coinbase/onchainkit/wallet';
+import App from '@/components/App';
+import SwapWrapper from '@/components/SwapWrapper';
+import BuyWrapper from '@/components/BuyWrapper';
+import FundWrapper from '@/components/FundWrapper';
+
+# Defi Your App
+When businesses and individuals make financial transactions, it often includes swapping assets and then storing eligible assets in a yield generating strategy. This guide will show you how to quickly add these features to your app with pre-built React components from OnchainKit.
+
+## Ready-to-use components
+- [`<Swap />`](/builderkits/onchainkit/swap/swap): Swap assets directly within your app.
+- [`<Earn />`](/builderkits/onchainkit/earn/earn): Generate yield directly within your app.
+- [`<FundCard />`](/builderkits/onchainkit/fund/fund-card): Fund their wallets with fiat (via USDC, Apple Pay, or debit card) without leaving your app.
+- [`<Buy />`](/builderkits/onchainkit/buy/buy): Purchase tokens directly within your app.
+
+
+By embedding the `Swap` and `Earn` components, your users don't need to leave your app to execute these common actions. For users who lack onchain funds, the `Fund` and `Buy` components offer an integrated fiat-to-crypto onramp.
+
+
+## Swap Component Integration
+
+The `Swap` component lets users exchange one token for another directly in your application. It fetches live quotes, builds transactions, and executes swaps—abstracting the underlying complexity.
+
+Lets add the `Swap` component to your app.
+
+:::steps
+### Install and Configure OnchainKit
+   Create a new OnchainKit app
+
+   ```bash [Terminal]
+   npm create onchain@latest
+   ```
+
+### Import and Render the Swap Component
+
+   ```typescript [App.tsx]
+        import { SwapDefault } from '@coinbase/onchainkit/swap'; // [!code focus]
+        import type { Token } from '@coinbase/onchainkit/token';
+
+        const eth: Token = {
+        name: 'ETH',
+        address: '',
+        symbol: 'ETH',
+        decimals: 18,
+        image:
+            'https://wallet-api-production.s3.amazonaws.com/uploads/tokens/eth_288.png',
+        chainId: 8453,
+        };
+
+        const usdc: Token = {
+        name: 'USDC',
+        address: '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913',
+        symbol: 'USDC',
+        decimals: 6,
+        image:
+            'https://d3r81g40ycuhqg.cloudfront.net/wallet/wais/44/2b/442b80bd16af0c0d9b22e03a16753823fe826e5bfd457292b55fa0ba8c1ba213-ZWUzYjJmZGUtMDYxNy00NDcyLTg0NjQtMWI4OGEwYjBiODE2',
+        chainId: 8453,
+        };
+
+        <SwapDefault // [!code focus]
+        from={[eth]} // [!code focus]
+        to={[usdc]} // [!code focus]
+        /> // [!code focus]
+   ```
+:::
+
+You should now see the following swap component in your app:
+
+<App>
+    <SwapWrapper>
+        {({ address, swappableTokens }) => {
+        if (address) {
+            return (
+            <SwapDefault from={swappableTokens} to={swappableTokens.slice().reverse()} disabled />
+            )
+        }
+        return <>
+            <Wallet>
+            <ConnectWallet>
+                <Avatar className="h-6 w-6" />
+                <Name />
+            </ConnectWallet>
+            </Wallet>
+        </>;
+        }}
+    </SwapWrapper>
+</App>
+
+The Swap component uses **Uniswap V3** as the default router, but you can also use the **0x Aggregator** by setting the `experimental.useAggregator` prop to `true`.
+
+
+
+### Swap Settings
+The Swap component comes preconfigured but is highly customizable. Just a couple of the settings you can customize:
+- Swap settings
+- bidirectional or unidirectional swaps
+- Gasless swaps with paymasters
+
+To learn more about how to customize the Swap component, check out the [Swap docs](/builderkits/onchainkit/swap/swap).
+
+
+## Earn Component Integration
+
+The `Earn` component enables users to deposit assets into yield-generating vaults and withdraw them later—all within your app. The `Earn` component currently supports Morpho vaults on Base.
+
+:::note[Get a vault address]
+You can get a vault address from Morpho's [Vaults page](https://app.morpho.org/base/earn). You will use this address when setting up the `Earn` component.
+:::
+
+```tsx twoslash
+// @noErrors: 2307
+import { Earn } from '@coinbase/onchainkit/earn'; // [!code focus]
+
+<Earn vaultAddress="0x7BfA7C4f149E7415b73bdeDfe609237e29CBF34A" /> // [!code focus]
+```
+
+Just like that, you've added a yield-generating vault to your app.
+
+<EarnMain />
+
+### Advanced Customizations
+Similar to the Swap component, the Earn component is highly customizable. Lets customize our component to include custom deposit buttons for a streamlined user experience.
+
+- `useEarnContext` to access the component's context values, `EarnDeposit` and `EarnDetails`
+- `DepositButton` to render custom deposit buttons
+
+:::code-group
+
+```tsx twoslash [index.tsx]
+// @noErrors: 2307
+import { Earn, useEarnContext } from '@coinbase/onchainkit/earn';
+import { CustomDepositButtons } from '@/custom-deposit-buttons';
+
+  <Earn vaultAddress="0x7BfA7C4f149E7415b73bdeDfe609237e29CBF34A">
+      <CustomDepositButtons />
+  </Earn>
+
+```
+
+```tsx twoslash [custom-deposit-buttons.tsx]
+import {EarnDetails,
+        EarnDeposit,
+        useEarnContext,
+        DepositButton} from '@coinbase/onchainkit/earn';
+
+const predefinedAmounts = ['0.1', '1', '10'];
+
+function CustomDepositButtons() {
+  const { depositAmount, setDepositAmount } = useEarnContext();
+
+  return (
+    <EarnDeposit>
+      <EarnDetails />
+      <div className="grid grid-cols-3 gap-2">
+        {predefinedAmounts.map((amount) => {
+          const selected = amount === depositAmount;
+          return (
+            <button
+              key={amount}
+              type="button"
+              onClick={() => setDepositAmount(amount)}
+              className={`rounded-md px-4 py-2
+              ${selected ? 'bg-[var(--ock-bg-primary)] text-[var(--ock-text-inverse)]'
+              : 'bg-[var(--ock-bg-secondary)] text-[var(--ock-text-primary)]'}`}
+            >
+              {amount}
+            </button>
+          );
+        })}
+      </div>
+      <DepositButton />
+    </EarnDeposit>
+  );
+}
+```
+:::
+
+<PredefinedInputDeposit />
+
+## Onboarding Users in DeFi
+
+In order to leverage the `<FundCard/>` and `<Buy />` components, users need to have funds in their wallet. If user's don't have funds, they'll need to onramp fiat or buy tokens in order to transact. We'll explore two out-of-the-box solutions from OnchainKit below.
+
+The `Fund` component (via `<FundCard />`) offers a complete fiat onramp experience, allowing users to add funds to their wallet directly in your app.  It provides:
+- Amount input with fiat/crypto switching
+- Payment method selection (Coinbase, Apple Pay, Debit Card)
+- Automatic exchange rate updates
+- Smart handling of payment method restrictions (based on country and subdivision)
+
+::::tip
+To use the `FundCard` component, you'll need to provide a Client API Key in `OnchainKitProvider`. You can get one following our [Getting Started](/builderkits/onchainkit/installation/nextjs#get-your-client-api-key) steps.
+:::::
+
+```tsx [App.tsx]
+import { FundCard } from '@coinbase/onchainkit/fund';
+
+<FundCard
+  assetSymbol="ETH"
+  country="US"
+  currency="USD"
+/>;
+```
+
+<App>
+  <FundWrapper>
+    {({ address }) => {
+      if (address) {
+        return <FundCard assetSymbol="ETH" country="US" currency="USD" />;
+      }
+      return (
+        <>
+          <Wallet>
+            <ConnectWallet>
+              <Avatar className="h-6 w-6" />
+              <Name />
+            </ConnectWallet>
+          </Wallet>
+        </>
+      );
+    }}
+  </FundWrapper>
+</App>
+
+To learn more about the `FundCard` component and its features, check out the [FundCard docs](/builderkits/onchainkit/fund/fund-card).
+
+## The `Buy` Component
+
+The `Buy` components provide a comprehensive interface for users to purchase [Tokens](/builderkits/onchainkit/token/types#token).
+
+The `Buy` component supports token swaps from USDC and ETH by default with the option to provide an additional token of choice using the `fromToken` prop. Users are able to purchase tokens using their Coinbase account, Apple Pay, or debit card.
+
+:::info
+This component requires a `projectId` to be set in the `OnchainKitProvider`. You can find your `projectId` on [Coinbase Developer Platform](https://portal.cdp.coinbase.com/products/onchainkit).
+:::
+
+```tsx twoslash
+import { Buy } from '@coinbase/onchainkit/buy'; // [!code focus]
+import type { Token } from '@coinbase/onchainkit/token';
+
+export default function BuyComponents() { // [!code focus]
+  const degenToken: Token = {
+    name: 'DEGEN',
+    address: '0x4ed4e862860bed51a9570b96d89af5e1b0efefed',
+    symbol: 'DEGEN',
+    decimals: 18,
+    image:
+    'https://d3r81g40ycuhqg.cloudfront.net/wallet/wais/3b/bf/3bbf118b5e6dc2f9e7fc607a6e7526647b4ba8f0bea87125f971446d57b296d2-MDNmNjY0MmEtNGFiZi00N2I0LWIwMTItMDUyMzg2ZDZhMWNm',
+    chainId: 8453,
+  };
+
+  return ( // [!code focus]
+    <Buy toToken={degenToken} /> // [!code focus]
+  ) // [!code focus]
+} // [!code focus]
+
+```
+
+<App>
+  <BuyWrapper>
+    {({ address, toToken }) => {
+      return (
+        <Buy toToken={toToken} disabled />
+      )
+    }}
+  </BuyWrapper>
+</App>
+
+:::danger
+**Note: This interface is for demonstration purposes only.**
+
+Swap and Onramp flows will execute and work out of the box when you implement the component in your own app.
+:::
+
+By combining Swap, Earn, Fund, and Buy with these additional tools, you can quickly build a robust in-app DeFi experience with minimal development overhead. This lets you focus on building your unique value proposition.
+
+
+## Next Steps
+
+If you're using these components, its likely you'll benefit from the following components:
+
+- [`<Transaction/>`](/builderkits/onchainkit/transaction/transaction): Provides a high-level transaction interface for executing custom onchain transactions.
+
+
+- [`<TokenChip/>`](/builderkits/onchainkit/token/token-chip): Offers utilities for token selection and display, ideal for building wallet-like interfaces.
+
+
+- [`<WalletIsland/>`](/builderkits/onchainkit/wallet/wallet-island): An advanced, draggable wallet widget that consolidates wallet management (QR code, buy options, swap, portfolio view) in one interface.
+
+
+### Go Gasless
+For the `<Buy />` and `<Swap/>` components, you can enable gasless transactions by setting the [`isSponsored`](/builderkits/onchainkit/buy/buy#sponsor-gas-with-paymaster) prop to `true`.

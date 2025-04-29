@@ -4,7 +4,7 @@ import logEvent, {
   ActionType,
   AnalyticsEventImportance,
   CCAEventData,
-  AnalyticsContext,
+  AnalyticsEventContext,
 } from 'libs/base-ui/utils/logEvent';
 import { ReactNode, createContext, useCallback, useContext, useMemo } from 'react';
 
@@ -30,7 +30,7 @@ export function useAnalytics() {
 
 type AnalyticsProviderProps = {
   children?: ReactNode;
-  context: AnalyticsContext;
+  context: string | AnalyticsEventContext;
 };
 
 export default function AnalyticsProvider({ children, context }: AnalyticsProviderProps) {

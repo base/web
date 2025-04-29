@@ -1,0 +1,185 @@
+# ERC20 Paymasters
+
+Smart Wallet enables users to pay for gas in ERC20 tokens!
+Tokens can be accepted for payment by passed in app paymasters in addition to a set of universally supported tokens, such as USDC (this set to be expanded soon).
+
+This guide outlines how to set up your own app paymaster which will accept your token as payment.
+
+### Choose a paymaster service provider
+
+As a prerequisite, you'll need to obtain a paymaster service URL from a paymaster service provider. ERC20 paymasters have additional requirements that will be outlined below.
+
+We recommend the [Coinbase Developer Platform](https://www.coinbase.com/developer-platform) paymaster as it is fully set up to work with Smart Wallet ERC20 token gas payments out of the box. CDP is also offering up to $15k in gas credits as part of the [Base Gasless Campaign](/identity/smart-wallet/concepts/base-gasless-campaign).
+
+Otherwise if using a different paymaster provider, it must conform to the specification outlined in [ERC20 Compatible Paymasters](#erc20-compatible-paymasters) to correctly work with Smart Wallet.
+
+### App setup for custom token
+
+Once you have a paymaster that is compatible with ERC20 gas payments on Smart Wallet, you are only responsible for including the approvals to the paymaster for your token. It is recommended to periodically top up the allowance once they hit some threshold.
+
+```js
+
+const tokenDecimals = 6
+const minTokenThreshold = 1 * 10 ** tokenDecimals // $1
+const tokenApprovalTopUp = 20 * 10 ** tokenDecimals // $20
+const tokenAddress = "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"
+const nftContractAddress = "0x66519FCAee1Ed65bc9e0aCc25cCD900668D3eD49"
+const paymasterAddress = "0x2FAEB0760D4230Ef2aC21496Bb4F0b47D634FD4c"
+
+const mintTo = {
+  abi: abi,
+  functionName: "mintTo",
+  to: nftContractAddress,
+  args: [account.address, 1],
+};
+
+calls = [mintTo]
+
+// Checks for allowance
+const allowance = await client.readContract({
+  abi: parseAbi(["function allowance(address owner, address spender) returns (uint256)"]),
+  address: tokenAddress,
+  functionName: "allowance",
+  args: [account.address, paymasterAddress],
+})
+
+if (allowance < minTokenThreshold) {
+   // include approval for $20 in calls so that the paymaster will be able to move the token to accept payment
+   calls.push({
+        abi: ["function approve(address,uint)"],
+        functionName: "approve",
+        to: nftContractAddress,
+        args: [paymasterAddress, tokenApprovalTopUp],
+    })
+}
+```
+
+That is it! Smart Wallet will handle the rest as long as it is compatible as outlined below.
+
+### ERC20 Compatible Paymasters
+
+Coinbase Developer Platform is compatible out of the box and we will be working with other teams to include support soon!
+
+The paymaster must handle the `pm_getPaymasterStubData` and `pm_getPaymasterData` JSON-RPC requests specified by ERC-7677 in addition to `pm_getAcceptedPaymentTokens`. We step through each request and response below.
+
+#### pm_getPaymasterStubData and pm_getPaymasterData
+
+1. The paymaster must use the specified ERC20 for payment if specified in the 7677 context field under `erc20`.
+2. Upon rejection / failure the paymaster should return a `data` field in the JSONRPC response which could be used to approve the paymaster and includes:
+
+- `acceptedTokens` array which is a struct including the token address
+- `paymasterAddress` field which is the paymaster address which will perform the token transfers.
+
+3. Upon success the paymaster must return a `tokenPayment` field in the result. This includes:
+
+- `tokenAddress` address of the token used for payment
+- `maxFee` the maximum fee to show in the UI
+- `decimals` decimals to use in the UI
+- `name` name of the token
+
+Smart wallet will simulate the transaction to ensure success and accurate information.
+
+##### Request
+
+This is a standard V0.6 Entrypoint request example with the additional context for the specified token to be used.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "pm_getPaymasterData",
+  "params": [
+    {
+      "sender": "0xe62B4aD6A7c079F47D77a9b939D5DC67A0dcdC2B",
+      "nonce": "0x4e",
+      "initCode": "0x",
+      "callData": "0xb61d27f60000000000000000000000007746371e8df1d7099a84c20ed72e3335fb016b23000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000",
+      "callGasLimit": "0x113e10",
+      "verificationGasLimit": "0x113e10",
+      "preVerificationGas": "0x113e10",
+      "maxFeePerGas": "0x113e10",
+      "maxPriorityFeePerGas": "0x113e10",
+      "paymasterAndData": "0x",
+      "signature": "0x5ee079a5dec73fe39c1ce323955fb1158fc1b9a6b2ddbec104cd5cfec740fa5531584f098b0ca95331b6e316bd76091e3ab75a7bc17c12488664d27caf19197e1c"
+    },
+    "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789",
+    "0x2105",
+    {
+      "erc20": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"
+    }
+  ]
+}
+```
+
+##### Response
+
+Successful response:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "paymasterAndData": "0x2faeb0760d4230ef2ac21496bb4f0b47d634fd4c0000670fdc98000000000000494b3b6e1d074fbca920212019837860000100833589fcd6edb6e08f4c7c32d4f71b54bda029137746371e8df1d7099a84c20ed72e3335fb016b23000000000000000000000000000000000000000000000000000000009b75458400000000697841102cd520d4e0171a58dadc3e6086111a49a90826cb0ad25579f25f1652081f68c17d8652387a33bf8880dc44ecf95be4213e786566d755baa6299f477b0bb21c",
+    "tokenPayment": {
+      "name": "USDC",
+      "address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "maxFee": "0xa7c8",
+      "decimals": 6
+    }
+  }
+}
+```
+
+Rejection response:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32002,
+    "message": "request denied - no sponsorship and address can not pay with accepted token",
+    "data": {
+      "acceptedTokens": [
+        {
+          "name": "USDC",
+          "address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+        }
+      ]
+    }
+  }
+}
+```
+
+#### pm_getAcceptedPaymentTokens
+
+`pm_getAcceptedPaymentTokens` returns an array of tokens the paymaster will accept for payment.
+The request contains the entrypoint and the chain id with optional context.
+
+##### Request
+
+```json
+{
+  "jsonrpc": "2.0", "id": 1,
+  "method": "pm_getAcceptedPaymentTokens",
+  "params": [ "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789", "0x2105", {}]
+}
+```
+
+##### Response
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "acceptedTokens": [
+      {
+        "name": "USDC",
+        "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"
+      }
+    ]
+  }
+}
+```

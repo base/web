@@ -1,0 +1,174 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/_health",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/docs/network-information",
+      "destination": "/chain/network-information"
+    },
+    {
+      "source": "/chain/security/report",
+      "destination": "/chain/report"
+    },
+    {
+      "source": "/chain/security/app-blocklist",
+      "destination": "/chain/app-blocklist"
+    },
+    {
+      "source": "/chain/security/bounty",
+      "destination": "/chain/report"
+    },
+    {
+      "source": "/docs/tools/network-faucets",
+      "destination": "/chain/network-faucets"
+    },
+    {
+      "source": "/tutorials/",
+      "destination": "/"
+    },
+    {
+      "source": "/tutorials/deploy-with-foundry",
+      "destination": "/cookbook/smart-contract-development/foundry/deploy-with-foundry"
+    },
+    {
+      "source": "/guides/run-a-base-node",
+      "destination": "/chain/run-a-base-node"
+    },
+    {
+      "source": "/network-information",
+      "destination": "/chain/network-information"
+    },
+    {
+      "source": "/tutorials/deploy-with-remix",
+      "destination": "/cookbook/smart-contract-development/remix/deploy-with-remix"
+    },
+    {
+      "source": "/docs/arbitration",
+      "destination": "/arbitration"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/react-native-integration",
+      "destination": "/identity/smart-wallet/quickstart/react-native-project"
+    },
+    {
+      "source": "/identity/smart-wallet/FAQ",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/checklist",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/index",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/quick-start",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/wallet-library-support",
+      "destination": "/identity/smart-wallet/concepts/usage-details/wallet-library-support"
+    },
+    {
+      "source": "/identity/smart-wallet/why",
+      "destination": "/identity/smart-wallet/concepts/what-is-smart-wallet"
+    },
+    {
+      "source": "/identity/smart-wallet/features/MagicSpend",
+      "destination": "/identity/smart-wallet/concepts/features/built-in/MagicSpend"
+    },
+    {
+      "source": "/identity/smart-wallet/features/networks",
+      "destination": "/identity/smart-wallet/concepts/features/built-in/networks"
+    },
+    {
+      "source": "/identity/smart-wallet/features/passkeys",
+      "destination": "/identity/smart-wallet/concepts/features/built-in/passkeys"
+    },
+    {
+      "source": "/identity/smart-wallet/features/recovery-keys",
+      "destination": "/identity/smart-wallet/concepts/features/built-in/recovery-keys"
+    },
+    {
+      "source": "/identity/smart-wallet/features/single-sign-on",
+      "destination": "/identity/smart-wallet/concepts/features/built-in/single-sign-on"
+    },
+    {
+      "source": "/identity/smart-wallet/features/batch-operations",
+      "destination": "/identity/smart-wallet/concepts/features/optional/batch-operations"
+    },
+    {
+      "source": "/identity/smart-wallet/features/custom-gas-tokens",
+      "destination": "/identity/smart-wallet/concepts/features/optional/custom-gas-tokens"
+    },
+    {
+      "source": "/identity/smart-wallet/features/gas-free-transactions",
+      "destination": "/identity/smart-wallet/concepts/features/optional/gas-free-transactions"
+    },
+    {
+      "source": "/identity/smart-wallet/features/spend-permissions",
+      "destination": "/identity/smart-wallet/concepts/features/optional/spend-permissions"
+    },
+    {
+      "source": "/identity/smart-wallet/features/sub-accounts",
+      "destination": "/identity/smart-wallet/concepts/features/optional/sub-accounts"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/sub-accounts/:path*",
+      "destination": "/identity/smart-wallet/guides/sub-accounts/"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/update-existing-app",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/tips/:path*",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/spend-permissions/:path*",
+      "destination": "/identity/smart-wallet/guides/spend-permissions/"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/create-app/:path*",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/introduction/base-gasless-campaign",
+      "destination": "/identity/smart-wallet/concepts/base-gasless-campaign"
+    },
+    {
+      "source": "/identity/smart-wallet/introduction/:path*",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/sdk/:path*",
+      "destination": "/identity/smart-wallet/technical-reference/sdk/"
+    },
+    {
+      "source": "/identity/smart-wallet/usage-details/:path*",
+      "destination": "/identity/smart-wallet/concepts/usage-details/:path"
+    },
+    {
+      "source": "/identity/smart-wallet/faq/:path*",
+      "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/sub-accounts/creating-sub-accounts",
+      "destination": "/identity/smart-wallet/guides/sub-accounts/"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/sub-accounts/incorporate-spend-permissions",
+      "destination": "/identity/smart-wallet/guides/sub-accounts/"
+    }
+  ]
+}

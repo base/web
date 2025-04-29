@@ -64,9 +64,9 @@ export default function useWriteBaseEnsTextRecords({
     ) as UsernameTextRecordKeys[];
     return keys.filter((key) => {
       const existingValue = existingTextRecords[key].trim();
-      const updatedValueValue = updatedTextRecords[key].trim();
+      const updatedValue = updatedTextRecords[key].trim();
 
-      return existingValue != updatedValueValue;
+      return existingValue != updatedValue;
     });
   }, [existingTextRecords, updatedTextRecords]);
 

@@ -1,6 +1,6 @@
 import { getAttestations } from '@coinbase/onchainkit/identity';
-import { kv } from '@vercel/kv';
-import { CoinbaseProofResponse } from 'apps/web/pages/api/proofs/coinbase';
+import { getKv } from 'apps/web/src/utils/datastores/kv';
+import { CoinbaseProofResponse } from 'apps/web/app/(basenames)/api/proofs/coinbase/route';
 import RegistrarControllerABI from 'apps/web/src/abis/RegistrarControllerABI';
 import {
   USERNAME_CB1_DISCOUNT_VALIDATORS,
@@ -193,6 +193,7 @@ export async function sybilResistantUsernameSigning(
 
   const kvKey = `${previousClaimsKVPrefix}${idemKey}`;
   //check kv for previous claim entries
+  const kv = getKv();
   let previousClaims = (await kv.get<PreviousClaims>(kvKey)) ?? {};
   const previousClaim = previousClaims[discountType];
   if (previousClaim) {
@@ -223,7 +224,7 @@ export async function sybilResistantUsernameSigning(
     const claim: PreviousClaim = { address, signedMessage };
     previousClaims[discountType] = claim;
 
-    await kv.set(kvKey, previousClaims, { nx: true, ex: parseInt(EXPIRY) });
+    await kv.set<PreviousClaims>(kvKey, previousClaims, { nx: true, ex: parseInt(EXPIRY) });
 
     return {
       signedMessage: claim.signedMessage,

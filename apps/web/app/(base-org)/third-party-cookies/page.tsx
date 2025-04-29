@@ -26,9 +26,9 @@ export default async function ThirdPartyCookies() {
           <table className="w-full">
             <thead>
               <tr className="border-b-[1px] border-black bg-[#222]">
-                <td className="w-1/4 p-4 font-medium">Name</td>
-                <td className="w-2/4 p-4 font-medium">Purpose</td>
-                <td className="w-1/4 p-4 font-medium">Domain</td>
+                <th className="w-1/4 p-4 font-medium">Name</th>
+                <th className="w-2/4 p-4 font-medium">Purpose</th>
+                <th className="w-1/4 p-4 font-medium">Domain</th>
               </tr>
             </thead>
             <tbody>

@@ -3,7 +3,6 @@
 import { PlusIcon } from '@heroicons/react/24/solid';
 import * as Accordion from '@radix-ui/react-accordion';
 import { useAnalytics } from 'apps/web/contexts/Analytics';
-import { useUsernameProfile } from 'apps/web/src/components/Basenames/UsernameProfileContext';
 import { useFrameContext } from 'apps/web/src/components/Basenames/UsernameProfileSectionFrames/Context';
 import Frame from 'apps/web/src/components/Basenames/UsernameProfileSectionFrames/Frame';
 import { SuggestionCard } from 'apps/web/src/components/Basenames/UsernameProfileSectionFrames/SuggestionCard';
@@ -24,7 +23,7 @@ import mintMe from './ui/mint-me.svg';
 import nftProduct from './ui/nftProduct.svg';
 import previewBackground from './ui/preview-background.svg';
 import emptyPreviewFrame from './ui/preview-frame.svg';
-import starActive from './ui/starActive.svg';
+import { WalletModal } from '@coinbase/onchainkit/wallet';
 
 export default function FrameBuilder() {
   const params = useParams();
@@ -42,8 +41,6 @@ export default function FrameBuilder() {
     setStep('select');
     scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
-
-  const { profileAddress } = useUsernameProfile();
 
   const emptyFrameUrl = !debouncedNewFrameUrl;
   const isValidFrameUrl = isValidUrl(debouncedNewFrameUrl);
@@ -115,7 +112,8 @@ export default function FrameBuilder() {
     [logEventWithContext],
   );
 
-  const { pendingFrameChange, addFrame } = useFrameContext();
+  const { frameConfig, pendingFrameChange, addFrame } = useFrameContext();
+  const { isConnectModalOpen, closeConnectModal } = frameConfig;
 
   const handlePaycasterClick = useCallback(() => {
     if (basename) {
@@ -128,18 +126,6 @@ export default function FrameBuilder() {
       setNewFrameUrl('');
     }
   }, [basename, handleNextStep, logEventWithContext]);
-
-  const handleBuildTopClick = useCallback(() => {
-    if (profileAddress) {
-      logEventWithContext('basename_profile_frame_preview', ActionType.click, {
-        context: 'social-dex',
-      });
-      setNewFrameUrl(`https://build.top/nominate/${profileAddress}`);
-      handleNextStep();
-    } else {
-      setNewFrameUrl('');
-    }
-  }, [handleNextStep, logEventWithContext, profileAddress]);
 
   const handleAddFrameClick = useCallback(() => {
     if (!newFrameUrl) return;
@@ -183,28 +169,6 @@ export default function FrameBuilder() {
             variant={ButtonVariants.Black}
             size={ButtonSizes.Tiny}
             onClick={handlePaycasterClick}
-          >
-            Show preview
-          </Button>
-        </div>
-      </SuggestionCard>
-      <SuggestionCard
-        handleTriggerClick={() =>
-          logEventWithContext('basename_profile_frame_nominate_opened', ActionType.click)
-        }
-        imgData={starActive as StaticImageData}
-        title="Nominate me"
-        description="Get nominated with build.top"
-      >
-        <div className="flex flex-row items-center justify-between gap-4">
-          <p className="text-sm text-palette-foreground">
-            Let others nominate you as a builder using your Basename address.
-          </p>
-          <Button
-            rounded
-            variant={ButtonVariants.Black}
-            size={ButtonSizes.Tiny}
-            onClick={handleBuildTopClick}
           >
             Show preview
           </Button>
@@ -401,6 +365,7 @@ export default function FrameBuilder() {
           Show Preview
         </Button>
       </SuggestionCard>
+      <WalletModal isOpen={isConnectModalOpen} onClose={closeConnectModal} />
     </>
   );
 

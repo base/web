@@ -1,0 +1,111 @@
+---
+title: Launch AI Agents
+slug: /use-cases/launch-ai-agents
+description: Learn how to launch AI agents on Base.
+---
+
+
+import React, { useState } from 'react'
+import  LangChainReplitInstructions  from './ai-instructions/langchain-replit.mdx'
+import  LangChainLocalInstructions  from './ai-instructions/langchain-local.mdx'
+import  ElizaInstructions  from './ai-instructions/eliza.mdx'
+
+# Launch AI Agents
+
+AI Agents are even better when they're onchain! Onchain agents have access to stablecoins, tokens, NFTs, and more. 
+This significantly increases their autonomy and the universe of tasks they can perform.
+
+In this guide, you can select your preferred framework and setup to learn how to launch an AI Agent on Base with CDP Wallet API.
+
+<SetupInstructions />
+
+
+export function SetupInstructions() {
+  const [framework, setFramework] = useState('langchain')
+  const [setup, setSetup] = useState('replit')
+
+  return (
+    <div>
+      <div style={{ margin: '1rem 0' }}>
+        <h3 style={{ marginBottom: '0.5rem', color: '#fff' }}>Agent Framework</h3>
+        <button
+          onClick={() => setFramework('langchain')}
+          style={{
+            background: framework === 'langchain' ? '#fff' : 'transparent',
+            color: framework === 'langchain' ? '#000' : '#fff',
+            marginRight: '0.5rem',
+            border: '1px solid #fff',
+            padding: '0.5rem 1rem',
+            borderRadius: '4px',
+            fontWeight: framework === 'langchain' ? 'bold' : 'normal'
+          }}
+        >
+          LangChain
+        </button>
+        <button
+          onClick={() => setFramework('eliza')}
+          style={{
+            background: framework === 'eliza' ? '#fff' : 'transparent',
+            color: framework === 'eliza' ? '#000' : '#fff',
+            border: '1px solid #fff',
+            padding: '0.5rem 1rem',
+            borderRadius: '4px',
+            fontWeight: framework === 'eliza' ? 'bold' : 'normal'
+          }}
+        >
+          Eliza
+        </button>
+      </div>
+
+      
+
+      {/* Only show Replit/Local if framework is LangChain */}
+      {framework === 'langchain' && (
+        <div style={{ margin: '1rem 0' }}>
+          <h3 style={{ marginBottom: '0.5rem', color: '#fff' }}>Setup</h3>
+          <button
+            onClick={() => setSetup('replit')}
+            style={{
+              background: setup === 'replit' ? '#fff' : 'transparent',
+              color: setup === 'replit' ? '#000' : '#fff',
+              marginRight: '0.5rem',
+              border: '1px solid #fff',
+              padding: '0.5rem 1rem',
+              borderRadius: '4px',
+              fontWeight: setup === 'replit' ? 'bold' : 'normal'
+            }}
+          >
+            Replit
+          </button>
+          <button
+            onClick={() => setSetup('local')}
+            style={{
+              background: setup === 'local' ? '#fff' : 'transparent',
+              color: setup === 'local' ? '#000' : '#fff',
+              border: '1px solid #fff',
+              padding: '0.5rem 1rem',
+              borderRadius: '4px',
+              fontWeight: setup === 'local' ? 'bold' : 'normal'
+            }}
+          >
+            Local
+          </button>
+        </div>
+      )}
+
+      <div>
+      <hr style={{ border: '1px solid #fff', margin: '2rem 0' }} />
+      </div>
+
+      <div>
+        {framework === 'langchain' ? (
+          setup === 'replit' ? <LangChainReplitInstructions /> : <LangChainLocalInstructions />
+        ) : (
+          <ElizaInstructions />
+        )}
+      </div>
+    </div>
+  )
+}
+
+

@@ -1,0 +1,178 @@
+# Batch Transactions
+
+With Smart Wallet, you can send multiple onchain calls in a single transaction. Doing so improves the UX of multi-step interactions by reducing them to a single click. A common example of where you might want to leverage batch transactions is an ERC-20 `approve` followed by a swap.
+
+You can submit batch transactions by using new `wallet_sendCalls` RPC, defined [here](https://eip5792.xyz/reference/sendCalls).
+
+## Using Wagmi
+
+:::warning
+The `useWriteContracts` and `useCapabilities` hooks used below rely on new wallet RPC and are not yet supported in most wallets. 
+It is recommended to have a fallback function if your app supports wallets other than Smart Wallet. 
+:::
+
+:::steps
+### (Optional) Check for atomic batching support
+
+Smart Wallet will submit multiple calls as part of a single transaction. However, if your app supports other wallets, and you want to check that multiple calls will be submitted atomically (in a single transaction), check the wallet's capabilities.
+
+```ts twoslash [App.tsx]
+// @filename: App.tsx
+import React from 'react'
+// ---cut---
+import { useCapabilities } from 'wagmi/experimental'
+
+function App() {
+  const { data: capabilities } = useCapabilities() // [!code hl]
+// @log:   {
+// @log:     84532: {
+// @log:       atomicBatch: {
+// @log:         supported: true,
+// @log:       },
+// @log:     }  
+// @log:   }
+
+  return <div />
+}
+```
+
+The `useCapabilities` method will return, per chain, the capabilities that the connected wallet supports. If the connected wallet supports atomic batching, it will return an `atomicBatch` capability with a `supported` field equal to `true` for each chain it supports atomic batching on.
+
+### Send the calls
+
+If you have your smart contract ABIs, the easiest way to send multiple calls is to use the Wagmi `useWriteContracts` hook.
+
+```ts twoslash [App.tsx]
+// @filename: App.tsx
+import React from 'react'
+// ---cut---
+import { useAccount } from 'wagmi'
+import { useWriteContracts } from 'wagmi/experimental'
+
+const abi = [
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [{ name: 'to', type: 'address' }],
+    name: 'safeMint',
+    outputs: [],
+  }
+] as const
+
+function App() {
+  const account = useAccount()
+  const { writeContracts } = useWriteContracts() // [!code hl]
+
+  const handleMint = () => {
+    writeContracts({ // [!code hl]
+      contracts: [ // [!code hl]
+        { // [!code hl]
+          address: "0x119Ea671030FBf79AB93b436D2E20af6ea469a19", // [!code hl]
+          abi, // [!code hl]
+          functionName: "safeMint", // [!code hl]
+          args: [account.address], // [!code hl]
+        }, // [!code hl]
+        { // [!code hl]
+          address: "0x119Ea671030FBf79AB93b436D2E20af6ea469a19", // [!code hl]
+          abi, // [!code hl]
+          functionName: "safeMint", // [!code hl]
+          args: [account.address], // [!code hl]
+        } // [!code hl]
+      ], // [!code hl]
+    }) // [!code hl]
+  }
+
+  return ( 
+    <div>
+      <button onClick={handleMint}>Mint</button>
+    </div>
+  )
+}
+```
+
+### Check on the status of your calls
+
+The `useWriteContracts` hook returns an object with a `data` field. This `data` is a call bundle identifier. Use the Wagmi `useCallsStatus` hook with this identifier to check on the status of your calls.
+
+This will return a `PENDING` or `CONFIRMED` status along with a subset of a transaction receipt.
+
+```ts twoslash [App.tsx]
+// @filename: App.tsx
+import React from 'react'
+// ---cut---
+import { useAccount } from 'wagmi'
+import { useWriteContracts, useCallsStatus } from 'wagmi/experimental'
+
+const abi = [
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [{ name: 'to', type: 'address' }],
+    name: 'safeMint',
+    outputs: [],
+  }
+] as const
+
+function App() {
+  const account = useAccount()
+  const { data: id, writeContracts } = useWriteContracts()
+  const { data: callsStatus } = useCallsStatus({ // [!code hl]
+    id: id as string, // [!code hl]
+    query: { // [!code hl]
+      enabled: !!id, // [!code hl]
+      // Poll every second until the calls are confirmed // [!code hl]
+      refetchInterval: (data) => // [!code hl]
+        data.state.data?.status === "CONFIRMED" ? false : 1000, // [!code hl]
+    }, // [!code hl]
+  }); // [!code hl]
+// @log:   {
+// @log:     status: 'CONFIRMED',
+// @log:     receipts: [
+// @log:       {
+// @log:         logs: [
+// @log:           {
+// @log:             address: '0x...',
+// @log:             topics: [
+// @log:               '0x...'
+// @log:             ],
+// @log:             data: '0x...'
+// @log:           },
+// @log:         ],
+// @log:         status: 'success',
+// @log:         blockHash: '0x...',
+// @log:         blockNumber: 122414523n,
+// @log:         gasUsed: 390000n,
+// @log:         transactionHash: '0x...'
+// @log:       }
+// @log:     ]
+// @log:   }
+
+  const handleMint = () => {
+    writeContracts({
+      contracts: [
+        {
+          address: "0x...",
+          abi,
+          functionName: "safeMint",
+          args: [account.address],
+        },
+        {
+          address: "0x...",
+          abi,
+          functionName: "safeMint",
+          args: [account.address],
+        }
+      ],
+    })
+  }
+
+  return ( 
+    <div>
+      <button onClick={handleMint}>Mint</button>
+      {callsStatus && <div> Status: {callsStatus.status}</div>}
+    </div>
+  )
+}
+```
+
+:::

@@ -255,7 +255,7 @@ export const textRecordsCreativesKeywords = [
   'Digital art',
   'Photography',
 ];
-export const textRecordsCommunnicationKeywords = [
+export const textRecordsCommunicationKeywords = [
   'Community',
   'Product management',
   'Strategy',
@@ -267,7 +267,7 @@ export const textRecordsCommunnicationKeywords = [
 export const textRecordsKeywords = [
   ...textRecordsEngineersKeywords,
   ...textRecordsCreativesKeywords,
-  ...textRecordsCommunnicationKeywords,
+  ...textRecordsCommunicationKeywords,
 ];
 
 export type UsernameTextRecords = Record<UsernameTextRecordKeys, string>;
@@ -360,8 +360,12 @@ export const convertChainIdToCoinType = (chainId: number): string => {
     return 'addr';
   }
 
-  const cointype = (0x80000000 | chainId) >>> 0;
+  const cointype = convertChainIdToCoinTypeUint(chainId);
   return cointype.toString(16).toLocaleUpperCase();
+};
+
+export const convertChainIdToCoinTypeUint = (chainId: number): number => {
+  return (0x80000000 | chainId) >>> 0;
 };
 
 export const convertReverseNodeToBytes = ({
@@ -697,7 +701,7 @@ export async function getBasenameTextRecords(username: Basename) {
 }
 
 /*
-  Reclaim a Basename contrat write method
+  Reclaim a Basename contract write method
 */
 export function buildBasenameReclaimContract(
   username: Basename,

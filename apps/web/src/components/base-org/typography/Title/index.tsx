@@ -12,7 +12,6 @@ const defaultTags: Record<TitleLevel, ElementType> = {
   [TitleLevel.Title3]: 'h3',
   [TitleLevel.Title4]: 'h4',
   [TitleLevel.Headline]: 'h5',
-  [TitleLevel.Big]: 'h1',
 };
 
 // TODO: Probably scale down for mobile?
@@ -31,7 +30,6 @@ export const levelStyles: Record<TitleLevel, string> = {
   [TitleLevel.Title3]: 'font-sans text-[1.25rem] leading-[1.75rem]',
   [TitleLevel.Title4]: 'font-sans text-[1.125rem] leading-[1.625rem]',
   [TitleLevel.Headline]: 'font-sans text-[1rem] leading-[1.4375rem] font-bold',
-  [TitleLevel.Big]: 'font-sans text-[2rem] leading-[1.2em] font-bold',
 };
 
 type TitleProps = {

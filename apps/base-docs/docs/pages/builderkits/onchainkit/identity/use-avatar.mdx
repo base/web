@@ -1,0 +1,28 @@
+# `useAvatar`
+
+The `useAvatar` hook is used to get avatar image URL from an onchain identity
+provider for a given name.
+
+It is implemented with [useQuery](https://tanstack.com/query/latest/docs/framework/react/reference/useQuery) from `@tanstack/react-query`, and returns a `UseQueryResult` object, allowing you to pass through all `@tanstack/react-query` options.
+
+## Usage
+
+```tsx twoslash
+import { useAvatar } from '@coinbase/onchainkit/identity';
+
+const { data: avatar, isLoading } = useAvatar({ ensName: 'vitalik.eth' });
+```
+
+## Returns
+
+[`useQuery<Promise<GetAddressReturnType>>`](/builderkits/onchainkit/identity/types#getaddressreturntype)
+
+## Parameters
+
+### UseAvatarOptions
+
+[`UseAvatarOptions`](/builderkits/onchainkit/identity/types#useavataroptions)
+
+### UseQueryOptions
+
+[`UseQueryOptions`](/builderkits/onchainkit/identity/types#usequeryoptions)

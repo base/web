@@ -1,0 +1,42 @@
+---
+title: 'Getting Ethereum Accounts'
+sidebar_label: 'Getting Ethereum Accounts'
+slug: 'getting-eth-accounts'
+---
+
+This page explains how to fetch accounts from a Web3 provider.
+
+## Getting Ethereum accounts with EIP-1102
+
+Use <a href="https://eips.ethereum.org/EIPS/eip-1102" target="_blank" rel="noreferrer noopener">EIP-1102</a> to obtain authorization and get Ethereum accounts. Invoking EIP-1102 shows a QR code dialog if the user's mobile wallet is not already connected to your app.
+
+The following code runs in response to a user-initiated action such as clicking a button to ensure the pop up is not blocked by the browser.
+
+```typescript
+// Use eth_requestAccounts
+ethereum.request({ method: 'eth_requestAccounts' }).then((response) => {
+  const accounts: string[] = response as string[];
+  console.log(`User's address is ${accounts[0]}`);
+
+  // Optionally, have the default account set for web3.js
+  web3.eth.defaultAccount = accounts[0];
+});
+
+// ethereum.enable() is now deprecated in 4.0.0
+ethereum.enable().then((accounts: string[]) => {
+  console.log(`User's address is ${accounts[0]}`);
+  web3.eth.defaultAccount = accounts[0];
+});
+```
+
+Once the user obtains authorization, the Web3 object (`web3`) and the Web3 Provider (`ethereum`) are ready to be used.
+
+:::info
+
+If you were using `ethereum.on("accountsChanged")`, remove it and obtain addresses with EIP-1102 callbacks instead. It was removed to improve compatibility with the latest `web3.js`.
+:::
+
+**Next steps:**
+
+- [Switching or Adding EVM Chains](./switching-chains.mdx)
+
