@@ -28,13 +28,9 @@ Ensuring that your app is perceived as trustworthy and not flagged as malicious 
 - **Verify Smart Contract**: Ensure that the source code of your contracts is verified and publicly available on [block explorers](https://docs.base.org/chain/block-explorers). For example, this can be done on [Etherscan](https://basescan.org/verifyContract) and [Basescan](https://basescan.org/verifyContract) under “Verify Contract”.
 - **Limit Exposure of User Funds**: Design your contracts to minimize the exposure of user funds. Use efficient design to reduce any unnecessary risk. For example, request the minimum amount needed to fulfill the transaction.
 
----
-
 ## 2. Submit a verification request
 
 After verifying your smart contract, consider [submitting a verification request](https://report.blockaid.io/). This step helps ensure that your app is recognized as safe and verified by trusted sources in the ecosystem.
-
----
 
 ## 3. Follow app best practices
 
