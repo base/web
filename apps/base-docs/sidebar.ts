@@ -770,16 +770,8 @@ export const sidebar: Sidebar = [
                     link: '/identity/smart-wallet/guides/sub-accounts/setup',
                   },
                   {
-                    text: 'Creating Sub Accounts',
-                    link: '/identity/smart-wallet/guides/sub-accounts/creating-sub-accounts',
-                  },
-                  {
                     text: 'Using Sub Accounts',
                     link: '/identity/smart-wallet/guides/sub-accounts/using-sub-accounts',
-                  },
-                  {
-                    text: 'Incorporate Spend Permissions',
-                    link: '/identity/smart-wallet/guides/sub-accounts/incorporate-spend-permissions',
                   },
                 ],
               },
@@ -787,6 +779,15 @@ export const sidebar: Sidebar = [
                 text: 'Spend Permissions',
                 collapsed: true,
                 link: '/identity/smart-wallet/guides/spend-permissions',
+              },
+            ],
+          },
+          {
+            text: 'Examples',
+            items: [
+              {
+                text: 'Coin Your Bangers',
+                link: '/identity/smart-wallet/examples/coin-a-joke-app',
               },
             ],
           },
@@ -1001,6 +1002,15 @@ export const sidebar: Sidebar = [
     ],
   },
   {
+    text: 'Wallet App',
+    items: [
+      {
+        text: 'Mini Apps',
+        link: '/wallet-app/mini-apps',
+      },
+    ],
+  },
+  {
     text: 'Chain',
     items: [
       {
@@ -1019,6 +1029,11 @@ export const sidebar: Sidebar = [
           { text: 'Run a Base Node', link: '/chain/run-a-base-node' },
           { text: 'Bridge an L1 Token to Base', link: '/chain/bridge-an-l1-token-to-base' },
           { text: 'Adding tokens to Coinbase Wallet', link: '/chain/wallet' },
+          { text: 'Report a Vulnerability', link: '/chain/report' },
+          {
+            text: 'How to avoid getting your app flagged as malicious',
+            link: '/chain/app-blocklist',
+          },
           {
             text: 'Decentralizing Base with Optimism↗',
             link: 'https://base.mirror.xyz/H_KPwV31M7OJT-THUnU7wYjOF16Sy7aWvaEr5cgHi8I',
@@ -1041,23 +1056,23 @@ export const sidebar: Sidebar = [
         ],
       },
       {
-        text: 'Security',
-        collapsed: true,
-        items: [
-          { text: 'Bug Bounty', link: '/chain/security/bounty' },
-          { text: 'Report a Vulnerability', link: '/chain/security/report' },
-          {
-            text: 'How to avoid getting your app flagged as malicious',
-            link: '/chain/security/app-blocklist',
-          },
-        ],
+        text: 'Base Contracts',
+        link: '/chain/base-contracts',
+      },
+      {
+        text: 'Flashblocks',
+        link: '/chain/flashblocks',
+      },
+      {
+        text: 'Security Council',
+        link: '/chain/security-council',
       },
       {
         text: 'Chain Stats ↗',
         link: 'https://www.base.org/stats',
       },
       {
-        text: 'Flashblocks ↗',
+        text: 'Flashblocks',
         collapsed: true,
         items: [
           { text: 'Apps', link: '/chain/flashblocks/apps' },

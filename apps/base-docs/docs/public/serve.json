@@ -11,8 +11,24 @@
       "destination": "/chain/network-information"
     },
     {
+      "source": "/chain/security/report",
+      "destination": "/chain/report"
+    },
+    {
+      "source": "/chain/security/app-blocklist",
+      "destination": "/chain/app-blocklist"
+    },
+    {
+      "source": "/chain/security/bounty",
+      "destination": "/chain/report"
+    },
+    {
       "source": "/docs/tools/network-faucets",
       "destination": "/chain/network-faucets"
+    },
+    {
+      "source": "/tutorials/",
+      "destination": "/"
     },
     {
       "source": "/tutorials/deploy-with-foundry",
@@ -145,6 +161,14 @@
     {
       "source": "/identity/smart-wallet/faq/:path*",
       "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/sub-accounts/creating-sub-accounts",
+      "destination": "/identity/smart-wallet/guides/sub-accounts/"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/sub-accounts/incorporate-spend-permissions",
+      "destination": "/identity/smart-wallet/guides/sub-accounts/"
     }
   ]
 }
