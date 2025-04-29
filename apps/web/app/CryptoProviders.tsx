@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { createConfig, http, WagmiProvider } from 'wagmi';
 import { base, baseSepolia, mainnet } from 'wagmi/chains';
+import { coinbaseWallet } from 'wagmi/connectors';
 import { isDevelopment } from 'apps/web/src/constants';
 import { cdpBaseRpcEndpoint, cdpBaseSepoliaRpcEndpoint } from 'apps/web/src/cdp/constants';
 
@@ -16,6 +17,7 @@ export type CryptoProvidersProps = {
 
 const config = createConfig({
   chains: [base, baseSepolia, mainnet],
+  connectors: [coinbaseWallet()],
   transports: {
     [base.id]: http(cdpBaseRpcEndpoint),
     [baseSepolia.id]: http(cdpBaseSepoliaRpcEndpoint),
