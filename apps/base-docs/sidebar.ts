@@ -1059,10 +1059,13 @@ export const sidebar: Sidebar = [
         text: 'Base Contracts',
         link: '/chain/base-contracts',
       },
-
       {
         text: 'Flashblocks',
         link: '/chain/flashblocks',
+      },
+      {
+        text: 'Security Council',
+        link: '/chain/security-council',
       },
       {
         text: 'Chain Stats ↗',
