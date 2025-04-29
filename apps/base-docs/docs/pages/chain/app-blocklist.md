@@ -21,8 +21,6 @@ hide_table_of_contents: true
 
 # How to avoid getting your app flagged as malicious
 
----
-
 Ensuring that your app is perceived as trustworthy and not flagged as malicious requires attention to best practices. Here’s a quick guide on how to build a secure and compliant app from day one.
 
 ## 1. Verify and reduce the risk of your smart contract
