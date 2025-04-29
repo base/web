@@ -6,6 +6,7 @@ import { useMemo } from 'react';
 import { createConfig, http, WagmiProvider } from 'wagmi';
 import { base, baseSepolia, mainnet } from 'wagmi/chains';
 import { isDevelopment } from 'apps/web/src/constants';
+import { cdpBaseRpcEndpoint, cdpBaseSepoliaRpcEndpoint } from 'apps/web/src/cdp/constants';
 
 export type CryptoProvidersProps = {
   children: React.ReactNode;
@@ -16,8 +17,8 @@ export type CryptoProvidersProps = {
 const config = createConfig({
   chains: [base, baseSepolia, mainnet],
   transports: {
-    [base.id]: http(),
-    [baseSepolia.id]: http(),
+    [base.id]: http(cdpBaseRpcEndpoint),
+    [baseSepolia.id]: http(cdpBaseSepoliaRpcEndpoint),
     [mainnet.id]: http(),
   },
   ssr: true,
@@ -34,6 +35,7 @@ export default function CryptoProviders({
       appearance: {
         mode,
         theme,
+        name: 'Base',
       },
       wallet: {
         display: 'modal',
