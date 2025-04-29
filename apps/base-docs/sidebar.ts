@@ -1060,6 +1060,10 @@ export const sidebar: Sidebar = [
             text: 'How to avoid getting your app flagged as malicious',
             link: '/chain/security/app-blocklist',
           },
+          {
+            text: 'Smart contract monitoring with Hexagate',
+            link: '/chain/security/hexagate-monitoring',
+          },
         ],
       },
       {
