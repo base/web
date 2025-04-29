@@ -1060,10 +1060,6 @@ export const sidebar: Sidebar = [
         link: '/chain/base-contracts',
       },
       {
-        text: 'Flashblocks',
-        link: '/chain/flashblocks',
-      },
-      {
         text: 'Security Council',
         link: '/chain/security-council',
       },
@@ -1078,10 +1074,6 @@ export const sidebar: Sidebar = [
           { text: 'Apps', link: '/chain/flashblocks/apps' },
           { text: 'Node Providers', link: '/chain/flashblocks/node-providers' },
         ],
-      },
-      {
-        text: 'Base Contracts',
-        link: '/chain/base-contracts',
       },
     ],
   },
