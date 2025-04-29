@@ -1033,6 +1033,11 @@ export const sidebar: Sidebar = [
             text: 'Decentralizing Base with Optimism↗',
             link: 'https://base.mirror.xyz/H_KPwV31M7OJT-THUnU7wYjOF16Sy7aWvaEr5cgHi8I',
           },
+          { text: 'Report a Vulnerability', link: '/chain/report' },
+          {
+            text: 'How to avoid getting your app flagged as malicious',
+            link: '/chain/app-blocklist',
+          },
         ],
       },
       {
@@ -1051,28 +1056,17 @@ export const sidebar: Sidebar = [
         ],
       },
       {
-        text: 'Security',
-        collapsed: true,
-        items: [
-          { text: 'Bug Bounty', link: '/chain/security/bounty' },
-          { text: 'Report a Vulnerability', link: '/chain/security/report' },
-          {
-            text: 'How to avoid getting your app flagged as malicious',
-            link: '/chain/security/app-blocklist',
-          },
-        ],
+        text: 'Base Contracts',
+        link: '/chain/base-contracts',
       },
-      {
-        text: 'Chain Stats ↗',
-        link: 'https://www.base.org/stats',
-      },
+
       {
         text: 'Flashblocks',
         link: '/chain/flashblocks',
       },
       {
-        text: 'Base Contracts',
-        link: '/chain/base-contracts',
+        text: 'Chain Stats ↗',
+        link: 'https://www.base.org/stats',
       },
     ],
   },

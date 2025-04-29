@@ -11,6 +11,18 @@
       "destination": "/chain/network-information"
     },
     {
+      "source": "/chain/security/report",
+      "destination": "/chain/report"
+    },
+    {
+      "source": "/chain/security/app-blocklist",
+      "destination": "/chain/app-blocklist"
+    },
+    {
+      "source": "/chain/security/bounty",
+      "destination": "/chain/report"
+    },
+    {
       "source": "/docs/tools/network-faucets",
       "destination": "/chain/network-faucets"
     },
