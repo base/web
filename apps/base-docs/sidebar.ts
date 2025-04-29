@@ -1067,7 +1067,7 @@ export const sidebar: Sidebar = [
         link: 'https://www.base.org/stats',
       },
       {
-        text: 'Flashblocks ↗',
+        text: 'Flashblocks',
         link: '/chain/flashblocks',
       },
       {
