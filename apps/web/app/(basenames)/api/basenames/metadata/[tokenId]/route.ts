@@ -24,8 +24,6 @@ export async function GET(
   const { tokenId } = await params;
   const formattedTokenId = tokenId.replace(/\.json$/, '');
 
-  console.log({ searchParams: request.nextUrl, tokenId: formattedTokenId });
-
   if (!formattedTokenId) {
     return NextResponse.json({ error: '400: tokenId is missing' }, { status: 400 });
   }
