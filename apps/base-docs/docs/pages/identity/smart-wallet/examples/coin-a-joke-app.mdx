@@ -25,15 +25,14 @@ They create a new category of apps that we may call "contentcoin apps".
 ## Overview
 
 This example explains "Coin Your Bangers", a full onchain app that lets users turn their jokes into coins on Base.
-The app uses OpenAI to generate coin metadata and the [Zora SDK](https://docs.zora.co/coins/sdk/create-coin) to coin the content.
-From the user's perspective, the process is simple:
 
-1. Input a joke or funny content
-2. Generate coin metadata using AI
-3. Deploy a new Zora Coin on Base
-4. Get transaction confirmation and links
-5. Start earning referal fees from your the app
-6. Start earning trading fees from your Coin
+Through this example, you can learn how to:
+
+- Use Wagmi to initialize an onchain app
+- Use Smart Wallet to sign in users
+- Use [Sub Accounts](/identity/smart-wallet/concepts/features/optional/sub-accounts) for a better user experience
+- Use [Zora SDK](https://docs.zora.co/coins/sdk/create-coin) to create a new coin
+- Use OpenAI to generate coin metadata
 
 The full codebase of this app is available on Github:
 
@@ -42,17 +41,19 @@ The full codebase of this app is available on Github:
   githubUrl="https://github.com/base/demos/tree/master/smart-wallet/coin-your-joke"
 />
 
-## Why use Smart Wallet to build your contentcoin app?
+## Why use Smart Wallet and Sub Accounts to build your onchain app?
 
-Onboarding users to end-consumer onchain apps has always been a challenge, mainly
-due to the need for a wallet. In the case of web apps, this has always come in the form of a
-new browser extension to install or a new mobile app to download.
-In order to solve this, Smart Wallet was created.
+Onboarding users to consumer onchain apps has always been a challenge, mainly
+due to the need for a wallet and the pop-up experience.
+In the case of web apps, this has always come in the form of
+a browser extension that users need to install and an annoying pop-up experience for every onchain action.
+In order to solve this, Smart Wallet and Sub-Accounts were created.
 
 Smart Wallet is a new way to universally sign in into any onchain app.
-This example shows how Smart Wallet can seamlessly onboard users without the need for an installation.
-If you are building an app for creators and end-consumers, it is important to meet them where they are.
-Smart Wallet allows you to onboard them with passkeys, a simple pop-up, and no new extension to install.
+
+Sub-Accounts are a new way to interact with onchain apps in a more user friendly way.
+
+✨ **No more pop-ups, no more browser extensions, no more onboarding friction.** ✨
 
 <iframe 
   width="100%" 
@@ -85,7 +86,7 @@ git clone https://github.com/base/demos.git
 cd demos/smart-wallet/coin-your-joke
 
 # Install dependencies
-pnpm install
+npm install
 
 # Copy the environment variables
 cp .env.example .env
@@ -103,7 +104,7 @@ NEXT_TELEMETRY_DISABLED=1
 3. Run the app
 
 ```bash [Terminal]
-pnpm dev
+npm run dev
 ```
 
 ## Key Components
@@ -113,13 +114,30 @@ pnpm dev
 The wagmi config is used to set up the Smart Wallet client.
 
 ```ts
+import { parseEther } from "viem";
 import { http, cookieStorage, createConfig, createStorage } from "wagmi";
-import { base, baseSepolia } from "wagmi/chains";
+import { baseSepolia } from "wagmi/chains";
 import { coinbaseWallet } from "wagmi/connectors";
+import { toHex } from "viem";
 
 export const cbWalletConnector = coinbaseWallet({
-  appName: "Smart Wallet Zora Coiner",
-  preference: "smartWalletOnly",
+  appName: "Coin Your Bangers",
+  preference: {
+    keysUrl: "https://keys-dev.coinbase.com/connect",
+    options: "smartWalletOnly",
+  },
+  subAccounts: {
+    enableAutoSubAccounts: true,
+    defaultSpendLimits: {
+      84532: [ // Base Sepolia Chain ID
+        {
+          token: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+          allowance: toHex(parseEther('0.01')), // 0.01 ETH
+          period: 86400, // 24h
+        },
+      ],
+    },
+  },
 });
 
 export function getConfig() {
@@ -132,6 +150,21 @@ export function getConfig() {
 
 // ... other wagmi config options
 ```
+
+As you can see, we are using the `subAccounts` option to enable auto sub-accounts
+for the `cbWalletConnector` (Smart Wallet Wagmi connector).
+
+As it's broken down in the [Sub Accounts](/identity/smart-wallet/guides/sub-accounts/setup) guide,
+the key preference parameters are:
+
+- `keysUrl`: Points to the development environment for Smart Wallet testing
+- `options: 'smartWalletOnly'`: Ensures only Smart Wallet mode is used
+- `enableAutoSubAccounts: true`: When set to true, automatically creates a Sub Account at connection
+- `defaultSpendLimits`: Configures Spend Limits for Sub Account for a network (eg. Base Sepolia `84532`), including:
+
+  - Token address (In this case, `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` represents the native ETH)
+  - Allowance WEI amount (in Hex)
+  - Time period for the allowance (in seconds, e.g., 86400 for 24 hours)
 
 ### CoinButton Component (`CoinButton.tsx`)
 
@@ -151,7 +184,7 @@ export function CoinButton({
 }
 ```
 
-Key features:
+Key components:
 
 - Using Zora's [`createCoin`](https://docs.zora.co/coins/sdk/create-coin) function to create a new coin
 - Using Smart Wallet and Wagmi to submit the transaction
@@ -172,23 +205,12 @@ async function generateMetadata(joke: string) {
 }
 ```
 
-Features:
+Key components:
 
 - OpenAI integration for creative naming
 - Metadata JSON generation
 - URI creation for token metadata
 - Error handling and validation
-
-## Technical Stack
-
-- **Frontend**: Next.js 13+ with App Router
-- **Styling**: Tailwind CSS
-- **Onchain tools**:
-  - Smart Wallet for Sign In
-  - Wagmi for contract interactions
-  - Zora SDK for coining content
-- **AI**: OpenAI API for metadata generation
-- **Network**: Base
 
 ## Deployment
 
@@ -199,9 +221,10 @@ You can deploy your app to Vercel by following the instructions [here](https://v
 This example demonstrates how to build a full-featured onchain application that combines:
 
 - Smart Wallet for Sign In
-- AI capabilities
-- Coin creation with [Zora's SDK](https://docs.zora.co/coins/sdk/create-coin)
-- Wagmi for contract interactions
+- Sub Accounts for a better user experience
+- OpenAI for metadata generation
+- Zora's SDK for coin creation
+- Wagmi for onchain integration
 - Error handling
 - Transaction management
 
