@@ -17,13 +17,16 @@ import { getDomain } from 'apps/web/src/utils/basenames/getDomain';
 
 export const runtime = 'edge';
 
-export async function GET(request: NextRequest) {
-  const domainName = getDomain(request);
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ tokenId: string }> },
+) {
+  const { tokenId } = await params;
+  const formattedTokenId = tokenId.replace(/\.json$/, '');
 
-  const tokenId = request.nextUrl.searchParams
-    .get('tokenId')
-    ?.replace(/\.json$/, '');
-  if (!tokenId) {
+  console.log({ searchParams: request.nextUrl, tokenId: formattedTokenId });
+
+  if (!formattedTokenId) {
     return NextResponse.json({ error: '400: tokenId is missing' }, { status: 400 });
   }
 
@@ -38,7 +41,7 @@ export async function GET(request: NextRequest) {
   }
 
   // Get labelhash from tokenId
-  const labelhash = toHex(BigInt(tokenId), { size: 32 });
+  const labelhash = toHex(BigInt(formattedTokenId), { size: 32 });
 
   // Convert labelhash to namehash
   const namehashNode = keccak256(
@@ -60,14 +63,15 @@ export async function GET(request: NextRequest) {
   }
 
   // Premints are hardcoded; the list will reduce when/if they are claimed
-  if (!basenameFormatted && premintMapping[tokenId]) {
-    basenameFormatted = formatBaseEthDomain(premintMapping[tokenId], chainId);
+  if (!basenameFormatted && premintMapping[formattedTokenId]) {
+    basenameFormatted = formatBaseEthDomain(premintMapping[formattedTokenId], chainId);
   }
 
   if (!basenameFormatted) {
     return NextResponse.json({ error: '404: Basename not found' }, { status: 404 });
   }
 
+  const domainName = getDomain(request);
   const basenamePure = basenameFormatted.replace(`.${baseDomainName}`, '');
   const basenameForUrl = chainId === base.id ? basenamePure : basenameFormatted;
   const tokenMetadata = {
