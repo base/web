@@ -29,8 +29,8 @@ async function inititializeBugsnag() {
     BugsnagClient.start({
       apiKey: process.env.NEXT_PUBLIC_BUGSNAG_API_KEY as string,
       endpoints: {
-        notify: 'https://exceptions.coinbase.com',
-        sessions: 'https://sessions.coinbase.com',
+        notify: process.env.NEXT_PUBLIC_BUGSNAG_NOTIFY_URL as string,
+        sessions: process.env.NEXT_PUBLIC_BUGSNAG_SESSIONS_URL as string,
       },
       plugins: [new BugsnagPluginReactInstance()],
     });
