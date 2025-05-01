@@ -296,6 +296,11 @@ module.exports = extendBaseConfig(
           permanent: false,
         },
         {
+          source: '/luma',
+          destination: 'https://lu.ma/base-virtualevents',
+          permanent: true,
+        },
+        {
           source: '/registry',
           destination: 'https://buildonbase.deform.cc/getstarted/',
           permanent: true,
