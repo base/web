@@ -595,6 +595,10 @@ export const sidebar: Sidebar = [
             link: '/builderkits/minikit/quickstart',
           },
           {
+            text: 'Existing App Integration',
+            link: '/builderkits/minikit/existing-app-integration',
+          },
+          {
             text: 'Debugging',
             link: '/builderkits/minikit/debugging',
           },
