@@ -49,7 +49,7 @@ Before diving into specific issues, here are some general steps that often help:
   - **Check**: L1 node health and sync status. Is the L1 node accessible and fully synced?
   - **Check**: System time. Ensure the server's clock is accurately synchronized (use `ntp` or `chrony`). Significant time drift can cause P2P issues.
 - **Issue**: Syncing is extremely slow.
-  - **Check**: Hardware specifications. Are you meeting the recommended specs (especially RAM and **NVMe SSD**) outlined in the [Node Performance](./node-performance) guide? Disk I/O is often the bottleneck.
+  - **Check**: Hardware specifications. Are you meeting the recommended specs (especially RAM and **NVMe SSD**) outlined in the [Node Performance](/chain/node-performance) guide? Disk I/O is often the bottleneck.
   - **Check**: L1 node performance. Is your L1 RPC endpoint responsive? A slow L1 node will slow down L2 sync.
   - **Check**: Network connection quality and bandwidth.
   - **Check**: `op-node` and L2 client logs for any performance warnings or errors.
@@ -62,14 +62,14 @@ Before diving into specific issues, here are some general steps that often help:
 ### Performance Issues
 
 - **Issue**: High CPU, RAM, or Disk I/O usage.
-  - **Check**: Hardware specifications against recommendations in [Node Performance](./node-performance). Upgrade if necessary. Local NVMe SSDs are critical.
-  - **Check**: (Geth) Review Geth cache settings and LevelDB tuning options mentioned in [Node Performance](./node-performance#geth-performance-tuning) and [Advanced Configuration](./run-a-base-node#geth-configuration-via-environment-variables).
+  - **Check**: Hardware specifications against recommendations in [Node Performance](/chain/node-performance). Upgrade if necessary. Local NVMe SSDs are critical.
+  - **Check**: (Geth) Review Geth cache settings and LevelDB tuning options mentioned in [Node Performance](/chain/node-performance#geth-performance-tuning) and [Advanced Configuration](/chain/run-a-base-node#geth-configuration-via-environment-variables).
   - **Check**: Review client logs for specific errors or bottlenecks.
   - **Action**: Consider using Reth if running Geth, as it's generally more performant for Base.
 
 ### Snapshot Restoration Problems
 
-Refer to the [Snapshots](./node-snapshots) guide for the correct procedure.
+Refer to the [Snapshots](/chain/node-snapshots) guide for the correct procedure.
 
 - **Issue**: `wget` command fails or snapshot download is corrupted.
   - **Check**: Network connectivity.
@@ -96,7 +96,7 @@ Refer to the [Snapshots](./node-snapshots) guide for the correct procedure.
 - **Issue**: Node has low peer count.
   - **Check**: P2P port (default `30303`) accessibility. Is it blocked by a firewall on the host or network?
   - **Check**: Node logs for P2P errors.
-  - **Action**: If behind NAT, configure the `--nat=extip:<your-ip>` flag via `ADDITIONAL_ARGS` in the `.env` file (see [Advanced Configuration](./run-a-base-node#improving-peer-connectivity)).
+  - **Action**: If behind NAT, configure the `--nat=extip:<your-ip>` flag via `ADDITIONAL_ARGS` in the `.env` file (see [Advanced Configuration](/chain/run-a-base-node#improving-peer-connectivity)).
 - **Issue**: Port conflicts reported in logs or `docker compose up` fails.
   - **Check**: Are other services running on the host using the default ports (`8545`, `8546`, `8551`, `6060`, `7545`, `30303`)? Use `sudo lsof -i -P -n | grep LISTEN` or `sudo netstat -tulpn | grep LISTEN`.
   - **Action**: Stop the conflicting service or change the ports used by the Base node containers by modifying the `ports` section in `docker-compose.yml` and updating the relevant environment variables (`$RPC_PORT`, `$WS_PORT`, etc.) in the `.env` file if necessary.

@@ -19,7 +19,7 @@ Running a performant Base node requires adequate hardware. We recommend the foll
 3.  A locally attached NVMe SSD drive. RAID 0 configurations can improve performance.
 4.  Sufficient storage capacity calculated as: `(2 * [current chain size](https://base.org/stats) + [snapshot size](https://basechaindata.vercel.app) + 20% buffer)`. This accounts for chain data growth and snapshot restoration space.
 
-:::info EBS Recommendations
+:::info
 
 If utilizing Amazon Elastic Block Store (EBS), io2 Block Express volumes are recommended to ensure sufficient disk read speeds, preventing latency issues during initial sync. However, **locally attached NVMe SSDs are strongly recommended over networked storage for optimal performance.**
 
@@ -40,7 +40,7 @@ The following are the hardware specifications used for Base production nodes:
 
 ## Initial Sync
 
-Using a recent [snapshot](run-a-base-node.mdx#snapshots) can significantly reduce the time required for the initial node synchronization process.
+Using a recent [snapshot](/chain/snapshots) can significantly reduce the time required for the initial node synchronization process.
 
 ## Client Software
 
