@@ -27,6 +27,10 @@
       "destination": "/chain/network-information"
     },
     {
+      "source": "/chain/network-information",
+      "destination": "/chain/connecting-to-base"
+    },
+    {
       "source": "/tutorials/deploy-with-remix",
       "destination": "/cookbook/smart-contract-development/remix/deploy-with-remix"
     },
