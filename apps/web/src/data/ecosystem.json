@@ -42,7 +42,7 @@
   {
     "name": "Bebop",
     "description": "Bebop is a trading app and a suite of APIs that finds the best route for your trades. Quick, secure, any tokens in any size, at the best prices.",
-    "url": "https://bebop.xyz/trade?network=base",
+    "url": "https://bebop.xyz/?network=base",
     "imageUrl": "/images/partners/bebop.png",
     "category": "defi",
     "subcategory": "dex aggregator"
