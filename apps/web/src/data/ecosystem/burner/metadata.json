@@ -1,0 +1,8 @@
+{
+  "name": "Burner",
+  "description": "Burner is a low cost hardware wallet designed for gifting crypto. It works entirely through your mobile web browser and NFC, no app needed.",
+  "url": "https://burner.pro/",
+  "imageUrl": "/images/partners/burner.png",
+  "category": "wallet",
+  "subcategory": "self-custody"
+}
