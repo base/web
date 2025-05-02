@@ -1015,7 +1015,6 @@ export const sidebar: Sidebar = [
             link: '/chain/differences-between-ethereum-and-base',
           },
           { text: 'Fees', link: '/chain/fees' },
-          { text: 'Flashblocks', link: '/chain/flashblocks' },
           { text: 'Using Base', link: '/chain/using-base' },
           { text: 'Why Base?', link: '/chain/why-base' },
         ],
