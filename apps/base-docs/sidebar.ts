@@ -1024,7 +1024,7 @@ export const sidebar: Sidebar = [
         text: 'Network Information',
         collapsed: true,
         items: [
-          { text: 'Connecting to Base', link: '/chain/connecting' },
+          { text: 'Connecting to Base', link: '/chain/connecting-to-base' },
           { text: 'Base Contracts', link: '/chain/base-contracts' },
           { text: 'Chain Stats ↗', link: 'https://www.base.org/stats' },
           { text: 'Status Page ↗', link: 'https://status.base.org' },
