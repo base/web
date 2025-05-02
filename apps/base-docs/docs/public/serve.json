@@ -169,6 +169,10 @@
     {
       "source": "/identity/smart-wallet/guides/sub-accounts/incorporate-spend-permissions",
       "destination": "/identity/smart-wallet/guides/sub-accounts/"
+    },
+    {
+      "source": "/chain/flashblocks",
+      "destination": "/chain/flashblocks/apps"
     }
   ]
 }
