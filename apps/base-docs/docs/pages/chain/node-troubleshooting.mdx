@@ -1,0 +1,109 @@
+---
+title: Node Troubleshooting
+slug: /node-troubleshooting
+description: A guide to diagnosing and resolving common issues when running a Base node.
+author: hndvx
+---
+
+# Node Troubleshooting
+
+This guide covers common issues encountered when setting up and running a Base node using the official [Base Node Docker setup](https://github.com/base/node) and provides steps to diagnose and resolve them.
+
+## General Troubleshooting Steps
+
+Before diving into specific issues, here are some general steps that often help:
+
+1.  **Check Container Logs**: This is usually the most informative step. Use `docker compose logs -f <service_name>` to view the real-time logs for a specific container.
+    - L2 Client (Geth): `docker compose logs -f op-geth`
+    - L2 Client (Reth): `docker compose logs -f op-reth`
+    - Rollup Node: `docker compose logs -f op-node`
+      Look for errors, warnings, or repeated messages.
+2.  **Check Container Status**: Ensure the relevant Docker containers are running: `docker compose ps`. If a container is restarting frequently or exited, check its logs.
+3.  **Check Resource Usage**: Monitor your server's CPU, RAM, disk I/O, and network usage. Performance issues are often linked to insufficient resources. Tools like `htop`, `iostat`, and `iftop` can be helpful.
+4.  **Verify RPC Endpoints**: Use `curl` to check if the L2 client's RPC endpoint is responding (see [Running a Base Node > Verify Node is Running](./run-a-base-node#verify-node-is-running)). Also, verify your L1 endpoints are correct and accessible from the node server.
+5.  **Check L1 Node**: Ensure your configured L1 node (Execution and Consensus) is fully synced, healthy, and accessible. Issues with the L1 node will prevent the L2 node from syncing correctly.
+
+## Common Issues and Solutions
+
+### Setup & Configuration Issues
+
+- **Issue**: Docker command fails (`docker compose up ...`).
+  - **Check**: Is Docker and Docker Compose installed and the Docker daemon running?
+  - **Check**: Are you in the correct directory (the cloned `node` directory containing `docker-compose.yml`)?
+  - **Check**: Syntax errors in the command (e.g., misspelled `NETWORK_ENV` or `CLIENT`).
+- **Issue**: Container fails to start, logs show errors related to `.env` files or environment variables.
+  - **Check**: Did you correctly configure the L1 endpoints (`OP_NODE_L1_ETH_RPC`, `OP_NODE_L1_BEACON`) in the correct `.env` file (`.env.mainnet` or `.env.sepolia`)?
+  - **Check**: Is the `OP_NODE_L1_BEACON_ARCHIVER` endpoint set if required by your configuration or L1 node?
+  - **Check**: Is `OP_NODE_L1_RPC_KIND` set correctly for your L1 provider?
+  - **Check**: (Reth) Are `RETH_CHAIN` and `RETH_SEQUENCER_HTTP` correctly set in the `.env` file?
+- **Issue**: Errors related to JWT secret or authentication between `op-node` and L2 client.
+  - **Check**: Ensure you haven't manually modified the `OP_NODE_L2_ENGINE_AUTH` variable or the JWT file path (`$OP_NODE_L2_ENGINE_AUTH`) unless you know what you're doing. The `docker-compose` setup usually handles this automatically.
+- **Issue**: Permission errors related to data volumes (`./geth-data`, `./reth-data`).
+  - **Check**: Ensure the user running `docker compose` has write permissions to the directory where the `node` repository was cloned. Docker needs to be able to write to `./geth-data` or `./reth-data`. Sometimes running Docker commands with `sudo` can cause permission issues later; try running as a non-root user added to the `docker` group.
+
+### Syncing Problems
+
+- **Issue**: Node doesn't start syncing or appears stuck (block height not increasing).
+  - **Check**: `op-node` logs. Look for errors connecting to L1 endpoints or the L2 client.
+  - **Check**: L2 client (`op-geth`/`op-reth`) logs. Look for errors connecting to `op-node` via the Engine API (port `8551`) or P2P issues.
+  - **Check**: L1 node health and sync status. Is the L1 node accessible and fully synced?
+  - **Check**: System time. Ensure the server's clock is accurately synchronized (use `ntp` or `chrony`). Significant time drift can cause P2P issues.
+- **Issue**: Syncing is extremely slow.
+  - **Check**: Hardware specifications. Are you meeting the recommended specs (especially RAM and **NVMe SSD**) outlined in the [Node Performance](./node-performance) guide? Disk I/O is often the bottleneck.
+  - **Check**: L1 node performance. Is your L1 RPC endpoint responsive? A slow L1 node will slow down L2 sync.
+  - **Check**: Network connection quality and bandwidth.
+  - **Check**: `op-node` and L2 client logs for any performance warnings or errors.
+- **Issue**: `optimism_syncStatus` (port `7545` on `op-node`) shows a large time difference or errors.
+  - **Action**: Check the logs for both `op-node` and the L2 client (`op-geth`/`op-reth`) around the time the status was checked to identify the root cause (e.g., L1 connection issues, L2 client issues).
+- **Issue**: `Error: nonce has already been used` when trying to send transactions.
+  - **Cause**: The node is not yet fully synced to the head of the chain.
+  - **Action**: Wait for the node to fully sync. Monitor progress using `optimism_syncStatus` or logs.
+
+### Performance Issues
+
+- **Issue**: High CPU, RAM, or Disk I/O usage.
+  - **Check**: Hardware specifications against recommendations in [Node Performance](./node-performance). Upgrade if necessary. Local NVMe SSDs are critical.
+  - **Check**: (Geth) Review Geth cache settings and LevelDB tuning options mentioned in [Node Performance](./node-performance#geth-performance-tuning) and [Advanced Configuration](./run-a-base-node#geth-configuration-via-environment-variables).
+  - **Check**: Review client logs for specific errors or bottlenecks.
+  - **Action**: Consider using Reth if running Geth, as it's generally more performant for Base.
+
+### Snapshot Restoration Problems
+
+Refer to the [Snapshots](./node-snapshots) guide for the correct procedure.
+
+- **Issue**: `wget` command fails or snapshot download is corrupted.
+  - **Check**: Network connectivity.
+  - **Check**: Available disk space.
+  - **Action**: Retry the download. Verify the download URL is correct.
+- **Issue**: `tar` extraction fails.
+  - **Check**: Downloaded file integrity (is it corrupted?).
+  - **Check**: Available disk space (extraction requires much more space than the download).
+  - **Check**: `tar` command syntax.
+- **Issue**: Node fails to start after restoring snapshot; logs show database errors or missing files.
+  - **Check**: Did you stop the node (`docker compose down`) _before_ modifying the data directory?
+  - **Check**: Did you remove the _contents_ of the old data directory (`./geth-data/*` or `./reth-data/*`) before extracting/moving the snapshot data?
+  - **Check**: Was the snapshot data moved correctly? The chain data needs to be directly inside `./geth-data` or `./reth-data`, not in a nested subfolder (e.g., `./geth-data/geth/...`). Verify the folder structure.
+- **Issue**: Ran out of disk space during download or extraction.
+  - **Action**: Free up disk space or provision a larger volume. Remember the storage formula: `(2 * chain_size + snapshot_size + 20% buffer)`.
+
+### Networking / Connectivity Issues
+
+- **Issue**: RPC/WS connection refused (e.g., `curl` to `localhost:8545` fails).
+  - **Check**: Is the L2 client container (`op-geth`/`op-reth`) running (`docker compose ps`)?
+  - **Check**: Are you using the correct port (`8545` for HTTP, `8546` for WS by default)?
+  - **Check**: L2 client logs. Did it fail to start the RPC server?
+  - **Check**: Are the `--http.addr` and `--ws.addr` flags set to `0.0.0.0` in the client config/entrypoint to allow external connections (within the Docker network)?
+- **Issue**: Node has low peer count.
+  - **Check**: P2P port (default `30303`) accessibility. Is it blocked by a firewall on the host or network?
+  - **Check**: Node logs for P2P errors.
+  - **Action**: If behind NAT, configure the `--nat=extip:<your-ip>` flag via `ADDITIONAL_ARGS` in the `.env` file (see [Advanced Configuration](./run-a-base-node#improving-peer-connectivity)).
+- **Issue**: Port conflicts reported in logs or `docker compose up` fails.
+  - **Check**: Are other services running on the host using the default ports (`8545`, `8546`, `8551`, `6060`, `7545`, `30303`)? Use `sudo lsof -i -P -n | grep LISTEN` or `sudo netstat -tulpn | grep LISTEN`.
+  - **Action**: Stop the conflicting service or change the ports used by the Base node containers by modifying the `ports` section in `docker-compose.yml` and updating the relevant environment variables (`$RPC_PORT`, `$WS_PORT`, etc.) in the `.env` file if necessary.
+
+## Getting Further Help
+
+If you've followed this guide and are still encountering issues, seek help from the community:
+
+- **Discord**: Join the [Base Discord](https://discord.gg/buildonbase) and post in the `🛠｜node-operators` channel, providing details about your setup, the issue, and relevant logs.
+- **GitHub**: Check the [Base Node repository issues](https://github.com/base-org/node/issues) or open a new one if you suspect a bug.

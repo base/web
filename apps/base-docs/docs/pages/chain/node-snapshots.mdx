@@ -1,6 +1,6 @@
 ---
-title: Snapshots
-slug: /snapshots
+title: Node Snapshots
+slug: /node-snapshots
 description: Information for how to restore a Base node from a snapshot
 ---
 
@@ -65,11 +65,11 @@ These steps assume you are in the cloned `node` directory (the one containing `d
         ```
     - The goal is to have the chain data (directories like `chaindata`, `nodes`, `segments`, etc.) directly inside `./geth-data` or `./reth-data`, not within an extra subfolder.
 
-5.  **Start the Node**: Now that the snapshot data is in place, start the node using the appropriate command (see the [Running a Base Node](./run-a-base-node.mdx#setting-up-and-running-the-node) guide):
+5.  **Start the Node**: Now that the snapshot data is in place, start the node using the appropriate command (see the [Running a Base Node](/chain/run-a-base-node#setting-up-and-running-the-node) guide):
 
     ```bash
     # Example for Mainnet Geth
     docker compose up --build -d
     ```
 
-6.  **Verify and Clean Up**: Monitor the node logs (`docker compose logs -f <service_name>`) or use the [sync monitoring](./run-a-base-node.mdx#monitoring-sync-progress) command to ensure the node starts syncing from the snapshot's block height. Once confirmed, you can safely delete the downloaded snapshot archive (`.tar.gz` file) to free up disk space.
+6.  **Verify and Clean Up**: Monitor the node logs (`docker compose logs -f <service_name>`) or use the [sync monitoring](/chain/run-a-base-node#monitoring-sync-progress) command to ensure the node starts syncing from the snapshot's block height. Once confirmed, you can safely delete the downloaded snapshot archive (`.tar.gz` file) to free up disk space.

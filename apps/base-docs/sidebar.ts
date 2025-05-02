@@ -1037,10 +1037,10 @@ export const sidebar: Sidebar = [
         text: 'Node Operators',
         collapsed: true,
         items: [
-          { text: 'Node Performance', link: '/chain/node-performance' },
-          { text: 'Run a Base Node', link: '/chain/run-a-base-node' },
-          { text: 'Snapshots', link: '/chain/snapshots' },
-          { text: 'Troubleshooting', link: '/chain/troubleshooting' },
+          { text: 'Getting Started', link: '/chain/run-a-base-node' },
+          { text: 'Performance Tuning', link: '/chain/node-performance' },
+          { text: 'Snapshots', link: '/chain/node-snapshots' },
+          { text: 'Troubleshooting', link: '/chain/node-troubleshooting' },
         ],
       },
       {
