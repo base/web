@@ -222,7 +222,7 @@ export default function RegistrationFAQ() {
                 </a>{' '}
                 is the easiest way to get started (
                 <a
-                  href="https://docs.base.org/docs/basenames-tutorial-with-onchainkit"
+                  href="https://docs.base.org/identity/basenames/basenames-onchainkit-tutorial"
                   className="text-blue-600 hover:underline"
                 >
                   tutorial here
