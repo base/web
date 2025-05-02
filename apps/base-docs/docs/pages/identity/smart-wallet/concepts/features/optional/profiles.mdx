@@ -11,6 +11,17 @@ The Profiles feature allows developers to request personal information from Smar
 
 Smart Wallet handles the collection of this information and it is left to you to validate it and store it as you see fit while following the standards and regulations in place.
 
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <img
+    alt="Profiles Demo"
+    src="/images/smart-wallet/ProfilesDemo.gif"
+    width="1000"
+    loading="lazy"
+    style={{ borderRadius: "16px" }}
+  />
+  <em>Profiles Demo</em>
+</div>
+
 <Callout type="info">
 **Privacy First**
 
@@ -65,3 +76,14 @@ This adds an additional step to the transaction where the user is prompted to sh
   />
   <em>Profiles Screenshot</em>
 </div>
+
+Once the user has shared their information, the callbackURL is called with the data
+and additional validation is performed to ensure the data is valid.
+
+You are also able to update the request based on the response from the user.
+
+## Start using Profiles
+
+Profiles is currently in alpha and only available in a dev environment on Base Sepolia.
+
+To start using Profiles, you can follow the [Profiles guide](/identity/smart-wallet/guides/profiles).

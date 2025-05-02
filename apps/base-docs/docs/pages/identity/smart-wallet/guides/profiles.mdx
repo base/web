@@ -1,5 +1,5 @@
 ---
-title: 'Using Profiles'
+title: 'Using Profiles with Smart Wallet'
 description: 'Learn how to request and validate user profile data using Smart Wallet'
 ---
 
@@ -8,7 +8,19 @@ import { Callout } from "vocs/components"
 
 # Profiles
 
-In this guide, we'll explore how to use the Profiles feature in Smart Wallet to request and validate user information like email addresses and physical addresses.
+In this guide, we'll explore how to use the Profiles feature in Smart Wallet to request and validate user information
+like email addresses and physical addresses for a simple checkout flow.
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <img
+    alt="Profiles Demo"
+    src="/images/smart-wallet/ProfilesDemo.gif"
+    width="1000"
+    loading="lazy"
+    style={{ borderRadius: "16px" }}
+  />
+  <em>Profiles Demo</em>
+</div>
 
 ## What you'll achieve
 
@@ -126,7 +138,7 @@ Now, let's create a simple UI to request profile data from users. We'll create a
 
 import { ProviderInterface } from "@coinbase/wallet-sdk";
 import { useEffect, useState } from "react";
-import { numberToHex } from "viem";
+import { encodeFunctionData, erc20Abi, numberToHex, parseUnits } from "viem";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 
 export default function Home() {
@@ -181,7 +193,19 @@ export default function Home() {
         params: [{
           version: "1.0",
           chainId: numberToHex(84532), // Base Sepolia
-          calls: [], // No blockchain calls in this example
+          calls: [
+              {
+                to: "0x036CbD53842c5426634e7929541eC2318f3dCF7e", // USDC contract address on Base Sepolia
+                data: encodeFunctionData({
+                  abi: erc20Abi,
+                  functionName: "transfer",
+                  args: [
+                    "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+                    parseUnits("0.01", 6),
+                  ],
+                }),
+              },
+            ], // Simple transfer of 0.01 ETH to the contract
           capabilities: {
             dataCallback: {
               requests: requests,
@@ -246,7 +270,7 @@ export default function Home() {
       {/* Data Request Form */}
       {account.status === 'connected' && (
         <div style={{ marginTop: "20px" }}>
-          <h2>Request User Data</h2>
+          <h2>Checkout</h2>
 
           <div>
             <label>
@@ -274,7 +298,7 @@ export default function Home() {
             onClick={handleSubmit}
             disabled={isLoading || !provider}
           >
-            {isLoading ? "Processing..." : "Request Data"}
+            {isLoading ? "Processing..." : "Checkout"}
           </button>
         </div>
       )}
@@ -309,7 +333,23 @@ export default function Home() {
 <Callout type="warning">
 **HTTPS Required**
 
-Smart Wallet requires callback URLs to use HTTPS, even for local development. For local testing, use a secure tunnel service like ngrok and update the `ngrokUrl` variable with your tunnel URL.
+Smart Wallet requires callback URLs to use HTTPS, even for local development.
+For local testing, use a secure tunnel service like ngrok and update
+the `ngrokUrl` variable with your tunnel URL.
+
+To start ngrok, run the following command:
+
+```bash [Terminal]
+ngrok http 3000
+```
+
+If you don't have ngrok installed, you can install it with the following command:
+
+```bash [Terminal]
+npm install -g ngrok
+```
+
+You can learn more about ngrok [here](https://ngrok.com/docs).
 
 </Callout>
 
@@ -349,7 +389,14 @@ export async function POST(request: Request) {
 
     // Return errors if any found
     if (Object.keys(errors).length > 0) {
-      return Response.json({ errors });
+      return Response.json({
+        errors,
+        /*request: {
+          calls: [], // Replace the old calls with new ones
+          chainId: numberToHex(84532), // Base Sepolia
+          version: "1.0",
+        },*/
+      });
     }
 
     // Success - no validation errors
@@ -370,7 +417,7 @@ When a user visits your application and connects their Smart Wallet, the followi
 
 1. **User connects their Smart Wallet**: The user clicks "Sign in with Smart Wallet" and authorizes the connection.
 
-2. **App requests profile data**: Your app calls `wallet_sendCalls` with the `dataCallback` capability.
+2. **App requests profile data**: Your app calls `wallet_sendCalls` with the `dataCallback` capability, a list of calls to be made, a list of requested data types, and a callback URL to call with the data.
 
 3. **Smart Wallet prompts the user**: The wallet shows a UI asking the user to share the requested information.
 
@@ -378,9 +425,28 @@ When a user visits your application and connects their Smart Wallet, the followi
 
 5. **Data is validated**: Smart Wallet sends the data to your callback URL for validation.
 
-6. **Validation response**: Your API validates the data and returns success or errors.
+6. **Validation response**: Your API validates the data and returns success or errors as well as any new calls to be made.
 
 7. **Transaction completion**: If validation passes, the wallet returns the data to your application.
+
+<Callout type="info">
+**Replacing calls after data validation**
+
+If you need to replace the calls made in the initial request with new ones, you can do so by returning a `request` object in the response.
+
+This is useful if you need to make a second call to get a new address based on the first one, for example.
+
+```ts [app/api/data-validation/route.ts]
+{
+  request: {
+    calls: [], // Replace the old calls with new ones
+    chainId: numberToHex(84532), // Base Sepolia
+    version: "1.0",
+  },
+}
+```
+
+</Callout>
 
 ## Understanding the Response Format
 
@@ -477,16 +543,6 @@ ngrok http 3000
 
 5. Connect your Smart Wallet and test requesting and validating user data.
 
-<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-  <img
-    alt="Smart Wallet Profiles Request"
-    src="/images/smart-wallet/profiles-request.png"
-    width="300"
-    loading="lazy"
-  />
-  <em>Smart Wallet Profiles Request Interface</em>
-</div>
-
 ## Advanced Use Cases
 
 ### Combining with Transactions
@@ -553,17 +609,10 @@ Optional fields will be marked as such in the Smart Wallet interface, allowing u
 
 ## Conclusion
 
-The Profiles feature in Smart Wallet provides a secure and user-friendly way to collect necessary user information for your dApp. By following this guide, you've learned how to:
+The Profiles feature in Smart Wallet provides a secure and user-friendly way to collect necessary user information for your onchain app. By following this guide, you've learned how to:
 
 - Request profile data from Smart Wallet users
 - Validate that data through a callback API
 - Process and display the information in your application
 
 This integration simplifies user onboarding and data collection while maintaining user privacy and control.
-
-## Resources
-
-- [Smart Wallet Documentation](https://docs.base.org/identity/smart-wallet)
-- [Profiles API Reference](https://docs.base.org/identity/smart-wallet/reference/profiles-api)
-- [Example Projects on GitHub](https://github.com/base/demos/tree/master/smart-wallet)
-- [Discord Support](https://discord.com/invite/cdp) - Join the #smart-wallet channel
