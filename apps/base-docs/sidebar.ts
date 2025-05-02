@@ -1021,7 +1021,7 @@ export const sidebar: Sidebar = [
         ],
       },
       {
-        text: 'Flashblocks ↗',
+        text: 'Flashblocks',
         link: '/chain/flashblocks',
       },
       {
