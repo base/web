@@ -1,0 +1,8 @@
+{
+  "name": "ShapeShift",
+  "description": "ShapeShift empowers users to self-custody and manage assets across top blockchains like Bitcoin, Ethereum, Base, and Cosmos. It's a hybrid app and wallet optimized for trading, earning, and more with digital assets.",
+  "url": "https://app.shapeshift.com/",
+  "imageUrl": "/images/partners/shapeshift.svg",
+  "category": "defi",
+  "subcategory": "dex aggregator"
+}
