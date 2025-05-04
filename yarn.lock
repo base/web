@@ -122,6 +122,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@app/web@workspace:apps/web"
   dependencies:
+    "@bugsnag/js": ^8.2.0
+    "@bugsnag/plugin-react": ^8.2.0
     "@coinbase/cookie-banner": ^1.0.3
     "@coinbase/cookie-manager": ^1.1.1
     "@coinbase/onchainkit": ^0.38.6
@@ -1729,6 +1731,78 @@ __metadata:
   version: 0.2.3
   resolution: "@bcoe/v8-coverage@npm:0.2.3"
   checksum: 850f9305536d0f2bd13e9e0881cb5f02e4f93fad1189f7b2d4bebf694e3206924eadee1068130d43c11b750efcc9405f88a8e42ef098b6d75239c0f047de1a27
+  languageName: node
+  linkType: hard
+
+"@bugsnag/browser@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "@bugsnag/browser@npm:8.2.0"
+  dependencies:
+    "@bugsnag/core": ^8.2.0
+  checksum: 1aae1a319f58eb2864f75cdbdbe6e2b37dfe82d22053faef5cbc45af26cb8c53f1d9f060458ec32320b9e9af7767fae247ca10e9004297d1d4109833b1dc919e
+  languageName: node
+  linkType: hard
+
+"@bugsnag/core@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "@bugsnag/core@npm:8.2.0"
+  dependencies:
+    "@bugsnag/cuid": ^3.0.0
+    "@bugsnag/safe-json-stringify": ^6.0.0
+    error-stack-parser: ^2.0.3
+    iserror: ^0.0.2
+    stack-generator: ^2.0.3
+  checksum: f9aa07feccb85cd785ef2a4592d64b6b66fb7f436182214079e955c6116fa2bdf52ec5df4fadd7ee313ea0f87f27e13f7f492a2ced59252ed03e027bd25a93ff
+  languageName: node
+  linkType: hard
+
+"@bugsnag/cuid@npm:^3.0.0":
+  version: 3.2.1
+  resolution: "@bugsnag/cuid@npm:3.2.1"
+  checksum: ee2249eb494134d7ee32a7989de62f13fd0d75ef4a1cf9c6f09c7cd4fe0f5129441cb4181341faa976fa2e958bfaba2a0ac8f605a32445478d4ff759131fb837
+  languageName: node
+  linkType: hard
+
+"@bugsnag/js@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "@bugsnag/js@npm:8.2.0"
+  dependencies:
+    "@bugsnag/browser": ^8.2.0
+    "@bugsnag/node": ^8.2.0
+  checksum: 28b03ff5f012232e21e0bff0e6b8de85c76df34aece5c710493fdad2dff639350f6f783e77d6041fab03f44720a20c426a2122ef5687841a86abcf0a9d82d226
+  languageName: node
+  linkType: hard
+
+"@bugsnag/node@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "@bugsnag/node@npm:8.2.0"
+  dependencies:
+    "@bugsnag/core": ^8.2.0
+    byline: ^5.0.0
+    error-stack-parser: ^2.0.3
+    iserror: ^0.0.2
+    pump: ^3.0.0
+    stack-generator: ^2.0.3
+  checksum: 7e3bf9873352dea171c5fa75eff31c0ef90205bf7a2ea510b4ee85300630d2890db340c1b644bc3d7fcdb2481a763af4038834fdebe2e93b85844ee00ae0e7fa
+  languageName: node
+  linkType: hard
+
+"@bugsnag/plugin-react@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "@bugsnag/plugin-react@npm:8.2.0"
+  peerDependencies:
+    "@bugsnag/core": ^8.0.0
+  peerDependenciesMeta:
+    "@bugsnag/core":
+      optional: true
+  checksum: 345bbf08e2ea05cf30f359b1632ae33e73e71224f20accce6eb6070bf30aad6e688635d04a513b2461c9ab86445a9ba6041dbab90c21fdcad7ce147bc7a6b64c
+  languageName: node
+  linkType: hard
+
+"@bugsnag/safe-json-stringify@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "@bugsnag/safe-json-stringify@npm:6.0.0"
+  checksum: 74f5d96af5f2f14be038ff939093329cdc6b3cc94eca6ce5ecd9e66a6d30819bcfd22f99c0ff229de56c0ef601cbca292f86ef5c9940ed2692bc9e005ac1f261
   languageName: node
   linkType: hard
 
@@ -10606,6 +10680,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"byline@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "byline@npm:5.0.0"
+  checksum: 737ca83e8eda2976728dae62e68bc733aea095fab08db4c6f12d3cee3cf45b6f97dce45d1f6b6ff9c2c947736d10074985b4425b31ce04afa1985a4ef3d334a7
+  languageName: node
+  linkType: hard
+
 "bytes@npm:3.1.2, bytes@npm:^3.1.2":
   version: 3.1.2
   resolution: "bytes@npm:3.1.2"
@@ -12604,6 +12685,15 @@ __metadata:
   dependencies:
     is-arrayish: ^0.2.1
   checksum: c1c2b8b65f9c91b0f9d75f0debaa7ec5b35c266c2cac5de412c1a6de86d4cbae04ae44e510378cb14d032d0645a36925d0186f8bb7367bcc629db256b743a001
+  languageName: node
+  linkType: hard
+
+"error-stack-parser@npm:^2.0.3":
+  version: 2.1.4
+  resolution: "error-stack-parser@npm:2.1.4"
+  dependencies:
+    stackframe: ^1.3.4
+  checksum: 3b916d2d14c6682f287c8bfa28e14672f47eafe832701080e420e7cdbaebb2c50293868256a95706ac2330fe078cf5664713158b49bc30d7a5f2ac229ded0e18
   languageName: node
   linkType: hard
 
@@ -16214,6 +16304,13 @@ __metadata:
   version: 1.0.0
   resolution: "isarray@npm:1.0.0"
   checksum: f032df8e02dce8ec565cf2eb605ea939bdccea528dbcf565cdf92bfa2da9110461159d86a537388ef1acef8815a330642d7885b29010e8f7eac967c9993b65ab
+  languageName: node
+  linkType: hard
+
+"iserror@npm:^0.0.2":
+  version: 0.0.2
+  resolution: "iserror@npm:0.0.2"
+  checksum: e22080b3a650289303039ad804875bdd8a41af467c5cc8f844529d8bc2b2613f449214aa04cc9c541c219f501e3c6943528dc5ed18ca9fc73e00ee45723f7106
   languageName: node
   linkType: hard
 
@@ -22891,12 +22988,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"stack-generator@npm:^2.0.3":
+  version: 2.0.10
+  resolution: "stack-generator@npm:2.0.10"
+  dependencies:
+    stackframe: ^1.3.4
+  checksum: 4fc3978a934424218a0aa9f398034e1f78153d5ff4f4ff9c62478c672debb47dd58de05b09fc3900530cbb526d72c93a6e6c9353bacc698e3b1c00ca3dda0c47
+  languageName: node
+  linkType: hard
+
 "stack-utils@npm:^2.0.3":
   version: 2.0.6
   resolution: "stack-utils@npm:2.0.6"
   dependencies:
     escape-string-regexp: ^2.0.0
   checksum: 052bf4d25bbf5f78e06c1d5e67de2e088b06871fa04107ca8d3f0e9d9263326e2942c8bedee3545795fc77d787d443a538345eef74db2f8e35db3558c6f91ff7
+  languageName: node
+  linkType: hard
+
+"stackframe@npm:^1.3.4":
+  version: 1.3.4
+  resolution: "stackframe@npm:1.3.4"
+  checksum: bae1596873595c4610993fa84f86a3387d67586401c1816ea048c0196800c0646c4d2da98c2ee80557fd9eff05877efe33b91ba6cd052658ed96ddc85d19067d
   languageName: node
   linkType: hard
 
