@@ -66,15 +66,15 @@ export default function UsernameTextRecordInlineField({
   disabled = false,
 }: UsernameTextRecordInlineFieldProps) {
   const usernameSocialHandleFieldId = useId();
-  const [validationError, setValiationHint] = useState<string>('');
+  const [validationError, setValidationHint] = useState<string>('');
   const onTextRecordChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       const textRecordValue = event.target.value;
 
       if (!validateTextRecordValue(textRecordKey, textRecordValue)) {
-        setValiationHint(textRecordHintForDisplay(textRecordKey));
+        setValidationHint(textRecordHintForDisplay(textRecordKey));
       } else {
-        setValiationHint('');
+        setValidationHint('');
       }
 
       if (onChange) onChange(textRecordKey, textRecordValue);

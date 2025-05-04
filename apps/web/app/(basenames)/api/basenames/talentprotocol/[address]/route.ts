@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { logger } from 'apps/web/src/utils/logger';
 
-export async function GET(request: NextRequest) {
-  const address = request.nextUrl.searchParams.get('address');
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ address: string }> },
+) {
+  const { address } = await params;
 
   if (!address || typeof address !== 'string') {
     return NextResponse.json({ error: '400: address is required' }, { status: 400 });

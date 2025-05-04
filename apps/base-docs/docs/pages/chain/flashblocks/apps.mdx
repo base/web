@@ -1,0 +1,241 @@
+---
+title: Flashblocks
+slug: /flashblocks/apps
+description: Experience lightning-fast transaction confirmations on Base by using Flashblocks. Preconfirmations happen in just 200 milliseconds—designed for real-time apps, games, and seamless UX.
+---
+
+# Flashblocks
+
+## Overview
+
+Flashblocks enable up to 200 millisecond transaction confirmations on Base by leveraging preconfirmations, ultra-fast signals that arrive before the next block is sealed. Built for developers who demand instant UX, it's ideal for high-frequency apps, games, and real-time interactions where waiting even a few seconds is too long. By integrating directly within Base's infrastructure, Flashblocks enables, seamless, ultrafast and snappy user experiences without compromising security. 
+
+## Integrating Flashblocks
+
+Flashblocks is enabled for developers on Base Sepolia with full support for mainnet coming very soon. There are two ways you can integrate with Flashblocks data. You can either use the WebSocket API to stream real-time block updates, or use the RPC API to query the Flashblocks-aware RPC endpoint.
+
+### RPC API
+
+You can utilize our Flashblock aware RPC endpoint at `https://sepolia-preconf.base.org`.
+
+In addition to these flashblock-specific methods, all standard Ethereum JSON-RPC methods are supported as usual.
+
+#### eth_getBlockByNumber
+
+Use the `pending` tag to retrieve the latest Flashblock:
+```
+curl https://sepolia-preconf.base.org -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["pending",true],"id":1}'
+```
+
+**Example Response**
+```
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "number": "0x1234",
+    "hash": "0x...",
+    "transactions": [...]
+  }
+}
+```
+
+#### eth_getTransactionReceipt
+
+Use the existing receipt RPC to get preconfirmed receipts:
+```
+curl https://sepolia-preconf.base.org -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getTransactionReceipt","params":["0x..."],"id":1}'
+```
+
+**Example Response**
+```
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "transactionHash": "0x...",
+    "blockNumber": "0x1234",
+    "status": "0x1"
+  }
+}
+```
+
+#### eth_getBalance
+
+Use the `pending` tag to get the address balance in the latest Flashblock:
+```
+curl https://sepolia-preconf.base.org -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x...","pending"],"id":1}'
+```
+
+**Example Response**
+```
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x0234"
+}
+```
+
+#### eth_getTransactionCount
+
+Use the `pending` tag to get the address nonce in the latest Flashblock:
+```
+curl https://sepolia-preconf.base.org -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["0x...","pending"],"id":1}'
+```
+
+**Example Response**
+```
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x1b" // 27 transactions
+}
+```
+
+### Libraries
+
+For popular libraries, they sometimes require additional RPC support for transaction preconfirmation to work properly.
+We are working on adding Flashblocks support to the following libraries:
+
+#### [Ethers](https://github.com/ethers-io/ethers.js) (Completed 🟢)
+
+```
+  const providerA = new ethers.JsonRpcProvider(
+    "https://sepolia-preconf.base.org"
+  );
+
+  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, providerA);
+
+  try {
+    // Create a simple transaction (sending 0.001 ETH to a random address)
+    const tx = {
+      to: "<SOME ADDRESS>",
+      value: ethers.parseEther("0.0000001"),
+    };
+
+    // Submit transaction
+    const submissionTime = new Date();
+    const transaction = await wallet.sendTransaction(tx);
+
+    console.log(`Submitting transaction at: ${submissionTime.toISOString()}`);
+    console.log(`Transaction hash: ${transaction.hash}`);
+
+    await transaction.wait(0); // Make sure to set the confirmation count to 0
+
+    console.log("Transaction confirmed");
+    const confirmationTime = new Date();
+    console.log(`Transaction confirmed at: ${confirmationTime.toISOString()}`);
+    console.log(`Time difference: ${confirmationTime - submissionTime}ms`);
+  }
+```
+You should see the confirmation time significantly lower than the standard RPC endpoint.
+
+#### Viem (Coming soon 🟡)
+
+#### Wagmi (Coming soon 🟡)
+
+### WebSocket API
+
+You can also use our WebSocket API to stream realtime flashblocks updates.
+
+You can connect to the websocket endpoint with any WebSocket library of CLI tool. The endpoint is available at wss://sepolia.flashblocks.base.org/ws.
+
+Two recommended tools for connecting to the WebSocket endpoint are [Websocat](https://github.com/vi/websocat) and the [Javascript Websocket Client](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applicationsjk).
+
+#### Websocat Example
+
+Firstly install websocat, [following these instructions](https://github.com/vi/websocat?tab=readme-ov-file#installation).
+
+From your terminal, you can then connect to the websocket stream by running:
+```
+websocat wss://sepolia.flashblocks.base.org/ws
+```
+
+In your terminal, you'll see a stream of all the Flashblocks being sent over the websocket connection.
+
+#### Interpreting the data
+
+To minimize the amount of data sent to clients, each Flashblock only includes the diff data from the previous block. The initial Flashblock (when index is zero) includes the block properties (e.g. number, gas limit) and the subsequent Flashblocks only include the diff data (e.g. transactions that are present in that Flashblock).
+
+**Example Initial Response**
+```
+{
+  "payload_id": "0x03997352d799c31a",
+  "index": 0,
+  "base": {
+    "parent_hash": "0x9edc29b8b0a1e31d28616e40c16132ad0d58faa8bb952595b557526bdb9a960a",
+    "fee_recipient": "0x4200000000000000000000000000000000000011",
+    "block_number": "0x158a0e9",
+    "gas_limit": "0x3938700",
+    "timestamp": "0x67bf8332",
+    "base_fee_per_gas": "0xfa"
+    // ... other base fields ...
+  },
+  "diff": {
+    "state_root": "0x208fd63edc0681161105f27d03daf9f8c726d8c94e584a3c0696c98291c24333",
+    "block_hash": "0x5c330e55a190f82ea486b61e5b12e27dfb4fb3cecfc5746886ef38ca1281bce8",
+    "gas_used": "0xab3f",
+    "transactions": [
+      "0x7ef8f8a0b4afc0b7ce10e150801bbaf08ac33fecb0f38311793abccb022120d321c6d276..."
+    ],
+    "withdrawals": []
+    // ... other diff fields ...
+  },
+  "metadata": {
+    "block_number": 22585577,
+    "new_account_balances": {
+      "0x000f3df6d732807ef1319fb7b8bb8522d0beac02": "0x0",
+      // ... other balances ...
+    },
+    "receipts": {
+      "0x07d7f06b06fea714c1d1d446efa2790c6970aa74ee006186a32b5b7dd8ca2d82": {
+        "Deposit": {
+          "status": "0x1",
+          "depositNonce": "0x158a0ea"
+          // ... other receipt fields ...
+        }
+      }
+    }
+  }
+}
+```
+
+**Example Diff Response**
+```
+{
+  "payload_id": "0x03e303378749418d",
+  "index": 4,
+  "diff": {
+    "state_root": "0x7a8f45038665072f382730e689f4a1561835c9987fca8942fa95872fb9367eaa",
+    "block_hash": "0x9b32f7a14cbd1efc8c2c5cad5eb718ec9e0c5da92c3ba7080f8d4c49d660c332",
+    "gas_used": "0x1234f",
+    "transactions": [
+      "0x7ef8f8a0b4afc0b7ce10e150801bbaf08ac33fecb0f38311793abccb022120d321c6d276..."
+    ],
+    "withdrawals": []
+    // ... other diff fields ...
+  },
+  "metadata": {
+    "block_number": 22585577,
+    "new_account_balances": {
+      "0x000f3df6d732807ef1319fb7b8bb8522d0beac02": "0x0",
+      "0x4200000000000000000000000000000000000015": "0x1234"
+      // ... other balances ...
+    },
+    "receipts": {
+      "0x07d7f06b06fea714c1d1d446efa2790c6970aa74ee006186a32b5b7dd8ca2d82": {
+        "status": "0x1",
+        "gasUsed": "0x1234f",
+        "logs": []
+        // ... other receipt fields ...
+      }
+    }
+  }
+}
+```
+
+
+
+## Support
+
+For feedback, support or questions about Flashblocks, please don't hesitate to contact us in the `#developer-chat` channel in the [Base Discord](https://base.org/discord).

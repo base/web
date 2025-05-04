@@ -1,265 +1,197 @@
 ---
 title: 'Using Sub Accounts'
-description: 'Learn how to perform operations with Sub Accounts in Coinbase Smart Wallet'
+description: 'Learn how to sign messages and send transactions with your Sub Account'
 ---
+
+import GithubRepoCard from "@/components/GithubRepoCard"
 
 # Using Sub Accounts
 
-Once you've [created a Sub Account](/identity/smart-wallet/guides/sub-accounts/creating-sub-accounts), you can use it to perform various operations like signing messages and sending transactions. In this section, we'll cover how to interact with your Sub Account.
+Once you've [set up your Wagmi config and created your Smart Wallet connection](/identity/smart-wallet/guides/sub-accounts/setup), you can use it to perform various operations like signing messages and sending transactions.
+In this section, we'll cover how to send a simple transaction using your Sub Account.
 
 ## What you'll achieve
 
 By the end of this guide, you will:
 
-- Create a wallet client specifically for the Sub Account
-- Sign messages or send transactions with the Sub Account
+- Know how to sign a message with your user's Sub Account
+- Know how to send a transaction with your user's Sub Account
 
-## Setting up the Sub Account Client
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <img
+    alt="Sub Account Creation"
+    src="/images/smart-wallet/sub-account-demo.gif"
+    width="1000"
+    loading="lazy"
+  />
+  <em>Sub Account Demo</em>
+</div>
 
-First, we need to update our context to include a wallet client specifically for the Sub Account. Add the following to your `CoinbaseWalletContext.tsx`:
+### Skip ahead
 
-```tsx
-// app/context/CoinbaseWalletContext.tsx
+If you want to skip ahead and just get the final code, you can find it here:
 
-// update the following imports
-import { createCoinbaseWalletSDK, ProviderInterface, getCryptoKeyAccount } from '@coinbase/wallet-sdk';
-import { WalletClient, createPublicClient, http, Address, createWalletClient, custom } from 'viem';
-import { WebAuthnAccount, toCoinbaseSmartAccount } from 'viem/account-abstraction';
-import { baseSepolia } from 'viem/chains';
+<GithubRepoCard title="Sub Account Starter Template Demo" githubUrl="https://github.com/base/demos/tree/master/smart-wallet/sub-accounts-demo" />
 
-// update the Context interface type to include subAccountWalletClient
-interface CoinbaseWalletContextType {
-  // ... existing properties
-  subAccountWalletClient: WalletClient | null;
-}
+## Sign a Message
 
-// update the CoinbaseWalletContext defaults
-const CoinbaseWalletContext = createContext<CoinbaseWalletContextType>({
-  // ... existing defaults
-  subAccountWalletClient: null,
-});
+To sign a message with a Sub Account, we'll use Wagmi's `useSignMessage` hook. Here's how to implement message signing:
 
-// update the provider component
-export function CoinbaseWalletProvider({ children }: { children: ReactNode }) {
-  // ... existing state
-  const [subAccountWalletClient, setSubAccountWalletClient] = useState<WalletClient | null>(null);
+```tsx [app/page.tsx]
+import { useSignMessage } from 'wagmi'
 
-  // ... existing functions
-
-  // Add public client for account creation
-  const publicClient = useMemo(
-    () =>
-      createPublicClient({
-        chain: baseSepolia,
-        transport: http(),
-      }),
-    [],
-  );
-
-  // Add a new useEffect to initialize a Sub Account wallet client when Sub Account is created
-  useEffect(() => {
-    async function initializeSubAccountClient() {
-      if (!subAccount || !provider || !publicClient) {
-        setSubAccountWalletClient(null);
-        return;
-      }
-
-      try {
-        const signer = await getCryptoKeyAccount();
-        if (!signer) {
-          throw new Error('Signer not found');
-        }
-
-        const account = await toCoinbaseSmartAccount({
-          client: publicClient,
-          owners: [signer.account as WebAuthnAccount],
-          address: subAccount,
-        });
-
-        const client = createWalletClient({
-          account,
-          chain: baseSepolia,
-          transport: custom({
-            async request({ method, params }) {
-              const response = await provider.request({ method, params });
-              return response;
-            },
-          }),
-        });
-
-        setSubAccountWalletClient(client);
-      } catch (error) {
-        console.error('Failed to initialize subAccount wallet client:', error);
-        setSubAccountWalletClient(null);
-      }
-    }
-
-    initializeSubAccountClient();
-  }, [subAccount, provider, publicClient]);
-
-  // Update context value to include subAccountWalletClient
-  return (
-    <CoinbaseWalletContext.Provider
-      value={{
-        // ... existing values
-        subAccountWalletClient,
-      }}
-    >
-      {children}
-    </CoinbaseWalletContext.Provider>
-  );
-}
-```
-
-## Signing Messages
-
-Let's implement message signing with the Sub Account. Update your page.tsx:
-
-```tsx
-// app/page.tsx
-'use client';
-import { useState, useCallback } from 'react';
-import { useCoinbaseWallet } from './context/CoinbaseWalletContext';
-import { baseSepolia } from 'viem/chains';
-
-
-export default function Home() {
-  const {
-    isConnected,
-    connect,
-    disconnect,
-    address,
-    subAccount,
-    createSubAccount,
-    subAccountWalletClient,
-    provider,
-  } = useCoinbaseWallet();
-
-  const [signature, setSignature] = useState<string | null>(null);
-
-  const signMessage = useCallback(async () => {
-    if (!subAccountWalletClient || !subAccount) {
-      throw new Error('Subaccount wallet client or subaccount not found');
-    }
-
-    const message = 'Hello, world!';
-    const signature = await subAccountWalletClient.signMessage({
-      message,
-      account: subAccount,
-    });
-
-    setSignature(signature);
-    return signature;
-  }, [subAccountWalletClient, subAccount]);
-
-  // ... existing render logic
+function App() {
+  const { signMessage, data: signData } = useSignMessage()
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <p>Connected address: {address}</p>
-
-      {!subAccount && <button onClick={createSubAccount}>Create Sub Account</button>}
-
-      {subAccount && (
-        <div>
-          <p>Sub Account address: {subAccount}</p>
-          <button onClick={signMessage}>Sign Message</button>
-          {signature && <div style={{ overflowWrap: 'break-word' }}>Signature: {signature}</div>}
-        </div>
-      )}
-
-      <button onClick={disconnect}>Disconnect Wallet</button>
+    <div>
+      <div>Sign Message</div>
+      <button
+        type="button"
+        onClick={() => signMessage({ message: 'Hello World' })}
+      >
+        Sign Message
+      </button>
+      <div>{signData}</div>
     </div>
-  );
+  )
 }
 ```
 
-## Sending Transactions
+The signed message data will be available in the `signData` variable after the user approves the signature request.
 
-Now let's implement transaction sending with gas sponsorship. To get a paymaster URL, sign up on [Coinbase Developer Platform](https://www.coinbase.com/developer-platform/products/paymaster) to get access
-to the free Base Sepolia testnet paymaster.
+## Send a Transaction
 
-**Replace `YOUR_PAYMASTER_URL` with the paymaster URL you received from the Coinbase Developer Platform.**
+To send transactions with a Sub Account, we'll use Wagmi's `useSendTransaction` hook. Remember that transactions will be limited by the spend permissions we configured in the [setup](/identity/smart-wallet/guides/sub-accounts/setup):
 
-Add this to your page.tsx:
+```tsx [app/page.tsx]
+import { parseEther } from 'viem'
+import { useSendTransaction } from 'wagmi'
 
-```tsx
-// app/page.tsx
-export default function Home() {
-  // ... existing state and hooks
-  const [txHash, setTxHash] = useState<string | null>(null);
+function App() {
+  const { sendTransactionAsync, data } = useSendTransaction()
 
-  const sendTransaction = useCallback(async () => {
-    if (!provider) {
-      throw new Error('Provider not found');
-    }
-
-    const txHash = await provider.request({
-      method: 'wallet_sendCalls',
-      params: [
-        {
-          chainId: baseSepolia.id,
-          calls: [
-            {
-              to: subAccount,
-              data: '0x',
-              value: 0,
-            },
-          ],
-          from: subAccount,
-          version: '1',
-          capabilities: {
-            paymasterService: {
-              url: 'YOUR_PAYMASTER_URL',
-            },
-          },
-        },
-      ],
-    });
-
-    setTxHash(txHash as string);
-    return txHash;
-  }, [provider, subAccount]);
-
-  // ... existing render logic
-   // update the return statement to include the new UI elements
-    return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <p>Connected address: {address}</p>
-
-      {!subAccount && <button onClick={createSubAccount}>Create Sub Account</button>}
-
-      {subAccount && (
-        <div>
-          <p>Sub Account address: {subAccount}</p>
-          <button onClick={signMessage}>Sign Message</button>
-          {signature && <div style={{ overflowWrap: 'break-word' }}>Signature: {signature}</div>}
-          <button onClick={sendTransaction}>Send Transaction</button>
-          {txHash && (
-            <div style={{ overflowWrap: 'break-word' }}>
-              Transaction Hash:{' '}
-              <a
-                href={`https://sepolia.basescan.org/tx/${txHash}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {txHash}
-              </a>
-            </div>
-          )}
-        </div>
-      )}
-
-      <button onClick={disconnect}>Disconnect Wallet</button>
+  return (
+    <div>
+      <div>Send Transaction</div>
+      <button
+        type="button"
+        onClick={async () => sendTransactionAsync({
+          to: '0xd8da6bf26964af9d7eed9e03e53415d37aa96045',
+          value: parseEther('0.001'),
+        })}
+      >
+        Send Transaction
+      </button>
+      <div>{data && "Transaction sent successfully! 🎉"}</div>
+      <div>{data}</div>
     </div>
-  );
+  )
 }
 ```
 
-So what did we just do? We added a function to send a sponsored transaction of the Sub Account sending 0 ETH to itself. It’s a simple way to test that a transaction works properly for a given account. Boot up the app and give it a shot!
+The transaction parameters include:
 
-However, this isn’t really useful since many transactions require sending actual value. So let’s look at how to incorporate Spend Permissions to our Subaccounts to allow you to seamlessly spend funds from the user’s Coinbase Smart Wallet from their Subaccount.
+- `to`: The recipient address
+- `value`: The amount of ETH to send (converted from ETH to Wei using `parseEther`)
 
-## Next Steps
+The transaction data will be available in the `data` variable after it succeeds on the network.
 
-Continue to [Implementing Spend Permissions](/identity/smart-wallet/guides/sub-accounts/incorporate-spend-permissions) to learn how to enable your Sub Account to spend funds from the user's main wallet.
+Remember that transactions will only succeed if they:
+
+1. Don't exceed the allowance specified in `spendPermissionConfig`
+2. Use the permitted token (in this case, native ETH)
+3. Fall within the configured time period
+
+## Complete Example
+
+Here's a complete example combining account connection, message signing, and transaction sending:
+
+```tsx [app/page.tsx]
+'use client'
+
+import { parseEther } from 'viem'
+import { useAccount, useConnect, useDisconnect, useSendTransaction, useSignMessage } from 'wagmi'
+
+function App() {
+  const account = useAccount()
+  const { connectors, connect, status, error } = useConnect()
+  const { disconnect } = useDisconnect()
+  const { sendTransactionAsync, data } = useSendTransaction()
+  const { signMessage, data: signData } = useSignMessage()
+  return (
+    <>
+      <div>
+        <h2>Account</h2>
+
+        <div>
+          Status: {account.status}
+          <br />
+          Sub Account Address: {JSON.stringify(account.addresses)}
+          <br />
+          ChainId: {account.chainId}
+        </div>
+
+        {account.status === 'connected' && (
+          <button type="button" onClick={() => disconnect()}>
+            Disconnect
+          </button>
+        )}
+      </div>
+
+      <div>
+        <h2>Connect</h2>
+        {connectors
+          .filter((connector) => connector.name === 'Coinbase Wallet')
+          .map((connector) => (
+            <button
+              key={connector.uid}
+              onClick={() => connect({ connector })}
+              type="button"
+            >
+              Sign in with Smart Wallet
+            </button>
+          ))}
+        <div>{status}</div>
+        <div>{error?.message}</div>
+        <div>Send Transaction</div>
+        <button type="button" onClick={async () => sendTransactionAsync({
+          to: '0xd8da6bf26964af9d7eed9e03e53415d37aa96045',
+          value: parseEther('0.001'),
+        })}>
+          Send Transaction
+        </button>
+        <div>{data && "Transaction sent successfully! 🎉"}</div>
+        <div>{data}</div>
+
+        <div>Sign Message</div>
+        <button
+          type="button"
+          onClick={() => signMessage({ message: 'Hello World' })}
+        >
+          Sign Message
+        </button>
+        <div>{signData}</div>
+      </div>
+    </>
+  )
+}
+
+export default App
+
+```
+
+This example provides a complete interface for users to:
+
+1. Connect their Smart Wallet (Sign in with Smart Wallet button)
+2. View their Sub Account address
+3. Sign messages
+4. Send transactions
+5. Disconnect their wallet
+
+All transactions will be automatically limited by the spend permissions configured in your [Wagmi setup](/identity/smart-wallet/guides/sub-accounts/setup).
+
+## Additional Resources
+
+- You can take a look at the final code in the [Sub Account Starter Template Demo](https://github.com/base/demos/tree/master/smart-wallet/sub-accounts-demo)
+- You can reach out to us on the #smart-wallet channel on [Discord](https://discord.com/invite/cdp) if you have any questions or feedback
