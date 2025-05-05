@@ -375,8 +375,8 @@ export async function POST(request: Request) {
 
   try {
     // Extract data from request
-    const email = requestData.capabilities?.dataCallback?.email;
-    const physicalAddress = requestData.capabilities?.dataCallback?.physicalAddress?.physicalAddress;
+    const email = requestData.requestedInfo.email;
+    const physicalAddress = requestData.requestedInfo.physicalAddress;
 
     const errors = {};
 
@@ -411,7 +411,13 @@ export async function POST(request: Request) {
     }
 
     // Success - no validation errors
-    return Response.json({ success: true });
+    return Response.json({
+      request: {
+        calls: requestData.calls,
+        chainId: requestData.chainId,
+        capabilities: requestData.capabilities
+      }
+    });
 
   } catch (error) {
     console.error("Error processing data:", error);
