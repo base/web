@@ -355,7 +355,18 @@ You can learn more about ngrok [here](https://ngrok.com/docs).
 
 ### Implementing the Validation API
 
-Now, let's create an API endpoint to validate the data received from Smart Wallet. This endpoint will check for valid formats and return errors if needed.
+Now, let's create an API endpoint to validate the data received from Smart Wallet.
+This endpoint will check for valid formats and return errors if needed.
+
+<Callout type="info">
+**Wallet Validation**
+
+Smart Wallet will make some basic validation of the data before sending it to your callback URL.
+This includes checking that the email is a valid email address and the physical address is a valid address.
+
+If the data is invalid, Smart Wallet will return an error to the user and not make the callback.
+
+</Callout>
 
 ```ts [app/api/data-validation/route.ts]
 // app/api/data-validation/route.ts
