@@ -472,11 +472,10 @@ When a user provides profile information, Smart Wallet returns a response object
 ```ts
 {
   callsId: string,
-  capabilities: {
-    dataCallback: {
-      email?: string,
-      physicalAddress?: {
-        physicalAddress: {
+  requestedInfo: {
+    email?: string,
+    physicalAddress?: {
+      physicalAddress: {
           address1: string,
           address2?: string,
           city: string,
