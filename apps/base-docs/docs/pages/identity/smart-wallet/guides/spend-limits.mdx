@@ -1,19 +1,19 @@
 import { Callout } from "vocs/components";
 
-# Build with Spend Permissions
+# Build with Spend Limits
 
 ## Overview
 
-Spend Permissions enable third-party signers to spend assets (native and ERC-20 tokens) from a user's Smart Wallet.
-Once granted, Spend Permissions
+Spend Limits enable third-party signers to spend assets (native and ERC-20 tokens) from a user's Smart Wallet.
+Once granted, Spend Limits
 allow developers to move users'
 assets without any further signatures, unlocking use cases like subscriptions & trading bots.
 
-The following is a technical guide to build with Spend Permissions. If you want to learn more about high level details of this feature, check out the [Spend Permissions feature page](/identity/smart-wallet/concepts/features/optional/spend-permissions).
+The following is a technical guide to build with Spend Limits. If you want to learn more about high level details of this feature, check out the [Spend Limits feature page](/identity/smart-wallet/concepts/features/optional/spend-limits).
 
 ## Let's build!
 
-This guide will walk you through a simple example of building an app that leverages Spend Permissions using
+This guide will walk you through a simple example of building an app that leverages Spend Limits using
 [OnchainKit](https://onchainkit.xyz/), [Viem](https://viem.sh/) and [Wagmi](https://wagmi.sh/).
 
 The repository for the complete example of this demo can be found [here](https://github.com/ilikesymmetry/spend-permissions-quickstart).  
@@ -34,7 +34,7 @@ npm create onchain@latest
 This will generate an app that is ready to run and contains a wallet connection button that users can use
 to connect their smart wallet to the application.
 
-From here, we'll modify the app to assemble, sign, approve and use a spend permission to spend our users' funds!
+From here, we'll modify the app to assemble, sign, approve and use a spend limit to spend our users' funds!
 
 ### Set up your spender wallet
 
@@ -142,7 +142,7 @@ Add a new file called `SpendPermissionManager.ts` and copy and paste the code fr
 ### Add a Subscribe button
 
 Let's create a button that will prompt a user to subscribe to our services by authorizing
-a spend permission for our app to spend their assets.
+a spend limit for our app to spend their assets.
 
 Create a subdirectory inside `/app` called `/components` and paste the following code into a new file called `Subscribe.tsx`.
 
@@ -211,7 +211,7 @@ export default function Subscribe() {
     try {
       const signature = await signTypedDataAsync({
         domain: {
-          name: "Spend Permission Manager",
+          name: "Spend Limit Manager",
           version: "1",
           chainId: chainId,
           verifyingContract: spendPermissionManagerAddress,
@@ -380,7 +380,7 @@ You can delete lines 77-127 and put your button there.
 A `SpendPermission` is the struct that defines the parameters of the permission.
 See the solidity struct [here](https://github.com/coinbase/spend-permissions/blob/main/src/SpendPermissionManager.sol#L18-L38).
 
-You can see the spend permission object being defined in lines 49-59 of our `Subscribe` component:
+You can see the spend limit object being defined in lines 49-59 of our `Subscribe` component:
 
 ```tsx [Subscribe.tsx]
 
@@ -427,7 +427,7 @@ export default function Subscribe() {
 ### Observe the `signTypedData` hook
 
 As part of our button handler `handleSubmit`, in lines 61-91 of our subscribe component we call [`signTypedDataAsync`](https://wagmi.sh/react/api/hooks/useSignTypedData),
-a Wagmi hook that will prompt our user to create a signature from their wallet across the details of the spend permission.
+a Wagmi hook that will prompt our user to create a signature from their wallet across the details of the spend limit.
 
 <Callout type="info">
   SpendPermissions use [ERC-712](https://eips.ethereum.org/EIPS/eip-712)
@@ -446,7 +446,7 @@ export default function Subscribe() {
     try {
       const signature = await signTypedDataAsync({ // [!code focus]
         domain: { // [!code focus]
-          name: "Spend Permission Manager", // [!code focus]
+          name: "spend limit Manager", // [!code focus]
           version: "1", // [!code focus]
           chainId: chainId, // [!code focus]
           verifyingContract: spendPermissionManagerAddress, // [!code focus]
@@ -485,16 +485,16 @@ export default function Subscribe() {
 }
 ```
 
-### Approve the spend permission onchain
+### Approve the Spend Limit onchain
 
-Now that we have a signature from the user, we can approve the permission onchain by submitting the
-signature and the permission details to `approveWithSignature` on the `SpendPermissionManager` contract.
+Now that we have a signature from the user, we can approve the limit onchain by submitting the
+signature and the limit details to `approveWithSignature` on the `SpendPermissionManager` contract.
 
 Our `handleCollectSubscription` function that's defined in our `Subscribe` will pass this signature and data to our
 backend, so the spender client we created earlier can handle our onchain calls.
 
 ```ts [Subscribe.tsx]
-// We send the permission details and the user signature to our backend route
+// We send the limit details and the user signature to our backend route
 async function handleCollectSubscription() {
   setIsDisabled(true);
   let data;
@@ -532,7 +532,7 @@ async function handleCollectSubscription() {
 ```
 
 But wait, we don't have any backend routes set up yet! Let's define what should happen when we want to
-approve and use our spend permission.
+approve and use our spend limit.
 
 Create a new subdirectory under `/app` called `collect`. Create a new file there called `route.tsx` and paste the following
 code:
@@ -588,7 +588,7 @@ export async function POST(request: NextRequest) {
 
 This code is using our spender client to do two things:
 
-1. calls `approveWithSignature` to approve the spend permission
+1. calls `approveWithSignature` to approve the spend limit
 2. calls `spend` to make use of our allowance and spend our user's funds
 
 ### Try out your app
@@ -604,7 +604,7 @@ Note that we'll need a little bit of base sepolia ETH in both wallet addresses (
 In a more involved implementation you would use a paymaster to eliminate this requirement.
 For now, If you don't have any base sepolia ETH, try this [Coinbase faucet](https://portal.cdp.coinbase.com/products/faucet).
 
-Once your wallet is created and both wallets are funded, return to the app and click "Subscribe", then sign the prompt to allow the spend permission.
+Once your wallet is created and both wallets are funded, return to the app and click "Subscribe", then sign the prompt to allow the spend limit.
 
 Once you've subscribed, you should see a spend transaction hash show up on screen after a few seconds.
 You can prompt subsequent spends by clicking the "Collect Subscription" button. Click the transactions to check them out on Etherscan!
@@ -614,8 +614,8 @@ We've made it! 🎉
 Our app successfully
 
 - prompts the user to connect their Coinbase Smart Wallet to our app
-- assembles a spend permission representing our recurring spending needs as an app
-- retrieves a signature from the user authorizing this spend permission
-- approves the spend permission onchain
+- assembles a spend limit representing our recurring spending needs as an app
+- retrieves a signature from the user authorizing this spend limit
+- approves the spend limit onchain
 - uses this permission to retrieve user assets within our allowance
   :::

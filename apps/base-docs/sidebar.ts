@@ -698,8 +698,8 @@ export const sidebar: Sidebar = [
                         link: '/identity/smart-wallet/concepts/features/optional/gas-free-transactions',
                       },
                       {
-                        text: 'Spend Permissions',
-                        link: '/identity/smart-wallet/concepts/features/optional/spend-permissions',
+                        text: 'Spend Limits',
+                        link: '/identity/smart-wallet/concepts/features/optional/spend-limits',
                       },
                       {
                         text: 'Batch Transactions',
@@ -780,9 +780,9 @@ export const sidebar: Sidebar = [
                 ],
               },
               {
-                text: 'Spend Permissions',
+                text: 'Spend Limits',
                 collapsed: true,
-                link: '/identity/smart-wallet/guides/spend-permissions',
+                link: '/identity/smart-wallet/guides/spend-limits',
               },
             ],
           },
@@ -942,7 +942,7 @@ export const sidebar: Sidebar = [
                 ],
               },
               {
-                text: 'Spend Permissions',
+                text: 'Spend Limits',
                 collapsed: true,
                 items: [
                   {
