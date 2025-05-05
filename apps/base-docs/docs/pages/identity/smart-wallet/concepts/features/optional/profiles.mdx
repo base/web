@@ -53,11 +53,20 @@ const response = await provider?.request({
                   ],
                 }),
               },
-            ], // Simple transfer of 0.01 ETH to the contract
+            ], // Simple transfer of 0.01 USDC to the contract
             capabilities: {
               dataCallback: {
-                requests: requests,
-                callbackURL: getCallbackURL(),
+                requests: [
+                  {
+                    type: "email",
+                    optional: false,
+                  },
+                  {
+                    type: "physicalAddress",
+                    optional: false,
+                  },
+                ],
+                callbackURL: YOUR_CALLBACK_URL, // eg. https://your-url.com/api/data-validation
               },
             },
           },
