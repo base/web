@@ -1,0 +1,8 @@
+{
+  "name": "JOJO Exchange",
+  "description": "JOJO is a decentralized perpetual contract trading platform built on Base.\n\nJOJO balances liquidity and composability with an off-chain matching and on-chain settlement order book model, providing a smooth, fast, and low-cost trading experience.",
+  "url": "https://app.jojo.exchange/trade/base/",
+  "imageUrl": "/images/partners/jojo.png",
+  "category": "defi",
+  "subcategory": "dex"
+}

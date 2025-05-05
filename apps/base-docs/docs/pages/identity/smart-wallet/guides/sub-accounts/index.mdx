@@ -1,0 +1,50 @@
+---
+title: 'Creating Sub Accounts with Smart Wallet'
+description: 'Learn how to create and manage Sub Accounts using Smart Wallet'
+---
+
+import GithubRepoCard from "@/components/GithubRepoCard"
+
+# Build with Sub Accounts
+
+## Overview
+
+Smart Wallet's self-custodial design requires a user passkey prompt for each wallet interaction that the user is presented with, such as a transaction or message signing. While this helps ensure the user is aware and required to approve of every interaction with their wallet, this also impacts user experience when using applications that may require frequent wallet interactions.
+
+To support using Smart Wallet with user experiences that require more developer control over the wallet interactions, we've built Sub Accounts in conjunction with [ERC-7895](https://eip.tools/eip/7895), a new wallet RPC for creating hierarchical relationships between wallet accounts.
+
+Sub Accounts allow you to provision wallet accounts that are directly embedded in your application for your users. You can control when a Sub Account is created for your user, and can interact with them just as you would with another wallet via the wallet provider, or other popular web3 libraries like OnchainKit, wagmi, viem, etc.
+
+These Sub Accounts are linked to the end user's Smart wallet through an onchain relationship. When combined with our [Spend Permission feature](/identity/smart-wallet/guides/spend-permissions), this creates a powerful foundation for provisioning and funding app accounts, securely, while giving you, the developer, ample control over building the user experience that makes the most sense for your application.
+
+If you would like to see a live demo of Sub Accounts in action, check out our [Sub Accounts Demo](https://sub-account-demo.com).
+
+## What You'll Build
+
+In this guide, we'll set up a basic React app using NextJS and Wagmi that:
+
+- Lets users log in with their Smart Wallet
+- Creates a Sub Account scoped to the app with the a Spend Permission included in the configuration
+- Uses the Sub Account to perform popup-less transactions
+
+### Skip ahead
+
+If you want to skip ahead and just get the final code, you can find it here:
+
+<GithubRepoCard title="Sub Account Starter Template Demo" githubUrl="https://github.com/base/demos/tree/master/smart-wallet/sub-accounts-demo" />
+
+## Guide Sections
+
+1. [Project Setup](/identity/smart-wallet/guides/sub-accounts/setup) - Learn how to set up a NextJS project with Wagmi and configure Smart Wallet Sub Accounts. This guide covers:
+
+   - Creating a new NextJS+Wagmi project
+   - Configuring Smart Wallet with development environment settings
+   - Setting up spend permissions for native ETH
+   - Creating a basic wallet connection interface
+
+2. [Using Sub Accounts](/identity/smart-wallet/guides/sub-accounts/using-sub-accounts) - Explore how to interact with Sub Accounts in your application. This guide demonstrates:
+
+   - Signing messages with Sub Accounts using `useSignMessage`
+   - Sending transactions with spend limits using `useSendTransaction`
+   - Building a complete interface for wallet connection and transactions
+   - Understanding transaction limitations based on spend permissions

@@ -1,0 +1,8 @@
+{
+  "name": "Blockdaemon",
+  "url": "https://blockdaemon.com",
+  "description": "The institutional-grade blockchain infrastructure for Web3. Blockdaemon provides an end-to-end suite of blockchain tools, including dedicated nodes, APIs, staking, liquid staking, MPC tech, and more.",
+  "imageUrl": "/images/partners/blockdaemon.webp",
+  "category": "infra",
+  "subcategory": "node provider"
+}

@@ -7,28 +7,17 @@ import { Buy } from '@coinbase/onchainkit/buy';
 import { Checkout, CheckoutButton } from '@coinbase/onchainkit/checkout';
 import { Earn } from '@coinbase/onchainkit/earn';
 import { FundCard } from '@coinbase/onchainkit/fund';
-// import { NFTMintCard } from '@coinbase/onchainkit/nft';
-// import {
-//   NFTAssetCost,
-//   NFTCollectionTitle,
-//   NFTCreator,
-//   NFTMintButton,
-//   NFTMinters,
-//   NFTQuantitySelector,
-// } from '@coinbase/onchainkit/nft/mint';
-// import { NFTMedia } from '@coinbase/onchainkit/nft/view';
-import { SwapDefault } from '@coinbase/onchainkit/swap';
-import { TransactionDefault } from '@coinbase/onchainkit/transaction';
+import { Swap } from '@coinbase/onchainkit/swap';
+import { Transaction } from '@coinbase/onchainkit/transaction';
 import {
   ConnectWallet,
   Wallet,
-  WalletAdvanced,
   WalletAdvancedAddressDetails,
   WalletAdvancedTokenHoldings,
   WalletAdvancedTransactionActions,
   WalletAdvancedWalletActions,
+  WalletDropdown,
 } from '@coinbase/onchainkit/wallet';
-import { Name } from '@coinbase/onchainkit/identity';
 import Title from 'apps/web/src/components/base-org/typography/Title';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
 import {
@@ -51,7 +40,7 @@ import { DynamicCryptoProviders } from 'apps/web/app/CryptoProviders.dynamic';
 import Text from 'apps/web/src/components/base-org/typography/Text';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/Text/types';
 import Link from 'apps/web/src/components/Link';
-import { UserAvatar } from 'apps/web/src/components/ConnectWalletButton/UserAvatar';
+import { NFTDemo } from './NFTDemo';
 
 type LiveDemoProps = {
   components: (typeof ONCHAINKIT_DEMO_TABS)[number][];
@@ -91,16 +80,13 @@ export function LiveDemo({ components, title, hideDescription = false }: LiveDem
       case 'Wallet':
         return (
           <Wallet>
-            <ConnectWallet>
-              <UserAvatar />
-              <Name />
-            </ConnectWallet>
-            <WalletAdvanced>
+            <ConnectWallet />
+            <WalletDropdown>
               <WalletAdvancedWalletActions />
               <WalletAdvancedAddressDetails classNames={walletAdvancedAddressDetailsClasses} />
               <WalletAdvancedTransactionActions />
               <WalletAdvancedTokenHoldings />
-            </WalletAdvanced>
+            </WalletDropdown>
           </Wallet>
         );
       case 'Buy':
@@ -112,21 +98,11 @@ export function LiveDemo({ components, title, hideDescription = false }: LiveDem
           </Checkout>
         );
       case 'Swap':
-        return <SwapDefault to={swappableTokens} from={swappableTokens} className="w-full" />;
+        return <Swap to={swappableTokens} from={swappableTokens} className="w-full" />;
       case 'Earn':
         return <Earn vaultAddress={earnVaultAddress} />;
-      // case 'Mint':
-      //   return (
-      //     <NFTMintCard contractAddress="0xed2f34043387783b2727ff2799a46ce3ae1a34d2" tokenId="2">
-      //       <NFTCreator />
-      //       <NFTMedia />
-      //       <NFTCollectionTitle />
-      //       <NFTMinters />
-      //       <NFTQuantitySelector />
-      //       <NFTAssetCost />
-      //       <NFTMintButton />
-      //     </NFTMintCard>
-      //   );
+      case 'Mint':
+        return <NFTDemo />;
       case 'Fund':
         return (
           <FundCard
@@ -138,7 +114,7 @@ export function LiveDemo({ components, title, hideDescription = false }: LiveDem
           />
         );
       case 'Transact':
-        return <TransactionDefault calls={CLICK_CALLS} className="mr-auto w-auto" />;
+        return <Transaction calls={CLICK_CALLS} className="mr-auto w-auto" />;
       default:
         return null;
     }
@@ -284,6 +260,30 @@ function DesktopDemo({
             >
               Docs
             </Link>
+            <Link
+              href="https://docs.base.org/builderkits/onchainkit/llms.txt"
+              target="_blank"
+              className={classNames(
+                'rounded-lg border px-3 py-1 transition-colors',
+                mode === 'dark'
+                  ? 'border-dark-palette-line/20 hover:bg-white/10'
+                  : 'border-dark-palette-line/20 text-dark-palette-backgroundAlternate hover:bg-white/10',
+              )}
+            >
+              AI docs
+            </Link>
+            <Link
+              href="https://onchainkit.xyz/playground"
+              target="_blank"
+              className={classNames(
+                'rounded-lg border px-3 py-1 transition-colors',
+                mode === 'dark'
+                  ? 'border-dark-palette-line/20 hover:bg-white/10'
+                  : 'border-dark-palette-line/20 text-dark-palette-backgroundAlternate hover:bg-white/10',
+              )}
+            >
+              Playground
+            </Link>
             <button
               type="button"
               onClick={handleCopy}
@@ -338,7 +338,7 @@ function DesktopDemo({
 
         <div className="grid h-auto min-h-[600px] grid-cols-1 lg:grid-cols-2">
           <ComponentDemo mode={mode} demoComponent={demoComponent} />
-          <div className="h-[300px] py-6 pl-6 pr-1 lg:h-[500px]">
+          <div className="h-[300px] py-6 pl-6 pr-1 lg:h-full">
             <div className={`${mode} relative h-full`}>
               <CodeSnippet code={codeSnippets[activeTab]} />
             </div>

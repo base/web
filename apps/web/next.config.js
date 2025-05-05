@@ -126,7 +126,7 @@ const contentSecurityPolicy = {
     'https://base-sepolia.easscan.org/graphql', // nft
     'https://*.google-analytics.com',
   ],
-  'frame-src': ['https://p.datadoghq.com'],
+  'frame-src': ['https://p.datadoghq.com', walletconnectDomains],
   'frame-ancestors': ["'self'", baseXYZDomains],
   'form-action': ["'self'", baseXYZDomains],
   'img-src': [
@@ -294,6 +294,11 @@ module.exports = extendBaseConfig(
           // just so the build doesn't fail in CI
           destination: process.env.NEXT_PUBLIC_OCS_CREATIVE_DOWNLOAD_URL ?? '/',
           permanent: false,
+        },
+        {
+          source: '/luma',
+          destination: 'https://lu.ma/base-virtualevents',
+          permanent: true,
         },
         {
           source: '/registry',
