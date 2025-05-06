@@ -410,13 +410,11 @@ export async function POST(request: Request) {
       });
     }
 
-    // Success - no validation errors
+    // Success - no validation errors - you HAVE to return the original calls
     return Response.json({
-      request: {
         calls: requestData.calls,
         chainId: requestData.chainId,
         capabilities: requestData.capabilities
-      }
     });
 
   } catch (error) {
@@ -427,6 +425,15 @@ export async function POST(request: Request) {
   }
 }
 ```
+
+<Callout type="warning">
+**Returning the original calls**
+
+You MUST return the original calls in the response if the check is successful.
+
+If you don't, the wallet will return an error.
+
+</Callout>
 
 ## How It Works
 
