@@ -47,6 +47,9 @@ import { createCoinbaseWalletSDK } from '@coinbase/wallet-sdk'
 export const sdk = createCoinbaseWalletSDK({
   appName: 'My App Name',
   appChainIds: [8453],
+  preference: {
+    options: 'smartWalletOnly',
+  },
 });
 ```
 
