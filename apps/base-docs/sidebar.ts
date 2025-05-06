@@ -595,6 +595,10 @@ export const sidebar: Sidebar = [
             link: '/builderkits/minikit/quickstart',
           },
           {
+            text: 'Existing App Integration',
+            link: '/builderkits/minikit/existing-app-integration',
+          },
+          {
             text: 'Debugging',
             link: '/builderkits/minikit/debugging',
           },
@@ -709,6 +713,10 @@ export const sidebar: Sidebar = [
                         text: 'Sub Accounts',
                         link: '/identity/smart-wallet/concepts/features/optional/sub-accounts',
                       },
+                      {
+                        text: 'Profiles',
+                        link: '/identity/smart-wallet/concepts/features/optional/profiles',
+                      },
                     ],
                   },
                 ],
@@ -779,6 +787,10 @@ export const sidebar: Sidebar = [
                 text: 'Spend Permissions',
                 collapsed: true,
                 link: '/identity/smart-wallet/guides/spend-permissions',
+              },
+              {
+                text: 'Profiles',
+                link: '/identity/smart-wallet/guides/profiles',
               },
             ],
           },
@@ -1060,16 +1072,20 @@ export const sidebar: Sidebar = [
         link: '/chain/base-contracts',
       },
       {
-        text: 'Flashblocks',
-        link: '/chain/flashblocks',
-      },
-      {
         text: 'Security Council',
         link: '/chain/security-council',
       },
       {
         text: 'Chain Stats ↗',
         link: 'https://www.base.org/stats',
+      },
+      {
+        text: 'Flashblocks',
+        collapsed: true,
+        items: [
+          { text: 'Apps', link: '/chain/flashblocks/apps' },
+          { text: 'Node Providers', link: '/chain/flashblocks/node-providers' },
+        ],
       },
     ],
   },
