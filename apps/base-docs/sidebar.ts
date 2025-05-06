@@ -595,6 +595,10 @@ export const sidebar: Sidebar = [
             link: '/builderkits/minikit/quickstart',
           },
           {
+            text: 'Existing App Integration',
+            link: '/builderkits/minikit/existing-app-integration',
+          },
+          {
             text: 'Debugging',
             link: '/builderkits/minikit/debugging',
           },
@@ -709,6 +713,10 @@ export const sidebar: Sidebar = [
                         text: 'Sub Accounts',
                         link: '/identity/smart-wallet/concepts/features/optional/sub-accounts',
                       },
+                      {
+                        text: 'Profiles',
+                        link: '/identity/smart-wallet/concepts/features/optional/profiles',
+                      },
                     ],
                   },
                 ],
@@ -770,16 +778,8 @@ export const sidebar: Sidebar = [
                     link: '/identity/smart-wallet/guides/sub-accounts/setup',
                   },
                   {
-                    text: 'Creating Sub Accounts',
-                    link: '/identity/smart-wallet/guides/sub-accounts/creating-sub-accounts',
-                  },
-                  {
                     text: 'Using Sub Accounts',
                     link: '/identity/smart-wallet/guides/sub-accounts/using-sub-accounts',
-                  },
-                  {
-                    text: 'Incorporate Spend Permissions',
-                    link: '/identity/smart-wallet/guides/sub-accounts/incorporate-spend-permissions',
                   },
                 ],
               },
@@ -787,6 +787,19 @@ export const sidebar: Sidebar = [
                 text: 'Spend Permissions',
                 collapsed: true,
                 link: '/identity/smart-wallet/guides/spend-permissions',
+              },
+              {
+                text: 'Profiles',
+                link: '/identity/smart-wallet/guides/profiles',
+              },
+            ],
+          },
+          {
+            text: 'Examples',
+            items: [
+              {
+                text: 'Coin Your Bangers',
+                link: '/identity/smart-wallet/examples/coin-a-joke-app',
               },
             ],
           },
@@ -1001,34 +1014,48 @@ export const sidebar: Sidebar = [
     ],
   },
   {
+    text: 'Wallet App',
+    items: [
+      {
+        text: 'Mini Apps',
+        link: '/wallet-app/mini-apps',
+      },
+    ],
+  },
+  {
     text: 'Chain',
     items: [
       {
-        text: 'General',
+        text: 'Flashblocks',
         collapsed: true,
         items: [
-          { text: 'Adding tokens to Coinbase Wallet', link: '/chain/wallet' },
-          { text: 'Bridge an L1 Token to Base', link: '/chain/bridge-an-l1-token-to-base' },
-          { text: 'Deploy on Base', link: '/chain/deploy-on-base-quickstart' },
-          {
-            text: 'Differences Between Ethereum and Base',
-            link: '/chain/differences-between-ethereum-and-base',
-          },
-          { text: 'Fees', link: '/chain/fees' },
-          { text: 'Using Base', link: '/chain/using-base' },
-          { text: 'Why Base?', link: '/chain/why-base' },
+          { text: 'Apps', link: '/chain/flashblocks/apps' },
+          { text: 'Node Providers', link: '/chain/flashblocks/node-providers' },
         ],
       },
       {
-        text: 'Flashblocks',
-        link: '/chain/flashblocks',
+        text: 'Misc.',
+        collapsed: true,
+        items: [
+          { text: 'Adding tokens to Coinbase Wallet', link: '/chain/wallet' },
+          { text: 'Using Base', link: '/chain/using-base' },
+          { text: 'Why Base?', link: '/chain/why-base' },
+        ],
       },
       {
         text: 'Network Information',
         collapsed: true,
         items: [
           { text: 'Base Contracts', link: '/chain/base-contracts' },
+          { text: 'Bridging an L1 Token to Base', link: '/chain/bridge-an-l1-token-to-base' },
           { text: 'Connecting to Base', link: '/chain/connecting-to-base' },
+          { text: 'Deploying Contracts on Base', link: '/chain/deploy-on-base-quickstart' },
+          {
+            text: 'Differences Between Ethereum and Base',
+            link: '/chain/differences-between-ethereum-and-base',
+          },
+          { text: 'Fees', link: '/chain/fees' },
+
           { text: 'Chain Stats ↗', link: 'https://www.base.org/stats' },
           { text: 'Status Page ↗', link: 'https://status.base.org' },
         ],
@@ -1041,6 +1068,30 @@ export const sidebar: Sidebar = [
           { text: 'Performance Tuning', link: '/chain/node-performance' },
           { text: 'Snapshots', link: '/chain/node-snapshots' },
           { text: 'Troubleshooting', link: '/chain/node-troubleshooting' },
+          { text: 'Run a Base Node', link: '/chain/run-a-base-node' },
+          { text: 'Bridge an L1 Token to Base', link: '/chain/bridge-an-l1-token-to-base' },
+          { text: 'Adding tokens to Coinbase Wallet', link: '/chain/wallet' },
+          { text: 'Report a Vulnerability', link: '/chain/report' },
+          {
+            text: 'How to avoid getting your app flagged as malicious',
+            link: '/chain/app-blocklist',
+          },
+          {
+            text: 'Decentralizing Base with Optimism↗',
+            link: 'https://base.mirror.xyz/H_KPwV31M7OJT-THUnU7wYjOF16Sy7aWvaEr5cgHi8I',
+          },
+        ],
+      },
+      {
+        text: 'Security',
+        collapsed: true,
+        items: [
+          { text: 'Bug Bounty', link: '/chain/security/bounty' },
+          {
+            text: 'How to avoid getting your app flagged as malicious',
+            link: '/chain/security/app-blocklist',
+          },
+          { text: 'Report a Vulnerability', link: '/chain/security/report' },
         ],
       },
       {
@@ -1056,18 +1107,6 @@ export const sidebar: Sidebar = [
           { text: 'Onchain Registry API', link: '/chain/registry-api' },
           { text: 'Onramps', link: '/chain/onramps' },
           { text: 'Oracles', link: '/chain/oracles' },
-        ],
-      },
-      {
-        text: 'Security',
-        collapsed: true,
-        items: [
-          { text: 'Bug Bounty', link: '/chain/security/bounty' },
-          {
-            text: 'How to avoid getting your app flagged as malicious',
-            link: '/chain/security/app-blocklist',
-          },
-          { text: 'Report a Vulnerability', link: '/chain/security/report' },
         ],
       },
     ],
