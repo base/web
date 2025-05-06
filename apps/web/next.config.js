@@ -133,6 +133,8 @@ const contentSecurityPolicy = {
     "'self'",
     'blob:',
     'data:',
+    'https://base.org',
+    'https://*.base.org',
     'https://euc.li',
     'https://*.walletconnect.com/', // WalletConnect
     'https://i.seadn.io/', // ens avatars
