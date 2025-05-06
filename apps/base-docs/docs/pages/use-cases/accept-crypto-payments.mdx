@@ -9,6 +9,10 @@ authors:
 
 Accepting crypto payments can help you **eliminate traditional credit card fees** and **avoid costly chargebacks**, giving you a faster, more global payment experience. In this guide, you'll learn how to quickly integrate Coinbase Commerce and OnchainKit to accept crypto payments for products or services in your application.
 
+<img alt="Checkout"
+  src="/images/onchainkit/checkout.gif"
+  height="364"/>
+
 ## Objectives
 
 By following this guide, you will learn how to:
@@ -62,7 +66,7 @@ Follow the prompts to configure your project. You'll be asked to provide a proje
 
 In the project folder, open (or create) your `.env` file and add:
 
-```bash
+```bash [.env]
 NEXT_PUBLIC_ONCHAINKIT_PROJECT_NAME=
 NEXT_PUBLIC_ONCHAINKIT_API_KEY=
 NEXT_PUBLIC_PRODUCT_ID=
@@ -89,7 +93,7 @@ NEXT_PUBLIC_PRODUCT_ID=
 4. **Add an image** of your product or service in the `public` folder (e.g., `app/public/my-pizza.jpeg`).
 5. **Display** that image and conditionally render the checkout UI only when a wallet is connected:
 
-   ```jsx
+   ```jsx [app/page.tsx]
    <section className='flex w-full flex-col items-center justify-center gap-8 px-2 py-4'>
             <h1 className='pixel-font text-xl md:text-2xl mb-8 text-center'>
               ONCHAIN PIZZA
