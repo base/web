@@ -713,10 +713,6 @@ export const sidebar: Sidebar = [
                         text: 'Sub Accounts',
                         link: '/identity/smart-wallet/concepts/features/optional/sub-accounts',
                       },
-                      {
-                        text: 'Profiles',
-                        link: '/identity/smart-wallet/concepts/features/optional/profiles',
-                      },
                     ],
                   },
                 ],
@@ -787,10 +783,6 @@ export const sidebar: Sidebar = [
                 text: 'Spend Permissions',
                 collapsed: true,
                 link: '/identity/smart-wallet/guides/spend-permissions',
-              },
-              {
-                text: 'Profiles',
-                link: '/identity/smart-wallet/guides/profiles',
               },
             ],
           },
