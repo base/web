@@ -1,4 +1,5 @@
 import { Callout } from "vocs/components";
+import GithubRepoCard from "@/components/GithubRepoCard"
 
 # Build with Spend Limits
 
@@ -11,14 +12,25 @@ assets without any further signatures, unlocking use cases like subscriptions & 
 
 The following is a technical guide to build with Spend Limits. If you want to learn more about high level details of this feature, check out the [Spend Limits feature page](/identity/smart-wallet/concepts/features/optional/spend-limits).
 
+## Skip Ahead
+
+If you want to skip ahead and just get the final code, you can find it here:
+
+<GithubRepoCard title="Spend Limits Demo" githubUrl="https://github.com/base/demos/tree/master/smart-wallet/spend-limits-demo" />
+
+<Callout type="info">
+**Hosted Demo and Smart Contract Addresses**
+
+A hosted version of the demo can be found [here](https://subscribe-onchain.vercel.app/).
+
+Smart contract deployment addresses for `SpendPermissionManager.sol` can be found [here](https://github.com/coinbase/spend-permissions).
+
+</Callout>
+
 ## Let's build!
 
 This guide will walk you through a simple example of building an app that leverages Spend Limits using
 [OnchainKit](https://onchainkit.xyz/), [Viem](https://viem.sh/) and [Wagmi](https://wagmi.sh/).
-
-The repository for the complete example of this demo can be found [here](https://github.com/ilikesymmetry/spend-permissions-quickstart).  
-A hosted version of the demo can be found [here](https://subscribe-onchain.vercel.app/).  
-Smart contract deployment addresses for `SpendPermissionManager.sol` can be found [here](https://github.com/coinbase/spend-permissions).
 
 :::steps
 
@@ -126,13 +138,13 @@ const config = createConfig({
 
 ### Set up our interface to the `SpendPermissionManager` smart contract
 
-Spend permissions are managed by a singleton contract called the `SpendPermissionManager`. We'll add some
+Spend Limits are managed by a singleton contract called the `SpendPermissionManager`. We'll add some
 configuration so our client knows how to interact with this contract.
 
 Inside your `/lib` directory, create a new subdirectory called `/abi`. This is where we'll store information about
 [smart contract interfaces](https://docs.soliditylang.org/en/latest/abi-spec.html) and addresses.
 
-Add a new file called `SpendPermissionManager.ts` and copy and paste the code from [this file](https://github.com/ilikesymmetry/spend-permissions-quickstart/blob/main/lib/abi/SpendPermissionManager.ts).
+Add a new file called `SpendPermissionManager.ts` and copy and paste the code from [this file](https://github.com/base/demos/blob/master/smart-wallet/spend-limits-demo/lib/abi/SpendPermissionManager.ts).
 
 <Callout type="info">
   [Here's an example](https://docs.basescan.org/api-endpoints/contracts) of
