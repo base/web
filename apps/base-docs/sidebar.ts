@@ -1030,6 +1030,11 @@ export const sidebar: Sidebar = [
         collapsed: true,
         items: [
           { text: 'Adding tokens to Coinbase Wallet', link: '/chain/wallet' },
+          {
+            text: 'How to avoid getting your app flagged as malicious',
+            link: '/chain/app-blocklist',
+          },
+          { text: 'Report a Vulnerability', link: '/chain/report' },
           { text: 'Using Base', link: '/chain/using-base' },
           { text: 'Why Base?', link: '/chain/why-base' },
         ],
@@ -1047,7 +1052,6 @@ export const sidebar: Sidebar = [
             link: '/chain/differences-between-ethereum-and-base',
           },
           { text: 'Fees', link: '/chain/fees' },
-
           { text: 'Chain Stats ↗', link: 'https://www.base.org/stats' },
           { text: 'Status Page ↗', link: 'https://status.base.org' },
         ],
@@ -1060,31 +1064,11 @@ export const sidebar: Sidebar = [
           { text: 'Performance Tuning', link: '/chain/node-performance' },
           { text: 'Snapshots', link: '/chain/node-snapshots' },
           { text: 'Troubleshooting', link: '/chain/node-troubleshooting' },
-          { text: 'Run a Base Node', link: '/chain/run-a-base-node' },
-          { text: 'Bridge an L1 Token to Base', link: '/chain/bridge-an-l1-token-to-base' },
-          { text: 'Adding tokens to Coinbase Wallet', link: '/chain/wallet' },
-          { text: 'Report a Vulnerability', link: '/chain/report' },
-          {
-            text: 'How to avoid getting your app flagged as malicious',
-            link: '/chain/app-blocklist',
-          },
-          {
-            text: 'Decentralizing Base with Optimism↗',
-            link: 'https://base.mirror.xyz/H_KPwV31M7OJT-THUnU7wYjOF16Sy7aWvaEr5cgHi8I',
-          },
         ],
       },
       {
-        text: 'Security',
-        collapsed: true,
-        items: [
-          { text: 'Bug Bounty', link: '/chain/security/bounty' },
-          {
-            text: 'How to avoid getting your app flagged as malicious',
-            link: '/chain/security/app-blocklist',
-          },
-          { text: 'Report a Vulnerability', link: '/chain/security/report' },
-        ],
+        text: 'Security Council',
+        link: '/chain/security-council',
       },
       {
         text: 'Tools',

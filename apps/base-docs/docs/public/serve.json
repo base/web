@@ -7,6 +7,10 @@
   ],
   "redirects": [
     {
+      "source": "/tutorials",
+      "destination": "/"
+    },
+    {
       "source": "/docs/network-information",
       "destination": "/chain/network-information"
     },
