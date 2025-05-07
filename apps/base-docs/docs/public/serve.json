@@ -7,6 +7,10 @@
   ],
   "redirects": [
     {
+      "source": "/tutorials",
+      "destination": "/"
+    },
+    {
       "source": "/docs/network-information",
       "destination": "/chain/network-information"
     },
@@ -41,6 +45,10 @@
     {
       "source": "/network-information",
       "destination": "/chain/network-information"
+    },
+    {
+      "source": "/chain/network-information",
+      "destination": "/chain/connecting-to-base"
     },
     {
       "source": "/tutorials/deploy-with-remix",
@@ -115,6 +123,10 @@
       "destination": "/identity/smart-wallet/concepts/features/optional/spend-permissions"
     },
     {
+      "source": "/identity/smart-wallet/concepts/features/optional/spend-permissions",
+      "destination": "/identity/smart-wallet/concepts/features/optional/spend-limits"
+    },
+    {
       "source": "/identity/smart-wallet/features/sub-accounts",
       "destination": "/identity/smart-wallet/concepts/features/optional/sub-accounts"
     },
@@ -131,8 +143,12 @@
       "destination": "/identity/smart-wallet/quickstart"
     },
     {
+      "source": "/identity/smart-wallet/guides/spend-permissions",
+      "destination": "/identity/smart-wallet/guides/spend-limits"
+    },
+    {
       "source": "/identity/smart-wallet/guides/spend-permissions/:path*",
-      "destination": "/identity/smart-wallet/guides/spend-permissions/"
+      "destination": "/identity/smart-wallet/guides/spend-limits/"
     },
     {
       "source": "/identity/smart-wallet/guides/create-app/:path*",
