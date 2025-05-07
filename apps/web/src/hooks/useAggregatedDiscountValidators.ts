@@ -18,171 +18,69 @@ import { Discount } from 'apps/web/src/utils/usernames';
 import { useMemo } from 'react';
 
 export type DiscountData = AttestationData & { discountKey: `0x${string}` };
-
 export type MappedDiscountData = Partial<Record<Discount, DiscountData>>;
 
-export function findFirstValidDiscount(
-  aggregatedData: MappedDiscountData,
-): DiscountData | undefined {
-  const priorityOrder: Partial<Record<Discount, number>> & { default: 3 } = {
+export function findFirstValidDiscount(aggregatedData: MappedDiscountData): DiscountData | undefined {
+  const priorityOrder: Partial<Record<Discount, number>> & { default: number } = {
     [Discount.DISCOUNT_CODE]: 0,
     [Discount.BNS_NAME]: 1,
     [Discount.CB1]: 2,
     default: 3,
   };
 
-  const sortedDiscounts = Object.values(aggregatedData).sort((a, b) => {
-    const aPriority = priorityOrder[a.discount] ?? priorityOrder.default;
-    const bPriority = priorityOrder[b.discount] ?? priorityOrder.default;
-    return aPriority - bPriority;
-  });
-
-  return sortedDiscounts.find((data) => data?.discountKey) ?? undefined;
+  return Object.values(aggregatedData)
+    .sort((a, b) => {
+      const aPriority = a?.discount ? priorityOrder[a.discount] ?? priorityOrder.default : priorityOrder.default;
+      const bPriority = b?.discount ? priorityOrder[b.discount] ?? priorityOrder.default : priorityOrder.default;
+      return aPriority - bPriority;
+    })
+    .find((data) => data?.discountKey);
 }
 
 export function useAggregatedDiscountValidators(code?: string) {
-  const { data: activeDiscountValidators, isLoading: loadingActiveDiscounts } =
-    useActiveDiscountValidators();
-  const { data: CBIDData, loading: loadingCBIDAttestations } = useCheckCBIDAttestations();
-  const { data: CB1Data, loading: loadingCB1Attestations } = useCheckCB1Attestations();
-  const { data: EAData, loading: loadingEAAttestations } = useCheckEAAttestations();
-  const { data: coinbaseData, loading: loadingCoinbaseAttestations } =
-    useCheckCoinbaseAttestations();
-  const { data: SummerPassData, loading: loadingSummerPass } = useSummerPassAttestations();
-  const { data: BuildathonData, loading: loadingBuildathon } = useBuildathonAttestations();
-  const { data: BaseDotEthData, loading: loadingBaseDotEth } = useBaseDotEthAttestations();
-  const { data: BNSData, loading: loadingBNS } = useBNSAttestations();
-  const { data: DiscountCodeData, loading: loadingDiscountCode } =
-    useDiscountCodeAttestations(code);
-  const { data: TalentProtocolData, loading: loadingTalentProtocolAttestations } =
-    useTalentProtocolAttestations();
-  const { data: BaseWorldData, loading: loadingBaseWorld } = useBaseWorldAttestations();
-  const { data: DevconData, loading: loadingDevcon } = useDevconAttestations();
+  const { data: activeDiscountValidators, isLoading: loadingValidators } = useActiveDiscountValidators();
 
-  const loadingDiscounts =
-    loadingCoinbaseAttestations ||
-    loadingCBIDAttestations ||
-    loadingCB1Attestations ||
-    loadingActiveDiscounts ||
-    loadingEAAttestations ||
-    loadingBuildathon ||
-    loadingSummerPass ||
-    loadingBaseDotEth ||
-    loadingBNS ||
-    loadingDiscountCode ||
-    loadingTalentProtocolAttestations ||
-    loadingBaseWorld ||
-    loadingDevcon;
+  const hooks = [
+    { hook: useCheckCBIDAttestations, key: Discount.CBID },
+    { hook: useCheckCB1Attestations, key: Discount.CB1 },
+    { hook: useCheckEAAttestations, key: Discount.EARLY_ACCESS },
+    { hook: useCheckCoinbaseAttestations, key: Discount.COINBASE_VERIFIED_ACCOUNT },
+    { hook: useSummerPassAttestations, key: Discount.SUMMER_PASS_LVL_3 },
+    { hook: useBuildathonAttestations, key: Discount.BASE_BUILDATHON_PARTICIPANT },
+    { hook: useBaseDotEthAttestations, key: Discount.BASE_DOT_ETH_NFT },
+    { hook: useBNSAttestations, key: Discount.BNS_NAME },
+    { hook: () => useDiscountCodeAttestations(code), key: Discount.DISCOUNT_CODE },
+    { hook: useTalentProtocolAttestations, key: Discount.TALENT_PROTOCOL },
+    { hook: useBaseWorldAttestations, key: Discount.BASE_WORLD },
+    { hook: useDevconAttestations, key: Discount.DEVCON },
+  ];
+
+  const results = hooks.map(({ hook }) => hook());
+  const loadingDiscounts = results.some((res) => res.loading) || loadingValidators;
 
   const discountsToAttestationData = useMemo<MappedDiscountData>(() => {
-    const discountMapping: MappedDiscountData = {};
+    const mapping: MappedDiscountData = {};
+    const active = activeDiscountValidators?.filter((v) => v.active) ?? [];
 
-    const activeValidators =
-      activeDiscountValidators?.filter((validator) => validator.active) ?? [];
+    hooks.forEach(({ key }, i) => {
+      const result = results[i];
+      const attestation = result?.data;
+      if (!attestation) return;
 
-    activeValidators.forEach((validator) => {
-      if (CBIDData && validator.discountValidator === CBIDData.discountValidatorAddress) {
-        discountMapping[Discount.CBID] = { ...CBIDData, discountKey: validator.key };
-      }
-      if (CB1Data && validator.discountValidator === CB1Data.discountValidatorAddress) {
-        discountMapping[Discount.CB1] = { ...CB1Data, discountKey: validator.key };
-      }
-      if (coinbaseData && validator.discountValidator === coinbaseData.discountValidatorAddress) {
-        discountMapping[Discount.COINBASE_VERIFIED_ACCOUNT] = {
-          ...coinbaseData,
-          discountKey: validator.key,
-        };
-      }
-      if (EAData && validator.discountValidator === EAData.discountValidatorAddress) {
-        discountMapping[Discount.EARLY_ACCESS] = { ...EAData, discountKey: validator.key };
-      }
-
-      if (
-        BuildathonData &&
-        validator.discountValidator === BuildathonData.discountValidatorAddress
-      ) {
-        discountMapping[Discount.BASE_BUILDATHON_PARTICIPANT] = {
-          ...BuildathonData,
-          discountKey: validator.key,
-        };
-      }
-      if (
-        SummerPassData &&
-        validator.discountValidator === SummerPassData.discountValidatorAddress
-      ) {
-        discountMapping[Discount.SUMMER_PASS_LVL_3] = {
-          ...SummerPassData,
-          discountKey: validator.key,
-        };
-      }
-      if (
-        BaseDotEthData &&
-        validator.discountValidator === BaseDotEthData.discountValidatorAddress
-      ) {
-        discountMapping[Discount.BASE_DOT_ETH_NFT] = {
-          ...BaseDotEthData,
-          discountKey: validator.key,
-        };
-      }
-      if (BNSData && validator.discountValidator === BNSData.discountValidatorAddress) {
-        discountMapping[Discount.BNS_NAME] = { ...BNSData, discountKey: validator.key };
-      }
-
-      if (
-        DiscountCodeData &&
-        validator.discountValidator === DiscountCodeData.discountValidatorAddress
-      ) {
-        discountMapping[Discount.DISCOUNT_CODE] = {
-          ...DiscountCodeData,
-          discountKey: validator.key,
-        };
-      }
-
-      if (
-        TalentProtocolData &&
-        validator.discountValidator === TalentProtocolData.discountValidatorAddress
-      ) {
-        discountMapping[Discount.TALENT_PROTOCOL] = {
-          ...TalentProtocolData,
-          discountKey: validator.key,
-        };
-      }
-
-      if (BaseWorldData && validator.discountValidator === BaseWorldData.discountValidatorAddress) {
-        discountMapping[Discount.BASE_WORLD] = {
-          ...BaseWorldData,
-          discountKey: validator.key,
-        };
-      }
-
-      if (DevconData && validator.discountValidator === DevconData.discountValidatorAddress) {
-        discountMapping[Discount.DEVCON] = {
-          ...DevconData,
-          discountKey: validator.key,
-        };
+      const validator = active.find((v) => v.discountValidator === attestation.discountValidatorAddress);
+      if (validator) {
+        mapping[key] = { ...attestation, discountKey: validator.key };
       }
     });
 
-    return discountMapping;
-  }, [
-    activeDiscountValidators,
-    CBIDData,
-    CB1Data,
-    coinbaseData,
-    EAData,
-    BuildathonData,
-    SummerPassData,
-    BaseDotEthData,
-    BNSData,
-    DiscountCodeData,
-    TalentProtocolData,
-    BaseWorldData,
-    DevconData,
-  ]);
+    return mapping;
+  }, [activeDiscountValidators, ...results.map((r) => r.data)]);
+
+  const hasUsedADiscount = Object.values(discountsToAttestationData).some((d) => !!d?.discountKey);
 
   return {
     data: discountsToAttestationData,
     loading: loadingDiscounts,
-    hasUsedADiscount: false,
+    hasUsedADiscount,
   };
 }
