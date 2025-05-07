@@ -9,46 +9,68 @@ export function useAlternativeNameSuggestions(nameNeedingAlternatives: string, d
   const [error, setError] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
   const { logError } = useErrors();
+
   useEffect(() => {
-    async function checkAlternatives() {
-      if (!doLookup || !nameNeedingAlternatives || nameNeedingAlternatives.length < 3) {
-        return;
-      }
+    if (!doLookup || !nameNeedingAlternatives || nameNeedingAlternatives.length < 3) {
+      setSuggestions(undefined);
+      setError(undefined);
+      return;
+    }
+
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    async function fetchSuggestions() {
       try {
         setIsLoading(true);
-        const response = await fetch(`/api/name/${nameNeedingAlternatives}`);
+        const response = await fetch(`/api/name/${nameNeedingAlternatives}`, { signal });
+
         if (response.ok) {
           const suggestionData = (await response.json()) as NameSuggestionResponseData;
           setSuggestions(suggestionData.suggestion);
+          setError(undefined);
+        } else {
+          setSuggestions(undefined);
+          setError('Could not retrieve name suggestions');
         }
       } catch (e) {
-        logError(e, 'Failed to fetch alternative names');
-        setError('error fetching name suggestions');
+        if (!signal.aborted) {
+          const err = e instanceof Error ? e : new Error(String(e));
+          logError(err, 'Failed to fetch alternative names');
+          setError('Error fetching name suggestions');
+          setSuggestions(undefined);
+        }
       } finally {
-        setIsLoading(false);
+        if (!signal.aborted) {
+          setIsLoading(false);
+        }
       }
     }
-    void checkAlternatives();
-  }, [doLookup, logError, nameNeedingAlternatives]);
 
-  const normalizedNames = useMemo(
-    () =>
-      (suggestions ?? []).map(normalizeEnsDomainName).filter((name) => {
-        const { valid } = validateEnsDomainName(name);
-        return valid;
-      }),
-    [suggestions],
-  );
-  // check contracts
-  const { data: availableNames } = useAreNamesAvailable(normalizedNames ?? []);
-  const result = useMemo(() => {
-    return normalizedNames
-      .map((name, i) => {
-        if (!availableNames) return null;
-        if (!availableNames[i]) return null;
-        return availableNames[i].result ? name : null;
-      })
+    fetchSuggestions();
+
+    return () => controller.abort();
+  }, [doLookup, nameNeedingAlternatives, logError]);
+
+  const normalizedNames = useMemo(() => {
+    return (suggestions ?? [])
+      .map(normalizeEnsDomainName)
+      .filter((name) => validateEnsDomainName(name).valid);
+  }, [suggestions]);
+
+  const { data: availableNames } = useAreNamesAvailable(normalizedNames);
+
+  const availableSuggestions = useMemo(() => {
+    if (!availableNames) return [];
+
+    return availableNames
+      .map((res, i) => (res.result ? normalizedNames[i] : null))
       .filter((name): name is string => Boolean(name));
   }, [availableNames, normalizedNames]);
-  return { data: result, error, isLoading };
+
+  return {
+    data: availableSuggestions,
+    error,
+    isLoading,
+  };
 }
