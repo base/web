@@ -38,56 +38,134 @@ If you want to skip ahead and just get the final code, you can find it here:
 To sign a message with a Sub Account, we'll use Wagmi's `useSignMessage` hook. Here's how to implement message signing:
 
 ```tsx [app/page.tsx]
-import { useSignMessage } from 'wagmi'
+'use client'
+
+import { useAccount, useConnect, useDisconnect, useSignMessage } from 'wagmi'
 
 function App() {
+  const account = useAccount()
+  const { connectors, connect, status, error } = useConnect()
+  const { disconnect } = useDisconnect()
   const { signMessage, data: signData } = useSignMessage()
-
   return (
-    <div>
-      <div>Sign Message</div>
-      <button
-        type="button"
-        onClick={() => signMessage({ message: 'Hello World' })}
-      >
-        Sign Message
-      </button>
-      <div>{signData}</div>
-    </div>
+    <>
+      <div>
+        <h2>Account</h2>
+
+        <div>
+          Status: {account.status}
+          <br />
+          Sub Account Address: {JSON.stringify(account.addresses)}
+          <br />
+          ChainId: {account.chainId}
+        </div>
+
+        {account.status === 'connected' && (
+          <button type="button" onClick={() => disconnect()}>
+            Disconnect
+          </button>
+        )}
+      </div>
+
+      <div>
+        <h2>Connect</h2>
+        {connectors
+          .filter((connector) => connector.name === 'Coinbase Wallet')
+          .map((connector) => (
+            <button
+              key={connector.uid}
+              onClick={() => connect({ connector })}
+              type="button"
+            >
+              Sign in with Smart Wallet
+            </button>
+          ))}
+        <div>{status}</div>
+        <div>{error?.message}</div>
+
+        <div>Sign Message</div>
+        <button
+          type="button"
+          onClick={() => signMessage({ message: 'Hello World' })}
+        >
+          Sign Message
+        </button>
+        <div>{signData}</div>
+      </div>
+    </>
   )
 }
+
+export default App
 ```
 
 The signed message data will be available in the `signData` variable after the user approves the signature request.
 
 ## Send a Transaction
 
-To send transactions with a Sub Account, we'll use Wagmi's `useSendTransaction` hook. Remember that transactions will be limited by the Spend Limits we configured in the [setup](/identity/smart-wallet/guides/sub-accounts/setup):
+To send transactions with a Sub Account, we'll use Wagmi's `useSendTransaction` hook. Remember that transactions will be limited by the spend permissions we configured in the [setup](/identity/smart-wallet/guides/sub-accounts/setup):
 
 ```tsx [app/page.tsx]
+'use client'
+
 import { parseEther } from 'viem'
-import { useSendTransaction } from 'wagmi'
+import { useAccount, useConnect, useDisconnect, useSendTransaction, useSignMessage } from 'wagmi'
 
 function App() {
+  const account = useAccount()
+  const { connectors, connect, status, error } = useConnect()
+  const { disconnect } = useDisconnect()
   const { sendTransactionAsync, data } = useSendTransaction()
-
   return (
-    <div>
-      <div>Send Transaction</div>
-      <button
-        type="button"
-        onClick={async () => sendTransactionAsync({
+    <>
+      <div>
+        <h2>Account</h2>
+
+        <div>
+          Status: {account.status}
+          <br />
+          Sub Account Address: {JSON.stringify(account.addresses)}
+          <br />
+          ChainId: {account.chainId}
+        </div>
+
+        {account.status === 'connected' && (
+          <button type="button" onClick={() => disconnect()}>
+            Disconnect
+          </button>
+        )}
+      </div>
+
+      <div>
+        <h2>Connect</h2>
+        {connectors
+          .filter((connector) => connector.name === 'Coinbase Wallet')
+          .map((connector) => (
+            <button
+              key={connector.uid}
+              onClick={() => connect({ connector })}
+              type="button"
+            >
+              Sign in with Smart Wallet
+            </button>
+          ))}
+        <div>{status}</div>
+        <div>{error?.message}</div>
+        <div>Send Transaction</div>
+        <button type="button" onClick={async () => sendTransactionAsync({
           to: '0xd8da6bf26964af9d7eed9e03e53415d37aa96045',
           value: parseEther('0.001'),
-        })}
-      >
-        Send Transaction
-      </button>
-      <div>{data && "Transaction sent successfully! 🎉"}</div>
-      <div>{data}</div>
-    </div>
+        })}>
+          Send Transaction
+        </button>
+        <div>{data && "Transaction sent successfully! 🎉"}</div>
+        <div>{data}</div>
+      </div>
+    </>
   )
 }
+
+export default App
 ```
 
 The transaction parameters include:
@@ -189,7 +267,7 @@ This example provides a complete interface for users to:
 4. Send transactions
 5. Disconnect their wallet
 
-All transactions will be automatically limited by the Spend Limits configured in your [Wagmi setup](/identity/smart-wallet/guides/sub-accounts/setup).
+All transactions will be automatically limited by the spend permissions configured in your [Wagmi setup](/identity/smart-wallet/guides/sub-accounts/setup).
 
 ## Additional Resources
 
