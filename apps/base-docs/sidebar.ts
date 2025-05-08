@@ -1103,8 +1103,8 @@ export const sidebar: Sidebar = [
         link: '/use-cases/launch-ai-agents',
       },
       {
-        text: 'Decentralize your social app',
-        link: '/use-cases/decentralize-social-app',
+        text: 'Onchain Social',
+        link: '/use-cases/onchain-social',
       },
       {
         text: 'DeFi your app',
