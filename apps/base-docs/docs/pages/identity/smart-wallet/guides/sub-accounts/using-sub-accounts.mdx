@@ -62,7 +62,7 @@ The signed message data will be available in the `signData` variable after the u
 
 ## Send a Transaction
 
-To send transactions with a Sub Account, we'll use Wagmi's `useSendTransaction` hook. Remember that transactions will be limited by the spend permissions we configured in the [setup](/identity/smart-wallet/guides/sub-accounts/setup):
+To send transactions with a Sub Account, we'll use Wagmi's `useSendTransaction` hook. Remember that transactions will be limited by the Spend Limits we configured in the [setup](/identity/smart-wallet/guides/sub-accounts/setup):
 
 ```tsx [app/page.tsx]
 import { parseEther } from 'viem'
@@ -189,7 +189,7 @@ This example provides a complete interface for users to:
 4. Send transactions
 5. Disconnect their wallet
 
-All transactions will be automatically limited by the spend permissions configured in your [Wagmi setup](/identity/smart-wallet/guides/sub-accounts/setup).
+All transactions will be automatically limited by the Spend Limits configured in your [Wagmi setup](/identity/smart-wallet/guides/sub-accounts/setup).
 
 ## Additional Resources
 
