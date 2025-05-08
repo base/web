@@ -105,6 +105,7 @@ The signed message data will be available in the `signData` variable after the u
 
 To send transactions with a Sub Account, we'll use Wagmi's `useSendTransaction` hook. Remember that transactions will be limited by the spend limits we configured in the [setup](/identity/smart-wallet/guides/sub-accounts/setup):
 
+
 ```tsx [app/page.tsx]
 'use client'
 
@@ -267,7 +268,9 @@ This example provides a complete interface for users to:
 4. Send transactions
 5. Disconnect their wallet
 
+
 All transactions will be automatically limited by the spend limits configured in your [Wagmi setup](/identity/smart-wallet/guides/sub-accounts/setup).
+
 
 ## Additional Resources
 
