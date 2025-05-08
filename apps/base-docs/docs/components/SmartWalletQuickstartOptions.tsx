@@ -18,6 +18,7 @@ export default function SmartWalletQuickstartOptions() {
       />
       <FrameworkCard
         name="React Native Integration (30 mins)"
+
         href="/identity/smart-wallet/quickstart/react-native-project"
         icon={<ReactNativeSvg />}
       />
