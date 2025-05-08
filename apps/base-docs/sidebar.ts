@@ -1464,11 +1464,11 @@ export const sidebar: Sidebar = [
         items: [
           {
             text: 'Introduction to Foundry ↗',
-            link: 'https://docs.base.org/tutorials/intro-to-foundry-setup',
+            link: '/intro-to-foundry-setup',
           },
           {
             text: 'Testing Smart Contracts ↗',
-            link: 'https://docs.base.org/tutorials/intro-to-foundry-testing',
+            link: '/intro-to-foundry-testing',
           },
         ],
       },
