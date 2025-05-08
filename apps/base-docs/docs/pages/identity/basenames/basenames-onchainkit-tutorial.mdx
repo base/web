@@ -89,19 +89,18 @@ declare module 'wagmi' {
 
 This configuration sets up the wagmi project to connect to the Base and BaseSepolia networks, utilizing Coinbase Wallet and other connectors.
 
-Now we’ll create a component to display the Basenames associated with an address.
+Now we'll create a component to display the Basenames associated with an address.
 
 :::tip[Use Base as your chain]
-Ensure Chain is Set to Base Be sure to set the `chain={base}` parameter; otherwise, it will default to ENS (Ethereum Name Service).
+Ensure Chain is Set to Base. Be sure to set the `chain={base}` parameter; otherwise, it will default to ENS (Ethereum Name Service).
 :::
 
 ```typescript filename="src/components/basename.tsx"
 'use client';
 import React from 'react';
-('use client');
-import React from 'react';
 import { Avatar, Identity, Name, Address } from '@coinbase/onchainkit/identity';
 import { base } from 'viem/chains';
 
 interface DisplayBasenameProps {
-  address: `0x${string}`
+  address: `0x${string}`;
+}
