@@ -430,6 +430,10 @@ export const sidebar: Sidebar = [
                     link: '/builderkits/onchainkit/identity/get-address',
                   },
                   {
+                    text: 'getAddresses',
+                    link: '/builderkits/onchainkit/identity/get-addresses',
+                  },
+                  {
                     text: 'getAttestations',
                     link: '/builderkits/onchainkit/identity/get-attestations',
                   },
@@ -452,6 +456,10 @@ export const sidebar: Sidebar = [
                   {
                     text: 'useAddress',
                     link: '/builderkits/onchainkit/identity/use-address',
+                  },
+                  {
+                    text: 'useAddresses',
+                    link: '/builderkits/onchainkit/identity/use-addresses',
                   },
                   {
                     text: 'useAvatar',
