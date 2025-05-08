@@ -270,7 +270,7 @@ If you reload the frame in the Warpcast dev tools preview, you'll now see the cl
 
 The Primary Button is a button that always exists at the bottom of the frame. Its good for managing global state which is relevant throughout your mini app.
 
-For the template example, we'll use the Priamry Button to Pause and Restart the game. The game state is managed within the `snake.tsx` component, and we can easily add the `usePrimaryButton` hook there since the MiniKit hooks are available throughout the app.
+For the template example, we'll use the Primary Button to Pause and Restart the game. The game state is managed within the `snake.tsx` component, and we can easily add the `usePrimaryButton` hook there since the MiniKit hooks are available throughout the app.
 
 ```tsx [/app/components/snake.tsx]
 // add an import for usePrimaryButton
@@ -285,7 +285,7 @@ usePrimaryButton(
 )
 ```
 
-You'll notice that adding the Primary button takes up space at the bottom of the frame, which causes the "BUILT ON BASE WITH MINIKIT" button to move upwards and overlap with the contorls.
+You'll notice that adding the Primary button takes up space at the bottom of the frame, which causes the "BUILT ON BASE WITH MINIKIT" button to move upwards and overlap with the controls.
 We can quickly fix that by changing the text to "BUILT WITH MINIKIT" and removing the `ml-4` style in the `className` of the `<button>`
 
 ### `useViewProfile`
@@ -315,7 +315,7 @@ const handleViewProfile = () => {
 
 ### `useNotification`
 
-One of the major benefits of mini apps is that you can send notifications to your users through their socail app.
+One of the major benefits of mini apps is that you can send notifications to your users through their social app.
 
 Recall the token and url we saved in the [useAddFrame section](docs.base.org/builderkits/minikit/quickstart#useaddframe)? We'll use those now to send a user a notification. In this guide, we'll simply send a test notification unrelated to the game activity.
 
