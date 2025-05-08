@@ -176,26 +176,26 @@ export default function TopNavigation() {
   const showGasDropdownAndConnectWallet = !cryptoExcludedPaths.includes(pathname ?? '');
   return (
     <AnalyticsProvider context="navbar">
-      <nav className="fixed top-0 z-50 w-full shrink-0 px-[1rem] py-4 md:px-[1.5rem] lg:px-[2rem]">
+      <nav className="fixed top-0 z-50 w-full shrink-0 px-[1rem] py-4 lg:px-[1.5rem] lg:px-[2rem]">
         <div className="flex w-full items-center justify-between gap-2">
           {/* Logo and Gas price section */}
-          <div className="relative z-20 flex items-center gap-4 md:min-w-[16rem]">
+          <div className="relative z-20 flex items-center gap-4 lg:min-w-[16rem]">
             <Link href="/" className="flex min-h-[3rem] min-w-[3rem]">
               <Image src={logo as StaticImageData} alt="Base Logo" />
             </Link>
             {showGasDropdownAndConnectWallet && <DynamicWrappedGasPriceDropdown />}
           </div>
 
-          <div className="hidden md:inline-block">
+          <div className="hidden lg:inline-block">
             <MenuDesktop links={links} />
           </div>
 
-          <div className="mr-auto inline-block md:hidden">
+          <div className="mr-auto inline-block lg:hidden">
             <MenuMobile links={links} />
           </div>
 
           {/* Connect Wallet button */}
-          <div className="flex items-center justify-end gap-3 md:min-w-[16rem]">
+          <div className="flex items-center justify-end gap-3 lg:min-w-[16rem]">
             {showGasDropdownAndConnectWallet && (
               <Suspense>
                 <DynamicWrappedConnectWalletButton
