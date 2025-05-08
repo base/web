@@ -602,7 +602,7 @@ usePrimaryButton(
 )
 ```
 
-You'll notice that adding the Primary button takes up space at the bottom of the frame, which causes the "BUILT ON BASE WITH MINIKIT" button to move upwards and overlap with the contorls.
+You'll notice that adding the Primary button takes up space at the bottom of the frame, which causes the "BUILT ON BASE WITH MINIKIT" button to move upwards and overlap with the controls.
 We can quickly fix that by changing the text to "BUILT WITH MINIKIT" and removing the `ml-4` style in the `className` of the `<button>`
 
 ### `useViewProfile`
@@ -632,7 +632,7 @@ const handleViewProfile = () => {
 
 ### `useNotification`
 
-One of the major benefits of mini apps is that you can send notifications to your users through their socail app.
+One of the major benefits of mini apps is that you can send notifications to your users through their social app.
 
 Recall the token and url we saved in the [useAddFrame section](docs.base.org/builderkits/minikit/quickstart#useaddframe)? We'll use those now to send a user a notification. In this guide, we'll simply send a test notification unrelated to the game activity.
 
