@@ -1,0 +1,8 @@
+{
+  "name": "Securedapp SecureWatch",
+  "url": "https://securewatch.securedapp.io/",
+  "description": "SecureWatch by SecuredApp monitors smart contracts and wallets in real time, sending instant alerts and automating on-chain actions with its AutoDefend feature",
+  "imageUrl": "/images/partners/securedapp.png",
+  "category": "infra",
+  "subcategory": "security"
+}
