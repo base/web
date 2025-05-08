@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { queryCbGpt } from 'apps/web/src/cdp/api/cb-gpt';
 import { logger } from 'apps/web/src/utils/logger';
-import { withTimeout } from 'apps/web/app/api/decorators';
+import { withTimeoutWithParams } from 'apps/web/app/api/decorators';
 
 export type NameSuggestionResponseData = {
   suggestion: string[];
@@ -37,8 +37,11 @@ Focus on quality and creativity in your suggestions.`;
 const chatLlm = 'claude-3-5-sonnet@20240620';
 const ownershipRegistryComponentId = process.env.OWNERSHIP_REGISTRY_COMPONENT_ID ?? '';
 
-async function handler(request: NextRequest) {
-  const alreadyClaimedName = request.nextUrl.searchParams.get('alreadyClaimedName');
+async function handler(
+  request: NextRequest,
+  { params }: { params: Promise<{ alreadyClaimedName: string }> },
+) {
+  const { alreadyClaimedName } = await params;
   if (!alreadyClaimedName || typeof alreadyClaimedName !== 'string') {
     return NextResponse.json<ApiResponse>(
       { error: '400: name is required and must be a string' },
@@ -79,4 +82,4 @@ async function handler(request: NextRequest) {
   }
 }
 
-export const GET = withTimeout(handler);
+export const GET = withTimeoutWithParams<{ alreadyClaimedName: string }>(handler);
