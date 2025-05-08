@@ -115,7 +115,7 @@ The template comes with several pre-implemented features. Let's explore where th
 
 ### MiniKitProvider
 
-The `MiniKitProvider` is set up in your `providers.tsx` file. It wraps your application to handle initialization, events, and automatically applie client safeAreaInsets to ensure your app doesn't overlap parent application elements.
+The `MiniKitProvider` is set up in your `providers.tsx` file. It wraps your application to handle initialization, events, and automatically applies client safeAreaInsets to ensure your app doesn't overlap parent application elements.
 
 ```tsx [app/providers.tsx]
 import { MiniKitProvider } from '@coinbase/onchainkit/minikit';
@@ -234,7 +234,7 @@ const openUrl = useOpenUrl()
 </footer>
 ```
 
-Now that we've reviewed the MiniKit teamplate and the functionality already implemented, lets add some additional MiniKit features.
+Now that we've reviewed the MiniKit template and the functionality already implemented, lets add some additional MiniKit features.
 
 ## Additional MiniKit Features
 
@@ -285,7 +285,7 @@ usePrimaryButton(
 )
 ```
 
-You'll notice that adding the Primary button takes up space at the bottom of the frame, which causes the "BUILT ON BASE WITH MINIKIT" button to move upwards and overlap with the contorls.
+You'll notice that adding the Primary button takes up space at the bottom of the frame, which causes the "BUILT ON BASE WITH MINIKIT" button to move upwards and overlap with the controls.
 We can quickly fix that by changing the text to "BUILT WITH MINIKIT" and removing the `ml-4` style in the `className` of the `<button>`
 
 ### `useViewProfile`
