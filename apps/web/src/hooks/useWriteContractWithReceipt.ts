@@ -2,17 +2,8 @@ import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { useErrors } from 'apps/web/contexts/Errors';
 import { ActionType } from 'libs/base-ui/utils/logEvent';
 import { useCallback, useEffect, useState } from 'react';
-import { Chain, ContractFunctionParameters } from 'viem';
+import { Abi, Chain, ContractFunctionParameters } from 'viem';
 import { useAccount, useSwitchChain, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
-
-/*
-  A hook to request and track a wallet write transaction
-
-  Responsibilities:
-  - Track the wallet request status
-  - Track the transaction receipt and status
-  - Log analytics & error
-*/
 
 export enum WriteTransactionWithReceiptStatus {
   Idle = 'idle',
@@ -28,15 +19,51 @@ export enum WriteTransactionWithReceiptStatus {
   Success = 'success',
 }
 
-export type UseWriteContractWithReceiptProps = {
+type UseWriteContractWithReceiptProps = {
   chain: Chain;
   eventName: string;
 };
 
-export default function useWriteContractWithReceipt({
+type UseWriteContractWithReceiptReturnType<TAbi extends Abi, TFunctionName extends string> = {
+  initiateTransaction: (
+    contractParameters: WriteContractParameters<TAbi, TFunctionName>,
+  ) => Promise<void>;
+  transactionHash: `0x${string}` | undefined;
+  transactionStatus: WriteTransactionWithReceiptStatus;
+  transactionReceipt: { status: 'success' | 'reverted' } | undefined;
+  transactionIsLoading: boolean;
+  transactionIsSuccess: boolean;
+  transactionIsError: boolean;
+  transactionError: Error | null;
+};
+
+type ContractFunctionPayableInfo<TAbi extends Abi, TFunctionName extends string> = Extract<
+  TAbi[number],
+  { name: TFunctionName; stateMutability: string }
+>['stateMutability'] extends 'payable'
+  ? { value: bigint | undefined }
+  : { value?: never };
+
+type WriteContractParameters<
+  TAbi extends Abi = Abi,
+  TFunctionName extends string = string,
+> = ContractFunctionParameters & ContractFunctionPayableInfo<TAbi, TFunctionName>;
+
+/*
+  A hook to request and track a wallet write transaction
+
+  Responsibilities:
+  - Track the wallet request status
+  - Track the transaction receipt and status
+  - Log analytics & error
+*/
+export default function useWriteContractWithReceipt<
+  TAbi extends Abi,
+  TFunctionName extends string,
+>({
   chain,
   eventName,
-}: UseWriteContractWithReceiptProps) {
+}: UseWriteContractWithReceiptProps): UseWriteContractWithReceiptReturnType<TAbi, TFunctionName> {
   // Errors & Analytics
   const { logEventWithContext } = useAnalytics();
   const { logError } = useErrors();
@@ -76,7 +103,7 @@ export default function useWriteContractWithReceipt({
   const { switchChainAsync } = useSwitchChain();
 
   const initiateTransaction = useCallback(
-    async (contractParameters: ContractFunctionParameters) => {
+    async (contractParameters: WriteContractParameters<TAbi, TFunctionName>) => {
       if (!connectedChain) return;
       if (connectedChain.id !== chain.id) {
         await switchChainAsync({ chainId: chain.id });
