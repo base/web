@@ -1,6 +1,8 @@
+import { Callout } from 'vocs/components'
+
 # MiniKit Quickstart
 
-This guide shows you how to get started with MiniKit, the easist way to build mini apps on Base! It can also be used to update an exisitng standalone app to a mini app. We'll start by setting up the template project with the CLI tool and then explore both built-in and additional features of MiniKit.
+This guide shows you how to get started with MiniKit, the easiest way to build mini apps on Base! It can also be used to update an existing standalone app to a mini app. We'll start by setting up the template project with the CLI tool and then explore both built-in and additional features of MiniKit.
 
 ## Prerequisites
 
@@ -21,12 +23,12 @@ A mini app is a lightweight web app that runs directly inside [Farcaster Frames]
 ## Create a new MiniKit project using the CLI:
 
 ```bash
-npx create-onchain@alpha --mini
+npx create-onchain --mini
 ```
 
 ## When prompted, enter your CDP Client API key.
 
-You can get a CDP API key by going to the (CDP Portal)[portal.cdp.coinbase.com] and navigating API Keys -> Client API Key.
+You can get a CDP API key by going to the [CDP Portal](portal.cdp.coinbase.com) and navigating API Keys -> Client API Key.
 
 ## Skip Frames Account Manifest Setup
 
@@ -40,6 +42,9 @@ npm install
 npm run dev
 ```
 
+<Callout type="success">
+  These docs are LLM-friendly—reference [llms.txt](https://docs.base.org/builderkits/minikit/llms.txt) in your code editor to streamline builds and prompt smarter.
+</Callout>
 :::
 
 ## Testing Your Mini App
@@ -52,7 +57,7 @@ Alternatively, you can use ngrok to tunnel your localhost to a live url.
 ::::details[Using ngrok]
 
 :::warning[Pitfalls]
-To successfully test your app, you'll need the paid version of ngrok. The free veresion has an approval screen which can break the frame manifest. Also the url for the free version will change every time requiring you to update the manifest each time you start a new ngrok tunnel.
+To successfully test your app, you'll need the paid version of ngrok. The free version has an approval screen which can break the frame manifest. Also the url for the free version will change every time requiring you to update the manifest each time you start a new ngrok tunnel.
 :::
 
 1. Start your development server:
@@ -135,7 +140,7 @@ export function Providers(props: { children: ReactNode }) {
 }
 ```
 
-The MiniKitProvider also sets up your wagmi and react-query providers automatically, elimintaing that initial setup work.
+The MiniKitProvider also sets up your wagmi and react-query providers automatically, eliminating that initial setup work.
 
 ### useMiniKit
 
@@ -159,7 +164,7 @@ The Frame Manifest is required in order for users to save the frame to their acc
 To set up the manifest, run the following in your Terminal
 
 ```bash [Terminal]
-npx create-onchain@alpha --generate
+npx create-onchain --manifest
 ```
 
 Enter `y` to proceed with the setup and your browser will open to the following page:
@@ -170,7 +175,7 @@ Enter `y` to proceed with the setup and your browser will open to the following 
   height="364"
 />
 
-The wallet that you connect must be your Farcaster custody wallet. You can import this wallet to your prefered wallet using the recovery phrase. You can find your recovery phrase in the Warpcast app under Settings -> Advanced -> Farcster recovery phrase.
+The wallet that you connect must be your Farcaster custody wallet. You can import this wallet to your preferred wallet using the recovery phrase. You can find your recovery phrase in the Warpcast app under Settings -> Advanced -> Farcaster recovery phrase.
 
 Once connected, add the vercel url and sign the manifest. This will automatically update your .env variables locally, but we'll need to update Vercel's .env variables.
 
@@ -251,7 +256,7 @@ const close = useClose()
   {saveFrameButton}
   <button
     type="button"
-    className="cursor-pointer bg-transparent font-semibold text-sm pl-2""
+    className="cursor-pointer bg-transparent font-semibold text-sm pl-2"
     onClick={close}
     >
     CLOSE
@@ -265,7 +270,7 @@ If you reload the frame in the Warpcast dev tools preview, you'll now see the cl
 
 The Primary Button is a button that always exists at the bottom of the frame. Its good for managing global state which is relevant throughout your mini app.
 
-For the template example, we'll use the Priamry Button to Pause and Restart the game. The game state is managed within the `snake.tsx` component, and we can easily add the `usePrimaryButton` hook there since the MiniKit hooks are available throughout the app.
+For the template example, we'll use the Primary Button to Pause and Restart the game. The game state is managed within the `snake.tsx` component, and we can easily add the `usePrimaryButton` hook there since the MiniKit hooks are available throughout the app.
 
 ```tsx [/app/components/snake.tsx]
 // add an import for usePrimaryButton
@@ -280,7 +285,7 @@ usePrimaryButton(
 )
 ```
 
-You'll notice that adding the Primary button takes up space at the bottom of the frame, which causes the "BUILT ON BASE WITH MINIKIT" button to move upwards and overlap with the contorls.
+You'll notice that adding the Primary button takes up space at the bottom of the frame, which causes the "BUILT ON BASE WITH MINIKIT" button to move upwards and overlap with the controls.
 We can quickly fix that by changing the text to "BUILT WITH MINIKIT" and removing the `ml-4` style in the `className` of the `<button>`
 
 ### `useViewProfile`
@@ -310,7 +315,7 @@ const handleViewProfile = () => {
 
 ### `useNotification`
 
-One of the major benefits of mini apps is that you can send notifications to your users through their socail app.
+One of the major benefits of mini apps is that you can send notifications to your users through their social app.
 
 Recall the token and url we saved in the [useAddFrame section](docs.base.org/builderkits/minikit/quickstart#useaddframe)? We'll use those now to send a user a notification. In this guide, we'll simply send a test notification unrelated to the game activity.
 

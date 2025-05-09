@@ -12,7 +12,6 @@ export default function Footer() {
             © {new Date().getFullYear()} base.org. All rights reserved.
           </div>
 
-          {/* TODO: Add a link to the privacy policy, terms of service, and cookie policy  all in the same row in 3 columns*/}
           <div className="flex flex-row space-x-4">
             <a href="/privacy-policy">Privacy Policy</a>
             <a href="/terms-of-service">Terms of Service</a>

@@ -1,0 +1,8 @@
+{
+  "name": "CompareNodes",
+  "description": "RPC endpoint performance inspector from 27 global locations in 30 seconds.",
+  "url": "https://www.comparenodes.com/performance-inspector/#base",
+  "imageUrl": "/images/partners/comparenodes.png",
+  "category": "infra",
+  "subcategory": "node provider"
+}

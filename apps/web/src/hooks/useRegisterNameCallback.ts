@@ -7,6 +7,7 @@ import useCapabilitiesSafe from 'apps/web/src/hooks/useCapabilitiesSafe';
 import useWriteContractsWithLogs from 'apps/web/src/hooks/useWriteContractsWithLogs';
 import useWriteContractWithReceipt from 'apps/web/src/hooks/useWriteContractWithReceipt';
 import {
+  convertChainIdToCoinTypeUint,
   formatBaseEthDomain,
   IS_EARLY_ACCESS,
   normalizeEnsDomainName,
@@ -80,6 +81,16 @@ export function useRegisterNameCallback(
       args: [namehash(formatBaseEthDomain(name, basenameChain.id)), address],
     });
 
+    const baseCointypeData = encodeFunctionData({
+      abi: L2ResolverAbi,
+      functionName: 'setAddr',
+      args: [
+        namehash(formatBaseEthDomain(name, basenameChain.id)),
+        BigInt(convertChainIdToCoinTypeUint(basenameChain.id)),
+        address,
+      ],
+    });
+
     const nameData = encodeFunctionData({
       abi: L2ResolverAbi,
       functionName: 'setName',
@@ -94,7 +105,7 @@ export function useRegisterNameCallback(
       owner: address, // The address of the owner for the name.
       duration: secondsInYears(years), // The duration of the registration in seconds.
       resolver: USERNAME_L2_RESOLVER_ADDRESSES[basenameChain.id], // The address of the resolver to set for this name.
-      data: [addressData, nameData], //  Multicallable data bytes for setting records in the associated resolver upon registration.
+      data: [addressData, baseCointypeData, nameData], //  Multicallable data bytes for setting records in the associated resolver upon registration.
       reverseRecord, // Bool to decide whether to set this name as the "primary" name for the `owner`.
     };
 

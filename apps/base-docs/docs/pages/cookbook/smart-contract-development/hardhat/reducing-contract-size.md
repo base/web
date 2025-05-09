@@ -495,7 +495,7 @@ As you continue your journey in smart contract development, keep in mind that op
 
 [Hardhat Contract Sizer]: https://github.com/ItsNickBarry/hardhat-contract-sizer
 [maximum size of a smart contract in Ethereum]: https://ethereum.org/en/developers/tutorials/downsizing-contracts-to-fight-the-contract-size-limit/#why-is-there-a-limit
-[modifiers]: https://docs.base.org/base-learn/docs/advanced-functions/function-modifiers
+[modifiers]: https://docs.base.org/learn/advanced-functions/function-modifiers
 [Solidity official docs]: https://docs.soliditylang.org/en/v0.8.20/internals/optimizer.html
 [Delegate call]: https://solidity-by-example.org/delegatecall/
 [Gas Optimization]: ./hardhat-profiling-gas
