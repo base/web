@@ -38,6 +38,7 @@ export function generateEcosystem(): boolean {
       .filter((file) => fs.statSync(path.join(ecosystemDir, file)).isDirectory())
       .map((dir) => {
         const metadataPath = path.join(ecosystemDir, dir, 'metadata.json');
+        console.log(`Processing ${metadataPath}`);
         const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8')) as unknown;
 
         if (!validateApp(metadata)) {
