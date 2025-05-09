@@ -1,5 +1,5 @@
 ---
-title: MiniKit Alpha | Getting started 
+title: MiniKit | Getting started
 description: Easiest way to build Mini Apps on Base
 ---
 
@@ -9,14 +9,14 @@ description: Easiest way to build Mini Apps on Base
   src="/images/minikit/minikit-cli.gif"
   height="364"/>
 
-MiniKit is easiest way to build Mini Apps on Base, allowing developers to easily build applications without needing to know the details of the SDK implementation. It integrates seamlessly with OnchainKit components and provides Coinbase Wallet-specific hooks that degrade gracefully on other clients such as Warpcast.
+MiniKit is easiest way to build Mini Apps on Base, allowing developers to easily build applications without needing to know the details of the SDK implementation. It integrates seamlessly with OnchainKit components and provides Coinbase Wallet-specific hooks.
 
 ## Why MiniKit?
 
 MiniKit streamlines mini-app development by providing a comprehensive toolkit that makes complex Frames SDK interactions intuitive:
 
 - **Simplified Development:** Build apps with minimal knowledge of the Frames SDK
-- **Coinbase Wallet Integration:** Access Coinbase Wallet-specific hooks that degrade gracefully on other clients
+- **Coinbase Wallet Integration:** Access Coinbase Wallet-specific hooks
 - **Component Compatibility:** Use [OnchainKit](https://onchainkit.xyz/) components out of the box with MiniKit
 - **Automatic Setup:** CLI tool for quick project scaffolding with webhooks and notifications
 - **Account Association:** Simplified generation of account associations
@@ -33,8 +33,10 @@ MiniKit streamlines mini-app development by providing a comprehensive toolkit th
 The fastest way to get started with MiniKit is to use the CLI to bootstrap a new project:
 
 ```bash
-npx create-onchain@alpha --mini
+npx create-onchain --mini
 ```
+
+You can also follow our Quick Start guide [here](https://docs.base.org/builderkits/minikit/quickstart)
 
 This command will:
 
@@ -236,18 +238,12 @@ const handleSignIn = async () => {
 Authentication requires additional setup utilizing an auth framework like next/auth or manually integrating session storage and route/component authentication.
 :::
 
-:::warning
-Our long-term recommended practice for Sign-In with Farcaster (SIWF) is to use the signIn RPC from Frames SDK. However, due to current limitations for Coinbase Wallet users, please temporarily implement authentication via [AuthKit](https://docs.farcaster.xyz/auth-kit/). This interim solution will soon become obsolete as we work on improving the authentication experience.
-
-Learn more about our upcoming solution [here](https://www.notion.so/Auth-Addresses-Proposal-c765eece3b5c4d4a95f5b067832cd521).
-:::
-
 ## CLI
 
 The MiniKit CLI is the easiest way to get started. It automatically creates a sample application that integrates different parts of the SDK and some OnchainKit components.
 
 ```bash
-npx create-onchain@alpha --mini
+npx create-onchain --mini
 ```
 
 ### Features

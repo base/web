@@ -2,127 +2,252 @@
 title: Running a Base Node
 slug: /run-a-base-node
 description: A tutorial that teaches how to set up and run a Base Node.
-author: taycaldwell & wbnns
 ---
+
+import Snapshots from './node-snapshots.mdx'
 
 # Running a Base Node
 
-This tutorial will walk you through setting up your own [Base Node].
+This tutorial walks you through setting up and running your own [Base Node] using Docker.
 
 ## Objectives
 
-By the end of this tutorial you should be able to:
+By the end of this tutorial, you should be able to:
 
-- Deploy and sync a Base node
+- Configure and deploy a Base node using Docker Compose.
+- Select the network (Mainnet or Sepolia Testnet).
+- Choose a client implementation (Geth, Reth, Nethermind).
+- Start the synchronization process.
 
 ## Prerequisites
 
-:::caution
+:::warning
 
-Running a node is time consuming, resource expensive, and potentially costly. If you don't already know why you want to run your own node, you probably don't need to.
+Is Running a Node Necessary?
 
-If you're just getting started and need an RPC URL, you can use our free endpoints:
+Running your own node is time-consuming, resource-intensive, and can be costly. If you don't have a specific reason, you might not need one.
+
+For development or basic needs, consider using the free public Base endpoints:
 
 - **Mainnet**: `https://mainnet.base.org`
 - **Testnet (Sepolia)**: `https://sepolia.base.org`
 
-**Note:** Our RPCs are rate-limited, they are not suitable for production apps.
-
-If you're looking to harden your app and avoid rate-limiting for your users, please check out one of our [partners].
+**Note:** Public RPCs are rate-limited and not suitable for production applications. For production needs, consider using a dedicated [Node Provider].
 
 :::
 
-### Hardware requirements
+### Hardware Requirements
 
-We recommend you have this configuration to run a node:
+Refer to the [Node Performance](./node-performance.mdx#hardware) guide for detailed hardware recommendations. Minimums include:
 
-- 8-Core CPU
-- at least 16 GB RAM
-- a locally attached NVMe SSD drive
-- adequate storage capacity to accommodate both the snapshot restoration process (if restoring from snapshot) and chain data, ensuring a minimum of (2 \* current_chain_size) + snapshot_size + 20%\_buffer
-
-:::info
-
-If utilizing Amazon Elastic Block Store (EBS), ensure timing buffered disk reads are fast enough in order to avoid latency issues alongside the rate of new blocks added to Base during the initial synchronization process; `io2 block express` is recommended.
-
-:::
+- A modern multi-core CPU.
+- 32 GB RAM (64 GB recommended).
+- A locally attached NVMe SSD drive.
+- Sufficient storage: `(2 * [current chain size](https://base.org/stats) + [snapshot size](https://basechaindata.vercel.app) + 20% buffer)`.
 
 ### Docker
 
-This tutorial assumes you are familiar with [Docker] and have it running on your machine.
+This section assumes you are familiar with [Docker] and have Docker and Docker Compose installed and running.
 
-### L1 RPC URL
+#### L1 Endpoints
 
-You'll need your own L1 RPC URL. This can be one that you run yourself, or via a third-party provider, such as our [partners].
+You need access to synced Ethereum L1 (execution and consensus) endpoints. These can be self-hosted or from a third-party provider. You will need:
 
-## Running a Node
+- **L1 Execution RPC URL**: An HTTP(S) endpoint for the L1 execution client.
+- **L1 Beacon API URL**: An HTTP(S) endpoint for the L1 consensus client Beacon API.
+- **L1 Beacon Archiver API URL**: An HTTP(S) endpoint for an L1 consensus client Beacon API with archival capabilities.
 
-1. Clone the [repo].
-2. Ensure you have an Ethereum L1 full node RPC available (not Base), and set `OP_NODE_L1_ETH_RPC` & `OP_NODE_L1_BEACON` (in the `.env.*` file if using `docker-compose`). If running your own L1 node, it needs to be synced before Base will be able to fully sync.
-3. Uncomment the line relevant to your network (`.env.sepolia`, or `.env.mainnet`) under the 2 `env_file` keys in `docker-compose.yml`.
-4. Run `docker compose up`. Confirm you get a response from:
+These URLs will be configured in your `.env.mainnet` or `.env.testnet` file later.
 
-```bash [Terminal]
-curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest",false]}' \
-  -H "Content-Type: application/json" http://localhost:8545
-```
+#### Setting Up and Running the Node
+
+1.  **Clone the Repository**: Clone the official [Base Node repository]:
+
+    ```bash
+    git clone https://github.com/base/node.git
+    cd node
+    ```
+
+2.  **Choose Network and Configure L1 Endpoints**:
+
+    - Select the environment file for your desired network:
+      - Mainnet: `.env.mainnet`
+      - Testnet: `.env.sepolia`
+    - Open the chosen `.env` file (e.g., `.env.mainnet`) and configure your L1 endpoints:
+      ```dotenv
+      # .env.mainnet or .env.sepolia
+      OP_NODE_L1_ETH_RPC=<your-L1-execution-rpc-url>
+      OP_NODE_L1_BEACON=<your-L1-beacon-api-url>
+      OP_NODE_L1_BEACON_ARCHIVER=<your-L1-beacon-archiver-api-url>
+      ```
+    - **Optional**: Also set `OP_NODE_L1_RPC_KIND` based on your L1 provider (e.g., `alchemy`, `quicknode`, `infura`, `debug_geth`, `erigon`, `basic`, `any`). See the `.env` file comments for supported values.
+
+3.  **Start the Node with Docker Compose**:
+
+    - Use the following commands to build and start the node containers.
+
+    - **Mainnet (Default Client - Geth)**:
+
+      ```bash
+      docker compose up --build -d
+      ```
+
+      _The `-d` flag runs the containers in detached mode (in the background)._
+
+    - **Sepolia Testnet (Default Client - Geth)**:
+
+      ```bash
+      NETWORK_ENV=.env.sepolia docker compose up --build -d
+      ```
+
+    - **Specifying a Client (e.g., Reth on Mainnet)**:
+      Choose between `geth` (default), `reth`, or `nethermind`.
+
+      ```bash
+      CLIENT=reth docker compose up --build -d
+      ```
+
+    - **Sepolia Testnet with a Specific Client (e.g., Reth)**:
+      ```bash
+      NETWORK_ENV=.env.sepolia CLIENT=reth docker compose up --build -d
+      ```
+
+4.  **Verify Node is Running**:
+    Check if the node is responding to RPC requests. It might take a few minutes for the services to start.
+    ```bash
+    curl -d '{"id":0,"jsonrpc":"2.0","method":"eth_chainId"}' \
+      -H "Content-Type: application/json" http://localhost:8545
+    # Expected Mainnet output: {"jsonrpc":"2.0","id":0,"result":"0x2105"}
+    # Expected Sepolia output: {"jsonrpc":"2.0","id":0,"result":"0xaa36a7"}
+    ```
 
 :::caution
 
-Syncing your node may take **days** and will consume a vast amount of your requests quota. Be sure to monitor usage and up your plan if needed.
+Syncing your node can take **hours to days**, depending on hardware, network, and whether you use a snapshot. It consumes significant resources.
 
 :::
 
-### Snapshots
+<Snapshots />
 
-:::info
+## Monitoring Sync Progress
 
-Geth Archive Snapshots were deprecated on _December 15, 2024_. For Archive nodes, we recommend transitioning to Reth, which offers superior performance for Base’s high-throughput environment. Geth Full and Reth Archive snapshots continue to be maintained and are available below.
+You can monitor the sync status using the `optimism_syncStatus` RPC method:
 
-:::
-
-If you're a prospective or current Base Node operator and would like to restore from a snapshot to save time on the initial sync, it's possible to always get the latest available snapshot of the Base chain on mainnet and/or testnet by using the following CLI commands. The snapshots are updated every week.
-
-#### Restoring from snapshot
-
-In the home directory of your Base Node, create a folder named `geth-data` or `reth-data`. If you already have this folder, remove it to clear the existing state and then recreate it. Next, run the following code and wait for the operation to complete.
-
-| Network | Client | Snapshot Type | Command                                                                                                               |
-| ------- | ------ | ------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Testnet | Geth   | Full          | `wget https://sepolia-full-snapshots.base.org/$(curl https://sepolia-full-snapshots.base.org/latest)`                 |
-| Testnet | Geth   | Archive       | No longer supported                                                                                                   |
-| Testnet | Reth   | Archive       | `wget https://sepolia-reth-archive-snapshots.base.org/$(curl https://sepolia-reth-archive-snapshots.base.org/latest)` |
-| Mainnet | Geth   | Full          | `wget https://mainnet-full-snapshots.base.org/$(curl https://mainnet-full-snapshots.base.org/latest)`                 |
-| Mainnet | Geth   | Archive       | No longer supported                                                                                                   |
-| Mainnet | Reth   | Archive       | `wget https://mainnet-reth-archive-snapshots.base.org/$(curl https://mainnet-reth-archive-snapshots.base.org/latest)` |
-
-You'll then need to untar the downloaded snapshot and place the `geth` subfolder inside of it in the `geth-data` folder you created (unless you changed the location of your data directory).
-
-Return to the root of your Base node folder and start your node.
-
-```bash [Terminal]
-cd ..
-docker compose up --build
-```
-
-Your node should begin syncing from the last block in the snapshot.
-
-Check the latest block to make sure you're syncing from the snapshot and that it restored correctly. If so, you can remove the snapshot archive that you downloaded.
-
-### Syncing
-
-You can monitor the progress of your sync with:
-
-```bash [Terminal]
+```bash
 echo Latest synced block behind by: $((($(date +%s)-$( \
   curl -d '{"id":0,"jsonrpc":"2.0","method":"optimism_syncStatus"}' \
   -H "Content-Type: application/json" http://localhost:7545 | \
   jq -r .result.unsafe_l2.timestamp))/60)) minutes
 ```
 
-You'll also know that the sync hasn't completed if you get `Error: nonce has already been used` if you try to deploy using your node.
+If you attempt transactions or deployments before the node is fully synced, you might encounter errors like `Error: nonce has already been used`.
+
+## Optional Features
+
+The Base Node configuration supports optional features like EthStats monitoring and Trusted RPC mode. These can be enabled by uncommenting the relevant sections in your `.env` file (`.env.mainnet` or `.env.sepolia`).
+
+## Advanced Configuration and Networking (Geth)
+
+:::warning
+
+Modifying the settings below requires familiarity with Geth configuration and Docker. Incorrect settings can impact node stability and performance. Proceed with caution.
+
+:::
+
+The standard Base Node Docker setup for Geth uses specific configurations and exposes several ports. Understanding these can be helpful for firewall rules, monitoring, and advanced tuning.
+
+### Default Network Ports (Geth Container)
+
+- **HTTP RPC**: `8545` (Configurable via `$RPC_PORT` in `.env`)
+- **WebSocket RPC**: `8546` (Configurable via `$WS_PORT` in `.env`)
+- **Authenticated RPC (Engine API)**: `8551` (Configurable via `$AUTHRPC_PORT` in `.env`)
+- **Metrics**: `6060` (Configurable via `$METRICS_PORT` in `.env`)
+- **P2P Discovery/Connection**: `30303` (Configurable via `$P2P_PORT` in `.env`)
+
+Ensure these ports are accessible as needed, especially the P2P port (`30303`) for peer discovery if your node is behind a firewall.
+
+### Improving Peer Connectivity
+
+For better peer discovery, especially if running behind NAT, you can specify your external IP address. Add the following line to your `.env.mainnet` or `.env.sepolia` file:
+
+```dotenv
+# .env.mainnet or .env.sepolia
+ADDITIONAL_ARGS="--nat=extip:<your-external-ip-address>"
+```
+
+Replace `<your-external-ip-address>` with your actual public IP. You also need to ensure the P2P port (default `30303`) is open and forwarded correctly in your firewall/router configuration.
+
+### Geth Configuration via Environment Variables
+
+Several Geth parameters can be tuned by setting environment variables in your `.env.mainnet` or `.env.sepolia` file:
+
+- **Verbosity**: `GETH_VERBOSITY` (Default: `3`) - Controls log level.
+- **Sync Mode**: `OP_GETH_SYNCMODE` (Default: `full`) - Geth sync strategy.
+- **GC Mode**: `OP_GETH_GCMODE` (Default: `full`) - Garbage collection mode.
+- **Cache Settings**: `GETH_CACHE`, `GETH_CACHE_DATABASE`, etc. (See [Node Performance](./node-performance.mdx#geth-cache-settings)).
+- **Transaction Pool**: `GETH_TXPOOL_GLOBALQUEUE`, `GETH_TXPOOL_GLOBALSLOTS`, `GETH_TXPOOL_LIFETIME`, `TXPOOL_PRICE_LIMIT`. Fine-tuning these requires understanding Geth's transaction pool mechanics.
+
+Refer to the [official Geth documentation](https://geth.ethereum.org/docs/interface/command-line-options) for details on these parameters.
+
+### Base/Rollup Specific Flags
+
+The entrypoint script passes rollup-specific flags necessary for Base operation, such as:
+
+- `--rollup.disabletxpoolgossip=true`: Disables standard L1 transaction gossip over P2P.
+- `--rollup.halt=major`: Halts the node on major configuration mismatches with the L1 chain.
+- `--op-network="$OP_NODE_NETWORK"`: Sets the specific OP Stack network configuration (e.g., `base-mainnet`).
+
+## Advanced Configuration and Networking (Reth)
+
+:::warning
+
+Modifying the settings below requires familiarity with Reth configuration and Docker. Incorrect settings can impact node stability and performance. Proceed with caution.
+
+:::
+
+The standard Base Node Docker setup for Reth also uses specific configurations.
+
+### Default Network Ports & Sockets (Reth Container)
+
+- **HTTP RPC**: `8545` (Configurable via `$RPC_PORT` in `.env`)
+- **WebSocket RPC**: `8546` (Configurable via `$WS_PORT` in `.env`)
+- **Authenticated RPC (Engine API)**: `8551` (Configurable via `$AUTHRPC_PORT` in `.env`)
+- **Metrics**: `6060` (Configurable via `$METRICS_PORT` in `.env`)
+- **IPC Socket**: `/data/reth.ipc` (Path configurable via `--ipcpath` flag, see Reth docs)
+- **P2P Discovery/Connection**: Default `30303` (Configurable via `--port` flag, see Reth docs)
+
+Ensure these ports/sockets are accessible as needed.
+
+### Node Type and Flashblocks
+
+The `NODE_TYPE` environment variable (default: `vanilla`) determines the Reth binary used:
+
+- `vanilla`: Uses the standard `op-reth` binary.
+- `base`: Uses the `base-reth-node` binary.
+
+When `NODE_TYPE` is set to `base`, you can enable Flashblocks support by setting the `RETH_FB_WEBSOCKET_URL` environment variable in your `.env` file to your Flashblocks relay endpoint.
+
+### Reth Configuration via Environment Variables
+
+Key Reth parameters are configured via environment variables in `.env.mainnet` or `.env.sepolia`:
+
+- **Chain Spec**: `RETH_CHAIN` (Required, e.g., `base`, `base_sepolia`) - Specifies the network configuration.
+- **Sequencer Endpoint**: `RETH_SEQUENCER_HTTP` (Required) - URL of the Base sequencer.
+
+Other Reth CLI flags can often be passed via `ADDITIONAL_ARGS` in the `.env` file, but consult the [official Reth documentation](https://paradigmxyz.github.io/reth/) for available options and syntax.
+
+### Verbosity
+
+The default Reth entrypoint runs with high verbosity (`-vvv`). This can be adjusted by modifying the entrypoint script directly or potentially overriding the command in a custom `docker-compose.override.yml` file.
+
+### Base/Rollup Specific Flags
+
+The entrypoint script passes rollup-specific flags necessary for Base operation, such as:
+
+- `--rollup.sequencer-http`: Configures the sequencer endpoint.
+- `--rollup.disable-tx-pool-gossip`: Disables standard L1 transaction gossip over P2P.
 
 [docker]: https://www.docker.com/
-[base node]: https://github.com/base-org/node
-[repo]: https://github.com/base-org/node
-[partners]: /chain/node-providers.mdx
+[Base Node]: https://github.com/base-org/node
+[Base Node repository]: https://github.com/base-org/node
+[Node Provider]: /chain/node-providers

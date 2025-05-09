@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '@rainbow-me/rainbowkit/styles.css';
 @import '@coinbase/onchainkit/styles.css';
 
 /* For Webkit-based browsers (Chrome, Safari and Opera) */
