@@ -48,6 +48,22 @@
     "subcategory": "nft"
   },
   {
+    "name": "VaultX",
+    "description": "VaultX, built on Base and powered by $VAX, connects real-world stories and real-world assets (RWA) to the blockchain. We protect artists’ IP, secure collectors’ ownership, and onboard everyone into a decentralized art ecosystem",
+    "url": "https://vault-x.io/",
+    "imageUrl": "/images/partners/VaultX.png",
+    "category": "consumer",
+    "subcategory": "real world"
+  },
+  {
+    "name": "A0x",
+    "description": "Agentic no-code platform to build tokenized social media ai-agents in Farcaster, X, Telegram and more",
+    "url": "https://a0x.co",
+    "imageUrl": "/images/partners/a0x.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "Aave",
     "url": "https://app.aave.com",
     "description": "Aave Protocol is a non-custodial liquidity protocol. Users can participate as suppliers, borrowers, or liquidators, earning interest on supplied assets and borrowing in an overcollateralized manner.",
@@ -100,6 +116,14 @@
     "description": "AIBased integrates AI image generation, dynamic NFTs, and analytics on Base. Partnering with Base, we offer a fast, cost-effective, and user-friendly platform for NFT creators and collectors.",
     "url": "https://aibased.app",
     "imageUrl": "/images/partners/aibased.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
+    "name": "AITV",
+    "description": "AITV is a 24/7 livestream of intelligent and autonomous agents across topics that adjust to what you care about most! News, finance, music, gaming, and more.",
+    "url": "https://aitv.gg",
+    "imageUrl": "/images/partners/aitv.png",
     "category": "ai",
     "subcategory": "ai"
   },
@@ -208,6 +232,14 @@
     "subcategory": "music"
   },
   {
+    "name": "AnyCampus",
+    "description": "AnyCampus is a Web3 “learn-to-earn” platform that enables you to earn tokens while you learn.",
+    "url": "https://anycampus.io/",
+    "imageUrl": "/images/partners/anycampus.png",
+    "category": "consumer",
+    "subcategory": "social"
+  },
+  {
     "name": "Anzen",
     "url": "https://anzen.finance",
     "description": "Anzen is the creator of USDz, a stablecoin backed by a diversified RWA portfolio, allowing holders to mitigate volatility and earn rewards through all market cycles",
@@ -216,10 +248,10 @@
     "imageUrl": "/images/partners/anzen.png"
   },
   {
-    "name": "API3 DAO",
+    "name": "Api3",
     "url": "https://api3.org/",
-    "description": "API3 is a collaborative project to deliver API services to smart contract platforms in a decentralized and trust-minimized way. It is governed by a decentralized autonomous organization (DAO), namely the API3 DAO.",
-    "imageUrl": "/images/partners/API3.webp",
+    "description": "Api3 delivers first-party oracles that pay you — connecting real-world data directly to smart contracts while reclaiming lost value through Oracle Extractable Value (OEV).",
+    "imageUrl": "/images/partners/Api3.png",
     "category": "infra",
     "subcategory": "data"
   },
@@ -312,6 +344,14 @@
     "subcategory": "dex"
   },
   {
+    "name": "Aviator Arcade",
+    "description": "Aviator Arcade is a gaming platform that brings the classic arcade experience to Web3. Players can enjoy games while developers can publish their games to earn rewards.",
+    "url": "https://arcade.aviator.ac",
+    "imageUrl": "https://aviator.ac/assets/aviator_arcade.png",
+    "category": "consumer",
+    "subcategory": "gaming"
+  },
+  {
     "name": "Axelar",
     "url": "https://axelar.network",
     "description": "Axelar delivers secure interchain communication. That means dApp users can interact with any asset, any application, on any chain, with one click. You can think of it as Stripe for Web3.\n\nDevelopers interact with a simple API atop a permissionless network that routes messages and ensures network security via proof-of-stake consensus.",
@@ -342,6 +382,14 @@
     "category": "defi",
     "subcategory": "dex",
     "imageUrl": "/images/partners/balancer.webp"
+  },
+  {
+    "name": "Bankless Academy",
+    "description": "Kickstart your Web3 journey with free interactive lessons. Learn crypto fundamentals and earn onchain badges on Base as you go.",
+    "url": "https://app.banklessacademy.com",
+    "imageUrl": "/images/partners/bankless-academy.png",
+    "category": "consumer",
+    "subcategory": "social"
   },
   {
     "name": "Banxa",
@@ -616,6 +664,14 @@
     "subcategory": "dex"
   },
   {
+    "name": "Bondi Finance",
+    "description": "Bondi tokenizes publicly traded bonds to lift the barriers in fixed-income investing and deliver stable yields that are uncorrelated with crypto markets.",
+    "url": "https://www.bondifinance.io",
+    "imageUrl": "/images/partners/BondiFinance.png",
+    "category": "defi",
+    "subcategory": "yield vault"
+  },
+  {
     "name": "Bonfire",
     "url": "https://www.bonfire.xyz/",
     "description": "Bonfire is a no-code website builder and community platform for web3 creators. Bonfire’s toolkit lets creators design custom drops, and offer fans exclusive content and gated experiences on their own branded website.",
@@ -686,6 +742,14 @@
     "imageUrl": "/images/partners/bungee.webp",
     "category": "infra",
     "subcategory": "bridge"
+  },
+  {
+    "name": "Burner",
+    "description": "Burner is a low cost hardware wallet designed for gifting crypto. It works entirely through your mobile web browser and NFC, no app needed.",
+    "url": "https://burner.pro/",
+    "imageUrl": "/images/partners/burner.png",
+    "category": "wallet",
+    "subcategory": "self-custody"
   },
   {
     "name": "Burve Protocol",
@@ -912,6 +976,14 @@
     "subcategory": "developer tool"
   },
   {
+    "name": "Collectr",
+    "description": "Publishing hand-drawn art dedicated to onchain culture. With each month, discover new onchain communities presented by unique global artists. All made simple for you, available the entire month.",
+    "url": "https://collectr.live",
+    "imageUrl": "/images/partners/collectr.webp",
+    "category": "consumer",
+    "subcategory": "nft"
+  },
+  {
     "name": "Common",
     "description": "An all-in-one space with transparent rewards, roles, and discussion for any community.",
     "url": "https://www.common.xyz",
@@ -1054,6 +1126,14 @@
     "imageUrl": "/images/partners/cyberscope.webp",
     "category": "infra",
     "subcategory": "security"
+  },
+  {
+    "name": "Cybro",
+    "description": "CYBRO is a multichain earn marketplace that offers easy, secure access to top Web3 investment options, with AI-powered portfolio management, intuitive design, and responsive support",
+    "url": "http://cybro.io/explore?chain=Base",
+    "imageUrl": "/images/partners/cybro.png",
+    "category": "defi",
+    "subcategory": "yield vault"
   },
   {
     "name": "Cymbal",
@@ -1246,6 +1326,14 @@
     "imageUrl": "/images/partners/drakula.png",
     "category": "consumer",
     "subcategory": "social"
+  },
+  {
+    "name": "Drop Dimes to Support Creators",
+    "description": "Drop Dimes is a creator-first platform that empowers artists, developers, musicians, and content creators to receive 100% of fan support instantly and without fees. Built on the Base blockchain and integrated with Coinbase Smart Wallet, Drop Dimes provides secure, self-custodied transactions using USDC. Fans can support their favorite creators with just a few taps, making it simple to show appreciation without recurring commitments. Available on iOS, Drop Dimes is redefining digital patronage by making support seamless, transparent, and creator-owned.",
+    "url": "https://www.dropdimes.app/",
+    "imageUrl": "/images/partners/drop-dimes.png",
+    "category": "consumer",
+    "subcategory": "payments"
   },
   {
     "name": "droplinked",
@@ -1486,6 +1574,14 @@
     "imageUrl": "/images/partners/formo.png",
     "category": "infra",
     "subcategory": "data"
+  },
+  {
+    "name": "Fractal Visions",
+    "description": "Fractal Visions is a supercharged superchain impact initiative platform fueled by artificial intelligence.",
+    "url": "https://www.fractalvisions.io",
+    "imageUrl": "/images/partners/fractal-visions.png",
+    "category": "consumer",
+    "subcategory": "nft"
   },
   {
     "name": "Frame",
@@ -1798,6 +1894,22 @@
     "description": "IDRX is a regulated digital asset that offers seamless conversions and can be redeemed at a fixed rate for Indonesian Rupiah.",
     "url": "https://home.idrx.co",
     "imageUrl": "/images/partners/idrx.png"
+  },
+  {
+    "name": "Immutable Ratings",
+    "description": "Immutable Ratings is a platform engineered to anchor public sentiment to the web in a way that's permanent, decentralized, and transparent. Rate social profiles, posts and sites with a simple 👍 or 👎",
+    "url": "https://ratings.wtf",
+    "imageUrl": "/images/partners/immutable-ratings.png",
+    "category": "consumer",
+    "subcategory": "social"
+  },
+  {
+    "name": "Impossible Cloud Network",
+    "description": "Impossible Cloud Network (ICN) is building a decentralized, composable cloud layer—powering the next-gen internet with storage, compute, and networking at scale.",
+    "url": "https://www.icn.global/",
+    "imageUrl": "/images/partners/icn.png",
+    "category": "infra",
+    "subcategory": "depin"
   },
   {
     "name": "imToken",
@@ -2728,6 +2840,14 @@
     "subcategory": "bridge"
   },
   {
+    "name": "OXAI",
+    "description": "Oxai is a next-gen blockchain delivering advanced AI tools with built-in data privacy.",
+    "url": "https://oxai.io",
+    "imageUrl": "/images/partners/oxai.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "Palisade Custody",
     "description": "Palisade is a digital asset custody platform providing services ranging from fully regulated HSM wallets to MPC and passkey-enabled wallets for businesses building on web3",
     "url": "https://www.palisade.co",
@@ -3176,6 +3296,14 @@
     "subcategory": "lending/borrowing"
   },
   {
+    "name": "Securedapp SecureWatch",
+    "url": "https://securewatch.securedapp.io/",
+    "description": "SecureWatch by SecuredApp monitors smart contracts and wallets in real time, sending instant alerts and automating on-chain actions with its AutoDefend feature",
+    "imageUrl": "/images/partners/securedapp.png",
+    "category": "infra",
+    "subcategory": "security"
+  },
+  {
     "name": "Send",
     "url": "https://send.it",
     "description": "Send is a payments app where users maintain full control of their assets. Using USDC stablecoin, Send enables instant, global transfers and provides banking features for the digital age.",
@@ -3342,6 +3470,14 @@
     "name": "Spheron",
     "subcategory": "compute",
     "url": "https://spheron.network/"
+  },
+  {
+    "name": "Sprintcheckout",
+    "description": "Accept crypto payments via WooCommerce, API integration, and invoice links. Boost conversions with our one-click gasless experience, making Web3 payments as simple as card payments.",
+    "url": "https://sprintcheckout.com/",
+    "imageUrl": "/images/partners/sprintcheckout.png",
+    "category": "consumer",
+    "subcategory": "payments"
   },
   {
     "name": "Stack",
@@ -3792,6 +3928,14 @@
     "imageUrl": "/images/partners/turnkey.png"
   },
   {
+    "name": "TYMIO",
+    "description": "TYMIO is a suite of non-custodial crypto apps for investors. Earn yield on stablecoins, ETH, or WBTC through simple, tailored structured products.",
+    "url": "https://tymio.com/",
+    "imageUrl": "/images/partners/TYMIO.png",
+    "category": "defi",
+    "subcategory": "yield vault"
+  },
+  {
     "name": "UMA",
     "description": "UMA builds products that help builders scale. Deploy prediction markets and insurance protocols, with the Optimistic Oracle, Decentralize anything with oSnap. Capture OEV with Oval. \n",
     "url": "https://uma.xyz",
@@ -4094,6 +4238,14 @@
     "category": "wallet",
     "subcategory": "self-custody",
     "imageUrl": "/images/partners/zerion.webp"
+  },
+  {
+    "name": "ZEUS Exchange",
+    "url": "https://zeustrade.io/",
+    "description": "ZEUS Exchange is an innovative Perpetual DEX with SBT-based airdrop algorithm ",
+    "category": "defi",
+    "subcategory": "dex",
+    "imageUrl": "/images/partners/zeus.png"
   },
   {
     "name": "zkCodex Wallet Tracker",
