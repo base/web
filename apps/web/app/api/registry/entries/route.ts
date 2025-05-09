@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getVercelDb } from 'apps/web/src/utils/datastores/rds';
+import { getDb } from 'apps/web/src/utils/datastores/rds';
 import { getKv } from 'apps/web/src/utils/datastores/kv';
 import { logger } from 'apps/web/src/utils/logger';
 import { withTimeout } from 'apps/web/app/api/decorators';
@@ -18,7 +18,7 @@ async function handler(req: NextRequest) {
 
   // Base query for filtering by category if provided
   try {
-    const db = getVercelDb();
+    const db = getDb();
     let baseQuery = db.selectFrom('content');
 
     if (category) {
