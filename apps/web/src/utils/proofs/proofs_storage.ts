@@ -1,4 +1,4 @@
-import { getVercelDb } from 'apps/web/src/utils/datastores/rds';
+import { getDb } from 'apps/web/src/utils/datastores/rds';
 import { Address } from 'viem';
 
 export enum ProofTableNamespace {
@@ -15,7 +15,7 @@ export async function getProofsByNamespaceAndAddress(
   namespace: ProofTableNamespace,
   caseInsensitive = true, // set false for big data sets
 ) {
-  const db = getVercelDb();
+  const db = getDb();
   let query = db.selectFrom(proofTableName).where('namespace', '=', namespace.valueOf());
 
   /**
