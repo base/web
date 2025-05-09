@@ -69,7 +69,7 @@ type FetchPermissionsResultItem = {
   createdAt: number; // UTC timestamp for when the permission was granted
   permissionHash: string; // hex
   signature: string; // hex
-  permission: {
+  spendPermission: {
     account: string; // address
     spender: string; // address
     token: string; // address
@@ -95,7 +95,7 @@ type FetchPermissionsResultItem = {
 - **`createdAt`**: The UTC timestamp when the permission was granted.
 - **`permissionHash`**: A unique hash representing the permission.
 - **`signature`**: The cryptographic signature for the permission.
-- **`permission`**:
+- **`spendPermission`**:
   - **`account`**: The address of the account granting the permission.
   - **`spender`**: The address of the spender receiving the permission.
   - **`token`**: The address of the token involved.
