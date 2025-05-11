@@ -1,0 +1,81 @@
+# `getAddresses`
+
+The `getAddresses` utility is designed to retrieve multiple Ethereum addresses from an onchain identity
+provider for an array of ENS names or Basenames in a single batch request.
+
+Consider the utility instead of the hook when you
+use it with Next.js or any Node.js backend.
+
+## Usage
+
+Get addresses from multiple ENS names:
+
+:::code-group
+
+```tsx twoslash [code]
+import { getAddresses } from '@coinbase/onchainkit/identity';
+
+const ensNames = ['vitalik.eth', 'paulcramer.eth'];
+const addresses = await getAddresses({ names: ensNames });
+```
+
+```ts [return value]
+[
+  '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045',
+  '0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF'
+]
+```
+
+:::
+
+Get addresses from multiple Basenames:
+
+:::code-group
+
+```tsx twoslash [code]
+import { getAddresses } from '@coinbase/onchainkit/identity';
+import { base } from 'viem/chains';
+
+const ensNames = ['paul.base.eth', 'coinbase.base.eth'];
+const addresses = await getAddresses({ names: ensNames, chain: base });
+```
+
+```ts [return value]
+[
+  '0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF',
+  '0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF'
+]
+```
+
+:::
+
+Get addresses from a mix of ENS names and Basenames:
+
+:::code-group
+
+```tsx twoslash [code]
+import { getAddresses } from '@coinbase/onchainkit/identity';
+import { base } from 'viem/chains';
+
+const ensNames = ['vitalik.eth', 'paul.base.eth'];
+const addresses = await getAddresses({ names: ensNames, chain: base });
+```
+
+```ts [return value]
+[
+  '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045',
+  '0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF'
+]
+```
+
+:::
+
+## Returns
+
+Array of [`GetAddressReturnType`](/builderkits/onchainkit/identity/types#getaddressreturntype)
+
+## Parameters
+
+### GetAddresses
+
+[`GetAddresses`](/builderkits/onchainkit/identity/types#getaddresses) 
