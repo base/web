@@ -7,8 +7,9 @@ async function fetchPassport(address: `0x${string}`): Promise<Data> {
 }
 
 type Data = {
-  passport: {
-    score: number;
+  score: {
+    points: number;
+    v1_score: number;
   };
   error?: string;
 };
@@ -24,8 +25,7 @@ export function useTalentProtocol(address?: `0x${string}`) {
     if (query.data.error) {
       return undefined;
     }
-
-    return query.data.passport.score;
+    return query.data.score.points;
   }
 
   return undefined;
