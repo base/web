@@ -38,7 +38,7 @@ yarn build
 
 # Troubleshooting
 
-You may encounter an error of the form:
+You may encounter the following error:
 ```
 TypeError: Cannot destructure property 'CookieBanner' of 'pkg' as it is undefined.
 ```

@@ -1,0 +1,103 @@
+---
+title: Node Performance
+slug: /node-performance
+description: Guides on how to improve syncing performance of Base node clients
+---
+
+import { Button } from 'vocs/components'
+
+# Node Performance
+
+This guide provides recommendations for hardware, client software, and configuration settings to optimize the performance of your Base node.
+
+## Hardware
+
+Running a performant Base node requires adequate hardware. We recommend the following minimum specifications:
+
+1.  A modern multi-core CPU with good single-core performance.
+2.  At least 32 GB RAM (64 GB recommended).
+3.  A locally attached NVMe SSD drive. RAID 0 configurations can improve performance.
+4.  Sufficient storage capacity calculated as: `(2 * [current chain size](https://base.org/stats) + [snapshot size](https://basechaindata.vercel.app) + 20% buffer)`. This accounts for chain data growth and snapshot restoration space.
+
+:::info
+
+If utilizing Amazon Elastic Block Store (EBS), io2 Block Express volumes are recommended to ensure sufficient disk read speeds, preventing latency issues during initial sync. However, **locally attached NVMe SSDs are strongly recommended over networked storage for optimal performance.**
+
+:::
+
+### Production Hardware Examples
+
+The following are the hardware specifications used for Base production nodes:
+
+- **Geth Full Node:**
+  - Instance: AWS `i4i.12xlarge`
+  - Storage: RAID 0 of all local NVMe drives (`/dev/nvme*`)
+  - Filesystem: ext4
+- **Reth Archive Node:**
+  - Instance: AWS `i4ie.6xlarge`
+  - Storage: RAID 0 of all local NVMe drives (`/dev/nvme*`)
+  - Filesystem: ext4
+
+## Initial Sync
+
+Using a recent [snapshot](./node-snapshots.mdx) can significantly reduce the time required for the initial node synchronization process.
+
+## Client Software
+
+The [Base Node](https://github.com/base/node) repository contains the current stable configurations and instructions for running different client implementations.
+
+### Supported Clients
+
+Reth is currently the most performant client for running Base nodes. Future optimizations will primarily focus on Reth. You can read more about the migration to Reth [here](https://blog.base.dev/scaling-base-with-reth).
+
+| Type    | Supported Clients                                                                                        |
+| :------ | :------------------------------------------------------------------------------------------------------- |
+| Full    | [Reth](https://github.com/base/node/tree/main/reth), [Geth](https://github.com/base/node/tree/main/geth) |
+| Archive | [Reth](https://github.com/base/node/tree/main/reth)                                                      |
+
+### Geth Performance Tuning
+
+#### Geth Cache Settings
+
+For Geth nodes, tuning cache allocation via environment variables can improve performance. These settings are used in the standard Docker configuration:
+
+```bash
+# .env.mainnet / .env.sepolia
+GETH_CACHE="20480" # Total P2P cache memory allowance (MB) (default: 1024)
+GETH_CACHE_DATABASE="20" # Percentage of cache memory allowance for database io (default: 75)
+GETH_CACHE_GC="12" # Percentage of cache memory allowance for garbage collection (default: 25)
+GETH_CACHE_SNAPSHOT="24" # Percentage of cache memory allowance for snapshot caching (default: 10)
+GETH_CACHE_TRIE="44" # Percentage of cache memory allowance for trie caching (default: 25)
+```
+
+#### Geth LevelDB Tuning
+
+For teams running Geth with LevelDB, the following patch allows setting LevelDB initialization parameters via environment variables:
+
+[https://github.com/0x00101010/goleveldb/commit/55ef34](https://github.com/0x00101010/goleveldb/commit/55ef3429673fb70d389d052a15a4423e13d8b43c)
+
+This patch can be applied using a `replace` directive in `go.mod` when building `op-geth`. Here's how to modify the Dockerfile:
+
+```docker
+RUN git clone $REPO --branch $VERSION --single-branch . && \
+    git switch -c branch-$VERSION $COMMIT && \
+    bash -c '[ "$(git rev-parse HEAD)" = "$COMMIT" ]'
+
+RUN echo '' >> go.mod && \ // [!code ++]
+    echo 'replace github.com/syndtr/goleveldb => github.com/0x00101010/goleveldb v1.0.4-param-customization' >> go.mod && \ // [!code ++]
+    go mod tidy \ // [!code ++]
+
+# Continue building op-geth
+COPY op-geth/ ./
+RUN go run build/ci.go install -static ./cmd/geth
+```
+
+Recommended LevelDB environment variable values with this patch:
+
+```bash
+# Recommended LevelDB Settings
+LDB_BLOCK_SIZE="524288" # 512 KiB block size (matches common RAID 0 chunk sizes)
+LDB_COMPACTION_TABLE_SIZE="8388608" # 8 MiB compaction table size (default: 2 MiB)
+LDB_COMPACTION_TOTAL_SIZE="41943040" # 40 MiB total compaction size (default: 8 MiB)
+LDB_DEBUG_OPTIONS="1" # Emit LevelDB debug logs
+```
