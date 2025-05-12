@@ -1464,11 +1464,11 @@ export const sidebar: Sidebar = [
         items: [
           {
             text: 'Introduction to Foundry ↗',
-            link: '/intro-to-foundry-setup',
+            link: '/cookbook/smart-contract-development/foundry/setup-with-base',
           },
           {
             text: 'Testing Smart Contracts ↗',
-            link: '/intro-to-foundry-testing',
+            link: '/cookbook/smart-contract-development/foundry/testing-smart-contracts',
           },
         ],
       },
