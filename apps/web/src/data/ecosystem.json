@@ -4040,14 +4040,6 @@
     "subcategory": "consumer"
   },
   {
-    "name": "DAOBase",
-    "description": "DAOBase is an AI-driven DAO aggregator and launcher that empowers users to bring communities onchain by facilitating token issuance, governance, and analytics. ",
-    "url": "https://daobase.ai",
-    "imageUrl": "/images/partners/daobase.png",
-    "category": "consumer",
-    "subcategory": "dao"
-  },
-  {
     "name": "Nodit",
     "description": "Nodit is a Web3 development platform offering enterprise-grade blockchain data APIs and reliable node services with 99.9% uptime, empowering developers with affordable and accessible multi-chain infrastructure.",
     "url": "https://nodit.io/",
@@ -4070,5 +4062,13 @@
     "imageUrl": "/images/partners/xception.png",
     "category": "defi",
     "subcategory": "dex aggregator"
+  },
+  {
+    "name": "DAOBase",
+    "description": "DAOBase is an AI-driven DAO aggregator and launcher that empowers users to bring communities onchain by facilitating token issuance, governance, and analytics. ",
+    "url": "https://daobase.ai",
+    "imageUrl": "/images/partners/daobase.png",
+    "category": "consumer",
+    "subcategory": "dao"
   }
 ]
