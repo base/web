@@ -1,0 +1,8 @@
+{
+  "name": "Socket",
+  "url": "https://socket.tech/",
+  "description": "Socket is an interoperability protocols which allows seamless asset & data transfer across chains, enabling developers to build truly cross-chain apps",
+  "imageUrl": "/images/partners/socket.webp",
+  "category": "infra",
+  "subcategory": "bridge"
+}

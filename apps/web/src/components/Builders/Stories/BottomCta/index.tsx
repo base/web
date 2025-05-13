@@ -15,7 +15,7 @@ export function BottomCta() {
             linkClassNames="text-base font-medium text-white block"
             buttonClassNames="flex items-center justify-between px-4 py-3 group"
             target="_blank"
-            href="/builders/stories" // TODO: Add link
+            href="https://docs.base.org/quickstart"
             eventName="bottom-cta-get-started"
           >
             <div className="flex w-40 items-center justify-between">

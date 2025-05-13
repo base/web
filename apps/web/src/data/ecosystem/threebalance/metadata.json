@@ -1,0 +1,8 @@
+{
+  "name": "Threebalance",
+  "description": "Threebalance is a portfolio rebalancing tool built on top of 1inch API. \nThe DApp enables you to rebalance or reposition your portfolio in 3 steps via one simple interface.",
+  "url": "https://threebalance.co/",
+  "imageUrl": "/images/partners/threebalance.png",
+  "category": "defi",
+  "subcategory": "portfolio"
+}

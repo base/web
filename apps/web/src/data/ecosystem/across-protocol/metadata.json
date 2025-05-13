@@ -1,0 +1,8 @@
+{
+  "name": "Across Protocol",
+  "url": "https://across.to/",
+  "description": "Across Protocol is a leading cross-chain token bridge that is secured by UMA's optimistic oracle. It is optimized for capital efficiency with a single liquidity pool, a competitive relayer landscape, and a no-slippage fee model. You can expect secure, fast and affordable cross-chain token transfers with Across.",
+  "imageUrl": "/images/partners/across_protocol.webp",
+  "category": "infra",
+  "subcategory": "bridge"
+}

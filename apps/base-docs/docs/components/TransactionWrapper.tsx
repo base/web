@@ -6,10 +6,7 @@ import type {
 import type { ReactNode } from 'react';
 import { useAccount } from 'wagmi';
 import type { Config } from 'wagmi';
-import type {
-  UseSendCallsParameters,
-  UseSendCallsReturnType,
-} from 'wagmi/experimental';
+import type { UseSendCallsParameters, UseSendCallsReturnType } from 'wagmi/experimental';
 
 type TransactionWrapperChildren = UseSendCallsReturnType<
   Config,
@@ -22,8 +19,7 @@ type TransactionWrapperReact = {
   children: (props: TransactionWrapperChildren) => ReactNode;
 };
 
-export const clickContractAddress =
-  '0x67c97D1FB8184F038592b2109F854dfb09C77C75';
+export const clickContractAddress = '0x67c97D1FB8184F038592b2109F854dfb09C77C75';
 export const clickContractAbi = [
   {
     type: 'function',
@@ -34,9 +30,7 @@ export const clickContractAbi = [
   },
 ] as const;
 
-export default function TransactionWrapper({
-  children,
-}: TransactionWrapperReact) {
+export default function TransactionWrapper({ children }: TransactionWrapperReact) {
   const { address } = useAccount();
 
   const contracts = [

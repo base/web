@@ -1,0 +1,8 @@
+{
+  "name": "PoolTogether",
+  "description": "PoolTogether is an open-source protocol for prize savings. It's designed to enhance financial security by making saving enjoyable. When users deposit into the system, the interest accumulates across all deposits and is then randomly distributed as prizes. The protocol turns your interest into fun rewards! Save your favorite tokens and have a chance to win big.",
+  "url": "https://pooltogether.com/",
+  "imageUrl": "/images/partners/pooltogether.png",
+  "category": "defi",
+  "subcategory": "yield vault"
+}

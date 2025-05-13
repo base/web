@@ -1,0 +1,8 @@
+{
+  "name": "Test Project",
+  "description": "A test project",
+  "url": "https://test.com",
+  "imageUrl": "/images/partners/test.png",
+  "category": "defi",
+  "subcategory": "dex"
+}

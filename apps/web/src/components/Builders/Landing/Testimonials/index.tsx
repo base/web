@@ -52,6 +52,8 @@ export function Testimonials() {
     [],
   );
 
+  const createTabClickHandler = (tab: Tab) => () => setActiveTab(tab);
+
   return (
     <section className="mt-16 h-[448px] w-full max-sm:mb-32 md:h-full">
       <div className="rounded-xl border border-palette-line/20 p-6 md:p-8">
@@ -60,7 +62,7 @@ export function Testimonials() {
             <button
               type="button"
               key={tab}
-              onClick={() => setActiveTab(tab)}
+              onClick={createTabClickHandler(tab)}
               className={classNames(
                 'rounded px-2 py-0.5 transition-colors',
                 activeTab === tab

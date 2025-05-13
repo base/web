@@ -1,0 +1,8 @@
+{
+  "name": "Galaxy Exchange",
+  "description": "Galaxy provides instant access to cross-chain liquidity from over 100 blockchains, bridges, and liquidity aggregators. Perform non-custodial token swaps and bridging for a wide range of crypto assets, any token to any token, irrespective of the underlying blockchain.",
+  "url": "https://galaxy.exchange/",
+  "imageUrl": "/images/partners/galaxy-exchange.png",
+  "category": "infra",
+  "subcategory": "bridge"
+}

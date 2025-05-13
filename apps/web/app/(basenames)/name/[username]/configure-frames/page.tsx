@@ -7,10 +7,11 @@ import { redirectIfNotNameOwner } from 'apps/web/src/utils/redirectIfNotNameOwne
 import { formatDefaultUsername } from 'apps/web/src/utils/usernames';
 
 export type ConfigureFramesProps = {
-  params: { username: Basename };
+  params: Promise<{ username: Basename }>;
 };
 
-export default async function ConfigureFrames({ params }: ConfigureFramesProps) {
+export default async function ConfigureFrames(props: ConfigureFramesProps) {
+  const params = await props.params;
   let username = await formatDefaultUsername(decodeURIComponent(params.username) as Basename);
   await redirectIfNotNameOwner(username);
 

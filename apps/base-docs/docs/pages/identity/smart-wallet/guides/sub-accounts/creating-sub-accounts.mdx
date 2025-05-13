@@ -3,7 +3,7 @@ title: 'Creating Sub Accounts'
 description: 'Learn how to create and manage Sub Accounts with Coinbase Smart Wallet'
 ---
 
-If you're new to Sub Accounts, check out the [Sub Accounts Overview](/identity/smart-wallet/guides/sub-accounts/overview) to learn more about how they work.
+If you're new to Sub Accounts, check out the [Sub Accounts Overview](/identity/smart-wallet/guides/sub-accounts) to learn more about how they work.
 
 # Creating Sub Accounts
 
@@ -25,7 +25,7 @@ The Coinbase Smart Wallet SDK provides a browser key signer out of the box, whic
 
 ## Configuring the SDK for Sub Accounts
 
-Include the Sub Account configuration properties in your SDK initialization. In this React web app example, we are passing in `getCryptoKeyAccount` from the SDK for the `subaccount.getSigner` param when initializing the SDK in an React useEffect hook.
+Include the Sub Account configuration properties in your SDK initialization. In this React web app example, we are passing in `getCryptoKeyAccount` from the SDK for the `toSubAccountSigner` param when initializing the SDK in an React useEffect hook.
 
 ```tsx
 // app/context/CoinbaseWalletContext.tsx
@@ -46,9 +46,7 @@ useEffect(() => {
       options: 'smartWalletOnly',
       keysUrl: 'https://keys-dev.coinbase.com/connect',
     },
-    subaccount: {
-      getSigner: getCryptoKeyAccount,
-    },
+    toSubAccountSigner: getCryptoKeyAccount,
   });
 
   setProvider(coinbaseWalletSDK.getProvider());
@@ -98,7 +96,7 @@ export function CoinbaseWalletProvider({ children }: { children: ReactNode }) {
               keys: [
                 {
                   type: "webauthn-p256",
-                  signer: signer.account?.publicKey,
+                  key: signer.account?.publicKey,
                 }
               ],
             }

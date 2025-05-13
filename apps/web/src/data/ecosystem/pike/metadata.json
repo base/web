@@ -1,0 +1,8 @@
+{
+  "name": "Pike",
+  "url": "https://pike.finance",
+  "description": "Pike is a Universal Liquidity Protocol, it is designed to unleash utility for native crypto assets by aggregating liquidity across blockchain networks.\n\nPike’s vision is to become a universal liquidity layer that enables frictionless movement and accessibility of native assets across ecosystems. Pike is built on top of Wormhole’s Cross-Chain Data Messaging and Circle’s Cross-Chain Transfer Protocol (CCTP).\n\nOne fundamental primitive of Pike is to enable users to supply native crypto assets on source chains and borrow native crypto assets on destination chains without interacting with cross-chain bridges and handling wrapped assets.",
+  "imageUrl": "/images/partners/pike.webp",
+  "category": "infra",
+  "subcategory": "bridge"
+}

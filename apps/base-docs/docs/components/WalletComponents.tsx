@@ -1,4 +1,5 @@
 'use client';
+
 import type { ReactNode } from 'react';
 import App from './App.tsx';
 

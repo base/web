@@ -1,0 +1,8 @@
+{
+  "name": "Superbridge",
+  "url": "https://superbridge.app",
+  "description": "Native token bridging interface for OP Stack chains.",
+  "imageUrl": "/images/partners/superbridge.webp",
+  "category": "infra",
+  "subcategory": "bridge"
+}

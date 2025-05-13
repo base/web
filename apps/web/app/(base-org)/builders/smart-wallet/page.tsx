@@ -28,6 +28,8 @@ export const metadata: Metadata = {
   },
 };
 
+const components = ['Wallet'];
+
 export default async function BaseWallet() {
   return (
     <Container>
@@ -64,16 +66,16 @@ export default async function BaseWallet() {
               The universal account for the onchain future
             </Title>
             <Title level={TitleLevel.Title3} className="max-w-2xl text-gray-muted">
-              A single sign-on for the open internet. Simple, secure, powerful — no app or extension
+              A single sign-on for the open internet. Simple, secure, powerful — no app or extension
               required.
             </Title>
-            <div className="flex gap-6 pt-5">
+            <div className="flex gap-4 pt-5">
               <ButtonWithLinkAndEventLogging
                 target="_blank"
                 variant={ButtonVariants.Secondary}
                 buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
                 eventName="wallet-start-building"
-                href="https://docs.base.org/identity/smart-wallet/introduction/install-web"
+                href="https://docs.base.org/identity/smart-wallet/quickstart"
               >
                 <div className="flex items-center gap-4">
                   <span>Start building</span>
@@ -82,6 +84,20 @@ export default async function BaseWallet() {
                   </div>
                 </div>
               </ButtonWithLinkAndEventLogging>
+              <ButtonWithLinkAndEventLogging
+            href="https://docs.base.org/identity/smart-wallet/llms.txt"
+            target="_blank"
+            variant={ButtonVariants.SecondaryOutline}
+            buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
+            eventName="smart-wallet-ai-docs"
+          >
+            <div className="flex items-center justify-between gap-6">
+              <span>AI docs</span>
+              <div className="transition-transform duration-200">
+                <Icon name="ai" width={16} height={16} color="white" />
+              </div>
+            </div>
+          </ButtonWithLinkAndEventLogging>
             </div>
           </div>
 
@@ -92,7 +108,7 @@ export default async function BaseWallet() {
         <InfoCards />
         <Transactions />
         <LiveDemo
-          components={['Wallet']}
+          components={components}
           title="Unlock onboarding superpowers with a few lines of code"
           hideDescription
         />
@@ -104,29 +120,32 @@ export default async function BaseWallet() {
             <div className="flex w-full gap-4 max-sm:flex-col max-sm:items-center">
               <ButtonWithLinkAndEventLogging
                 variant={ButtonVariants.Secondary}
-                iconName="fork"
-                href="https://github.com/brendan-defi/onchainkit-wallet-island-demo"
+                href="https://docs.base.org/identity/smart-wallet/quickstart"
                 target="_blank"
-                eventName="wallet-fork-template"
-                iconSize={16}
-                buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 font-medium"
-              >
-                Fork a template
-              </ButtonWithLinkAndEventLogging>
-              <ButtonWithLinkAndEventLogging
-                href="https://docs.base.org/identity/smart-wallet/introduction/install-web"
-                target="_blank"
-                variant={ButtonVariants.SecondaryOutline}
+                eventName="start-building-footer"
                 buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
-                eventName="wallet-docs"
               >
-                <div className="flex items-center justify-between gap-6">
-                  <span>Docs</span>
+                <div className="flex items-center gap-4">
+                  <span>Start building</span>
                   <div className="transition-transform duration-200 group-hover:translate-x-1">
-                    <Icon name="arrowRight" width={16} height={16} color="white" />
+                    <Icon name="arrowRight" width={16} height={16} color="black" />
                   </div>
                 </div>
               </ButtonWithLinkAndEventLogging>
+              <ButtonWithLinkAndEventLogging
+                href="https://docs.base.org/identity/smart-wallet/llms.txt"
+                target="_blank"
+                variant={ButtonVariants.SecondaryOutline}
+                buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
+                eventName="smart-wallet-ai-docs"
+              >
+              <div className="flex items-center justify-between gap-6">
+                <span>AI docs</span>
+              <div className="transition-transform duration-200">
+                <Icon name="ai" width={16} height={16} color="white" />
+              </div>
+            </div>
+          </ButtonWithLinkAndEventLogging>
             </div>
           }
         />

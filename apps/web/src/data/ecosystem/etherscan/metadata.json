@@ -1,0 +1,8 @@
+{
+  "name": "Etherscan",
+  "url": "https://basescan.org/",
+  "description": "Etherscan is the leading block explorer and search, API & analytics platform for EVM compatible blockchains, with the mission of providing equitable access to blockchain data.",
+  "imageUrl": "/images/partners/etherscan.webp",
+  "category": "infra",
+  "subcategory": "data"
+}

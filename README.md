@@ -2,7 +2,7 @@
 
 # Base Web
 
-Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the next billion users onchain. It's built on Optimism’s open-source [OP Stack](https://stack.optimism.io/).
+Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the next billion users onchain. It's built on Optimism's open-source [OP Stack](https://stack.optimism.io/).
 
 <!-- Badge row 1 - status -->
 
@@ -81,16 +81,24 @@ If you're a builder who wants to add or update your project on the [Base Ecosyst
 
 2. Create a new branch for your changes.
 
-3. Update the `web/apps/web/src/data/ecosystem.json` with your project information. All fields are required. Each entry should follow the format below:
+3. Create a directory for your project under `apps/web/src/data/ecosystem/` using a URL-safe version of your project name:
+
+   ```bash
+   mkdir apps/web/src/data/ecosystem/your-project-name
+   ```
+
+Project names must be unique. If a project with your name already exists, please reach out to us on Discord.
+
+4. Create a metadata.json file in your project directory:
 
    ```json
    {
      "name": "Your Project Name",
-     "description": "A brief description of your project (less than 200 characters)",
-     "url": "https://your-project-url.com",
-     "imageUrl": "/images/partners/your-project-logo.png",
-     "category": "Your Project Category",
-     "subcategory": "Your Project Subcategory"
+     "description": "A brief description (less than 200 characters)",
+     "url": "https://your-project.com",
+     "imageUrl": "/images/partners/your-logo.png",
+     "category": "one of: ai, consumer, defi, infra, onramp, wallet",
+     "subcategory": "see categories below"
    }
    ```
 
@@ -107,9 +115,10 @@ If you're a builder who wants to add or update your project on the [Base Ecosyst
      - `onramp`: _One_ of `centralized exchange`, `fiat on-ramp`
      - `wallet`: _One_ of `account abstraction`, `multisig`, `self-custody`
 
-4. When adding and/or updating a logo, place a 192x192 pixel PNG file in the `web/apps/web/public/images/partners/`. The file should be named appropriately (e.g., your-project-name.png). The logo should be an App Store or Play Store iconographic version, not a full wordmark.
-
-5. Create a pull request with your changes.
+5. Add your project's logo:
+   - Place a 192x192 pixel PNG/WebP file in `apps/web/public/images/partners/`
+   - Name should match what you specified in imageUrl
+   - Use an App/Play Store style icon (not a full wordmark)
 
 By opening a PR to add your project, you authorize and license Coinbase on a non-exclusive, worldwide, irrevocable, sublicensable, and royalty-free basis to reproduce, distribute, transmit, make available, perform, display, or otherwise use the submitted Multimedia Assets for any purpose, including any marketing or promotional activities related to Base or Coinbase. Any goodwill associated with use of trademarks submitted in your Multimedia Assets will inure to your benefit. You further acknowledge and represent that you have all IP rights in the Multimedia Assets, that the Multimedia Assets do not infringe the rights of any third party, and that you have the right to grant this license to Coinbase.
 

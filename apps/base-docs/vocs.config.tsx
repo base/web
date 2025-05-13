@@ -162,6 +162,15 @@ export default defineConfig({
     },
     define: {
       Buffer: ['buffer', 'Buffer'],
+      'import.meta.env': JSON.stringify({
+        ...process.env,
+        VITE_CDP_API_KEY: process.env.VITE_CDP_API_KEY,
+        VITE_CDP_PROJECT_ID: process.env.VITE_CDP_PROJECT_ID,
+        MODE: process.env.MODE ?? 'development',
+        DEV: process.env.NODE_ENV !== 'production',
+        PROD: process.env.NODE_ENV === 'production',
+        SSR: false,
+      }),
     },
     server: {
       headers: {

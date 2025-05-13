@@ -1,0 +1,8 @@
+{
+  "name": "CoW Swap",
+  "description": "CoW Swap is an intent-based meta-DEX aggregator that leverages CoW Protocol's bespoke batch/solver ecosystem. With built in MEV protection, CoW Swap lets traders big and small do more and worry less",
+  "url": "https://swap.cow.fi",
+  "imageUrl": "/images/partners/cowswap.png",
+  "category": "defi",
+  "subcategory": "dex aggregator"
+}

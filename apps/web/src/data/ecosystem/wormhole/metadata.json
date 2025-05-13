@@ -1,0 +1,8 @@
+{
+  "name": "Wormhole",
+  "url": "https://wormhole.com",
+  "description": "Wormhole is a generic cross-chain message-passing protocol that gives developers the power to build decentralized applications that span the rapidly evolving blockchain ecosystem.",
+  "imageUrl": "/images/partners/wormhole.webp",
+  "category": "infra",
+  "subcategory": "bridge"
+}

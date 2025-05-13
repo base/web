@@ -19,7 +19,7 @@ export default function SlidingTextSection() {
     'before:bg-gradient-to-r before:from-transparent before:to-blue',
   );
 
-  const animationStyles = { '--animation-duration': '20s' } as CSSProperties;
+  const animationStyles = { '--animation-duration': '40s' } as CSSProperties;
 
   return (
     <section>

@@ -1,0 +1,8 @@
+{
+  "name": "Coinbase Onramp",
+  "url": "https://www.coinbase.com/developer-platform/products/onramp",
+  "description": "Let your users buy or transfer digital assets with the most trusted name in crypto.",
+  "imageUrl": "/images/partners/pay.webp",
+  "category": "onramp",
+  "subcategory": "centralized exchange"
+}

@@ -13,6 +13,7 @@ import { CtaBanner } from 'apps/web/src/components/Builders/Shared/CtaBanner';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import Image, { StaticImageData } from 'next/image';
 import appchainCover from './appchains.png';
+import { FAQ } from 'apps/web/src/components/Builders/Appchains/FAQ';
 
 const CDP_APPCHAIN_URL = 'https://portal.cdp.coinbase.com/products/base-appchains';
 const DOCS_URL = 'https://docs.cdp.coinbase.com/appchains/docs/welcome';
@@ -94,6 +95,7 @@ export default async function Appchains() {
         <OnchainApps />
         <Pricing />
         <Testimonials />
+        <FAQ />
         <CtaBanner
           title="Your own blockspace, built for scale"
           description="Unlock high-speed and low-cost transactions at scale, with dedicated blockspace and seamless integration with Base tools."

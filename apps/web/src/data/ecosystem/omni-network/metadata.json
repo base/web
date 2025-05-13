@@ -1,0 +1,8 @@
+{
+  "name": "Omni Network",
+  "url": "https://omni.network",
+  "description": "The Omni Network is a layer 1 blockchain that empowers developers to build global applications across all rollups. This is achieved securely by restaking $ETH through EigenLayer.",
+  "imageUrl": "/images/partners/omni_network.webp",
+  "category": "infra",
+  "subcategory": "bridge"
+}

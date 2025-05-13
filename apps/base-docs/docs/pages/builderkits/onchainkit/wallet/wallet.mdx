@@ -7,7 +7,6 @@ import {
   ConnectWallet,
   ConnectWalletText,
   Wallet,
-  WalletDefault,
   WalletDropdown,
   WalletDropdownBasename,
   WalletDropdownFundLink,
@@ -37,18 +36,18 @@ Before using them, ensure you've completed all [Getting Started steps](/builderk
 
 ## Quick start
 
-The `WalletDefault` component is a simplified version of the `Wallet` component, designed to streamline the integration process for developers. Instead of manually defining each subcomponent and prop, developers can use this shorthand version which renders our suggested implementation of the component.
+To streamline the integration process and integrate a simplified version of the `Wallet` component, you can render the `Wallet` component without children. 
 
-If you'd like more customization, follow the implementation guide for our `Wallet` component below.
+If you'd like more customization, follow the implementation guide for our `Wallet` component below where you can manually define each subcomponent and prop.
 
 ```tsx twoslash
-import { WalletDefault } from '@coinbase/onchainkit/wallet';
+import { Wallet } from '@coinbase/onchainkit/wallet';
 
-<WalletDefault />
+<Wallet />
 ```
 
 <WalletComponents>
-  <WalletDefault />
+  <Wallet />
 </WalletComponents>
 
 ## Walkthrough
@@ -242,12 +241,11 @@ import {
 Each OnchainKit component offers the flexibility to customize `className`
 and adjust the style of the React components it represents.
 
-Customize the connect wallet text by using directly the `<ConnectWalletText>` component.
+Customize the connect wallet text by using the `disconnectedLabel` prop on the `<ConnectWallet />` component.
 
 ```tsx twoslash
 import {
   ConnectWallet,
-  ConnectWalletText,
   Wallet,
   WalletDropdown,
   WalletDropdownLink,
@@ -265,8 +263,7 @@ import { color } from '@coinbase/onchainkit/theme';
 // omitted for brevity
 
 <Wallet>
-  <ConnectWallet className='bg-blue-800'>
-    <ConnectWalletText>Log In</ConnectWalletText>
+  <ConnectWallet className='bg-blue-800' disconnectedLabel='Log In'>
     <Avatar className="h-6 w-6" />
     <Name className='text-white' />
   </ConnectWallet>
@@ -294,8 +291,7 @@ import { color } from '@coinbase/onchainkit/theme';
 
 <WalletComponents>
   <Wallet>
-    <ConnectWallet className='bg-blue-800'>
-      <ConnectWalletText>Log In</ConnectWalletText>
+    <ConnectWallet className='bg-blue-800' disconnectedLabel='Log In'>
       <Avatar className="h-6 w-6" />
       <Name className='text-white' />
     </ConnectWallet>

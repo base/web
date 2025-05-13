@@ -1,0 +1,8 @@
+{
+  "name": "Blocto",
+  "description": "Blocto is an account abstraction wallet supporting EVM chains. We boast a user base of 1.7 million so far with a seamless social log in and speedy 30-second onboarding experience, completely coinless.",
+  "url": "https://blocto.io/",
+  "imageUrl": "/images/partners/Blocto.webp",
+  "category": "wallet",
+  "subcategory": "account abstraction"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "rhino.fi",
+  "url": "https://app.rhino.fi/bridge",
+  "description": "Your lightning-fast secure bridge for seamless cross-chain transactions.",
+  "imageUrl": "/images/partners/rhinofi.webp",
+  "category": "infra",
+  "subcategory": "bridge"
+}

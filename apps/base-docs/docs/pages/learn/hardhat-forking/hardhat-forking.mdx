@@ -133,7 +133,7 @@ describe('BalanceReader tests', () => {
 
     // Our contract will be able to check the balances of the mainnet deployed contracts and address
     const balance = await instance.getERC20BalanceOf(ARBITRUM_ONE_GATEWAY, USDC_MAINNET_ADDRESS);
-    const balanceAsString = ethers.formatUnits(balance, USDC_DECIMALS);
+    const balanceAsString = ethers.utils.formatUnits(balance, USDC_DECIMALS);
 
     console.log(
       'The USDC Balance of Arbitrum Gateway is $',

@@ -180,7 +180,7 @@ For example:
 function requireAddEvenNumbers(uint _first, uint _second) public pure returns (uint) {
     // Legacy pattern, do not use
     require(_first % 2 == 0, "First number is not even");
-    require(_second % 2 != 0, "Second number is not even");
+    require(_second % 2 == 0, "Second number is not even");
 
     return _first + _second;
 }

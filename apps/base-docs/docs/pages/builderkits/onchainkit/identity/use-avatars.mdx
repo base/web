@@ -3,6 +3,8 @@
 The `useAvatars` hook is used to get multiple avatar image URLs from an onchain identity
 provider for an array of ENS names or Basenames in a single batch request.
 
+It is implemented with [useQuery](https://tanstack.com/query/latest/docs/framework/react/reference/useQuery) from `@tanstack/react-query`, and returns a `UseQueryResult` object, allowing you to pass through all `@tanstack/react-query` options.
+
 ## Usage
 
 Get avatars for multiple ENS names:

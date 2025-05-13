@@ -1,0 +1,8 @@
+{
+  "name": "Thirdwave Labs",
+  "description": "Thirdwave's Wallet Intelligence is a powerful tool designed to provide developers and businesses in the Web3 ecosystem with deep insights into their user's wallets. By leveraging this API data, builders can transform blockchain data into meaningful actions. Utilize wallet-based value tiers, wallet scoring, token ownership, bot warnings, and behavioral insights to personalize experiences, enhance engagement, and drive monetization.",
+  "url": "https://thirdwavelabs.com/",
+  "imageUrl": "/images/partners/thirdwave.png",
+  "category": "infra",
+  "subcategory": "developer tool"
+}

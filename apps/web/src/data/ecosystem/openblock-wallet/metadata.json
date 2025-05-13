@@ -1,0 +1,8 @@
+{
+  "name": "OpenBlock Wallet",
+  "category": "wallet",
+  "subcategory": "self-custody",
+  "description": "OpenBlock is an MPC wallet supporting BASE network with both Web portal and a Mobile App. OpenBlock incorporates a built-in DEX that also support BASE bridge and BASE swap. ",
+  "url": "https://openblock.com/#/",
+  "imageUrl": "/images/partners/openblock.png"
+}

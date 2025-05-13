@@ -29,7 +29,7 @@ export function GridHero({ hasBlue = false }: GridHeroProps) {
       window.removeEventListener('resize', resizeCanvas);
     };
   }, []);
-    
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext('2d');
@@ -38,7 +38,7 @@ export function GridHero({ hasBlue = false }: GridHeroProps) {
     }
 
     const cellSize = Math.floor(Math.min(Math.max(25, canvas.width / 20), 70));
-    
+
     const rows = Math.floor(canvas.height / cellSize);
     const cols = Math.floor(canvas.width / cellSize);
 
@@ -90,17 +90,17 @@ export function GridHero({ hasBlue = false }: GridHeroProps) {
     drawGridLines();
     animate();
     return () => clearTimeout(animationFrameId);
-  }, [canvasWidth]);
+  }, [hasBlue, canvasWidth]);
 
   return (
     <div className="relative w-full h-full">
-      <canvas 
+      <canvas
         ref={canvasRef}
         className="w-full absolute"
         width={canvasWidth}
         height={700}
       />
-      <canvas 
+      <canvas
         ref={gridRef}
         className="w-full absolute"
         width={canvasWidth}

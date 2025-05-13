@@ -1,0 +1,8 @@
+{
+  "name": "Palisade Custody",
+  "description": "Palisade is a digital asset custody platform providing services ranging from fully regulated HSM wallets to MPC and passkey-enabled wallets for businesses building on web3",
+  "url": "https://www.palisade.co",
+  "imageUrl": "/images/partners/palisade.jpg",
+  "category": "infra",
+  "subcategory": "developer tool"
+}

@@ -126,7 +126,7 @@ Recipients will be prompted to make a Coinbase Wallet to claim the crypto. Wheth
 
 ![][image4]
 
-**Step 5:** Copy the link and sShare it on any platform. 
+**Step 5:** Copy the link and Share it on any platform. 
 
 * Clicking the link will prompt the recipient to open Coinbase Wallet or download Coinbase Wallet to claim the crypto   
 * If the crypto isn’t claimed within 14 weeks, it will be returned to your wallet. 

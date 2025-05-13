@@ -1,0 +1,8 @@
+{
+  "name": "Aave",
+  "url": "https://app.aave.com",
+  "description": "Aave Protocol is a non-custodial liquidity protocol. Users can participate as suppliers, borrowers, or liquidators, earning interest on supplied assets and borrowing in an overcollateralized manner.",
+  "imageUrl": "/images/partners/aave.webp",
+  "category": "defi",
+  "subcategory": "lending/borrowing"
+}

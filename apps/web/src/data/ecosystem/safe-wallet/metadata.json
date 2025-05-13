@@ -1,0 +1,8 @@
+{
+  "name": "Safe Wallet",
+  "url": "https://safe.global/",
+  "description": "Safe is the most trusted platform to manage digital assets on Ethereum.",
+  "category": "wallet",
+  "subcategory": "multisig",
+  "imageUrl": "/images/partners/safe.webp"
+}

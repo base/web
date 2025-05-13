@@ -1,0 +1,8 @@
+{
+  "name": "Warden Agent Kit",
+  "description": "Warden Protocol enables developers to build autonomous, smart contract-native AI agents on Base. Our protocol seamlessly integrates verified AI inferences directly into smart contracts, allowing you to create sophisticated automated agents that execute complex strategies based on AI model outputs. With Warden, your agents can process and verify multiple AI inferences in a single transaction and make autonomous on-chain decisions. Build the next wave of AI agents on Base with enterprise-grade security and cross-chain compatibility.",
+  "url": "https://docs.wardenprotocol.org/build-an-agent/warden-agent-kit/introduction",
+  "imageUrl": "/images/partners/warden.png",
+  "category": "ai",
+  "subcategory": "ai"
+}

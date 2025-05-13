@@ -1,0 +1,8 @@
+{
+  "name": "Ambire Wallet",
+  "url": "https://www.ambire.com/",
+  "description": "Ambire Wallet is an open-source self-custodial smart wallet that utilizes account abstraction, acting as a gateway to Web3 applications and providing users with secure and effortless management of their digital assets.",
+  "category": "wallet",
+  "subcategory": "self-custody",
+  "imageUrl": "/images/partners/ambire.webp"
+}

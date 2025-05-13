@@ -7,7 +7,7 @@ author: briandoyle81
 
 The [Coinbase Smart Wallet] is a great way to onboard new users to onchain apps, and offers a number of experiential improvements to existing crypto users as well. As we're in a period of adoption and transition, a pain point has developed where a user with both the Smart Wallet and a browser-extension EOA can't always select the wallet they want while connecting to an app.
 
-In this tutorial, you'll learn how to more easily improve that experience by using [Wallet] component from [OnchainKit] to connect your users to your app.
+In this tutorial, you'll learn how to more easily improve that experience by using the [Wallet] component from [OnchainKit] to connect your users to your app.
 
 ## Objectives
 
@@ -74,7 +74,7 @@ Open `src/components/WalletWrapper.tsx`, and `src/wagmi.ts`. Take a quick look a
 
 You can customize this by making some changes to `wagmi.ts`.
 
-Start with `wagmi.ts`. Update it import the [RainbowKit] connectors for the wallets you want to use (We just picked the ones a the end of the supported list. Do your homework on which wallets to support!):
+Start with `wagmi.ts`. Update it import the [RainbowKit] connectors for the wallets you want to use (We just picked the ones at the end of the supported list. Do your homework on which wallets to support!):
 
 ```tsx
 import { http, createConfig } from 'wagmi';
@@ -195,13 +195,13 @@ In this tutorial, you've learned how to use [OnchainKit] to log your users into 
 [wagmi]: https://wagmi.sh/
 [viem]: https://viem.sh/
 [quick start]: https://www.rainbowkit.com/docs/installation
-[WalletConnect]: https://cloud.walletconnect.com/
+[WalletConnect]: https://cloud.reown.com/
 [smart contract development]: https://base.org/learn
 [Base]: https://docs.base.org/network-information
 [smart contract development]: https://base.org/camp
 [`createConfig`]: https://wagmi.sh/react/api/createConfig
 [Introduction to Providers]: ./intro-to-providers
-[Onchain App Development]: https://docs.base.org/base-learn/docs/frontend-setup/overview
+[Onchain App Development]: https://docs.base.org/learn/frontend-setup/overview
 [Coinbase Wallet]: https://www.coinbase.com/wallet
 [Coinbase Smart Wallet]: https://www.coinbase.com/wallet/smart-wallet
 [custom wallet list]: https://www.rainbowkit.com/docs/custom-wallet-list

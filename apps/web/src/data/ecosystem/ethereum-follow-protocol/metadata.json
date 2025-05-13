@@ -1,0 +1,8 @@
+{
+  "name": "Ethereum Follow Protocol",
+  "description": "Onchain social graph protocol for Ethereum accounts. Complements ENS, SIWE, & other elements of the Ethereum identity stack.",
+  "url": "https://ethfollow.xyz/",
+  "imageUrl": "/images/partners/efp.png",
+  "category": "consumer",
+  "subcategory": "social"
+}

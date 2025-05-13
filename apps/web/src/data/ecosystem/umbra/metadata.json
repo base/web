@@ -1,0 +1,8 @@
+{
+  "name": "Umbra",
+  "description": "Umbra is a stealth address protocol. A payer can send funds to a fresh address belonging to the recipient. Only the sender and the receiver know who owns the newly created address.",
+  "url": "https://app.umbra.cash/",
+  "imageUrl": "/images/partners/umbra.png",
+  "category": "consumer",
+  "subcategory": "payments"
+}

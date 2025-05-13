@@ -1,0 +1,8 @@
+{
+  "name": "Banxa",
+  "url": "https://www.banxa.com/",
+  "description": "Banxa is the leading compliant fiat-to-crypto payments infrastructure provider that allows users to seamlessly on and off-ramp to your app using a huge variety of global and local payment methods.",
+  "imageUrl": "/images/partners/banxa.webp",
+  "category": "onramp",
+  "subcategory": "fiat on-ramp"
+}

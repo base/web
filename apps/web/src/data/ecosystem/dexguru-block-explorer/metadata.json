@@ -1,0 +1,8 @@
+{
+  "name": "DexGuru Block Explorer",
+  "url": "https://base.dex.guru/",
+  "description": "DexGuru is an analytics platform and block explorer for Base.",
+  "imageUrl": "/images/partners/dexguru.webp",
+  "category": "infra",
+  "subcategory": "data"
+}
