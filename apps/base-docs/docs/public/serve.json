@@ -27,6 +27,10 @@
       "destination": "/chain/report"
     },
     {
+      "source": "/tools/network-faucets",
+      "destination": "/chain/network-faucets"
+    },
+    {
       "source": "/docs/tools/network-faucets",
       "destination": "/chain/network-faucets"
     },
