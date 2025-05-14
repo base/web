@@ -1,0 +1,641 @@
+---
+title: 'Using Profiles with Smart Wallet'
+description: 'Learn how to request and validate user profile data using Smart Wallet'
+---
+
+import GithubRepoCard from "@/components/GithubRepoCard"
+import { Callout } from "vocs/components"
+
+# Profiles
+
+In this guide, we'll explore how to use the Profiles feature in Smart Wallet to request and validate user information
+like email addresses and physical addresses for a simple checkout flow.
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <img
+    alt="Profiles Demo"
+    src="/images/smart-wallet/ProfilesDemo.gif"
+    width="1000"
+    loading="lazy"
+    style={{ borderRadius: "16px" }}
+  />
+  <em>Profiles Demo</em>
+</div>
+
+## What you'll achieve
+
+By the end of this guide, you will:
+
+- Set up a NextJS+Wagmi project to work with Smart Wallet Profiles
+- Create a simple interface to request user profile data
+- Implement a validation API to verify the data
+- Handle successful responses and errors
+
+### Skip ahead
+
+If you want to skip ahead and just get the final code, you can find it here:
+
+<GithubRepoCard title="Smart Wallet Profiles Demo" githubUrl="https://github.com/base/demos/tree/master/smart-wallet/profiles-demo" />
+
+## Understanding Profiles
+
+The Profiles feature allows developers to request personal information from Smart Wallet users during a transaction. This is useful for applications that need:
+
+- Email addresses
+- Physical addresses
+- Phone numbers
+- Names
+
+Smart Wallet handles the collection of this information and it is left to you to validate it and store it as you see fit
+while following the standards and regulations in place.
+
+<Callout type="info">
+**Privacy First**
+
+Users always have full control over their data. They can choose to share or withhold any information, and they're clearly shown what data you're requesting.
+
+</Callout>
+
+## Project Setup
+
+Let's create a simple app that demonstrates the Profiles feature. We'll be using NextJS with [Wagmi](https://wagmi.sh/) hooks to integrate with Smart Wallet.
+
+<Callout type="info">
+**Get started with Wagmi**
+
+If you don't have Wagmi set up yet,
+you can use `npm create wagmi@latest` to get started.
+
+For more information on how to use Wagmi,
+check out the [Wagmi documentation](https://wagmi.sh/react/getting-started).
+
+</Callout>
+
+### Configure Wagmi
+
+First, ensure your Wagmi configuration is set up correctly:
+
+```ts [wagmi.ts]
+import { http, cookieStorage, createConfig, createStorage } from "wagmi";
+import { baseSepolia } from "wagmi/chains";
+import { coinbaseWallet } from "wagmi/connectors";
+
+const cbWalletConnector = coinbaseWallet({
+  appName: "Profiles Demo",
+  preference: {
+    keysUrl: "https://keys-dev.coinbase.com/connect",
+    options: "smartWalletOnly",
+  },
+});
+
+export function getConfig() {
+  return createConfig({
+    chains: [baseSepolia],
+    connectors: [cbWalletConnector],
+    storage: createStorage({
+      storage: cookieStorage,
+    }),
+    ssr: true,
+    transports: {
+      [baseSepolia.id]: http(),
+    },
+  });
+}
+
+declare module "wagmi" {
+  interface Register {
+    config: ReturnType<typeof getConfig>;
+  }
+}
+```
+
+<Callout type="warning">
+**Development Environment**
+
+This guide uses the Smart Wallet development environment (`keys-dev.coinbase.com`) because
+Profiles are only available on the development environment for now.
+
+Profiles will be available in the production environment soon,
+so you won't need to specify the `keysUrl` parameter.
+
+Your connector would look like this:
+
+```ts [wagmi.ts]
+const cbWalletConnector = coinbaseWallet({
+  appName: "Profiles Demo",
+  preference: "smartWalletOnly",
+});
+```
+
+</Callout>
+
+### Creating the User Interface
+
+Now, let's create a simple UI to request profile data from users. We'll create a page with checkboxes to select which data to request.
+
+```tsx [app/page.tsx]
+"use client";
+
+import { ProviderInterface } from "@coinbase/wallet-sdk";
+import { useEffect, useState } from "react";
+import { encodeFunctionData, erc20Abi, numberToHex, parseUnits } from "viem";
+import { useAccount, useConnect, useDisconnect } from "wagmi";
+
+export default function Home() {
+  const [provider, setProvider] = useState(undefined);
+  const [dataToRequest, setDataToRequest] = useState({
+    email: true,
+    address: true
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [result, setResult] = useState(null);
+
+  const account = useAccount();
+  const { connectors, connect, status, error } = useConnect();
+  const { disconnect } = useDisconnect();
+
+  // Initialize provider when account connected
+  useEffect(() => {
+    async function getProvider() {
+      if (account.status === 'connected' && account.connector) {
+        const provider = await account.connector.getProvider();
+        setProvider(provider);
+      }
+    }
+    getProvider();
+  }, [account]);
+
+  // Function to get callback URL - replace in production
+  function getCallbackURL() {
+    return "https://your-ngrok-url.ngrok-free.app/api/data-validation";
+  }
+
+  // Handle form submission
+  async function handleSubmit() {
+    try {
+      setIsLoading(true);
+      setResult(null);
+
+      // Build requests array based on checkboxes
+      const requests = [];
+      if (dataToRequest.email) requests.push({ type: "email", optional: false });
+      if (dataToRequest.address) requests.push({ type: "physicalAddress", optional: false });
+
+      if (requests.length === 0) {
+        setResult({ success: false, error: "Select at least one data type" });
+        setIsLoading(false);
+        return;
+      }
+
+      // Request data from wallet
+      const response = await provider?.request({
+        method: "wallet_sendCalls",
+        params: [{
+          version: "1.0",
+          chainId: numberToHex(84532), // Base Sepolia
+          calls: [
+              {
+                to: "0x036CbD53842c5426634e7929541eC2318f3dCF7e", // USDC contract address on Base Sepolia
+                data: encodeFunctionData({
+                  abi: erc20Abi,
+                  functionName: "transfer",
+                  args: [
+                    "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+                    parseUnits("0.01", 6),
+                  ],
+                }),
+              },
+            ], // Simple transfer of 0.01 USDC to the contract
+          capabilities: {
+            dataCallback: {
+              requests: requests,
+              callbackURL: getCallbackURL(),
+            },
+          },
+        }],
+      });
+
+      // Process response
+      if (response?.capabilities?.dataCallback) {
+        const data = response.capabilities.dataCallback;
+        const result = { success: true };
+
+        // Extract email if provided
+        if (data.email) result.email = data.email;
+
+        // Extract address if provided
+        if (data.physicalAddress) {
+          const addr = data.physicalAddress.physicalAddress;
+          result.address = [
+            addr.address1,
+            addr.address2,
+            addr.city,
+            addr.state,
+            addr.postalCode,
+            addr.countryCode
+          ].filter(Boolean).join(", ");
+        }
+
+        setResult(result);
+      } else {
+        setResult({ success: false, error: "Invalid response" });
+      }
+    } catch (error) {
+      setResult({ success: false, error: error.message || "Transaction failed" });
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  return (
+    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
+      <h1>Profiles Demo</h1>
+
+      {/* Wallet Status */}
+      <div style={{ marginBottom: "20px" }}>
+        <p>Status: {account.status}</p>
+        {account.status === 'connected' ? (
+          <button onClick={disconnect}>Disconnect</button>
+        ) : (
+          connectors
+            .filter(c => c.name === 'Coinbase Wallet')
+            .map(connector => (
+              <button key={connector.uid} onClick={() => connect({ connector })}>
+                Connect Smart Wallet
+              </button>
+            ))
+        )}
+      </div>
+
+      {/* Data Request Form */}
+      {account.status === 'connected' && (
+        <div style={{ marginTop: "20px" }}>
+          <h2>Checkout</h2>
+
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                checked={dataToRequest.email}
+                onChange={() => setDataToRequest(prev => ({ ...prev, email: !prev.email }))}
+              />
+              Email Address
+            </label>
+          </div>
+
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                checked={dataToRequest.address}
+                onChange={() => setDataToRequest(prev => ({ ...prev, address: !prev.address }))}
+              />
+              Physical Address
+            </label>
+          </div>
+
+          <button
+            onClick={handleSubmit}
+            disabled={isLoading || !provider}
+          >
+            {isLoading ? "Processing..." : "Checkout"}
+          </button>
+        </div>
+      )}
+
+      {/* Results Display */}
+      {result && (
+        <div style={{
+          marginTop: "20px",
+          padding: "15px",
+          backgroundColor: result.success ? "#d4edda" : "#f8d7da",
+          borderRadius: "5px"
+        }}>
+          {result.success ? (
+            <>
+              <h3>Data Received</h3>
+              {result.email && <p><strong>Email:</strong> {result.email}</p>}
+              {result.address && <p><strong>Address:</strong> {result.address}</p>}
+            </>
+          ) : (
+            <>
+              <h3>Error</h3>
+              <p>{result.error}</p>
+            </>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+<Callout type="warning">
+**HTTPS Required**
+
+Smart Wallet requires callback URLs to use HTTPS, even for local development.
+For local testing, use a secure tunnel service like ngrok and update
+the `ngrokUrl` variable with your tunnel URL.
+
+To start ngrok, run the following command:
+
+```bash [Terminal]
+ngrok http 3000
+```
+
+If you don't have ngrok installed, you can install it with the following command:
+
+```bash [Terminal]
+npm install -g ngrok
+```
+
+You can learn more about ngrok [here](https://ngrok.com/docs).
+
+</Callout>
+
+### Implementing the Validation API
+
+Now, let's create an API endpoint to validate the data received from Smart Wallet.
+This endpoint will check for valid formats and return errors if needed.
+
+<Callout type="info">
+**Wallet Validation**
+
+Smart Wallet will make some basic validation of the data before sending it to your callback URL.
+This includes checking that the email is a valid email address and the physical address is a valid address.
+
+If the data is invalid, Smart Wallet will return an error to the user and not make the callback.
+
+</Callout>
+
+```ts [app/api/data-validation/route.ts]
+// app/api/data-validation/route.ts
+export async function POST(request: Request) {
+  const requestData = await request.json();
+
+  try {
+    // Extract data from request
+    const email = requestData.requestedInfo.email;
+    const physicalAddress = requestData.requestedInfo.physicalAddress;
+
+    const errors = {};
+
+    // Example: Reject example.com emails
+    if (email && email.endsWith("@example.com")) {
+      errors.email = "Example.com emails are not allowed";
+    }
+
+    // Example: Validate physical address
+    if (physicalAddress) {
+      if (physicalAddress.postalCode && physicalAddress.postalCode.length < 5) {
+        if (!errors.physicalAddress) errors.physicalAddress = {};
+        errors.physicalAddress.postalCode = "Invalid postal code";
+      }
+
+      if (physicalAddress.countryCode === "XY") {
+        if (!errors.physicalAddress) errors.physicalAddress = {};
+        errors.physicalAddress.countryCode = "We don't ship to this country";
+      }
+    }
+
+    // Return errors if any found
+    if (Object.keys(errors).length > 0) {
+      return Response.json({
+        errors,
+        /*request: {
+          calls: [], // Replace the old calls with new ones
+          chainId: numberToHex(84532), // Base Sepolia
+          version: "1.0",
+        },*/
+      });
+    }
+
+    // Success - no validation errors - you HAVE to return the original calls
+    return Response.json({
+        calls: requestData.calls,
+        chainId: requestData.chainId,
+        capabilities: requestData.capabilities
+    });
+
+  } catch (error) {
+    console.error("Error processing data:", error);
+    return Response.json({
+      errors: { server: "Server error validating data" }
+    });
+  }
+}
+```
+
+<Callout type="warning">
+**Returning the original calls**
+
+You MUST return the original calls in the response if the check is successful.
+
+If you don't, the wallet will return an error.
+
+</Callout>
+
+## How It Works
+
+When a user visits your application and connects their Smart Wallet, the following process occurs:
+
+1. **User connects their Smart Wallet**: The user clicks "Sign in with Smart Wallet" and authorizes the connection.
+
+2. **App requests profile data**: Your app calls `wallet_sendCalls` with the `dataCallback` capability, a list of calls to be made, a list of requested data types, and a callback URL to call with the data.
+
+3. **Smart Wallet prompts the user**: The wallet shows a UI asking the user to share the requested information.
+
+4. **User provides data**: The user enters/confirms their information in the Smart Wallet interface.
+
+5. **Data is validated**: Smart Wallet sends the data to your callback URL for validation.
+
+6. **Validation response**: Your API validates the data and returns success or errors as well as any new calls to be made.
+
+7. **Transaction completion**: If validation passes, the wallet returns the data to your application.
+
+<Callout type="info">
+**Replacing calls after data validation**
+
+If you need to replace the calls made in the initial request with new ones, you can do so by returning a `request` object in the response.
+
+This is useful if you need to make a second call to get a new address based on the first one, for example.
+
+```ts [app/api/data-validation/route.ts]
+{
+  request: {
+    calls: [], // Replace the old calls with new ones
+    chainId: numberToHex(84532), // Base Sepolia
+    version: "1.0",
+  },
+}
+```
+
+</Callout>
+
+## Understanding the Response Format
+
+When a user provides profile information, Smart Wallet returns a response object with the following structure:
+
+```ts
+{
+  callsId: string,
+  requestedInfo: {
+    email?: string,
+    physicalAddress?: {
+      physicalAddress: {
+          address1: string,
+          address2?: string,
+          city: string,
+          state: string,
+          postalCode: string,
+          countryCode: string,
+          name?: {
+            firstName: string,
+            familyName: string,
+          }
+        },
+        isPrimary: boolean,
+      },
+      walletAddress?: string,
+      phoneNumber?: {
+        number: string,
+        country: string,
+        isPrimary: boolean,
+      },
+      name?: {
+        firstName: string,
+        familyName: string,
+      }
+    }
+  }
+}
+```
+
+Each field will only be present if it was requested and provided by the user.
+
+## Validation Error Format
+
+If your validation API finds issues with the data, return an errors object with this structure:
+
+```ts
+{
+  errors: {
+    email?: string,
+    name?: {
+      firstName?: string,
+      lastName?: string,
+    },
+    phoneNumber?: {
+      countryCode?: string,
+      number?: string,
+    },
+    physicalAddress?: {
+      address1?: string,
+      address2?: string,
+      city?: string,
+      state?: string,
+      postalCode?: string,
+      country?: string,
+    },
+    walletAddress?: string,
+  }
+}
+```
+
+Smart Wallet will show these error messages to the user and prompt them to correct the information.
+
+## Testing Your Integration
+
+To test your integration:
+
+1. Start your development server:
+
+```bash [Terminal]
+npm run dev
+```
+
+2. Start an ngrok tunnel to your local server:
+
+```bash [Terminal]
+ngrok http 3000
+```
+
+3. Update the `ngrokUrl` variable in your code with the HTTPS URL from ngrok.
+
+4. Open your browser and navigate to your localhost URL.
+
+5. Connect your Smart Wallet and test requesting and validating user data.
+
+## Advanced Use Cases
+
+### Combining with Transactions
+
+You can combine profile data requests with actual blockchain transactions:
+
+```ts
+const response = await provider?.request({
+  method: "wallet_sendCalls",
+  params: [
+    {
+      version: "1.0",
+      chainId: numberToHex(84532),
+      calls: [
+        {
+          to: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913", // USDC contract
+          data: encodeFunctionData({
+            abi: erc20Abi,
+            functionName: "transfer",
+            args: [
+              "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+              parseUnits("0.01", 6),
+            ],
+          }),
+        },
+      ],
+      capabilities: {
+        dataCallback: {
+          requests: [{ type: "email", optional: false }],
+          callbackURL: getCallbackURL(),
+        },
+      },
+    },
+  ],
+});
+```
+
+This way, you can collect shipping information while processing a payment, or get an email for order confirmation while executing a transaction.
+
+### Making Fields Optional
+
+You can make any requested field optional by setting the `optional` parameter:
+
+```ts
+requests: [
+  { type: "email", optional: false },  // Required
+  { type: "physicalAddress", optional: true },  // Optional
+]
+```
+
+Optional fields will be marked as such in the Smart Wallet interface, allowing users to skip them.
+
+## Best Practices
+
+1. **Only request what you need**: Ask for the minimum information necessary for your application.
+
+2. **Explain why**: In your UI, clearly explain why you need each piece of information.
+
+3. **Be transparent**: Inform users how their data will be used and stored.
+
+4. **Thorough validation**: Validate all fields properly and provide helpful error messages.
+
+5. **Handle errors gracefully**: Always account for cases where users decline to provide information.
+
+## Conclusion
+
+The Profiles feature in Smart Wallet provides a secure and user-friendly way to collect necessary user information for your onchain app. By following this guide, you've learned how to:
+
+- Request profile data from Smart Wallet users
+- Validate that data through a callback API
+- Process and display the information in your application
+
+This integration simplifies user onboarding and data collection while maintaining user privacy and control.

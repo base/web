@@ -3,6 +3,6 @@
   "description": "Aviator Arcade is a gaming platform that brings the classic arcade experience to Web3. Players can enjoy games while developers can publish their games to earn rewards.",
   "url": "https://arcade.aviator.ac",
   "imageUrl": "https://aviator.ac/assets/aviator_arcade.png",
-  "category": "consumer"
+  "category": "consumer",
   "subcategory": "gaming"
 }

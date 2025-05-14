@@ -1,5 +1,5 @@
 import { useErrors } from 'apps/web/contexts/Errors';
-import { NameSuggestionResponseData } from 'apps/web/pages/api/name/[alreadyClaimedName]';
+import { NameSuggestionResponseData } from 'apps/web/app/(basenames)/api/name/[alreadyClaimedName]/route';
 import { useAreNamesAvailable } from 'apps/web/src/hooks/useIsNameAvailable';
 import { normalizeEnsDomainName, validateEnsDomainName } from 'apps/web/src/utils/usernames';
 import { useEffect, useMemo, useState } from 'react';

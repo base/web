@@ -1,259 +1,226 @@
 ---
 title: 'Project Setup'
-description: 'Set up a NextJS project with Coinbase Smart Wallet integration'
+description: 'Set up a NextJS project with Smart Wallet integration'
 ---
+
+import GithubRepoCard from "@/components/GithubRepoCard"
+import { Callout } from "vocs/components"
 
 # Project Setup
 
-In this section, we'll set up a NextJS project and configure it to work with Coinbase Smart Wallet.
+In this section, we'll set up a NextJS project using [Wagmi](https://wagmi.sh/) hooks and configure it to work with Smart Wallet.
 
 ## What you'll achieve
 
 By the end of this guide, you will:
 
-- Set up a NextJS project and configure it to work with Coinbase Smart Wallet
-- Create a Coinbase Wallet Context to manage the state and functions needed to interact with Coinbase Smart Wallet
+- Set up a NextJS+Wagmi project and configure it to work with Smart Wallet
+- Create a Wagmi config to use Sub Accounts in conjunction with Spend Permissions
 
 ### Skip ahead
 
-Note: if you want to skip ahead and just get the final code, you can find it [here](https://github.com/montycheese/sub-account-starter-template).
+If you want to skip ahead and just get the final code, you can find it here:
 
-```bash
-git clone https://github.com/montycheese/sub-account-starter-template.git
-```
+<GithubRepoCard title="Sub Account Starter Template Demo" githubUrl="https://github.com/base/demos/tree/master/smart-wallet/sub-accounts-demo" />
 
 ## Creating a New Project
 
-We'll be using NextJS to bootstrap this project, but you can adapt these concepts to any frontend framework of your choice.
+We'll be using a [Wagmi template](https://wagmi.sh/react/getting-started) to bootstrap this project.
 
-First, create a new NextJS project and select all the default options when prompted:
+First, create a new Wagmi project:
 
-```bash
-npx create-next-app@latest my-app
+```bash [Terminal]
+npm create wagmi@latest my-app
+```
+
+Select the following options:
+
+```bash [Terminal]
+✔ Select a framework: › React
+✔ Select a variant: › Next
 ```
 
 Navigate into the project directory:
 
-```bash
+```bash [Terminal]
 cd my-app
 ```
 
-Install Coinbase Wallet SDK (only on canary version for now)
+Let's override the default `@coinbase/wallet-sdk` version with the latest canary version:
 
-```bash
-npm install @coinbase/wallet-sdk@canary
+```bash [Terminal]
+npm pkg set overrides.@coinbase/wallet-sdk=canary
 ```
 
-Install viem for blockchain interactions
-
-```bash
-npm install viem
-```
-
-:::tip[Development Environment]
-Note: Sub Accounts are currently only available in the Coinbase Smart Wallet development environment.
-In the CoinbaseWalletSDK properties you can set the `keysUrl` to `https://keys-dev.coinbase.com/connect` to use this environment.
+:::warning[Override before installing]
+Sub Accounts are currently only available in the Smart Wallet development environment (Canary).
+Make sure to override the `@coinbase/wallet-sdk` version BEFORE installing the packages.
 :::
 
-**Note:** Sub Accounts are only supported in version 4.4.0 or above of the Coinbase Wallet SDK.
+Install packages
 
-## Project Structure
-
-After running these commands, your project should have the following basic structure:
-
-```
-app/
-   layout.tsx
-   page.tsx
+```bash [Terminal]
+npm install
 ```
 
-## Setting up the Coinbase Wallet Context
+## Setting up the Wagmi config
 
-This section will walk you through setting up Coinbase Wallet Context to manage the state and functions needed to interact with Coinbase Smart Wallet.
+After running these commands, it is time to set up the Wagmi config.
 
-Create a new directory called `context` under the `app` directory and add a React Context for the Coinbase SDK called [CoinbaseWalletContext](https://github.com/montycheese/sub-account-starter-template/blob/master/app/context/CoinbaseWalletContext.tsx).
+```ts [wagmi.ts]
+import { http, cookieStorage, createConfig, createStorage } from "wagmi";
+import { baseSepolia, base } from "wagmi/chains";
+import { coinbaseWallet } from "wagmi/connectors";
+import { parseEther, toHex } from "viem";
 
-```tsx
-// app/context/CoinbaseWalletContext.tsx
-'use client';
-import { createCoinbaseWalletSDK, ProviderInterface } from '@coinbase/wallet-sdk';
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  ReactNode,
-  useMemo,
-  useCallback,
-} from 'react';
-import { Address, createWalletClient, custom } from 'viem';
-import { baseSepolia } from 'viem/chains';
-
-interface CoinbaseWalletContextType {
-  provider: ProviderInterface | null;
-  connect: () => Promise<void>;
-  disconnect: () => void;
-  isConnected: boolean;
-  address: Address | null;
-}
-
-const CoinbaseWalletContext = createContext<CoinbaseWalletContextType>({
-  provider: null,
-  connect: async () => {},
-  disconnect: () => {},
-  isConnected: false,
-  address: null,
-});
-
-export function CoinbaseWalletProvider({ children }: { children: ReactNode }) {
-  const [provider, setProvider] = useState<ProviderInterface | null>(null);
-  const [isConnected, setIsConnected] = useState(false);
-  const [address, setAddress] = useState<Address | null>(null);
-  useEffect(() => {
-    // Initialize Coinbase Wallet SDK
-    const coinbaseWalletSDK = createCoinbaseWalletSDK({
-      appName: 'Coinbase Wallet demo',
-      appChainIds: [baseSepolia.id],
-      preference: {
-        options: 'smartWalletOnly',
-        keysUrl: 'https://keys-dev.coinbase.com/connect',
-      },
-    });
-    setProvider(coinbaseWalletSDK.getProvider());
-  }, []);
-  const walletClient = useMemo(() => {
-    if (!provider) return null;
-    return createWalletClient({
-      chain: baseSepolia,
-      transport: custom({
-        async request({ method, params }) {
-          const response = await provider.request({ method, params });
-          return response;
+export function getConfig() {
+  return createConfig({
+    chains: [baseSepolia, base],
+    connectors: [
+      coinbaseWallet({
+        appName: "My Sub Account Demo",
+        preference: {
+          keysUrl: "https://keys-dev.coinbase.com/connect",
+          options: "smartWalletOnly",
+        },
+        subAccounts: {
+          enableAutoSubAccounts: true,
+          defaultSpendLimits: {
+            84532: [ // Base Sepolia Chain ID
+              {
+                token: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+                allowance: toHex(parseEther('0.01')), // 0.01 ETH
+                period: 86400, // 24h
+              },
+            ],
+          },
         },
       }),
-    });
-  }, [provider]);
-
-  const connect = useCallback(async () => {
-    if (!walletClient || !provider) return;
-    walletClient.requestAddresses().then(async (addresses) => {
-      if (addresses.length > 0) {
-        setAddress(addresses[0]);
-        setIsConnected(true);
-      }
-    });
-  }, [walletClient, provider]);
-
-  const disconnect = () => {
-    if (!provider) return;
-    try {
-      provider.disconnect();
-      setIsConnected(false);
-      setAddress(null);
-    } catch (error) {
-      console.error('Failed to disconnect from Coinbase Wallet:', error);
-    }
-  };
-
-  return (
-    <CoinbaseWalletContext.Provider
-      value={{
-        provider,
-        connect,
-        disconnect,
-        isConnected,
-        address,
-      }}
-    >
-      {children}
-    </CoinbaseWalletContext.Provider>
-  );
+    ],
+    storage: createStorage({
+      storage: cookieStorage,
+    }),
+    ssr: true,
+    transports: {
+      [baseSepolia.id]: http(),
+      [base.id]: http(),
+    },
+  });
 }
 
-export function useCoinbaseWallet() {
-  const context = useContext(CoinbaseWalletContext);
-  if (context === undefined) {
-    throw new Error('useCoinbaseWallet must be used within a CoinbaseWalletProvider');
+declare module "wagmi" {
+  interface Register {
+    config: ReturnType<typeof getConfig>;
   }
-  return context;
 }
 ```
 
-## Creating the Provider Wrapper
+Let's break down the key preference parameters:
 
-Create a [providers file](https://github.com/montycheese/sub-account-starter-template/blob/master/app/providers.tsx) to wrap your application:
+- `keysUrl`: Points to the development environment for Smart Wallet testing
+- `options: 'smartWalletOnly'`: Ensures only Smart Wallet mode is used
+- `enableAutoSubAccounts: true`: When set to true, automatically creates a Sub Account at connection
+- `defaultSpendLimits`: Configures Spend Limits for Sub Account for a network (eg. Base Sepolia `84532`), including:
 
-```tsx
-// app/providers.tsx
+  - Token address (In this case, `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` represents the native ETH)
+  - Allowance WEI amount (in Hex)
+  - Time period for the allowance (in seconds, e.g., 86400 for 24 hours)
 
-'use client';
-import { CoinbaseWalletProvider } from '@/app/context/CoinbaseWalletContext';
-import { ReactNode } from 'react';
+<Callout type="warning">
+**About `keysUrl`**
 
-export default function Providers({ children }: { children: ReactNode }) {
-  return <CoinbaseWalletProvider>{children}</CoinbaseWalletProvider>;
-}
-```
+Sub Accounts are currently only available in the Smart Wallet development environment.
+To use this environment, you need to set the `keysUrl` to `https://keys-dev.coinbase.com/connect` in your configuration.
 
-## Updating the Root Layout
-
-Update your [root layout file](https://github.com/montycheese/sub-account-starter-template/blob/master/app/layout.tsx) to include the providers:
-
-```tsx
-// app/layout.tsx
-import Providers from '@/app/providers';
-
-export default function RootLayout({ children }: { children: ReactNode }) {
-  return (
-    <html>
-      <body>
-        <Providers>{children}</Providers>
-      </body>
-    </html>
-  );
-}
-```
+</Callout>
 
 ## Creating the Home Page
 
-Update your [main page](https://github.com/montycheese/sub-account-starter-template/blob/master/app/page.tsx) to include wallet connection functionality:
+Update your main page (`app/page.tsx`) to include wallet connection functionality:
 
-```tsx
-// app/page.tsx
+```tsx [app/page.tsx]
+'use client'
 
-'use client';
-import { useCoinbaseWallet } from './context/CoinbaseWalletContext';
-export default function Home() {
-  const { isConnected, connect, disconnect, address } = useCoinbaseWallet();
+import { parseEther } from 'viem'
+import { useAccount, useConnect, useDisconnect, useSendTransaction } from 'wagmi'
+
+function App() {
+  const account = useAccount()
+  const { connectors, connect, status, error } = useConnect()
+  const { disconnect } = useDisconnect()
   return (
-    <div>
-      {isConnected ? (
+    <>
+      <div>
+        <h2>Account</h2>
+
         <div>
-          <p>Connected address: {address}</p>
-          <button onClick={disconnect}>Disconnect Wallet</button>
+          Status: {account.status}
+          <br />
+          Sub Account Address: {JSON.stringify(account.addresses)}
+          <br />
+          Chain ID: {account.chainId}
         </div>
-      ) : (
-        <button onClick={connect}>Connect Wallet</button>
-      )}
-    </div>
-  );
+
+        {account.status === 'connected' && (
+          <button type="button" onClick={() => disconnect()}>
+            Disconnect
+          </button>
+        )}
+      </div>
+
+      <div>
+        <h2>Connect</h2>
+        {connectors
+          .filter((connector) => connector.name === 'Coinbase Wallet')
+          .map((connector) => (
+            <button
+              key={connector.uid}
+              onClick={() => connect({ connector })}
+              type="button"
+            >
+              Sign in with Smart Wallet
+            </button>
+          ))}
+        <div>{status}</div>
+        <div>{error?.message}</div>
+      </div>
+    </>
+  )
 }
+
+export default App
+
 ```
 
 ## Testing the Setup
 
 1. Start your development server:
 
-```bash
+```bash [Terminal]
 npm run dev
 ```
 
 2. Open your browser and navigate to `http://localhost:3000`.
-3. Click the "Connect Wallet" button to connect your Coinbase Smart Wallet.
-4. After connecting, you should see your wallet address displayed on the page
+3. Click the "Sign in with Smart Wallet" button to connect your Smart Wallet.
+4. You should be prompted to create a Sub Account as shown below.
 
-Now that you have the basic setup complete, you're ready to start implementing Sub Accounts! Continue to the next section to learn how to create Sub Accounts for your users.
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <img
+    alt="Sub Account Creation"
+    src="/images/smart-wallet/sub-account-popup.png"
+    width="300"
+    loading="lazy"
+  />
+  <em>Sub Account Creation Pop-up</em>
+</div>
+
+Now that you have the basic setup complete, you're ready to start using Sub Accounts! Continue to the next section to learn how to send transactions using your Sub Account.
 
 ## Next Steps
 
-In the next section, we'll cover [Creating Sub Accounts](/identity/smart-wallet/guides/sub-accounts/creating-sub-accounts) and how to integrate them into your application.
+In the next section, we'll cover [Using Sub Accounts](/identity/smart-wallet/guides/sub-accounts/using-sub-accounts) - how to sign messages and send transactions with your Sub Account.
+
+## Additional Resources
+
+- You can take a look at the final code in the [Sub Account Starter Template Demo](https://github.com/base/demos/tree/master/smart-wallet/sub-accounts-demo)
+- You can reach out to us on the #smart-wallet channel on [Discord](https://discord.com/invite/cdp) if you have any questions or feedback

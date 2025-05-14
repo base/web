@@ -5,6 +5,12 @@
 The Coinbase Wallet SDK now supports Sub Accounts, allowing apps to create and manage additional smart contract accounts for users.
 Sub Accounts can have multiple owners and operate as smart contract wallets with enhanced security and flexibility.
 
+:::warning[Sub Account scope]
+Sub Accounts are currently scoped to an application's fully qualified domain name (FQDN).
+This means that a user has one sub account for your application,
+and it cannot be used on other applications on separate domains.
+:::
+
 ## Getting Started
 
 ### Installation
@@ -22,10 +28,15 @@ import { createCoinbaseWalletSDK, getCryptoKeyAccount } from '@coinbase/wallet-s
 const sdk = createCoinbaseWalletSDK({
   appName: 'My Dapp',
   appLogoUrl: 'https://example.com/logo.png',
+  paymasterUrls: {
+    84532: 'https://<base-paymaster-url>',
+  },
   // Set up Sub Account support with a signer function
-  toSubAccountSigner: async () => {
-    // Return a signer that can be used to authenticate operations
-    return await getCryptoKeyAccount();
+  subAccounts: {
+    toOwnerAccount: async () => {
+      // Return a signer that can be used to authenticate operations
+      return await getCryptoKeyAccount();
+    },
   },
 });
 
@@ -102,7 +113,9 @@ const signature = await provider.request({
 createCoinbaseWalletSDK({
   appName: string,
   appLogoUrl: string,
-  toSubAccountSigner: () => Promise<{ account: { publicKey: string; address?: string } }>,
+  subAccount: {
+    toOwnerAccount: () => Promise<{ account: { publicKey: string; address?: string } }>,
+  },
 });
 ```
 
@@ -141,13 +154,13 @@ Parameters:
 
 Returns: `Promise<string>` - Response from the smart contract call
 
-#### `sdk.subaccount.setSigner(toSubAccountSigner)`
+#### `sdk.subaccount.setToOwnerAccount(toOwnerAccount)`
 
 Sets the signer function for Sub Account operations.
 
 Parameters:
 
-- `toSubAccountSigner`: Function that returns a Promise resolving to a signer object
+- `toOwnerAccount`: Function that returns a Promise resolving to a signer object
 
 ## Technical Details
 

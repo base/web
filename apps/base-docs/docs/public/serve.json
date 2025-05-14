@@ -7,12 +7,36 @@
   ],
   "redirects": [
     {
+      "source": "/tutorials",
+      "destination": "/"
+    },
+    {
       "source": "/docs/network-information",
       "destination": "/chain/network-information"
     },
     {
+      "source": "/chain/security/report",
+      "destination": "/chain/report"
+    },
+    {
+      "source": "/chain/security/app-blocklist",
+      "destination": "/chain/app-blocklist"
+    },
+    {
+      "source": "/chain/security/bounty",
+      "destination": "/chain/report"
+    },
+    {
+      "source": "/tools/network-faucets",
+      "destination": "/chain/network-faucets"
+    },
+    {
       "source": "/docs/tools/network-faucets",
       "destination": "/chain/network-faucets"
+    },
+    {
+      "source": "/tutorials/",
+      "destination": "/"
     },
     {
       "source": "/tutorials/deploy-with-foundry",
@@ -25,6 +49,10 @@
     {
       "source": "/network-information",
       "destination": "/chain/network-information"
+    },
+    {
+      "source": "/chain/network-information",
+      "destination": "/chain/connecting-to-base"
     },
     {
       "source": "/tutorials/deploy-with-remix",
@@ -99,6 +127,10 @@
       "destination": "/identity/smart-wallet/concepts/features/optional/spend-permissions"
     },
     {
+      "source": "/identity/smart-wallet/concepts/features/optional/spend-permissions",
+      "destination": "/identity/smart-wallet/concepts/features/optional/spend-limits"
+    },
+    {
       "source": "/identity/smart-wallet/features/sub-accounts",
       "destination": "/identity/smart-wallet/concepts/features/optional/sub-accounts"
     },
@@ -115,8 +147,12 @@
       "destination": "/identity/smart-wallet/quickstart"
     },
     {
+      "source": "/identity/smart-wallet/guides/spend-permissions",
+      "destination": "/identity/smart-wallet/guides/spend-limits"
+    },
+    {
       "source": "/identity/smart-wallet/guides/spend-permissions/:path*",
-      "destination": "/identity/smart-wallet/guides/spend-permissions/"
+      "destination": "/identity/smart-wallet/guides/spend-limits/"
     },
     {
       "source": "/identity/smart-wallet/guides/create-app/:path*",
@@ -145,6 +181,18 @@
     {
       "source": "/identity/smart-wallet/faq/:path*",
       "destination": "/identity/smart-wallet/quickstart"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/sub-accounts/creating-sub-accounts",
+      "destination": "/identity/smart-wallet/guides/sub-accounts/"
+    },
+    {
+      "source": "/identity/smart-wallet/guides/sub-accounts/incorporate-spend-permissions",
+      "destination": "/identity/smart-wallet/guides/sub-accounts/"
+    },
+    {
+      "source": "/chain/flashblocks",
+      "destination": "/chain/flashblocks/apps"
     }
   ]
 }

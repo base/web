@@ -18,15 +18,10 @@ Sub Accounts are hierarchical, app-specific accounts that extend from a user's p
 - App-Signer Agnostic: Sub Accounts are designed to be agnostic to whatever signing software an app wants to use: whether in-browser CryptoKey or server signers from teams like Privy or Turnkey.
 - When an app requests a Sub Account creation and the user approves, all future signing and transaction requests will use the Sub Account.
 
-Refer to the [Sub Account Reference](/identity/smart-wallet/guides/sub-accounts) for more details on how to create and manage Sub Accounts.
+Refer to the [Implementation Guide](/identity/smart-wallet/guides/sub-accounts) or the [Technical Reference](/identity/smart-wallet/technical-reference/sdk/sub-account-reference) for more details on how to create and manage Sub Accounts.
 
 :::tip[Development]
-Note: Sub Accounts are currently only available in the Coinbase Smart Wallet development environment.
-In the CoinbaseWalletSDK properties you can set the `keysUrl` to `https://keys-dev.coinbase.com/connect` to use this environment.
+Sub Accounts are currently only available in the Coinbase Smart Wallet development environment.
 
 If you would like to use Sub Accounts with Coinbase Smart Wallet in our production environment, please [reach out](https://discord.com/invite/buildonbase) to the Base team.
 :::
-
-## Sub Account scope
-
-Sub Accounts are currently scoped to an application's fully qualified domain name (FQDN). This means that a user has one sub account for your application, and it cannot be used on other applications on separate domains.

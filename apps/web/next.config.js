@@ -133,6 +133,8 @@ const contentSecurityPolicy = {
     "'self'",
     'blob:',
     'data:',
+    'https://base.org',
+    'https://*.base.org',
     'https://euc.li',
     'https://*.walletconnect.com/', // WalletConnect
     'https://i.seadn.io/', // ens avatars
@@ -294,6 +296,11 @@ module.exports = extendBaseConfig(
           // just so the build doesn't fail in CI
           destination: process.env.NEXT_PUBLIC_OCS_CREATIVE_DOWNLOAD_URL ?? '/',
           permanent: false,
+        },
+        {
+          source: '/luma',
+          destination: 'https://lu.ma/base-virtualevents',
+          permanent: true,
         },
         {
           source: '/registry',
