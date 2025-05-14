@@ -991,6 +991,10 @@ export const sidebar: Sidebar = [
                 text: 'Basenames OnchainKit Tutorial',
                 link: '/identity/basenames/basenames-onchainkit-tutorial',
               },
+              {
+                text: 'Basenames Frames Tutorial',
+                link: '/identity/basenames/basenames-frames-tutorial',
+              },
             ],
           },
           {
