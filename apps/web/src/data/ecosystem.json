@@ -3550,12 +3550,26 @@
     "category": "consumer",
     "subcategory": "nft"
   },
- {
+  {
     "name": "dHEDGE",
     "tags": ["defi"],
     "description": "dHEDGE is architecture for creating tokenized vaults enabling tokens that perform any strategy",
     "url": "https://dhedge.org/",
-    "imageUrl": "/images/partners/toros_logo.base.eco.png"
-  } 
+    "imageUrl": "/images/partners/dHEDGE_Base.png"
+  },
+  {
+    "name": "Toros Finance",
+    "tags": ["defi"],
+    "description": "Toros offers structured products for yield and derivatives",
+    "url": "https://toros.finance/",
+    "imageUrl": "/images/partners/toros-logo.png"
+  },
+  {
+    "name": "Flat Money",
+    "tags": ["defi"],
+    "description": "Flat Money turns volatile assets like rETH & wBTC into delta-neutral yield bearing tokens by supplying them to leveraged perps traders that pay fees to access the liquidity",
+    "url": "https://flat.money/",
+    "imageUrl": "/images/partners/flat_money_logo.png"
+  }
 ]
 
