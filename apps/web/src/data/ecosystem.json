@@ -1248,14 +1248,6 @@
     "subcategory": "dex"
   },
   {
-    "name": "Deri Protocol",
-    "description": "Deri is the one-stop derivatives shop to hedge, speculate, and arbitrage on-chain. Trade perpetuals, options, gamma swap, and more!",
-    "url": "https://deri.io/#/pro/trade/futures/BTCUSD?chain=Base",
-    "imageUrl": "/images/partners/deriprotocol.png",
-    "category": "defi",
-    "subcategory": "dex"
-  },
-  {
     "name": "Desig",
     "url": "https://desig.io/",
     "description": "Meet Desig: A Smart Multisig wallet simplifying treasury ops. Flourishing funds with intuitive tracking, smart allocation & insightful cashflow reports. Enjoy gasless vault control; intel-driven swap.",
