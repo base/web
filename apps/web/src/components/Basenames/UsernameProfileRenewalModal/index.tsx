@@ -147,14 +147,14 @@ export default function UsernameProfileRenewalModal({
 
       {currentRenewalStep === RenewalSteps.Confirm && (
         <div className="mt-4 flex w-full flex-col gap-6">
-          <div className="border-gray-200 space-y-3 rounded-lg border  p-4">
+          <div className="border-gray-200 space-y-3 rounded-lg border p-4">
             <div className="flex justify-between">
-              <span className="text-gray-700 text-sm font-medium">Basename:</span>
-              <span className="text-gray-900 text-sm">{name}</span>
+              <span className="text-gray-700 text-md font-medium">Basename:</span>
+              <span className="text-gray-900 text-md">{name}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-700 text-sm font-medium">Renewal period:</span>
-              <span className="text-gray-900 text-sm">
+              <span className="text-gray-700 text-md font-medium">Renewal period:</span>
+              <span className="text-gray-900 text-md">
                 {years} {years === 1 ? 'year' : 'years'}
               </span>
             </div>
