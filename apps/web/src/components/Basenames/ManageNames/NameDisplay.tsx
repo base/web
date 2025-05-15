@@ -102,7 +102,8 @@ export default function NameDisplay({ domain, isPrimary, tokenId, expiresAt }: N
               ) : null}
               <DropdownItem onClick={openRenewalModal}>
                 <span className="flex flex-row items-center gap-2">
-                  <Icon name="clock" color="currentColor" width="1rem" height="1rem" /> Renew Name
+                  <Icon name="convert" color="currentColor" width="1rem" height="1rem" /> Extend
+                  registration
                 </span>
               </DropdownItem>
             </DropdownMenu>
