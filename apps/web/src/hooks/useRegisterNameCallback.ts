@@ -76,7 +76,7 @@ export function useRegisterNameCallback(
     transactionStatus: registerNameStatus,
     transactionIsLoading: registerNameIsLoading,
     transactionError: registerNameError,
-  } = useWriteContractWithReceipt<typeof REGISTER_CONTRACT_ABI, 'register'>({
+  } = useWriteContractWithReceipt({
     chain: basenameChain,
     eventName: 'register_name',
   });

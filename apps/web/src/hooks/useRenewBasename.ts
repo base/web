@@ -2,8 +2,12 @@ import { useErrors } from 'apps/web/contexts/Errors';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import useCapabilitiesSafe from 'apps/web/src/hooks/useCapabilitiesSafe';
 import { useRentPrice } from 'apps/web/src/hooks/useRentPrice';
-import useWriteContractsWithLogs from 'apps/web/src/hooks/useWriteContractsWithLogs';
-import useWriteContractWithReceipt from 'apps/web/src/hooks/useWriteContractWithReceipt';
+import useWriteContractsWithLogs, {
+  BatchCallsStatus,
+} from 'apps/web/src/hooks/useWriteContractsWithLogs';
+import useWriteContractWithReceipt, {
+  WriteTransactionWithReceiptStatus,
+} from 'apps/web/src/hooks/useWriteContractWithReceipt';
 import { secondsInYears } from 'apps/web/src/utils/secondsInYears';
 import {
   normalizeEnsDomainName,
@@ -13,12 +17,25 @@ import {
 import { useCallback } from 'react';
 import { useAccount } from 'wagmi';
 
+type UseRenewNameCallbackReturnType = {
+  callback: () => Promise<void>;
+  isPending: boolean;
+  error: Error | null;
+  value: bigint | undefined;
+  years: number;
+  batchCallsStatus: BatchCallsStatus;
+  renewNameStatus: WriteTransactionWithReceiptStatus;
+};
+
 type UseRenewBasenameProps = {
   name: string;
   years: number;
 };
 
-export function useRenewBasename({ name, years }: UseRenewBasenameProps) {
+export function useRenewBasenameCallback({
+  name,
+  years,
+}: UseRenewBasenameProps): UseRenewNameCallbackReturnType {
   const { logError } = useErrors();
   const { address } = useAccount();
   const { basenameChain } = useBasenameChain();
@@ -39,7 +56,7 @@ export function useRenewBasename({ name, years }: UseRenewBasenameProps) {
     transactionStatus: renewNameStatus,
     transactionIsLoading: renewNameIsLoading,
     transactionError: renewNameError,
-  } = useWriteContractWithReceipt<typeof REGISTER_CONTRACT_ABI, 'renew'>({
+  } = useWriteContractWithReceipt({
     chain: basenameChain,
     eventName: 'renew_name',
   });
@@ -47,7 +64,7 @@ export function useRenewBasename({ name, years }: UseRenewBasenameProps) {
   // Params
   const normalizedName = normalizeEnsDomainName(name);
   const { basePrice, premiumPrice } = useRentPrice(normalizedName, years);
-  const totalPrice = basePrice + premiumPrice;
+  const value: bigint | undefined = basePrice + premiumPrice;
 
   const renewName = useCallback(async () => {
     if (!address) {
@@ -63,7 +80,7 @@ export function useRenewBasename({ name, years }: UseRenewBasenameProps) {
           address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
           functionName: 'renew',
           args: renewRequest,
-          value: totalPrice,
+          value,
         });
       } else {
         await initiateBatchCalls({
@@ -73,7 +90,7 @@ export function useRenewBasename({ name, years }: UseRenewBasenameProps) {
               address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
               functionName: 'renew',
               args: renewRequest,
-              value: totalPrice,
+              value,
             },
           ],
           account: address,
@@ -92,18 +109,17 @@ export function useRenewBasename({ name, years }: UseRenewBasenameProps) {
     name,
     normalizedName,
     paymasterServiceEnabled,
-    totalPrice,
+    value,
     years,
   ]);
 
   return {
     callback: renewName,
-    totalPrice,
-    basePrice,
-    premiumPrice,
     isPending: renewNameIsLoading || batchCallsIsLoading,
     error: renewNameError ?? batchCallsError,
-    renewNameStatus,
-    batchCallsStatus,
+    value: value,
+    years: years,
+    batchCallsStatus: batchCallsStatus,
+    renewNameStatus: renewNameStatus,
   };
 }
