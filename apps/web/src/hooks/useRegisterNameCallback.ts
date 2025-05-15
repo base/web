@@ -11,16 +11,17 @@ import useWriteContractWithReceipt, {
   WriteTransactionWithReceiptStatus,
 } from 'apps/web/src/hooks/useWriteContractWithReceipt';
 import {
+  convertChainIdToCoinTypeUint,
   formatBaseEthDomain,
   IS_EARLY_ACCESS,
   normalizeEnsDomainName,
   REGISTER_CONTRACT_ABI,
   REGISTER_CONTRACT_ADDRESSES,
 } from 'apps/web/src/utils/usernames';
-import { secondsInYears } from 'apps/web/src/utils/secondsInYears';
 import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
 import { encodeFunctionData, namehash } from 'viem';
 import { useAccount } from 'wagmi';
+import { secondsInYears } from 'apps/web/src/utils/secondsInYears';
 
 type UseRegisterNameCallbackReturnType = {
   callback: () => Promise<void>;
@@ -91,6 +92,16 @@ export function useRegisterNameCallback(
       args: [namehash(formatBaseEthDomain(name, basenameChain.id)), address],
     });
 
+    const baseCointypeData = encodeFunctionData({
+      abi: L2ResolverAbi,
+      functionName: 'setAddr',
+      args: [
+        namehash(formatBaseEthDomain(name, basenameChain.id)),
+        BigInt(convertChainIdToCoinTypeUint(basenameChain.id)),
+        address,
+      ],
+    });
+
     const nameData = encodeFunctionData({
       abi: L2ResolverAbi,
       functionName: 'setName',
@@ -105,7 +116,7 @@ export function useRegisterNameCallback(
       owner: address, // The address of the owner for the name.
       duration: secondsInYears(years), // The duration of the registration in seconds.
       resolver: USERNAME_L2_RESOLVER_ADDRESSES[basenameChain.id], // The address of the resolver to set for this name.
-      data: [addressData, nameData], //  Multicallable data bytes for setting records in the associated resolver upon registration.
+      data: [addressData, baseCointypeData, nameData], //  Multicallable data bytes for setting records in the associated resolver upon registration.
       reverseRecord, // Bool to decide whether to set this name as the "primary" name for the `owner`.
     };
 
