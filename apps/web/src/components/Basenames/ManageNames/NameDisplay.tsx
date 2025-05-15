@@ -122,7 +122,6 @@ export default function NameDisplay({ domain, isPrimary, tokenId, expiresAt }: N
           name={name}
           isOpen={isRenewalModalOpen}
           onClose={closeRenewalModal}
-          // onSuccess={removeNameFromUI}
         />
       </UsernameProfileProvider>
     </li>

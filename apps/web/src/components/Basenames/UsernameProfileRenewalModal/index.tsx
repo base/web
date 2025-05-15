@@ -3,8 +3,10 @@
 import { useErrors } from 'apps/web/contexts/Errors';
 import { Button, ButtonVariants } from 'apps/web/src/components/Button/Button';
 import Modal from 'apps/web/src/components/Modal';
-import { useRenewBasename } from 'apps/web/src/hooks/useRenewBasename';
-import { useCallback, useState } from 'react';
+import { useRenewBasenameCallback } from 'apps/web/src/hooks/useRenewBasename';
+import { BatchCallsStatus } from 'apps/web/src/hooks/useWriteContractsWithLogs';
+import { WriteTransactionWithReceiptStatus } from 'apps/web/src/hooks/useWriteContractWithReceipt';
+import { useCallback, useEffect, useState } from 'react';
 import { formatEther } from 'viem';
 import { useAccount } from 'wagmi';
 
@@ -16,7 +18,7 @@ enum RenewalSteps {
 }
 
 const rewnewalStepsTitleForDisplay = {
-  [RenewalSteps.SetYears]: 'Set years',
+  [RenewalSteps.SetYears]: 'Extend Registration',
   [RenewalSteps.Confirm]: 'Confirm renewal details',
   [RenewalSteps.WalletRequests]: 'Confirm transactions',
   [RenewalSteps.Success]: '',
@@ -33,7 +35,6 @@ export default function UsernameProfileRenewalModal({
   name,
   isOpen,
   onClose,
-  onSuccess,
 }: UsernameProfileRenewalModalProps) {
   const [years, setYears] = useState<number>(1);
   const [currentRenewalStep, setCurrentRenewalStep] = useState<RenewalSteps>(RenewalSteps.SetYears);
@@ -43,12 +44,11 @@ export default function UsernameProfileRenewalModal({
 
   const {
     callback: renewBasename,
-    price,
+    value: price,
     isPending,
-    error,
     renewNameStatus,
     batchCallsStatus,
-  } = useRenewBasename({
+  } = useRenewBasenameCallback({
     name,
     years: years ?? 0,
   });
@@ -63,17 +63,44 @@ export default function UsernameProfileRenewalModal({
     setCurrentRenewalStep(RenewalSteps.SetYears);
   }, [onClose]);
 
+  const onBack = useCallback(() => {
+    if (currentRenewalStep === RenewalSteps.Confirm) {
+      return () => setCurrentRenewalStep(RenewalSteps.SetYears);
+    }
+  }, [currentRenewalStep, setCurrentRenewalStep]);
+
+  const handleIncrementYears = useCallback(() => {
+    setYears((prevYears) => prevYears + 1);
+  }, []);
+
+  const handleDecrementYears = useCallback(() => {
+    setYears((prevYears) => Math.max(1, prevYears - 1));
+  }, []);
+
+  const handleRenewBasename = useCallback(() => {
+    renewBasename()
+      .then(() => {
+        if (
+          renewNameStatus === WriteTransactionWithReceiptStatus.Success ||
+          batchCallsStatus === BatchCallsStatus.Success
+        ) {
+          setCurrentRenewalStep(RenewalSteps.Success);
+        }
+      })
+      .catch((e) => {
+        logError(e, 'Failed to renew basename');
+      });
+  }, [renewBasename, logError, renewNameStatus, batchCallsStatus]);
+
+  useEffect(() => {
+    if (currentRenewalStep === RenewalSteps.Success) {
+      onCloseModal();
+    }
+  }, [currentRenewalStep, onCloseModal, renewNameStatus, batchCallsStatus]);
+
   if (!address) {
     return null;
   }
-
-  const handleIncrementYears = () => {
-    setYears((prevYears) => prevYears + 1);
-  };
-
-  const handleDecrementYears = () => {
-    setYears((prevYears) => Math.max(1, prevYears - 1));
-  };
 
   return (
     <Modal
@@ -81,19 +108,15 @@ export default function UsernameProfileRenewalModal({
       title={rewnewalStepsTitleForDisplay[currentRenewalStep]}
       titleAlign="left"
       onClose={onCloseModal}
+      onBack={onBack()}
     >
       {currentRenewalStep === RenewalSteps.SetYears && (
         <div className="mt-4 flex w-full flex-col gap-y-5">
           <div>
-            <p className="text-gray-500 text-sm">
-              Renew Basename <span className="text-gray-700 font-semibold">{name}</span>
-            </p>
-            <p className="text-gray-400 mt-1 text-xs">
-              Choose for how many years you&apos;d like to extend your ownership.
-            </p>
+            <p>Choose how many years you&apos;d like to extend your registration for.</p>
           </div>
 
-          <div className="my-6 flex w-full flex-col items-center justify-center gap-y-3">
+          <div className="my-3 flex w-full flex-col items-center justify-center gap-y-3">
             <p className="text-sm font-bold uppercase tracking-wider text-palette-foregroundMuted">
               Extend for
             </p>
@@ -147,11 +170,19 @@ export default function UsernameProfileRenewalModal({
             <div className="border-gray-200 flex justify-between border-t pt-3">
               <span className="text-gray-700 text-base font-semibold">Estimated cost:</span>
               <span className="text-gray-900 text-base font-semibold">
-                {price ? `${formatEther(price)} ETH` : 'Calculating...'}
+                {price ? `${parseFloat(formatEther(price)).toFixed(4)} ETH` : 'Calculating...'}
               </span>
             </div>
           </div>
-          <Button variant={ButtonVariants.Black} fullWidth rounded onClick={renewBasename}>
+          <Button
+            type="button"
+            variant={ButtonVariants.Black}
+            fullWidth
+            rounded
+            onClick={handleRenewBasename}
+            disabled={!price}
+            isLoading={isPending}
+          >
             Confirm & Renew
           </Button>
         </div>
