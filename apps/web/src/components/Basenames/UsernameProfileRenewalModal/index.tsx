@@ -13,14 +13,12 @@ import { useAccount } from 'wagmi';
 enum RenewalSteps {
   SetYears = 'set-years',
   Confirm = 'confirm',
-  WalletRequests = 'wallet-requests',
   Success = 'success',
 }
 
 const rewnewalStepsTitleForDisplay = {
   [RenewalSteps.SetYears]: 'Extend Registration',
   [RenewalSteps.Confirm]: 'Confirm renewal details',
-  [RenewalSteps.WalletRequests]: 'Confirm transactions',
   [RenewalSteps.Success]: '',
 };
 
@@ -28,7 +26,6 @@ type UsernameProfileRenewalModalProps = {
   name: string;
   isOpen: boolean;
   onClose: () => void;
-  onSuccess?: () => void;
 };
 
 export default function UsernameProfileRenewalModal({
@@ -50,18 +47,12 @@ export default function UsernameProfileRenewalModal({
     batchCallsStatus,
   } = useRenewBasenameCallback({
     name,
-    years: years ?? 0,
+    years,
   });
 
   const onConfirmRenewal = useCallback(() => {
     setCurrentRenewalStep(RenewalSteps.Confirm);
   }, []);
-
-  const onCloseModal = useCallback(() => {
-    onClose();
-    setYears(1);
-    setCurrentRenewalStep(RenewalSteps.SetYears);
-  }, [onClose]);
 
   const onBack = useCallback(() => {
     if (currentRenewalStep === RenewalSteps.Confirm) {
@@ -94,9 +85,9 @@ export default function UsernameProfileRenewalModal({
 
   useEffect(() => {
     if (currentRenewalStep === RenewalSteps.Success) {
-      onCloseModal();
+      onClose();
     }
-  }, [currentRenewalStep, onCloseModal, renewNameStatus, batchCallsStatus]);
+  }, [currentRenewalStep, onClose, renewNameStatus, batchCallsStatus]);
 
   if (!address) {
     return null;
@@ -107,7 +98,7 @@ export default function UsernameProfileRenewalModal({
       isOpen={isOpen}
       title={rewnewalStepsTitleForDisplay[currentRenewalStep]}
       titleAlign="left"
-      onClose={onCloseModal}
+      onClose={onClose}
       onBack={onBack()}
     >
       {currentRenewalStep === RenewalSteps.SetYears && (
