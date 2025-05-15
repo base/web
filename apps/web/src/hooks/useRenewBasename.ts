@@ -49,21 +49,15 @@ export function useRenewBasename({ name, years }: UseRenewBasenameProps) {
   const { basePrice, premiumPrice } = useRentPrice(normalizedName, years);
   const totalPrice = basePrice + premiumPrice;
 
-  // Callback
   const renewName = useCallback(async () => {
     if (!address) {
-      return;
+      throw new Error('No address found');
     }
 
     const renewRequest = [normalizedName, secondsInYears(years)];
 
     try {
       if (!paymasterServiceEnabled) {
-        console.log('Renewing name without paymaster', {
-          renewRequest,
-          totalPrice,
-          contractAddress: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
-        });
         await initiateRenewName({
           abi: REGISTER_CONTRACT_ABI,
           address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
@@ -72,7 +66,6 @@ export function useRenewBasename({ name, years }: UseRenewBasenameProps) {
           value: totalPrice,
         });
       } else {
-        console.log('Renewing name with paymaster');
         await initiateBatchCalls({
           contracts: [
             {
