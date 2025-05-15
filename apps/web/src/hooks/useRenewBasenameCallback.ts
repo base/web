@@ -32,7 +32,7 @@ type UseRenewBasenameProps = {
   years: number;
 };
 
-export function useRenewBasenameCallback({
+export function useRenewBasename({
   name,
   years,
 }: UseRenewBasenameProps): UseRenewNameCallbackReturnType {
