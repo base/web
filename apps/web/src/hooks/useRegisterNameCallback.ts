@@ -17,6 +17,7 @@ import {
   REGISTER_CONTRACT_ABI,
   REGISTER_CONTRACT_ADDRESSES,
 } from 'apps/web/src/utils/usernames';
+import { secondsInYears } from 'apps/web/src/utils/secondsInYears';
 import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
 import { encodeFunctionData, namehash } from 'viem';
 import { useAccount } from 'wagmi';
@@ -31,11 +32,6 @@ type UseRegisterNameCallbackReturnType = {
   batchCallsStatus: BatchCallsStatus;
   registerNameStatus: WriteTransactionWithReceiptStatus;
 };
-
-function secondsInYears(years: number): bigint {
-  const secondsPerYear = 365.25 * 24 * 60 * 60; // .25 accounting for leap years
-  return BigInt(Math.round(years * secondsPerYear));
-}
 
 export function useRegisterNameCallback(
   name: string,
