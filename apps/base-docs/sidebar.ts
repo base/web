@@ -735,8 +735,8 @@ export const sidebar: Sidebar = [
                     link: '/identity/smart-wallet/concepts/usage-details/gas-usage',
                   },
                   {
-                    text: 'Self Calls',
-                    link: '/identity/smart-wallet/concepts/usage-details/self-calls',
+                    text: 'Unsupported Calls',
+                    link: '/identity/smart-wallet/concepts/usage-details/unsupported-calls',
                   },
                 ],
               },
