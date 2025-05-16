@@ -63,8 +63,7 @@ export function useRenewNameCallback({
 
   // Params
   const normalizedName = normalizeEnsDomainName(name);
-  const { basePrice } = useRentPrice(normalizedName, years);
-  const value: bigint | undefined = basePrice;
+  const { basePrice: value } = useRentPrice(normalizedName, years);
 
   const renewName = useCallback(async () => {
     if (!address) {
