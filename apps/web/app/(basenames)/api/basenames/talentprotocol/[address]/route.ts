@@ -13,7 +13,7 @@ export async function GET(
 
   try {
     const response = await fetch(
-      `https://api.talentprotocol.com/api/v2/passports/${encodeURIComponent(address)}`,
+      `https://api.talentprotocol.com/score?id=${encodeURIComponent(address)}`,
       {
         method: 'GET',
         headers: {
