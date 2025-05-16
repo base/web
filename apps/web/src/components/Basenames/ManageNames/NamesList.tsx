@@ -3,6 +3,7 @@
 import { useCallback } from 'react';
 import NameDisplay from './NameDisplay';
 import { useNameList } from 'apps/web/src/components/Basenames/ManageNames/hooks';
+import { useErrors } from 'apps/web/contexts/Errors';
 import Link from 'apps/web/src/components/Link';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
@@ -30,10 +31,13 @@ function NamesLayout({ children }: { children: React.ReactNode }) {
 
 export default function NamesList() {
   const { namesData, isLoading, error, refetch } = useNameList();
+  const { logError } = useErrors();
 
-  const refetchNames = useCallback(async () => {
-    await refetch();
-  }, [refetch]);
+  const refetchNames = useCallback(() => {
+    refetch().catch((e) => {
+      logError(e, 'Failed to refetch names');
+    });
+  }, [logError, refetch]);
 
   if (error) {
     return (

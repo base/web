@@ -1,11 +1,13 @@
 'use client';
 
+import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { useErrors } from 'apps/web/contexts/Errors';
 import { Button, ButtonVariants } from 'apps/web/src/components/Button/Button';
 import Modal from 'apps/web/src/components/Modal';
 import { useRenewNameCallback } from 'apps/web/src/hooks/useRenewNameCallback';
 import { BatchCallsStatus } from 'apps/web/src/hooks/useWriteContractsWithLogs';
 import { WriteTransactionWithReceiptStatus } from 'apps/web/src/hooks/useWriteContractWithReceipt';
+import { ActionType } from 'libs/base-ui/utils/logEvent';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { formatEther } from 'viem';
 import { useAccount } from 'wagmi';
@@ -33,6 +35,7 @@ export default function UsernameProfileRenewalModal({
   onClose,
   onSuccess,
 }: UsernameProfileRenewalModalProps) {
+  const { logEventWithContext } = useAnalytics();
   const [years, setYears] = useState<number>(1);
   const [currentRenewalStep, setCurrentRenewalStep] = useState<RenewalSteps>(RenewalSteps.SetYears);
 
@@ -77,10 +80,11 @@ export default function UsernameProfileRenewalModal({
   }, []);
 
   const handleRenewBasename = useCallback(() => {
+    logEventWithContext('renew_name_initiated', ActionType.click);
     renewBasename().catch((e) => {
       logError(e, 'Failed to renew basename');
     });
-  }, [renewBasename, logError]);
+  }, [logError, logEventWithContext, renewBasename]);
 
   useEffect(() => {
     if (
