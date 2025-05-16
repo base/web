@@ -27,15 +27,15 @@ type UseRenewNameCallbackReturnType = {
   renewNameStatus: WriteTransactionWithReceiptStatus;
 };
 
-type UseRenewBasenameProps = {
+type UseRenewNameProps = {
   name: string;
   years: number;
 };
 
-export function useRenewBasenameCallback({
+export function useRenewNameCallback({
   name,
   years,
-}: UseRenewBasenameProps): UseRenewNameCallbackReturnType {
+}: UseRenewNameProps): UseRenewNameCallbackReturnType {
   const { logError } = useErrors();
   const { address } = useAccount();
   const { basenameChain } = useBasenameChain();
@@ -117,9 +117,9 @@ export function useRenewBasenameCallback({
     callback: renewName,
     isPending: renewNameIsLoading || batchCallsIsLoading,
     error: renewNameError ?? batchCallsError,
-    value: value,
-    years: years,
-    batchCallsStatus: batchCallsStatus,
-    renewNameStatus: renewNameStatus,
+    value,
+    years,
+    batchCallsStatus,
+    renewNameStatus,
   };
 }
