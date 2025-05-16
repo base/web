@@ -32,7 +32,7 @@ type UseRenewBasenameProps = {
   years: number;
 };
 
-export function useRenewBasename({
+export function useRenewBasenameCallback({
   name,
   years,
 }: UseRenewBasenameProps): UseRenewNameCallbackReturnType {
@@ -63,8 +63,8 @@ export function useRenewBasename({
 
   // Params
   const normalizedName = normalizeEnsDomainName(name);
-  const { basePrice, premiumPrice } = useRentPrice(normalizedName, years);
-  const value: bigint | undefined = basePrice + premiumPrice;
+  const { basePrice } = useRentPrice(normalizedName, years);
+  const value: bigint | undefined = basePrice;
 
   const renewName = useCallback(async () => {
     if (!address) {
