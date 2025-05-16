@@ -3,6 +3,6 @@
   "description": "Intents-based crosschain trading protocol",
   "url": "https://app.velora.xyz/#/swap/?network=base",
   "imageUrl": "/images/partners/velora.png",
-  "category": "defi"
+  "category": "defi",
   "subcategory": "dex aggregator"
 }
