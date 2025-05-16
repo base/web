@@ -195,6 +195,10 @@
       "destination": "/identity/smart-wallet/concepts/usage-details/unsupported-calls"
     },
     {
+      "source": "/identity/smart-wallet/technical-reference/sdk/sub-account-reference",
+      "destination": "/identity/smart-wallet/technical-reference/sub-account-reference"
+    },
+    {
       "source": "/chain/flashblocks",
       "destination": "/chain/flashblocks/apps"
     }
