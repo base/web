@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback } from 'react';
 import NameDisplay from './NameDisplay';
 import { useNameList } from 'apps/web/src/components/Basenames/ManageNames/hooks';
 import Link from 'apps/web/src/components/Link';
@@ -28,7 +29,11 @@ function NamesLayout({ children }: { children: React.ReactNode }) {
 }
 
 export default function NamesList() {
-  const { namesData, isLoading, error, refetch: refetchNames } = useNameList();
+  const { namesData, isLoading, error, refetch } = useNameList();
+
+  const refetchNames = useCallback(async () => {
+    await refetch();
+  }, [refetch]);
 
   if (error) {
     return (

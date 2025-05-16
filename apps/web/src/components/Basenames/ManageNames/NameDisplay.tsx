@@ -40,7 +40,7 @@ type NameDisplayProps = {
   isPrimary: boolean;
   tokenId: string;
   expiresAt: string;
-  refetchNames: () => void;
+  refetchNames: () => Promise<void>;
 };
 
 export default function NameDisplay({
