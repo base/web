@@ -3,10 +3,10 @@
 import { useErrors } from 'apps/web/contexts/Errors';
 import { Button, ButtonVariants } from 'apps/web/src/components/Button/Button';
 import Modal from 'apps/web/src/components/Modal';
-import { useRenewBasenameCallback } from 'apps/web/src/hooks/useRenewBasename';
+import { useRenewNameCallback } from 'apps/web/src/hooks/useRenewNameCallback';
 import { BatchCallsStatus } from 'apps/web/src/hooks/useWriteContractsWithLogs';
 import { WriteTransactionWithReceiptStatus } from 'apps/web/src/hooks/useWriteContractWithReceipt';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { formatEther } from 'viem';
 import { useAccount } from 'wagmi';
 
@@ -45,10 +45,18 @@ export default function UsernameProfileRenewalModal({
     isPending,
     renewNameStatus,
     batchCallsStatus,
-  } = useRenewBasenameCallback({
+  } = useRenewNameCallback({
     name,
     years,
   });
+
+  const formattedPrice = useMemo(() => {
+    return price ? `${parseFloat(formatEther(price)).toFixed(4)} ETH` : undefined;
+  }, [price]);
+
+  const formattedYears = useMemo(() => {
+    return years === 1 ? '1 year' : `${years} years`;
+  }, [years]);
 
   const onConfirmRenewal = useCallback(() => {
     setCurrentRenewalStep(RenewalSteps.Confirm);
@@ -120,9 +128,7 @@ export default function UsernameProfileRenewalModal({
               >
                 -
               </button>
-              <span className="text-3xl font-bold text-black">
-                {years} {years === 1 ? 'year' : 'years'}
-              </span>
+              <span className="text-3xl font-bold text-black">{formattedYears}</span>
               <button
                 type="button"
                 onClick={handleIncrementYears}
@@ -149,20 +155,18 @@ export default function UsernameProfileRenewalModal({
         <div className="mt-4 flex w-full flex-col gap-6">
           <div className="border-gray-200 space-y-3 rounded-lg border p-4">
             <div className="flex justify-between">
-              <span className="text-gray-700 text-md font-medium">Basename:</span>
-              <span className="text-gray-900 text-md">{name}</span>
+              <strong className="text-gray-700 text-md">Basename:</strong>
+              <p className="text-gray-900 text-md">{name}</p>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-700 text-md font-medium">Renewal period:</span>
-              <span className="text-gray-900 text-md">
-                {years} {years === 1 ? 'year' : 'years'}
-              </span>
+              <strong className="text-gray-700 text-md">Renewal period:</strong>
+              <p className="text-gray-900 text-md">{formattedYears}</p>
             </div>
             <div className="border-gray-200 flex justify-between border-t pt-3">
-              <span className="text-gray-700 text-base font-semibold">Estimated cost:</span>
-              <span className="text-gray-900 text-base font-semibold">
-                {price ? `${parseFloat(formatEther(price)).toFixed(4)} ETH` : 'Calculating...'}
-              </span>
+              <strong className="text-gray-700 text-base font-semibold">Estimated cost:</strong>
+              <p className="text-gray-900 text-base font-semibold">
+                {formattedPrice ?? 'Calculating...'}
+              </p>
             </div>
           </div>
           <Button
