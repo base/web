@@ -28,7 +28,7 @@ function NamesLayout({ children }: { children: React.ReactNode }) {
 }
 
 export default function NamesList() {
-  const { namesData, isLoading, error } = useNameList();
+  const { namesData, isLoading, error, refetch: refetchNames } = useNameList();
 
   if (error) {
     return (
@@ -73,6 +73,7 @@ export default function NamesList() {
             isPrimary={name.is_primary}
             tokenId={name.token_id}
             expiresAt={name.expires_at}
+            refetchNames={refetchNames}
           />
         ))}
       </ul>

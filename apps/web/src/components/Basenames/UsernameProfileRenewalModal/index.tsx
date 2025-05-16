@@ -24,12 +24,14 @@ type UsernameProfileRenewalModalProps = {
   name: string;
   isOpen: boolean;
   onClose: () => void;
+  onSuccess?: () => void;
 };
 
 export default function UsernameProfileRenewalModal({
   name,
   isOpen,
   onClose,
+  onSuccess,
 }: UsernameProfileRenewalModalProps) {
   const [years, setYears] = useState<number>(1);
   const [currentRenewalStep, setCurrentRenewalStep] = useState<RenewalSteps>(RenewalSteps.SetYears);
@@ -88,8 +90,9 @@ export default function UsernameProfileRenewalModal({
       onClose();
       setCurrentRenewalStep(RenewalSteps.SetYears);
       setYears(1);
+      onSuccess?.();
     }
-  }, [renewNameStatus, batchCallsStatus, onClose]);
+  }, [renewNameStatus, batchCallsStatus, onClose, onSuccess]);
 
   if (!address) {
     return null;

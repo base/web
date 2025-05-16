@@ -40,9 +40,16 @@ type NameDisplayProps = {
   isPrimary: boolean;
   tokenId: string;
   expiresAt: string;
+  refetchNames: () => void;
 };
 
-export default function NameDisplay({ domain, isPrimary, tokenId, expiresAt }: NameDisplayProps) {
+export default function NameDisplay({
+  domain,
+  isPrimary,
+  tokenId,
+  expiresAt,
+  refetchNames,
+}: NameDisplayProps) {
   const expirationText = formatDistanceToNow(parseISO(expiresAt), { addSuffix: true });
   const name = domain.split('.')[0];
 
@@ -122,6 +129,7 @@ export default function NameDisplay({ domain, isPrimary, tokenId, expiresAt }: N
           name={name}
           isOpen={isRenewalModalOpen}
           onClose={closeRenewalModal}
+          onSuccess={refetchNames}
         />
       </UsernameProfileProvider>
     </li>
