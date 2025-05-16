@@ -13,13 +13,11 @@ import { useAccount } from 'wagmi';
 enum RenewalSteps {
   SetYears = 'set-years',
   Confirm = 'confirm',
-  Success = 'success',
 }
 
 const rewnewalStepsTitleForDisplay = {
   [RenewalSteps.SetYears]: 'Extend Registration',
   [RenewalSteps.Confirm]: 'Confirm renewal details',
-  [RenewalSteps.Success]: '',
 };
 
 type UsernameProfileRenewalModalProps = {
@@ -77,25 +75,21 @@ export default function UsernameProfileRenewalModal({
   }, []);
 
   const handleRenewBasename = useCallback(() => {
-    renewBasename()
-      .then(() => {
-        if (
-          renewNameStatus === WriteTransactionWithReceiptStatus.Success ||
-          batchCallsStatus === BatchCallsStatus.Success
-        ) {
-          setCurrentRenewalStep(RenewalSteps.Success);
-        }
-      })
-      .catch((e) => {
-        logError(e, 'Failed to renew basename');
-      });
-  }, [renewBasename, logError, renewNameStatus, batchCallsStatus]);
+    renewBasename().catch((e) => {
+      logError(e, 'Failed to renew basename');
+    });
+  }, [renewBasename, logError]);
 
   useEffect(() => {
-    if (currentRenewalStep === RenewalSteps.Success) {
+    if (
+      renewNameStatus === WriteTransactionWithReceiptStatus.Success ||
+      batchCallsStatus === BatchCallsStatus.Success
+    ) {
       onClose();
+      setCurrentRenewalStep(RenewalSteps.SetYears);
+      setYears(1);
     }
-  }, [currentRenewalStep, onClose, renewNameStatus, batchCallsStatus]);
+  }, [renewNameStatus, batchCallsStatus, onClose]);
 
   if (!address) {
     return null;
