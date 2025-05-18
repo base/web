@@ -17,6 +17,7 @@ export function useNameList() {
     data: namesData,
     isLoading,
     error,
+    refetch,
   } = useQuery<ManagedAddressesResponse>({
     queryKey: ['usernames', address, network],
     queryFn: async (): Promise<ManagedAddressesResponse> => {
@@ -36,7 +37,7 @@ export function useNameList() {
     enabled: !!address,
   });
 
-  return { namesData, isLoading, error };
+  return { namesData, isLoading, error, refetch };
 }
 
 export function useRemoveNameFromUI(domain: Basename) {
