@@ -48,7 +48,7 @@ The ETH is required for covering gas fees associated with deploying smart contra
 
 LayerZero is an interoperability protocol that allows developers to build applications (and tokens) that can connect to multiple blockchains. LayerZero defines these types of applications as "omnichain" applications.
 
-The LayerZero protocol is made up of immutable on-chain [Endpoints](https://docs.layerzero.network/explore/layerzero-endpoint), a configurable [Security Stack](https://docs.layerzero.network/explore/decentralized-verifier-networks), and a permissionless set of [Executors](https://docs.layerzero.network/explore/executors) that transfer messages between chains.
+The LayerZero protocol is made up of immutable on-chain [Endpoints](https://docs.layerzero.network/explore/layerzero-endpoint), a configurable [Security Stack](https://docs.layerzero.network/explore/decentralized-verifier-networks), and a permissionless set of [Executors](https://docs.layerzero.network/v2/concepts/permissionless-execution/executors) that transfer messages between chains.
 
 ### High-level concepts
 
@@ -62,7 +62,7 @@ The [Security Stack](https://docs.layerzero.network/explore/decentralized-verifi
 
 #### Executors
 
-[Executors](https://docs.layerzero.network/explore/executors) are responsible for initiating message delivery. They will automatically execute the `lzReceive` function of the endpoint on the destination chain once a message has been verified by the Security Stack.
+[Executors](https://docs.layerzero.network/v2/concepts/permissionless-execution/executors) are responsible for initiating message delivery. They will automatically execute the `lzReceive` function of the endpoint on the destination chain once a message has been verified by the Security Stack.
 
 ## Creating a project
 
@@ -308,8 +308,8 @@ The overridden `_lzReceive` function receives the following arguments when recei
 | `_origin`     | `Origin`  | The origin information containing the source endpoint and sender address.                                             |
 | `_guid`       | `bytes32` | The unique identifier for the received LayerZero message.                                                             |
 | `payload`     | `bytes`   | The payload of the received message (encoded).                                                                        |
-| `_executor`   | `address` | The `address` of the [Executor](https://docs.layerzero.network/explore/executors) for the received message.           |
-| `_extraData ` | `bytes`   | Additional arbitrary data provided by the corresponding [Executor](https://docs.layerzero.network/explore/executors). |
+| `_executor`   | `address` | The `address` of the [Executor](https://docs.layerzero.network/v2/concepts/permissionless-execution/executors) for the received message.           |
+| `_extraData ` | `bytes`   | Additional arbitrary data provided by the corresponding [Executor](https://docs.layerzero.network/v2/concepts/permissionless-execution/executors). |
 
 Note that the overridden method decodes the message payload, and stores the string into a variable named `data` that you can read from later to fetch the latest message.
 
@@ -546,7 +546,7 @@ Sending a message using the newly created `ExampleContract` contract can be done
 
 The `estimateFee` and `sendMessage` custom functions of the `ExampleContract` contract both require a [message options](https://docs.layerzero.network/contracts/options) (`_options`) argument to be provided.
 
-Message options allow you to specify arbitrary logic as part of the message transaction, such as the gas amount the [Executor](https://docs.layerzero.network/explore/executors) pays for message delivery, the order of message execution, or dropping an amount of gas to a destination address.
+Message options allow you to specify arbitrary logic as part of the message transaction, such as the gas amount the [Executor](https://docs.layerzero.network/v2/concepts/permissionless-execution/executors) pays for message delivery, the order of message execution, or dropping an amount of gas to a destination address.
 
 LayerZero provides a [Solidity](https://github.com/LayerZero-Labs/LayerZero-v2/blob/ccfd0d38f83ca8103b14ab9ca77f32e0419510ff/oapp/contracts/oapp/libs/OptionsBuilder.sol#L12) library and [TypeScript SDK](https://docs.layerzero.network/contracts/options) for building these message options.
 
