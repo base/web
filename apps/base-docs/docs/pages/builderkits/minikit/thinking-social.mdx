@@ -1,0 +1,186 @@
+# Thinking Social
+
+**Designing mini apps that people actually come back to.**
+
+Most apps can launch. But few become part of someone’s daily rhythm.  
+That’s usually not a product problem. It’s a people problem.
+
+Social mini apps live or die based on how they make people feel: seen, connected, curious or like they belong. That’s not something you tack on — it’s something you build in from the start.
+
+If you’re designing for feed-based platforms (like Warpcast, Threads, or anything with posts, reactions, and reply chains), this guide will help you:
+
+- Challenge your idea early
+- Apply the right social patterns (if it makes sense)
+- Build for behaviors, not just features
+
+## How to Use This Guide
+
+Welcome to your blueprint for designing social mini‑apps that people love to revisit. This guide is organized into distinct, actionable sections—each building on the last—to help you move from idea validation to deploying social features with purpose.
+
+1. **Pressure‑Test Your Idea**  
+   Before writing a single line of code or sketching UI, use our four diagnostic questions to see if your concept naturally supports social behavior. Drop your one‑line idea into the supplied prompt to get clear insights on post frequency, social lift, content momentum, and emotional payoff.
+
+2. **Interpret Feedback & Choose Dimensions**  
+   Analyze the responses. Identify which one or two social dimensions resonate most with your concept—whether it’s habit formation, community spark, content growth, or emotional reward. The guide shows you how to validate and prioritize those dimensions before moving forward.
+
+3. **Apply a Case Study Flow**  
+   See a worked example that demonstrates how to translate test results into a prototype feature. This mini case study will illustrate rapid iteration, metric considerations, and how to decide when you’re ready to scale social elements.
+
+4. **Explore Three Core Patterns**  
+   Dive into the heart of the guide—three social patterns designed to deepen engagement:
+
+   - **Identity Playgrounds:** Customization and self‑expression
+   - **Co‑Creation Loops:** Collaboration and building on each other’s posts
+   - **Long‑Term Rituals:** Scheduled, shared activities that foster habit and community
+
+   Each pattern includes explanations, real‑world examples, and copy‑and‑paste prompts to spark your own brainstorming.
+
+5. **Next Steps & Reflection**  
+   Finish with a set of reflective questions and practical advice on measuring success. Use the closing prompts to refine your roadmap, plan experiments, and define key metrics for daily, weekly, and monthly engagement.
+
+**Tips for Getting the Most Out of This Guide:**
+
+- **Iterate Quickly:** Treat prompts and patterns as hypotheses. Prototype fast, gather data, and refine.
+- **Stay Human‑Centered:** At every stage, ask: “How will this make someone feel?”
+- **Measure What Matters:** Define metrics for each dimension early—then use them to validate your choices.
+- **Keep It Simple:** You don’t need every pattern at once. Start with the one or two dimensions that align strongest with your concept.
+
+## Pressure-test your idea
+
+Before you get into features or UI, take a step back. Ask whether your idea wants to be social — or if you’re forcing it. These prompts are designed to give you structured, clear feedback if you drop them into a LLM or use them in your own reflection.
+
+**Prompt:**
+
+```
+Here’s a one-line description of my app: [insert idea].
+
+Evaluate it across these questions:
+
+1. Why would someone post here more than once?
+2. Would the experience be better with another person involved?
+3. What kind of content might naturally fill the feed over time?
+4. What emotional reward might someone feel when they open it?
+
+Please be direct. If the idea lacks natural social behavior, suggest ways it could evolve.
+
+```
+
+### 1. Identity Playgrounds
+
+**The idea:** Give people ways to explore, express, or shape their identity within the app.
+
+**Why it works:** People don’t just use feeds to consume — they use them to perform. Customization invites play, self-expression, and experimentation.
+
+**Where it shows up:** Discord roles, Reddit flair, Tumblr themes.
+
+**Use it for:** Differentiation, emotional investment, repeat posting.
+
+**Prompt:**
+
+```
+Given my app idea: [insert idea], explore 2 ways users might express or explore identity.
+
+For each, include:
+– What the user customizes or signals
+– How that shows up in the feed
+– Why that might matter over time
+```
+
+### 2. Co-Creation Loops
+
+**The idea:** Design behaviors that are better when shared — where users build on each other’s contributions.
+
+**Why it works:** The strongest feeds don’t just display content; they build momentum. If one person’s post sparks another, you get a chain reaction.
+
+**Where it shows up:** Remix threads, collab playlists, group journaling.
+
+**Use it for:** Participation loops, content momentum, chain reactions.
+
+**Prompt:**
+
+```
+How could users in [insert app idea] create something together or build on each other’s actions?
+Return 3 co-creation flows that include:
+– What kicks it off
+– How others join in
+– What the feed looks like after a few days
+
+```
+
+### 3. Long-Term Rituals
+
+**The idea:** Introduce regular, shared behaviors that become a rhythm.
+
+**Why it works:** Rituals create predictability, belonging, and anticipation. They give users a reason to come back on a schedule.
+
+**Where it shows up:** Wordle scores, Monday memes, Friday drops, yearly Spotify Wrapped.
+
+**Use it for:** Habit loops, appointment-based engagement, social cohesion.
+
+**Prompt:**
+
+```
+Design 2 recurring rituals for [insert app idea].
+
+For each, include:
+– Frequency (daily, weekly, monthly)
+– What users post
+– What emotion or payoff they get
+– How it could spread through the feed
+
+```
+
+## Interpreting your feedback
+
+After you get back raw answers to the four pressure‑test questions, look for the one or two dimensions that most naturally fit your idea. Nail those first, then decide if you need to shore up any others.
+
+Spot your top dimensions
+— Scan responses for signs of strength in:
+• Repeat‑posting potential (“Daily check‑ins create habit.”)
+• Social lift (“Comments spark friendly competition.”)
+• Content momentum (“Automated reminders nudge new posts.”)
+• Emotional payoff (“Badges tap into achievement.”)
+
+Validate your winners
+For each chosen dimension, confirm the feedback includes a clear “good” example:
+
+Repeat‑posting: ≥1 post/week feels natural
+
+Social lift: involves others in a meaningful way
+
+Content momentum: community‑driven growth
+
+Emotional payoff: opening the app delivers a felt reward
+
+Sample snippet for “Emotional payoff”:
+
+“Users feel proud sharing progress, and peers cheer them on.”
+
+Decide your next move
+
+If your top 1–2 dimensions check out, skip straight to building social features around them—no need to perfect all four.
+
+If they’re weak, iterate on that dimension (e.g. add a relational hook or a habit prompt) before moving on.
+
+Example flow
+
+You see strong “Social lift” (“Friends’ reactions spark threads”) and decent “Emotional payoff” (“Likes feel rewarding”).
+
+You decide that’s enough social DNA to prototype a co‑posting feature—leaving “Content momentum” and “Repeat‑posting” for later.
+
+This way, you focus your energy on the social angles that truly resonate with your concept. Once those feel solid, you can explore the other patterns in Identity Playgrounds, Co‑Creation Loops, and Long‑Term Rituals.
+
+## Closing note
+
+The mini apps that thrive aren’t the most complex — they’re the ones that understand how people connect.
+
+**Remember:**
+
+- Social features only work when they reflect real human behavior
+- A feed isn’t just content — it’s a shared ritual
+- True engagement comes from meaning over mechanics
+
+As you build, ask: _Why would someone want to come back? Why would they share this with a friend?_ Those answers matter more than any feature list.
+
+The best apps don’t just fill feeds. They create places people want to return to.  
+So — what will your app make people feel?

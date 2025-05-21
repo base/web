@@ -40,7 +40,7 @@ Enable gasless transactions and account abstraction solutions.](https://docs.bas
 \\
 Build an app in 10 minutes with this all-in-one toolkit and full-stack components.](https://docs.base.org/builderkits/onchainkit/getting-started) [**Smart Wallet** \\
 \\
-A passkey-based universal account to connect with the onchain world.](https://docs.base.org/identity/smart-wallet/introduction/install-web) [**AgentKit** \\
+A passkey-based universal account to connect with the onchain world.](https://docs.base.org/identity/smart-wallet/quickstart) [**AgentKit** \\
 \\
 Give every AI agent a crypto wallet and the ability to transact and interact onchain.](https://docs.cdp.coinbase.com/agentkit/docs/welcome) [**Paymaster** \\
 \\
@@ -843,7 +843,7 @@ See [this guide](https://docs.redstone.finance/) to learn how to use the RedSton
 
 [Supra](https://supraoracles.com/) provides VRF and decentralized oracle price feeds that can be used for onchain and offchain use-cases such as spot and perpetual DEXes, lending protocols, and payments protocols. Supra’s oracle chain and consensus algorithm makes it one of the fastest-to-finality oracle providers, with layer-1 security guarantees. The pull oracle has a sub-second response time. Aside from speed and security, Supra’s rotating node architecture gathers data from 40+ data sources and applies a robust calculation methodology to get the most accurate value. The node provenance on the data dashboard also provides a fully transparent historical audit trail. Supra’s Distributed Oracle Agreement (DORA) paper was accepted into ICDCS 2023, the oldest distributed systems conference.
 
-Visit the Supra [documentation](https://supraoracles.com/docs/) to learn more about integrating Supra's oracle and VRF into your Base project.
+Visit the Supra [documentation](https://docs.supra.com/) to learn more about integrating Supra's oracle and VRF into your Base project.
 
 #### Supported Networks
 
@@ -2601,7 +2601,7 @@ The fastest way to get started with MiniKit is to use the CLI to bootstrap a new
 
 ```vocs_Code
 
-Copynpx create-onchain@alpha --mini
+Copynpx create-onchain --mini
 ```
 
 This command will:
@@ -2810,7 +2810,7 @@ The MiniKit CLI is the easiest way to get started. It automatically creates a sa
 
 ```vocs_Code
 
-Copynpx create-onchain@alpha --mini
+Copynpx create-onchain --mini
 ```
 
 ### Features
@@ -2942,7 +2942,7 @@ Navigate to one of the Superchain Bridges to look up your transaction.
 
 Base is committed to decentralization and the Superchain vision. Leveraging the community to bootstrap the Superchain bridges is a step in that direction; increasing censorship resistance and decentralization.
 
-**Who operates the Superchain Bridges like Superbridge.com and Brid.gg?**
+**Who operates the Superchain Bridges like Superbridge.app and Brid.gg?**
 
 Superchain Bridges are operated by third parties, not by Coinbase Technologies, Inc. ("Coinbase"). Coinbase does not control, operate, or assume any responsibility for the performance of these external platforms. Before using any Superchain Bridge, you may be required to agree to their terms and conditions. We strongly recommend you review these terms carefully, as well as any privacy policies, to understand your rights and obligations. The integration or inclusion of the Superchain Bridges does not imply an endorsement or recommendation of any bridge by Coinbase.
 

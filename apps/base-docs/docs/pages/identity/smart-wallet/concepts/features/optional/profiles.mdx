@@ -1,0 +1,100 @@
+import { Callout } from "vocs/components"
+
+# Profiles
+
+Profiles allow developers to request personal information from Smart Wallet users during a transaction. This is useful for applications that need:
+
+- Email addresses for notifications or account creation
+- Physical addresses for shipping products
+- Phone numbers for verification
+- Names for personalization
+
+Smart Wallet handles the collection of this information and it is left to the developer
+to validate it and store it as they see fit while following the standards and regulations in place.
+Users can choose to use profile info (securely stored with Coinbase) or enter new information when asked for it.
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <img
+    alt="Profiles Demo"
+    src="/images/smart-wallet/ProfilesDemo.gif"
+    width="1000"
+    loading="lazy"
+    style={{ borderRadius: "16px" }}
+  />
+  <em>Profiles Demo</em>
+</div>
+
+<Callout type="info">
+**Privacy First**
+
+Users always have full control over their data. They can choose to share or withhold any information, and they're clearly shown what data you're requesting.
+
+</Callout>
+
+## How it works
+
+When you send a request for a transaction to Smart Wallet,
+you can specify the information you need from the user.
+
+```ts
+const response = await provider?.request({
+        method: "wallet_sendCalls",
+        params: [
+          {
+            version: "1.0",
+            chainId: numberToHex(84532), // Base Sepolia testnet
+            calls: [
+              {
+                to: "0x036CbD53842c5426634e7929541eC2318f3dCF7e", // USDC contract address on Base Sepolia
+                data: encodeFunctionData({
+                  abi: erc20Abi,
+                  functionName: "transfer",
+                  args: [
+                    "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+                    parseUnits("0.01", 6),
+                  ],
+                }),
+              },
+            ], // Simple transfer of 0.01 USDC to the contract
+            capabilities: {
+              dataCallback: {
+                requests: [
+                  {
+                    type: "email",
+                    optional: false,
+                  },
+                  {
+                    type: "physicalAddress",
+                    optional: false,
+                  },
+                ],
+                callbackURL: YOUR_CALLBACK_URL, // eg. https://your-url.com/api/data-validation
+              },
+            },
+          },
+        ],
+      });
+```
+
+This adds an additional step to the transaction where the user is prompted to share their email address and their physical address like so:
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <img
+    alt="Profiles Demo"
+    src="/images/smart-wallet/ProfilesScreenshot.png"
+    width="300"
+    loading="lazy"
+  />
+  <em>Profiles Screenshot</em>
+</div>
+
+Once the user has shared their information, the callbackURL is called with the data.
+The callbackURL is a route on your server that you define and is used to validate the data.
+
+You are also able to update the request based on the response from the user.
+
+## Start using Profiles
+
+Profiles is currently in alpha and only available in a dev environment on all networks.
+
+To start using Profiles, you can follow the [Profiles guide](/identity/smart-wallet/guides/profiles).

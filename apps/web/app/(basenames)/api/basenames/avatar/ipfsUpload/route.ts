@@ -28,8 +28,8 @@ export async function POST(request: NextRequest) {
     // referer can only be us
     // TODO: Won't work on vercel previews
     const refererUrl = new URL(referer);
-    const allowedReferersHost = isDevelopment ? 'localhost:3000' : 'www.base.org';
-    if (allowedReferersHost !== refererUrl.host) {
+    const allowedReferrersHost = isDevelopment ? 'localhost:3000' : 'www.base.org';
+    if (allowedReferrersHost !== refererUrl.host) {
       return NextResponse.json({ error: 'Invalid request' }, { status: 500 });
     }
 

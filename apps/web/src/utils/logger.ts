@@ -1,6 +1,7 @@
 // lib/logger.ts
 
 import type { Tracer } from 'dd-trace';
+import { bugsnagNotify } from 'apps/web/src/utils/bugsnag';
 
 type LogLevel = 'info' | 'warn' | 'error' | 'debug' | 'verbose';
 
@@ -26,7 +27,7 @@ class CustomLogger {
     return CustomLogger.instance;
   }
 
-  private createDatadogLog(level: LogLevel, message: string, meta?: Record<string, unknown>) {
+  private log(level: LogLevel, message: string, meta?: Record<string, unknown>) {
     let traceId: string | undefined;
     let spanId: string | undefined;
 
@@ -59,14 +60,13 @@ class CustomLogger {
         break;
       case 'error':
         console.error(logEntry);
+        bugsnagNotify(logEntry, (e) => e.addMetadata('baseweb', { meta })).catch((e) =>
+          console.error('Error reporting to Bugsnag', e),
+        );
         break;
       default:
         console.log(logEntry);
     }
-  }
-
-  private log(level: LogLevel, message: string, meta?: Record<string, unknown>) {
-    this.createDatadogLog(level, message, meta);
   }
 
   public info(message: string, meta?: Record<string, unknown>) {
@@ -95,8 +95,9 @@ class CustomLogger {
         ...meta,
         error: e,
       });
+    } else {
+      this.log('error', message, meta);
     }
-    this.log('error', message, meta);
   }
 
   public debug(message: string, meta?: Record<string, unknown>) {

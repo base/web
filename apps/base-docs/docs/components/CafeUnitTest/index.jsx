@@ -1,7 +1,8 @@
 /* eslint-disable */
+
 import React from 'react';
 import { useEffect, useState, Suspense } from 'react';
-import { useAccount } from 'wagmi';
+import { useAccount, useSwitchChain } from 'wagmi';
 import { useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { WagmiProvider, createConfig, http } from 'wagmi';
 import { mainnet, base, baseSepolia, baseGoerli } from 'wagmi/chains';
@@ -139,6 +140,7 @@ const wagmiConfig = createConfig({
 
 export function CafeUnitTest({ nftNum }) {
   const { isConnecting, isDisconnected, address, chain } = useAccount();
+  const { switchChain } = useSwitchChain();
 
   const [messages, setMessages] = useState(['Submit your contract address.']);
   const [contractFormEntry, setContractFormEntry] = useState('');
@@ -408,6 +410,23 @@ export function CafeUnitTest({ nftNum }) {
     }
     if (isConnecting) {
       return <div>Connecting...</div>;
+    }
+    if (chain?.id !== baseSepolia.id) {
+      return (
+        <div>
+          <div>You are not connected to Base Sepolia</div>
+          <button
+            style={{
+              ...buttonStyle,
+              ...buttonEnabledColor,
+              marginTop: '10px',
+            }}
+            onClick={() => switchChain({ chainId: baseSepolia.id })}
+          >
+            Switch to Base Sepolia
+          </button>
+        </div>
+      );
     }
     return (
       <div>

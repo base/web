@@ -241,12 +241,11 @@ import {
 Each OnchainKit component offers the flexibility to customize `className`
 and adjust the style of the React components it represents.
 
-Customize the connect wallet text by using directly the `<ConnectWalletText>` component.
+Customize the connect wallet text by using the `disconnectedLabel` prop on the `<ConnectWallet />` component.
 
 ```tsx twoslash
 import {
   ConnectWallet,
-  ConnectWalletText,
   Wallet,
   WalletDropdown,
   WalletDropdownLink,
@@ -264,8 +263,7 @@ import { color } from '@coinbase/onchainkit/theme';
 // omitted for brevity
 
 <Wallet>
-  <ConnectWallet className='bg-blue-800'>
-    <ConnectWalletText>Log In</ConnectWalletText>
+  <ConnectWallet className='bg-blue-800' disconnectedLabel='Log In'>
     <Avatar className="h-6 w-6" />
     <Name className='text-white' />
   </ConnectWallet>
@@ -293,8 +291,7 @@ import { color } from '@coinbase/onchainkit/theme';
 
 <WalletComponents>
   <Wallet>
-    <ConnectWallet className='bg-blue-800'>
-      <ConnectWalletText>Log In</ConnectWalletText>
+    <ConnectWallet className='bg-blue-800' disconnectedLabel='Log In'>
       <Avatar className="h-6 w-6" />
       <Name className='text-white' />
     </ConnectWallet>

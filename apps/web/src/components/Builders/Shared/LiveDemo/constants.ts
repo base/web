@@ -214,15 +214,11 @@ import {
   WalletAdvancedTransactionActions,
   WalletAdvancedWalletActions,
 } from '@coinbase/onchainkit/wallet';
-import { Avatar, Name } from '@coinbase/onchainkit/identity';
 
 function WalletAdvancedDemo() {
   return (
     <Wallet>
-      <ConnectWallet>
-        <Avatar />
-        <Name />
-      </ConnectWallet>
+      <ConnectWallet />
       <WalletDropdown>
         <WalletAdvancedWalletActions />
         <WalletAdvancedAddressDetails />
