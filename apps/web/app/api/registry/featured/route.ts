@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getVercelDb } from 'apps/web/src/utils/datastores/rds';
+import { getDb } from 'apps/web/src/utils/datastores/rds';
 import { getKv } from 'apps/web/src/utils/datastores/kv';
 import { logger } from 'apps/web/src/utils/logger';
 import { withTimeout } from 'apps/web/app/api/decorators';
@@ -8,7 +8,7 @@ const PAGE_KEY = 'api.ocs_registry.featured';
 
 async function handler() {
   try {
-    const db = getVercelDb();
+    const db = getDb();
     const content = await db
       .selectFrom('content')
       .where('is_featured', '=', true)

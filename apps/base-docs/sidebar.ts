@@ -991,6 +991,10 @@ export const sidebar: Sidebar = [
                 text: 'Basenames OnchainKit Tutorial',
                 link: '/identity/basenames/basenames-onchainkit-tutorial',
               },
+              {
+                text: 'Basenames Frames Tutorial',
+                link: '/identity/basenames/basenames-frames-tutorial',
+              },
             ],
           },
           {
@@ -1103,8 +1107,8 @@ export const sidebar: Sidebar = [
         link: '/use-cases/launch-ai-agents',
       },
       {
-        text: 'Decentralize your social app',
-        link: '/use-cases/decentralize-social-app',
+        text: 'Onchain Social',
+        link: '/use-cases/onchain-social',
       },
       {
         text: 'DeFi your app',

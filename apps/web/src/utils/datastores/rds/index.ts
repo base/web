@@ -1,4 +1,3 @@
-import { createKysely } from '@vercel/postgres-kysely';
 import { Kysely, PostgresDialect } from 'kysely';
 import { Pool } from 'pg';
 import { isDevelopment } from 'apps/web/src/constants';
@@ -30,31 +29,10 @@ function createDefaultRDSManager() {
   }
 }
 
-function createVercelRDSManager() {
-  try {
-    return createKysely<Database>();
-  } catch (error) {
-    if (isDevelopment) {
-      console.error('Failed to connect to Vercel RDS', error);
-    } else {
-      logger.error('Failed to connect to Vercel Postgres', error);
-    }
-    throw new Error(`Failed to connect to Vercel Postgres: ${error}`);
-  }
-}
-
 let db: Kysely<Database> | undefined = undefined;
 export function getDb() {
   if (!db) {
     db = createDefaultRDSManager();
   }
   return db;
-}
-
-let vercelDb: Kysely<Database> | undefined = undefined;
-export function getVercelDb() {
-  if (!vercelDb) {
-    vercelDb = createVercelRDSManager();
-  }
-  return vercelDb;
 }
