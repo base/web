@@ -17,7 +17,7 @@ const sections = [
     links: [
       { text: 'Deploy a Shopify Storefront', href: '/guides/use-case-guides/commerce/deploy-a-shopify-storefront' },
       { text: 'Implement One-Click Checkout', href: '/builderkits/onchainkit/checkout/checkout' },
-      { text: 'Add an In-App Onramp ', href: '/guides/use-case-guides/finance/build-a-smart-wallet-funding-app' }
+      { text: 'Add an In-App Onramp', href: '/guides/use-case-guides/finance/build-a-smart-wallet-funding-app' }
     ]
   },
   {
