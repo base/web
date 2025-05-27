@@ -96,7 +96,7 @@ Recommended LevelDB environment variable values with this patch:
 
 ```bash
 # Recommended LevelDB Settings
-LDB_BLOCK_SIZE="524288" # 512 KiB block size (matches common RAID 0 chunk sizes)
+LDB_BLOCK_SIZE="16384" # 16 KiB block size
 LDB_COMPACTION_TABLE_SIZE="8388608" # 8 MiB compaction table size (default: 2 MiB)
 LDB_COMPACTION_TOTAL_SIZE="41943040" # 40 MiB total compaction size (default: 8 MiB)
 LDB_DEBUG_OPTIONS="1" # Emit LevelDB debug logs
