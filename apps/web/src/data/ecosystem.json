@@ -600,6 +600,14 @@
     "imageUrl": "/images/partners/blockai.png"
   },
   {
+    "name": "BlockClock",
+    "description": "BlockClock is a decentralized, community-powered timekeeping network that uses user-verified device timestamps to establish a trustless, on-chain standard of time.",
+    "url": "https://demo.stxn.io/",
+    "imageUrl": "/images/partners/blockclock.svg",
+    "category": "consumer",
+    "subcategory": "real world"
+  },
+  {
     "name": "Blockdaemon",
     "url": "https://blockdaemon.com",
     "description": "The institutional-grade blockchain infrastructure for Web3. Blockdaemon provides an end-to-end suite of blockchain tools, including dedicated nodes, APIs, staking, liquid staking, MPC tech, and more.",
@@ -862,6 +870,14 @@
     "imageUrl": "/images/partners/civic.png",
     "category": "infra",
     "subcategory": "identity"
+  },
+  {
+    "name": "CleanApp",
+    "description": "Global, distributed and verifiable tracing/mapping networks for reporting an issue and finding resolvers",
+    "url": "https://www.cleanapp.io/",
+    "imageUrl": "/images/partners/cleanapp.png",
+    "category": "consumer",
+    "subcategory": "ai"
   },
   {
     "name": "Cobo Argus",
@@ -3542,6 +3558,14 @@
     "imageUrl": "/images/partners/stvol.png",
     "category": "defi",
     "subcategory": "dex"
+  },
+  {
+    "name": "STXN",
+    "description": "Build the future of decentralized, hybrid apps with technology that marries web2 and web3.",
+    "url": "https://stxn.io/",
+    "imageUrl": "/images/partners/stxn.svg",
+    "category": "infra",
+    "subcategory": "developer tool"
   },
   {
     "name": "SubQuery",
