@@ -116,9 +116,11 @@ export default function RenewalForm({ name }: { name: string }) {
       batchCallsStatus === BatchCallsStatus.Success
     ) {
       setYears(1);
-      refetch();
+      refetch().catch((e) => {
+        logError(e, 'Failed to refetch names');
+      });
     }
-  }, [renewNameStatus, batchCallsStatus]);
+  }, [renewNameStatus, batchCallsStatus, refetch, logError]);
 
   if (!isOnSupportedNetwork) {
     return (
