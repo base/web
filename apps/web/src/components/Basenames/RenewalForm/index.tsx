@@ -28,7 +28,7 @@ export default function RenewalForm({ name }: { name: string }) {
   const { logError } = useErrors();
   const { basenameChain } = useBasenameChain();
   const { switchChain } = useSwitchChain();
-  const { namesData } = useNameList();
+  const { namesData, isLoading, refetch } = useNameList();
 
   const switchToIntendedNetwork = useCallback(
     () => switchChain({ chainId: basenameChain.id }),
@@ -75,7 +75,6 @@ export default function RenewalForm({ name }: { name: string }) {
 
   const ethUsdPrice = useEthPriceFromUniswap();
 
-  // Implement the actual renewal function
   const renewName = useCallback(async () => {
     try {
       logEventWithContext('renew_name_initiated', ActionType.click);
@@ -116,8 +115,8 @@ export default function RenewalForm({ name }: { name: string }) {
       renewNameStatus === WriteTransactionWithReceiptStatus.Success ||
       batchCallsStatus === BatchCallsStatus.Success
     ) {
-      // TODO: Add success handling (redirect, show success message, etc.)
-      console.log('Renewal successful!');
+      setYears(1);
+      refetch();
     }
   }, [renewNameStatus, batchCallsStatus]);
 
@@ -174,7 +173,7 @@ export default function RenewalForm({ name }: { name: string }) {
             renewNameCallback={renewNameCallback}
             switchToIntendedNetwork={switchToIntendedNetwork}
             disabled={!price || insufficientFundsNoAuxFundsAndCorrectChain}
-            isLoading={isPending}
+            isLoading={isPending || isLoading}
           />
           {formattedExpirationDate && (
             <p className="text-md text-gray-50">Expires {formattedExpirationDate}</p>
