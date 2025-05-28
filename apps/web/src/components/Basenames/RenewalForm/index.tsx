@@ -1,4 +1,4 @@
-import { ExclamationCircleIcon, MinusIcon, PlusIcon } from '@heroicons/react/16/solid';
+import { ExclamationCircleIcon } from '@heroicons/react/16/solid';
 import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { useErrors } from 'apps/web/contexts/Errors';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
@@ -18,6 +18,7 @@ import {
   formatUsdPrice,
 } from 'apps/web/src/components/Basenames/RegistrationForm';
 import { useNameList } from 'apps/web/src/components/Basenames/ManageNames/hooks';
+import YearSelector from 'apps/web/src/components/Basenames/YearSelector';
 
 export default function RenewalForm({ name }: { name: string }) {
   const { chain: connectedChain, address } = useAccount();
@@ -136,31 +137,12 @@ export default function RenewalForm({ name }: { name: string }) {
   return (
     <div className="mt-20 transition-all duration-500">
       <div className={mainRenewalElementClasses}>
-        <div className="max-w-[14rem] self-start">
-          <p className="text-line mb-2 text-sm font-bold uppercase">Extend for</p>
-          <div className="flex items-center justify-between">
-            <button
-              type="button"
-              onClick={decrement}
-              disabled={years === 1}
-              className="flex h-7 w-7 items-center justify-center rounded-full bg-[#DEE1E7]"
-              aria-label="Decrement years"
-            >
-              <MinusIcon width="14" height="14" className="fill-[#32353D]" />
-            </button>
-            <span className="flex w-32 items-center justify-center text-3xl font-bold text-black">
-              {years} year{years > 1 && 's'}
-            </span>
-            <button
-              type="button"
-              onClick={increment}
-              className="flex h-7 w-7 items-center justify-center rounded-full bg-[#DEE1E7]"
-              aria-label="Increment years"
-            >
-              <PlusIcon width="14" height="14" className="fill-[#32353D]" />
-            </button>
-          </div>
-        </div>
+        <YearSelector
+          years={years}
+          onIncrement={increment}
+          onDecrement={decrement}
+          label="Extend for"
+        />
         <div className="min-w-[14rem] self-start text-left">
           <p className="text-line mb-2 text-sm font-bold uppercase">Amount</p>
           <div className="flex min-w-60 items-center justify-start gap-4">
