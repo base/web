@@ -32,7 +32,7 @@ import { formatEther, zeroAddress } from 'viem';
 import { useAccount, useBalance, useReadContract, useSwitchChain } from 'wagmi';
 import { RegistrationButton } from './RegistrationButton';
 
-function formatEtherPrice(price?: bigint) {
+export function formatEtherPrice(price?: bigint) {
   if (price === undefined) {
     return '...';
   }
@@ -44,7 +44,7 @@ function formatEtherPrice(price?: bigint) {
   }
 }
 
-function formatUsdPrice(price: bigint, ethUsdPrice: number) {
+export function formatUsdPrice(price: bigint, ethUsdPrice: number) {
   if (price === 0n) return '0';
   const parsed = (parseFloat(formatEther(price)) * Number(ethUsdPrice)).toFixed(2);
   if (parsed === '0.00') return '0';
@@ -300,7 +300,9 @@ export default function RegistrationForm() {
                 correctChain={correctChain}
                 registerNameCallback={registerNameCallback}
                 switchToIntendedNetwork={switchToIntendedNetwork}
-                insufficientFundsNoAuxFundsAndCorrectChain={insufficientFundsNoAuxFundsAndCorrectChain}
+                insufficientFundsNoAuxFundsAndCorrectChain={
+                  insufficientFundsNoAuxFundsAndCorrectChain
+                }
                 registerNameIsPending={registerNameIsPending}
               />
             </div>
