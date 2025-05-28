@@ -109,7 +109,6 @@ export default function RenewalForm({ name }: { name: string }) {
     'z-10 flex flex-col items-start justify-between gap-6 bg-[#F7F7F7] p-8 text-gray-60 shadow-xl md:flex-row md:items-center relative z-20 rounded-2xl',
   );
 
-  // Handle successful renewal
   useEffect(() => {
     if (
       renewNameStatus === WriteTransactionWithReceiptStatus.Success ||
