@@ -21,6 +21,7 @@ import { EstimateGasExecutionError } from 'viem';
 type FrameProps = {
   url: string;
   className?: string;
+  onError?: (hasError: boolean) => void;
 };
 
 // Define distinct types for signature and transaction data
@@ -36,10 +37,11 @@ type TransactionData = {
   };
 };
 
-export default function Frame({ url, className }: FrameProps) {
+export default function Frame({ url, className, onError }: FrameProps) {
   const { frameConfig: sharedConfig, farcasterSignerState, anonSignerState } = useFrameContext();
   const queryClient = useQueryClient();
   const [error, setError] = useState<string>('');
+  const [frameLoadError, setFrameLoadError] = useState<boolean>(false);
   const clearError = useCallback(() => setError(''), []);
   const [isDismissing, setIsDismissing] = useState<boolean>(false);
   const handleDismissError = useCallback(() => {
@@ -133,6 +135,32 @@ export default function Frame({ url, className }: FrameProps) {
   // Persist if openFrameWorks has ever been true for this frame
   const [openFrameWorksPersisted, setOpenFrameWorksPersisted] = useState(false);
 
+  // Add helper function to check if frame failed to load
+  const isFrameLoadError = useCallback((frameState: any) => {
+    const currentItem = frameState.currentFrameStackItem;
+    if (!currentItem) return false;
+
+    return (
+      currentItem.status === 'done' &&
+      (!currentItem.frameResult ||
+        currentItem.frameResult.status === 'failure' ||
+        currentItem.frameResult.frame === null)
+    );
+  }, []);
+
+  // Monitor frame states for loading errors
+  useEffect(() => {
+    const farcasterFailed = isFrameLoadError(farcasterFrameState);
+    const openFrameFailed = isFrameLoadError(openFrameState);
+
+    // If both frame types fail, mark as failed
+    const hasError = farcasterFailed && openFrameFailed;
+    setFrameLoadError(hasError);
+
+    // Notify parent component of error state
+    onError?.(hasError);
+  }, [farcasterFrameState, openFrameState, isFrameLoadError, onError]);
+
   useEffect(() => {
     const currentFrameStackItem = openFrameState.currentFrameStackItem;
     if (!openFrameWorksPersisted && currentFrameStackItem) {
@@ -152,11 +180,15 @@ export default function Frame({ url, className }: FrameProps) {
     }
   }, [openFrameState, openFrameWorksPersisted]);
 
-  const frameState = useMemo(
-    () => (openFrameWorksPersisted ? openFrameState : farcasterFrameState),
-    [farcasterFrameState, openFrameState, openFrameWorksPersisted],
-  );
+  const frameState = useMemo(() => {
+    if (openFrameWorksPersisted) {
+      return openFrameState;
+    } else {
+      return farcasterFrameState;
+    }
+  }, [farcasterFrameState, openFrameState, openFrameWorksPersisted]);
 
+  // Move aggregatedTheme BEFORE the early returns
   const aggregatedTheme = useMemo(
     () => ({
       ...theme,
@@ -167,6 +199,15 @@ export default function Frame({ url, className }: FrameProps) {
     }),
     [className],
   );
+
+  // Now place the conditional returns AFTER all hooks
+  if (frameLoadError) {
+    return null;
+  }
+
+  if (!frameState) {
+    return null;
+  }
 
   return (
     <div className="relative">
