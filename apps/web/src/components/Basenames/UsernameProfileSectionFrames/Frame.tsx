@@ -37,7 +37,7 @@ type TransactionData = {
   };
 };
 
-// Define the types we actually use
+// Define the Frame types we actually use
 type FrameStackItem = {
   status: string;
   frameResult?: {
@@ -194,13 +194,10 @@ export default function Frame({ url, className, onError }: FrameProps) {
     }
   }, [openFrameState, openFrameWorksPersisted]);
 
-  const frameState = useMemo(() => {
-    if (openFrameWorksPersisted) {
-      return openFrameState;
-    } else {
-      return farcasterFrameState;
-    }
-  }, [farcasterFrameState, openFrameState, openFrameWorksPersisted]);
+  const frameState = useMemo(
+    () => (openFrameWorksPersisted ? openFrameState : farcasterFrameState),
+    [farcasterFrameState, openFrameState, openFrameWorksPersisted],
+  );
 
   // Move aggregatedTheme BEFORE the early returns
   const aggregatedTheme = useMemo(
