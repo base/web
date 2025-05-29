@@ -61,7 +61,7 @@ export default function RenewalForm({ name }: { name: string }) {
     renewNameStatus,
     batchCallsStatus,
   } = useRenewNameCallback({
-    name,
+    name: name.replace(/\.base\.eth$/, ''),
     years,
   });
 
