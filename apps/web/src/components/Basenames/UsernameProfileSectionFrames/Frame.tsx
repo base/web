@@ -37,6 +37,20 @@ type TransactionData = {
   };
 };
 
+// Define the types we actually use
+type FrameStackItem = {
+  status: string;
+  frameResult?: {
+    status?: string;
+    frame?: unknown;
+    specification?: string;
+  } | null;
+};
+
+type FrameState = {
+  currentFrameStackItem?: FrameStackItem | null;
+};
+
 export default function Frame({ url, className, onError }: FrameProps) {
   const { frameConfig: sharedConfig, farcasterSignerState, anonSignerState } = useFrameContext();
   const queryClient = useQueryClient();
@@ -135,8 +149,8 @@ export default function Frame({ url, className, onError }: FrameProps) {
   // Persist if openFrameWorks has ever been true for this frame
   const [openFrameWorksPersisted, setOpenFrameWorksPersisted] = useState(false);
 
-  // Add helper function to check if frame failed to load
-  const isFrameLoadError = useCallback((frameState: any) => {
+  // Add helper function to check if frame failed to load with proper typing
+  const isFrameLoadError = useCallback((frameState: FrameState) => {
     const currentItem = frameState.currentFrameStackItem;
     if (!currentItem) return false;
 
