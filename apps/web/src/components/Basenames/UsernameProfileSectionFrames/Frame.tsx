@@ -211,12 +211,7 @@ export default function Frame({ url, className, onError }: FrameProps) {
     [className],
   );
 
-  // Now place the conditional returns AFTER all hooks
-  if (frameLoadError) {
-    return null;
-  }
-
-  if (!frameState) {
+  if (frameLoadError || !frameState) {
     return null;
   }
 
