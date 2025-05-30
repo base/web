@@ -28,8 +28,8 @@ export default function SubAccount() {
         keysUrl: 'https://keys-dev.coinbase.com/connect',
         options: 'smartWalletOnly',
       },
-      subaccount: {
-        getSigner: getCryptoKeyAccount,
+      subAccounts: {
+        toOwnerAccount: getCryptoKeyAccount,
       },
     }).getProvider();
 

@@ -13,6 +13,8 @@
     "fetch-mirror-blog": "node ./scripts/pullLatestBlogPosts.js"
   },
   "dependencies": {
+    "@bugsnag/js": "^8.2.0",
+    "@bugsnag/plugin-react": "^8.2.0",
     "@coinbase/cookie-banner": "^1.0.3",
     "@coinbase/cookie-manager": "^1.1.1",
     "@coinbase/onchainkit": "^0.38.6",
@@ -40,7 +42,6 @@
     "@types/three": "0.153.0",
     "@vercel/blob": "^0.23.4",
     "@vercel/og": "^0.6.2",
-    "@vercel/postgres-kysely": "^0.8.0",
     "base-ui": "0.1.1",
     "classnames": "^2.5.1",
     "cloudinary": "^2.5.1",
