@@ -4,7 +4,6 @@ import { FloatingENSPills } from 'apps/web/src/components/Basenames/FloatingENSP
 import {
   RegistrationSteps,
   registrationTransitionDuration,
-  useRegistration,
 } from 'apps/web/src/components/Basenames/RegistrationContext';
 
 import fireworks from './assets/fireworks.webm';
@@ -13,9 +12,11 @@ import vortexJson from './assets/vortex.json';
 import classNames from 'classnames';
 import LottieAnimation from 'apps/web/src/components/LottieAnimation';
 
-export default function RegistrationBackground() {
-  const { registrationStep } = useRegistration();
-
+export default function RegistrationBackground({
+  registrationStep,
+}: {
+  registrationStep: RegistrationSteps;
+}) {
   const isSearch = registrationStep === RegistrationSteps.Search;
   const isClaim = registrationStep === RegistrationSteps.Claim;
   const isPending = registrationStep === RegistrationSteps.Pending;
