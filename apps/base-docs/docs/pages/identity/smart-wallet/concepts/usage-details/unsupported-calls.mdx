@@ -1,0 +1,28 @@
+# Unsupported Calls
+
+Smart Wallet implements an Ethereum Provider JavaScript API (as detailed in [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193))
+and follows the [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337) standard for account abstraction.
+
+This means that apps interacting with Smart Wallet can expect it to behave like a regular Ethereum Virtual Machine (EVM) account.
+However, there are some calls that are not supported by Smart Wallets for incompatibility or security reasons.
+This is a list of calls that are not supported:
+
+- [Self Calls](#self-calls): This refers to the ability of an app to use the user's account to call itself.
+- [CREATE](#create): This refers to the ability of an app to create a new contract using the OPCODE `CREATE`.
+
+## Self Calls
+
+For security reasons, we do not allow 3rd party apps to make calls to a user's own Smart Wallet address.
+This could allow apps to change owners, upgrade the user's account, or cause other issues.
+
+## CREATE
+
+This is a limitation of the ERC-4337 standard and smart accounts.
+Currently, we do not support the `CREATE` opcode for smart contracts deployment.
+Future versions of Smart Wallet may support it.
+
+:::success
+
+You can use a factory contract or a transaction with the `CREATE2` opcode to deploy a smart contract.
+
+:::
