@@ -224,7 +224,7 @@ The `sendMessage` function above calls the inherited `_lzSend` function, while p
 
 | Name             | Type                                                                                                                                                                      | Description                                                                                                                                                      |
 | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `_dstEid`        | `uint32`                                                                                                                                                                  | The [endpoint ID](https://docs.layerzero.network/contracts/endpoint-addresses) of the destination chain to send the message to.                                  |
+| `_dstEid`        | `uint32`                                                                                                                                                                  | The [endpoint ID](https://docs.layerzero.network/v2/deployments/deployed-contracts) of the destination chain to send the message to.                                  |
 | `_payload`       | `bytes`                                                                                                                                                                   | The message (encoded) to send.                                                                                                                                   |
 | `_options`       | `bytes`                                                                                                                                                                   | [Additional options](https://docs.layerzero.network/contracts/options) when sending the message, such as how much gas should be used when receiving the message. |
 | `_fee`           | [`MessagingFee`](https://github.com/LayerZero-Labs/LayerZero-v2/blob/c3213200dfe8fabbf7d92c685590d34e6e70da43/protocol/contracts/interfaces/ILayerZeroEndpointV2.sol#L24) | The calculated fee for sending the message.                                                                                                                      |
@@ -262,7 +262,7 @@ The `estimateFee` function above calls the inherited `_quote` function, while pa
 
 | Name            | Type     | Description                                                                                                                                                      |
 | :-------------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `_dstEid`       | `uint32` | The [endpoint ID](https://docs.layerzero.network/contracts/endpoint-addresses) of the destination chain the message will be sent to.                             |
+| `_dstEid`       | `uint32` | The [endpoint ID](https://docs.layerzero.network/v2/deployments/deployed-contracts) of the destination chain the message will be sent to.                             |
 | `_payload`      | `bytes`  | The message (encoded) that will be sent.                                                                                                                         |
 | `_options`      | `bytes`  | [Additional options](https://docs.layerzero.network/contracts/options) when sending the message, such as how much gas should be used when receiving the message. |
 | `_payInLzToken` | `bool`   | Boolean flag for which token to use when returning the fee (native or ZRO token).                                                                                |
@@ -437,7 +437,7 @@ cast wallet list
 
 ### Setting up environment variables
 
-To setup your environment, create an `.env` file in the home directory of your project, and add the RPC URLs and [LayerZero Endpoint](https://docs.layerzero.network/contracts/endpoint-addresses) information for both Base Goerli and Optimism Goerli testnets:
+To setup your environment, create an `.env` file in the home directory of your project, and add the RPC URLs and [LayerZero Endpoint](https://docs.layerzero.network/v2/deployments/deployed-contracts) information for both Base Goerli and Optimism Goerli testnets:
 
 ```bash
 BASE_GOERLI_RPC="https://goerli.base.org"
@@ -499,14 +499,14 @@ The `setPeer` function expects the following arguments:
 
 | Name    | Type      | Description                                                                                              |
 | :------ | :-------- | :------------------------------------------------------------------------------------------------------- |
-| `_eid`  | `uint32`  | The [endpoint ID](https://docs.layerzero.network/contracts/endpoint-addresses) of the destination chain. |
+| `_eid`  | `uint32`  | The [endpoint ID](https://docs.layerzero.network/v2/deployments/deployed-contracts) of the destination chain. |
 | `_peer` | `bytes32` | The contract address of the OApp contract on the destination chain.                                      |
 
 ### Setting the peers
 
 Foundry provides the `cast` command-line tool that can be used to interact with deployed smart contracts and call their functions.
 
-To set the peer of your `ExampleContract` contracts, you can use `cast` to call the `setPeer` function while providing the [endpoint ID](https://docs.layerzero.network/contracts/endpoint-addresses) and address (in bytes) of the deployed contract on the respective destination chain.
+To set the peer of your `ExampleContract` contracts, you can use `cast` to call the `setPeer` function while providing the [endpoint ID](https://docs.layerzero.network/v2/deployments/deployed-contracts) and address (in bytes) of the deployed contract on the respective destination chain.
 
 To set the peer of the Base Goerli contract to the Optimism Goerli contract, run the following command:
 
