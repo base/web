@@ -1075,6 +1075,10 @@ export const sidebar: Sidebar = [
         link: '/chain/security-council',
       },
       {
+        text: 'Block Building',
+        link: '/chain/block-building',
+      },
+      {
         text: 'Tools',
         collapsed: true,
         items: [
