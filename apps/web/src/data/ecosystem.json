@@ -3544,6 +3544,14 @@
     "subcategory": "dex"
   },
   {
+    "name": "STXN",
+    "description": "Build the future of decentralized, hybrid apps with technology that marries web2 and web3.",
+    "url": "https://stxn.io/",
+    "imageUrl": "/images/partners/stxn.svg",
+    "category": "infra",
+    "subcategory": "developer tool"
+  },
+  {
     "name": "SubQuery",
     "url": "https://subquery.network/",
     "description": "SubQuery is a fast, flexible, and reliable open-source data decentralised infrastructure network, providing both RPC and indexed data to consumers around the world. The SubQuery Data Indexer is a open-source data indexer that provides you with custom APIs for your web3 project across all of our supported chains. SubQuery AI Apps framework makes building decentralised AI Applications fast and easy.",
