@@ -1,4 +1,5 @@
 import { Callout } from "vocs/components"
+import GithubRepoCard from "@/components/GithubRepoCard"
 
 # Build with Paymasters (Sponsored Transactions)
 
@@ -9,17 +10,15 @@ transactions by using [standardized Paymaster service communication](https://erc
 This guide is specific to using Smart Wallet, you can find our more about using Paymasters with Base in
 the [Base Go Gasless page](https://docs.base.org/use-cases/go-gasless).
 
-The code below is also in our [Wagmi Smart Wallet template](https://github.com/wilsoncusack/wagmi-scw/).
+The code below is also in our [Wagmi Smart Wallet template](https://github.com/base/demos/tree/master/smart-wallet/wagmi-demo).
 
 ## Skip ahead and clone the template
 
-If you are looking for a complete example, you can skip the steps below and clone the [Wagmi Smart Wallet template](https://github.com/wilsoncusack/wagmi-scw/). Simply open a terminal and run:
+If you are looking for a complete example, you can skip the steps below and clone the Wagmi Smart Wallet template:
 
-```bash
-git clone https://github.com/wilsoncusack/wagmi-scw.git
-```
+<GithubRepoCard title="Wagmi Smart Wallet Template" githubUrl="https://github.com/base/demos/tree/master/smart-wallet/wagmi-demo" />
 
-Follow the instructions in the README to install the dependencies and run the app.
+Follow the instructions in the README to install the dependencies and run the app to use the `Paymaster` component.
 
 ## Add Support in your Next.js app (using Wagmi/Viem)
 
@@ -54,13 +53,13 @@ Once you have signed up for [Coinbase Developer Platform](https://www.coinbase.c
 <Callout type="warning">
 **Should you create a proxy for your Paymaster service?**
 
-As you can see in the Paymaster transaction [component](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/TransactWithPaymaster.tsx), we use a proxy to protect
+As you can see in the Paymaster transaction [component](https://github.com/base/demos/blob/master/smart-wallet/wagmi-demo/src/components/TransactWithPaymaster.tsx), we use a proxy to protect
 the Paymaster service URL to prevent it from being exposed/leaked on a frontend client
 
 For local development, you can use the same URL for the Paymaster service and the proxy.
 
-We also created a [minimalist proxy API](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/app/api/Paymaster/route.ts)
-which you can use as the `PaymasterServiceUrl` in the [`TransactWithPaymaster` component](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/TransactWithPaymaster.tsx).
+We also created a [minimalist proxy API](https://github.com/base/demos/blob/master/smart-wallet/wagmi-demo/src/app/api/paymaster/route.ts)
+which you can use as the `PaymasterServiceUrl` in the [`TransactWithPaymaster` component](https://github.com/base/demos/blob/master/smart-wallet/wagmi-demo/src/components/TransactWithPaymaster.tsx).
 
 </Callout>
 
@@ -83,7 +82,7 @@ It's time to create Wagmi and Viem clients.
 <Callout type="success">
 **You can also choose to create custom advanced policies !**
 
-For example, in the [template](https://github.com/wilsoncusack/wagmi-scw), we create a `willSponsor` function in [`utils.ts`](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/app/api/utils.ts) to add some extra validation if you need
+For example, in the [template](https://github.com/base/demos/tree/master/smart-wallet/wagmi-demo), we create a `willSponsor` function in [`utils.ts`](https://github.com/base/demos/blob/master/smart-wallet/wagmi-demo/src/app/api/utils.ts) to add some extra validation if you need
 more control over the policy enforcement.
 
 `willSponsor` is most likely not needed if you are using [Coinbase Developer Platform](https://www.coinbase.com/developer-platform) as it has built-in policy enforcement features,
@@ -253,11 +252,11 @@ It is recommended to have a fallback function if your app supports wallets other
 **How to find this code in the repository?**
 
 The code above is a simplified version of the code in the
-[template](https://github.com/wilsoncusack/wagmi-scw/).
+[template](https://github.com/base/demos/tree/master/smart-wallet/wagmi-demo).
 
-In the template, we create a [`TransactWithPaymaster`](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/TransactWithPaymaster.tsx) component that uses the `useWriteContracts` hook to send a transaction with a Paymaster.
+In the template, we create a [`TransactWithPaymaster`](https://github.com/base/demos/blob/master/smart-wallet/wagmi-demo/src/components/TransactWithPaymaster.tsx) component that uses the `useWriteContracts` hook to send a transaction with a Paymaster.
 
-The [`TransactWithPaymaster`](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/TransactWithPaymaster.tsx) component is used in the [`page.tsx`](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/app/page.tsx) file.
+The [`TransactWithPaymaster`](https://github.com/base/demos/blob/master/smart-wallet/wagmi-demo/src/components/TransactWithPaymaster.tsx) component is used in the [`page.tsx`](https://github.com/base/demos/blob/master/smart-wallet/wagmi-demo/src/app/page.tsx) file.
 
 </Callout>
 

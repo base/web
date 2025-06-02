@@ -55,7 +55,6 @@ export default function Frame({ url, className, onError }: FrameProps) {
   const { frameConfig: sharedConfig, farcasterSignerState, anonSignerState } = useFrameContext();
   const queryClient = useQueryClient();
   const [error, setError] = useState<string>('');
-  const [frameLoadError, setFrameLoadError] = useState<boolean>(false);
   const clearError = useCallback(() => setError(''), []);
   const [isDismissing, setIsDismissing] = useState<boolean>(false);
   const handleDismissError = useCallback(() => {
@@ -169,7 +168,6 @@ export default function Frame({ url, className, onError }: FrameProps) {
 
     // If both frame types fail, mark as failed
     const hasError = farcasterFailed && openFrameFailed;
-    setFrameLoadError(hasError);
 
     // Notify parent component of error state
     onError?.(hasError);
@@ -210,10 +208,6 @@ export default function Frame({ url, className, onError }: FrameProps) {
     }),
     [className],
   );
-
-  if (frameLoadError || !frameState) {
-    return null;
-  }
 
   return (
     <div className="relative">
