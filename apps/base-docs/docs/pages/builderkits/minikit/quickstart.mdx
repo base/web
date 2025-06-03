@@ -10,7 +10,7 @@ Before you begin developing with MiniKit, you'll need:
 
 1. **Farcaster Account**: Create an account on [Warpcast](https://warpcast.com/) to test and deploy your Mini Apps.
 
-2. **Coinbase Developer Platform Account** (Optional): Sign up for a [Coinbase Developer Platform](https://www.coinbase.com/en-nl/developer-platform) account if you need CDP API key for additional functionalities.
+2. **Coinbase Developer Platform Account** (Optional): Sign up for a [Coinbase Developer Platform](https://www.coinbase.com/developer-platform) account if you need CDP API key for additional functionalities.
 
 ## What is a Mini App?
 
@@ -28,7 +28,7 @@ npx create-onchain --mini
 
 ## When prompted, enter your CDP Client API key.
 
-You can get a CDP API key by going to the [CDP Portal](portal.cdp.coinbase.com) and navigating API Keys -> Client API Key.
+You can get a CDP API key by going to the [CDP Portal](https://www.coinbase.com/developer-platform) and navigating API Keys -> Client API Key.
 
 ## Skip Frames Account Manifest Setup
 
@@ -94,7 +94,7 @@ ngrok http 3000
 
 #### Set environment variables in your Vercel project settings (you can use `vercel env add` to set these up via CLI):
 
-- NEXT_PUBLIC_CDP_CLIENT_API_KEY (from [CDP Portal](https://portal.cdp.coinbase.com))
+- NEXT_PUBLIC_CDP_CLIENT_API_KEY (from [CDP Portal](https://www.coinbase.com/developer-platform))
 - NEXT_PUBLIC_URL (deployed app URL)
 - NEXT_PUBLIC_IMAGE_URL (optional)
 - NEXT_PUBLIC_SPLASH_IMAGE_URL (optional)
@@ -115,7 +115,7 @@ The template comes with several pre-implemented features. Let's explore where th
 
 ### MiniKitProvider
 
-The `MiniKitProvider` is set up in your `providers.tsx` file. It wraps your application to handle initialization, events, and automatically applie client safeAreaInsets to ensure your app doesn't overlap parent application elements.
+The `MiniKitProvider` is set up in your `providers.tsx` file. It wraps your application to handle initialization, events, and automatically applies client safeAreaInsets to ensure your app doesn't overlap parent application elements.
 
 ```tsx [app/providers.tsx]
 import { MiniKitProvider } from '@coinbase/onchainkit/minikit';
@@ -234,7 +234,7 @@ const openUrl = useOpenUrl()
 </footer>
 ```
 
-Now that we've reviewed the MiniKit teamplate and the functionality already implemented, lets add some additional MiniKit features.
+Now that we've reviewed the MiniKit template and the functionality already implemented, lets add some additional MiniKit features.
 
 ## Additional MiniKit Features
 

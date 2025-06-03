@@ -735,8 +735,8 @@ export const sidebar: Sidebar = [
                     link: '/identity/smart-wallet/concepts/usage-details/gas-usage',
                   },
                   {
-                    text: 'Self Calls',
-                    link: '/identity/smart-wallet/concepts/usage-details/self-calls',
+                    text: 'Unsupported Calls',
+                    link: '/identity/smart-wallet/concepts/usage-details/unsupported-calls',
                   },
                 ],
               },
@@ -957,7 +957,7 @@ export const sidebar: Sidebar = [
               },
               {
                 text: 'Sub Accounts Reference',
-                link: '/identity/smart-wallet/technical-reference/sdk/sub-account-reference',
+                link: '/identity/smart-wallet/technical-reference/sub-account-reference',
               },
             ],
           },
@@ -990,6 +990,10 @@ export const sidebar: Sidebar = [
               {
                 text: 'Basenames OnchainKit Tutorial',
                 link: '/identity/basenames/basenames-onchainkit-tutorial',
+              },
+              {
+                text: 'Basenames Frames Tutorial',
+                link: '/identity/basenames/basenames-frames-tutorial',
               },
             ],
           },
@@ -1071,6 +1075,10 @@ export const sidebar: Sidebar = [
         link: '/chain/security-council',
       },
       {
+        text: 'Block Building',
+        link: '/chain/block-building',
+      },
+      {
         text: 'Tools',
         collapsed: true,
         items: [
@@ -1103,8 +1111,8 @@ export const sidebar: Sidebar = [
         link: '/use-cases/launch-ai-agents',
       },
       {
-        text: 'Decentralize your social app',
-        link: '/use-cases/decentralize-social-app',
+        text: 'Onchain Social',
+        link: '/use-cases/onchain-social',
       },
       {
         text: 'DeFi your app',

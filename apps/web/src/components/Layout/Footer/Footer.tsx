@@ -25,7 +25,7 @@ const LINK_SECTIONS = [
         href: 'https://docs.base.org/identity/smart-wallet/introduction/base-gasless-campaign',
       },
       { label: 'Engineering blog', href: 'https://www.base.dev/blog' },
-      { label: 'Support', href: 'https://discord.com/invite/buildonbase' }, // TODO: add discord link
+      { label: 'Support', href: 'https://discord.com/invite/buildonbase' },
     ],
   },
   {

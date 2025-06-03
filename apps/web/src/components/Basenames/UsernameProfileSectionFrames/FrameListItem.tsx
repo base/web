@@ -18,6 +18,7 @@ export default function FrameListItem({ url }: { url: string }) {
   const { currentWalletIsProfileOwner } = useUsernameProfile();
   const { logEventWithContext } = useAnalytics();
   const [isCopied, setIsCopied] = useState(false);
+  const [frameHasError, setFrameHasError] = useState(false);
 
   const [, copy] = useCopyToClipboard();
   const handleCopyFrameURLClick = useCallback(() => {
@@ -42,6 +43,11 @@ export default function FrameListItem({ url }: { url: string }) {
         logEventWithContext('basename_profile_frame_removed', ActionType.click, { context: url });
       });
   }, [logEventWithContext, removeFrame, url]);
+
+  // Don't render the entire FrameListItem if the frame has an error
+  if (frameHasError) {
+    return null;
+  }
 
   return (
     <div className="relative mb-4 break-inside-avoid">
@@ -93,7 +99,7 @@ export default function FrameListItem({ url }: { url: string }) {
           </Popover.Content>
         </Popover.Portal>
       </Popover.Root>
-      <Frame url={url} />
+      <Frame url={url} onError={setFrameHasError} />
     </div>
   );
 }
