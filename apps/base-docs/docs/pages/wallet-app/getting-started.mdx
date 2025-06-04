@@ -2,7 +2,7 @@
 
 ## Overview
 
-Mini Apps are lightweight web applications that run natively within clients like Coinbase Wallet. They provide instant access without requiring downloads, offer seamless wallet integration, and enable direct distribution through social feeds, creating effective viral loops for user acquisition and engagement. Read more about building effective social loops (here)[https://docs.base.org/builderkits/minikit/thinking-social]
+Mini Apps are lightweight web applications that run natively within clients like Coinbase Wallet. Users instantly access mini apps without downloads, benefit from seamless wallet interactions, and discover apps directly in the social feed. This benefits app developers by creating viral loops for user acquisition and engagement.
 
 A Mini App is composed of:
 
@@ -45,6 +45,26 @@ function App() {
 
 **Changes Required**: Two import lines and one wrapper component. All existing components remain unchanged.
 
+## Implementation Examples
+
+### Simple Example with MiniKit
+
+```shell
+npx create-onchain --mini
+cd my-miniapp
+npm run dev
+```
+
+### Non-React Implementation (Vue, Svelte, Vanilla JS)
+
+```shell
+npm create @farcaster/mini-app
+cd my-miniapp
+npm run dev
+```
+
+**Result**: Functional Mini App with wallet integration, transaction capabilities, and social features.
+
 ## Pre-Solved Development Challenges
 
 ### Common Engineering Concerns
@@ -60,8 +80,6 @@ function App() {
 - **Mobile Optimization**: Automatic handling of safe areas and responsive design
 - **Platform Compatibility**: Operates across Farcaster, Coinbase Wallet, and web browsers
 - **User Context**: Immediate access to user identification
-
-.
 
 ## Manifest File Configuration
 
@@ -100,7 +118,7 @@ Mini Apps require one configuration file located at `/well-known/farcaster.json`
 
 ## Categories and Discovery
 
-### Primary Categories (Select One)
+### Primary Categories
 
 - **games**: Gaming and entertainment applications
 - **social**: Social networking and communication tools
@@ -131,7 +149,7 @@ You can use the [Farcaster manifest tool](https://farcaster.xyz/~/developers/min
 - **heroImageUrl**: 1200x628px PNG/JPG (for featured placement)
 - **screenshotUrls**: App store screenshots in various sizes
 
-## Deployment Process
+### Deployment Process
 
 The deployment process remains identical to standard web applications:
 
@@ -168,24 +186,6 @@ Minimal impact. MiniKit SDK is approximately 50KB. Application performance remai
 ### We don't use React/Next.js. Is this compatible?
 
 Yes. The Farcaster SDK supports Vue, Angular, Svelte, and any web framework.
-
-## Implementation Examples
-
-### Simple Example (15-minute implementation) with MiniKit
-
-```shell
-npx create-onchain --mini
-cd my-miniapp
-npm run dev
-```
-
-### Non-React Implementation (Vue, Svelte, Vanilla JS)
-
-```shell
-npm create @farcaster/mini-app
-cd my-miniapp
-npm run dev
-```
 
 **Result**: Functional Mini App with wallet integration, transaction capabilities, and social features.
 
