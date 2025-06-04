@@ -43,11 +43,29 @@ The official mini apps SDK offers a [set of actions](https://miniapps.farcaster.
 
 Although a few other mini app developers have used the workaround of inserting Warpcast-specific deeplinks in the `openUrl` function of the SDK for certain actions, **it is highly recommended that you make use of all official SDK functions instead of using Warpcast-specific deeplinks in your mini app**. This is because Warpcast-specific deeplinks might not always match Coinbase Wallet-specific deeplinks, and this could lead to a UX where the user is dead-ended from taking further action in a mini app. Using SDK functions instead will ensure your users have the best viewing experience possible in Coinbase Wallet.
 
+:::info
+Note: For developers who include a "Share" button in their miniapp, we recommend that you move over to the new `composeCast` function in the miniapps SDK instead of using a Warpcast-specific deeplink.
+:::
+
+## Wallet Interactions
+
+Wallet interactions are a core part of the miniapp experience. We want to ensure both that building wallet interactions on top of the Coinbase Wallet is smooth for developers and that users can choose/have funds sent to their Coinbase Wallet when interacting with mini apps.
+
+As a mini app host, we expose an [EIP-1193 Ethereum Provider](https://eips.ethereum.org/EIPS/eip-1193) that can be accessed in two primary ways:
+
+- (Recommended) By using the [Wallet](https://docs.base.org/builderkits/onchainkit/wallet/wallet) component offered in OnchainKit/MiniKit
+  - Note: if you run `npm create onchain --mini`, your mini app will have a "Connect Wallet" button already set up
+- By using either `sdk.wallet.getEthereumProvider()` from [@farcaster/frame-sdk](https://www.npmjs.com/package/@farcaster/frame-sdk) or by using [@farcaster/frame-wagmi-connector](https://www.npmjs.com/package/@farcaster/frame-wagmi-connector) with your Wagmi config
+
 ## Metadata
 
 Farcaster has recently [extended the metadata spec for mini apps](https://github.com/farcasterxyz/miniapps/discussions/191), which allows developers to add screenshot links, categories, and more to their manifest (farcaster.json) file. Making use of these new metadata fields is highly recommended for increasing the chance that your mini app could be featured throughout Coinbase Wallet.
 
 Below is a table of the new metadata fields introduced, what they mean/could potentially be used for, and an example of what a manifest file could look like with these new fields (all taken from the [official spec](https://github.com/farcasterxyz/miniapps/discussions/191))
+
+:::info
+Note: Only ~30 of the hundreds of mini apps we've seen have set this data, we **highly recommend** that you set this metadata as it will give your mini app a better shot at being featured.
+:::
 
 | Experience                     | Field             | Purpose                                                | Limitations                                                                                                                                                                                                        | Design Guidelines                                                                                                                                           |
 | ------------------------------ | ----------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
