@@ -1020,6 +1020,10 @@ export const sidebar: Sidebar = [
         text: 'Mini Apps',
         link: '/wallet-app/mini-apps',
       },
+      {
+        text: 'Getting Started with Mini Apps',
+        link: '/wallet-app/getting-started',
+      },
     ],
   },
   {
