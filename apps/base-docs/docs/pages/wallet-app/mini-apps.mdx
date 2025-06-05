@@ -120,3 +120,24 @@ Note: Only ~30 of the hundreds of mini apps we've seen have set this data, we **
   }
 }
 ```
+
+## Sending notifications to users
+
+You will soon be able to send notifications from your Mini App that will appear in Coinbase Wallet. These notifications help re-engage users when something important happens, like a new drop, an update, or a reminder to complete an action. There are two ways to integrate:
+
+### Use Neynar (recommended)
+
+The fastest way to start sending notifications. Neynar provides:
+
+- A hosted webhook interface
+- Built-in user token management (opt-in / opt-out)
+- CLI tools and a dashboard
+- Analytics out of the box
+- [Get started here](https://docs.neynar.com/docs/send-notifications-to-mini-app-users)
+
+### Use your own infra
+
+You can self-host your own backend as long as it follows the [Farcaster Mini App notification spec](https://miniapps.farcaster.xyz/docs/guides/notifications). This includes:
+
+- Sending lifecycle events (`notification_enabled`, `notification_disabled`)
+- Posting events to the expected format
