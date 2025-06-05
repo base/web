@@ -777,6 +777,10 @@ export const sidebar: Sidebar = [
                     text: 'Using Sub Accounts',
                     link: '/identity/smart-wallet/guides/sub-accounts/using-sub-accounts',
                   },
+                  {
+                    text: 'Using Sub Accounts with Privy',
+                    link: '/identity/smart-wallet/guides/sub-accounts/sub-accounts-with-privy',
+                  },
                 ],
               },
               {
