@@ -131,7 +131,9 @@ const cbWalletConnector = coinbaseWallet({
 
 ### Creating the User Interface
 
-Now, let's create a simple UI to request profile data from users. We'll create a page with checkboxes to select which data to request.
+Now, let's create a simple UI to request profile data from users along with a transaction.
+We'll create a page with checkboxes to select which data to request and a button to submit the request
+along with a transfer of 0.01 USDC to an address on Base Sepolia.
 
 ```tsx [app/page.tsx]
 "use client";
