@@ -770,16 +770,21 @@ export const sidebar: Sidebar = [
                 link: '/identity/smart-wallet/guides/sub-accounts',
                 items: [
                   {
-                    text: 'Project Setup',
+                    text: 'Setup a New Project (Wagmi)',
                     link: '/identity/smart-wallet/guides/sub-accounts/setup',
                   },
                   {
-                    text: 'Using Sub Accounts',
+                    text: 'Using Sub Accounts (Wagmi)',
                     link: '/identity/smart-wallet/guides/sub-accounts/using-sub-accounts',
                   },
                   {
+
                     text: 'Using Sub Accounts with Privy',
                     link: '/identity/smart-wallet/guides/sub-accounts/sub-accounts-with-privy',
+                  },
+                  {
+                    text: 'Add Sub Accounts to OnchainKit/MiniKit',
+                    link: '/identity/smart-wallet/guides/sub-accounts/add-sub-accounts-to-onchainkit-minikit',
                   },
                 ],
               },
@@ -1081,10 +1086,6 @@ export const sidebar: Sidebar = [
       {
         text: 'Security Council',
         link: '/chain/security-council',
-      },
-      {
-        text: 'Block Building',
-        link: '/chain/block-building',
       },
       {
         text: 'Tools',
