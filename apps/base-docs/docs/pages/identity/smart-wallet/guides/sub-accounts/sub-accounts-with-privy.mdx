@@ -8,7 +8,8 @@ import { Callout } from "vocs/components"
 
 # Using Sub Accounts with Privy
 
-In this guide, you'll learn how to enable [Smart Wallet Sub Accounts](/identity/smart-wallet/features/sub-accounts) in a [Privy](https://www.privy.io/) project. This allows your users to automatically create a sub account with spend limits when connecting their wallet via Privy.
+In this guide, you'll learn how to enable [Smart Wallet Sub Accounts](/identity/smart-wallet/features/sub-accounts) in a [Privy](https://www.privy.io/) project.
+This allows your users to automatically create a Sub Account with Spend Limits when connecting their wallet via Privy.
 
 ## Skip ahead
 
@@ -23,7 +24,7 @@ If you want to skip the setup and see a working demo, check out the Sub Accounts
 By the end of this guide, you will:
 
 - Enable automatic Smart Wallet Sub Account creation for users authenticating with Privy
-- Set up spend limits for Sub Accounts on Base Sepolia
+- Set up Spend Limits for Sub Accounts on Base Sepolia
 - Understand the required package versions and configuration
 
 ## Requirements
@@ -105,7 +106,7 @@ import { toHex, parseEther } from "viem";
 - `keysUrl`: Points to the Smart Wallet development environment. **Sub Accounts only work in this environment.**
 - `options: 'smartWalletOnly'`: Ensures only Smart Wallet mode is used.
 - `enableAutoSubAccounts: true`: Automatically creates a Sub Account when the user connects.
-- `defaultSpendLimits`: Sets spend limits from the global Smart Wallet to the Sub Account on Base Sepolia (`84532`).
+- `defaultSpendLimits`: Sets Spend Limits from the global Smart Wallet to the Sub Account on Base Sepolia (`84532`).
   - `token`: The token address (native ETH in this example).
   - `allowance`: The max amount (in hex WEI) the Sub Account can spend in the period.
   - `period`: The time window for the allowance (in seconds, e.g., 86400 for 24h).
