@@ -778,7 +778,6 @@ export const sidebar: Sidebar = [
                     link: '/identity/smart-wallet/guides/sub-accounts/using-sub-accounts',
                   },
                   {
-
                     text: 'Using Sub Accounts with Privy',
                     link: '/identity/smart-wallet/guides/sub-accounts/sub-accounts-with-privy',
                   },
@@ -1028,6 +1027,10 @@ export const sidebar: Sidebar = [
       {
         text: 'Getting Started with Mini Apps',
         link: '/wallet-app/getting-started',
+      },
+      {
+        text: 'Coinbase Wallet Beta FAQ',
+        link: '/wallet-app/beta-faq',
       },
     ],
   },
