@@ -295,7 +295,7 @@ contract RNGContract {
 :::caution
 You must whitelist this smart contract under the wallet address you registered with Supra, and deposit funds to be paid for the gas fees associated with transactions for your callback function.
 
-Follow the [guidance steps](https://supraoracles.com/docs/vrf/v2-guide#step-1-create-the-supra-router-contract-interface-1) provided by Supra for whitelisting your contract and depositing funds.
+Follow the [guidance steps](https://docs.supra.com/oracles/dvrf/v2-guide#step-1-create-the-supra-router-contract-interface-2) provided by Supra for whitelisting your contract and depositing funds.
 
 If you have not yet registered your wallet with Supra, see the [Prerequisites](#prerequisites) section.
 :::
@@ -408,4 +408,4 @@ Congratulations! You have successfully deployed and interacted with a smart cont
 To learn more about VRF and using Supra dVRF to generate random numbers within your smart contracts on Base, check out the following resources:
 
 - [Oracles](https://docs.base.org/tools/oracles)
-- [Supra dVRF - Developer Guide V2](https://supraoracles.com/docs/vrf/v2-guide)
+- [Supra dVRF - Developer Guide V2](https://docs.supra.com/oracles/dvrf/v2-guide)
