@@ -738,6 +738,10 @@ export const sidebar: Sidebar = [
                     text: 'Unsupported Calls',
                     link: '/identity/smart-wallet/concepts/usage-details/unsupported-calls',
                   },
+                  {
+                    text: 'Validation and Opcode Rules',
+                    link: '/identity/smart-wallet/concepts/usage-details/validation-rules',
+                  },
                 ],
               },
               {

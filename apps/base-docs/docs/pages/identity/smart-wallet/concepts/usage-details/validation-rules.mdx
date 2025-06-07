@@ -1,0 +1,29 @@
+# Validation and Opcode Rules
+
+Due to the mechanics of Account Abstraction wallets, there are additional [validation rules](https://eips.ethereum.org/EIPS/eip-7562) that are applied to UserOperation transactions and enforced offchain by the bundler responsible for fronting gas associated with the UserOperation.
+These rules are designed to protect bundlers and other off-chain block builders from DoS attacks in which a bundler fronts gas for a UserOperation transaction that ultimately fails and thereby fails to reimburse the bundler.
+
+> ⚠️ Violation of these rules will result in the UserOperation being rejected by the bundler during the simulation phase.
+
+## Banned Opcodes
+
+These validation rules include a set of Opcode rules that limit the set of opcodes that can be executed by the UserOperation. Blocked opcodes include:
+
+- `ORIGIN` (`0x32`)
+- `GASPRICE` (`0x3A`)
+- `BLOCKHASH` (`0x40`)
+- `COINBASE` (`0x41`)
+- `TIMESTAMP` (`0x42`)
+- `NUMBER` (`0x43`)
+- `PREVRANDAO/DIFFICULTY` (`0x44`)
+- `GASLIMIT` (`0x45`)
+- `BASEFEE` (`0x48`)
+- `BLOBHASH` (`0x49`)
+- `BLOBBASEFEE` (`0x4A`)
+- `CREATE` (`0xF0`)
+- `INVALID` (`0xFE`)
+- `SELFDESTRUCT` (`0xFF`)
+
+> ℹ️ Note: `CREATE` is allowed in the "Contract Creation" and "Staked factory creation" sections.
+
+For the complete specification of these rules, see [EIP-7562](https://eips.ethereum.org/EIPS/eip-7562).
