@@ -226,7 +226,7 @@ The `sendMessage` function above calls the inherited `_lzSend` function, while p
 | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `_dstEid`        | `uint32`                                                                                                                                                                  | The [endpoint ID](https://docs.layerzero.network/contracts/endpoint-addresses) of the destination chain to send the message to.                                  |
 | `_payload`       | `bytes`                                                                                                                                                                   | The message (encoded) to send.                                                                                                                                   |
-| `_options`       | `bytes`                                                                                                                                                                   | [Additional options](https://docs.layerzero.network/contracts/options) when sending the message, such as how much gas should be used when receiving the message. |
+| `_options`       | `bytes`                                                                                                                                                                   | [Additional options](https://docs.layerzero.network/v2/developers/evm/configuration/options) when sending the message, such as how much gas should be used when receiving the message. |
 | `_fee`           | [`MessagingFee`](https://github.com/LayerZero-Labs/LayerZero-v2/blob/c3213200dfe8fabbf7d92c685590d34e6e70da43/protocol/contracts/interfaces/ILayerZeroEndpointV2.sol#L24) | The calculated fee for sending the message.                                                                                                                      |
 | `_refundAddress` | `address`                                                                                                                                                                 | The `address` that will receive any excess fee values sent to the endpoint in case the `_lzSend` execution reverts.                                              |
 
@@ -264,7 +264,7 @@ The `estimateFee` function above calls the inherited `_quote` function, while pa
 | :-------------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `_dstEid`       | `uint32` | The [endpoint ID](https://docs.layerzero.network/contracts/endpoint-addresses) of the destination chain the message will be sent to.                             |
 | `_payload`      | `bytes`  | The message (encoded) that will be sent.                                                                                                                         |
-| `_options`      | `bytes`  | [Additional options](https://docs.layerzero.network/contracts/options) when sending the message, such as how much gas should be used when receiving the message. |
+| `_options`      | `bytes`  | [Additional options](https://docs.layerzero.network/v2/developers/evm/configuration/options) when sending the message, such as how much gas should be used when receiving the message. |
 | `_payInLzToken` | `bool`   | Boolean flag for which token to use when returning the fee (native or ZRO token).                                                                                |
 
 :::info
@@ -538,17 +538,17 @@ Once peers have been set on each contract, they are now able to send and receive
 
 Sending a message using the newly created `ExampleContract` contract can be done in three steps:
 
-1. Build [message options](https://docs.layerzero.network/contracts/options) to specify logic associated with the message transaction
+1. Build [message options](https://docs.layerzero.network/v2/developers/evm/configuration/options) to specify logic associated with the message transaction
 2. Call the `estimateFee` function to estimate the gas fee for sending a message
 3. Call the `sendMessage` function to send a message
 
 ### Building message options
 
-The `estimateFee` and `sendMessage` custom functions of the `ExampleContract` contract both require a [message options](https://docs.layerzero.network/contracts/options) (`_options`) argument to be provided.
+The `estimateFee` and `sendMessage` custom functions of the `ExampleContract` contract both require a [message options](https://docs.layerzero.network/v2/developers/evm/configuration/options) (`_options`) argument to be provided.
 
 Message options allow you to specify arbitrary logic as part of the message transaction, such as the gas amount the [Executor](https://docs.layerzero.network/explore/executors) pays for message delivery, the order of message execution, or dropping an amount of gas to a destination address.
 
-LayerZero provides a [Solidity](https://github.com/LayerZero-Labs/LayerZero-v2/blob/ccfd0d38f83ca8103b14ab9ca77f32e0419510ff/oapp/contracts/oapp/libs/OptionsBuilder.sol#L12) library and [TypeScript SDK](https://docs.layerzero.network/contracts/options) for building these message options.
+LayerZero provides a [Solidity](https://github.com/LayerZero-Labs/LayerZero-v2/blob/ccfd0d38f83ca8103b14ab9ca77f32e0419510ff/oapp/contracts/oapp/libs/OptionsBuilder.sol#L12) library and [TypeScript SDK](https://docs.layerzero.network/v2/developers/evm/configuration/options) for building these message options.
 
 As an example, below is a Foundry script that uses OptionsBuilder from the Solidity library to generate message options (as `bytes`) that set the gas amount that the Executor will pay upon message delivery to `200000` wei:
 
@@ -580,7 +580,7 @@ For this tutorial, rather than building and generating your own message options,
 
 :::info
 
-Covering all of the different message options in detail is out of scope for this tutorial. If you are interested in learning more about the different message options and how to build them, visit the [LayerZero developer documentation](https://docs.layerzero.network/contracts/options).
+Covering all of the different message options in detail is out of scope for this tutorial. If you are interested in learning more about the different message options and how to build them, visit the [LayerZero developer documentation](https://docs.layerzero.network/v2/developers/evm/configuration/options).
 
 :::
 
