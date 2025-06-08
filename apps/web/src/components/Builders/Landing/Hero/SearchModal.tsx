@@ -146,7 +146,7 @@ const searchConfig: SearchCategory[] = [
       },
       {
         label: "Kickstart your app's growth",
-        href: 'https://docs.base.org/use-cases/decentralize-social-app',
+        href: 'https://docs.base.org/use-cases/onchain-social',
         icon: 'arrowRight',
       },
       {
