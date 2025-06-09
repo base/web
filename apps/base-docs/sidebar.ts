@@ -1025,7 +1025,7 @@ export const sidebar: Sidebar = [
         link: '/wallet-app/getting-started',
       },
       {
-        text: 'Coinbase Wallet Beta FAQ',
+        text: 'Coinbase Wallet Beta',
         link: '/wallet-app/beta-faq',
       },
     ],
