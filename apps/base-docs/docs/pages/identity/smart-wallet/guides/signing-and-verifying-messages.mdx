@@ -120,10 +120,11 @@ export function SignMessage() {
 
 To run this example:
 
-1. Clone the repo: `git clone https://github.com/wilsoncusack/wagmi-scw/`
-2. Install bun: `curl -fsSL https://bun.sh/install | bash`
-3. Install packages: `bun i`
-4. Run next app: `bun run dev`
+1. Open a terminal and clone the repo: `git clone https://github.com/base/demos/`
+2. Navigate to the directory: `cd demos/smart-wallet/wagmi-demo`
+3. Install bun if you don't have it: `curl -fsSL https://bun.sh/install | bash`
+4. Install packages: `bun i`
+5. Run next app: `bun run dev`
 
 <Callout type="info">
 The example above is a typical Sign-In with Ethereum (SIWE) implementation as detailed in [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361).
@@ -242,7 +243,7 @@ Key points about typed data signatures:
 
 ### Onchain Signatures
 
-If you are looking to handle onchain signatures (eg. [Permit2](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/Permit2.tsx)), you can sign them in the same way as above.
+If you are looking to handle onchain signatures (eg. [Permit2](https://github.com/base/demos/blob/master/smart-wallet/wagmi-demo/src/components/Permit2.tsx)), you can sign them in the same way as above.
 However, you should be careful when looking to validate the signatures:
 
 - ERC-6492-compatible signatures contain other elements that are not useful for onchain signatures (magicBytes, create2Factory, factoryCalldata). In order to understand the complete logic of how ERC-6492-compatible signatures work,
@@ -251,7 +252,7 @@ However, you should be careful when looking to validate the signatures:
 - For non-Viem implementations, see alternative approaches below
 
 :::info
-There is an example implementation of Permit2 using Wagmi in the [wagmi-scw repository](https://github.com/wilsoncusack/wagmi-scw/blob/main/src/components/Permit2.tsx).
+There is an example implementation of Permit2 using Wagmi in the [demos repository](https://github.com/base/demos/blob/master/smart-wallet/wagmi-demo/src/components/Permit2.tsx).
 :::
 
 ### Alternative Frameworks
@@ -318,10 +319,10 @@ export async function POST(request: NextRequest) {
     console.log("valid", valid);
 
     if (valid){
-        return NextResponse.json({ 
-            success: true, 
+        return NextResponse.json({
+            success: true,
             message: 'Signature verified',
-            address: address 
+            address: address
         });
     } else {
         return NextResponse.json(

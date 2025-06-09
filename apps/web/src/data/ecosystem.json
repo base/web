@@ -1248,6 +1248,14 @@
     "subcategory": "dex"
   },
   {
+    "name": "Deri Protocol",
+    "description": "Deri is the one-stop derivatives shop to hedge, speculate, and arbitrage on-chain. Trade perpetuals, options, gamma swap, and more!",
+    "url": "https://deri.io/#/pro/trade/futures/BTCUSD?chain=Base",
+    "imageUrl": "/images/partners/deriprotocol.png",
+    "category": "defi",
+    "subcategory": "dex"
+  },
+  {
     "name": "Desig",
     "url": "https://desig.io/",
     "description": "Meet Desig: A Smart Multisig wallet simplifying treasury ops. Flourishing funds with intuitive tracking, smart allocation & insightful cashflow reports. Enjoy gasless vault control; intel-driven swap.",
@@ -1766,6 +1774,14 @@
     "imageUrl": "/images/partners/goodcryptox.png",
     "category": "ai",
     "subcategory": "ai"
+  },
+  {
+    "name": "gTrade",
+    "description": "Access 290+ perpetual futures markets across crypto, stocks, forex, and commodities with self-custody, efficient execution, and zero slippage on major pairs.",
+    "url": "https://gains.trade/trading",
+    "imageUrl": "/images/partners/gTrade.png",
+    "category": "defi",
+    "subcategory": "dex"
   },
   {
     "name": "Guild",
@@ -2398,6 +2414,14 @@
     "imageUrl": "/images/partners/momentify.png",
     "category": "consumer",
     "subcategory": "music"
+  },
+  {
+    "name": "MoonLightPixels.com",
+    "description": "AI-powered platform that lets everyone create beautiful, fun adventure games in minutes without coding, while earning rewards through blockchain integration.",
+    "url": "https://www.moonlightpixels.com",
+    "imageUrl": "/images/partners/moonlight.png",
+    "category": "ai",
+    "subcategory": "ai"
   },
   {
     "name": "MoonPay",

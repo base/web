@@ -131,7 +131,9 @@ const cbWalletConnector = coinbaseWallet({
 
 ### Creating the User Interface
 
-Now, let's create a simple UI to request profile data from users. We'll create a page with checkboxes to select which data to request.
+Now, let's create a simple UI to request profile data from users along with a transaction.
+We'll create a page with checkboxes to select which data to request and a button to submit the request
+along with a transfer of 0.01 USDC to an address on Base Sepolia.
 
 ```tsx [app/page.tsx]
 "use client";
@@ -566,46 +568,7 @@ ngrok http 3000
 
 5. Connect your Smart Wallet and test requesting and validating user data.
 
-## Advanced Use Cases
-
-### Combining with Transactions
-
-You can combine profile data requests with actual blockchain transactions:
-
-```ts
-const response = await provider?.request({
-  method: "wallet_sendCalls",
-  params: [
-    {
-      version: "1.0",
-      chainId: numberToHex(84532),
-      calls: [
-        {
-          to: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913", // USDC contract
-          data: encodeFunctionData({
-            abi: erc20Abi,
-            functionName: "transfer",
-            args: [
-              "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
-              parseUnits("0.01", 6),
-            ],
-          }),
-        },
-      ],
-      capabilities: {
-        dataCallback: {
-          requests: [{ type: "email", optional: false }],
-          callbackURL: getCallbackURL(),
-        },
-      },
-    },
-  ],
-});
-```
-
-This way, you can collect shipping information while processing a payment, or get an email for order confirmation while executing a transaction.
-
-### Making Fields Optional
+## Making Fields Optional
 
 You can make any requested field optional by setting the `optional` parameter:
 
