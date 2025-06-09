@@ -29,6 +29,14 @@ export default async function GetNoticed() {
           topRight={<Icon name="diagonalUpArrow" width="16px" height="16px" />}
           classnames="bg-pink-60 border-pink-60"
         />
+        <ResourceCard
+          title="Participate in a Virtual Event"
+          description="Apply here to host or participate in a Base Virtual Event"
+          href="https://forms.gle/91jxqLARkHQvMc2M9/?utm_source=dotorg&utm_medium=builderkit"
+          topLeft={<span className="font-mono">03</span>}
+          topRight={<Icon name="diagonalUpArrow" width="16px" height="16px" />}
+          classnames="bg-pink-80 border-pink-80"
+        />
       </div>
     </div>
   );
