@@ -344,6 +344,16 @@ You can learn more about ngrok [here](https://ngrok.com/docs).
 
 </Callout>
 
+<Callout type="warning">
+**Important caveats about the validation API**
+
+If the API validation check is successful, you MUST return the original calls in the response of the API endpoint as it's shown in the [validation API section](#implementing-the-validation-api).
+If you don't, the wallet will return an error.
+
+You can also return a new set of calls to be made after the data is validated.
+
+</Callout>
+
 ### Implementing the Validation API
 
 Now, let's create an API endpoint to validate the data received from Smart Wallet.
