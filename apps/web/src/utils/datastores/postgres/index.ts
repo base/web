@@ -5,17 +5,23 @@ import { Database } from './types';
 import { logger } from 'apps/web/src/utils/logger';
 
 function createDefaultRDSManager() {
+  const user = isDevelopment ? process.env.POSTGRES_USER_DEVELOPMENT : process.env.POSTGRES_USER;
+  const password = isDevelopment ? process.env.POSTGRES_PASSWORD_DEVELOPMENT : process.env.POSTGRES_PASSWORD;
+  const host = isDevelopment ? process.env.POSTGRES_HOST_DEVELOPMENT : process.env.POSTGRES_HOST;
+  const dbName = isDevelopment ? process.env.POSTGRES_DB_NAME_DEVELOPMENT : process.env.POSTGRES_DB_NAME;
+  const connectionString = `postgresql://${user}:${password}@${host}:5432/${dbName}`;
+  const poolConfig = isDevelopment
+    ? {
+        connectionString,
+      }
+    : {
+        connectionString,
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      };
+
   try {
-    const poolConfig = isDevelopment
-      ? {
-          connectionString: process.env.POSTGRES_URL_DEVELOPMENT_CBHQ,
-        }
-      : {
-          connectionString: `postgresql://${process.env.RDS_USER}:${process.env.RDS_PASSWORD}@${process.env.RDS_HOST}:5432/${process.env.RDS_DB_NAME}`,
-          ssl: {
-            rejectUnauthorized: false,
-          },
-        };
     const pool = new Pool(poolConfig);
     const dialect = new PostgresDialect({ pool });
     return new Kysely<Database>({ dialect });
