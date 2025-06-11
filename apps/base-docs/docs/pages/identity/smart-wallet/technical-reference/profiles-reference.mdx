@@ -2,9 +2,12 @@
 
 ## Overview
 
-The Profiles feature allows developers to request personal information from Smart Wallet users during a
+The [Profiles feature](/identity/smart-wallet/concepts/features/optional/profiles) allows developers to request personal information from Smart Wallet users during a
 transaction. This is useful for applications that need to collect user data like email addresses,
 physical addresses, phone numbers, and names.
+
+This is not a guide on how to implement Profiles, but rather a reference for the API endpoints and data formats.
+If you are looking for a guide on how to implement Profiles, please see the [Profiles guide](/identity/smart-wallet/guides/profiles).
 
 ## Supported Data Types
 
@@ -209,9 +212,3 @@ export async function POST(request: Request) {
 4. **Privacy**: Users always have full control over their data. They can choose to share or withhold any information, and they're clearly shown what data you're requesting.
 
 5. **Validation**: Smart Wallet performs basic validation before sending data to your callback URL. This includes checking that emails are valid and addresses are properly formatted.
-
-## Requirements
-
-- Coinbase Wallet SDK v4.4.0 or higher
-- An app connected to an EVM-compatible chain
-- A secure HTTPS endpoint for data validation
