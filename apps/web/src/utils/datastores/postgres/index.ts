@@ -4,7 +4,7 @@ import { isDevelopment } from 'apps/web/src/constants';
 import { Database } from './types';
 import { logger } from 'apps/web/src/utils/logger';
 
-function createDefaultRDSManager() {
+function createDefaultPostgresManager() {
   const user = isDevelopment ? process.env.POSTGRES_USER_DEVELOPMENT : process.env.POSTGRES_USER;
   const password = isDevelopment ? process.env.POSTGRES_PASSWORD_DEVELOPMENT : process.env.POSTGRES_PASSWORD;
   const host = isDevelopment ? process.env.POSTGRES_HOST_DEVELOPMENT : process.env.POSTGRES_HOST;
@@ -27,18 +27,18 @@ function createDefaultRDSManager() {
     return new Kysely<Database>({ dialect });
   } catch (error) {
     if (isDevelopment) {
-      console.error('Failed to connect to RDS', error);
+      console.error('Failed to connect to postgres', error);
     } else {
-      logger.error('Failed to connect to RDS', error);
+      logger.error('Failed to connect to postgres', error);
     }
-    throw new Error(`Failed to connect to RDS: ${error}`);
+    throw new Error(`Failed to connect to postgres: ${error}`);
   }
 }
 
 let db: Kysely<Database> | undefined = undefined;
 export function getDb() {
   if (!db) {
-    db = createDefaultRDSManager();
+    db = createDefaultPostgresManager();
   }
   return db;
 }
