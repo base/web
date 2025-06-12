@@ -4334,5 +4334,13 @@
     "imageUrl": "/images/partners/zora.webp",
     "category": "consumer",
     "subcategory": "creator"
+  },
+  {
+    "name": "dForce",
+    "url": "https://dforce.network/",
+    "description": "dForce is a unified platform powering RWA permissionless markets, the USX stablecoin, and AI agents-driven DeFi, advancing the next era of a crypto-native RWA + AI economy.",
+    "imageUrl": "/images/partners/dforce.png",
+    "category": "defi",
+    "subcategory": "liquidity management"
   }
 ]
