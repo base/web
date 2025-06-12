@@ -1029,7 +1029,7 @@ export const sidebar: Sidebar = [
         link: '/wallet-app/beta-faq',
       },
       {
-        text: 'Chat Agents in Coinbase Wallet',
+        text: 'Chat Agents',
         link: '/wallet-app/chat-agents',
       },
     ],
