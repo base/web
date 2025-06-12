@@ -1028,6 +1028,10 @@ export const sidebar: Sidebar = [
         text: 'Coinbase Wallet Beta FAQ',
         link: '/wallet-app/beta-faq',
       },
+      {
+        text: 'Chat Agents in Coinbase Wallet',
+        link: '/wallet-app/chat-agents',
+      },
     ],
   },
   {
