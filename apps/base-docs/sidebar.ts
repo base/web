@@ -713,10 +713,6 @@ export const sidebar: Sidebar = [
                         text: 'Sub Accounts',
                         link: '/identity/smart-wallet/concepts/features/optional/sub-accounts',
                       },
-                      {
-                        text: 'Profiles',
-                        link: '/identity/smart-wallet/concepts/features/optional/profiles',
-                      },
                     ],
                   },
                 ],
@@ -790,10 +786,6 @@ export const sidebar: Sidebar = [
                     link: '/identity/smart-wallet/guides/sub-accounts/add-sub-accounts-to-onchainkit-minikit',
                   },
                 ],
-              },
-              {
-                text: 'Profiles',
-                link: '/identity/smart-wallet/guides/profiles',
               },
               {
                 text: 'Spend Limits',
@@ -978,10 +970,6 @@ export const sidebar: Sidebar = [
               {
                 text: 'Sub Accounts Reference',
                 link: '/identity/smart-wallet/technical-reference/sub-account-reference',
-              },
-              {
-                text: 'Profiles Reference',
-                link: '/identity/smart-wallet/technical-reference/profiles-reference',
               },
             ],
           },
