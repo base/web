@@ -9,7 +9,7 @@ import { Callout } from "vocs/components"
 # Using Sub Accounts with Privy
 
 In this guide, you'll learn how to enable [Smart Wallet Sub Accounts](/identity/smart-wallet/concepts/features/optional/sub-accounts) in a [Privy](https://www.privy.io/) project.
-This allows your users to automatically create a Sub Account with Spend Limits when connecting their wallet via Privy.
+This allows your users to automatically create a Sub Account with Spend Permissions when connecting their wallet via Privy.
 
 ## Skip ahead
 
@@ -24,7 +24,7 @@ If you want to skip the setup and see a working demo, check out the Sub Accounts
 By the end of this guide, you will:
 
 - Enable automatic Smart Wallet Sub Account creation for users authenticating with Privy
-- Set up Spend Limits for Sub Accounts on Base Sepolia
+- Set up Spend Permissions for Sub Accounts on Base Sepolia
 - Understand the required package versions and configuration
 
 ## Requirements
@@ -79,10 +79,10 @@ import { toHex, parseEther } from "viem";
             keysUrl: "https://keys-dev.coinbase.com/connect", // Use the Smart Wallet dev environment
             options: "smartWalletOnly", // Only allow Smart Wallet
           },
-          // Enable Sub Account support with spend limits
+          // Enable Sub Account support with Spend Permissions
           subAccounts: {
             enableAutoSubAccounts: true, // Automatically create a sub account on connect
-            defaultSpendLimits: {
+            defaultSpendPermissions: {
               84532: [ // Base Sepolia Chain ID
                 {
                   token: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE", // Native ETH
@@ -106,14 +106,14 @@ import { toHex, parseEther } from "viem";
 - `keysUrl`: Points to the Smart Wallet development environment. **Sub Accounts only work in this environment.**
 - `options: 'smartWalletOnly'`: Ensures only Smart Wallet mode is used.
 - `enableAutoSubAccounts: true`: Automatically creates a Sub Account when the user connects.
-- `defaultSpendLimits`: Sets Spend Limits from the global Smart Wallet to the Sub Account on Base Sepolia (`84532`).
+- `defaultSpendPermissions`: Sets Spend Permissions from the global Smart Wallet to the Sub Account on Base Sepolia (`84532`).
   - `token`: The token address (native ETH in this example).
   - `allowance`: The max amount (in hex WEI) the Sub Account can spend in the period.
   - `period`: The time window for the allowance (in seconds, e.g., 86400 for 24h).
 
 <Callout type="info">
 **Note:**
-This guide only covers the _automatic_ Sub Account creation flow, where a Sub Account is created and Spend Limits are set as soon as the user connects their wallet. We are working with Privy to support flows where the user can first authenticate with their global Smart Wallet account and then create a Sub Account after. For now, only the automatic Sub Accounts flow is supported.
+This guide only covers the _automatic_ Sub Account creation flow, where a Sub Account is created and Spend Permissions are set as soon as the user connects their wallet. We are working with Privy to support flows where the user can first authenticate with their global Smart Wallet account and then create a Sub Account after. For now, only the automatic Sub Accounts flow is supported.
 </Callout>
 
 ---
@@ -127,7 +127,7 @@ npm run dev
 ```
 
 2. Open your app and connect with Coinbase Wallet via Privy.
-3. You should see a prompt to create a Sub Account and Spend Limits.
+3. You should see a prompt to create a Sub Account and Spend Permissions.
 4. You can now use the Sub Account to send transactions without pop-up confirmations.
 
 ---

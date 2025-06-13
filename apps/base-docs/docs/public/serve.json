@@ -128,7 +128,7 @@
     },
     {
       "source": "/identity/smart-wallet/concepts/features/optional/spend-permissions",
-      "destination": "/identity/smart-wallet/concepts/features/optional/spend-limits"
+      "destination": "/identity/smart-wallet/concepts/features/optional/spend-permissions"
     },
     {
       "source": "/identity/smart-wallet/features/sub-accounts",
@@ -148,11 +148,11 @@
     },
     {
       "source": "/identity/smart-wallet/guides/spend-permissions",
-      "destination": "/identity/smart-wallet/guides/spend-limits"
+      "destination": "/identity/smart-wallet/guides/spend-permissions"
     },
     {
       "source": "/identity/smart-wallet/guides/spend-permissions/:path*",
-      "destination": "/identity/smart-wallet/guides/spend-limits/"
+      "destination": "/identity/smart-wallet/guides/spend-permissions/"
     },
     {
       "source": "/identity/smart-wallet/guides/create-app/:path*",

@@ -15,7 +15,7 @@ To support using Smart Wallet with user experiences that require more developer 
 
 Sub Accounts allow you to provision wallet accounts that are directly embedded in your application for your users. You can control when a Sub Account is created for your user, and can interact with them just as you would with another wallet via the wallet provider, or other popular web3 libraries like OnchainKit, wagmi, viem, etc.
 
-These Sub Accounts are linked to the end user's Smart wallet through an onchain relationship. When combined with our [Spend Limits feature](/identity/smart-wallet/guides/spend-limits), this creates a powerful foundation for provisioning and funding app accounts, securely, while giving you, the developer, ample control over building the user experience that makes the most sense for your application.
+These Sub Accounts are linked to the end user's Smart wallet through an onchain relationship. When combined with our [Spend Permissions feature](/identity/smart-wallet/guides/spend-permissions), this creates a powerful foundation for provisioning and funding app accounts, securely, while giving you, the developer, ample control over building the user experience that makes the most sense for your application.
 
 If you would like to see a live demo of Sub Accounts in action, check out our [Sub Accounts Demo](https://sub-account-demo.com).
 
@@ -30,7 +30,7 @@ and it cannot be used on other applications on separate domains.
 In this guide, we'll set up a basic React app using NextJS and Wagmi that:
 
 - Lets users log in with their Smart Wallet
-- Creates a Sub Account scoped to the app with the a Spend Limit included in the configuration
+- Creates a Sub Account scoped to the app with the a Spend Permission included in the configuration
 - Uses the Sub Account to perform popup-less transactions
 
 ### Skip ahead
@@ -45,15 +45,15 @@ If you want to skip ahead and just get the final code, you can find it here:
 
    - Creating a new NextJS+Wagmi project
    - Configuring Smart Wallet with development environment settings
-   - Setting up Spend Limits for native ETH
+   - Setting up Spend Permissions for native ETH
    - Creating a basic wallet connection interface
 
 2. [Using Sub Accounts](/identity/smart-wallet/guides/sub-accounts/using-sub-accounts) - Explore how to interact with Sub Accounts in your application. This guide demonstrates:
 
    - Signing messages with Sub Accounts using `useSignMessage`
-   - Sending transactions with spend limits using `useSendTransaction`
+   - Sending transactions with Spend Permissions using `useSendTransaction`
    - Building a complete interface for wallet connection and transactions
-   - Understanding transaction limitations based on Spend Limits
+   - Understanding transaction limitations based on Spend Permissions
 
 3. [Using Sub Accounts with OnchainKit](/identity/smart-wallet/guides/sub-accounts/add-sub-accounts-to-onchainkit-minikit) - Learn how to use Sub Accounts with OnchainKit. This guide demonstrates:
 

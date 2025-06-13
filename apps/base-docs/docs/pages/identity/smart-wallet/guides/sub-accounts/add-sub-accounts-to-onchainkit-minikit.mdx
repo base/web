@@ -94,7 +94,7 @@ export function getConfig() {
         },
         subAccounts: {
           enableAutoSubAccounts: true,
-          defaultSpendLimits: {
+          defaultSpendPermissions: {
             84532: [ // Base Sepolia Chain ID
               {
                 token: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
@@ -129,7 +129,7 @@ Let's break down the key preference parameters:
 - `keysUrl`: Points to the development environment for Smart Wallet testing
 - `options: 'smartWalletOnly'`: Ensures only Smart Wallet mode is used
 - `enableAutoSubAccounts: true`: When set to true, automatically creates a Sub Account at connection
-- `defaultSpendLimits`: Configures Spend Limits for Sub Account for a network (eg. Base Sepolia `84532`), including:
+- `defaultSpendPermissions`: Configures Spend Permissions for Sub Account for a network (eg. Base Sepolia `84532`), including:
 
   - Token address (In this case, `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` represents the native ETH)
   - Allowance WEI amount (in Hex)

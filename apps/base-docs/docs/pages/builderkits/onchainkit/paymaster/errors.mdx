@@ -27,9 +27,9 @@ Below are a list of common error codes returned by the Paymaster.
 
 | Message                                                       | Description                                                       |
 | :------------------------------------------------------------ | :---------------------------------------------------------------- |
-| rejected due to max per user op spend limit exceeded          | UserOperation cost too large - configure Per UserOperation limit. |
-| rejected due to max monthly org spend limit                   | over max monthly spend - contact us to increase your limit.       |
-| rejected due to max global usd spend limit reached            | over configured max total USD - adjust your policy.               |
+| rejected due to max per user op Spend Permission exceeded     | UserOperation cost too large - configure Per UserOperation limit. |
+| rejected due to max monthly org Spend Permission              | over max monthly spend - contact us to increase your limit.       |
+| rejected due to max global usd Spend Permission reached       | over configured max total USD - adjust your policy.               |
 | rejected due to maximum per address transaction count reached | per sender address maximum number of txn sponsored reached.       |
 | rejected due to maximum per address sponsorship reached       | per sender address maximum USD sponsorship reached.               |
 | attestation not found for address                             | sender address does not have required attestation.                |
@@ -92,4 +92,3 @@ Request Logs for UserOps can be downloaded under the Logs tab on the Paymaster p
 | Method          | Method called by the request.                                                            |
 | ErrorCode       | Error code for failed requests.                                                          |
 | ErrorMessage    | Error message for failed requests.                                                       |
-
