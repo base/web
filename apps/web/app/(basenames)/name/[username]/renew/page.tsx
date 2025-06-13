@@ -8,11 +8,12 @@ type PageProps = {
 export default async function Page(props: PageProps) {
   const params = await props.params;
   const { username } = params;
+  const name = username.split('.')[0];
 
   return (
     <ErrorsProvider context="renewal">
       <main>
-        <RenewalFlow name={username} />
+        <RenewalFlow name={name} />
       </main>
     </ErrorsProvider>
   );

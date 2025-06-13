@@ -26,26 +26,9 @@ import { ActionType } from 'libs/base-ui/utils/logEvent';
 import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { formatEther, zeroAddress } from 'viem';
 import { useAccount, useBalance, useReadContract, useSwitchChain } from 'wagmi';
+import { formatEtherPrice } from 'apps/web/src/utils/formatEtherPrice';
+import { formatUsdPrice } from 'apps/web/src/utils/formatUsdPrice';
 import { RegistrationButton } from './RegistrationButton';
-
-export function formatEtherPrice(price?: bigint) {
-  if (price === undefined) {
-    return '...';
-  }
-  const value = parseFloat(formatEther(price));
-  if (value < 0.001) {
-    return parseFloat(value.toFixed(4));
-  } else {
-    return parseFloat(value.toFixed(3));
-  }
-}
-
-export function formatUsdPrice(price: bigint, ethUsdPrice: number) {
-  if (price === 0n) return '0';
-  const parsed = (parseFloat(formatEther(price)) * Number(ethUsdPrice)).toFixed(2);
-  if (parsed === '0.00') return '0';
-  return parsed;
-}
 
 export default function RegistrationForm() {
   const { isConnected, chain: connectedChain, address } = useAccount();

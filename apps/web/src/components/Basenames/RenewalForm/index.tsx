@@ -13,12 +13,11 @@ import { ActionType } from 'libs/base-ui/utils/logEvent';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useAccount, useBalance, useSwitchChain } from 'wagmi';
 import { RenewalButton } from './RenewalButton';
-import {
-  formatEtherPrice,
-  formatUsdPrice,
-} from 'apps/web/src/components/Basenames/RegistrationForm';
+import { formatUsdPrice } from 'apps/web/src/utils/formatUsdPrice';
+import { formatEtherPrice } from 'apps/web/src/utils/formatEtherPrice';
 import { useNameList } from 'apps/web/src/components/Basenames/ManageNames/hooks';
 import YearSelector from 'apps/web/src/components/Basenames/YearSelector';
+import { formatBaseEthDomain } from 'apps/web/src/utils/usernames';
 
 export default function RenewalForm({ name }: { name: string }) {
   const { chain: connectedChain, address } = useAccount();
@@ -41,8 +40,8 @@ export default function RenewalForm({ name }: { name: string }) {
   );
 
   const nameData = useMemo(() => {
-    return namesData?.data.find((n) => n.domain === name);
-  }, [name, namesData?.data]);
+    return namesData?.data.find((n) => n.domain === formatBaseEthDomain(name, basenameChain.id));
+  }, [basenameChain.id, name, namesData?.data]);
 
   const formattedExpirationDate = useMemo(() => {
     if (!nameData?.expires_at) return undefined;
@@ -61,7 +60,7 @@ export default function RenewalForm({ name }: { name: string }) {
     renewNameStatus,
     batchCallsStatus,
   } = useRenewNameCallback({
-    name: name.replace(/\.base\.eth$/, ''),
+    name,
     years,
   });
 
@@ -121,7 +120,7 @@ export default function RenewalForm({ name }: { name: string }) {
     }
   }, [renewNameStatus, batchCallsStatus, refetch, logError]);
 
-  if (!isOnSupportedNetwork) {
+  if (address && !isOnSupportedNetwork) {
     return (
       <button
         type="button"

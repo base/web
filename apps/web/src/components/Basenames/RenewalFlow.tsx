@@ -8,10 +8,8 @@ import useBasenameChain, { supportedChainIds } from 'apps/web/src/hooks/useBasen
 import classNames from 'classnames';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useAccount, useSwitchChain } from 'wagmi';
-import { Basename } from '@coinbase/onchainkit/identity';
-import { Icon } from 'apps/web/src/components/Icon/Icon';
-import { useRouter } from 'next/navigation';
 import { RegistrationSteps } from 'apps/web/src/components/Basenames/RegistrationContext';
+import { formatBaseEthDomain } from 'apps/web/src/utils/usernames';
 
 type RenewalFlowProps = {
   name: string;
@@ -21,7 +19,6 @@ export function RenewalFlow({ name }: RenewalFlowProps) {
   const { chain } = useAccount();
   const { basenameChain } = useBasenameChain();
   const { switchChain } = useSwitchChain();
-  const router = useRouter();
 
   const isOnSupportedNetwork = useMemo(
     () => chain && supportedChainIds.includes(chain.id),
@@ -32,10 +29,6 @@ export function RenewalFlow({ name }: RenewalFlowProps) {
     () => switchChain({ chainId: basenameChain.id }),
     [basenameChain.id, switchChain],
   );
-
-  const onBackArrowClick = useCallback(() => {
-    router.back();
-  }, [router]);
 
   useEffect(() => {
     if (!chain || !switchToIntendedNetwork) {
@@ -76,17 +69,9 @@ export function RenewalFlow({ name }: RenewalFlowProps) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="absolute left-1/2 z-9 mx-auto w-full -translate-x-1/2 -translate-y-[calc(15vh)] gap-4 px-2 transition-opacity md:max-w-[16rem] md:-translate-y-20">
-            <button
-              onClick={onBackArrowClick}
-              type="button"
-              aria-label="Find another name"
-              className="flex items-center gap-6"
-            >
-              <Icon name="backArrow" color="currentColor" height="1rem" width="1rem" />
-              <p className="text-gray-50">EXTEND REGISTRATION</p>
-            </button>
-          </div>
+          <p className="absolute left-1/2 z-9 mx-auto w-full -translate-x-1/2 -translate-y-20 text-center text-gray-50 transition-opacity">
+            EXTEND REGISTRATION
+          </p>
           {/* The pill */}
           <Transition
             appear
@@ -98,7 +83,10 @@ export function RenewalFlow({ name }: RenewalFlowProps) {
             enterFrom="max-w-0"
             enterTo="max-w-full"
           >
-            <UsernamePill variant={currentUsernamePillVariant} username={name as Basename} />
+            <UsernamePill
+              variant={currentUsernamePillVariant}
+              username={formatBaseEthDomain(name, basenameChain.id)}
+            />
           </Transition>
         </Transition>
 
