@@ -944,6 +944,10 @@ export const sidebar: Sidebar = [
                     link: '/identity/smart-wallet/technical-reference/sdk/CoinbaseWalletProvider/wallet_watchAsset',
                   },
                   {
+                    text: 'wallet_sendCalls',
+                    link: '/identity/smart-wallet/technical-reference/sdk/CoinbaseWalletProvider/wallet_sendCalls',
+                  },
+                  {
                     text: 'web3_clientVersion',
                     link: '/identity/smart-wallet/technical-reference/sdk/CoinbaseWalletProvider/web3_clientVersion',
                   },
