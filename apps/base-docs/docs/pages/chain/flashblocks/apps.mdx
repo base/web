@@ -97,78 +97,9 @@ curl https://sepolia-preconf.base.org -X POST -H "Content-Type: application/json
 For popular libraries, they sometimes require additional RPC support for transaction preconfirmation to work properly.
 We are working on adding Flashblocks support to the following libraries:
 
-#### [Viem](https://viem.sh)
-
-- Ensure that `pollingInterval` is set to approximately 200ms on your Viem [Client](https://viem.sh/docs/clients/public#pollinginterval-optional).
-- Ensure that your `transport` is pointing to the Flashblocks endpoint.
-
-```ts
-import { createPublicClient, parseEther, publicActions, walletActions, webSocket } from 'viem'
-import { baseSepolia } from 'viem/chains'
-
-const client = createClient({
-  account: privateKeyToAccount(process.env.PRIVATE_KEY)
-  chain: baseSepolia,
-  pollingInterval: 200, // [!code hl]
-  transport: webSocket('wss://sepolia.flashblocks.base.org/ws') // [!code hl]
-})
-  .extend(publicActions)
-  .extend(walletActions)
-
-// Send a Transaction
-const hash = await client.sendTransaction({ to: '<SOME ADDRESS>', value: parseEther('0.0001') })
-
-// Wait for confirmation (~200ms)
-const receipt = await client.waitForTransactionReceipt({ hash })
-```
-
-#### [Wagmi](https://wagmi.sh)
-
-- Ensure that `pollingInterval` is set to approximately 200ms on your Wagmi [Config](https://wagmi.sh/react/api/createConfig#pollinginterval).
-- Ensure that your `transports` is pointing to the Flashblocks endpoint.
-
-:::code-group
-
-```ts [config.ts]
-import { createConfig, webSocket } from 'wagmi'
-import { baseSepolia } from 'wagmi/chains'
-
-const config = createConfig({
-  chains: [baseSepolia],
-  pollingInterval: 200, // [!code hl]
-  transports: {
-    [baseSepolia.id]: webSocket('wss://sepolia.flashblocks.base.org/ws'), // [!code hl]
-  },
-})
-```
-
-```tsx [Example.tsx]
-import { useSendTransaction, useWaitForTransactionReceipt } from 'wagmi'
-import { parseEther } from 'viem' 
-
-function Example() {
-  const { data: hash, sendTransaction } = useSendTransaction()
-  const { isSuccess: isConfirmed } =
-    useWaitForTransactionReceipt({
-      hash,
-    })
-
-  return (
-    <div>
-      <button onClick={() => sendTransaction({ to: '<SOME ADDRESS>', value: parseEther('0.0001') })>
-        Send Transaction
-      </button>
-      {isConfirmed && <div>Transaction confirmed.</div>}
-    </div>
-  )
-}
-```
-
-:::
-
 #### [Ethers](https://github.com/ethers-io/ethers.js)
 
-```
+```jsx
   const providerA = new ethers.JsonRpcProvider(
     "https://sepolia-preconf.base.org"
   );
@@ -198,6 +129,59 @@ function Example() {
   }
 ```
 You should see the confirmation time significantly lower than the standard RPC endpoint.
+
+#### [Viem/Wagmi](https://viem.sh)
+
+```jsx
+// Create wallet client
+  const account = privateKeyToAccount(`0x${process.env.PRIVATE_KEY}`);
+  const walletClient = createWalletClient({
+    account,
+    chain: {
+      id: 84532,
+      name: "base-sepolia",
+      network: "base-sepolia",
+    },
+    transport: http(
+      "https://sepolia-preconf.base.org"
+    ),
+  });
+
+  // Create public client for waiting
+  const publicClient = createPublicClient({
+    chain: {
+      id: 84532,
+      name: "base-sepolia",
+      network: "base-sepolia",
+    },
+    transport: http(
+      "https://sepolia-preconf.base.org"
+    ),
+  });
+
+  try {
+    const submissionTime = new Date();
+    console.log(`Submitting transaction at: ${submissionTime.toISOString()}`);
+
+    // Send transaction
+    const hash = await walletClient.sendTransaction({
+      to: "<SOME ADDRESS>",
+      value: parseEther("0.0000001"),
+    });
+    console.log(`Transaction hash: ${hash}`);
+
+    // Wait for transaction to be mined
+    const receipt = await publicClient.waitForTransactionReceipt({ hash });
+    const confirmTime = new Date();
+
+    console.log(`Transaction mined at: ${confirmTime.toISOString()}`);
+    console.log(`Time difference: ${confirmTime - submissionTime}ms`);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+```
+
+
 
 ### WebSocket API
 
