@@ -43,11 +43,8 @@ export function RenewalBoundary({ name, children }: RenewalBoundaryProps) {
     );
   }
 
-  if (isDisconnected) {
-    redirect(`/name/${fullDomain}`);
-  }
-
-  if (!!address && !isOwned) {
+  const isOwner = !!address && isOwned;
+  if (isDisconnected || !isOwner) {
     redirect(`/name/${fullDomain}`);
   }
 
