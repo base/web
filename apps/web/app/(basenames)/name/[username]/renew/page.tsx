@@ -1,4 +1,5 @@
 import ErrorsProvider from 'apps/web/contexts/Errors';
+import { RenewalBoundary } from 'apps/web/src/components/Basenames/RenewalBoundary';
 import RenewalFlow from 'apps/web/src/components/Basenames/RenewalFlow';
 
 type PageProps = {
@@ -12,9 +13,11 @@ export default async function Page(props: PageProps) {
 
   return (
     <ErrorsProvider context="renewal">
-      <main>
-        <RenewalFlow name={name} />
-      </main>
+      <RenewalBoundary name={name}>
+        <main>
+          <RenewalFlow name={name} />
+        </main>
+      </RenewalBoundary>
     </ErrorsProvider>
   );
 }
