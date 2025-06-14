@@ -38,7 +38,7 @@ const featureItems = [
           <a
             className="underline"
             target="_blank"
-            href="https://docs.base.org/base-learn/docs/welcome"
+            href="https://docs.base.org/learn/welcome"
             rel="noreferrer"
           >
             Base Learn

@@ -455,7 +455,7 @@ contract FEWeightedVoting is ERC20 {
 [Wallet Connectors]: ../frontend-setup/wallet-connectors/
 [`useAccount`]: https://wagmi.sh/react/hooks/useAccount
 [hydration error]: https://nextjs.org/docs/messages/react-hydration-error
-[ERC 20 Tokens Exercise]: https://docs.base.org/base-learn/docs/erc-20-token/erc-20-exercise
+[ERC 20 Tokens Exercise]: https://docs.base.org/learn/erc-20-token/erc-20-exercise
 [Sepolia BaseScan]: https://sepolia.basescan.org/
 [`useAccount` hook]: ./useAccount
 [Hardhat]: https://hardhat.org/
