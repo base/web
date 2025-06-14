@@ -41,7 +41,7 @@ export function UseCases() {
         <UseCaseBlock
           title="Kickstart your app's growth"
           description="Use decentralized social graphs to grow your app and find users — wherever they are."
-          href="https://docs.base.org/use-cases/decentralize-social-app"
+          href="https://docs.base.org/use-cases/onchain-social"
         >
           <AnimatedSocial />
         </UseCaseBlock>
