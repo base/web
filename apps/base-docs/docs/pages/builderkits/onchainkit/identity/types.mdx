@@ -106,6 +106,15 @@ type GetAddress = {
 };
 ```
 
+## `GetAddresses`
+
+```ts
+type GetAddresses = {
+  names: Array<string | Basename>; // Array of names to resolve addresses for
+  chain?: Chain; // Optional chain for domain resolution
+};
+```
+
 ## `GetAddressReturnType`
 
 ```ts
@@ -212,6 +221,15 @@ type NameReact = {
 ```ts
 type UseAddressOptions = {
   name: string | Basename; // The ENS or Basename for which the Ethereum address is to be fetched
+  chain?: Chain; // Optional chain for domain resolution
+};
+```
+
+## `UseAddressesOptions`
+
+```ts
+type UseAddressesOptions = {
+  names: Array<string | Basename>; // Array of ENS or Basenames to resolve addresses for
   chain?: Chain; // Optional chain for domain resolution
 };
 ```

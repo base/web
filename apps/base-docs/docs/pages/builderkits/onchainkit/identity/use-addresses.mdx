@@ -1,0 +1,69 @@
+# `useAddresses`
+
+The `useAddresses` hook is used to get multiple Ethereum addresses from an onchain identity
+provider for an array of ENS names or Basenames in a single batch request.
+
+It is implemented with [useQuery](https://tanstack.com/query/latest/docs/framework/react/reference/useQuery) from `@tanstack/react-query`, and returns a `UseQueryResult` object, allowing you to pass through all `@tanstack/react-query` options.
+
+## Usage
+
+Get addresses for multiple ENS names:
+
+:::code-group
+
+```tsx twoslash [code]
+import { useAddresses } from '@coinbase/onchainkit/identity';
+
+const ensNames = ['vitalik.eth', 'paulcramer.eth'];
+const { data: addresses, isLoading } = useAddresses({ names: ensNames });
+```
+
+```ts [return value]
+{ 
+  data: [
+    '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045',
+    '0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF'
+  ], 
+  isLoading: false 
+}
+```
+
+:::
+
+Get addresses for multiple Basenames:
+
+:::code-group
+
+```tsx twoslash [code]
+import { useAddresses } from '@coinbase/onchainkit/identity';
+import { base } from 'viem/chains';
+
+const ensNames = ['paul.base.eth', 'coinbase.base.eth'];
+const { data: addresses, isLoading } = useAddresses({ names: ensNames, chain: base });
+```
+
+```ts [return value]
+{ 
+  data: [
+    '0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF',
+    '0x4bEf0221d6F7Dd0C969fe46a4e9b339a84F52FDF'
+  ], 
+  isLoading: false 
+}
+```
+
+:::
+
+## Returns
+
+[`useQuery<Promise<GetAddressReturnType[]>>`](/builderkits/onchainkit/identity/types#getaddressreturntype)
+
+## Parameters
+
+### UseAddressesOptions
+
+[`UseAddressesOptions`](/builderkits/onchainkit/identity/types#useaddressesoptions)
+
+### UseQueryOptions
+
+[`UseQueryOptions`](/builderkits/onchainkit/identity/types#usequeryoptions) 
