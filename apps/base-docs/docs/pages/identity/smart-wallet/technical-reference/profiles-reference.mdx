@@ -20,6 +20,18 @@ type DataCallbackType =
   | 'physicalAddress' // Physical address for shipping
   | 'name'           // User's full name
   | 'onchainAddress' // On-chain wallet address
+
+// Full type definitions for requests and capability
+
+type DataCallbackRequestType = {
+  optional?: boolean;
+  type: DataCallbackType;
+}
+
+type DataCallbackCapability = {
+  requests: DataCallbackRequestType[];
+  callbackURL?: string;
+}
 ```
 
 ## API Reference
@@ -64,10 +76,10 @@ Your callback API will receive a POST request with the following structure:
 ```typescript
 // Request body structure
 {
-  calls: Array<{
+  calls: {
     to: string;
     data: string;
-  }>;
+  }[];
   chainId: string;
   version: string;
   capabilities: {
@@ -109,20 +121,23 @@ Your callback API will receive a POST request with the following structure:
 
 Your callback API must respond with one of two formats:
 
-1. **Success Response** - Return the original calls to proceed with the transaction:
+1. **Success Response** - Return the calls the user will end up submitting.
+   They can be the same calls or new ones, but they must be present.
+   You can change all capabilities (e.g. switching Paymaster if calls happen on a different chain) except the data callback capability, which must remain present.
 
 ```typescript
 {
-  calls: Array<{
+  calls: {
     to: string;
     data: string;
-  }>;
+  }[];
   chainId: string;
   version: string;
   capabilities: {
     dataCallback: {
-      // Original capabilities
+      // Original or updated dataCallback capability
     };
+    // Other capabilities can be changed as needed
   };
 }
 ```
@@ -205,7 +220,7 @@ export async function POST(request: Request) {
 
 1. **HTTPS Required**: Your callback URL must use HTTPS, even for local development. Use a service like ngrok for testing.
 
-2. **Return Original Calls**: You MUST return the original calls in your success response. If you don't, the wallet will return an error.
+2. **Return Original or New Calls**: You MUST return the original calls or new calls in your success response. If you don't, the wallet will return an error.
 
 3. **Optional Fields**: You can make any requested field optional by setting `optional: true` in the request. Optional fields will be marked as such in the Smart Wallet interface.
 
