@@ -83,7 +83,6 @@ import { coinbaseWallet } from "wagmi/connectors";
 const cbWalletConnector = coinbaseWallet({
   appName: "Profiles Demo",
   preference: {
-    keysUrl: "https://keys-dev.coinbase.com/connect",
     options: "smartWalletOnly",
   },
 });
@@ -108,26 +107,6 @@ declare module "wagmi" {
   }
 }
 ```
-
-<Callout type="warning">
-**Development Environment**
-
-This guide uses the Smart Wallet development environment (`keys-dev.coinbase.com`) because
-Profiles are only available on the development environment for now.
-
-Profiles will be available in the production environment soon,
-so you won't need to specify the `keysUrl` parameter.
-
-Your connector would look like this:
-
-```ts [wagmi.ts]
-const cbWalletConnector = coinbaseWallet({
-  appName: "Profiles Demo",
-  preference: "smartWalletOnly",
-});
-```
-
-</Callout>
 
 ### Creating the User Interface
 
