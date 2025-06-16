@@ -1,6 +1,6 @@
 import ErrorsProvider from 'apps/web/contexts/Errors';
 import RenewalFlow from 'apps/web/src/components/Basenames/RenewalFlow';
-import { redirectIfNotNameOwner } from 'apps/web/src/utils/redirectIfNotNameOwner';
+import { redirectIfNameDoesNotExist } from 'apps/web/src/utils/redirectIfNameDoesNotExist';
 import { formatDefaultUsername } from 'apps/web/src/utils/usernames';
 
 type PageProps = {
@@ -14,7 +14,7 @@ export default async function Page(props: PageProps) {
 
   // When the name is unclaimed, the user will be redirected
   // to the /not-found route where they can choose to claim it
-  await redirectIfNotNameOwner(formattedName);
+  await redirectIfNameDoesNotExist(formattedName);
 
   return (
     <ErrorsProvider context="renewal">
