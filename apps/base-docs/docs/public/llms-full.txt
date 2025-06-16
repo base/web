@@ -28,7 +28,7 @@ Integrate secure and efficient crypto payment solutions for your applications.](
 \\
 Build and deploy AI agents that can interact with onchain data and smart contracts.](https://docs.base.org/use-cases/launch-ai-agents) [**Create engaging social experiences** \\
 \\
-Add decentralized social features in your app for new content and identity.](https://docs.base.org/use-cases/decentralize-social-app) [**DeFi your app** \\
+Add decentralized social features in your app for new content and identity.](https://docs.base.org/use-cases/onchain-social) [**DeFi your app** \\
 \\
 Integrate DeFi protocols and services directly into your applications.](https://docs.base.org/use-cases/defi-your-app) [**Remove first-timer friction** \\
 \\
@@ -377,7 +377,7 @@ Integrate secure and efficient crypto payment solutions for your applications.](
 \\
 Build and deploy AI agents that can interact with onchain data and smart contracts.](https://docs.base.org/use-cases/launch-ai-agents) [**Create engaging social experiences** \\
 \\
-Add decentralized social features in your app for new content and identity.](https://docs.base.org/use-cases/decentralize-social-app) [**DeFi your app** \\
+Add decentralized social features in your app for new content and identity.](https://docs.base.org/use-cases/onchain-social) [**DeFi your app** \\
 \\
 Integrate DeFi protocols and services directly into your applications.](https://docs.base.org/use-cases/defi-your-app) [**Remove first-timer friction** \\
 \\
@@ -7818,7 +7818,7 @@ Explore our ready-to-use onchain components:
 - [**`Mint`**](https://docs.base.org/builderkits/onchainkit/mint/nft-mint-card)- [View](https://docs.base.org/builderkits/onchainkit/mint/nft-mint-card) and [Mint](https://docs.base.org/builderkits/onchainkit/mint/nft-mint-card) NFTs in your app.
 
 ## Decentralize Social App
-[Skip to content](https://docs.base.org/use-cases/decentralize-social-app#vocs-content)
+[Skip to content](https://docs.base.org/use-cases/onchain-social)
 
 
 Menu
