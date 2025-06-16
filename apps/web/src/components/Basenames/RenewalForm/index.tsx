@@ -111,7 +111,7 @@ export default function RenewalForm({ name }: { name: string }) {
   );
 
   useEffect(() => {
-    fetchExpirationDate();
+    void fetchExpirationDate();
   }, [fetchExpirationDate]);
 
   useEffect(() => {
@@ -120,7 +120,7 @@ export default function RenewalForm({ name }: { name: string }) {
       batchCallsStatus === BatchCallsStatus.Success
     ) {
       setYears(1);
-      fetchExpirationDate();
+      void fetchExpirationDate();
     }
   }, [renewNameStatus, batchCallsStatus, fetchExpirationDate]);
 
