@@ -11,7 +11,7 @@ export default async function Page(props: PageProps) {
   const params = await props.params;
   const { username } = params;
   const name = username.split('.')[0];
-  const formattedName = await formatDefaultUsername(decodeURIComponent(name));
+  const formattedName = await formatDefaultUsername(name);
   await redirectIfNotNameOwner(formattedName);
 
   return (
