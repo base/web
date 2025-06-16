@@ -735,8 +735,8 @@ export const sidebar: Sidebar = [
                     link: '/identity/smart-wallet/concepts/usage-details/gas-usage',
                   },
                   {
-                    text: 'Self Calls',
-                    link: '/identity/smart-wallet/concepts/usage-details/self-calls',
+                    text: 'Unsupported Calls',
+                    link: '/identity/smart-wallet/concepts/usage-details/unsupported-calls',
                   },
                 ],
               },
@@ -770,12 +770,20 @@ export const sidebar: Sidebar = [
                 link: '/identity/smart-wallet/guides/sub-accounts',
                 items: [
                   {
-                    text: 'Project Setup',
+                    text: 'Setup a New Project (Wagmi)',
                     link: '/identity/smart-wallet/guides/sub-accounts/setup',
                   },
                   {
-                    text: 'Using Sub Accounts',
+                    text: 'Using Sub Accounts (Wagmi)',
                     link: '/identity/smart-wallet/guides/sub-accounts/using-sub-accounts',
+                  },
+                  {
+                    text: 'Using Sub Accounts with Privy',
+                    link: '/identity/smart-wallet/guides/sub-accounts/sub-accounts-with-privy',
+                  },
+                  {
+                    text: 'Add Sub Accounts to OnchainKit/MiniKit',
+                    link: '/identity/smart-wallet/guides/sub-accounts/add-sub-accounts-to-onchainkit-minikit',
                   },
                 ],
               },
@@ -957,7 +965,7 @@ export const sidebar: Sidebar = [
               },
               {
                 text: 'Sub Accounts Reference',
-                link: '/identity/smart-wallet/technical-reference/sdk/sub-account-reference',
+                link: '/identity/smart-wallet/technical-reference/sub-account-reference',
               },
             ],
           },
@@ -1011,6 +1019,14 @@ export const sidebar: Sidebar = [
       {
         text: 'Mini Apps',
         link: '/wallet-app/mini-apps',
+      },
+      {
+        text: 'Getting Started with Mini Apps',
+        link: '/wallet-app/getting-started',
+      },
+      {
+        text: 'Coinbase Wallet Beta',
+        link: '/wallet-app/beta-faq',
       },
     ],
   },
@@ -1071,6 +1087,10 @@ export const sidebar: Sidebar = [
         link: '/chain/security-council',
       },
       {
+        text: 'Block Building',
+        link: '/chain/block-building',
+      },
+      {
         text: 'Tools',
         collapsed: true,
         items: [
@@ -1103,8 +1123,8 @@ export const sidebar: Sidebar = [
         link: '/use-cases/launch-ai-agents',
       },
       {
-        text: 'Decentralize your social app',
-        link: '/use-cases/decentralize-social-app',
+        text: 'Onchain Social',
+        link: '/use-cases/onchain-social',
       },
       {
         text: 'DeFi your app',

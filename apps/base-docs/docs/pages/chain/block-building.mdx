@@ -1,0 +1,52 @@
+---
+title: Block Building
+slug: /block-building
+description: This page outlines how Base blocks are built.
+---
+
+# Block Building
+
+## Overview
+This section describes how blocks are ordered on the Base networks. The ordering is separate from the UX,
+for example the sequencer could be building Flashblocks every 200ms, without these Flashblocks being exposed publicly. In this scenario, block ordering
+would change but the user experience would remain consistent.
+
+The Base networks are currently configured in the following ways:
+
+| Network      | Current Configuration       | Upcoming Deployments                      |
+|--------------|-----------------------------|-------------------------------------------|
+| Base Mainnet | [Vanilla](#vanilla)         | [Flashblocks](#flashblocks) (Summer 2025) |
+| Base Sepolia | [Flashblocks](#flashblocks) | None                                      |
+
+## Configurations
+
+### Flashblocks
+Currently, blocks are built using [op-rbuilder](https://github.com/flashbots/op-rbuilder) and priority fee auctions occur
+every 200ms. There are two changes from the vanilla ordering to be aware of:
+
+##### Timing
+
+Flashblocks are built every 200ms, each ordering a portion of the block. Unlike the current system where later-arriving transactions with higher priority fees can be placed at the top of the block, Flashblocks creates a time-based constraint. Once a Flashblock is built and broadcast, its transaction ordering is locked even if a transaction with a higher priority fee arrives later, it cannot be included in earlier, already built Flashblocks.
+
+##### High Gas Limits
+
+If your app creates transactions with large gas limits, we recommend monitoring to detect any changes in inclusion latency. Transactions with gas limits over 1/10 of the current block gas limit (currently 14 million gas), face additional constraints:
+
+* Each Flashblock can only use a portion of the block's total gas limit
+* Flashblock 1: up to 1/10 of the total gas
+* Flashblock 2: up to 2/10 of the total gas
+
+And so on for subsequent Flashblocks
+
+Consequently, transactions with large gas requirements must wait for later Flashblocks with sufficient gas capacity. For example, a transaction exceeding 1/10 of the block's gas limit cannot be included in Flashblock 1 and must wait for Flashblock 2 or later.
+
+### Vanilla
+
+Blocks are built every 2s by [op-geth](https://github.com/ethereum-optimism/op-geth). Transactions within those blocks are ordered by
+priority fee, see the ([code](https://github.com/ethereum-optimism/op-geth/blob/optimism/miner/worker.go#L627).
+
+## Changelog
+
+* 15th May: Ended testing Flashblocks on Base Mainnet
+* 15th May: Started testing Flashblocks on Base Mainnet
+* 25th Feb: Enabled Flashblocks on Base Sepolia

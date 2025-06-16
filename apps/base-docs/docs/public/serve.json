@@ -27,6 +27,10 @@
       "destination": "/chain/report"
     },
     {
+      "source": "/tools/network-faucets",
+      "destination": "/chain/network-faucets"
+    },
+    {
       "source": "/docs/tools/network-faucets",
       "destination": "/chain/network-faucets"
     },
@@ -185,6 +189,14 @@
     {
       "source": "/identity/smart-wallet/guides/sub-accounts/incorporate-spend-permissions",
       "destination": "/identity/smart-wallet/guides/sub-accounts/"
+    },
+    {
+      "source": "/identity/smart-wallet/concepts/usage-details/self-calls",
+      "destination": "/identity/smart-wallet/concepts/usage-details/unsupported-calls"
+    },
+    {
+      "source": "/identity/smart-wallet/technical-reference/sdk/sub-account-reference",
+      "destination": "/identity/smart-wallet/technical-reference/sub-account-reference"
     },
     {
       "source": "/chain/flashblocks",

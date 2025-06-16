@@ -40,7 +40,7 @@ EIP-721 (Ethereum Improvement Proposal 721) is the formal specification for ERC-
 
 An ERC-721 token comprises a smart contract implementing the standardized interface, which includes six primary functions:
 
-- **balanceOf(address)** Returns the number of tokens held by a specific address.
+- **balanceOf(address owner)** Returns the number of tokens held by a specific address.
 - **ownerOf(uint256):** Provides the owner of a specified token.
 - **safeTransferFrom(address, address, uint256):** Transfers a specific token's ownership from one address to another.
 - **transferFrom(address, address, uint256):** Allows a third party to transfer tokens on the token owner's behalf, given the owner's approval.

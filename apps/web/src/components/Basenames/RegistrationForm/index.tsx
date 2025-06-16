@@ -1,9 +1,4 @@
-import {
-  ExclamationCircleIcon,
-  InformationCircleIcon,
-  MinusIcon,
-  PlusIcon,
-} from '@heroicons/react/16/solid';
+import { ExclamationCircleIcon, InformationCircleIcon } from '@heroicons/react/16/solid';
 import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { useErrors } from 'apps/web/contexts/Errors';
 import RegistrarControllerABI from 'apps/web/src/abis/RegistrarControllerABI';
@@ -11,6 +6,7 @@ import { USERNAME_REGISTRAR_CONTROLLER_ADDRESSES } from 'apps/web/src/addresses/
 import { PremiumExplainerModal } from 'apps/web/src/components/Basenames/PremiumExplainerModal';
 import { useRegistration } from 'apps/web/src/components/Basenames/RegistrationContext';
 import RegistrationLearnMoreModal from 'apps/web/src/components/Basenames/RegistrationLearnMoreModal';
+import YearSelector from 'apps/web/src/components/Basenames/YearSelector';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import Label from 'apps/web/src/components/Label';
 import Tooltip from 'apps/web/src/components/Tooltip';
@@ -30,26 +26,9 @@ import { ActionType } from 'libs/base-ui/utils/logEvent';
 import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { formatEther, zeroAddress } from 'viem';
 import { useAccount, useBalance, useReadContract, useSwitchChain } from 'wagmi';
+import { formatEtherPrice } from 'apps/web/src/utils/formatEtherPrice';
+import { formatUsdPrice } from 'apps/web/src/utils/formatUsdPrice';
 import { RegistrationButton } from './RegistrationButton';
-
-function formatEtherPrice(price?: bigint) {
-  if (price === undefined) {
-    return '...';
-  }
-  const value = parseFloat(formatEther(price));
-  if (value < 0.001) {
-    return parseFloat(value.toFixed(4));
-  } else {
-    return parseFloat(value.toFixed(3));
-  }
-}
-
-function formatUsdPrice(price: bigint, ethUsdPrice: number) {
-  if (price === 0n) return '0';
-  const parsed = (parseFloat(formatEther(price)) * Number(ethUsdPrice)).toFixed(2);
-  if (parsed === '0.00') return '0';
-  return parsed;
-}
 
 export default function RegistrationForm() {
   const { isConnected, chain: connectedChain, address } = useAccount();
@@ -190,29 +169,12 @@ export default function RegistrationForm() {
           )}
           <div className={mainRegistrationElementClasses}>
             <div className="max-w-[14rem] self-start">
-              <p className="text-line mb-2 text-sm font-bold uppercase">Claim for</p>
-              <div className="flex items-center justify-between">
-                <button
-                  type="button"
-                  onClick={decrement}
-                  disabled={years === 1}
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-[#DEE1E7]"
-                  aria-label="Decrement years"
-                >
-                  <MinusIcon width="14" height="14" className="fill-[#32353D]" />
-                </button>
-                <span className="flex w-32 items-center justify-center text-3xl font-bold text-black">
-                  {years} year{years > 1 && 's'}
-                </span>
-                <button
-                  type="button"
-                  onClick={increment}
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-[#DEE1E7]"
-                  aria-label="Increment years"
-                >
-                  <PlusIcon width="14" height="14" className="fill-[#32353D]" />
-                </button>
-              </div>
+              <YearSelector
+                years={years}
+                onIncrement={increment}
+                onDecrement={decrement}
+                label="Claim for"
+              />
               {hasExistingBasename && (
                 <Label
                   className="mt-4 flex w-full items-center justify-center gap-2 text-center"
@@ -300,7 +262,9 @@ export default function RegistrationForm() {
                 correctChain={correctChain}
                 registerNameCallback={registerNameCallback}
                 switchToIntendedNetwork={switchToIntendedNetwork}
-                insufficientFundsNoAuxFundsAndCorrectChain={insufficientFundsNoAuxFundsAndCorrectChain}
+                insufficientFundsNoAuxFundsAndCorrectChain={
+                  insufficientFundsNoAuxFundsAndCorrectChain
+                }
                 registerNameIsPending={registerNameIsPending}
               />
             </div>

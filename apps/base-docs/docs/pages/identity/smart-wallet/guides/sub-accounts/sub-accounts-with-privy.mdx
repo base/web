@@ -1,0 +1,141 @@
+---
+title: 'Using Sub Accounts with Privy'
+description: 'How to enable Smart Wallet Sub Accounts in a Privy project'
+---
+
+import GithubRepoCard from "@/components/GithubRepoCard"
+import { Callout } from "vocs/components"
+
+# Using Sub Accounts with Privy
+
+In this guide, you'll learn how to enable [Smart Wallet Sub Accounts](/identity/smart-wallet/concepts/features/optional/sub-accounts) in a [Privy](https://www.privy.io/) project.
+This allows your users to automatically create a Sub Account with Spend Limits when connecting their wallet via Privy.
+
+## Skip ahead
+
+If you want to skip the setup and see a working demo, check out the Sub Accounts Privy Demo:
+
+<GithubRepoCard title="Sub Accounts Privy Demo" githubUrl="https://github.com/base/demos/tree/master/smart-wallet/sub-accounts-privy" />
+
+---
+
+## What you'll achieve
+
+By the end of this guide, you will:
+
+- Enable automatic Smart Wallet Sub Account creation for users authenticating with Privy
+- Set up Spend Limits for Sub Accounts on Base Sepolia
+- Understand the required package versions and configuration
+
+## Requirements
+
+- A [Privy project](https://docs.privy.io/guide/quickstart)
+- [Smart Wallet Sub Accounts](/identity/smart-wallet/concepts/features/optional/sub-accounts) are **only available on the canary version** of the Coinbase Wallet SDK and on **Base Sepolia**
+- For now, you must also use a specific beta version of `@privy-io/react-auth` (see below)
+
+## 1. Override Required Package Versions
+
+Sub Accounts require the latest canary version of `@coinbase/wallet-sdk` and a specific beta version of Privy React Auth. **You must override these versions _before_ installing packages.**
+
+```bash [Terminal]
+# If you have an existing node_modules or lock file, delete them first
+rm -rf node_modules package-lock.json yarn.lock pnpm-lock.yaml
+
+# Set the required overrides in your package.json
+npm pkg set overrides.@coinbase/wallet-sdk=canary
+npm pkg set overrides.@privy-io/react-auth=2.13.1-beta-20250512172154
+
+# Now install dependencies
+npm install
+```
+
+<Callout type="warning">
+**Important:**
+If you already have a lock file or `node_modules`, you _must_ delete them before setting the overrides and reinstalling. Otherwise, the correct versions will not be installed and Sub Accounts will not work.
+</Callout>
+
+---
+
+## 2. Update Your Privy Provider Configuration
+
+To enable Sub Accounts, update your Privy `Provider` configuration (usually in `providers.tsx` or similar):
+
+```tsx [providers.tsx]
+import { PrivyProvider } from "@privy-io/react-auth";
+import { toHex, parseEther } from "viem";
+
+<PrivyProvider
+  appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID || ""}
+  config={{
+    embeddedWallets: {
+      createOnLogin: "all-users",
+    },
+    externalWallets: {
+      coinbaseWallet: {
+        config: {
+          appName: "Privy Sub Accounts",
+          appLogoUrl: "https://example.com/logo.png", // Replace with your logo
+          preference: {
+            keysUrl: "https://keys-dev.coinbase.com/connect", // Use the Smart Wallet dev environment
+            options: "smartWalletOnly", // Only allow Smart Wallet
+          },
+          // Enable Sub Account support with spend limits
+          subAccounts: {
+            enableAutoSubAccounts: true, // Automatically create a sub account on connect
+            defaultSpendLimits: {
+              84532: [ // Base Sepolia Chain ID
+                {
+                  token: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE", // Native ETH
+                  allowance: toHex(parseEther("0.01")), // 0.01 ETH
+                  period: 86400, // 24 hours
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+  }}
+>
+  {/* ... your app ... */}
+</PrivyProvider>
+```
+
+### Explanation of Key Parameters
+
+- `keysUrl`: Points to the Smart Wallet development environment. **Sub Accounts only work in this environment.**
+- `options: 'smartWalletOnly'`: Ensures only Smart Wallet mode is used.
+- `enableAutoSubAccounts: true`: Automatically creates a Sub Account when the user connects.
+- `defaultSpendLimits`: Sets Spend Limits from the global Smart Wallet to the Sub Account on Base Sepolia (`84532`).
+  - `token`: The token address (native ETH in this example).
+  - `allowance`: The max amount (in hex WEI) the Sub Account can spend in the period.
+  - `period`: The time window for the allowance (in seconds, e.g., 86400 for 24h).
+
+<Callout type="info">
+**Note:**
+This guide only covers the _automatic_ Sub Account creation flow, where a Sub Account is created and Spend Limits are set as soon as the user connects their wallet. We are working with Privy to support flows where the user can first authenticate with their global Smart Wallet account and then create a Sub Account after. For now, only the automatic Sub Accounts flow is supported.
+</Callout>
+
+---
+
+## 3. Test Your Setup
+
+1. Start your development server:
+
+```bash [Terminal]
+npm run dev
+```
+
+2. Open your app and connect with Coinbase Wallet via Privy.
+3. You should see a prompt to create a Sub Account and Spend Limits.
+4. You can now use the Sub Account to send transactions without pop-up confirmations.
+
+---
+
+## Additional Resources
+
+- [Sub Accounts Privy Demo](https://github.com/base/demos/tree/master/smart-wallet/sub-accounts-privy)
+- [Sub Accounts Setup Guide](/identity/smart-wallet/guides/sub-accounts/setup)
+- [Smart Wallet Sub Accounts Feature](/identity/smart-wallet/concepts/features/optional/sub-accounts)
+- [Privy Quickstart](https://docs.privy.io/guide/quickstart)
+- [Discord #smart-wallet](https://discord.com/invite/cdp) for questions or feedback
