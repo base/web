@@ -15,19 +15,17 @@ import { useAccount, useBalance, useSwitchChain } from 'wagmi';
 import { RenewalButton } from './RenewalButton';
 import { formatUsdPrice } from 'apps/web/src/utils/formatUsdPrice';
 import { formatEtherPrice } from 'apps/web/src/utils/formatEtherPrice';
-import { useNameList } from 'apps/web/src/components/Basenames/ManageNames/hooks';
 import YearSelector from 'apps/web/src/components/Basenames/YearSelector';
-import { formatBaseEthDomain } from 'apps/web/src/utils/usernames';
+import { formatBaseEthDomain, getBasenameNameExpires } from 'apps/web/src/utils/usernames';
 
 export default function RenewalForm({ name }: { name: string }) {
   const { chain: connectedChain, address } = useAccount();
   const [years, setYears] = useState(1);
-
+  const [expirationDate, setExpirationDate] = useState<string | undefined>(undefined);
   const { logEventWithContext } = useAnalytics();
   const { logError } = useErrors();
   const { basenameChain } = useBasenameChain();
   const { switchChain } = useSwitchChain();
-  const { namesData, isLoading, refetch } = useNameList();
 
   const switchToIntendedNetwork = useCallback(
     () => switchChain({ chainId: basenameChain.id }),
@@ -39,19 +37,23 @@ export default function RenewalForm({ name }: { name: string }) {
     [connectedChain],
   );
 
-  const nameData = useMemo(() => {
-    return namesData?.data.find((n) => n.domain === formatBaseEthDomain(name, basenameChain.id));
-  }, [basenameChain.id, name, namesData?.data]);
-
-  const formattedExpirationDate = useMemo(() => {
-    if (!nameData?.expires_at) return undefined;
-    const date = new Date(nameData.expires_at);
-    return date.toLocaleDateString('en-US', {
-      month: '2-digit',
-      day: '2-digit',
-      year: 'numeric',
-    });
-  }, [nameData?.expires_at]);
+  const fetchExpirationDate = useCallback(async () => {
+    try {
+      const formattedName = formatBaseEthDomain(name, basenameChain.id);
+      const expiresAt = await getBasenameNameExpires(formattedName);
+      if (expiresAt) {
+        const date = new Date(Number(expiresAt) * 1000);
+        const formatted = date.toLocaleDateString('en-US', {
+          month: '2-digit',
+          day: '2-digit',
+          year: 'numeric',
+        });
+        setExpirationDate(formatted);
+      }
+    } catch (error) {
+      logError(error, 'Failed to fetch basename expiration date');
+    }
+  }, [name, basenameChain.id, logError]);
 
   const {
     callback: renewBasename,
@@ -109,16 +111,18 @@ export default function RenewalForm({ name }: { name: string }) {
   );
 
   useEffect(() => {
+    fetchExpirationDate();
+  }, [fetchExpirationDate]);
+
+  useEffect(() => {
     if (
       renewNameStatus === WriteTransactionWithReceiptStatus.Success ||
       batchCallsStatus === BatchCallsStatus.Success
     ) {
       setYears(1);
-      refetch().catch((e) => {
-        logError(e, 'Failed to refetch names');
-      });
+      fetchExpirationDate();
     }
-  }, [renewNameStatus, batchCallsStatus, refetch, logError]);
+  }, [renewNameStatus, batchCallsStatus, fetchExpirationDate]);
 
   if (address && !isOnSupportedNetwork) {
     return (
@@ -173,11 +177,9 @@ export default function RenewalForm({ name }: { name: string }) {
             renewNameCallback={renewNameCallback}
             switchToIntendedNetwork={switchToIntendedNetwork}
             disabled={!price || insufficientFundsNoAuxFundsAndCorrectChain}
-            isLoading={isPending || isLoading}
+            isLoading={isPending}
           />
-          {formattedExpirationDate && (
-            <p className="text-md text-gray-50">Expires {formattedExpirationDate}</p>
-          )}
+          {expirationDate && <p className="text-md text-gray-50">Expires {expirationDate}</p>}
         </div>
       </div>
     </div>
