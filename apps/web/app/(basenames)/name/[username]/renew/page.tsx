@@ -13,13 +13,13 @@ export default async function Page(props: PageProps) {
   const name = params.username.split('.')[0];
   const formattedName = await formatDefaultUsername(name);
 
-  // When the name is unclaimed, the user will be redirected
-  // to the /not-found route where they can choose to claim it
-  await redirectIfNameDoesNotExist(formattedName);
-
   if (isBasenameRenewalsKilled) {
     redirect(`/name/${formattedName}`);
   }
+
+  // When the name is unclaimed, the user will be redirected
+  // to the /not-found route where they can choose to claim it
+  await redirectIfNameDoesNotExist(formattedName);
 
   return (
     <ErrorsProvider context="renewal">
