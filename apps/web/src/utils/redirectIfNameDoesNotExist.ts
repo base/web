@@ -6,7 +6,7 @@ import {
 } from 'apps/web/src/utils/usernames';
 import { redirect } from 'next/navigation';
 
-export async function redirectIfNotNameOwner(username: Basename) {
+export async function redirectIfNameDoesNotExist(username: Basename) {
   const [address, editor, owner] = await Promise.all([
     getBasenameAddress(username),
     getBasenameEditor(username),

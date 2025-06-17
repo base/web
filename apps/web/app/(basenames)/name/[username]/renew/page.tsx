@@ -1,5 +1,7 @@
 import ErrorsProvider from 'apps/web/contexts/Errors';
 import RenewalFlow from 'apps/web/src/components/Basenames/RenewalFlow';
+import { redirectIfNameDoesNotExist } from 'apps/web/src/utils/redirectIfNameDoesNotExist';
+import { formatDefaultUsername } from 'apps/web/src/utils/usernames';
 
 type PageProps = {
   params: Promise<{ username: string }>;
@@ -7,8 +9,12 @@ type PageProps = {
 
 export default async function Page(props: PageProps) {
   const params = await props.params;
-  const { username } = params;
-  const name = username.split('.')[0];
+  const name = params.username.split('.')[0];
+  const formattedName = await formatDefaultUsername(name);
+
+  // When the name is unclaimed, the user will be redirected
+  // to the /not-found route where they can choose to claim it
+  await redirectIfNameDoesNotExist(formattedName);
 
   return (
     <ErrorsProvider context="renewal">
