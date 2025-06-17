@@ -6,7 +6,11 @@ import { useUsernameProfile } from 'apps/web/src/components/Basenames/UsernamePr
 import UsernameProfileKeywords from 'apps/web/src/components/Basenames/UsernameProfileKeywords';
 import { Button, ButtonVariants } from 'apps/web/src/components/Button/Button';
 import useReadBaseEnsTextRecords from 'apps/web/src/hooks/useReadBaseEnsTextRecords';
-import { buildBasenameReclaimContract, UsernameTextRecordKeys } from 'apps/web/src/utils/usernames';
+import {
+  buildBasenameReclaimContract,
+  isBasenameRenewalsKilled,
+  UsernameTextRecordKeys,
+} from 'apps/web/src/utils/usernames';
 import { ActionType } from 'libs/base-ui/utils/logEvent';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useAccount } from 'wagmi';
@@ -103,14 +107,16 @@ export default function UsernameProfileSidebar() {
           <Button variant={ButtonVariants.Gray} rounded fullWidth onClick={toggleSettings}>
             {showProfileSettings ? 'Back to Profile' : 'Manage Profile'}
           </Button>
-          <Button
-            variant={ButtonVariants.Gray}
-            rounded
-            fullWidth
-            onClick={handleExtendRegistration}
-          >
-            Extend Registration
-          </Button>
+          {!isBasenameRenewalsKilled && (
+            <Button
+              variant={ButtonVariants.Gray}
+              rounded
+              fullWidth
+              onClick={handleExtendRegistration}
+            >
+              Extend Registration
+            </Button>
+          )}
         </div>
       )}
       {currentWalletNeedsToReclaimProfile && (
