@@ -2,7 +2,7 @@ import ErrorsProvider from 'apps/web/contexts/Errors';
 import RenewalFlow from 'apps/web/src/components/Basenames/RenewalFlow';
 import { redirectIfNameDoesNotExist } from 'apps/web/src/utils/redirectIfNameDoesNotExist';
 import { formatDefaultUsername, isBasenameRenewalsKilled } from 'apps/web/src/utils/usernames';
-import { redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 
 type PageProps = {
   params: Promise<{ username: string }>;
@@ -14,7 +14,7 @@ export default async function Page(props: PageProps) {
   const formattedName = await formatDefaultUsername(name);
 
   if (isBasenameRenewalsKilled) {
-    redirect(`/name/${formattedName}`);
+    return notFound();
   }
 
   // When the name is unclaimed, the user will be redirected
