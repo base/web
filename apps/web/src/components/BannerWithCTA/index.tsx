@@ -3,15 +3,15 @@ import { Icon } from 'apps/web/src/components/Icon/Icon';
 import { useState } from 'react';
 
 interface BannerProps {
-  bgColor: string;
-  textColor: string;
+  bgColor?: string;
+  textColor?: string;
   message: string;
   actionText: string;
   actionUrl: string;
 }
 
 export function BannerWithCTA({
-  bgColor,
+  bgColor = 'bg-yellow-20',
   textColor = 'text-black',
   message,
   actionText,
