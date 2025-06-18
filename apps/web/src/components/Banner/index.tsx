@@ -2,15 +2,22 @@ import Link from 'next/link';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import { useState } from 'react';
 
-interface BannerProps {
+type BannerProps = {
   bgColor?: string;
   textColor?: string;
   message: string;
-  actionText: string;
-  actionUrl: string;
-}
+} & (
+  | {
+      actionText: string;
+      actionUrl: string;
+    }
+  | {
+      actionText?: never;
+      actionUrl?: never;
+    }
+);
 
-export function BannerWithCTA({
+export function Banner({
   bgColor = 'bg-yellow-20',
   textColor = 'text-black',
   message,
@@ -34,9 +41,11 @@ export function BannerWithCTA({
       >
         <span className="text-xs font-semibold md:text-base">{message}</span>
         <div className="flex flex-row items-center gap-4">
-          <Link href={actionUrl}>
-            <span className="text-xs font-semibold underline md:text-base">{actionText}</span>
-          </Link>
+          {actionText && actionUrl && (
+            <Link href={actionUrl}>
+              <span className="text-xs font-semibold underline md:text-base">{actionText}</span>
+            </Link>
+          )}
           <button
             className="cursor-pointer p-2 text-xs"
             type="button"
