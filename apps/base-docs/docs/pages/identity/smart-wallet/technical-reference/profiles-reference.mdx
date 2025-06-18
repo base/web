@@ -1,0 +1,229 @@
+# Profiles Reference
+
+## Overview
+
+The [Profiles feature](/identity/smart-wallet/concepts/features/optional/profiles) allows developers to request personal information from Smart Wallet users during a
+transaction. This is useful for applications that need to collect user data like email addresses,
+physical addresses, phone numbers, and names.
+
+This is not a guide on how to implement Profiles, but rather a reference for the API endpoints and data formats.
+If you are looking for a guide on how to implement Profiles, please see the [Profiles guide](/identity/smart-wallet/guides/profiles).
+
+## Supported Data Types
+
+The following data types are supported for profile requests:
+
+```typescript
+type DataCallbackType =
+  | 'email'           // Email address
+  | 'phoneNumber'     // Phone number with country code
+  | 'physicalAddress' // Physical address for shipping
+  | 'name'           // User's full name
+  | 'onchainAddress' // On-chain wallet address
+
+// Full type definitions for requests and capability
+
+type DataCallbackRequestType = {
+  optional?: boolean;
+  type: DataCallbackType;
+}
+
+type DataCallbackCapability = {
+  requests: DataCallbackRequestType[];
+  callbackURL?: string;
+}
+```
+
+## API Reference
+
+### Request Format
+
+To request profile data, include the `dataCallback` capability in your [`wallet_sendCalls`](/identity/smart-wallet/technical-reference/sdk/CoinbaseWalletProvider/wallet_sendCalls) request:
+
+```typescript
+const response = await provider.request({
+  method: "wallet_sendCalls",
+  params: [{
+    version: "1.0",
+    chainId: numberToHex(84532), // Base Sepolia
+    calls: [
+      // Your transaction calls here
+    ],
+    capabilities: {
+      dataCallback: {
+        requests: [
+          {
+            type: "email",
+            optional: false, // Whether this field is optional
+          },
+          {
+            type: "physicalAddress",
+            optional: true,
+          },
+          // Add more requests as needed
+        ],
+        callbackURL: "https://your-api.com/validate", // Your validation endpoint
+      },
+    },
+  }],
+});
+```
+
+### Callback API
+
+Your callback API will receive a POST request with the following structure:
+
+```typescript
+// Request body structure
+{
+  calls: {
+    to: string;
+    data: string;
+  }[];
+  chainId: string;
+  version: string;
+  capabilities: {
+    dataCallback: {
+      requestedInfo: {
+        email?: string;
+        phoneNumber?: {
+          number: string;
+          country: string;
+          isPrimary: boolean;
+        };
+        physicalAddress?: {
+          physicalAddress: {
+            address1: string;
+            address2?: string;
+            city: string;
+            state: string;
+            postalCode: string;
+            countryCode: string;
+            name?: {
+              firstName: string;
+              familyName: string;
+            };
+          };
+          isPrimary: boolean;
+        };
+        name?: {
+          firstName: string;
+          familyName: string;
+        };
+        onchainAddress?: string;
+      };
+    };
+  };
+}
+```
+
+### Response Format
+
+Your callback API must respond with one of two formats:
+
+1. **Success Response** - Return the calls the user will end up submitting.
+   They can be the same calls or new ones, but they must be present.
+   You can change all capabilities (e.g. switching Paymaster if calls happen on a different chain) except the data callback capability, which must remain present.
+
+```typescript
+{
+  calls: {
+    to: string;
+    data: string;
+  }[];
+  chainId: string;
+  version: string;
+  capabilities: {
+    dataCallback: {
+      // Original or updated dataCallback capability
+    };
+    // Other capabilities can be changed as needed
+  };
+}
+```
+
+2. **Error Response** - Return validation errors to prompt the user to correct their information:
+
+```typescript
+{
+  errors: {
+    email?: string;
+    phoneNumber?: {
+      number?: string;
+      country?: string;
+    };
+    physicalAddress?: {
+      address1?: string;
+      address2?: string;
+      city?: string;
+      state?: string;
+      postalCode?: string;
+      countryCode?: string;
+    };
+    name?: {
+      firstName?: string;
+      familyName?: string;
+    };
+    onchainAddress?: string;
+  };
+}
+```
+
+## Example Implementation
+
+Here's a complete example of a validation API endpoint:
+
+```typescript
+export async function POST(request: Request) {
+  const requestData = await request.json();
+
+  try {
+    const { requestedInfo } = requestData.capabilities.dataCallback;
+    const errors = {};
+
+    // Validate email
+    if (requestedInfo.email && requestedInfo.email.endsWith("@example.com")) {
+      errors.email = "Example.com emails are not allowed";
+    }
+
+    // Validate physical address
+    if (requestedInfo.physicalAddress) {
+      const addr = requestedInfo.physicalAddress.physicalAddress;
+      if (addr.postalCode && addr.postalCode.length < 5) {
+        if (!errors.physicalAddress) errors.physicalAddress = {};
+        errors.physicalAddress.postalCode = "Invalid postal code";
+      }
+    }
+
+    // Return errors if any found
+    if (Object.keys(errors).length > 0) {
+      return Response.json({ errors });
+    }
+
+    // Success - return original calls
+    return Response.json({
+      calls: requestData.calls,
+      chainId: requestData.chainId,
+      version: requestData.version,
+      capabilities: requestData.capabilities
+    });
+
+  } catch (error) {
+    return Response.json({
+      errors: { server: "Server error validating data" }
+    });
+  }
+}
+```
+
+## Important Notes
+
+1. **HTTPS Required**: Your callback URL must use HTTPS, even for local development. Use a service like ngrok for testing.
+
+2. **Return Original or New Calls**: You MUST return the original calls or new calls in your success response. If you don't, the wallet will return an error.
+
+3. **Optional Fields**: You can make any requested field optional by setting `optional: true` in the request. Optional fields will be marked as such in the Smart Wallet interface.
+
+4. **Privacy**: Users always have full control over their data. They can choose to share or withhold any information, and they're clearly shown what data you're requesting.
+
+5. **Validation**: Smart Wallet performs basic validation before sending data to your callback URL. This includes checking that emails are valid and addresses are properly formatted.

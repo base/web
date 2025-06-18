@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Container from 'apps/web/src/components/base-org/Container';
 import { InfoCards } from 'apps/web/src/components/Builders/Onchainkit/InfoCards';
 import { Templates } from 'apps/web/src/components/Builders/Onchainkit/Templates';
-import { Testmonials } from 'apps/web/src/components/Builders/Onchainkit/Testimonials';
+// import { Testmonials } from 'apps/web/src/components/Builders/Onchainkit/Testimonials';
 import { LiveDemo } from 'apps/web/src/components/Builders/Shared/LiveDemo';
 import { Hero } from 'apps/web/src/components/Builders/Onchainkit/Hero';
 import { CtaBanner } from 'apps/web/src/components/Builders/Onchainkit/CtaBanner';
@@ -28,7 +28,7 @@ export default function OnchainKit() {
         <LiveDemo components={demoComponents} />
         <InfoCards />
         <Templates />
-        <Testmonials />
+        {/* <Testmonials /> */}
         <CtaBanner />
       </main>
     </Container>

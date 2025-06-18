@@ -713,6 +713,10 @@ export const sidebar: Sidebar = [
                         text: 'Sub Accounts',
                         link: '/identity/smart-wallet/concepts/features/optional/sub-accounts',
                       },
+                      {
+                        text: 'Profiles',
+                        link: '/identity/smart-wallet/concepts/features/optional/profiles',
+                      },
                     ],
                   },
                 ],
@@ -770,14 +774,26 @@ export const sidebar: Sidebar = [
                 link: '/identity/smart-wallet/guides/sub-accounts',
                 items: [
                   {
-                    text: 'Project Setup',
+                    text: 'Setup a New Project (Wagmi)',
                     link: '/identity/smart-wallet/guides/sub-accounts/setup',
                   },
                   {
-                    text: 'Using Sub Accounts',
+                    text: 'Using Sub Accounts (Wagmi)',
                     link: '/identity/smart-wallet/guides/sub-accounts/using-sub-accounts',
                   },
+                  {
+                    text: 'Using Sub Accounts with Privy',
+                    link: '/identity/smart-wallet/guides/sub-accounts/sub-accounts-with-privy',
+                  },
+                  {
+                    text: 'Add Sub Accounts to OnchainKit/MiniKit',
+                    link: '/identity/smart-wallet/guides/sub-accounts/add-sub-accounts-to-onchainkit-minikit',
+                  },
                 ],
+              },
+              {
+                text: 'Profiles',
+                link: '/identity/smart-wallet/guides/profiles',
               },
               {
                 text: 'Spend Limits',
@@ -936,6 +952,10 @@ export const sidebar: Sidebar = [
                     link: '/identity/smart-wallet/technical-reference/sdk/CoinbaseWalletProvider/wallet_watchAsset',
                   },
                   {
+                    text: 'wallet_sendCalls',
+                    link: '/identity/smart-wallet/technical-reference/sdk/CoinbaseWalletProvider/wallet_sendCalls',
+                  },
+                  {
                     text: 'web3_clientVersion',
                     link: '/identity/smart-wallet/technical-reference/sdk/CoinbaseWalletProvider/web3_clientVersion',
                   },
@@ -958,6 +978,10 @@ export const sidebar: Sidebar = [
               {
                 text: 'Sub Accounts Reference',
                 link: '/identity/smart-wallet/technical-reference/sub-account-reference',
+              },
+              {
+                text: 'Profiles Reference',
+                link: '/identity/smart-wallet/technical-reference/profiles-reference',
               },
             ],
           },
@@ -991,10 +1015,6 @@ export const sidebar: Sidebar = [
                 text: 'Basenames OnchainKit Tutorial',
                 link: '/identity/basenames/basenames-onchainkit-tutorial',
               },
-              {
-                text: 'Basenames Frames Tutorial',
-                link: '/identity/basenames/basenames-frames-tutorial',
-              },
             ],
           },
           {
@@ -1015,6 +1035,18 @@ export const sidebar: Sidebar = [
       {
         text: 'Mini Apps',
         link: '/wallet-app/mini-apps',
+      },
+      {
+        text: 'Getting Started with Mini Apps',
+        link: '/wallet-app/getting-started',
+      },
+      {
+        text: 'Coinbase Wallet Beta',
+        link: '/wallet-app/beta-faq',
+      },
+      {
+        text: 'Chat Agents',
+        link: '/wallet-app/chat-agents',
       },
     ],
   },
