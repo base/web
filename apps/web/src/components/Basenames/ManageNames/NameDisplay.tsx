@@ -19,6 +19,10 @@ import {
   useRemoveNameFromUI,
 } from 'apps/web/src/components/Basenames/ManageNames/hooks';
 import Link from 'apps/web/src/components/Link';
+import { isBasenameRenewalsKilled } from 'apps/web/src/utils/usernames';
+import { useRouter } from 'next/navigation';
+import { ActionType } from 'libs/base-ui/utils/logEvent';
+import { useAnalytics } from 'apps/web/contexts/Analytics';
 
 const transitionClasses = 'transition-all duration-700 ease-in-out';
 
@@ -50,6 +54,8 @@ export default function NameDisplay({
   expiresAt,
   refetchNames,
 }: NameDisplayProps) {
+  const router = useRouter();
+  const { logEventWithContext } = useAnalytics();
   const expirationText = formatDistanceToNow(parseISO(expiresAt), { addSuffix: true });
   const name = domain.split('.')[0];
 
@@ -65,6 +71,17 @@ export default function NameDisplay({
   const [isRenewalModalOpen, setIsRenewalModalOpen] = useState<boolean>(false);
   const openRenewalModal = useCallback(() => setIsRenewalModalOpen(true), []);
   const closeRenewalModal = useCallback(() => setIsRenewalModalOpen(false), []);
+
+  const handleExtendRegistration = useCallback(() => {
+    logEventWithContext('extend_registration_button_clicked', ActionType.click, {
+      context: 'manage_names',
+    });
+    if (isBasenameRenewalsKilled) {
+      openRenewalModal();
+    } else {
+      router.push(`/name/${domain}/renew`);
+    }
+  }, [logEventWithContext, openRenewalModal, domain, router]);
 
   return (
     <li key={tokenId} className={pillNameClasses}>
@@ -107,7 +124,7 @@ export default function NameDisplay({
                   </span>
                 </DropdownItem>
               ) : null}
-              <DropdownItem onClick={openRenewalModal}>
+              <DropdownItem onClick={handleExtendRegistration}>
                 <span className="flex flex-row items-center gap-2">
                   <Icon name="convert" color="currentColor" width="1rem" height="1rem" /> Extend
                   registration
