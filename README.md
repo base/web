@@ -57,18 +57,6 @@ There are three projects which can be run individually.
 yarn workspace @app/web dev
 ```
 
-### Docs
-
-```
-yarn workspace @app/base-docs dev
-```
-
-### Bridge
-
-```
-yarn workspace @app/bridge dev
-```
-
 ## Contributing
 
 We welcome contributions to Base! For guidelines on how to contribute please refer to [CONTRIBUTING.md](CONTRIBUTING.md).

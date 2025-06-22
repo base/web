@@ -4,12 +4,6 @@
   "files": [],
   "references": [
     {
-      "path": "apps/base-docs"
-    },
-    {
-      "path": "apps/bridge"
-    },
-    {
       "path": "apps/web"
     },
     {
