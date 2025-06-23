@@ -2,7 +2,7 @@
   "name": "Bard",
   "description": "A theremin that uses your device to control audio and musical effects.",
   "url": "https://app.ozmium.org",
-  "imageUrl": "/logo.png",
+  "imageUrl": "/images/partners/bard.png",
   "category": "consumer",
   "subcategory": "music"
 }
