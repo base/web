@@ -1,0 +1,3 @@
+import{u as i,j as n}from"./index-Dlxm52NL.js";import{V as r}from"./VideoPlayer-CKrpq9Vg.js";const a={title:"Function Modifiers",description:"Use modifiers to control how functions work.",hide_table_of_contents:!1};function o(t){const e={a:"a",div:"div",h1:"h1",header:"header",...i(),...t.components};return n.jsxs(n.Fragment,{children:[n.jsx(e.header,{children:n.jsxs(e.h1,{id:"function-modifiers",children:["Function Modifiers",n.jsx(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#function-modifiers",children:n.jsx(e.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,n.jsx(r,{videoId:"804676855",title:"Function Modifiers"})]})}function c(t={}){const{wrapper:e}={...i(),...t.components};return e?n.jsx(e,{...t,children:n.jsx(o,{...t})}):o(t)}export{c as default,a as frontmatter};

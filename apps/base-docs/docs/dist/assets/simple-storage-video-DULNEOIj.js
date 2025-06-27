@@ -1,0 +1,3 @@
+import{u as a,j as e}from"./index-Dlxm52NL.js";import{V as r}from"./VideoPlayer-CKrpq9Vg.js";const d={title:"Simple Storage",description:"Store data on the blockchain.",hide_table_of_contents:!1};function o(n){const t={a:"a",div:"div",h1:"h1",header:"header",...a(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.header,{children:e.jsxs(t.h1,{id:"simple-storage",children:["Simple Storage",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#simple-storage",children:e.jsx(t.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,e.jsx(r,{videoId:"804479707",title:"Simple Storage"})]})}function c(n={}){const{wrapper:t}={...a(),...n.components};return t?e.jsx(t,{...n,children:e.jsx(o,{...n})}):o(n)}export{c as default,d as frontmatter};

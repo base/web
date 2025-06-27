@@ -1,0 +1,1 @@
+import{c as n}from"./useIcon-C51nxPJS.js";import{u as o}from"./useOnchainKit-BS9QuBF4.js";import{u}from"./useAccount-BLyN9GYK.js";const r="coinbaseWalletSDK";function h(){var a;const i=o(),s=i.chain,e=u(),t=e.connector,c=n({chainId:s.id});return(t==null?void 0:t.id)===r&&((a=c.atomicBatch)==null?void 0:a.supported)===!0}export{h as u};

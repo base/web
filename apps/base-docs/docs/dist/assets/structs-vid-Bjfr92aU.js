@@ -1,0 +1,3 @@
+import{u as s,j as t}from"./index-Dlxm52NL.js";import{V as o}from"./VideoPlayer-CKrpq9Vg.js";const d={title:"Structs",description:"Create user-defined types.",hide_table_of_contents:!1};function r(n){const e={a:"a",div:"div",h1:"h1",header:"header",...s(),...n.components};return t.jsxs(t.Fragment,{children:[t.jsx(e.header,{children:t.jsxs(e.h1,{id:"structs",children:["Structs",t.jsx(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#structs",children:t.jsx(e.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,t.jsx(o,{videoId:"804479292",title:"Structs"})]})}function c(n={}){const{wrapper:e}={...s(),...n.components};return e?t.jsx(e,{...n,children:t.jsx(r,{...n})}):r(n)}export{c as default,d as frontmatter};

@@ -1,0 +1,22 @@
+import{u as d,j as e}from"./index-Dlxm52NL.js";const o={title:"Basic Functions Exercise",description:"Exercise - Create and deploy a contract with simple math functions.",hide_table_of_contents:!1};function r(c){const n={a:"a",aside:"aside",code:"code",div:"div",h1:"h1",h2:"h2",h3:"h3",header:"header",li:"li",p:"p",strong:"strong",ul:"ul",...d(),...c.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.header,{children:e.jsxs(n.h1,{id:"basic-functions-exercise",children:["Basic Functions Exercise",e.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#basic-functions-exercise",children:e.jsx(n.div,{"data-autolink-icon":!0})})]})}),`
+`,e.jsxs(n.p,{children:["Each module in this course will contain exercises in which you are given a specification for a contract ",e.jsx(n.strong,{children:"without"})," being given specific instructions on how to build the contract. You must use what you've learned to figure out the best solution on your own!"]}),`
+`,e.jsxs(n.aside,{"data-callout":"info",children:[e.jsx(n.p,{children:"Once you've learned how to deploy your contracts to a test network, you'll be given the opportunity to submit your contract address for review by an onchain unit test. If it passes, you'll receive an NFT pin recognizing your accomplishment."}),e.jsx(n.strong,{children:"You'll deploy and submit this contract in the next module."})]}),`
+`,e.jsx(n.p,{children:"The following exercise asks you to create a contract that adheres to the following stated specifications."}),`
+`,e.jsxs(n.h2,{id:"contract",children:["Contract",e.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#contract",children:e.jsx(n.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(n.p,{children:["Create a contract called ",e.jsx(n.code,{children:"BasicMath"}),". It should not inherit from any other contracts and does not need a constructor. It should have the following two functions:"]}),`
+`,e.jsxs(n.h3,{id:"adder",children:["Adder",e.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#adder",children:e.jsx(n.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(n.p,{children:["A function called ",e.jsx(n.code,{children:"adder"}),". It must:"]}),`
+`,e.jsxs(n.ul,{children:[`
+`,e.jsxs(n.li,{children:["Accept two ",e.jsx(n.code,{children:"uint"})," arguments, called ",e.jsx(n.code,{children:"_a"})," and ",e.jsx(n.code,{children:"_b"})]}),`
+`,e.jsxs(n.li,{children:["Return a ",e.jsx(n.code,{children:"uint"})," ",e.jsx(n.code,{children:"sum"})," and a ",e.jsx(n.code,{children:"bool"})," ",e.jsx(n.code,{children:"error"})]}),`
+`,e.jsxs(n.li,{children:["If ",e.jsx(n.code,{children:"_a"})," + ",e.jsx(n.code,{children:"_b"})," does not overflow, it should return the ",e.jsx(n.code,{children:"sum"})," and an ",e.jsx(n.code,{children:"error"})," of ",e.jsx(n.code,{children:"false"})]}),`
+`,e.jsxs(n.li,{children:["If ",e.jsx(n.code,{children:"_a"})," + ",e.jsx(n.code,{children:"_b"})," overflows, it should return ",e.jsx(n.code,{children:"0"})," as the ",e.jsx(n.code,{children:"sum"}),", and an ",e.jsx(n.code,{children:"error"})," of ",e.jsx(n.code,{children:"true"})]}),`
+`]}),`
+`,e.jsxs(n.h3,{id:"subtractor",children:["Subtractor",e.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#subtractor",children:e.jsx(n.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(n.p,{children:["A function called ",e.jsx(n.code,{children:"subtractor"}),". It must:"]}),`
+`,e.jsxs(n.ul,{children:[`
+`,e.jsxs(n.li,{children:["Accept two ",e.jsx(n.code,{children:"uint"})," arguments, called ",e.jsx(n.code,{children:"_a"})," and ",e.jsx(n.code,{children:"_b"})]}),`
+`,e.jsxs(n.li,{children:["Return a ",e.jsx(n.code,{children:"uint"})," ",e.jsx(n.code,{children:"difference"})," and a ",e.jsx(n.code,{children:"bool"})," ",e.jsx(n.code,{children:"error"})]}),`
+`,e.jsxs(n.li,{children:["If ",e.jsx(n.code,{children:"_a"})," - ",e.jsx(n.code,{children:"_b"})," does not underflow, it should return the ",e.jsx(n.code,{children:"difference"})," and an ",e.jsx(n.code,{children:"error"})," of ",e.jsx(n.code,{children:"false"})]}),`
+`,e.jsxs(n.li,{children:["If ",e.jsx(n.code,{children:"_a"})," - ",e.jsx(n.code,{children:"_b"})," underflows, it should return ",e.jsx(n.code,{children:"0"})," as the ",e.jsx(n.code,{children:"difference"}),", and an ",e.jsx(n.code,{children:"error"})," of ",e.jsx(n.code,{children:"true"})]}),`
+`]})]})}function s(c={}){const{wrapper:n}={...d(),...c.components};return n?e.jsx(n,{...c,children:e.jsx(r,{...c})}):r(c)}export{s as default,o as frontmatter};

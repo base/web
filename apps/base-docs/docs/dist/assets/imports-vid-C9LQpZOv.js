@@ -1,0 +1,3 @@
+import{u as r,j as t}from"./index-Dlxm52NL.js";import{V as s}from"./VideoPlayer-CKrpq9Vg.js";const d={title:"Imports",description:"Import libraries and contracts into your own contracts.",hide_table_of_contents:!1};function o(n){const e={a:"a",div:"div",h1:"h1",header:"header",...r(),...n.components};return t.jsxs(t.Fragment,{children:[t.jsx(e.header,{children:t.jsxs(e.h1,{id:"imports",children:["Imports",t.jsx(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#imports",children:t.jsx(e.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,t.jsx(s,{videoId:"817805618",title:"Imports"})]})}function c(n={}){const{wrapper:e}={...r(),...n.components};return e?t.jsx(e,{...n,children:t.jsx(o,{...n})}):o(n)}export{c as default,d as frontmatter};

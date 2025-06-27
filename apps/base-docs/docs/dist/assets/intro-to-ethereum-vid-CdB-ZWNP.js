@@ -1,0 +1,3 @@
+import{u as r,j as t}from"./index-Dlxm52NL.js";import{V as i}from"./VideoPlayer-CKrpq9Vg.js";const c={title:"Introduction",description:"Welcome to the world of blockchain development!",hide_table_of_contents:!1};function o(n){const e={a:"a",div:"div",h1:"h1",header:"header",...r(),...n.components};return t.jsxs(t.Fragment,{children:[t.jsx(e.header,{children:t.jsxs(e.h1,{id:"introduction",children:["Introduction",t.jsx(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#introduction",children:t.jsx(e.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,t.jsx(i,{videoId:"813631865",title:"Intro to Ethereum"})]})}function s(n={}){const{wrapper:e}={...r(),...n.components};return e?t.jsx(e,{...n,children:t.jsx(o,{...n})}):o(n)}export{s as default,c as frontmatter};

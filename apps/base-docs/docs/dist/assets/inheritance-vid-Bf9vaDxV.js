@@ -1,0 +1,3 @@
+import{u as i,j as e}from"./index-Dlxm52NL.js";import{V as a}from"./VideoPlayer-CKrpq9Vg.js";const s={title:"Inheritance",description:"Create contracts that inherit from other contracts.",hide_table_of_contents:!1};function r(n){const t={a:"a",div:"div",h1:"h1",header:"header",...i(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.header,{children:e.jsxs(t.h1,{id:"inheritance",children:["Inheritance",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#inheritance",children:e.jsx(t.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,e.jsx(a,{videoId:"805035971",title:"Inheritance"})]})}function d(n={}){const{wrapper:t}={...i(),...n.components};return t?e.jsx(t,{...n,children:e.jsx(r,{...n})}):r(n)}export{d as default,s as frontmatter};

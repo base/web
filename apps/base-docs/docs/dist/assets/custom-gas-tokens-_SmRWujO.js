@@ -1,0 +1,7 @@
+import{u as n,j as e}from"./index-Dlxm52NL.js";const i={title:"ERC20 Paymasters",description:"undefined"};function s(t){const a={a:"a",div:"div",h1:"h1",h2:"h2",header:"header",li:"li",p:"p",ul:"ul",...n(),...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(a.header,{children:e.jsxs(a.h1,{id:"erc20-paymasters",children:["ERC20 Paymasters",e.jsx(a.a,{"aria-hidden":"true",tabIndex:"-1",href:"#erc20-paymasters",children:e.jsx(a.div,{"data-autolink-icon":!0})})]})}),`
+`,e.jsx(a.p,{children:"Smart Wallet enables users to pay for gas in ERC20 tokens! This enables users to use app-specific tokens as payment for gas."}),`
+`,e.jsxs(a.h2,{id:"technical-details",children:["Technical Details",e.jsx(a.a,{"aria-hidden":"true",tabIndex:"-1",href:"#technical-details",children:e.jsx(a.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(a.ul,{children:[`
+`,e.jsxs(a.li,{children:["We recommend the ",e.jsx(a.a,{href:"https://www.coinbase.com/developer-platform",children:"Coinbase Developer Platform"})," paymaster, as it is ",e.jsx(a.a,{href:"https://docs.base.org/tutorials/enable-erc20-gas-payments/",children:"fully set up to work with Smart Wallet ERC-20 token gas payments"}),"."]}),`
+`,e.jsx(a.li,{children:"Developers pay gas for their users in ETH and choose an exchange rate at which to receive an ERC-20 token as payment."}),`
+`]})]})}function o(t={}){const{wrapper:a}={...n(),...t.components};return a?e.jsx(a,{...t,children:e.jsx(s,{...t})}):s(t)}export{o as default,i as frontmatter};

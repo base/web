@@ -1,0 +1,3 @@
+import{u as o,j as e}from"./index-Dlxm52NL.js";import{V as a}from"./VideoPlayer-CKrpq9Vg.js";const d={title:"Error Triage",description:"Learn to debug common errors.",hide_table_of_contents:!1};function n(t){const r={a:"a",div:"div",h1:"h1",header:"header",...o(),...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(r.header,{children:e.jsxs(r.h1,{id:"error-triage",children:["Error Triage",e.jsx(r.a,{"aria-hidden":"true",tabIndex:"-1",href:"#error-triage",children:e.jsx(r.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,e.jsx(a,{videoId:"817805593",title:"Error Triage"})]})}function c(t={}){const{wrapper:r}={...o(),...t.components};return r?e.jsx(r,{...t,children:e.jsx(n,{...t})}):n(t)}export{c as default,d as frontmatter};

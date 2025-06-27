@@ -1,0 +1,3 @@
+import{u as o,j as n}from"./index-Dlxm52NL.js";import{V as a}from"./VideoPlayer-CKrpq9Vg.js";const d={title:"Forking Mainnet",description:"Create a copy of the mainnet to run advanced tests.",hide_table_of_contents:!1};function i(t){const e={a:"a",div:"div",h1:"h1",header:"header",...o(),...t.components};return n.jsxs(n.Fragment,{children:[n.jsx(e.header,{children:n.jsxs(e.h1,{id:"forking-mainnet",children:["Forking Mainnet",n.jsx(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#forking-mainnet",children:n.jsx(e.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,n.jsx(a,{videoId:"844047412",title:"Mainnet Forking"})]})}function c(t={}){const{wrapper:e}={...o(),...t.components};return e?n.jsx(e,{...t,children:n.jsx(i,{...t})}):i(t)}export{c as default,d as frontmatter};

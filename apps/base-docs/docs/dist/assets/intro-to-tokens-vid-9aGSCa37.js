@@ -1,0 +1,3 @@
+import{u as r,j as t}from"./index-Dlxm52NL.js";import{V as i}from"./VideoPlayer-CKrpq9Vg.js";const a={title:"Introduction",description:"Welcome to the wonderful world of tokens!",hide_table_of_contents:!1};function o(e){const n={a:"a",div:"div",h1:"h1",header:"header",...r(),...e.components};return t.jsxs(t.Fragment,{children:[t.jsx(n.header,{children:t.jsxs(n.h1,{id:"introduction",children:["Introduction",t.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#introduction",children:t.jsx(n.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,t.jsx(i,{videoId:"808096827",title:"Introduction to Tokens"})]})}function c(e={}){const{wrapper:n}={...r(),...e.components};return n?t.jsx(n,{...e,children:t.jsx(o,{...e})}):o(e)}export{c as default,a as frontmatter};

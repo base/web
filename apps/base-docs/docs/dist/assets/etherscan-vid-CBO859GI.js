@@ -1,0 +1,3 @@
+import{u as s,j as e}from"./index-Dlxm52NL.js";import{V as a}from"./VideoPlayer-CKrpq9Vg.js";const c={title:"Etherscan",description:"Use Etherscan to interact with your own and others's contracts.",hide_table_of_contents:!1};function r(n){const t={a:"a",div:"div",h1:"h1",header:"header",...s(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.header,{children:e.jsxs(t.h1,{id:"etherscan",children:["Etherscan",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#etherscan",children:e.jsx(t.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,e.jsx(a,{videoId:"841274068",title:"Etherscan"})]})}function d(n={}){const{wrapper:t}={...s(),...n.components};return t?e.jsx(t,{...n,children:e.jsx(r,{...n})}):r(n)}export{d as default,c as frontmatter};

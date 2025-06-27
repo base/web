@@ -1,0 +1,1 @@
+import{S as f}from"./Wallet-ZJuZDvIz.js";import{j as l}from"./index-Dlxm52NL.js";function x({config:o,className:s,disabled:r,experimental:t,from:a,isSponsored:e=!1,onError:n,onStatus:i,onSuccess:p,title:m="Swap",to:S}){return l.jsx(f,{className:s,onStatus:i,onSuccess:p,onError:n,config:o,isSponsored:e,title:m,experimental:t,to:S,from:a,disabled:r})}export{x as S};

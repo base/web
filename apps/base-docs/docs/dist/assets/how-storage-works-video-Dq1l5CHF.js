@@ -1,0 +1,3 @@
+import{u as r,j as e}from"./index-Dlxm52NL.js";import{V as s}from"./VideoPlayer-CKrpq9Vg.js";const d={title:"How Storage Works",description:"Learn how storage works in the EVM.",hide_table_of_contents:!1};function n(o){const t={a:"a",div:"div",h1:"h1",header:"header",...r(),...o.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.header,{children:e.jsxs(t.h1,{id:"how-storage-works",children:["How Storage Works",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#how-storage-works",children:e.jsx(t.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,e.jsx(s,{videoId:"804479654",title:"How Storage Works"})]})}function h(o={}){const{wrapper:t}={...r(),...o.components};return t?e.jsx(t,{...o,children:e.jsx(n,{...o})}):n(o)}export{h as default,d as frontmatter};

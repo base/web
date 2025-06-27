@@ -1,0 +1,1 @@
+function a(m,i={}){if(m===void 0)return"";const t=i.locale,n=i.minimumFractionDigits,r=i.maximumFractionDigits;return Number(m).toLocaleString(t,{minimumFractionDigits:n,maximumFractionDigits:r})}export{a as f};
