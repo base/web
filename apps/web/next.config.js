@@ -56,6 +56,7 @@ function extendBaseConfig(customConfig = {}, plugins = []) {
 
 // csp headers
 const isLocalDevelopment = process.env.NODE_ENV === 'development';
+const isE2ETest = process.env.E2E_TEST === 'true';
 const baseXYZDomains = 'https://base.mirror.xyz';
 const greenhouseDomains = 'https://boards.greenhouse.io https://boards-api.greenhouse.io';
 const ccaDomain = 'https://static-assets.coinbase.com/js/cca/v0.0.1.js';
@@ -107,8 +108,8 @@ const contentSecurityPolicy = {
     'wss://www.walletlink.org',
     'https://base.easscan.org/graphql',
     'https://api.guild.xyz/',
-    isLocalDevelopment ? 'ws://localhost:3000/' : '',
-    isLocalDevelopment ? 'http://localhost:3000/' : '',
+    isE2ETest ? 'ws://localhost:8545/' : isLocalDevelopment ? 'ws://localhost:3000/' : '',
+    isE2ETest ? 'http://localhost:8545/' : isLocalDevelopment ? 'http://localhost:3000/' : '',
     'https://flag.lab.amplitude.com/sdk/v2/flags',
     'https://api.lab.amplitude.com/sdk/v2/vardata',
     'https://browser-intake-datadoghq.com', // datadog
