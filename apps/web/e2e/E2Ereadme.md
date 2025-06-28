@@ -70,3 +70,20 @@ The GitHub Actions workflow (`.github/workflows/e2e.yml`) follows exactly the sa
 ---
 
 Feel free to extend this README if you run into anything else that others might find useful. Happy testing! 🎉
+
+### NOTE:
+
+If you see this error:
+
+```bash
+
+Aushveen Vimalathas
+:no_bell:  Today at 10:51 AM
+Run xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" yarn test:e2e
+[WebServer]  ⚠ i18n configuration in next.config.js is unsupported in App Router.
+[WebServer] Learn more about internationalization in App Router: https://nextjs.org/docs/app/building-your-application/routing/internationalization
+
+Error: Timed out waiting 60000ms from config.webServer.
+```
+
+Try re-running the E2E workflow a couple more times
