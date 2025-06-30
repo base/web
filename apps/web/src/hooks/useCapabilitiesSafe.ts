@@ -58,11 +58,7 @@ export default function useCapabilitiesSafe({ chainId }: UseCapabilitiesSafeProp
     if (!capabilities.paymasterService || !rawCapabilities || !featureChainId) return {};
 
     const capabilitiesForChain = rawCapabilities[featureChainId];
-    if (
-      capabilitiesForChain?.['paymasterService'] &&
-      capabilitiesForChain['paymasterService'].supported
-    ) {
-      // Use environment variable for paymaster URL
+    if (capabilitiesForChain?.paymasterService?.supported) {
       const paymasterUrl =
         featureChainId === base.id
           ? process.env.NEXT_PUBLIC_BASE_PAYMASTER_SERVICE
