@@ -1,0 +1,1 @@
+import{j as s}from"./index-Dlxm52NL.js";import{A as e}from"./App-D6lIgqXE.js";function m({children:t}){return s.jsx(e,{children:s.jsx("div",{className:"z-[1000] my-10 flex justify-center",children:t})})}export{m as W};

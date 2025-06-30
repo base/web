@@ -1,0 +1,3 @@
+import{u as a,j as n}from"./index-Dlxm52NL.js";const o={title:"Transport layer",description:"undefined"};function r(t){const e={a:"a",div:"div",h1:"h1",header:"header",p:"p",...a(),...t.components};return n.jsxs(n.Fragment,{children:[n.jsx(e.header,{children:n.jsxs(e.h1,{id:"transport-layer",children:["Transport layer",n.jsx(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#transport-layer",children:n.jsx(e.div,{"data-autolink-icon":!0})})]})}),`
+`,n.jsx(e.p,{children:`Deep linking through universal links on iOS.
+Intent + app links on android.`})]})}function s(t={}){const{wrapper:e}={...a(),...t.components};return e?n.jsx(e,{...t,children:n.jsx(r,{...t})}):r(t)}export{s as default,o as frontmatter};
