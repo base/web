@@ -49,7 +49,9 @@ export type UseWriteContractsWithLogsProps = {
 };
 
 export type UseWriteContractsWithLogsReturn = {
-  initiateBatchCalls: (writeContractParameters: WriteContractsParameters) => Promise<string | void>;
+  initiateBatchCalls: (
+    writeContractParameters: WriteContractsParameters,
+  ) => Promise<string | undefined>;
   batchCallTransactionReceiptHash: string | undefined;
   batchCallsStatus: BatchCallsStatus;
   transactionReceipt: TransactionReceipt | undefined;
