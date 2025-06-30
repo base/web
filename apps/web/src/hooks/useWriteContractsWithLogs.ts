@@ -2,12 +2,11 @@ import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { useErrors } from 'apps/web/contexts/Errors';
 import { decodeRawLog, USER_OPERATION_EVENT_LOG_NAME } from 'apps/web/src/utils/transactionLogs';
 import { ActionType } from 'libs/base-ui/utils/logEvent';
-import { useCallback, useEffect, useState, useMemo } from 'react';
-import { Chain } from 'viem';
-import { base } from 'viem/chains';
+import { useCallback, useEffect, useState } from 'react';
+import { Chain, TransactionReceipt } from 'viem';
 import { WriteContractsParameters } from 'viem/experimental';
 import { useAccount, useSwitchChain, useWaitForTransactionReceipt } from 'wagmi';
-import { useCallsStatus, useWriteContracts, useCapabilities } from 'wagmi/experimental';
+import { useCallsStatus, useWriteContracts } from 'wagmi/experimental';
 import useCapabilitiesSafe from 'apps/web/src/hooks/useCapabilitiesSafe';
 
 /*
@@ -49,51 +48,32 @@ export type UseWriteContractsWithLogsProps = {
   eventName: string;
 };
 
+export type UseWriteContractsWithLogsReturn = {
+  initiateBatchCalls: (writeContractParameters: WriteContractsParameters) => Promise<string | void>;
+  batchCallTransactionReceiptHash: string | undefined;
+  batchCallsStatus: BatchCallsStatus;
+  transactionReceipt: TransactionReceipt | undefined;
+  batchCallTransactionHash: string | undefined;
+  batchCallsIsLoading: boolean;
+  batchCallsIsSuccess: boolean;
+  batchCallsIsError: boolean;
+  batchCallsError: Error | null;
+  batchCallsEnabled: boolean;
+};
+
 export default function useWriteContractsWithLogs({
   chain,
   eventName,
-}: UseWriteContractsWithLogsProps) {
+}: UseWriteContractsWithLogsProps): UseWriteContractsWithLogsReturn {
   // Errors & Analytics
   const { logEventWithContext } = useAnalytics();
   const { logError } = useErrors();
-  const { atomicBatch: atomicBatchEnabled, paymasterService: paymasterServiceEnabled } =
-    useCapabilitiesSafe({ chainId: chain.id });
-  const { chain: connectedChain, address } = useAccount();
+  const { atomicBatch: atomicBatchEnabled, paymasterCapabilities } = useCapabilitiesSafe({
+    chainId: chain.id,
+  });
+  const { chain: connectedChain } = useAccount();
 
   const [batchCallsStatus, setBatchCallsStatus] = useState<BatchCallsStatus>(BatchCallsStatus.Idle);
-
-  // Get available capabilities for paymaster URL
-  const { data: availableCapabilities } = useCapabilities({
-    account: address,
-  });
-
-  // Construct capabilities object with paymaster URL
-  const capabilities = useMemo(() => {
-    if (!paymasterServiceEnabled || !availableCapabilities || !chain.id) return {};
-
-    const capabilitiesForChain = availableCapabilities[chain.id];
-    if (
-      capabilitiesForChain?.['paymasterService'] &&
-      capabilitiesForChain['paymasterService'].supported
-    ) {
-      // Use environment variable for paymaster URL
-      const paymasterUrl =
-        chain.id === base.id
-          ? process.env.NEXT_PUBLIC_BASE_PAYMASTER_SERVICE
-          : process.env.NEXT_PUBLIC_BASE_SEPOLIA_PAYMASTER_SERVICE;
-
-      if (paymasterUrl) {
-        return {
-          paymasterService: {
-            url: paymasterUrl,
-          },
-        };
-      } else {
-        console.warn(`Paymaster service is supported but no URL configured for chain ${chain.id}`);
-      }
-    }
-    return {};
-  }, [paymasterServiceEnabled, availableCapabilities, chain.id]);
 
   // Write the contract
   const {
@@ -151,7 +131,7 @@ export default function useWriteContractsWithLogs({
 
         await writeContractsAsync({
           ...writeContractParameters,
-          capabilities,
+          capabilities: paymasterCapabilities,
         });
 
         logEventWithContext(`${eventName}_transaction_approved`, ActionType.change);
@@ -170,7 +150,7 @@ export default function useWriteContractsWithLogs({
       eventName,
       writeContractsAsync,
       logError,
-      capabilities,
+      paymasterCapabilities,
     ],
   );
 
