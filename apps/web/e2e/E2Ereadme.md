@@ -1,6 +1,6 @@
 # End-to-End Tests for `apps/web`
 
-This folder contains Playwright tests that exercise the full Basename registration flow against a local Next.js dev server, a local Anvil fork and a headless MetaMask browser instance (all orchestrated through **@coinbase/onchaintestkit**).
+This folder contains Playwright tests for the Base Web project against a local Next.js dev server...
 
 ## Contents
 
