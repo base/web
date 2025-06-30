@@ -69,4 +69,41 @@ The GitHub Actions workflow (`.github/workflows/e2e.yml`) follows exactly the sa
 
 ---
 
+## Running tests in headed mode (see the browser)
+
+By default, Playwright runs tests in headless mode. To watch the tests execute:
+
+```bash
+# Run all tests with visible browser
+yarn test:e2e --headed
+
+# Run a specific test file
+yarn test:e2e registration-success.spec.ts --headed
+
+# Debug mode: opens Playwright Inspector, lets you step through each action
+PWDEBUG=1 yarn test:e2e registration-success.spec.ts
+```
+
+**Note:** In headed mode, you'll see the MetaMask extension window pop up alongside your app. The test automation will click through it automatically—don't interfere or it may fail!
+
+---
+
 Feel free to extend this README if you run into anything else that others might find useful. Happy testing! 🎉
+<<<<<<< HEAD
+=======
+
+### NOTE:
+
+If you see this error:
+
+```bash
+
+Run xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" yarn test:e2e
+[WebServer]  ⚠ i18n configuration in next.config.js is unsupported in App Router.
+[WebServer] Learn more about internationalization in App Router: https://nextjs.org/docs/app/building-your-application/routing/internationalization
+
+Error: Timed out waiting 60000ms from config.webServer.
+```
+
+Try re-running the E2E workflow a couple more times
+>>>>>>> 6f7964f6 (apply fixes)
