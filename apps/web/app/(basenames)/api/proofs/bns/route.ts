@@ -42,7 +42,10 @@ async function handler(req: NextRequest) {
     if (error instanceof ProofsException) {
       return NextResponse.json({ error: error.message }, { status: error.statusCode });
     }
-    logger.error('error getting proofs for bns discount', error);
+    // Don't log expected errors during E2E tests
+    if (process.env.E2E_TEST !== 'true') {
+      logger.error('error getting proofs for bns discount', error);
+    }
   }
 
   // If error is not an instance of Error, return a generic error message

@@ -54,7 +54,10 @@ async function handler(req: NextRequest) {
     );
     return NextResponse.json(result);
   } catch (error) {
-    logger.error('error getting proofs for cb1 discount', error);
+    // Don't log expected errors during E2E tests
+    if (process.env.E2E_TEST !== 'true') {
+      logger.error('error getting proofs for cb1 discount', error);
+    }
     if (error instanceof ProofsException) {
       return NextResponse.json({ error: error.message }, { status: error.statusCode });
     }
