@@ -74,10 +74,7 @@ async function handler(req: NextRequest) {
 
     return NextResponse.json(result);
   } catch (error: unknown) {
-    // Don't log expected errors during E2E tests
-    if (process.env.E2E_TEST !== 'true') {
-      logger.error('error getting proofs for discount code', error);
-    }
+    logger.error('error getting proofs for discount code', error);
   }
   // If error is not an instance of Error, return a generic error message
   return NextResponse.json({ error: 'An unexpected error occurred' }, { status: 500 });

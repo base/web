@@ -81,6 +81,11 @@ class CustomLogger {
   }
 
   public error(message: string, error: Error | unknown, meta?: Record<string, unknown>) {
+    // Skip logging entirely during E2E tests to prevent noise from expected errors
+    if (process.env.E2E_TEST === 'true') {
+      return;
+    }
+
     const e =
       error instanceof Error
         ? {
