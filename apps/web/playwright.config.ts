@@ -39,6 +39,14 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+
+    // Set environment variables for the browser context
+    launchOptions: {
+      env: {
+        ...process.env,
+        NODE_ENV: 'development',
+      },
+    },
   },
 
   /* Increase default expect timeout */
@@ -90,7 +98,7 @@ export default defineConfig({
   webServer: {
     command: 'cd ../.. && yarn workspace @app/web dev',
     url: baseURL,
-    timeout: 60 * 1000,
+    timeout: 120 * 1000,
     reuseExistingServer: !process.env.CI,
   },
 });
