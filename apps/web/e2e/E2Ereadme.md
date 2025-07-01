@@ -89,21 +89,3 @@ PWDEBUG=1 yarn test:e2e registration-success.spec.ts
 ---
 
 Feel free to extend this README if you run into anything else that others might find useful. Happy testing! 🎉
-<<<<<<< HEAD
-=======
-
-### NOTE:
-
-If you see this error:
-
-```bash
-
-Run xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" yarn test:e2e
-[WebServer]  ⚠ i18n configuration in next.config.js is unsupported in App Router.
-[WebServer] Learn more about internationalization in App Router: https://nextjs.org/docs/app/building-your-application/routing/internationalization
-
-Error: Timed out waiting 60000ms from config.webServer.
-```
-
-Try re-running the E2E workflow a couple more times
->>>>>>> 6f7964f6 (apply fixes)
