@@ -34,8 +34,11 @@ E2E_TEST_SEED_PHRASE="test test test test test test test test test test test jun
 # RPC endpoint that Anvil will fork from (Base mainnet in this example)
 E2E_TEST_FORK_URL=https://mainnet.base.org
 
-# The block number to fork at (optional). Omitting gives you the latest block.
+# The block number to fork at. Omitting gives you the latest block.
 E2E_TEST_FORK_BLOCK_NUMBER=31397553
+
+NEXT_PUBLIC_CDP_BASE_RPC_ENDPOINT="http://localhost:8545/"
+E2E_TEST="true"
 ```
 
 - **`TEST_BASENAME`** must be at least 3 alphanumeric lower-case characters.
