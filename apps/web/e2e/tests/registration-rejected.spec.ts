@@ -14,7 +14,7 @@ test.describe('Basename Registration', () => {
     // Common preparation steps
     const { mainPage } = await prepareBasenameFlow(page, metamask);
 
-    await mainPage.waitForTimeout(4000);
+    await mainPage.waitForTimeout(2000);
 
     // Attempt registration and explicitly reject the transaction in MetaMask
     await initiateRegistration(mainPage);

@@ -23,7 +23,7 @@ const baseConfig = configure()
     chainId: base.id,
     symbol: 'ETH',
     // placeholder for the actual rpcUrl, which is auto injected by the node fixture
-    rpcUrl: 'http://127.0.0.1:8545',
+    rpcUrl: 'http://localhost:8545',
   });
 
 // Build the config

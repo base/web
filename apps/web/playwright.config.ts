@@ -19,16 +19,16 @@ const baseURL = `http://localhost:${PORT}`;
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  timeout: 5 * 60 * 1000,
+  timeout: 2 * 60 * 1000,
   testDir: './e2e/tests',
   /* Run tests in files in parallel */
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 5 : 0,
+  retries: 6,
   /* Opt out of parallel tests on CI. */
-  workers: 10,
+  workers: 1,
   maxFailures: 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
@@ -51,7 +51,7 @@ export default defineConfig({
 
   /* Increase default expect timeout */
   expect: {
-    timeout: 120000,
+    timeout: 30000,
   },
 
   /* Configure projects for major browsers */

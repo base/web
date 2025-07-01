@@ -57,4 +57,4 @@ jobs:
       - name: Run E2E tests
         env:
           NODE_OPTIONS: '--dns-result-order=ipv4first'
-        run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" yarn test:e2e registration-failed.spec.ts
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" yarn test:e2e

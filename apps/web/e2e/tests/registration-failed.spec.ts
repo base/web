@@ -10,8 +10,6 @@ test.describe('Basename Registration', () => {
     metamask,
     node,
   }) => {
-    test.setTimeout(120000); // Increase timeout to 2 minutes
-
     // Validate prerequisites
     if (!metamask) {
       throw new Error('MetaMask is not defined');
@@ -26,7 +24,7 @@ test.describe('Basename Registration', () => {
 
     // Add a small delay to ensure everything is stable
     console.log('[test] Waiting for network to stabilize...');
-    await mainPage.waitForTimeout(4000);
+    await mainPage.waitForTimeout(2000);
 
     // Get the first default wallet address from Anvil (0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266)
     let walletAddress;

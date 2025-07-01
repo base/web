@@ -47,11 +47,13 @@ export async function navigateToBasenameRegistration(page: Page): Promise<void> 
  * @param basename - The basename to search for
  */
 export async function searchForBasename(page: Page, basename: string): Promise<void> {
+  await page.waitForTimeout(2000);
   const searchInput = page.locator(SELECTORS.SEARCH_INPUT).first();
   await expect(searchInput).toBeVisible();
   await searchInput.clear();
   await searchInput.fill(basename);
   await page.waitForLoadState('networkidle');
+  await page.waitForTimeout(2000);
 }
 
 /**

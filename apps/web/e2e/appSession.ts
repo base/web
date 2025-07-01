@@ -95,6 +95,7 @@ export async function switchToBaseNetworkIfNeeded(page: Page): Promise<boolean> 
     page.url(),
   );
   await page.waitForLoadState('networkidle');
+  await page.waitForTimeout(5000);
   // Prefer the explicit "Connect to Base" button if present
   const explicitSelector = 'button:has-text("Connect to Base")';
 
