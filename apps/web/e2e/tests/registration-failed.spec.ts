@@ -26,7 +26,7 @@ test.describe('Basename Registration', () => {
 
     // Add a small delay to ensure everything is stable
     console.log('[test] Waiting for network to stabilize...');
-    await mainPage.waitForTimeout(2000);
+    await mainPage.waitForTimeout(4000);
 
     // Get the first default wallet address from Anvil (0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266)
     let walletAddress;
@@ -53,7 +53,7 @@ test.describe('Basename Registration', () => {
     }
 
     // Another small delay after balance change
-    await mainPage.waitForTimeout(1000);
+    await mainPage.waitForTimeout(2000);
 
     // Attempt registration with no funds
     try {

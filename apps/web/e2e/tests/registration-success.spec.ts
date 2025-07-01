@@ -14,6 +14,8 @@ test.describe('Basename Registration', () => {
     // Common preparation steps (connect wallet, switch network, navigate & select basename)
     const { mainPage } = await prepareBasenameFlow(page, metamask);
 
+    await mainPage.waitForTimeout(4000);
+
     // Complete registration
     await initiateRegistration(mainPage);
     await page.waitForLoadState('networkidle');
