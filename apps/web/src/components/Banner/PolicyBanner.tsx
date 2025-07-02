@@ -22,7 +22,7 @@ export function PolicyBanner() {
   }
 
   return (
-    <div className="dark:border-gray-95 fixed bottom-0 left-0 right-0 z-[10000] border-t bg-white px-4 py-8 text-black duration-300 animate-in slide-in-from-bottom lg:px-12 dark:bg-black dark:text-white">
+    <div className="dark:border-gray-95 fixed left-0 right-0 top-0 z-[10000] border-b bg-white px-4 py-8 text-black duration-300 animate-in slide-in-from-top lg:px-12 dark:bg-black dark:text-white">
       <div className="max-w-8xl mx-auto flex items-center">
         <div className="flex items-center">
           <div className="mr-2">
