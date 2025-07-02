@@ -1,0 +1,60 @@
+name: E2E Tests
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+
+      - name: Set E2E env variables
+        working-directory: apps/web
+        run: |
+          echo "NODE_ENV=development" > .env
+          echo "E2E_TEST_SEED_PHRASE=test test test test test test test test test test test junk" >> .env
+          echo "E2E_TEST_FORK_URL=https://mainnet.base.org" >> .env
+          echo "E2E_TEST_FORK_BLOCK_NUMBER=31397553" >> .env
+          echo "E2E_TEST=true" >> .env
+          echo "TEST_BASENAME=testbasename123" >> .env
+          echo "NEXT_PUBLIC_CDP_BASE_RPC_ENDPOINT=http://localhost:8545/" >> .env
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1.4.0
+
+      - name: Prepare MetaMask extension
+        run: yarn e2e:prepare-metamask
+
+      - name: Install Playwright browsers
+        run: yarn playwright install --with-deps
+
+      - name: Install xvfb
+        run: sudo apt-get update && sudo apt-get install -y xvfb
+
+      - name: Build application
+        run: yarn build
+
+      - name: Run E2E tests
+        env:
+          NODE_OPTIONS: '--dns-result-order=ipv4first'
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" yarn test:e2e
