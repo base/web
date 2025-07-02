@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import type { ManagedAddressesResponse } from 'apps/web/src/types/ManagedAddresses';
+import { cdpBaseUri } from 'apps/web/src/cdp/constants';
 
 export async function GET(request: NextRequest) {
   const address = request.nextUrl.searchParams.get('address');
@@ -14,7 +15,7 @@ export async function GET(request: NextRequest) {
   }
 
   const response = await fetch(
-    `https://api.cdp.coinbase.com/platform/v1/networks/${network}/addresses/${address}/identity?limit=50`,
+    `https://${cdpBaseUri}/platform/v1/networks/${network}/addresses/${address}/identity?limit=50`,
     {
       headers: {
         Authorization: `Bearer ${process.env.CDP_BEARER_TOKEN}`,
