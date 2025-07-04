@@ -23,6 +23,13 @@ import {
 export async function connectWallet(page: Page, metamask: MetaMask): Promise<void> {
   console.log('[connectWallet] Current URL before connect:', page.url());
   // Open wallet connect modal
+
+  // Check to see if there's the I acknowledge button
+  const newPrivacyPolicyButton = page.getByText('I Acknowledge');
+  if (await newPrivacyPolicyButton.isVisible()) {
+    await newPrivacyPolicyButton.click();
+  }
+
   await page.getByTestId('ockConnectButton').first().click();
   console.log('[connectWallet] Wallet connect modal opened');
 

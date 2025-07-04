@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 import defaultTheme from 'tailwindcss/defaultTheme';
 import path from 'node:path';
+import animate from 'tailwindcss-animate';
 
 module.exports = {
   content: [
@@ -613,5 +614,5 @@ module.exports = {
       animation: ['group-hover'],
     },
   },
-  plugins: [],
+  plugins: [animate],
 };

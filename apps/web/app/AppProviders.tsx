@@ -15,6 +15,7 @@ import ClientAnalyticsScript from 'apps/web/src/components/ClientAnalyticsScript
 import dynamic from 'next/dynamic';
 import ErrorsProvider from 'apps/web/contexts/Errors';
 import { logger } from 'apps/web/src/utils/logger';
+import { PolicyBanner } from 'apps/web/src/components/Banner/PolicyBanner';
 
 const DynamicCookieBannerWrapper = dynamic(
   async () => import('apps/web/src/components/CookieBannerWrapper'),
@@ -82,6 +83,7 @@ export default function AppProviders({ children }: AppProvidersProps) {
         onPreferenceChange={setTrackingPreference}
         config={cookieManagerConfig}
       >
+        <PolicyBanner />
         <ClientAnalyticsScript />
         <TooltipProvider>
           <ExperimentsProvider>
