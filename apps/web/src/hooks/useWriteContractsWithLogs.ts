@@ -3,7 +3,7 @@ import { useErrors } from 'apps/web/contexts/Errors';
 import { decodeRawLog, USER_OPERATION_EVENT_LOG_NAME } from 'apps/web/src/utils/transactionLogs';
 import { ActionType } from 'libs/base-ui/utils/logEvent';
 import { useCallback, useEffect, useState } from 'react';
-import { Chain } from 'viem';
+import { Chain, TransactionReceipt } from 'viem';
 import { WriteContractsParameters } from 'viem/experimental';
 import { useAccount, useSwitchChain, useWaitForTransactionReceipt } from 'wagmi';
 import { useCallsStatus, useWriteContracts } from 'wagmi/experimental';
@@ -48,14 +48,31 @@ export type UseWriteContractsWithLogsProps = {
   eventName: string;
 };
 
+export type UseWriteContractsWithLogsReturn = {
+  initiateBatchCalls: (
+    writeContractParameters: WriteContractsParameters,
+  ) => Promise<string | undefined>;
+  batchCallTransactionReceiptHash: string | undefined;
+  batchCallsStatus: BatchCallsStatus;
+  transactionReceipt: TransactionReceipt | undefined;
+  batchCallTransactionHash: string | undefined;
+  batchCallsIsLoading: boolean;
+  batchCallsIsSuccess: boolean;
+  batchCallsIsError: boolean;
+  batchCallsError: Error | null;
+  batchCallsEnabled: boolean;
+};
+
 export default function useWriteContractsWithLogs({
   chain,
   eventName,
-}: UseWriteContractsWithLogsProps) {
+}: UseWriteContractsWithLogsProps): UseWriteContractsWithLogsReturn {
   // Errors & Analytics
   const { logEventWithContext } = useAnalytics();
   const { logError } = useErrors();
-  const { atomicBatch: atomicBatchEnabled } = useCapabilitiesSafe({ chainId: chain.id });
+  const { atomicBatch: atomicBatchEnabled, paymasterCapabilities } = useCapabilitiesSafe({
+    chainId: chain.id,
+  });
   const { chain: connectedChain } = useAccount();
 
   const [batchCallsStatus, setBatchCallsStatus] = useState<BatchCallsStatus>(BatchCallsStatus.Idle);
@@ -113,7 +130,11 @@ export default function useWriteContractsWithLogs({
       try {
         setBatchCallsStatus(BatchCallsStatus.Initiated);
         logEventWithContext(`${eventName}_transaction_initiated`, ActionType.change);
-        await writeContractsAsync(writeContractParameters);
+
+        await writeContractsAsync({
+          ...writeContractParameters,
+          capabilities: paymasterCapabilities,
+        });
 
         logEventWithContext(`${eventName}_transaction_approved`, ActionType.change);
         setBatchCallsStatus(BatchCallsStatus.Approved);
@@ -131,6 +152,7 @@ export default function useWriteContractsWithLogs({
       eventName,
       writeContractsAsync,
       logError,
+      paymasterCapabilities,
     ],
   );
 
