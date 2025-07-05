@@ -1,0 +1,9 @@
+{
+  "name": "BlinkChain",
+  "description": "An onchain blockchain-as-a-contract with smart contract support on Base.",
+  "url": "https://blinkchain.vercel.app", 
+  "imageUrl": "/images/partners/blinkchain.png",
+  "category": "infra",
+  "subcategory": "developer tool"
+}
+
