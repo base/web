@@ -1,0 +1,3 @@
+import{u as r,j as e}from"./index-Dlxm52NL.js";import{V as o}from"./VideoPlayer-CKrpq9Vg.js";const d={title:"Testing Overview",description:"An overview of writing tests in Hardhat.",hide_table_of_contents:!1};function i(n){const t={a:"a",div:"div",h1:"h1",header:"header",...r(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.header,{children:e.jsxs(t.h1,{id:"testing-overview",children:["Testing Overview",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#testing-overview",children:e.jsx(t.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,e.jsx(o,{videoId:"840618938",title:"Testing Overview"})]})}function c(n={}){const{wrapper:t}={...r(),...n.components};return t?e.jsx(t,{...n,children:e.jsx(i,{...n})}):i(n)}export{c as default,d as frontmatter};
