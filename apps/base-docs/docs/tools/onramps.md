@@ -47,7 +47,7 @@ hide_table_of_contents: true
 
 ## Ramp
 
-[Ramp](https://ramp.network/) is an onramp and offramp that empowers users to buy & sell crypto inside your app. Ramp supports 40+ fiat currencies and 90+ crypto assets, including ETH on Base.
+[Ramp](https://rampnetwork.com/) is an onramp and offramp that empowers users to buy & sell crypto inside your app. Ramp supports 40+ fiat currencies and 90+ crypto assets, including ETH on Base.
 
 ---
 
