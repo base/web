@@ -10,7 +10,7 @@ Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the ne
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/w/base/web?colorA=f6f8fa&colorB=f6f8fa&style=flat)](https://github.com/base/web/graphs/contributors)
 [![GitHub Stars](https://img.shields.io/github/stars/base/web.svg?colorA=f6f8fa&colorB=f6f8fa&style=flat)](https://github.com/base/web/stargazers)
 ![GitHub repo size](https://img.shields.io/github/repo-size/base/web?colorA=f6f8fa&colorB=f6f8fa&style=flat)
-[![GitHub](https://img.shields.io/github/license/base/web?color=blue?colorA=f6f8fa&colorB=f6f8fa&style=flat)](https://github.com/base/web/blob/master/LICENSE.md)
+[![GitHub](https://img.shields.io/github/license/base/web?colorA=f6f8fa&colorB=f6f8fa&style=flat)](https://github.com/base/web/blob/master/LICENSE.md)
 
 <!-- Badge row 2 - links and profiles -->
 
