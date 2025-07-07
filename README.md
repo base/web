@@ -6,24 +6,24 @@ Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the ne
 
 <!-- Badge row 1 - status -->
 
-[![GitHub contributors](https://img.shields.io/github/contributors/base/web)](https://github.com/base/web/graphs/contributors)
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/w/base/web)](https://github.com/base/web/graphs/contributors)
-[![GitHub Stars](https://img.shields.io/github/stars/base/web.svg)](https://github.com/base/web/stargazers)
-![GitHub repo size](https://img.shields.io/github/repo-size/base/web)
-[![GitHub](https://img.shields.io/github/license/base/web?color=blue)](https://github.com/base/web/blob/master/LICENSE.md)
+[![GitHub contributors](https://img.shields.io/github/contributors/base/web?colorA=f6f8fa&colorB=f6f8fa&style=flat)](https://github.com/base/web/graphs/contributors)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/w/base/web?colorA=f6f8fa&colorB=f6f8fa&style=flat)](https://github.com/base/web/graphs/contributors)
+[![GitHub Stars](https://img.shields.io/github/stars/base/web.svg?colorA=f6f8fa&colorB=f6f8fa&style=flat)](https://github.com/base/web/stargazers)
+![GitHub repo size](https://img.shields.io/github/repo-size/base/web?colorA=f6f8fa&colorB=f6f8fa&style=flat)
+[![GitHub](https://img.shields.io/github/license/base/web?color=blue?colorA=f6f8fa&colorB=f6f8fa&style=flat)](https://github.com/base/web/blob/master/LICENSE.md)
 
 <!-- Badge row 2 - links and profiles -->
 
-[![Website base.org](https://img.shields.io/website-up-down-green-red/https/base.org.svg)](https://base.org)
-[![Blog](https://img.shields.io/badge/blog-up-green)](https://base.mirror.xyz/)
-[![Docs](https://img.shields.io/badge/docs-up-green)](https://docs.base.org/)
-[![Discord](https://img.shields.io/discord/1067165013397213286?label=discord)](https://base.org/discord)
-[![Twitter Base](https://img.shields.io/twitter/follow/Base?style=social)](https://twitter.com/Base)
+[![Website base.org](https://img.shields.io/website-up-down-green-red/https/base.org.svg?colorA=f6f8fa&colorB=f6f8fa&style=flat)](https://base.org)
+[![Blog](https://img.shields.io/badge/blog-up-green?colorA=f6f8fa&colorB=f6f8fa&style=flat)](https://base.mirror.xyz/)
+[![Docs](https://img.shields.io/badge/docs-up-green?colorA=f6f8fa&colorB=f6f8fa&style=flat)](https://docs.base.org/)
+[![Discord](https://img.shields.io/discord/1067165013397213286?colorA=f6f8fa&colorB=f6f8fa&style=flat)](https://base.org/discord)
+[![Twitter Base](https://img.shields.io/twitter/follow/Base?colorA=f6f8fa&colorB=f6f8fa&style=flat)](https://twitter.com/Base)
 
 <!-- Badge row 3 - detailed status -->
 
-[![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/base/web)](https://github.com/base/web/pulls)
-[![GitHub Issues](https://img.shields.io/github/issues-raw/base/web.svg)](https://github.com/base/web/issues)
+[![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/base/web?colorA=f6f8fa&colorB=f6f8fa&style=flat)](https://github.com/base/web/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues-raw/base/web.svg?colorA=f6f8fa&colorB=f6f8fa&style=flat)](https://github.com/base/web/issues)
 
 ## Setup
 
