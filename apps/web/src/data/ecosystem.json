@@ -48,14 +48,6 @@
     "subcategory": "nft"
   },
   {
-    "name": "VaultX",
-    "description": "VaultX, built on Base and powered by $VAX, connects real-world stories and real-world assets (RWA) to the blockchain. We protect artists’ IP, secure collectors’ ownership, and onboard everyone into a decentralized art ecosystem",
-    "url": "https://vault-x.io/",
-    "imageUrl": "/images/partners/VaultX.png",
-    "category": "consumer",
-    "subcategory": "real world"
-  },
-  {
     "name": "A0x",
     "description": "Agentic no-code platform to build tokenized social media ai-agents in Farcaster, X, Telegram and more",
     "url": "https://a0x.co",
@@ -289,9 +281,9 @@
   },
   {
     "name": "Arkham",
-    "url": "https://www.arkhamintelligence.com/",
+    "url": "https://arkm.com/",
     "description": "Arkham is a crypto intelligence platform that systematically analyzes and deanonymizes blockchain transactions, showing users the people and companies behind blockchain activity, along with data and analytics about their behavior.",
-    "imageUrl": "/images/partners/arkham.webp",
+    "imageUrl": "/images/partners/ARKHAM-01.PNG",
     "category": "infra",
     "subcategory": "data"
   },
@@ -1814,6 +1806,14 @@
     "imageUrl": "/images/partners/hapi.png",
     "category": "infra",
     "subcategory": "security"
+  },
+  {
+    "name": "HAPPY ANIMALS",
+    "description": "Collect animal-themed NFTs, join bi-weekly lotteries, and fund real-world wildlife conservation on Base.",
+    "url": "https://base.happyanimals.xyz",
+    "imageUrl": "/images/partners/happy-animals.png",
+    "category": "consumer",
+    "subcategory": "nft"
   },
   {
     "name": "Harvest Finance",
@@ -4078,6 +4078,14 @@
     "imageUrl": "/images/partners/vaultsfyi.png",
     "category": "defi",
     "subcategory": "portfolio"
+  },
+  {
+    "name": "VaultX",
+    "description": "VaultX, built on Base and powered by $VAX, connects real-world stories and real-world assets (RWA) to the blockchain. We protect artists’ IP, secure collectors’ ownership, and onboard everyone into a decentralized art ecosystem",
+    "url": "https://vault-x.io/",
+    "imageUrl": "/images/partners/VaultX.png",
+    "category": "consumer",
+    "subcategory": "real world"
   },
   {
     "name": "Vela Exchange",
