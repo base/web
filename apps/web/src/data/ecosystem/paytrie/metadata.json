@@ -1,7 +1,7 @@
 {
     "name": "PayTrie",
-    "description": "",
-    "url": "https://paytrie.com",
+    "description": "Canada's digital dollar stablecoin",
+    "url": "https://paytrie.com/CADC",
     "imageUrl": "/images/partners/paytrie.png",
     "category": "onramp",
     "subcategory": "fiat on-ramp"
