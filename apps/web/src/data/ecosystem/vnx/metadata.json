@@ -1,0 +1,28 @@
+[
+    {
+    "name": "VEUR",
+    "description": "VNX Euro (VEUR) is a multichain token referencing Euro from a European licensed token generator.",
+    "url": "https://vnx.li/veur/",
+    "imageUrl": "/images/partners/veur.png",
+    "category": "defi",
+    "subcategory": "stablecoin"
+    },
+    {
+    "name": "VCHF",
+    "description": "VNX Swiss Franc (VCHF) is a multichain token referencing Swiss Franc from a European licensed token generator.",
+    "url": "https://vnx.li/vchf/",
+    "imageUrl": "/images/partners/vchf.png",
+    "category": "defi",
+    "subcategory": "stablecoin"
+    },
+    {
+    "name": "VGBP",
+    "description": "VNX British Pound (VGBP) is a multichain token referencing British Pound from a European licensed token generator.",
+    "url": "https://vnx.li/vgbp/",
+    "imageUrl": "/images/partners/vgbp.png",
+    "category": "defi",
+    "subcategory": "stablecoin"
+    }
+]
+
+
