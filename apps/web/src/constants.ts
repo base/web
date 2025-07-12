@@ -84,8 +84,8 @@ export const analyticsConfig = {
 };
 
 export const ampDeploymentKey = isDevelopment
-  ? 'client-Wvf63OdaukDZyCBtwgbOvHgGTuASBZFG'
-  : 'client-agFoQg5AOvZ2ZiOChny9RrGk21jG3VrH';
+  ? analyticsConfig.ampDeploymentKey.dev
+  : analyticsConfig.ampDeploymentKey.prod;
 
 export enum LocalStorageKeys {
   FARCASTER_FRAME_CONTEXT = 'FARCASTER_FRAME_CONTEXT',
