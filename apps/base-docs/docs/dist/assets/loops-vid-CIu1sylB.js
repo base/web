@@ -1,0 +1,3 @@
+import{u as s,j as e}from"./index-Dlxm52NL.js";import{V as i}from"./VideoPlayer-CKrpq9Vg.js";const d={title:"Loops",description:"Explore loops in Solidity.",hide_table_of_contents:!1};function n(t){const o={a:"a",div:"div",h1:"h1",header:"header",...s(),...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(o.header,{children:e.jsxs(o.h1,{id:"loops",children:["Loops",e.jsx(o.a,{"aria-hidden":"true",tabIndex:"-1",href:"#loops",children:e.jsx(o.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,e.jsx(i,{videoId:"805353144",title:"Loops"})]})}function c(t={}){const{wrapper:o}={...s(),...t.components};return o?e.jsx(o,{...t,children:e.jsx(n,{...t})}):n(t)}export{c as default,d as frontmatter};

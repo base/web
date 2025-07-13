@@ -1,0 +1,3 @@
+import{u as a,j as e}from"./index-Dlxm52NL.js";import{V as i}from"./VideoPlayer-CKrpq9Vg.js";const d={title:"Arrays",description:"Learn about the unique properties of arrays in Solidity.",hide_table_of_contents:!1};function r(n){const t={a:"a",div:"div",h1:"h1",header:"header",...a(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.header,{children:e.jsxs(t.h1,{id:"arrays",children:["Arrays",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#arrays",children:e.jsx(t.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,e.jsx(i,{videoId:"827438004",title:"Arrays in Solidity"})]})}function c(n={}){const{wrapper:t}={...a(),...n.components};return t?e.jsx(t,{...n,children:e.jsx(r,{...n})}):r(n)}export{c as default,d as frontmatter};
