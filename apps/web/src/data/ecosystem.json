@@ -3256,6 +3256,14 @@
     "subcategory": "ai"
   },
   {
+    "name": "Rivo",
+    "description": "Rivo is a decentralized crypto app powered by AI agent, delivering safe and automated passive income in DeFi and making multi-generational wealth accessible to all",
+    "url": "https://app.rivo.xyz/earn?chainId=8453&activetab=all",
+    "imageUrl": "/images/partners/rivo.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "Robots.Farm",
     "description": "Robots.Farm is a Gamified Trading Platform that seamlessly merges decentralized finance with a captivating gaming experience. Developed independently, free from VC funding or paid influencers, $RBF platform serves as a decentralized exchange and aggregator, enabling effortless transactions across 9 networks with scalable capabilities. Engage in gameplay, swap tokens, farm rewards, and enhance your profile with XP points while collecting unique items to unlock special features!",
     "url": "https://robots.farm/",
