@@ -48,14 +48,6 @@
     "subcategory": "nft"
   },
   {
-    "name": "VaultX",
-    "description": "VaultX, built on Base and powered by $VAX, connects real-world stories and real-world assets (RWA) to the blockchain. We protect artists’ IP, secure collectors’ ownership, and onboard everyone into a decentralized art ecosystem",
-    "url": "https://vault-x.io/",
-    "imageUrl": "/images/partners/VaultX.png",
-    "category": "consumer",
-    "subcategory": "real world"
-  },
-  {
     "name": "A0x",
     "description": "Agentic no-code platform to build tokenized social media ai-agents in Farcaster, X, Telegram and more",
     "url": "https://a0x.co",
@@ -2032,6 +2024,14 @@
     "subcategory": "gaming"
   },
   {
+    "name": "Jackal Protocol",
+    "description": "Onchain hot storage. Jackal keeps your data untouchable. No middlemen. No leaks. No lock-ins. Just pure, verifiable freedom.",
+    "url": "https://www.jackalprotocol.com",
+    "imageUrl": "/images/partners/jackal.png",
+    "category": "infra",
+    "subcategory": "depin"
+  },
+  {
     "name": "JELLI",
     "description": "JELLI is the first ever animated ERC20i token on Base! It uses ERC20i to depict dynamic, evolvable and interchangeable jellyfish on-chain. We're here to help grow and expand the ERC20i ecosystem!",
     "url": "https://jelli.blue",
@@ -2902,6 +2902,14 @@
     "imageUrl": "/images/partners/palisade.jpg",
     "category": "infra",
     "subcategory": "developer tool"
+  },
+  {
+    "name": "Paytrie",
+    "description": "CADC is a CAD-backed stablecoin",
+    "url": "https://paytrie.com/cadc",
+    "imageUrl": "/images/partners/CADC.png",
+    "category": "defi",
+    "subcategory": "stablecoin"
   },
   {
     "name": "PancakeSwap",
@@ -3992,6 +4000,14 @@
     "imageUrl": "/images/partners/turnkey.png"
   },
   {
+    "name": "Tunnl",
+    "description": "Tunnl is an Engagement-as-a-Service platform that lets anyone boost social media content by rewarding verified creators for engaging and sharing your posts. Amplify your reach with Tunnl Boosts!",
+    "url": "https://app.tunnl.io",
+    "imageUrl": "/images/partners/tunnl.png",
+    "category": "consumer",
+    "subcategory": "creator"
+  },
+  {
     "name": "TYMIO",
     "description": "TYMIO is a suite of non-custodial crypto apps for investors. Earn yield on stablecoins, ETH, or WBTC through simple, tailored structured products.",
     "url": "https://tymio.com/",
@@ -4088,12 +4104,36 @@
     "subcategory": "payments"
   },
   {
+    "name": "VaultX",
+    "description": "VaultX, built on Base and powered by $VAX, connects real-world stories and real-world assets (RWA) to the blockchain. We protect artists’ IP, secure collectors’ ownership, and onboard everyone into a decentralized art ecosystem",
+    "url": "https://vault-x.io/",
+    "imageUrl": "/images/partners/VaultX.png",
+    "category": "consumer",
+    "subcategory": "real world"
+  },
+  {
     "name": "vaults.fyi",
     "description": "vaults.fyi is your onchain yield hub, curating and verifying DeFi vault analytics (APY, TVL, etc.) via onchain data. Our Insights and Earn APIs let builders seamlessly integrate DeFi.",
     "url": "https://app.vaults.fyi/discover?selectedNetworks=base",
     "imageUrl": "/images/partners/vaultsfyi.png",
     "category": "defi",
     "subcategory": "portfolio"
+  },
+  {
+    "name": "VCHF",
+    "description": "VNX Swiss Franc (VCHF) is a multichain token referencing Swiss Franc from a European licensed token generator.",
+    "url": "https://vnx.li/vchf/",
+    "imageUrl": "/images/partners/vchf.png",
+    "category": "defi",
+    "subcategory": "stablecoin"
+  },
+  {
+    "name": "VEUR",
+    "description": "VNX Euro (VEUR) is a multichain token referencing Euro from a European licensed token generator.",
+    "url": "https://vnx.li/veur/",
+    "imageUrl": "/images/partners/veur.png",
+    "category": "defi",
+    "subcategory": "stablecoin"
   },
   {
     "name": "Vela Exchange",
@@ -4126,6 +4166,14 @@
     "imageUrl": "/images/partners/vertex.png",
     "category": "defi",
     "subcategory": "dex"
+  },
+  {
+    "name": "VGBP",
+    "description": "VNX British Pound (VGBP) is a multichain token referencing British Pound from a European licensed token generator.",
+    "url": "https://vnx.li/vgbp/",
+    "imageUrl": "/images/partners/vgbp.png",
+    "category": "defi",
+    "subcategory": "stablecoin"
   },
   {
     "name": "Virtuals Protocol",
@@ -4278,6 +4326,14 @@
     "imageUrl": "/images/partners/yield_guild_games.webp",
     "category": "consumer",
     "subcategory": "gaming"
+  },
+  {
+    "name": "Yield Seeker",
+    "url": "https://yieldseeker.xyz",
+    "description": "Your own personalised AI Agent that analyzes DeFi protocols in real-time to get you the best stablecoin DeFi yields. Safe, automated, and effortless.",
+    "imageUrl": "/images/partners/yield_seeker.png",
+    "category": "ai",
+    "subcategory": "ai"
   },
   {
     "name": "Zapper",
