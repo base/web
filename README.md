@@ -69,15 +69,7 @@ If you're a builder who wants to add or update your project on the [Base Ecosyst
 
 2. Create a new branch for your changes.
 
-3. Create a directory for your project under `apps/web/src/data/ecosystem/` using a URL-safe version of your project name:
-
-   ```bash
-   mkdir apps/web/src/data/ecosystem/your-project-name
-   ```
-
-Project names must be unique. If a project with your name already exists, please reach out to us on Discord.
-
-4. Create a metadata.json file in your project directory:
+3. Update the `ecosystem.json` file in `apps/web/src/data/` with your project's details :
 
    ```json
    {
@@ -107,10 +99,23 @@ If your app supports multiple networks, ensure the URL provided points to a page
 with Base already selected as the network, for people who will be visiting from
 base.org.
 
-5. Add your project's logo:
+4. Add your project's logo:
+
    - Place a 192x192 pixel PNG/WebP file in `apps/web/public/images/partners/`
    - Name should match what you specified in imageUrl
    - Use an App/Play Store style icon (not a full wordmark)
+
+5. Check if your project has been listed by running it locally:
+
+```
+yarn workspace @app/web dev
+```
+
+6. Make sure the build works properly before creating the PR:
+
+```
+yarn workspace @app/web build
+```
 
 By opening a PR to add your project, you authorize and license Coinbase on a non-exclusive, worldwide, irrevocable, sublicensable, and royalty-free basis to reproduce, distribute, transmit, make available, perform, display, or otherwise use the submitted Multimedia Assets for any purpose, including any marketing or promotional activities related to Base or Coinbase. Any goodwill associated with use of trademarks submitted in your Multimedia Assets will inure to your benefit. You further acknowledge and represent that you have all IP rights in the Multimedia Assets, that the Multimedia Assets do not infringe the rights of any third party, and that you have the right to grant this license to Coinbase.
 
