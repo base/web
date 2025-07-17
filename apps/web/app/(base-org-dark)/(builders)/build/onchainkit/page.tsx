@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { LiveDemo } from 'apps/web/src/components/Builders/Shared/LiveDemo';
 import { LinkCard } from 'apps/web/src/components/base-org/shared/LinkCard';
-import onchainkitCover from './onchainkit.png';
+import onchainkitCover from './onchainkit-cover.png';
 import { OCKFeaturesSection } from 'apps/web/app/(base-org-dark)/(builders)/build/onchainkit/FeaturesSection';
 import {
   CtaActions,

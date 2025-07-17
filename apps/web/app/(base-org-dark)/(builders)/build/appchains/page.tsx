@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'apps/web/src/components/Link';
-import appchainsCover from './appchains.png';
+import appchainsCover from './appchains-cover.png';
 import { AppchainsFeaturesSection } from 'apps/web/app/(base-org-dark)/(builders)/build/onchainkit/FeaturesSection';
 import { BuildersSection } from 'apps/web/app/(base-org-dark)/(builders)/BuildersSection';
 import { AppchainPartners } from 'apps/web/app/(base-org-dark)/(builders)/build/appchains/AppchainPartners';

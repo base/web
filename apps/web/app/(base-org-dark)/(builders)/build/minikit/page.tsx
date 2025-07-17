@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import onchainkitCover from './onchainkit.png';
+import minikitCover from './minikitcover-cover.png';
 import { MinikitFeaturesSection } from 'apps/web/app/(base-org-dark)/(builders)/build/onchainkit/FeaturesSection';
 import {
   CtaActions,
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Base | Minikit`,
     url: `/build/minikit`,
-    images: [onchainkitCover.src],
+    images: [minikitCover.src],
   },
 };
 

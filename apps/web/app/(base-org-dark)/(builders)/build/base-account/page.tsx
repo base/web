@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { LiveDemo } from 'apps/web/src/components/Builders/Shared/LiveDemo';
-import baseAccountCover from './base-account.png';
+import baseAccountCover from './base-account-cover.png';
 import { ExploreDocsButton } from 'apps/web/app/(base-org-dark)/(builders)/build/onchainkit/CtaFooterSection';
 import { BaseAccountFeaturesSection } from 'apps/web/app/(base-org-dark)/(builders)/build/onchainkit/FeaturesSection';
 import { PartnersSection } from 'apps/web/app/(base-org-dark)/(builders)/build/base-account/PartnersSection';

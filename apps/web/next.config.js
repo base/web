@@ -355,8 +355,8 @@ module.exports = MillionLint.next({
             permanent: true,
           },
           {
-            source: '/builders/appchains',
-            destination: '/build/appchains',
+            source: '/builders/:path',
+            destination: '/build/:path',
             permanent: true,
           },
         ];
