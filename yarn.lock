@@ -163,7 +163,7 @@ __metadata:
     csv-parser: ^3.0.0
     date-fns: ^4.1.0
     dd-trace: ^5.21.0
-    dotenv: ^16.0.3
+    dotenv: ^17.2.0
     eslint-config-next: ^15.1.6
     ethers: 5.7.2
     framer-motion: ^11.9.0
@@ -12455,10 +12455,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.0.3":
-  version: 16.4.7
-  resolution: "dotenv@npm:16.4.7"
-  checksum: c27419b5875a44addcc56cc69b7dc5b0e6587826ca85d5b355da9303c6fc317fc9989f1f18366a16378c9fdd9532d14117a1abe6029cc719cdbbef6eaef2cea4
+"dotenv@npm:^17.2.0":
+  version: 17.2.0
+  resolution: "dotenv@npm:17.2.0"
+  checksum: 389d25dac7afeb1890bcd113c84d8d8175e95967559e90b8a6c8dc19bfc81ad3ede0036873c459cd8de1f90055a88232ddf74c550bcd2ea7a94b8d570f116470
   languageName: node
   linkType: hard
 

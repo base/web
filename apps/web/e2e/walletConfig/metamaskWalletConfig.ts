@@ -1,5 +1,10 @@
 import { base } from 'viem/chains';
 import { configure } from '@coinbase/onchaintestkit';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import dotenv from 'dotenv';
+dotenv.config({ path: ['.env', '.env.local'] });
+
+console.log('E2E_TEST_SEED_PHRASE', process.env.E2E_TEST_SEED_PHRASE);
 
 export const DEFAULT_PASSWORD = 'PASSWORD';
 export const DEFAULT_SEED_PHRASE = process.env.E2E_TEST_SEED_PHRASE;

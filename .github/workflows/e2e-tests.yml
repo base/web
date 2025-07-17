@@ -43,7 +43,7 @@ jobs:
         uses: foundry-rs/foundry-toolchain@v1.4.0
 
       - name: Prepare MetaMask extension
-        run: yarn e2e:prepare-metamask
+        run: yarn e2e:metamask:prepare
 
       - name: Install Playwright browsers
         run: yarn playwright install --with-deps
