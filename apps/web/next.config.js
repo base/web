@@ -112,8 +112,6 @@ const contentSecurityPolicy = {
     'https://api.guild.xyz/',
     isE2ETest ? 'ws://localhost:8545/' : isLocalDevelopment ? 'ws://localhost:3000/' : '',
     isE2ETest ? 'http://localhost:8545/' : isLocalDevelopment ? 'http://localhost:3000/' : '',
-    isLocalDevelopment ? 'ws://localhost:3000/' : '',
-    isLocalDevelopment ? 'http://localhost:3000/' : '',
     'https://flag.lab.amplitude.com/sdk/v2/flags',
     'https://api.lab.amplitude.com/sdk/v2/vardata',
     'https://browser-intake-datadoghq.com', // datadog
