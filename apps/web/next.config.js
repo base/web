@@ -1,3 +1,4 @@
+const MillionLint = require('@million/lint');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
@@ -83,6 +84,7 @@ const contentSecurityPolicy = {
   'worker-src': ["'self'", 'blob:'],
   'connect-src': [
     "'self'",
+    'blob:',
     'https://blob.vercel-storage.com', // Vercel File storage
     'https://zku9gdedgba48lmr.public.blob.vercel-storage.com', // Vercel File storage
     walletconnectDomains,
@@ -110,6 +112,8 @@ const contentSecurityPolicy = {
     'https://api.guild.xyz/',
     isE2ETest ? 'ws://localhost:8545/' : isLocalDevelopment ? 'ws://localhost:3000/' : '',
     isE2ETest ? 'http://localhost:8545/' : isLocalDevelopment ? 'http://localhost:3000/' : '',
+    isLocalDevelopment ? 'ws://localhost:3000/' : '',
+    isLocalDevelopment ? 'http://localhost:3000/' : '',
     'https://flag.lab.amplitude.com/sdk/v2/flags',
     'https://api.lab.amplitude.com/sdk/v2/vardata',
     'https://browser-intake-datadoghq.com', // datadog
@@ -187,159 +191,179 @@ const securityHeaders = [
   },
 ];
 
-module.exports = extendBaseConfig(
-  {
-    transpilePackages: ['base-ui'],
-    i18n: {
-      locales: ['en'],
-      defaultLocale: 'en',
-    },
-    webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
-      config.module.rules.push({
-        test: /\.webm/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name][hash].[ext]',
-              outputPath: 'static/assets/webm/',
-              publicPath: '/_next/static/assets/webm/',
-            },
-          },
-        ],
-      });
-      config.module.rules.push({
-        test: /\.mp4$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name][hash].[ext]',
-              outputPath: 'static/assets/mp4/',
-              publicPath: '/_next/static/assets/mp4/',
-            },
-          },
-        ],
-      });
-      config.module.rules.push({
-        test: /\.gltf/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name][hash].[ext]',
-              outputPath: 'static/assets/gltf/',
-              publicPath: '/_next/static/assets/gltf/',
-            },
-          },
-        ],
-      });
-      config.module.rules.push({
-        test: /\.glb/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name][hash].[ext]',
-              outputPath: 'static/assets/glb/',
-              publicPath: '/_next/static/assets/glb/',
-            },
-          },
-        ],
-      });
+const millionEnabled = process.env.MILLION_LINT === 'true';
 
-      config.externals.push('pino-pretty');
-      config.experiments = { ...config.experiments, asyncWebAssembly: true };
+module.exports = MillionLint.next({
+  enabled: millionEnabled,
+  rsc: true,
+})(
+  extendBaseConfig(
+    {
+      transpilePackages: ['base-ui'],
+      i18n: {
+        locales: ['en'],
+        defaultLocale: 'en',
+      },
+      webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
+        config.module.rules.push({
+          test: /\.webm/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name][hash].[ext]',
+                outputPath: 'static/assets/webm/',
+                publicPath: '/_next/static/assets/webm/',
+              },
+            },
+          ],
+        });
+        config.module.rules.push({
+          test: /\.mp4$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name][hash].[ext]',
+                outputPath: 'static/assets/mp4/',
+                publicPath: '/_next/static/assets/mp4/',
+              },
+            },
+          ],
+        });
+        config.module.rules.push({
+          test: /\.gltf/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name][hash].[ext]',
+                outputPath: 'static/assets/gltf/',
+                publicPath: '/_next/static/assets/gltf/',
+              },
+            },
+          ],
+        });
+        config.module.rules.push({
+          test: /\.glb/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name][hash].[ext]',
+                outputPath: 'static/assets/glb/',
+                publicPath: '/_next/static/assets/glb/',
+              },
+            },
+          ],
+        });
 
-      return config;
+        config.externals.push('pino-pretty');
+        config.experiments = { ...config.experiments, asyncWebAssembly: true };
+
+        return config;
+      },
+      images: {
+        remotePatterns: allowedImageRemoteDomains.map((hostname) => {
+          return {
+            protocol: 'https',
+            hostname,
+          };
+        }),
+      },
+      async headers() {
+        if (millionEnabled) {
+          return [];
+        }
+
+        return [
+          {
+            source: '/:path*',
+            basePath: false,
+            headers: securityHeaders,
+          },
+        ];
+      },
+      async rewrites() {
+        return [
+          {
+            source: '/brand',
+            destination: '/',
+            has: [{ type: 'host', value: 'brand.base.org' }],
+          },
+        ];
+      },
+      async redirects() {
+        return [
+          {
+            source: '/builders',
+            destination: '/build',
+            permanent: true,
+          },
+          {
+            source: '/careers',
+            destination: '/jobs',
+            permanent: true,
+          },
+          {
+            source: '/buildersummer',
+            destination: '/onchainsummer',
+            permanent: true,
+          },
+          {
+            source: '/onchainsummer',
+            destination: '/build',
+            permanent: true,
+          },
+          {
+            source: '/getstarted',
+            destination: '/build',
+            permanent: true,
+          },
+          {
+            source: '/onchainfont',
+            // just so the build doesn't fail in CI
+            destination: process.env.NEXT_PUBLIC_OCS_CREATIVE_DOWNLOAD_URL ?? '/',
+            permanent: false,
+          },
+          {
+            source: '/luma',
+            destination: 'https://lu.ma/base-virtualevents',
+            permanent: true,
+          },
+          {
+            source: '/registry',
+            destination: 'https://buildonbase.deform.cc/getstarted/',
+            permanent: true,
+          },
+          {
+            source: '/registry-edit',
+            destination: 'https://buildonbase.deform.cc/registry-edit/',
+            permanent: true,
+          },
+          {
+            source: '/name/:path.base.eth',
+            destination: '/name/:path',
+            permanent: true,
+          },
+          {
+            source: '/names/:path',
+            destination: '/name/:path',
+            permanent: true,
+          },
+          {
+            source: '/name',
+            destination: '/names',
+            permanent: true,
+          },
+          {
+            source: '/builders/appchains',
+            destination: '/build/appchains',
+            permanent: true,
+          },
+        ];
+      },
     },
-    images: {
-      remotePatterns: allowedImageRemoteDomains.map((hostname) => {
-        return {
-          protocol: 'https',
-          hostname,
-        };
-      }),
-    },
-    async headers() {
-      return [
-        {
-          source: '/:path*',
-          basePath: false,
-          headers: securityHeaders,
-        },
-      ];
-    },
-    async redirects() {
-      return [
-        {
-          source: '/careers',
-          destination: '/jobs',
-          permanent: true,
-        },
-        {
-          source: '/buildersummer',
-          destination: '/onchainsummer',
-          permanent: true,
-        },
-        {
-          source: '/onchainsummer',
-          destination: '/build',
-          permanent: true,
-        },
-        {
-          source: '/getstarted',
-          destination: '/build',
-          permanent: true,
-        },
-        {
-          source: '/onchainfont',
-          // just so the build doesn't fail in CI
-          destination: process.env.NEXT_PUBLIC_OCS_CREATIVE_DOWNLOAD_URL ?? '/',
-          permanent: false,
-        },
-        {
-          source: '/luma',
-          destination: 'https://lu.ma/base-virtualevents',
-          permanent: true,
-        },
-        {
-          source: '/registry',
-          destination: 'https://buildonbase.deform.cc/getstarted/',
-          permanent: true,
-        },
-        {
-          source: '/registry-edit',
-          destination: 'https://buildonbase.deform.cc/registry-edit/',
-          permanent: true,
-        },
-        {
-          source: '/name/:path.base.eth',
-          destination: '/name/:path',
-          permanent: true,
-        },
-        {
-          source: '/names/:path',
-          destination: '/name/:path',
-          permanent: true,
-        },
-        {
-          source: '/name',
-          destination: '/names',
-          permanent: true,
-        },
-        {
-          source: '/build',
-          destination: '/resources',
-          permanent: true,
-        },
-        {
-          source: '/builders/appchains',
-          destination: '/builders/base-appchains',
-          permanent: true,
-        },
-      ];
-    },
-  },
-  [withBundleAnalyzer],
+    [withBundleAnalyzer],
+  ),
 );

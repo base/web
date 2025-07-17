@@ -4,17 +4,6 @@
 
 @import '@coinbase/onchainkit/styles.css';
 
-/* For Webkit-based browsers (Chrome, Safari and Opera) */
-:not(.scrollbar)::-webkit-scrollbar {
-  display: none;
-}
-
-/* For IE, Edge and Firefox */
-*:not(.scrollbar) {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
 .scrollbar {
   -ms-overflow-style: auto; /* IE and Edge */
   scrollbar-width: auto; /* Firefox */
@@ -27,6 +16,10 @@
 :root {
   --hero-gradient-angle: 90.01deg;
   --hero-gradient-stop-point: 20%;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -42,6 +35,7 @@ body {
 *:after,
 *:before {
   box-sizing: border-box;
+  text-rendering: optimizeLegibility;
 }
 
 .no-scroll {
@@ -50,4 +44,23 @@ body {
 
 .animate-pause {
   animation-play-state: paused;
+}
+
+.scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #ffffff;
+}
+
+.scrollbar-hidden {
+  scrollbar-width: none;
+}
+
+/* Marquee animation keyframes */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }

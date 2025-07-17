@@ -14,7 +14,7 @@ type TweetCardProps = {
 
 export function TweetCard({ image, name, username, content }: TweetCardProps) {
   return (
-    <div className="flex h-[250px] max-w-sm flex-col gap-2 overflow-auto rounded-lg border border-[#8A919E]/20 bg-dark-palette-backgroundAlternate p-6">
+    <div className="scrollbar-hidden flex h-[260px] max-w-sm flex-col gap-2 overflow-auto rounded-lg border border-[#8A919E]/20 bg-dark-palette-backgroundAlternate p-6">
       <div className="flex gap-2">
         {image && <Image src={image} alt={name} height={48} width={48} className="rounded-full" />}
         <div className="flex flex-col gap-1">
