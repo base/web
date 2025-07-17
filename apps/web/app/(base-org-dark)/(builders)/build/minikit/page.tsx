@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import minikitCover from './minikitcover-cover.png';
+import minikitCover from './minikit-cover.png';
 import { MinikitFeaturesSection } from 'apps/web/app/(base-org-dark)/(builders)/build/onchainkit/FeaturesSection';
 import {
   CtaActions,
