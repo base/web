@@ -41,11 +41,11 @@ export default function Hero() {
             The fastest way to pay with USDC
           </Title>
 
-          <div className="flex w-2/5 flex-col items-start gap-5 md:flex-row">
+          <div className="flex max-w-xs flex-col items-start gap-5 md:max-w-md md:flex-row">
             <Button
               variant={ButtonVariants.Primary}
               size={ButtonSizes.Small}
-              className="pointer-events-auto w-full px-2"
+              className="pointer-events-auto w-full"
             >
               <Link
                 href="https://docs.base.org/base-account/guides/accept-payments"
@@ -59,7 +59,7 @@ export default function Hero() {
             <Button
               variant={ButtonVariants.Secondary}
               size={ButtonSizes.Small}
-              className="pointer-events-auto w-full px-2"
+              className="pointer-events-auto w-full"
             >
               <Link
                 href="https://coinbaseshop.com/cart/49933861617970:1?discount=BASE10"
