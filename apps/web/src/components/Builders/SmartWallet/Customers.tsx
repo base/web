@@ -19,7 +19,7 @@ type Customer = {
   logo: StaticImageData;
 };
 
-const customers: Customer[] = [
+export const customers: Customer[] = [
   {
     href: 'https://opensea.io/',
     logo: opensea as StaticImageData,

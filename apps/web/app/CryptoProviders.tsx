@@ -13,6 +13,7 @@ export type CryptoProvidersProps = {
   children: React.ReactNode;
   mode?: 'light' | 'dark';
   theme?: 'default' | 'base' | 'cyberpunk' | 'hacker';
+  smartWalletOnly?: boolean;
 };
 
 const config = createConfig({
@@ -31,6 +32,7 @@ export default function CryptoProviders({
   children,
   mode = 'light',
   theme = 'base',
+  smartWalletOnly = false,
 }: CryptoProvidersProps) {
   const onchainKitConfig: AppConfig = useMemo(
     () => ({
@@ -41,11 +43,18 @@ export default function CryptoProviders({
         logo: 'https://base.org/images/logo.svg',
       },
       wallet: {
-        display: 'modal',
-        supportedWallets: {
-          rabby: true,
-          trust: true,
-        },
+        ...(smartWalletOnly
+          ? {
+              display: 'classic',
+              preference: 'smartWalletOnly',
+            }
+          : {
+              display: 'modal',
+              supportedWallets: {
+                rabby: true,
+                trust: true,
+              },
+            }),
       },
     }),
     [mode, theme],
