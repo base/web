@@ -9,7 +9,6 @@ import BasePayPrefix from '../../../Section/BasePay/prefix.svg';
 import baseAppImg from './assets/base-app.png';
 import baseBuildersImg from './assets/base-builders.png';
 import baseChainImg from './assets/base-chain.png';
-import basePayImg from './assets/base-pay.png';
 import Title from 'apps/web/src/components/base-org/typography/TitleRedesign';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRedesign/types';
 
@@ -20,19 +19,19 @@ const basePayPrefix = BasePayPrefix as ImageType;
 const baseAppAsset = baseAppImg as ImageType;
 const baseBuildersAsset = baseBuildersImg as ImageType;
 const baseChainAsset = baseChainImg as ImageType;
-const basePayAsset = basePayImg as ImageType;
 
 export function SectionBento() {
   return (
     <Section content={content}>
-      <div className="flex relative flex-col col-span-full gap-8">
+      <div className="relative col-span-full flex flex-col gap-8">
         {cardsContent.map((card) => (
           <LargeCard content={card} key={`${card.prefix.alt}-${card.title}`} />
         ))}
       </div>
       <div className="col-span-full lg:col-span-7">
         <Title level={TitleLevel.H6Regular} as="h3" className="!text-pretty">
-        And on top of it all, a vibrant ecosystem with millions of people, thousands of apps, and businesses big and small. All building on Base.
+          And on top of it all, a vibrant ecosystem with millions of people, thousands of apps, and
+          businesses big and small. All building on Base.
         </Title>
       </div>
     </Section>
@@ -41,7 +40,8 @@ export function SectionBento() {
 
 const content = {
   title: "How We'll Get There",
-  description: 'Together, these layers form the global onchain economy where value flows directly to the people who create it.'
+  description:
+    'Together, these layers form the global onchain economy where value flows directly to the people who create it.',
 };
 
 const cardsContent = [
@@ -53,14 +53,14 @@ const cardsContent = [
       height: baseChainPrefix.height,
     },
     title: 'Base Chain',
-    description:
-      'An open network to power the global economy—fast, open, built to scale.',
+    description: 'An open network to power the global economy—fast, open, built to scale.',
     asset: {
       src: baseChainAsset.src,
       alt: 'Base Chain',
       width: baseChainAsset.width,
       height: baseChainAsset.height,
     },
+    assetType: 'image',
   },
   {
     prefix: {
@@ -78,6 +78,7 @@ const cardsContent = [
       width: baseBuildersAsset.width,
       height: baseBuildersAsset.height,
     },
+    assetType: 'image',
   },
   {
     prefix: {
@@ -87,14 +88,14 @@ const cardsContent = [
       height: baseAppPrefix.height,
     },
     title: 'Base App',
-    description:
-      'A new kind of social network for people. The gateway to the global economy.',
+    description: 'A new kind of social network for people. The gateway to the global economy.',
     asset: {
       src: baseAppAsset.src,
       alt: 'Base App',
       width: baseAppAsset.width,
       height: baseAppAsset.height,
     },
+    assetType: 'image',
   },
   {
     prefix: {
@@ -107,10 +108,11 @@ const cardsContent = [
     description:
       'Express checkout with global settlement at near-zero cost. Available for every business to accept USDC.',
     asset: {
-      src: basePayAsset.src,
+      src: '/videos/basepay-square.webm',
       alt: 'Base Pay',
-      width: basePayAsset.width,
-      height: basePayAsset.height,
+      width: 0,
+      height: 0,
     },
+    assetType: 'video',
   },
-];
+] as const;
