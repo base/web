@@ -32,7 +32,7 @@ const LINK_SECTIONS = [
     title: 'Resources',
     links: [
       { label: 'Grants', href: 'https://paragraph.xyz/@grants.base.eth/calling-based-builders' },
-      { label: 'Brand kit', href: 'https://github.com/base/brand-kit' },
+      { label: 'Brand kit', href: 'https://www.base.org/brand' },
       { label: 'Events', href: 'https://lu.ma/BaseMeetups' },
     ],
   },
