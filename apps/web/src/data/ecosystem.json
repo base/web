@@ -2248,6 +2248,14 @@
     "subcategory": "creator"
   },
   {
+    "name": "Matcha",
+    "description": "Matcha is a DEX aggregator, built by 0x. Matcha offers free swaps, cross chain, gasless swaps, and decentralized limit orders all in one place. Search, trade, done. Matcha.xyz ",
+    "url": "https://matcha.xyz/",
+    "imageUrl": "/images/partners/matcha.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
+  },
+  {
     "name": "Masa",
     "description": "Masa is a leading real-time data network for AI agents and applications. Get free, structured, high-quality, real-time data for your AI Agents today.",
     "url": "https://masa.ai",
