@@ -2,8 +2,6 @@ import { useAsciiPattern } from 'apps/web/src/components/Brand/Hero/Background/s
 import { useFluid } from 'apps/web/src/components/Brand/Hero/Background/shaders/useFluid';
 import { RootState, useFrame, useThree, createPortal } from '@react-three/fiber';
 import { useCallback, useMemo } from 'react';
-import { DebugTextures } from 'apps/web/src/components/Brand/Hero/Background/shaders/debugTextures';
-import { hitConfig } from 'apps/web/src/components/Brand/Hero/Background/shaders/eventManager';
 import * as THREE from 'three';
 import { useFBO } from 'apps/web/src/hooks/useFbo';
 import { DoubleFBO } from 'apps/web/src/hooks/useDoubleFbo';
@@ -37,8 +35,6 @@ type SceneProps = {
   bottomFade?: boolean;
 };
 
-const DEBUG_TEXTURES = false;
-
 // Simple fullscreen renderer for displaying the pattern texture
 function FullscreenRenderer({ texture }: { texture: THREE.Texture }) {
   const size = useThree((state) => state.size);
@@ -60,7 +56,6 @@ function FullscreenRenderer({ texture }: { texture: THREE.Texture }) {
         varying vec2 vUv;
         void main() {
           gl_FragColor = texture2D(uMap, vUv);
-          // gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
         }
       `,
       uniforms: {
@@ -73,8 +68,6 @@ function FullscreenRenderer({ texture }: { texture: THREE.Texture }) {
     const { gl } = state;
 
     const restoreGlState = saveGlState(state);
-
-    material.uniforms.uMap.value = texture;
 
     gl.autoClear = false;
     gl.setRenderTarget(null);
@@ -122,6 +115,16 @@ export function Scene({
   const width = containerWidth ?? threeWidth;
   const height = containerHeight ?? threeHeight;
 
+  const resolutionScale = 2.0;
+  const pixelRatio = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
+
+  const renderWidth = externalFBO
+    ? externalFBO.width
+    : Math.round(width * resolutionScale * pixelRatio);
+  const renderHeight = externalFBO
+    ? externalFBO.height
+    : Math.round(height * resolutionScale * pixelRatio);
+
   const simRes = 128;
   const dyeRes = 512;
 
@@ -136,16 +139,19 @@ export function Scene({
 
   const saturation = greyscale ? 0 : 1.0;
   const altPatternOpacity = greyscale ? 0.25 : 1.0;
-  const useOriginalSvgColors = useImageColors ? false : greyscale ? false : true;
+  const useOriginalSvgColors = !useImageColors && !greyscale;
 
-  const internalPatternRenderTarget = useFBO(width, height, {
+  // Create ultra high-res render target
+  const internalPatternRenderTarget = useFBO(renderWidth, renderHeight, {
     format: THREE.RGBAFormat,
     stencilBuffer: false,
+    minFilter: THREE.LinearFilter,
+    magFilter: THREE.LinearFilter,
   });
 
   const patternRenderTarget = externalFBO ?? internalPatternRenderTarget;
 
-  const [, renderAscii, asciiResult] = useAsciiPattern({
+  const [, renderAscii] = useAsciiPattern({
     imageUrl,
     deformTexture: fluidResult as DoubleFBO,
     deformStrength: 0.05,
@@ -154,9 +160,11 @@ export function Scene({
     useOriginalSvgColors,
     altPattern,
     patternRenderTarget,
-    containerWidth: width,
-    containerHeight: height,
-    useWhiteBackground: externalFBO ? true : false,
+    containerWidth: renderWidth,
+    containerHeight: renderHeight,
+    logicalWidth: width,
+    logicalHeight: height,
+    useWhiteBackground: !!externalFBO,
     bottomFade,
   });
 
@@ -170,25 +178,7 @@ export function Scene({
     [renderFluid, renderAscii, enableInteractivity],
   );
 
-  const textures = useMemo(
-    () => ({
-      fluid: fluidResult.texture ?? undefined,
-      ascii: asciiResult?.texture ?? undefined,
-    }),
-    [fluidResult.texture, asciiResult?.texture],
-  );
-
   useFrame(renderFrame);
-
-  if (DEBUG_TEXTURES) {
-    return (
-      <DebugTextures
-        defaultTexture="all"
-        textures={textures}
-        hitConfig={enableInteractivity ? hitConfig : undefined}
-      />
-    );
-  }
 
   if (!externalFBO) {
     return <FullscreenRenderer texture={internalPatternRenderTarget.texture} />;

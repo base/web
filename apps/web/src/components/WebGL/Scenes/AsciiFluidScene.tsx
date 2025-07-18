@@ -62,10 +62,15 @@ export default function AsciiFluidScene({
   const containerWidth = containerSize.width > 0 ? containerSize.width : 1;
   const containerHeight = containerSize.height > 0 ? containerSize.height : 1;
 
-  const fbo = useFBO(containerWidth, containerHeight, {
+  const resolutionScale = 2.0;
+  const pixelRatio = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
+  const highResWidth = Math.round(containerWidth * resolutionScale * pixelRatio);
+  const highResHeight = Math.round(containerHeight * resolutionScale * pixelRatio);
+
+  const fbo = useFBO(highResWidth, highResHeight, {
     type: THREE.HalfFloatType,
-    magFilter: THREE.NearestFilter,
-    minFilter: THREE.NearestFilter,
+    magFilter: THREE.LinearFilter,
+    minFilter: THREE.LinearFilter,
   });
 
   const customUniforms = useMemo(() => {
