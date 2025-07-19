@@ -359,7 +359,7 @@ export function RegistrationFlow() {
         </Transition>
 
         {/* Misc: Animated background for each steps */}
-        <RegistrationBackground />
+        <RegistrationBackground registrationStep={registrationStep} />
       </section>
     </>
   );

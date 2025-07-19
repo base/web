@@ -360,8 +360,12 @@ export const convertChainIdToCoinType = (chainId: number): string => {
     return 'addr';
   }
 
-  const cointype = (0x80000000 | chainId) >>> 0;
+  const cointype = convertChainIdToCoinTypeUint(chainId);
   return cointype.toString(16).toLocaleUpperCase();
+};
+
+export const convertChainIdToCoinTypeUint = (chainId: number): number => {
+  return (0x80000000 | chainId) >>> 0;
 };
 
 export const convertReverseNodeToBytes = ({
@@ -763,3 +767,5 @@ export const REGISTER_CONTRACT_ABI = IS_EARLY_ACCESS
 export const REGISTER_CONTRACT_ADDRESSES = IS_EARLY_ACCESS
   ? USERNAME_EA_REGISTRAR_CONTROLLER_ADDRESSES
   : USERNAME_REGISTRAR_CONTROLLER_ADDRESSES;
+
+export const isBasenameRenewalsKilled = process.env.NEXT_PUBLIC_KILL_BASENAMES_RENEWALS === 'true';

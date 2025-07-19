@@ -11,7 +11,8 @@ export type Tab =
   | 'Mint'
   | 'Transact'
   | 'Fund'
-  | 'Checkout';
+  | 'Checkout'
+  | 'SmartWallet';
 
 export const ONCHAINKIT_DEMO_TABS = [
   'Wallet',
@@ -22,6 +23,11 @@ export const ONCHAINKIT_DEMO_TABS = [
   'Mint',
   'Transact',
 ];
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const COMPONENT_HEADERS: { [key in Tab]?: string } = {
+  SmartWallet: 'Sign in with Base',
+};
 
 export const COMPONENT_DESCRIPTIONS: Record<string, string> = {
   Wallet: 'Enable users to onboard and log into your app with a wallet.',
@@ -214,15 +220,39 @@ import {
   WalletAdvancedTransactionActions,
   WalletAdvancedWalletActions,
 } from '@coinbase/onchainkit/wallet';
-import { Avatar, Name } from '@coinbase/onchainkit/identity';
 
 function WalletAdvancedDemo() {
   return (
     <Wallet>
-      <ConnectWallet>
-        <Avatar />
-        <Name />
-      </ConnectWallet>
+      <ConnectWallet />
+      <WalletDropdown>
+        <WalletAdvancedWalletActions />
+        <WalletAdvancedAddressDetails />
+        <WalletAdvancedTransactionActions />
+        <WalletAdvancedTokenHoldings />
+      </WalletDropdown>
+    </Wallet>
+  )
+}
+`,
+  SmartWallet: `
+// Follow docs.base.org/builderkits/onchainkit/getting-started
+// to install dependencies
+
+import {
+  ConnectWallet,
+  Wallet,
+  WalletDropdown,
+  WalletAdvancedAddressDetails,
+  WalletAdvancedTokenHoldings,
+  WalletAdvancedTransactionActions,
+  WalletAdvancedWalletActions,
+} from '@coinbase/onchainkit/wallet';
+
+function WalletAdvancedDemo() {
+  return (
+    <Wallet>
+      <ConnectWallet />
       <WalletDropdown>
         <WalletAdvancedWalletActions />
         <WalletAdvancedAddressDetails />

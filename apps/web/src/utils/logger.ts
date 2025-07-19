@@ -1,6 +1,7 @@
 // lib/logger.ts
 
 import type { Tracer } from 'dd-trace';
+import { bugsnagNotify } from 'apps/web/src/utils/bugsnag';
 
 type LogLevel = 'info' | 'warn' | 'error' | 'debug' | 'verbose';
 
@@ -26,7 +27,7 @@ class CustomLogger {
     return CustomLogger.instance;
   }
 
-  private createDatadogLog(level: LogLevel, message: string, meta?: Record<string, unknown>) {
+  private log(level: LogLevel, message: string, meta?: Record<string, unknown>) {
     let traceId: string | undefined;
     let spanId: string | undefined;
 
@@ -59,14 +60,16 @@ class CustomLogger {
         break;
       case 'error':
         console.error(logEntry);
+        // Skip Bugsnag during E2E tests
+        if (process.env.E2E_TEST !== 'true') {
+          bugsnagNotify(message, (e) => e.addMetadata('baseweb', { meta })).catch((e) =>
+            console.error('Error reporting to Bugsnag', e),
+          );
+        }
         break;
       default:
         console.log(logEntry);
     }
-  }
-
-  private log(level: LogLevel, message: string, meta?: Record<string, unknown>) {
-    this.createDatadogLog(level, message, meta);
   }
 
   public info(message: string, meta?: Record<string, unknown>) {
@@ -78,6 +81,11 @@ class CustomLogger {
   }
 
   public error(message: string, error: Error | unknown, meta?: Record<string, unknown>) {
+    // Skip logging entirely during E2E tests to prevent noise from expected errors
+    if (process.env.E2E_TEST === 'true') {
+      return;
+    }
+
     const e =
       error instanceof Error
         ? {
@@ -95,8 +103,9 @@ class CustomLogger {
         ...meta,
         error: e,
       });
+    } else {
+      this.log('error', message, meta);
     }
-    this.log('error', message, meta);
   }
 
   public debug(message: string, meta?: Record<string, unknown>) {
