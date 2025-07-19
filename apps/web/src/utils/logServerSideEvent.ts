@@ -71,8 +71,7 @@ export default function logServerSideEvent(
   const event = createEventData(eventName, deviceId, eventProperties, supplementalEventData);
   const stringifiedEvent = JSON.stringify([convertKeys(event)]);
   const uploadTime = new Date().getTime().toString();
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  const checksum = uuidv5(stringifiedEvent + uploadTime, SERVER_SIDE_EVENT_NAMESPACE) as string;
+  const checksum = uuidv5(stringifiedEvent + uploadTime, SERVER_SIDE_EVENT_NAMESPACE);
   const eventData = {
     e: stringifiedEvent,
     client: analyticsConfig.amplitudeApiKey.prod,
@@ -118,8 +117,7 @@ export function generateDeviceId(req: NextApiRequest) {
   if (typeof ip === 'object') {
     ip = ip.join();
   }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  return uuidv5(`${userAgent}|${ip}`, SERVER_SIDE_EVENT_NAMESPACE) as string;
+  return uuidv5(`${userAgent}|${ip}`, SERVER_SIDE_EVENT_NAMESPACE);
 }
 
 function convertKeys(obj: unknown): unknown {
