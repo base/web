@@ -77,7 +77,7 @@ export default function AsciiFluidSceneBuilders({
       uDarkMode: new THREE.Uniform(darkMode),
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [interactionUniforms]);
+  }, [interactionUniforms, fbo.texture, darkMode]);
 
   const handleResize = useCallback(
     (width: number, height: number) => {
