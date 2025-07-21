@@ -1,5 +1,6 @@
 'use client';
 import ImageWithLoading from 'apps/web/src/components/ImageWithLoading';
+import Link from 'apps/web/src/components/Link';
 import Card from 'apps/web/src/components/base-org/Card';
 import Text from 'apps/web/src/components/base-org/typography/TextRedesign';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
@@ -35,7 +36,7 @@ export default function EcosystemCard({
       : description;
 
   return (
-    <a
+    <Link
       href={url}
       rel="noreferrer noopener"
       target="_blank"
@@ -43,28 +44,28 @@ export default function EcosystemCard({
     >
       <Card
         wrapperClassName="w-full h-full"
-        innerClassName="p-4 lg:p-6 group/ecosystem-card flex flex-col gap-8 justify-start w-full"
+        innerClassName="p-4 lg:p-6 group/ecosystem-card flex flex-col gap-4 justify-start w-full"
         radius={8}
       >
-        <div className="flex flex-col gap-8 lg:gap-4">
-          <div className="relative z-20 size-[128px] overflow-clip rounded-[8px] bg-base-gray-50 p-6">
+        <div className="flex flex-col gap-4">
+          <div className="relative z-20 h-24 w-24 overflow-hidden rounded-[8px] bg-base-gray-50 p-3 lg:h-32 lg:w-32 lg:p-4">
             <ImageWithLoading
               src={imageUrl}
               alt={`Logo of ${name}`}
               width={128}
               height={128}
               backgroundClassName="bg-base-gray-50"
-              imageClassName="rounded-[8px]"
+              imageClassName="rounded-[8px] w-full h-full object-contain"
             />
           </div>
-          <div className="flex flex-col gap-4 h-full">
-            <div className="flex flex-col gap-2">
+          <div className="flex flex-col flex-1 gap-3">
+            <div className="flex flex-col gap-1">
               <Title level={TitleLevel.H6Regular}>{name}</Title>
               <Text variant={TextVariant.BodyMono} className="truncate !text-base-gray-200">
                 {getNiceDomainDisplayFromUrl(url)}
               </Text>
             </div>
-            <Text className="opacity-80 group-hover/ecosystem-card:opacity-100">
+            <Text className="flex-1 opacity-80 group-hover/ecosystem-card:opacity-100">
               {truncatedDescription}
             </Text>
           </div>
@@ -81,6 +82,6 @@ export default function EcosystemCard({
           )}
         </div>
       </Card>
-    </a>
+    </Link>
   );
 }

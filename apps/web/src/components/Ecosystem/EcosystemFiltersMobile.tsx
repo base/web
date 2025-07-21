@@ -75,7 +75,7 @@ export default function EcosystemFiltersMobile({
           aria-expanded={isOpen}
           aria-controls="mobile-filters"
           data-focus-visible="false"
-          className="grid size-8 place-items-center whitespace-nowrap rounded-[8px] border border-base-black text-base-black transition-colors hover:bg-white/20 hover:text-white focus:outline-none"
+          className="grid size-8 place-items-center whitespace-nowrap rounded-[8px] border border-[#DEE1E7] text-base-black transition-colors hover:bg-white/20 hover:text-white focus:outline-none"
         >
           <FilterIcon />
         </Dialog.Trigger>
@@ -95,18 +95,18 @@ export default function EcosystemFiltersMobile({
             </Dialog.Description>
 
             {/* Fixed header */}
-            <div className="sticky top-0 z-10 flex h-16 items-end justify-between gap-4 bg-base-white px-4 pb-3 pt-5">
+            <div className="flex sticky top-0 z-10 gap-4 justify-between items-end px-4 pt-5 pb-3 h-16 bg-base-white">
               <TagChip tag="Clear filters" isSelected={false} selectTag={handleClearFilters} />
               <Dialog.Close
                 aria-label="Close Filters"
-                className="relative z-20 grid size-8 place-items-center focus:outline-none"
+                className="grid relative z-20 place-items-center size-8 focus:outline-none"
               >
                 <XIcon />
               </Dialog.Close>
             </div>
 
             {/* Scrollable content */}
-            <div className="flex-1 overflow-auto px-4 pb-20">
+            <div className="overflow-auto flex-1 px-4 pb-20">
               <div className="flex flex-col gap-5">
                 <AnimatePresence>
                   {isOpen &&

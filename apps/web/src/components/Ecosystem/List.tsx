@@ -31,7 +31,7 @@ function AnimatedEcosystemCard({ app }: { app: EcosystemApp }) {
       animate={cardAnimations.animate}
       exit={cardAnimations.exit}
       transition={transition}
-      className="col-span-full flex flex-col items-stretch justify-stretch md:col-span-1"
+      className="flex flex-col col-span-full items-stretch justify-stretch md:col-span-1"
     >
       <EcosystemCard {...app} />
     </motion.div>
@@ -69,7 +69,7 @@ export function List({
     <>
       <Container
         className={classNames(
-          'grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3',
+          'grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-8',
           showEmptyState && 'hidden',
         )}
       >
@@ -86,7 +86,7 @@ export function List({
             {searchText === '' ? selectedCategories.join(', ') : searchText}
             &rdquo;
           </Title>
-          <div className="col-span-full flex items-center gap-2 max-sm:flex-col max-sm:items-start">
+          <div className="flex col-span-full gap-2 items-center max-sm:flex-col max-sm:items-start">
             <Title level={TitleLevel.H6Regular}>Try searching for another term.</Title>
             <Button
               size={ButtonSizes.Small}

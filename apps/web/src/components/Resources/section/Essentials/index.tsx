@@ -11,7 +11,7 @@ export default function ResourcesEssentials() {
       <Title level={TitleLevel.H4Regular} as="h2" className="col-span-full">
         The Essentials
       </Title>
-      <Title level={TitleLevel.H6Regular} as="p" className="col-span-4 pt-6">
+      <Title level={TitleLevel.H6Regular} as="p" className="col-span-full pt-6 lg:col-span-4">
         Jump to our most frequently requested tools and resources.
       </Title>
 
@@ -22,13 +22,13 @@ export default function ResourcesEssentials() {
             <Link
               key={item.title}
               href={item.href}
-              className="group relative flex items-center justify-between overflow-hidden border-t border-black px-2 py-5 last:border-b"
+              className="flex overflow-hidden relative justify-between items-center px-2 py-5 border-t border-black group last:border-b"
             >
-              <span className="absolute inset-0 h-full w-full translate-y-full transform bg-black transition-transform duration-300 ease-in-out group-hover:translate-y-0" />
+              <span className="absolute inset-0 w-full h-full bg-black transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0" />
               <Title
                 level={TitleLevel.H6Regular}
                 as="p"
-                className="duration-250 relative z-10 transition-colors group-hover:text-white"
+                className="relative z-10 transition-colors duration-250 group-hover:text-white"
               >
                 {item.title}
               </Title>
@@ -46,11 +46,11 @@ export default function ResourcesEssentials() {
             <Accordion.Item
               key={item.title}
               value={`item-${index}`}
-              className="group relative overflow-hidden border-t border-black last:border-b"
+              className="overflow-hidden relative border-t border-black group last:border-b"
             >
               <span className="absolute inset-0 h-full w-full translate-y-full transform bg-black transition-transform duration-300 ease-in-out group-data-[state=open]:translate-y-0" />
               <Accordion.Header>
-                <Accordion.Trigger className="relative z-10 flex w-full items-center justify-between px-2 py-5 text-left">
+                <Accordion.Trigger className="flex relative z-10 justify-between items-center px-2 py-5 w-full text-left">
                   <Title
                     level={TitleLevel.H6Regular}
                     as="p"
