@@ -132,7 +132,7 @@ const links: TopNavigationLink[] = [
         href: 'https://lu.ma/base-virtualevents',
       },
       {
-        name: 'Media Kit',
+        name: 'Brand Kit',
         description: 'Base brand assets and guides',
         href: 'https://github.com/base-org/brand-kit',
       },

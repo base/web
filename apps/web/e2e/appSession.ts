@@ -21,6 +21,11 @@ import {
  * @param metamask - The MetaMask wallet instance
  */
 export async function connectWallet(page: Page, metamask: MetaMask): Promise<void> {
+  // only /names path has wallet connection
+  if (!page.url().includes('/names')) {
+    await page.goto('/names');
+  }
+
   console.log('[connectWallet] Current URL before connect:', page.url());
   // Open wallet connect modal
 

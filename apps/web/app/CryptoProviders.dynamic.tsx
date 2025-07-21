@@ -8,12 +8,14 @@ export function DynamicCryptoProviders({
   children,
   mode = 'light',
   theme = 'base',
+  smartWalletOnly = false,
 }: CryptoProvidersProps) {
   const [CryptoProvidersDynamic, setCryptoProvidersDynamic] = useState<
     React.ComponentType<{
       children: React.ReactNode;
       mode?: 'light' | 'dark';
       theme?: 'default' | 'base' | 'cyberpunk' | 'hacker';
+      smartWalletOnly?: boolean;
     }>
   >();
   const { logError } = useErrors();
@@ -29,7 +31,7 @@ export function DynamicCryptoProviders({
   if (!CryptoProvidersDynamic) return null;
 
   return (
-    <CryptoProvidersDynamic mode={mode} theme={theme}>
+    <CryptoProvidersDynamic mode={mode} theme={theme} smartWalletOnly={smartWalletOnly}>
       {children}
     </CryptoProvidersDynamic>
   );
