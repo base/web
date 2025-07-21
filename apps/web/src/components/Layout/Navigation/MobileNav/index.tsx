@@ -58,6 +58,24 @@ export default function MobileNav({ className }: { className?: string }) {
     });
   }, []);
 
+  const handleOpenAutoFocus = useCallback((e: Event) => {
+    e.preventDefault();
+  }, []);
+
+  const handleLinkClick = useCallback(
+    (route: { items?: unknown[] }) => {
+      if (!route.items || route.items.length === 0) {
+        handleToggleMenu();
+      }
+    },
+    [handleToggleMenu],
+  );
+
+  const createLinkClickHandler = useCallback(
+    (route: { items?: unknown[] }) => () => handleLinkClick(route),
+    [handleLinkClick],
+  );
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024 && isMobileMenuOpen) {
@@ -81,7 +99,7 @@ export default function MobileNav({ className }: { className?: string }) {
         className,
       )}
     >
-      <Link href="/" className="flex w-fit items-center justify-between">
+      <Link href="/" className="flex justify-between items-center w-fit">
         <MobileLogo className="size-10" />
       </Link>
       <Dialog.Root open={isMobileMenuOpen} onOpenChange={handleToggleMenu}>
@@ -103,6 +121,7 @@ export default function MobileNav({ className }: { className?: string }) {
                 ? 'transition-none'
                 : 'transition ease-in-out data-[state=closed]:duration-500 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left',
             )}
+            onOpenAutoFocus={handleOpenAutoFocus}
           >
             <Dialog.Title className="sr-only">Mobile Menu</Dialog.Title>
             <Dialog.Description className="sr-only">
@@ -111,9 +130,9 @@ export default function MobileNav({ className }: { className?: string }) {
 
             <div className="pointer-events-none absolute inset-0 -top-[72px] -z-10 h-[calc(100dvh+72px)] w-full bg-white dark:bg-black" />
 
-            <nav className="flex h-full flex-1 flex-col">
+            <nav className="flex flex-col flex-1 h-full">
               {isBrand ? (
-                <div className="relative flex h-full flex-1 flex-col">
+                <div className="flex relative flex-col flex-1 h-full">
                   <ul className="ml-4 mt-3 flex flex-col gap-2.5 overflow-y-auto md:mb-10 md:ml-6">
                     <AnimatePresence>
                       {isMobileMenuOpen &&
@@ -137,7 +156,7 @@ export default function MobileNav({ className }: { className?: string }) {
                                   href: route.href,
                                 }) && 'bg-base-gray-30 dark:bg-gray-90 dark:active:text-black',
                               )}
-                              onClick={handleToggleMenu}
+                              onClick={createLinkClickHandler(route)}
                             >
                               <Text variant={TextVariant.CTALabelSm}>{route.label}</Text>
                             </Link>
@@ -146,7 +165,7 @@ export default function MobileNav({ className }: { className?: string }) {
                     </AnimatePresence>
                   </ul>
 
-                  <div className="mt-auto flex flex-col gap-3 px-4 pb-4 md:px-6">
+                  <div className="flex flex-col gap-3 px-4 pb-4 mt-auto md:px-6">
                     <AnimatePresence>
                       {isMobileMenuOpen && (
                         <motion.div
@@ -161,7 +180,7 @@ export default function MobileNav({ className }: { className?: string }) {
                               prefetch={false}
                               download="/base-brand.zip"
                               href="/base-brand.zip"
-                              className="h-10 w-full"
+                              className="w-full h-10"
                             >
                               Download Brand Assets
                             </Link>
@@ -172,7 +191,7 @@ export default function MobileNav({ className }: { className?: string }) {
                   </div>
                 </div>
               ) : (
-                <BaseNavigation isMobile />
+                <BaseNavigation isMobile onLinkClick={handleLinkClick} />
               )}
             </nav>
           </Dialog.Content>
@@ -184,7 +203,7 @@ export default function MobileNav({ className }: { className?: string }) {
 
 function MenuIcon({ isOpen }: { isOpen: boolean }) {
   return (
-    <div className="relative grid size-10 place-items-center rounded-md bg-base-gray-30 will-change-transform">
+    <div className="grid relative place-items-center rounded-md size-10 bg-base-gray-30 will-change-transform">
       <div
         className={classNames(
           'ease-[cubic-bezier(0.4,0.2,0,1)] absolute size-5 h-[1px] bg-black transition-all duration-300',
