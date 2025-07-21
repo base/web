@@ -23,7 +23,12 @@ export function ResourcesHero() {
           </div>
         </div>
       </div>
-      <Title level={TitleLevel.H5Regular} as="h2" className="col-span-4">
+
+      <Title
+        level={TitleLevel.H5Regular}
+        as="h2"
+        className="col-span-full row-start-2 row-end-3 lg:col-span-5"
+      >
         Get help to build and grow your project on Base with our Builder Resource Kit.
       </Title>
     </Container>
