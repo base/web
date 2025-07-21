@@ -18,6 +18,7 @@ export type CryptoProvidersProps = {
 
 const config = createConfig({
   chains: [base, baseSepolia, mainnet],
+  multiInjectedProviderDiscovery: false,
   connectors: [coinbaseWallet()],
   transports: {
     [base.id]: http(cdpBaseRpcEndpoint),
