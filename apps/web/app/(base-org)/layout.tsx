@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Sidebar from 'apps/web/src/components/Layout/Navigation/Sidebar';
 import { Footer } from 'apps/web/src/components/Layout/Footer/Footer';
 import MobileNav from 'apps/web/src/components/Layout/Navigation/MobileNav';
+import { DynamicWrappedGasPriceDropdown } from 'apps/web/src/components/Layout/Navigation/GasPriceDropdown';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
 
 export const metadata: Metadata = {
@@ -29,7 +30,7 @@ export default async function BaseOrgLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white text-black transition-colors">
+    <div className="text-black bg-white transition-colors">
       <div className="min-w-screen relative mx-auto grid min-h-screen w-full max-w-[1920px] grid-cols-1 selection:bg-blue-5 selection:text-base-blue lg:grid-cols-[13.438rem_1fr]">
         <AnalyticsProvider context="sidenav">
           <Sidebar />
@@ -39,6 +40,11 @@ export default async function BaseOrgLayout({
           {children}
         </main>
         <Footer />
+      </div>
+
+      {/* Gas Price Dropdown - Top Right */}
+      <div className="hidden fixed top-4 right-4 z-50 lg:block">
+        <DynamicWrappedGasPriceDropdown />
       </div>
     </div>
   );

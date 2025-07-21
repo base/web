@@ -19,6 +19,7 @@ import {
   ButtonSizes,
   ButtonVariants,
 } from 'apps/web/src/components/Button/Redesign/Button';
+import { DynamicWrappedGasPriceDropdownItem } from 'apps/web/src/components/Layout/Navigation/GasPriceDropdown';
 
 const navItemVariants = {
   initial: { opacity: 0, x: -20 },
@@ -81,110 +82,117 @@ export default function MobileNav({ className }: { className?: string }) {
         className,
       )}
     >
-      <Link href="/" className="flex w-fit items-center justify-between">
+      <Link href="/" className="flex justify-between items-center w-fit">
         <MobileLogo className="size-10" />
       </Link>
-      <Dialog.Root open={isMobileMenuOpen} onOpenChange={handleToggleMenu}>
-        <Dialog.Trigger
-          aria-label="Toggle menu"
-          aria-expanded={isMobileMenuOpen}
-          aria-controls="mobile-menu"
-          data-focus-visible="false"
-          className="focus:outline-none"
-        >
-          <MenuIcon isOpen={isMobileMenuOpen} />
-        </Dialog.Trigger>
-
-        <Dialog.Portal>
-          <Dialog.Content
-            className={classNames(
-              'fixed inset-y-0 left-0 top-[72px] z-[100] flex h-[calc(100dvh-72px)] w-full flex-col gap-4 outline-none',
-              isClosingFromResize
-                ? 'transition-none'
-                : 'transition ease-in-out data-[state=closed]:duration-500 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left',
-            )}
+      <div className="flex gap-2 items-center">
+        <DynamicWrappedGasPriceDropdownItem />
+        <Dialog.Root open={isMobileMenuOpen} onOpenChange={handleToggleMenu}>
+          <Dialog.Trigger
+            aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+            data-focus-visible="false"
+            className="focus:outline-none"
           >
-            <Dialog.Title className="sr-only">Mobile Menu</Dialog.Title>
-            <Dialog.Description className="sr-only">
-              Mobile site navigation menu.
-            </Dialog.Description>
+            <MenuIcon isOpen={isMobileMenuOpen} />
+          </Dialog.Trigger>
 
-            <div className="pointer-events-none absolute inset-0 -top-[72px] -z-10 h-[calc(100dvh+72px)] w-full bg-white dark:bg-black" />
-
-            <nav className="flex h-full flex-1 flex-col">
-              {isBrand ? (
-                <div className="relative flex h-full flex-1 flex-col">
-                  <ul className="ml-4 mt-3 flex flex-col gap-2.5 overflow-y-auto md:mb-10 md:ml-6">
-                    <AnimatePresence>
-                      {isMobileMenuOpen &&
-                        routes.map((route, index) => (
-                          <motion.li
-                            key={route.href}
-                            variants={navItemVariants}
-                            initial="initial"
-                            animate="animate"
-                            exit="exit"
-                            transition={getNavItemTransition(index)}
-                          >
-                            <Link
-                              target={route.newTab ? '_blank' : '_self'}
-                              rel={route.newTab ? 'noopener noreferrer' : undefined}
-                              href={route.href}
-                              className={classNames(
-                                'flex w-fit items-center justify-between rounded-[4px] p-3 leading-[114%] transition-colors duration-150 hover:bg-base-gray-30',
-                                isLinkActive({
-                                  pathname,
-                                  href: route.href,
-                                }) && 'bg-base-gray-30 dark:bg-gray-90 dark:active:text-black',
-                              )}
-                              onClick={handleToggleMenu}
-                            >
-                              <Text variant={TextVariant.CTALabelSm}>{route.label}</Text>
-                            </Link>
-                          </motion.li>
-                        ))}
-                    </AnimatePresence>
-                  </ul>
-
-                  <div className="mt-auto flex flex-col gap-3 px-4 pb-4 md:px-6">
-                    <AnimatePresence>
-                      {isMobileMenuOpen && (
-                        <motion.div
-                          variants={navItemVariants}
-                          initial="buttonInitial"
-                          animate="buttonAnimate"
-                          exit="exit"
-                          transition={getButtonTransition(1, routes.length)}
-                        >
-                          <Button variant={ButtonVariants.Primary} size={ButtonSizes.Small} asChild>
-                            <Link
-                              prefetch={false}
-                              download="/base-brand.zip"
-                              href="/base-brand.zip"
-                              className="h-10 w-full"
-                            >
-                              Download Brand Assets
-                            </Link>
-                          </Button>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </div>
-              ) : (
-                <BaseNavigation isMobile />
+          <Dialog.Portal>
+            <Dialog.Content
+              className={classNames(
+                'fixed inset-y-0 left-0 top-[72px] z-[100] flex h-[calc(100dvh-72px)] w-full flex-col gap-4 outline-none',
+                isClosingFromResize
+                  ? 'transition-none'
+                  : 'transition ease-in-out data-[state=closed]:duration-500 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left',
               )}
-            </nav>
-          </Dialog.Content>
-        </Dialog.Portal>
-      </Dialog.Root>
+            >
+              <Dialog.Title className="sr-only">Mobile Menu</Dialog.Title>
+              <Dialog.Description className="sr-only">
+                Mobile site navigation menu.
+              </Dialog.Description>
+
+              <div className="pointer-events-none absolute inset-0 -top-[72px] -z-10 h-[calc(100dvh+72px)] w-full bg-white dark:bg-black" />
+
+              <nav className="flex flex-col flex-1 h-full">
+                {isBrand ? (
+                  <div className="flex relative flex-col flex-1 h-full">
+                    <ul className="ml-4 mt-3 flex flex-col gap-2.5 overflow-y-auto md:mb-10 md:ml-6">
+                      <AnimatePresence>
+                        {isMobileMenuOpen &&
+                          routes.map((route, index) => (
+                            <motion.li
+                              key={route.href}
+                              variants={navItemVariants}
+                              initial="initial"
+                              animate="animate"
+                              exit="exit"
+                              transition={getNavItemTransition(index)}
+                            >
+                              <Link
+                                target={route.newTab ? '_blank' : '_self'}
+                                rel={route.newTab ? 'noopener noreferrer' : undefined}
+                                href={route.href}
+                                className={classNames(
+                                  'flex w-fit items-center justify-between rounded-[4px] p-3 leading-[114%] transition-colors duration-150 hover:bg-base-gray-30',
+                                  isLinkActive({
+                                    pathname,
+                                    href: route.href,
+                                  }) && 'bg-base-gray-30 dark:bg-gray-90 dark:active:text-black',
+                                )}
+                                onClick={handleToggleMenu}
+                              >
+                                <Text variant={TextVariant.CTALabelSm}>{route.label}</Text>
+                              </Link>
+                            </motion.li>
+                          ))}
+                      </AnimatePresence>
+                    </ul>
+
+                    <div className="flex flex-col gap-3 px-4 pb-4 mt-auto md:px-6">
+                      <AnimatePresence>
+                        {isMobileMenuOpen && (
+                          <motion.div
+                            variants={navItemVariants}
+                            initial="buttonInitial"
+                            animate="buttonAnimate"
+                            exit="exit"
+                            transition={getButtonTransition(1, routes.length)}
+                          >
+                            <Button
+                              variant={ButtonVariants.Primary}
+                              size={ButtonSizes.Small}
+                              asChild
+                            >
+                              <Link
+                                prefetch={false}
+                                download="/base-brand.zip"
+                                href="/base-brand.zip"
+                                className="w-full h-10"
+                              >
+                                Download Brand Assets
+                              </Link>
+                            </Button>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </div>
+                ) : (
+                  <BaseNavigation isMobile />
+                )}
+              </nav>
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>
+      </div>
     </header>
   );
 }
 
 function MenuIcon({ isOpen }: { isOpen: boolean }) {
   return (
-    <div className="relative grid size-10 place-items-center rounded-md bg-base-gray-30 will-change-transform">
+    <div className="grid relative place-items-center rounded-md size-10 bg-base-gray-30 will-change-transform">
       <div
         className={classNames(
           'ease-[cubic-bezier(0.4,0.2,0,1)] absolute size-5 h-[1px] bg-black transition-all duration-300',
