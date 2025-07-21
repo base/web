@@ -3,8 +3,8 @@ import './global.css';
 import AppProviders from 'apps/web/app/AppProviders';
 
 import localFont from 'next/font/local';
-import { Footer } from 'apps/web/src/components/Layout/Footer/Footer';
 import DatadogInit from 'apps/web/app/datadog';
+import { Inter, Inter_Tight, Roboto_Mono } from 'next/font/google';
 
 const GOOGLE_ANALYTICS_ID = 'G-D1QGEV3B07';
 const googleAnalyticsInitScriptContent = {
@@ -36,14 +36,64 @@ const coinbaseDisplay = localFont({
 const coinbaseSans = localFont({
   src: [
     {
-      path: '../src/fonts/CoinbaseSans-Regular.woff2',
+      path: '../src/fonts/base-sans/BaseSans-Thin.woff2',
+      weight: '100',
+      style: 'normal',
+    },
+    {
+      path: '../src/fonts/base-sans/BaseSans-ThinItalic.woff2',
+      weight: '100',
+      style: 'italic',
+    },
+    {
+      path: '../src/fonts/base-sans/BaseSans-Light.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../src/fonts/base-sans/BaseSans-LightItalic.woff2',
+      weight: '300',
+      style: 'italic',
+    },
+    {
+      path: '../src/fonts/base-sans/BaseSans-Regular.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../src/fonts/CoinbaseSans-Medium.woff2',
-      weight: '500 800',
+      path: '../src/fonts/base-sans/BaseSans-Italic.woff2',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: '../src/fonts/base-sans/BaseSans-Medium.woff2',
+      weight: '500',
       style: 'normal',
+    },
+    {
+      path: '../src/fonts/base-sans/BaseSans-MediumItalic.woff2',
+      weight: '500',
+      style: 'italic',
+    },
+    {
+      path: '../src/fonts/base-sans/BaseSans-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../src/fonts/base-sans/BaseSans-BoldItalic.woff2',
+      weight: '700',
+      style: 'italic',
+    },
+    {
+      path: '../src/fonts/base-sans/BaseSans-Black.woff2',
+      weight: '900',
+      style: 'normal',
+    },
+    {
+      path: '../src/fonts/base-sans/BaseSans-BlackItalic.woff2',
+      weight: '900',
+      style: 'italic',
     },
   ],
   display: 'swap',
@@ -53,18 +103,54 @@ const coinbaseSans = localFont({
 const coinbaseMono = localFont({
   src: [
     {
-      path: '../src/fonts/CoinbaseMono-Regular.woff2',
+      path: '../src/fonts/base-sans-mono/BaseSansMono-Thin.woff2',
+      weight: '100',
+      style: 'normal',
+    },
+    {
+      path: '../src/fonts/base-sans-mono/BaseSansMono-ThinItalic.woff2',
+      weight: '100',
+      style: 'italic',
+    },
+    {
+      path: '../src/fonts/base-sans-mono/BaseSansMono-Light.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../src/fonts/base-sans-mono/BaseSansMono-LightItalic.woff2',
+      weight: '300',
+      style: 'italic',
+    },
+    {
+      path: '../src/fonts/base-sans-mono/BaseSansMono-Regular.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../src/fonts/CoinbaseMono-Medium.woff2',
-      weight: '500 800',
+      path: '../src/fonts/base-sans-mono/BaseSansMono-Italic.woff2',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: '../src/fonts/base-sans-mono/BaseSansMono-Medium.woff2',
+      weight: '500',
       style: 'normal',
+    },
+    {
+      path: '../src/fonts/base-sans-mono/BaseSansMono-MediumItalic.woff2',
+      weight: '500',
+      style: 'italic',
     },
   ],
   display: 'swap',
   variable: '--font-coinbase-mono',
+});
+
+const doto = localFont({
+  src: '../src/fonts/doto.ttf',
+  variable: '--font-doto',
+  display: 'swap',
 });
 
 const britney = localFont({
@@ -77,13 +163,36 @@ const britney = localFont({
   variable: '--font-britney',
 });
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+const interTight = Inter_Tight({
+  variable: '--font-inter-tight',
+  weight: ['400'],
+  subsets: ['latin'],
+});
+
+const inter = Inter({
+  variable: '--font-inter',
+  weight: ['400'],
+  subsets: ['latin'],
+});
+
+const robotoMono = Roboto_Mono({
+  variable: '--font-roboto-mono',
+  weight: ['400'],
+  subsets: ['latin'],
+});
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   const fontClassNames = [
     coinbaseDisplay.variable,
     coinbaseSans.variable,
     coinbaseMono.variable,
     britney.variable,
+    doto.variable,
+    interTight.variable,
+    inter.variable,
+    robotoMono.variable,
   ].join(' ');
+
   return (
     <html lang="en" className={fontClassNames}>
       <head>
@@ -109,11 +218,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           dangerouslySetInnerHTML={googleAnalyticsInitScriptContent}
         />
       </head>
-      <body className="flex min-h-screen flex-col">
+
+      <body className="flex min-h-screen flex-col antialiased">
         <AppProviders>
           <DatadogInit />
           {children}
-          <Footer />
         </AppProviders>
       </body>
     </html>
