@@ -1,0 +1,3 @@
+import{u as r,j as e}from"./index-Dlxm52NL.js";import{V as i}from"./VideoPlayer-CKrpq9Vg.js";const a={title:"Deployment",description:"Configure test networks.",hide_table_of_contents:!1};function o(n){const t={a:"a",div:"div",h1:"h1",header:"header",...r(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.header,{children:e.jsxs(t.h1,{id:"deployment",children:["Deployment",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#deployment",children:e.jsx(t.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,e.jsx(i,{videoId:"844046070",title:"Deployment"})]})}function c(n={}){const{wrapper:t}={...r(),...n.components};return t?e.jsx(t,{...n,children:e.jsx(o,{...n})}):o(n)}export{c as default,a as frontmatter};

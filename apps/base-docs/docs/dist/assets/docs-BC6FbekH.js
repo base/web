@@ -1,0 +1,1 @@
+import{u as r,j as e,N as s}from"./index-Dlxm52NL.js";const u=void 0;function o(t){return e.jsx(s,{to:"/",replace:!0})}function c(t={}){const{wrapper:n}={...r(),...t.components};return n?e.jsx(n,{...t,children:e.jsx(o,{...t})}):o()}export{c as default,u as frontmatter};
