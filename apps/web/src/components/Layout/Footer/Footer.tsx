@@ -1,3 +1,4 @@
+import * as React from 'react';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
 import BaseFooterSVG from 'apps/web/src/components/Layout/Footer/BaseFooterSVG';
 import Link from 'apps/web/src/components/Link';
@@ -67,7 +68,7 @@ const LINK_SECTIONS = [
   {
     title: 'Resources',
     links: [
-      { label: 'Brand kit', href: 'https://github.com/base/brand-kit', newTab: true },
+      { label: 'Brand kit', href: 'https://www.base.org/brand', newTab: true },
       { label: 'Events', href: 'https://lu.ma/BaseMeetups', newTab: true },
     ],
   },
