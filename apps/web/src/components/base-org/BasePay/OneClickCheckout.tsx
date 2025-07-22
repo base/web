@@ -39,7 +39,7 @@ export default function OneClickCheckout() {
           </motion.div>
         </div>
         <div className="flex flex-col gap-8 md:max-w-sm">
-          <Title level={TitleLevel.H4Regular}>One-click checkout.</Title>
+          <Title level={TitleLevel.H4Regular}>One-click checkout</Title>
           <Title level={TitleLevel.H6Regular}>
             Pay with crypto instantly, no extra steps. Save shipping info to make purchases even
             more convenient.
