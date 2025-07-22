@@ -2720,6 +2720,14 @@
     "subcategory": "self-custody"
   },
   {
+    "name": "OneKey",
+    "description": "OneKey is an open-source crypto solution that pairs a secure hardware wallet with our all-in-one app, letting you manage, swap, and explore DeFi & NFTs across 100+ chains.",
+    "url": "https://onekey.so",
+    "imageUrl": "/images/partners/onekey.png",
+    "category": "wallet",
+    "subcategory": "self-custody"
+  },
+  {
     "name": "Omni Network",
     "url": "https://omni.network",
     "description": "The Omni Network is a layer 1 blockchain that empowers developers to build global applications across all rollups. This is achieved securely by restaking $ETH through EigenLayer.",
