@@ -34,7 +34,7 @@ export default function Earn() {
     <section ref={ref} className="col-span-full py-12 text-black">
       <div className="flex flex-col items-center justify-between gap-12 md:flex-row">
         <div className="flex flex-col gap-8 md:max-w-sm">
-          <Title level={TitleLevel.H4Regular}>Earn while you spend.</Title>
+          <Title level={TitleLevel.H4Regular}>Earn while you spend</Title>
           <Title level={TitleLevel.H6Regular}>
             Your USDC automatically earns 4.1% APY until the moment you spend it. Plus 1% back on
             all purchases at Shopify stores.

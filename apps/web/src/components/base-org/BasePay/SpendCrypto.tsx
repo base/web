@@ -92,7 +92,7 @@ export default function SpendCrypto() {
         </div>
 
         <div className="flex flex-col gap-8 md:max-w-sm">
-          <Title level={TitleLevel.H4Regular}>Spend crypto like cash.</Title>
+          <Title level={TitleLevel.H4Regular}>Spend crypto like cash</Title>
           <Title level={TitleLevel.H6Regular}>
             USDC is one of the most trusted and reputable stablecoins, combining the stability of
             the dollar with the speed of the internet.

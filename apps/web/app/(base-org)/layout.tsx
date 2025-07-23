@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
   title: `Base`,
   description:
-    'Base is a secure, low-cost, builder-friendly Ethereum L2 built to bring the next billion users onchain.',
+    'Base is an open stack that empowers builders, creators, and people everywhere to build apps, grow businesses, create what they love, and earn onchain.',
   openGraph: {
     type: 'website',
     title: `Base`,
     description:
-      'Base is a secure, low-cost, builder-friendly Ethereum L2 built to bring the next billion users onchain.',
+      'Base is an open stack that empowers builders, creators, and people everywhere to build apps, grow businesses, create what they love, and earn onchain.',
     url: `/`,
     images: ['https://base.org/images/base-open-graph.png'],
   },
