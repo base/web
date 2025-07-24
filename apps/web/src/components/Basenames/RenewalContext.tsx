@@ -155,19 +155,34 @@ export default function RenewalProvider({ children, name }: RenewalProviderProps
     void fetchExpirationDate();
   }, [fetchExpirationDate]);
 
-  const value: RenewalContextType = {
-    renewalStep,
-    setRenewalStep,
-    name,
-    formattedName,
-    expirationDate,
-    years,
-    setYears,
-    renewBasename,
-    price,
-    isPending,
-    redirectToProfile,
-  };
+  const value: RenewalContextType = useMemo(
+    () => ({
+      renewalStep,
+      setRenewalStep,
+      name,
+      formattedName,
+      expirationDate,
+      years,
+      setYears,
+      renewBasename,
+      price,
+      isPending,
+      redirectToProfile,
+    }),
+    [
+      renewalStep,
+      setRenewalStep,
+      name,
+      formattedName,
+      expirationDate,
+      years,
+      setYears,
+      renewBasename,
+      price,
+      isPending,
+      redirectToProfile,
+    ],
+  );
 
   return <RenewalContext.Provider value={value}>{children}</RenewalContext.Provider>;
 }
