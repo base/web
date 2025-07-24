@@ -24,7 +24,7 @@ function RenewalFlowContent() {
   const { chain } = useAccount();
   const { basenameChain } = useBasenameChain();
   const { switchChain } = useSwitchChain();
-  const { renewalStep, formattedName, name } = useRenewal();
+  const { renewalStep, formattedName } = useRenewal();
 
   const isOnSupportedNetwork = useMemo(
     () => chain && supportedChainIds.includes(chain.id),

@@ -48,7 +48,7 @@ type RenewalContextType = {
   isPending: boolean;
 
   // Navigation
-  redirectToProfile: () => Promise<void>;
+  redirectToProfile: () => void;
 };
 
 const RenewalContext = createContext<RenewalContextType | undefined>(undefined);
@@ -90,7 +90,7 @@ export default function RenewalProvider({ children, name }: RenewalProviderProps
     }
   }, [basenameChain.id, name, formattedName]);
 
-  const redirectToProfile = useCallback(async () => {
+  const redirectToProfile = useCallback(() => {
     router.push(profilePath);
   }, [profilePath, router]);
 
