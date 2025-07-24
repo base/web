@@ -38,19 +38,24 @@ export default function SuccessMessage({
       {children}
 
       <div className="flex flex-col gap-4 md:flex-row">
-        {actions.map((action, index) => (
-          <Button
-            key={index}
-            rounded
-            fullWidth
-            variant={
-              action.variant || (action.isPrimary ? ButtonVariants.Black : ButtonVariants.Secondary)
-            }
-            onClick={action.onClick}
-          >
-            {action.label}
-          </Button>
-        ))}
+        {actions.map((action) => {
+          const handleClick = () => action.onClick();
+
+          return (
+            <Button
+              key={action.label}
+              rounded
+              fullWidth
+              variant={
+                action.variant ??
+                (action.isPrimary ? ButtonVariants.Black : ButtonVariants.Secondary)
+              }
+              onClick={handleClick}
+            >
+              {action.label}
+            </Button>
+          );
+        })}
       </div>
     </div>
   );
