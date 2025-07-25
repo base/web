@@ -37,6 +37,7 @@ type RenewalContextType = {
   name: string;
   formattedName: string;
   expirationDate?: string;
+  loadingExpirationDate: boolean;
 
   // Form state
   years: number;
@@ -70,6 +71,7 @@ export default function RenewalProvider({ children, name }: RenewalProviderProps
   const [renewalStep, setRenewalStep] = useState<RenewalSteps>(RenewalSteps.Form);
   const [years, setYears] = useState<number>(1);
   const [expirationDate, setExpirationDate] = useState<string | undefined>(undefined);
+  const [loadingExpirationDate, setLoadingExpirationDate] = useState<boolean>(false);
 
   const { basenameChain } = useBasenameChain();
   const router = useRouter();
@@ -106,6 +108,7 @@ export default function RenewalProvider({ children, name }: RenewalProviderProps
   });
 
   const fetchExpirationDate = useCallback(async () => {
+    setLoadingExpirationDate(true);
     try {
       const expiresAt = await getBasenameNameExpires(formattedName);
       if (expiresAt) {
@@ -119,6 +122,8 @@ export default function RenewalProvider({ children, name }: RenewalProviderProps
       }
     } catch (error) {
       logError(error, 'Failed to fetch basename expiration date');
+    } finally {
+      setLoadingExpirationDate(false);
     }
   }, [formattedName, logError]);
 
@@ -162,6 +167,7 @@ export default function RenewalProvider({ children, name }: RenewalProviderProps
       name,
       formattedName,
       expirationDate,
+      loadingExpirationDate,
       years,
       setYears,
       renewBasename,
@@ -175,6 +181,7 @@ export default function RenewalProvider({ children, name }: RenewalProviderProps
       name,
       formattedName,
       expirationDate,
+      loadingExpirationDate,
       years,
       setYears,
       renewBasename,

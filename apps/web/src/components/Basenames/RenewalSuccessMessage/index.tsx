@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 import { useCallback, useMemo } from 'react';
 
 export default function RenewalSuccessMessage() {
-  const { redirectToProfile, setRenewalStep, expirationDate } = useRenewal();
+  const { redirectToProfile, setRenewalStep, expirationDate, loadingExpirationDate } = useRenewal();
   const { logEventWithContext } = useAnalytics();
   const router = useRouter();
 
@@ -50,11 +50,14 @@ export default function RenewalSuccessMessage() {
   );
 
   const subtitle = useMemo(() => {
+    if (loadingExpirationDate) {
+      return 'Loading new expiration date...';
+    }
     if (expirationDate) {
       return `Your name is now extended until ${expirationDate}`;
     }
     return 'Your registration has been successfully extended!';
-  }, [expirationDate]);
+  }, [expirationDate, loadingExpirationDate]);
 
   return <SuccessMessage title="Extension Complete!" subtitle={subtitle} actions={actions} />;
 }
