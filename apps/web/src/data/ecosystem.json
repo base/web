@@ -1528,6 +1528,14 @@
     "subcategory": "gaming"
   },
   {
+    "name": "Factor.fi",
+    "description": "With Factor, anyone can drag-and-drop DeFi, no coding required. Create and share multi-protocol strategies that automate yield amplification across DeFi, or deposit into strategies with just one click.",
+    "url": "https://factor.fi/",
+    "imageUrl": "/images/partners/FactorLogo.png",
+    "category": "defi",
+    "subcategory": "liquidity management"
+  },
+  {
     "name": "Farworld",
     "description": "A mysterious world 🪐 filled with mysterious creatures 👾 The onchain monster collecting game of Farcaster, built on Base.",
     "url": "https://farworld.gg",
