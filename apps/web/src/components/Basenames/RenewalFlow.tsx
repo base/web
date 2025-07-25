@@ -9,11 +9,11 @@ import useBasenameChain, { supportedChainIds } from 'apps/web/src/hooks/useBasen
 import classNames from 'classnames';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useAccount, useSwitchChain } from 'wagmi';
-import { RegistrationSteps } from 'apps/web/src/components/Basenames/RegistrationContext';
 import RenewalProvider, {
   useRenewal,
   RenewalSteps,
 } from 'apps/web/src/components/Basenames/RenewalContext';
+import { FlowBackgroundSteps } from 'apps/web/src/components/Basenames/shared/types';
 import { Basename } from '@coinbase/onchainkit/identity';
 
 type RenewalFlowProps = {
@@ -50,17 +50,17 @@ function RenewalFlowContent() {
   const isPending = renewalStep === RenewalSteps.Pending;
   const isSuccess = renewalStep === RenewalSteps.Success;
 
-  // Map renewal steps to registration steps for background animations
-  const backgroundRegistrationStep = useMemo(() => {
+  // Map renewal steps to background animation steps
+  const backgroundStep = useMemo(() => {
     switch (renewalStep) {
       case RenewalSteps.Form:
-        return RegistrationSteps.Claim; // Globe video with gray background
+        return FlowBackgroundSteps.Form; // Globe video with gray background
       case RenewalSteps.Pending:
-        return RegistrationSteps.Pending; // Vortex animation with gray background
+        return FlowBackgroundSteps.Pending; // Vortex animation with gray background
       case RenewalSteps.Success:
-        return RegistrationSteps.Success; // Fireworks video with blue background
+        return FlowBackgroundSteps.Success; // Fireworks video with blue background
       default:
-        return RegistrationSteps.Claim;
+        return FlowBackgroundSteps.Form;
     }
   }, [renewalStep]);
 
@@ -176,7 +176,7 @@ function RenewalFlowContent() {
       </div>
 
       {/* Animated background that responds to renewal state */}
-      <RegistrationBackground registrationStep={backgroundRegistrationStep} />
+      <RegistrationBackground backgroundStep={backgroundStep} />
     </section>
   );
 }
