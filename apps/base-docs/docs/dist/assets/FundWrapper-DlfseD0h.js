@@ -1,0 +1,1 @@
+import{j as s}from"./index-Dlxm52NL.js";import"./OnchainKitProvider-BMiQl1rP.js";import{u as n}from"./useOnchainKit-BS9QuBF4.js";import{u as i}from"./useAccount-BLyN9GYK.js";function a({children:r}){const{address:o}=i(),{projectId:t}=n();return s.jsx("main",{children:r({address:o,projectId:t})})}export{a as F};

@@ -1,0 +1,3 @@
+import{u as s,j as e}from"./index-Dlxm52NL.js";import{V as o}from"./VideoPlayer-CKrpq9Vg.js";const d={title:"ERC-20 Testing",description:"Test the OpenZeppelin ERC-20 implementation.",hide_table_of_contents:!1};function i(n){const t={a:"a",div:"div",h1:"h1",header:"header",...s(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.header,{children:e.jsxs(t.h1,{id:"erc-20-testing",children:["ERC-20 Testing",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#erc-20-testing",children:e.jsx(t.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,e.jsx(o,{videoId:"805035929",title:"ERC-20 Testing"})]})}function c(n={}){const{wrapper:t}={...s(),...n.components};return t?e.jsx(t,{...n,children:e.jsx(i,{...n})}):i(n)}export{c as default,d as frontmatter};
