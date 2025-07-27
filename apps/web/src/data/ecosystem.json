@@ -864,6 +864,14 @@
     "subcategory": "identity"
   },
   {
+    "name": "CleanApp",
+    "description": "Global, distributed and verifiable tracing/mapping networks for reporting an issue and finding resolvers",
+    "url": "https://www.cleanapp.io/",
+    "imageUrl": "/images/partners/cleanapp.png",
+    "category": "consumer",
+    "subcategory": "ai"
+  },
+  {
     "name": "Cobo Argus",
     "url": "https://www.cobo.com/argus",
     "description": "Cobo Argus is a secure and efficient on-chain digital asset management solution that supports role-based access controls, DeFi investment strategies and more. ",
