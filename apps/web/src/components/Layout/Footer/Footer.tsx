@@ -1,3 +1,4 @@
+import * as React from 'react';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
 import BaseFooterSVG from 'apps/web/src/components/Layout/Footer/BaseFooterSVG';
 import Link from 'apps/web/src/components/Link';
