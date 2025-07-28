@@ -27,7 +27,7 @@ export async function redirectIfNameDoesNotExist(username: Basename) {
   }
 
   // If API calls failed OR returned null/undefined values, the name doesn't exist or is expired
-  const nameNotFound = apiError || !address || !editor || !owner;
+  const nameNotFound = !address || !editor || !owner;
 
   if (nameNotFound) {
     logger.info('Basename not found, checking grace period', {
