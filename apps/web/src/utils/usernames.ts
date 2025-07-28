@@ -769,3 +769,27 @@ export const REGISTER_CONTRACT_ADDRESSES = IS_EARLY_ACCESS
   : USERNAME_REGISTRAR_CONTROLLER_ADDRESSES;
 
 export const isBasenameRenewalsKilled = process.env.NEXT_PUBLIC_KILL_BASENAMES_RENEWALS === 'true';
+
+// Grace period duration in seconds (90 days)
+export const GRACE_PERIOD_DURATION_MS = 90 * 24 * 60 * 60 * 1000;
+
+/**
+ * Check if a basename is in its grace period (expired but still renewable)
+ */
+export async function isBasenameInGracePeriod(username: Basename): Promise<boolean> {
+  try {
+    const expiresAt = await getBasenameNameExpires(username);
+    if (!expiresAt) {
+      return false;
+    }
+
+    const expirationTime = Number(expiresAt) * 1000; // Convert to milliseconds
+    const currentTime = Date.now();
+    const timeSinceExpiration = currentTime - expirationTime;
+
+    // Name is in grace period if it's expired but within the grace period duration
+    return timeSinceExpiration > 0 && timeSinceExpiration <= GRACE_PERIOD_DURATION_MS;
+  } catch (error) {
+    return false;
+  }
+}

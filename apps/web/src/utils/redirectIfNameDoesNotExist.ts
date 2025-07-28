@@ -3,6 +3,7 @@ import {
   getBasenameAddress,
   getBasenameEditor,
   getBasenameOwner,
+  isBasenameInGracePeriod,
 } from 'apps/web/src/utils/usernames';
 import { redirect } from 'next/navigation';
 
@@ -14,8 +15,14 @@ export async function redirectIfNameDoesNotExist(username: Basename) {
   ]).catch(() => {
     redirect(`/name/not-found?name=${username}`);
   });
+
   // Domain does not have address or editor (ie: doesn't exist)
   if (!address || !editor || !owner) {
-    redirect(`/name/not-found?name=${username}`);
+    // Before redirecting, check if the name is in grace period
+    // Names in grace period should be allowed to access renewal flow
+    const inGracePeriod = await isBasenameInGracePeriod(username);
+    if (!inGracePeriod) {
+      redirect(`/name/not-found?name=${username}`);
+    }
   }
 }
