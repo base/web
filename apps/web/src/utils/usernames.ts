@@ -633,7 +633,14 @@ export async function getBasenameNameExpires(username: Basename) {
     });
 
     return nameExpires;
-  } catch (error) {}
+  } catch (error) {
+    logger.error('Error fetching basename expiration date', {
+      error,
+      username,
+      tokenId,
+      chainId: chain.id,
+    });
+  }
 }
 
 export async function getBasenameAvailable(name: string, chain: Chain): Promise<boolean> {
