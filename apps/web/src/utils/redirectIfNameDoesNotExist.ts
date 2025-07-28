@@ -10,6 +10,7 @@ import { logger } from 'apps/web/src/utils/logger';
 
 export async function redirectIfNameDoesNotExist(username: Basename) {
   let address, editor, owner;
+  let apiError = false;
 
   try {
     [address, editor, owner] = await Promise.all([
@@ -21,22 +22,23 @@ export async function redirectIfNameDoesNotExist(username: Basename) {
     logger.error('Error fetching basename address, editor, or owner', {
       error,
       username,
-      address,
-      editor,
-      owner,
     });
-    // If API calls throw errors, check grace period before redirecting
-    const inGracePeriod = await isBasenameInGracePeriod(username);
-    if (!inGracePeriod) {
-      redirect(`/name/not-found?name=${username}`);
-    }
-    return;
+    apiError = true;
   }
 
-  // Domain does not have address or editor (ie: doesn't exist)
-  if (!address || !editor || !owner) {
-    // Before redirecting, check if the name is in grace period
-    // Names in grace period should be allowed to access renewal flow
+  // If API calls failed OR returned null/undefined values, the name doesn't exist or is expired
+  const nameNotFound = apiError || !address || !editor || !owner;
+
+  if (nameNotFound) {
+    logger.info('Basename not found, checking grace period', {
+      username,
+      apiError,
+      address: !!address,
+      editor: !!editor,
+      owner: !!owner,
+    });
+
+    // Only allow access if the name is in grace period (expired but renewable)
     const inGracePeriod = await isBasenameInGracePeriod(username);
     if (!inGracePeriod) {
       redirect(`/name/not-found?name=${username}`);
