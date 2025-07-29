@@ -2008,6 +2008,14 @@
     "subcategory": "dex"
   },
   {
+    "name": "INT",
+    "description": "INT is an onchain lottery you can play or own. Generate tickets with ETH instantly. Or hold IFTs to earn revenue from every ticket. Win prizes, earn rewards, transparently and fully onchain.",
+    "url": "https://theinternettoken.com",
+    "imageUrl": "/images/partners/int.png",
+    "category": "consumer",
+    "subcategory": "gaming"
+  },
+  {
     "name": "Interface",
     "description": "Interface is a mobile companion for your onchain journey ",
     "url": "https://www.interface.social",
