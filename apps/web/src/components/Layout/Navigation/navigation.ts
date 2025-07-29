@@ -467,7 +467,7 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
       {
         icon: 'media',
         label: 'Brand Kit',
-        href: 'https://brand.base.org',
+        href: 'https://base.org/brand',
       },
     ],
   },
