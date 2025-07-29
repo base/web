@@ -6,6 +6,8 @@ import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import {
   buildBasenameOwnerContract,
   buildBasenameEditorContract,
+  formatDefaultUsername,
+  getBasenameNameExpires,
 } from 'apps/web/src/utils/usernames';
 import {
   Dispatch,
@@ -14,6 +16,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from 'react';
@@ -42,6 +45,9 @@ export type UsernameProfileContextProps = {
 
   currentWalletIsProfileOwner: boolean;
 
+  // Expiration
+  daysUntilExpiration: number | undefined;
+
   // Permissions
   canSetAddr: boolean;
   canReclaim: boolean;
@@ -59,6 +65,7 @@ export const UsernameProfileContext = createContext<UsernameProfileContextProps>
   showProfileSettings: false,
   setShowProfileSettings: () => undefined,
   currentWalletIsProfileOwner: false,
+  daysUntilExpiration: undefined,
   canSetAddr: false,
   canReclaim: false,
   canSafeTransferFrom: false,
@@ -75,6 +82,7 @@ export default function UsernameProfileProvider({
   username,
 }: UsernameProfileProviderProps) {
   const [showProfileSettings, setShowProfileSettings] = useState<boolean>(false);
+  const [daysUntilExpiration, setDaysUntilExpiration] = useState<number | undefined>(undefined);
   const { basenameChain } = useBasenameChain(username);
 
   // Current wallet
@@ -135,6 +143,31 @@ export default function UsernameProfileProvider({
   const currentWalletNeedsToReclaimProfile =
     canReclaim && !currentWalletIsProfileEditor && currentWalletIsProfileOwner;
 
+  // Check basename expiration
+  useEffect(() => {
+    const checkExpiration = async () => {
+      try {
+        const formattedUsername = await formatDefaultUsername(
+          decodeURIComponent(username) as Basename,
+        );
+        const nameExpires = await getBasenameNameExpires(formattedUsername);
+
+        if (nameExpires) {
+          const expirationDate = new Date(Number(nameExpires) * 1000);
+          const now = new Date();
+          const daysTilExpiration = Math.ceil(
+            (expirationDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
+          );
+          setDaysUntilExpiration(daysTilExpiration);
+        }
+      } catch (error) {
+        console.error('Error checking basename expiration:', error);
+      }
+    };
+
+    void checkExpiration();
+  }, [username]);
+
   const profileRefetch = useCallback(async () => {
     await profileAddressRefetch();
     await profileEditorRefetch();
@@ -151,6 +184,7 @@ export default function UsernameProfileProvider({
       currentWalletIsProfileEditor,
       currentWalletIsProfileOwner,
       currentWalletIsProfileAddress,
+      daysUntilExpiration,
       canSetAddr,
       canReclaim,
       canSafeTransferFrom,
@@ -167,6 +201,7 @@ export default function UsernameProfileProvider({
     currentWalletIsProfileEditor,
     currentWalletIsProfileOwner,
     currentWalletIsProfileAddress,
+    daysUntilExpiration,
     canSetAddr,
     canReclaim,
     canSafeTransferFrom,
