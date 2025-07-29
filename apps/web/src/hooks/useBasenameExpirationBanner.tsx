@@ -83,6 +83,8 @@ export function useBasenameExpirationBanner() {
     const portalElement = document.getElementById('name-expiration-banner-portal');
     if (!portalElement || !expirationBannerConfig) return null;
 
+    // Portal is needed because the banner is positioned at the very top of the page,
+    // above the layout.
     return createPortal(
       <Banner
         message={expirationBannerConfig.message}
