@@ -1,5 +1,6 @@
 'use client';
 import { Basename } from '@coinbase/onchainkit/identity';
+import { useErrors } from 'apps/web/contexts/Errors';
 import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
 import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
@@ -84,6 +85,7 @@ export default function UsernameProfileProvider({
   const [showProfileSettings, setShowProfileSettings] = useState<boolean>(false);
   const [daysUntilExpiration, setDaysUntilExpiration] = useState<number | undefined>(undefined);
   const { basenameChain } = useBasenameChain(username);
+  const { logError } = useErrors();
 
   // Current wallet
   const { address: connectedAddress, isConnected } = useAccount();
@@ -161,12 +163,12 @@ export default function UsernameProfileProvider({
           setDaysUntilExpiration(daysTilExpiration);
         }
       } catch (error) {
-        console.error('Error checking basename expiration:', error);
+        logError(error, 'Error checking basename expiration');
       }
     };
 
     void checkExpiration();
-  }, [username]);
+  }, [logError, username]);
 
   const profileRefetch = useCallback(async () => {
     await profileAddressRefetch();

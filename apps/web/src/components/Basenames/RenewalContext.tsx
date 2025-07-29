@@ -111,7 +111,6 @@ export default function RenewalProvider({ children, name }: RenewalProviderProps
     setLoadingExpirationDate(true);
     try {
       const expiresAt = await getBasenameNameExpires(formattedName);
-      console.log('expiresAt', expiresAt);
       if (expiresAt) {
         const date = new Date(Number(expiresAt) * 1000);
         const formatted = date.toLocaleDateString('en-US', {
