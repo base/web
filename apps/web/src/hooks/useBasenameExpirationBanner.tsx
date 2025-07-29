@@ -4,11 +4,11 @@ import { useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { Banner } from 'apps/web/src/components/Banner';
 import { useUsernameProfile } from 'apps/web/src/components/Basenames/UsernameProfileContext';
+import { GRACE_PERIOD_DURATION_MS } from 'apps/web/src/utils/usernames';
 
-// Days until expiration for showing the expiration banner
-const EXPIRATION_THRESHOLD = 90;
-// Grace period in days after expiration for renewal
-const GRACE_PERIOD_DAYS = 90;
+const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+// Time until expiration for showing the expiration banner
+const EXPIRATION_THRESHOLD_MS = GRACE_PERIOD_DURATION_MS;
 
 type BannerConfig = {
   message: string;
@@ -16,17 +16,17 @@ type BannerConfig = {
   textColor: string;
 } | null;
 
-function isInExpirationWindow(days: number): boolean {
-  return days > 0 && days < EXPIRATION_THRESHOLD;
+function isInExpirationWindow(msUntilExpiration: number): boolean {
+  return msUntilExpiration > 0 && msUntilExpiration < EXPIRATION_THRESHOLD_MS;
 }
 
-function isInGracePeriod(days: number): boolean {
-  return days < 0 && Math.abs(days) < GRACE_PERIOD_DAYS;
+function isInGracePeriod(msUntilExpiration: number): boolean {
+  return msUntilExpiration < 0 && Math.abs(msUntilExpiration) < GRACE_PERIOD_DURATION_MS;
 }
 
-function shouldShowExpirationBanner(days: number | undefined): boolean {
-  if (!days) return false;
-  return isInExpirationWindow(days) || isInGracePeriod(days);
+function shouldShowExpirationBanner(msUntilExpiration: number | undefined): boolean {
+  if (msUntilExpiration === undefined) return false;
+  return isInExpirationWindow(msUntilExpiration) || isInGracePeriod(msUntilExpiration);
 }
 
 function formatRenewalDate(daysFromNow: number): string {
@@ -39,8 +39,9 @@ function formatRenewalDate(daysFromNow: number): string {
   });
 }
 
-function getBanner(daysUntilExpiration: number): BannerConfig {
-  if (daysUntilExpiration > 0) {
+function getBanner(msUntilExpiration: number): BannerConfig {
+  if (msUntilExpiration > 0) {
+    const daysUntilExpiration = Math.ceil(msUntilExpiration / MILLISECONDS_PER_DAY);
     return {
       message: `This Basename expires in ${daysUntilExpiration} days. Extend your registration so you can own it for longer.`,
       bgColor: 'bg-yellow-20',
@@ -48,8 +49,9 @@ function getBanner(daysUntilExpiration: number): BannerConfig {
     };
   }
 
-  const daysExpiredAgo = Math.abs(daysUntilExpiration);
-  const gracePeriodRemaining = GRACE_PERIOD_DAYS - daysExpiredAgo;
+  const msExpiredAgo = Math.abs(msUntilExpiration);
+  const daysExpiredAgo = Math.ceil(msExpiredAgo / MILLISECONDS_PER_DAY);
+  const gracePeriodRemaining = (GRACE_PERIOD_DURATION_MS - msExpiredAgo) / MILLISECONDS_PER_DAY;
   const renewalDeadline = formatRenewalDate(gracePeriodRemaining);
 
   return {
@@ -64,20 +66,19 @@ function getBanner(daysUntilExpiration: number): BannerConfig {
  * Must be used inside UsernameProfileProvider.
  */
 export function useBasenameExpirationBanner() {
-  const { currentWalletIsProfileEditor, daysUntilExpiration, profileUsername } =
-    useUsernameProfile();
+  const { currentWalletIsProfileEditor, msUntilExpiration, profileUsername } = useUsernameProfile();
 
   const expirationBannerConfig = useMemo((): BannerConfig => {
     if (
-      !daysUntilExpiration ||
+      !msUntilExpiration ||
       !currentWalletIsProfileEditor ||
-      !shouldShowExpirationBanner(daysUntilExpiration)
+      !shouldShowExpirationBanner(msUntilExpiration)
     ) {
       return null;
     }
 
-    return getBanner(daysUntilExpiration);
-  }, [daysUntilExpiration, currentWalletIsProfileEditor]);
+    return getBanner(msUntilExpiration);
+  }, [msUntilExpiration, currentWalletIsProfileEditor]);
 
   const expirationBanner = useMemo(() => {
     const portalElement = document.getElementById('name-expiration-banner-portal');

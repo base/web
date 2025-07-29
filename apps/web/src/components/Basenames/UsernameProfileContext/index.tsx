@@ -47,7 +47,7 @@ export type UsernameProfileContextProps = {
   currentWalletIsProfileOwner: boolean;
 
   // Expiration
-  daysUntilExpiration: number | undefined;
+  msUntilExpiration: number | undefined;
 
   // Permissions
   canSetAddr: boolean;
@@ -66,7 +66,7 @@ export const UsernameProfileContext = createContext<UsernameProfileContextProps>
   showProfileSettings: false,
   setShowProfileSettings: () => undefined,
   currentWalletIsProfileOwner: false,
-  daysUntilExpiration: undefined,
+  msUntilExpiration: undefined,
   canSetAddr: false,
   canReclaim: false,
   canSafeTransferFrom: false,
@@ -83,7 +83,7 @@ export default function UsernameProfileProvider({
   username,
 }: UsernameProfileProviderProps) {
   const [showProfileSettings, setShowProfileSettings] = useState<boolean>(false);
-  const [daysUntilExpiration, setDaysUntilExpiration] = useState<number | undefined>(undefined);
+  const [msUntilExpiration, setMsUntilExpiration] = useState<number | undefined>(undefined);
   const { basenameChain } = useBasenameChain(username);
   const { logError } = useErrors();
 
@@ -152,15 +152,13 @@ export default function UsernameProfileProvider({
         const formattedUsername = await formatDefaultUsername(
           decodeURIComponent(username) as Basename,
         );
-        const nameExpires = await getBasenameNameExpires(formattedUsername);
+        const expiresAt = await getBasenameNameExpires(formattedUsername);
 
-        if (nameExpires) {
-          const expirationDate = new Date(Number(nameExpires) * 1000);
-          const now = new Date();
-          const daysTilExpiration = Math.ceil(
-            (expirationDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
-          );
-          setDaysUntilExpiration(daysTilExpiration);
+        if (expiresAt) {
+          const expirationTime = Number(expiresAt) * 1000;
+          const currentTime = Date.now();
+          const timeUntilExpiration = expirationTime - currentTime;
+          setMsUntilExpiration(timeUntilExpiration);
         }
       } catch (error) {
         logError(error, 'Error checking basename expiration');
@@ -186,7 +184,7 @@ export default function UsernameProfileProvider({
       currentWalletIsProfileEditor,
       currentWalletIsProfileOwner,
       currentWalletIsProfileAddress,
-      daysUntilExpiration,
+      msUntilExpiration,
       canSetAddr,
       canReclaim,
       canSafeTransferFrom,
@@ -203,7 +201,7 @@ export default function UsernameProfileProvider({
     currentWalletIsProfileEditor,
     currentWalletIsProfileOwner,
     currentWalletIsProfileAddress,
-    daysUntilExpiration,
+    msUntilExpiration,
     canSetAddr,
     canReclaim,
     canSafeTransferFrom,
