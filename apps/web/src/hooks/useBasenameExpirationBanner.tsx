@@ -81,6 +81,9 @@ export function useBasenameExpirationBanner() {
   }, [msUntilExpiration, currentWalletIsProfileEditor]);
 
   const expirationBanner = useMemo(() => {
+    // Document may be undefined during SSR
+    if (typeof document === 'undefined') return null;
+
     const portalElement = document.getElementById('name-expiration-banner-portal');
     if (!portalElement || !expirationBannerConfig) return null;
 
