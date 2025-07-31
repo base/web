@@ -41,7 +41,7 @@ export default function CryptoProviders({
         mode,
         theme,
         name: 'Base',
-        logo: 'https://base.org/images/logo.svg',
+        logo: '/base-square.svg',
       },
       wallet: {
         ...(smartWalletOnly
