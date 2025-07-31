@@ -355,6 +355,11 @@ module.exports = MillionLint.next({
             permanent: true,
           },
           {
+            source: '/builders/smart-wallet',
+            destination: '/build/base-account',
+            permanent: true,
+          },
+          {
             source: '/builders/:path',
             destination: '/build/:path',
             permanent: true,
