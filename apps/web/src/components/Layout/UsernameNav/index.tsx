@@ -40,12 +40,12 @@ export default function UsernameNav() {
     [switchChain],
   );
 
-  const walletStateClasses = classNames('p-2 rounded flex items-center gap-6', {
+  const walletStateClasses = classNames('p-2 rounded flex items-center gap-2 md:gap-6', {
     'bg-white': isConnected,
   });
 
   const navigationClasses = classNames(
-    'flex h-24 w-full max-w-[1440px] flex-row items-center justify-between gap-4 md:gap-16 self-center bg-transparent px-4 md:px-8',
+    'flex h-24 w-full max-w-[1440px] flex-row items-center justify-between gap-2 md:gap-4 lg:gap-16 self-center bg-transparent px-2 md:px-4 lg:px-8',
   );
 
   return (
@@ -112,7 +112,7 @@ export default function UsernameNav() {
             <span className="text-md text-palette-primary">
               <Link href="/manage-names" className="flex items-center gap-2">
                 <Icon name="list" color="currentColor" width="1rem" height="1rem" />
-                My Basenames
+                <span className="hidden sm:inline">My Basenames</span>
               </Link>
             </span>
           )}
