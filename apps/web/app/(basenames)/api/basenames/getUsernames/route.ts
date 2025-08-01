@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
   }
 
   const response = await fetch(
-    `https://${cdpBaseUri}/platform/v1/networks/${network}/addresses/${address}/identity?limit=50`,
+    `https://${cdpBaseUri}/platform/v1/networks/${network}/addresses/${address}/identity?limit=100`,
     {
       headers: {
         Authorization: `Bearer ${process.env.CDP_BEARER_TOKEN}`,
