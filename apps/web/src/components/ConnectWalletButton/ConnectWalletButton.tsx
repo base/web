@@ -3,9 +3,7 @@ import {
   ConnectWallet,
   Wallet,
   WalletDropdown,
-  WalletDropdownBasename,
   WalletDropdownDisconnect,
-  WalletDropdownLink,
 } from '@coinbase/onchainkit/wallet';
 import { base } from 'viem/chains';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
@@ -59,8 +57,6 @@ export function ConnectWalletButton({
     () => switchChain({ chainId: base.id }),
     [switchChain],
   );
-  const searchParams = useSearchParams();
-  const showChainSwitcher = searchParams?.get('showChainSwitcher');
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
   useEffect(() => {
@@ -73,6 +69,12 @@ export function ConnectWalletButton({
   const { basenameChain } = useBasenameChain();
   const [, copy] = useCopyToClipboard();
   const copyAddress = useCallback(() => void copy(address ?? ''), [address, copy]);
+
+  const buttonClasses = classNames(
+    address
+      ? 'flex items-center justify-center rounded-lg bg-transparent p-2 hover:bg-gray-40/20'
+      : 'min-w-full px-4 py-2 whitespace-nowrap rounded-lg font-semibold flex items-center justify-center transition-all bg-blue text-white border border-blue hover:bg-blue-80 active:bg-[#06318E] text-md px-4 py-2 gap-3',
+  );
 
   useEffect(() => {
     if (address) {
@@ -116,18 +118,10 @@ export function ConnectWalletButton({
   }
 
   if (!isConnected) {
-    const baseOrgButton = connectWalletButtonVariant === ConnectWalletButtonVariants.BaseOrg;
-    return baseOrgButton ? (
-      <BaseOrgButton onClick={clickConnect}>Connect</BaseOrgButton>
-    ) : (
-      <Button
-        variant={ButtonVariants.Black}
-        size={ButtonSizes.Small}
-        onClick={clickConnect}
-        className="rounded-lg"
-      >
+    return (
+      <button type="button" onClick={clickConnect} className={buttonClasses}>
         Sign In
-      </Button>
+      </button>
     );
   }
 
@@ -146,14 +140,10 @@ export function ConnectWalletButton({
 
   return (
     <Wallet>
-      <ConnectWallet
-        withWalletAggregator
-        className="flex items-center justify-center rounded-lg bg-transparent p-2 hover:bg-gray-40/20"
-      >
+      <ConnectWallet className={buttonClasses}>
         <div className="flex items-center gap-2">
           <UserAvatar />
           {isDesktop && <Name chain={basenameChain} className={userAddressClasses} />}
-          {showChainSwitcher && <ChainDropdown />}
         </div>
       </ConnectWallet>
 
@@ -167,15 +157,6 @@ export function ConnectWalletButton({
           />
           <EthBalance className="font-display" />
         </Identity>
-        <WalletDropdownBasename className="font-display hover:bg-gray-40/20" />
-        <WalletDropdownLink
-          icon="wallet"
-          href="https://wallet.coinbase.com"
-          target="_blank"
-          className="font-display hover:bg-gray-40/20"
-        >
-          Go to Wallet Dashboard
-        </WalletDropdownLink>
         <WalletDropdownDisconnect className="font-display hover:bg-gray-40/20" />
       </WalletDropdown>
     </Wallet>

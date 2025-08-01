@@ -98,7 +98,9 @@ export default function CryptoProviders({
           config={onchainKitConfig}
           projectId={process.env.NEXT_PUBLIC_CDP_PROJECT_ID}
         >
-          <RainbowKitProvider modalSize="compact">{children}</RainbowKitProvider>
+          <RainbowKitProvider initialChain={base} modalSize="compact">
+            {children}
+          </RainbowKitProvider>
         </OnchainKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
