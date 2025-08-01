@@ -8,7 +8,6 @@ import {
 import { base } from 'viem/chains';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import { Button, ButtonSizes, ButtonVariants } from 'apps/web/src/components/Button/Button';
-import { default as BaseOrgButton } from 'apps/web/src/components/base-org/Button';
 import { UserAvatar } from 'apps/web/src/components/ConnectWalletButton/UserAvatar';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import useBasenameChain, { supportedChainIds } from 'apps/web/src/hooks/useBasenameChain';
@@ -23,8 +22,6 @@ import classNames from 'classnames';
 import { useCallback, useEffect, useState } from 'react';
 import { useCopyToClipboard, useMediaQuery } from 'usehooks-ts';
 import { useAccount, useSwitchChain } from 'wagmi';
-import ChainDropdown from 'apps/web/src/components/ChainDropdown';
-import { useSearchParams } from 'next/navigation';
 import { DynamicCryptoProviders } from 'apps/web/app/CryptoProviders.dynamic';
 
 export enum ConnectWalletButtonVariants {
