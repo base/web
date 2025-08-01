@@ -23,7 +23,7 @@
     "@bugsnag/plugin-react": "^8.2.0",
     "@coinbase/cookie-banner": "^1.0.3",
     "@coinbase/cookie-manager": "^1.1.1",
-    "@coinbase/onchainkit": "0.38.18",
+    "@coinbase/onchainkit": "0.38.6",
     "@datadog/browser-logs": "^5.23.3",
     "@datadog/browser-rum": "^5.23.3",
     "@frames.js/render": "^0.5.5",
@@ -97,7 +97,7 @@
     "usehooks-ts": "^3.1.0",
     "uuid": "^10.0.0",
     "viem": "2.x",
-    "wagmi": "2.16.0",
+    "wagmi": "2.14.12",
     "zustand": "^5.0.5"
   },
   "devDependencies": {
