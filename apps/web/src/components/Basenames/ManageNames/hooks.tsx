@@ -55,19 +55,17 @@ export function useNameList() {
   const goToPreviousPage = useCallback(() => {
     if (pageHistory.length > 1) {
       const newHistory = [...pageHistory];
-      const previousPage = newHistory.pop(); // Remove current page
-      const targetPage = newHistory[newHistory.length - 1]; // Get previous page
+      const targetPage = newHistory[newHistory.length - 1];
 
       setPageHistory(newHistory);
       setCurrentPage(targetPage);
     }
   }, [pageHistory]);
 
-  // Pagination info - moved above callbacks to avoid initialization issues
   const totalCount = namesData?.total_count ?? 0;
   const hasPrevious = pageHistory.length > 1;
   const hasNext = namesData?.has_more ?? false;
-  const currentPageNumber = pageHistory.length; // Page numbers start from 1
+  const currentPageNumber = pageHistory.length;
 
   const resetPagination = useCallback(() => {
     setCurrentPage(null);
