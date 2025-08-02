@@ -109,6 +109,7 @@ export default function NamesList() {
           {/* Navigation buttons */}
           <div className="flex justify-center gap-4">
             <button
+              type="button"
               onClick={goToPreviousPage}
               disabled={!hasPrevious}
               className={`flex w-20 items-center justify-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
@@ -121,6 +122,7 @@ export default function NamesList() {
             </button>
 
             <button
+              type="button"
               onClick={goToNextPage}
               disabled={!hasNext}
               className={`flex w-20 items-center justify-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
