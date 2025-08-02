@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useErrors } from 'apps/web/contexts/Errors';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useAccount, useChainId } from 'wagmi';
@@ -11,6 +11,10 @@ export function useNameList() {
   const chainId = useChainId();
   const { logError } = useErrors();
 
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState<string | null>(null);
+  const [pageHistory, setPageHistory] = useState<(string | null)[]>([null]); // Track page history for Previous button
+
   const network = chainId === 8453 ? 'base-mainnet' : 'base-sepolia';
 
   const {
@@ -19,12 +23,15 @@ export function useNameList() {
     error,
     refetch,
   } = useQuery<ManagedAddressesResponse>({
-    queryKey: ['usernames', address, network],
+    queryKey: ['usernames', address, network, currentPage],
     queryFn: async (): Promise<ManagedAddressesResponse> => {
       try {
-        const response = await fetch(
-          `/api/basenames/getUsernames?address=${address}&network=${network}`,
-        );
+        let url = `/api/basenames/getUsernames?address=${address}&network=${network}`;
+        if (currentPage) {
+          url += `&page=${currentPage}`;
+        }
+
+        const response = await fetch(url);
         if (!response.ok) {
           throw new Error(`Failed to fetch usernames: ${response.statusText}`);
         }
@@ -37,7 +44,55 @@ export function useNameList() {
     enabled: !!address,
   });
 
-  return { namesData, isLoading, error, refetch };
+  // Navigation functions
+  const goToNextPage = useCallback(() => {
+    if (namesData?.has_more && namesData?.next_page) {
+      setPageHistory((prev) => [...prev, currentPage]);
+      setCurrentPage(namesData.next_page);
+    }
+  }, [namesData?.has_more, namesData?.next_page, currentPage]);
+
+  const goToPreviousPage = useCallback(() => {
+    if (pageHistory.length > 1) {
+      const newHistory = [...pageHistory];
+      const previousPage = newHistory.pop(); // Remove current page
+      const targetPage = newHistory[newHistory.length - 1]; // Get previous page
+
+      setPageHistory(newHistory);
+      setCurrentPage(targetPage);
+    }
+  }, [pageHistory]);
+
+  // Pagination info - moved above callbacks to avoid initialization issues
+  const totalCount = namesData?.total_count ?? 0;
+  const hasPrevious = pageHistory.length > 1;
+  const hasNext = namesData?.has_more ?? false;
+  const currentPageNumber = pageHistory.length; // Page numbers start from 1
+
+  const resetPagination = useCallback(() => {
+    setCurrentPage(null);
+    setPageHistory([null]);
+  }, []);
+
+  // Reset pagination when component mounts or address/network changes
+  useEffect(() => {
+    resetPagination();
+  }, [address, network, resetPagination]);
+
+  return {
+    namesData,
+    isLoading,
+    error,
+    refetch,
+    // Pagination
+    goToNextPage,
+    goToPreviousPage,
+    resetPagination,
+    hasPrevious,
+    hasNext,
+    totalCount,
+    currentPageNumber,
+  };
 }
 
 export function useRemoveNameFromUI(domain: Basename) {
