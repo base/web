@@ -11,9 +11,10 @@ export function useNameList() {
   const chainId = useChainId();
   const { logError } = useErrors();
 
-  // Pagination state
+  // Pagination state - need to maintain a stack of page tokens for proper back navigation
   const [currentPage, setCurrentPage] = useState<string | null>(null);
-  const [pageHistory, setPageHistory] = useState<(string | null)[]>([null]); // Track page history for Previous button
+  const [pageStack, setPageStack] = useState<(string | null)[]>([null]); // Stack of page tokens for history
+  const [pageNumber, setPageNumber] = useState<number>(1);
 
   const network = chainId === 8453 ? 'base-mainnet' : 'base-sepolia';
 
@@ -47,30 +48,38 @@ export function useNameList() {
   // Navigation functions
   const goToNextPage = useCallback(() => {
     if (namesData?.has_more && namesData?.next_page) {
-      setPageHistory((prev) => [...prev, currentPage]);
+      // Push current page to history stack and move to next page
+      setPageStack((prev) => [...prev, currentPage]);
       setCurrentPage(namesData.next_page);
+      setPageNumber((prev) => prev + 1);
     }
   }, [namesData?.has_more, namesData?.next_page, currentPage]);
 
   const goToPreviousPage = useCallback(() => {
-    if (pageHistory.length > 1) {
-      const newHistory = [...pageHistory];
-      const targetPage = newHistory[newHistory.length - 1];
+    if (pageStack.length > 1) {
+      // Pop from stack to get the page token to go back to
+      const newStack = [...pageStack];
+      const targetPageToken = newStack.pop(); // This is the page we want to go back to
 
-      setPageHistory(newHistory);
-      setCurrentPage(targetPage);
+      if (targetPageToken !== undefined) {
+        setPageStack(newStack);
+        setCurrentPage(targetPageToken);
+        setPageNumber((prev) => prev - 1);
+      }
     }
-  }, [pageHistory]);
-
-  const totalCount = namesData?.total_count ?? 0;
-  const hasPrevious = pageHistory.length > 1;
-  const hasNext = namesData?.has_more ?? false;
-  const currentPageNumber = pageHistory.length;
+  }, [pageStack]);
 
   const resetPagination = useCallback(() => {
     setCurrentPage(null);
-    setPageHistory([null]);
+    setPageStack([null]);
+    setPageNumber(1);
   }, []);
+
+  // Pagination info
+  const totalCount = namesData?.total_count ?? 0;
+  const hasPrevious = pageStack.length > 1;
+  const hasNext = namesData?.has_more ?? false;
+  const currentPageNumber = pageNumber;
 
   // Reset pagination when component mounts or address/network changes
   useEffect(() => {

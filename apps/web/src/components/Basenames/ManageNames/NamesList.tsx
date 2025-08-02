@@ -99,7 +99,7 @@ export default function NamesList() {
       </ul>
 
       {/* Pagination Controls */}
-      {(hasPrevious || hasNext || currentPageNumber > 1) && (
+      {(hasPrevious || hasNext) && (
         <div className="mt-8 flex flex-col gap-4">
           {/* Page indicator */}
           <div className="text-center text-sm text-palette-foregroundMuted">
