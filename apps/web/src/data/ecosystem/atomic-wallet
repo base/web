@@ -1,0 +1,8 @@
+{
+  "name": "Atomic Wallet",
+  "description": "Atomic Wallet — your gateway to Web3. Connect to dApps and manage over 1,000 blockchain assets effortlessly.",
+  "url": "atomicwallet.io",
+  "imageUrl": "/images/partners/atomic-wallet.png",
+  "category": "wallet",
+  "subcategory": "self-custody"
+}
