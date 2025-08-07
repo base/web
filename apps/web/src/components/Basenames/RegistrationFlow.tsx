@@ -9,6 +9,7 @@ import {
   registrationTransitionDuration,
   useRegistration,
 } from 'apps/web/src/components/Basenames/RegistrationContext';
+import { FlowBackgroundSteps } from 'apps/web/src/components/Basenames/shared/types';
 import RegistrationForm from 'apps/web/src/components/Basenames/RegistrationForm';
 import RegistrationProfileForm from 'apps/web/src/components/Basenames/RegistrationProfileForm';
 import RegistrationSearchInput from 'apps/web/src/components/Basenames/RegistrationSearchInput';
@@ -82,6 +83,23 @@ export function RegistrationFlow() {
   const isPending = registrationStep === RegistrationSteps.Pending;
   const isSuccess = registrationStep === RegistrationSteps.Success;
   const isProfile = registrationStep === RegistrationSteps.Profile;
+
+  // Map registration steps to background animation steps
+  const backgroundStep = useMemo(() => {
+    switch (registrationStep) {
+      case RegistrationSteps.Search:
+        return FlowBackgroundSteps.Search;
+      case RegistrationSteps.Claim:
+        return FlowBackgroundSteps.Form;
+      case RegistrationSteps.Pending:
+        return FlowBackgroundSteps.Pending;
+      case RegistrationSteps.Success:
+      case RegistrationSteps.Profile:
+        return FlowBackgroundSteps.Success;
+      default:
+        return FlowBackgroundSteps.Search;
+    }
+  }, [registrationStep]);
 
   const layoutPadding = 'px-4 md:px-8';
   const absoluteLayoutPosition = 'top-[40vh] md:top-[50vh]';
@@ -359,7 +377,7 @@ export function RegistrationFlow() {
         </Transition>
 
         {/* Misc: Animated background for each steps */}
-        <RegistrationBackground registrationStep={registrationStep} />
+        <RegistrationBackground backgroundStep={backgroundStep} />
       </section>
     </>
   );

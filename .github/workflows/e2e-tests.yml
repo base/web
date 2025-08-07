@@ -35,6 +35,7 @@ jobs:
           echo "E2E_TEST=true" >> .env
           echo "TEST_BASENAME=testbasename123" >> .env
           echo "NEXT_PUBLIC_CDP_BASE_RPC_ENDPOINT=http://localhost:8545/" >> .env
+          echo "NEXT_PUBLIC_E2E_TEST=true" >> .env
 
       - name: Install dependencies
         run: yarn
@@ -43,7 +44,7 @@ jobs:
         uses: foundry-rs/foundry-toolchain@v1.4.0
 
       - name: Prepare MetaMask extension
-        run: yarn e2e:prepare-metamask
+        run: yarn e2e:metamask:prepare
 
       - name: Install Playwright browsers
         run: yarn playwright install --with-deps

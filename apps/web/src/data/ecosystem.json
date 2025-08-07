@@ -48,14 +48,6 @@
     "subcategory": "nft"
   },
   {
-    "name": "VaultX",
-    "description": "VaultX, built on Base and powered by $VAX, connects real-world stories and real-world assets (RWA) to the blockchain. We protect artists’ IP, secure collectors’ ownership, and onboard everyone into a decentralized art ecosystem",
-    "url": "https://vault-x.io/",
-    "imageUrl": "/images/partners/VaultX.png",
-    "category": "consumer",
-    "subcategory": "real world"
-  },
-  {
     "name": "A0x",
     "description": "Agentic no-code platform to build tokenized social media ai-agents in Farcaster, X, Telegram and more",
     "url": "https://a0x.co",
@@ -352,6 +344,14 @@
     "subcategory": "gaming"
   },
   {
+    "name": "AWE Network",
+    "description": "AWE Network opens the portal to autonomous worlds",
+    "url": "https://awenetwork.ai",
+    "imageUrl": "/images/partners/awe-network.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "Axelar",
     "url": "https://axelar.network",
     "description": "Axelar delivers secure interchain communication. That means dApp users can interact with any asset, any application, on any chain, with one click. You can think of it as Stripe for Web3.\n\nDevelopers interact with a simple API atop a permissionless network that routes messages and ensures network security via proof-of-stake consensus.",
@@ -622,6 +622,14 @@
     "imageUrl": "/images/partners/blocknative.webp",
     "category": "infra",
     "subcategory": "developer tool"
+  },
+  {
+    "name": "Blockops Network",
+    "url": "https://www.blockops.network/",
+    "description": "BlockOps simplifies Web3 infrastructure with scalable RPCs, streamlined node deployment, and real-time observability. Through tools like Mission Control and Telescope, it accelerates blockchain operations for developers and node operators across Ethereum, Base, and emerging appchains.",
+    "imageUrl": "/images/partners/blockops.png",
+    "category": "infra",
+    "subcategory": "developer tool,node provider"
   },
   {
     "name": "BlockPI Network",
@@ -1528,6 +1536,14 @@
     "subcategory": "gaming"
   },
   {
+    "name": "Factor.fi",
+    "description": "With Factor, anyone can drag-and-drop DeFi, no coding required. Create and share multi-protocol strategies that automate yield amplification across DeFi, or deposit into strategies with just one click.",
+    "url": "https://factor.fi/",
+    "imageUrl": "/images/partners/FactorLogo.png",
+    "category": "defi",
+    "subcategory": "liquidity management"
+  },
+  {
     "name": "Farworld",
     "description": "A mysterious world 🪐 filled with mysterious creatures 👾 The onchain monster collecting game of Farcaster, built on Base.",
     "url": "https://farworld.gg",
@@ -2024,6 +2040,14 @@
     "subcategory": "gaming"
   },
   {
+    "name": "Jackal Protocol",
+    "description": "Onchain hot storage. Jackal keeps your data untouchable. No middlemen. No leaks. No lock-ins. Just pure, verifiable freedom.",
+    "url": "https://www.jackalprotocol.com",
+    "imageUrl": "/images/partners/jackal.png",
+    "category": "infra",
+    "subcategory": "depin"
+  },
+  {
     "name": "JELLI",
     "description": "JELLI is the first ever animated ERC20i token on Base! It uses ERC20i to depict dynamic, evolvable and interchangeable jellyfish on-chain. We're here to help grow and expand the ERC20i ecosystem!",
     "url": "https://jelli.blue",
@@ -2238,6 +2262,14 @@
     "imageUrl": "/images/partners/manifold.webp",
     "category": "consumer",
     "subcategory": "creator"
+  },
+  {
+    "name": "Matcha",
+    "description": "Matcha is a DEX aggregator, built by 0x. Matcha offers free swaps, cross chain, gasless swaps, and decentralized limit orders all in one place. Search, trade, done. Matcha.xyz ",
+    "url": "https://matcha.xyz/",
+    "imageUrl": "/images/partners/matcha.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
   },
   {
     "name": "Masa",
@@ -2896,6 +2928,14 @@
     "subcategory": "developer tool"
   },
   {
+    "name": "Paytrie",
+    "description": "CADC is a CAD-backed stablecoin",
+    "url": "https://paytrie.com/cadc",
+    "imageUrl": "/images/partners/CADC.png",
+    "category": "defi",
+    "subcategory": "stablecoin"
+  },
+  {
     "name": "PancakeSwap",
     "url": "https://pancakeswap.finance/",
     "description": "Technology, processes, and people to minimize risk when launching and scaling. Ship faster and more safely.",
@@ -3248,6 +3288,14 @@
     "subcategory": "ai"
   },
   {
+    "name": "Rivo",
+    "description": "Rivo is a decentralized crypto app powered by AI agent, delivering safe and automated passive income in DeFi and making multi-generational wealth accessible to all",
+    "url": "https://app.rivo.xyz/earn?chainId=8453&activetab=all",
+    "imageUrl": "/images/partners/rivo.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "Robots.Farm",
     "description": "Robots.Farm is a Gamified Trading Platform that seamlessly merges decentralized finance with a captivating gaming experience. Developed independently, free from VC funding or paid influencers, $RBF platform serves as a decentralized exchange and aggregator, enabling effortless transactions across 9 networks with scalable capabilities. Engage in gameplay, swap tokens, farm rewards, and enhance your profile with XP points while collecting unique items to unlock special features!",
     "url": "https://robots.farm/",
@@ -3342,6 +3390,14 @@
     "imageUrl": "/images/partners/securedapp.png",
     "category": "infra",
     "subcategory": "security"
+  },
+  {
+    "name": "SEDA",
+    "description": "SEDA, the internet onchain. Deploy application-specific data feeds for any data type in seconds.",
+    "url": "https://seda.xyz",
+    "imageUrl": "/images/partners/seda.png",
+    "category": "infra",
+    "subcategory": "data"
   },
   {
     "name": "Send",
@@ -3976,6 +4032,14 @@
     "imageUrl": "/images/partners/turnkey.png"
   },
   {
+    "name": "Tunnl",
+    "description": "Tunnl is an Engagement-as-a-Service platform that lets anyone boost social media content by rewarding verified creators for engaging and sharing your posts. Amplify your reach with Tunnl Boosts!",
+    "url": "https://app.tunnl.io",
+    "imageUrl": "/images/partners/tunnl.png",
+    "category": "consumer",
+    "subcategory": "creator"
+  },
+  {
     "name": "TYMIO",
     "description": "TYMIO is a suite of non-custodial crypto apps for investors. Earn yield on stablecoins, ETH, or WBTC through simple, tailored structured products.",
     "url": "https://tymio.com/",
@@ -4072,12 +4136,36 @@
     "subcategory": "payments"
   },
   {
+    "name": "VaultX",
+    "description": "VaultX, built on Base and powered by $VAX, connects real-world stories and real-world assets (RWA) to the blockchain. We protect artists’ IP, secure collectors’ ownership, and onboard everyone into a decentralized art ecosystem",
+    "url": "https://vault-x.io/",
+    "imageUrl": "/images/partners/VaultX.png",
+    "category": "consumer",
+    "subcategory": "real world"
+  },
+  {
     "name": "vaults.fyi",
     "description": "vaults.fyi is your onchain yield hub, curating and verifying DeFi vault analytics (APY, TVL, etc.) via onchain data. Our Insights and Earn APIs let builders seamlessly integrate DeFi.",
     "url": "https://app.vaults.fyi/discover?selectedNetworks=base",
     "imageUrl": "/images/partners/vaultsfyi.png",
     "category": "defi",
     "subcategory": "portfolio"
+  },
+  {
+    "name": "VCHF",
+    "description": "VNX Swiss Franc (VCHF) is a multichain token referencing Swiss Franc from a European licensed token generator.",
+    "url": "https://vnx.li/vchf/",
+    "imageUrl": "/images/partners/vchf.png",
+    "category": "defi",
+    "subcategory": "stablecoin"
+  },
+  {
+    "name": "VEUR",
+    "description": "VNX Euro (VEUR) is a multichain token referencing Euro from a European licensed token generator.",
+    "url": "https://vnx.li/veur/",
+    "imageUrl": "/images/partners/veur.png",
+    "category": "defi",
+    "subcategory": "stablecoin"
   },
   {
     "name": "Vela Exchange",
@@ -4110,6 +4198,14 @@
     "imageUrl": "/images/partners/vertex.png",
     "category": "defi",
     "subcategory": "dex"
+  },
+  {
+    "name": "VGBP",
+    "description": "VNX British Pound (VGBP) is a multichain token referencing British Pound from a European licensed token generator.",
+    "url": "https://vnx.li/vgbp/",
+    "imageUrl": "/images/partners/vgbp.png",
+    "category": "defi",
+    "subcategory": "stablecoin"
   },
   {
     "name": "Virtuals Protocol",
@@ -4262,6 +4358,14 @@
     "imageUrl": "/images/partners/yield_guild_games.webp",
     "category": "consumer",
     "subcategory": "gaming"
+  },
+  {
+    "name": "Yield Seeker",
+    "url": "https://yieldseeker.xyz",
+    "description": "Your own personalised AI Agent that analyzes DeFi protocols in real-time to get you the best stablecoin DeFi yields. Safe, automated, and effortless.",
+    "imageUrl": "/images/partners/yield_seeker.png",
+    "category": "ai",
+    "subcategory": "ai"
   },
   {
     "name": "Zapper",
