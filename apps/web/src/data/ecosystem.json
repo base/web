@@ -4334,5 +4334,13 @@
     "imageUrl": "/images/partners/zora.webp",
     "category": "consumer",
     "subcategory": "creator"
+  },
+  {
+  "name": "Netrum AI",
+  "description": "Voice-to-contract AI infra live on Base. Base Agent verifies .base domain ownership onchain, issues badges, and grants access to all Netrum AI Infra.",
+  "url": "https://base.netrumlabs.com",
+  "imageUrl": "/images/partners/netrum-ai-logo.png",
+  "category": "infra",
+  "subcategory": "developer tool"
   }
 ]
