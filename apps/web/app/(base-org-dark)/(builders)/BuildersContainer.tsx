@@ -24,17 +24,17 @@ export function BuildersContainer({
 }) {
   return (
     <>
-      <div id="webgl-canvas" className="absolute left-0 top-0 h-full w-full overflow-hidden">
-        <div className="-z-1 h-full w-full">
+      <div id="webgl-canvas" className="overflow-hidden absolute top-0 left-0 w-full h-full">
+        <div className="-z-1 h-[40vh] w-full">
           <WebGLCanvas />
         </div>
       </div>
       <Container className="gap-y-[144px] pt-[64px] font-sans md:gap-y-[168px] md:pt-[60px] lg:pt-6">
         <section className={cx('relative col-span-12', sectionClassName)}>
           <div className={cx('absolute inset-0', asciiImageContainerClassName)}>
-            <div className="h-full w-full">
+            <div className="w-full h-full">
               <AsciiFluidSceneBuilders
-                className="flex h-full w-full"
+                className="flex w-full h-full"
                 imageUrl={asciiImageSrc ?? defaultImg.src}
                 enableInteractivity
                 greyscale={false}
@@ -45,7 +45,7 @@ export function BuildersContainer({
             </div>
           </div>
           <Title
-            level={TitleLevel.H2Regular}
+            level={TitleLevel.H0Medium}
             as="h1"
             className={cx('mb-[240px] md:mb-[500px]', titleClassName)}
           >

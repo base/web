@@ -1,3 +1,4 @@
+/* eslint-disable react-perf/jsx-no-new-array-as-prop */
 import type { Metadata } from 'next';
 import buildersCover from './builders.png';
 import Image from 'next/image';
@@ -15,6 +16,8 @@ import { BuildersSection } from 'apps/web/app/(base-org-dark)/(builders)/Builder
 import Link from 'apps/web/src/components/Link';
 import { BuildersContainer } from 'apps/web/app/(base-org-dark)/(builders)/BuildersContainer';
 import buildersHero from './builders-hero.png';
+import Title from 'apps/web/src/components/base-org/typography/TitleRedesign';
+import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRedesign/types';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
@@ -137,9 +140,9 @@ export default function Builders() {
       <BuildersSection
         className="flex flex-col gap-8"
         contentBlocks={[
-          <h2 className="text-7xl leading-none tracking-[-2.56px]" key="get-funded-title">
+          <Title level={TitleLevel.H0Medium} key="get-funded-title">
             Get funded
-          </h2>,
+          </Title>,
           <div className="mb-4" key="get-funded-stats">
             <StatsSection
               description="Base supports builders at every stage—from idea, to app, to business."

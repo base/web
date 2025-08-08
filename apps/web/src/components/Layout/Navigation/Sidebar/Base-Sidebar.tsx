@@ -71,7 +71,7 @@ export default function BaseSidebar() {
   return (
     <nav className="sticky top-4 z-10 hidden h-auto min-h-[600px] w-full flex-col pl-4 lg:flex lg:h-[calc(100dvh-32px)]">
       <ContextMenu>
-        <div className="relative z-20 overflow-clip pl-2 pt-2">
+        <div className="relative z-20 pt-2 pl-2 overflow-clip">
           <SidebarLogo />
         </div>
       </ContextMenu>
@@ -126,7 +126,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
   const currentSubMenuVariants = isMobile ? mobileSubMenuVariants : subMenuVariants;
 
   return (
-    <div className="relative flex h-full flex-1 flex-col">
+    <div className="flex relative flex-col flex-1 h-full">
       <div
         className={classNames(
           'mt-6 flex flex-1 flex-col gap-2.5 overflow-y-auto overflow-x-hidden px-4 lg:px-0',
@@ -142,14 +142,14 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
                 animate="animate"
                 exit="exit"
                 transition={transition}
-                className="absolute inset-0 flex max-h-max flex-col gap-1 overflow-y-auto overflow-x-hidden"
+                className="flex overflow-y-auto overflow-x-hidden absolute inset-0 flex-col gap-1 max-h-max"
               >
                 {routes.map((route) => {
                   // eslint-disable-next-line react-perf/jsx-no-new-function-as-prop
                   const handleClick = () => handleMenuItemClick(route);
 
                   return (
-                    <motion.div key={route.href} className="relative flex flex-col">
+                    <motion.div key={route.href} className="flex relative flex-col">
                       {route.items ? (
                         <button
                           type="button"
@@ -221,14 +221,14 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
                     },
                   )}
                 >
-                  <ChevronLeftIcon className="fill-current h-3 w-3" />
+                  <ChevronLeftIcon className="w-3 h-3 fill-current" />
                   <Text variant={TextVariant.CTALabelSm}>Back to Menu</Text>
                 </motion.button>
 
                 <div className="pt-2">
                   {getCurrentMenuItems().map(
                     (item: { href: string; label: string; icon?: string; newTab?: boolean }) => (
-                      <motion.div key={item.href} className="relative flex flex-col">
+                      <motion.div key={item.href} className="flex relative flex-col">
                         <Link
                           href={item.href}
                           target={item.newTab ? '_blank' : '_self'}
@@ -249,7 +249,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
                             },
                           )}
                         >
-                          {item.icon && <Icon name={item.icon} className="mr-2 inline-block" />}
+                          {item.icon && <Icon name={item.icon} className="inline-block mr-2" />}
                           <Text variant={TextVariant.CTALabelSm}>{item.label}</Text>
                         </Link>
                       </motion.div>
@@ -258,43 +258,44 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
                 </div>
 
                 {/* appendix if so */}
-                {activeSubMenu && routes.find((route) => route.href === activeSubMenu)?.appendix && (
-                  <div className="border-t border-base-gray-50 pt-2">
-                    {routes
-                      .find((route) => route.href === activeSubMenu)
-                      ?.appendix?.map(
-                        (appendixItem: { href: string; label: string; newTab?: boolean }) => (
-                          <motion.div key={appendixItem.href} className="relative flex flex-col">
-                            <Link
-                              href={appendixItem.href}
-                              target={appendixItem.newTab ? '_blank' : '_self'}
-                              rel={appendixItem.newTab ? 'noopener noreferrer' : undefined}
-                              className={classNames(
-                                'group flex w-full items-center justify-between rounded-lg px-2.5 py-2 leading-[114%] transition-colors duration-150',
-                                {
-                                  'bg-base-gray-30 dark:bg-gray-90': isLinkActive({
-                                    pathname,
-                                    href: appendixItem.href,
-                                  }),
-                                  'text-black hover:bg-base-gray-30 dark:text-white dark:hover:bg-gray-90':
-                                    !isLinkActive({
+                {activeSubMenu &&
+                  routes.find((route) => route.href === activeSubMenu)?.appendix && (
+                    <div className="pt-2 border-t border-base-gray-50">
+                      {routes
+                        .find((route) => route.href === activeSubMenu)
+                        ?.appendix?.map(
+                          (appendixItem: { href: string; label: string; newTab?: boolean }) => (
+                            <motion.div key={appendixItem.href} className="flex relative flex-col">
+                              <Link
+                                href={appendixItem.href}
+                                target={appendixItem.newTab ? '_blank' : '_self'}
+                                rel={appendixItem.newTab ? 'noopener noreferrer' : undefined}
+                                className={classNames(
+                                  'group flex w-full items-center justify-between rounded-lg px-2.5 py-2 leading-[114%] transition-colors duration-150',
+                                  {
+                                    'bg-base-gray-30 dark:bg-gray-90': isLinkActive({
                                       pathname,
                                       href: appendixItem.href,
-                                    }) && !isExiting,
-                                  'text-black dark:text-white': isExiting,
-                                },
-                              )}
-                            >
-                              <Text variant={TextVariant.CTALabelSm}>{appendixItem.label}</Text>
-                              <div className="text-[#B1B7C3] group-hover:text-black dark:text-[#1E2025] group-hover:dark:text-white">
-                                <ExternalLinkIcon />
-                              </div>
-                            </Link>
-                          </motion.div>
-                        ),
-                      )}
-                  </div>
-                )}
+                                    }),
+                                    'text-black hover:bg-base-gray-30 dark:text-white dark:hover:bg-gray-90':
+                                      !isLinkActive({
+                                        pathname,
+                                        href: appendixItem.href,
+                                      }) && !isExiting,
+                                    'text-black dark:text-white': isExiting,
+                                  },
+                                )}
+                              >
+                                <Text variant={TextVariant.CTALabelSm}>{appendixItem.label}</Text>
+                                <div className="text-[#B1B7C3] group-hover:text-black dark:text-[#1E2025] group-hover:dark:text-white">
+                                  <ExternalLinkIcon />
+                                </div>
+                              </Link>
+                            </motion.div>
+                          ),
+                        )}
+                    </div>
+                  )}
               </motion.div>
             )}
           </AnimatePresence>
@@ -302,8 +303,8 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
       </div>
 
       {!isBuilders ? (
-        <div className="mt-auto flex w-full flex-col gap-2 whitespace-nowrap px-4 pb-4 lg:px-0 lg:pb-0">
-          <div className="flex items-center gap-2 border-t border-base-gray-50 p-2 pt-4">
+        <div className="flex flex-col gap-2 px-4 pb-4 mt-auto w-full whitespace-nowrap lg:px-0 lg:pb-0">
+          <div className="flex gap-2 items-center p-2 pt-4 border-t border-base-gray-50">
             <span className="block size-2.5 rounded-[2px] bg-base-blue" />
             <span className="font-sans text-xs text-base-blue">START HERE</span>
           </div>
@@ -312,7 +313,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
             type="button"
             className="w-full"
             asChild
-            variant={ButtonVariants.Primary}
+            variant={ButtonVariants.Secondary}
             size={ButtonSizes.Small}
           >
             <Link href="https://base.app" className="group" target="_blank">
@@ -323,7 +324,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
             type="button"
             className="w-full"
             asChild
-            variant={ButtonVariants.Primary}
+            variant={ButtonVariants.Secondary}
             size={ButtonSizes.Small}
           >
             <Link href="/build" className="group">
@@ -334,7 +335,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
       ) : (
         <AnimatePresence>
           <motion.div
-            className="mt-auto flex flex-col gap-2 px-4 pb-4 lg:px-0 lg:pb-0"
+            className="flex flex-col gap-2 px-4 pb-4 mt-auto lg:px-0 lg:pb-0"
             // eslint-disable-next-line react-perf/jsx-no-new-object-as-prop
             initial={{ opacity: 0 }}
             // eslint-disable-next-line react-perf/jsx-no-new-object-as-prop
@@ -343,7 +344,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
             exit={{ opacity: 0 }}
           >
             <Button
-              variant={ButtonVariants.Secondary}
+              variant={ButtonVariants.SecondaryOutline}
               size={ButtonSizes.Small}
               asChild
               className="w-full"
@@ -353,7 +354,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
               </Link>
             </Button>
             <Button
-              variant={ButtonVariants.Primary}
+              variant={ButtonVariants.Secondary}
               size={ButtonSizes.Small}
               asChild
               className="w-full"

@@ -3400,6 +3400,14 @@
     "subcategory": "security"
   },
   {
+    "name": "SEDA",
+    "description": "SEDA, the internet onchain. Deploy application-specific data feeds for any data type in seconds.",
+    "url": "https://seda.xyz",
+    "imageUrl": "/images/partners/seda.png",
+    "category": "infra",
+    "subcategory": "data"
+  },
+  {
     "name": "Send",
     "url": "https://send.it",
     "description": "Send is a payments app where users maintain full control of their assets. Using USDC stablecoin, Send enables instant, global transfers and provides banking features for the digital age.",
