@@ -324,7 +324,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
             type="button"
             className="w-full"
             asChild
-            variant={ButtonVariants.Secondary}
+            variant={ButtonVariants.Blue}
             size={ButtonSizes.Small}
           >
             <Link href="/build" className="group">
