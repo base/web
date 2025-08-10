@@ -1,0 +1,7 @@
+import{u as a,j as n}from"./index-Dlxm52NL.js";const r={title:"Transaction Simulation Data",description:"undefined"};function i(e){const t={a:"a",div:"div",em:"em",h1:"h1",h2:"h2",header:"header",img:"img",li:"li",p:"p",strong:"strong",ul:"ul",...a(),...e.components};return n.jsxs(n.Fragment,{children:[n.jsx(t.header,{children:n.jsxs(t.h1,{id:"transaction-simulation-data",children:["Transaction Simulation Data",n.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#transaction-simulation-data",children:n.jsx(t.div,{"data-autolink-icon":!0})})]})}),`
+`,n.jsx(t.p,{children:"There is a hidden feature which enables you to easily copy transaction simulation request and response data which can then be pasted it in a text editor to inspect."}),`
+`,n.jsxs(t.h2,{id:"instructions",children:["Instructions",n.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#instructions",children:n.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,n.jsxs(t.ul,{children:[`
+`,n.jsxs(t.li,{children:["Click the area defined in red ",n.jsx(t.strong,{children:n.jsx(t.em,{children:"five times"})}),", then paste the copied data in a text editor."]}),`
+`]}),`
+`,n.jsx("div",{style:{display:"flex",justifyContent:"center"},children:n.jsx("div",{style:{width:450},children:n.jsx(t.p,{children:n.jsx(t.img,{src:"/images/smart-wallet/copyTxnSimClickZone.png",alt:"Copy transaction simulation data click zone"})})})})]})}function d(e={}){const{wrapper:t}={...a(),...e.components};return t?n.jsx(t,{...e,children:n.jsx(i,{...e})}):i(e)}export{d as default,r as frontmatter};
