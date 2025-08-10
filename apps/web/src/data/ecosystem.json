@@ -3216,6 +3216,14 @@
     "subcategory": "data"
   },
   {
+    "name": "Rei Network",
+    "description": "Rei Network is an AI research organization that focuses on advancing artificial intelligence through science driven innovations.",
+    "url": "https://reisearch.box",
+    "imageUrl": "/images/partners/logo-rei.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "Reflect",
     "category": "defi",
     "subcategory": "liquidity management",
