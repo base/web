@@ -5,6 +5,31 @@
 @import '@rainbow-me/rainbowkit/styles.css';
 @import '@coinbase/onchainkit/styles.css';
 
+@layer components {
+  .title-h0 {
+    @apply text-[4.5rem] font-medium leading-[98%] tracking-[-0.12rem] lg:text-[10rem];
+  }
+  .title-h1 {
+    @apply text-[2rem] leading-[110%] tracking-[-0.1rem] lg:text-[2.5rem];
+  }
+  .title-h2 {
+    @apply text-[1.625rem] font-medium leading-[105%] tracking-[-0.04875rem] lg:text-[2rem];
+  }
+  .title-h3 {
+    @apply text-[1.625rem] font-medium leading-[105%] tracking-[-0.04875rem] lg:text-[2rem];
+  }
+
+  .body-1 {
+    @apply text-[1.25rem] leading-[120%] tracking-[-0.0375rem] lg:text-[1.25rem];
+  }
+  .body-2 {
+    @apply text-[1rem] leading-[120%] tracking-[-0.025rem] lg:text-[1rem];
+  }
+  .body-mono {
+    @apply text-[0.875rem] leading-[120%] tracking-[0.01em] lg:text-[0.875rem];
+  }
+}
+
 .scrollbar {
   -ms-overflow-style: auto; /* IE and Edge */
   scrollbar-width: auto; /* Firefox */

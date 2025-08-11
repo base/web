@@ -26,15 +26,15 @@ export default function SpendCrypto() {
 
   return (
     <section ref={ref} className="col-span-full py-12 text-black">
-      <div className="flex flex-col-reverse items-center justify-between gap-12 md:flex-row ">
+      <div className="flex flex-col-reverse gap-12 justify-between items-center md:flex-row">
         <div className="relative flex h-80 w-96 max-w-full items-start justify-center overflow-hidden rounded-md bg-gray-5 px-8 pb-8 pt-12 md:pb-12 lg:h-[450px]">
-          <div className="relative flex h-full w-full items-start justify-center pt-8">
+          <div className="flex relative justify-center items-start pt-8 w-full h-full">
             {/* Token 1 */}
             <motion.div
               className="absolute z-[9] -translate-y-36 lg:-translate-y-40"
               style={token1Style}
             >
-              <div className="scale-50 drop-shadow-sm lg:scale-100">
+              <div className="drop-shadow-sm scale-50 lg:scale-100">
                 <ImageWithLoading
                   src="/images/partners/usdc.svg"
                   alt="USDC token"
@@ -49,7 +49,7 @@ export default function SpendCrypto() {
               className="absolute z-[8] -translate-y-24 lg:-translate-y-20"
               style={token2Style}
             >
-              <div className="scale-75 drop-shadow-md lg:scale-110">
+              <div className="drop-shadow-md scale-75 lg:scale-110">
                 <ImageWithLoading
                   src="/images/partners/usdc.svg"
                   alt="USDC token"
@@ -64,7 +64,7 @@ export default function SpendCrypto() {
               className="absolute z-[7] -translate-y-8 lg:translate-y-4"
               style={token3Style}
             >
-              <div className="scale-90 drop-shadow-lg lg:scale-125">
+              <div className="drop-shadow-lg scale-90 lg:scale-125">
                 <ImageWithLoading
                   src="/images/partners/usdc.svg"
                   alt="USDC token"
@@ -92,8 +92,8 @@ export default function SpendCrypto() {
         </div>
 
         <div className="flex flex-col gap-8 md:max-w-sm">
-          <Title level={TitleLevel.H4Regular}>Spend crypto like cash</Title>
-          <Title level={TitleLevel.H6Regular}>
+          <Title level={TitleLevel.H1Regular}>Spend crypto like cash.</Title>
+          <Title level={TitleLevel.H2Regular}>
             USDC is one of the most trusted and reputable stablecoins, combining the stability of
             the dollar with the speed of the internet.
           </Title>

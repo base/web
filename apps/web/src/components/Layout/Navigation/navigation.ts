@@ -464,11 +464,6 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
         href: 'https://lu.ma/base-virtualevents?utm_source=dotorg&utm_medium=nav&period=past',
         newTab: true,
       },
-      {
-        icon: 'media',
-        label: 'Brand Kit',
-        href: 'https://base.org/brand',
-      },
     ],
   },
   {
@@ -479,6 +474,11 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
         icon: 'code',
         label: 'Vision',
         href: '/about/vision',
+      },
+      {
+        icon: 'media',
+        label: 'Brand Kit',
+        href: 'https://base.org/brand',
       },
       {
         icon: 'openBook',

@@ -11,8 +11,6 @@ import { WebGlTunnelIn } from 'apps/web/src/components/WebGL/Tunnel';
 import { useWebGLInteraction } from 'apps/web/src/hooks/useWebGLInteraction';
 import { Float } from '@react-three/drei';
 
-const patternTexture = '/models/upd/pat-cards.png';
-
 const DEBUG = false;
 const CAM_SIZE = 1.6;
 
@@ -106,12 +104,14 @@ export function CardScene({
   className,
   stretchZ,
   modelRotation = [-0.6, -0.6, 0] as const,
+  patternTexture = '/models/upd/pat-cards.png',
 }: {
   gltfSrc?: string;
   useRgbTexture?: boolean;
   className?: string;
   stretchZ?: number;
   modelRotation?: [number, number, number];
+  patternTexture?: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const interactionUniforms = useWebGLInteraction(containerRef);
@@ -213,7 +213,7 @@ export function CardScene({
     } else {
       setExternalTexture(null);
     }
-  }, [useRgbTexture]);
+  }, [useRgbTexture, patternTexture]);
 
   useEffect(() => {
     if (!gltfSrc) return;
@@ -304,12 +304,12 @@ export function CardScene({
   const height = containerSize.height > 0 ? containerSize.height : 1;
 
   return (
-    <div ref={containerRef} className={`${className} h-full w-full overflow-hidden`}>
+    <div ref={containerRef} className={`overflow-hidden w-full h-full ${className}`}>
       <WebGLView
         fragmentShader={DEBUG ? debugFragmentShader : fragmentShader}
         customUniforms={customUniforms}
         onResize={handleResize}
-        borderRadiusCorners={[8, 8, 0, 0] as const}
+        borderRadiusCorners={[8, 8, 8, 8] as const}
       />
 
       <WebGlTunnelIn>
