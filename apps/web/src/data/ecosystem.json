@@ -4438,5 +4438,13 @@
     "imageUrl": "/images/partners/zora.webp",
     "category": "consumer",
     "subcategory": "creator"
+  },
+  {
+    "name": "Suby",
+    "description": "Crypto payment layer for paid communities on Telegram & Discord — instant access, recurring subs, multi-chain support.",
+    "url": "https://suby.fi",
+    "imageUrl": "/images/partners/suby.png",
+    "category": "consumer",
+    "subcategory": "payments"
   }
 ]
