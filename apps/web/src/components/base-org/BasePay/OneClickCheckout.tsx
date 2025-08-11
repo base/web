@@ -27,8 +27,8 @@ export default function OneClickCheckout() {
 
   return (
     <section ref={ref} className="col-span-full text-black file:py-12">
-      <div className="flex flex-col-reverse items-center justify-between gap-8 md:flex-row">
-        <div className="rounded-md bg-gray-5 px-8 pb-8">
+      <div className="flex flex-col-reverse gap-8 justify-between items-center md:flex-row">
+        <div className="px-8 pb-8 rounded-md bg-gray-5">
           <motion.div style={animationStyle} className="origin-top">
             <ImageWithLoading
               src="/images/basepay/checkout-image.webp"
@@ -39,8 +39,8 @@ export default function OneClickCheckout() {
           </motion.div>
         </div>
         <div className="flex flex-col gap-8 md:max-w-sm">
-          <Title level={TitleLevel.H4Regular}>One-click checkout</Title>
-          <Title level={TitleLevel.H6Regular}>
+          <Title level={TitleLevel.H1Regular}>One-click checkout.</Title>
+          <Title level={TitleLevel.H2Regular}>
             Pay with crypto instantly, no extra steps. Save shipping info to make purchases even
             more convenient.
           </Title>

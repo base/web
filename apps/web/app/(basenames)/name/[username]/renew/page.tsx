@@ -10,7 +10,8 @@ type PageProps = {
 
 export default async function Page(props: PageProps) {
   const params = await props.params;
-  const name = params.username.split('.')[0];
+  const decodedUsername = decodeURIComponent(params.username);
+  const name = decodedUsername.split('.')[0];
   const formattedName = await formatDefaultUsername(name);
 
   if (isBasenameRenewalsKilled) {

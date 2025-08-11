@@ -624,6 +624,14 @@
     "subcategory": "developer tool"
   },
   {
+    "name": "Blockops Network",
+    "url": "https://www.blockops.network/",
+    "description": "BlockOps simplifies Web3 infrastructure with scalable RPCs, streamlined node deployment, and real-time observability. Through tools like Mission Control and Telescope, it accelerates blockchain operations for developers and node operators across Ethereum, Base, and emerging appchains.",
+    "imageUrl": "/images/partners/blockops.png",
+    "category": "infra",
+    "subcategory": "developer tool,node provider"
+  },
+  {
     "name": "BlockPI Network",
     "description": "BlockPI is a top infra provider in APAC. With 6+ years of experience, BlockPI currently offers one-stop high performance infra services including but not limited to RPC service, validator service, relayer service, account abstraction services across 50+ networks and helps in building the infras for more than 10 public blockchains (Berachain, Blast, Merlin Chain, Taiko, ZetaChain, etc) as their official infra partner. BlockPI also closely partners with over 300+ well-known projects and developers communities. With millions of public users and over 35,000 registered users, BlockPI stably processes 60B+ monthly requests.",
     "url": "https://blockpi.io/",
@@ -1526,6 +1534,14 @@
     "imageUrl": "/images/partners/F1337.webp",
     "category": "consumer",
     "subcategory": "gaming"
+  },
+  {
+    "name": "Factor.fi",
+    "description": "With Factor, anyone can drag-and-drop DeFi, no coding required. Create and share multi-protocol strategies that automate yield amplification across DeFi, or deposit into strategies with just one click.",
+    "url": "https://factor.fi/",
+    "imageUrl": "/images/partners/FactorLogo.png",
+    "category": "defi",
+    "subcategory": "liquidity management"
   },
   {
     "name": "Farworld",
@@ -3376,6 +3392,14 @@
     "subcategory": "security"
   },
   {
+    "name": "SEDA",
+    "description": "SEDA, the internet onchain. Deploy application-specific data feeds for any data type in seconds.",
+    "url": "https://seda.xyz",
+    "imageUrl": "/images/partners/seda.png",
+    "category": "infra",
+    "subcategory": "data"
+  },
+  {
     "name": "Send",
     "url": "https://send.it",
     "description": "Send is a payments app where users maintain full control of their assets. Using USDC stablecoin, Send enables instant, global transfers and provides banking features for the digital age.",
@@ -3630,6 +3654,14 @@
     "imageUrl": "/images/partners/superfluid.webp",
     "category": "consumer",
     "subcategory": "payments"
+  },
+  {
+    "name": "SuperFund",
+    "description": "A smart USDC yield product that reallocates capital across lending protocols for optimal returns.",
+    "url": "https://funds.superlend.xyz/super-fund/base",
+    "imageUrl": "/images/partners/superfund.png",
+    "category": "defi",
+    "subcategory": "yield"
   },
   {
     "name": "Supra",

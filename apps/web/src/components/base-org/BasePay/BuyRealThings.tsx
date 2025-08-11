@@ -33,10 +33,10 @@ export default function BuyRealThings() {
 
   return (
     <section ref={ref} className="col-span-full py-12 text-black">
-      <div className="flex flex-col items-center justify-between gap-12 md:flex-row md:gap-24">
+      <div className="flex flex-col gap-12 justify-between items-center md:flex-row md:gap-24">
         <div className="flex flex-col gap-8 md:max-w-sm">
-          <Title level={TitleLevel.H4Regular}>Buy real things</Title>
-          <Title level={TitleLevel.H6Regular}>
+          <Title level={TitleLevel.H1Regular}>Buy real things</Title>
+          <Title level={TitleLevel.H2Regular}>
             Available soon at millions of US Shopify stores, with a growing list of merchants
             accepting Base Pay.
           </Title>
@@ -45,8 +45,8 @@ export default function BuyRealThings() {
         {/* Animated Carousels Container */}
         <div className="relative flex h-[800px] w-full max-w-md justify-center gap-4 overflow-hidden">
           {/* Fade gradients */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-20 bg-gradient-to-b from-white to-transparent" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-20 bg-gradient-to-t from-white to-transparent" />
+          <div className="absolute inset-x-0 top-0 z-10 h-20 bg-gradient-to-b from-white to-transparent pointer-events-none" />
+          <div className="absolute inset-x-0 bottom-0 z-10 h-20 bg-gradient-to-t from-white to-transparent pointer-events-none" />
 
           {/* Add to Cart Button */}
           <div className="absolute left-1/2 top-1/2 z-20 flex h-9 w-60 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[8px] bg-black text-white shadow-lg">
@@ -56,18 +56,18 @@ export default function BuyRealThings() {
           </div>
 
           {/* Left Carousel - Moving Up */}
-          <motion.div className="flex flex-col items-center gap-3" style={{ y: y1 }}>
+          <motion.div className="flex flex-col gap-3 items-center" style={{ y: y1 }}>
             {[...leftCarouselItems, ...leftCarouselItems].map((item) => (
-              <div key={crypto.randomUUID()} className="flex-shrink-0 overflow-hidden rounded-3xl">
+              <div key={crypto.randomUUID()} className="overflow-hidden flex-shrink-0 rounded-3xl">
                 <ImageWithLoading src={item.src} alt={item.alt} width={245} height={343} />
               </div>
             ))}
           </motion.div>
 
           {/* Right Carousel - Moving Down */}
-          <motion.div className="flex flex-col items-center gap-3" style={{ y: y2 }}>
+          <motion.div className="flex flex-col gap-3 items-center" style={{ y: y2 }}>
             {[...rightCarouselItems, ...rightCarouselItems].map((item) => (
-              <div key={crypto.randomUUID()} className="flex-shrink-0 overflow-hidden rounded-3xl">
+              <div key={crypto.randomUUID()} className="overflow-hidden flex-shrink-0 rounded-3xl">
                 <ImageWithLoading src={item.src} alt={item.alt} width={245} height={343} />
               </div>
             ))}

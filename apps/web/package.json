@@ -41,6 +41,7 @@
     "@radix-ui/react-popover": "^1.1.1",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tooltip": "^1.1.2",
+    "@rainbow-me/rainbowkit": "^2.1.5",
     "@react-three/drei": "^9.113.0",
     "@react-three/fiber": "^9.0.0-alpha.8",
     "@react-three/postprocessing": "^3.0.0-rc.0",
