@@ -1560,6 +1560,14 @@
     "subcategory": "nft"
   },
   {
+    "name": "Fibrous",
+    "description": "Fibrous offers optimal trade execution with advanced aggregation and innovative onchain features, enabling seamless DeFi trading across its interface and APIs on Base.",
+    "url": "https://app.fibrous.finance/en?network=base",
+    "imageUrl": "/images/partners/fibrous.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
+  },
+  {
     "name": "Fireblocks",
     "url": "https://www.fireblocks.com/",
     "description": "Fireblocks provides a suite of applications to manage digital asset operations and a complete development platform to build your business on the blockchain.",
