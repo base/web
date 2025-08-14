@@ -14,14 +14,21 @@ export function withTimeout(
   timeoutLimit = defaultTimeout,
 ): NextApiHandler {
   return async (req) => {
-    const timeoutPromise = new Promise<never>((_, reject) =>
-      setTimeout(() => reject(new Error('Request timed out')), timeoutLimit as number),
-    );
+    let timeoutId: NodeJS.Timeout;
+
+    const timeoutPromise = new Promise<never>((_, reject) => {
+      timeoutId = setTimeout(() => reject(new Error('Request timed out')), timeoutLimit as number);
+    });
 
     const handlerPromise = new Promise<NextResponse>((resolve, reject) => {
       Promise.resolve(handler(req))
         .then((response) => resolve(response))
-        .catch((error) => reject(error));
+        .catch((error) => reject(error))
+        .finally(() => {
+          if (timeoutId) {
+            clearTimeout(timeoutId);
+          }
+        });
     });
 
     try {
@@ -50,14 +57,21 @@ export function withTimeoutWithParams<T>(
   timeoutLimit = defaultTimeout,
 ): NextApiHandlerWithParams<T> {
   return async (req, params) => {
-    const timeoutPromise = new Promise<never>((_, reject) =>
-      setTimeout(() => reject(new Error('Request timed out')), timeoutLimit as number),
-    );
+    let timeoutId: NodeJS.Timeout;
+
+    const timeoutPromise = new Promise<never>((_, reject) => {
+      timeoutId = setTimeout(() => reject(new Error('Request timed out')), timeoutLimit as number);
+    });
 
     const handlerPromise = new Promise<NextResponse>((resolve, reject) => {
       Promise.resolve(handler(req, params))
         .then((response) => resolve(response))
-        .catch((error) => reject(error));
+        .catch((error) => reject(error))
+        .finally(() => {
+          if (timeoutId) {
+            clearTimeout(timeoutId);
+          }
+        });
     });
 
     try {
