@@ -23,8 +23,6 @@ import classNames from 'classnames';
 import { useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useAccount, useSwitchChain } from 'wagmi';
-import { InformationCircleIcon } from '@heroicons/react/16/solid';
-import Tooltip from 'apps/web/src/components/Tooltip';
 import RegistrationShareOnSocials from 'apps/web/src/components/Basenames/RegistrationShareOnSocials';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import { isDevelopment } from 'libs/base-ui/constants';
