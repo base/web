@@ -18,11 +18,7 @@ import RegistrationSuccessMessage from 'apps/web/src/components/Basenames/Regist
 import { UsernamePill } from 'apps/web/src/components/Basenames/UsernamePill';
 import { UsernamePillVariants } from 'apps/web/src/components/Basenames/UsernamePill/types';
 import useBasenameChain, { supportedChainIds } from 'apps/web/src/hooks/useBasenameChain';
-import {
-  formatBaseEthDomain,
-  IS_EARLY_ACCESS,
-  USERNAME_DOMAINS,
-} from 'apps/web/src/utils/usernames';
+import { formatBaseEthDomain, USERNAME_DOMAINS } from 'apps/web/src/utils/usernames';
 import classNames from 'classnames';
 import { useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useMemo } from 'react';
@@ -181,31 +177,6 @@ export function RegistrationFlow() {
               variant={RegistrationSearchInputVariant.Large}
               placeholder="Search for a name"
             />
-            {IS_EARLY_ACCESS && (
-              <Tooltip
-                content="shrek.base.eth is already taken."
-                className="mx-auto mt-6 flex items-center justify-center"
-              >
-                <>
-                  <p
-                    className={classNames({
-                      'text-white': searchInputFocused,
-                      'text-gray-40': !searchInputFocused,
-                    })}
-                  >
-                    You can claim one Basename per wallet for early access.
-                  </p>
-                  <InformationCircleIcon
-                    width={12}
-                    height={12}
-                    className={classNames('ml-1 hidden sm:block', {
-                      'fill-white': searchInputFocused,
-                      'fill-gray-40': !searchInputFocused,
-                    })}
-                  />
-                </>
-              </Tooltip>
-            )}
           </Transition>
         </Transition>
         {/* 2 - Username Pill */}
