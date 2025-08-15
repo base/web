@@ -1,6 +1,7 @@
 'use client';
 
 import { useCards } from 'apps/web/src/components/base-org/Card/context';
+import { cn } from 'apps/web/src/utils/cn';
 import React, { CSSProperties, useEffect, useId, useRef } from 'react';
 
 type HoverShimmerProps = {
@@ -33,7 +34,7 @@ export default function Card({
     - Converted from https://codepen.io/yxshv/pen/JjaRZmb
     - The card "border" is controlled via the padding, p-[1px], and the background color, bg-white/20
   */
-  const cardClasses = `card overflow-hidden p-[1px] m-0 bg-white/20 relative ${wrapperClassName} w-full`;
+  const cardClasses = `card overflow-hidden m-0 bg-white/20 relative ${wrapperClassName}`;
 
   const cardStyles: CSSProperties = {
     borderRadius: `${radius}px`,
@@ -44,13 +45,13 @@ export default function Card({
 
   const fakeBlobClasses = 'fake-blob absolute w-[30rem] h-[30rem] rounded-full opacity-0';
 
-  const innerClasses = `inner relative bg-black z-20 h-full ${innerClassName}`;
+  const innerClasses = `inner relative bg-[#FAFAFA] hover:bg-[#F7F7F7] z-20 h-full ${innerClassName}`;
   const innerStyles: CSSProperties = {
     borderRadius: `${radius - 1}px`,
   };
 
   return (
-    <div className={cardClasses} ref={cardRef} style={cardStyles}>
+    <div className={cn(cardClasses)} ref={cardRef} style={cardStyles}>
       <div className={innerClasses} style={innerStyles}>
         {children}
       </div>

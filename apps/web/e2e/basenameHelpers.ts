@@ -3,6 +3,7 @@ import { createWalletClient, http, type WalletClient } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
 import { baseSepolia } from 'viem/chains';
 
+
 // Constants
 export const BASENAME_REGEX = /^[a-z0-9]{3,}$/;
 
@@ -50,11 +51,16 @@ export async function navigateToBasenameRegistration(page: Page): Promise<void> 
  * @param basename - The basename to search for
  */
 export async function searchForBasename(page: Page, basename: string): Promise<void> {
+
+  await page.waitForTimeout(2000);
   const searchInput = page.locator(SELECTORS.SEARCH_INPUT).first();
   await expect(searchInput).toBeVisible();
   await searchInput.clear();
   await searchInput.fill(basename);
   await page.waitForLoadState('networkidle');
+
+  await page.waitForTimeout(2000);
+
 }
 
 /**
@@ -133,3 +139,4 @@ export async function getBalance(address: `0x${string}`, rpcUrl?: string): Promi
   
   return client.getBalance({ address });
 } 
+

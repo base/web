@@ -14,15 +14,20 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid network provided' }, { status: 400 });
   }
 
-  const response = await fetch(
-    `https://${cdpBaseUri}/platform/v1/networks/${network}/addresses/${address}/identity?limit=50`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.CDP_BEARER_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
+  const page = request.nextUrl.searchParams.get('page');
+
+  // Build the URL with pagination parameter if provided
+  let url = `https://${cdpBaseUri}/platform/v1/networks/${network}/addresses/${address}/identity?limit=50`;
+  if (page) {
+    url += `&page=${page}`;
+  }
+
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${process.env.CDP_BEARER_TOKEN}`,
+      'Content-Type': 'application/json',
     },
-  );
+  });
 
   const data = (await response.json()) as ManagedAddressesResponse;
 

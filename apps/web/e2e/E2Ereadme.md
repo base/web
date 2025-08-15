@@ -1,6 +1,7 @@
 # End-to-End Tests for `apps/web`
 
-This folder contains Playwright tests that exercise the full Basename registration flow against a local Next.js dev server, a local Anvil fork and a headless MetaMask browser instance (all orchestrated through **@coinbase/onchaintestkit**).
+
+This folder contains Playwright tests for the Base Web project against a local Next.js dev server...
 
 ## Contents
 
@@ -34,8 +35,12 @@ E2E_TEST_SEED_PHRASE="test test test test test test test test test test test jun
 # RPC endpoint that Anvil will fork from (Base mainnet in this example)
 E2E_TEST_FORK_URL=https://mainnet.base.org
 
-# The block number to fork at (optional). Omitting gives you the latest block.
+
+# The block number to fork at. Omitting gives you the latest block.
 E2E_TEST_FORK_BLOCK_NUMBER=31397553
+
+NEXT_PUBLIC_CDP_BASE_RPC_ENDPOINT="http://localhost:8545/"
+E2E_TEST="true"
 ```
 
 - **`TEST_BASENAME`** must be at least 3 alphanumeric lower-case characters.

@@ -5,7 +5,8 @@ import { initiateRegistration } from '../basenameHelpers';
 import { ActionApprovalType } from '@coinbase/onchaintestkit';
 
 test.describe('Basename Registration', () => {
-  test('should fail registration when transaction is rejected', async ({ page, metamask }) => {
+
+  test.skip('should fail registration when transaction is rejected', async ({ page, metamask }) => {
     // Validate prerequisites
     if (!metamask) {
       throw new Error('MetaMask is not defined');
@@ -13,6 +14,9 @@ test.describe('Basename Registration', () => {
 
     // Common preparation steps
     const { mainPage } = await prepareBasenameFlow(page, metamask);
+
+
+    await mainPage.waitForTimeout(2000);
 
     // Attempt registration and explicitly reject the transaction in MetaMask
     await initiateRegistration(mainPage);

@@ -12,7 +12,6 @@ import {
 } from 'viem';
 import { normalize } from 'viem/ens';
 import RegistrarControllerABI from 'apps/web/src/abis/RegistrarControllerABI';
-import EARegistrarControllerAbi from 'apps/web/src/abis/EARegistrarControllerAbi';
 import L2ResolverAbi from 'apps/web/src/abis/L2Resolver';
 import RegistryAbi from 'apps/web/src/abis/RegistryAbi';
 import BaseRegistrarAbi from 'apps/web/src/abis/BaseRegistrarAbi';
@@ -21,7 +20,6 @@ import { Basename } from '@coinbase/onchainkit/identity';
 import {
   USERNAME_BASE_REGISTRAR_ADDRESSES,
   USERNAME_BASE_REGISTRY_ADDRESSES,
-  USERNAME_EA_REGISTRAR_CONTROLLER_ADDRESSES,
   USERNAME_REGISTRAR_CONTROLLER_ADDRESSES,
 } from 'apps/web/src/addresses/usernames';
 
@@ -392,7 +390,6 @@ export const convertReverseNodeToBytes = ({
 };
 
 export enum Discount {
-  EARLY_ACCESS = 'EARLY_ACCESS',
   CBID = 'CBID',
   CB1 = 'CB1',
   COINBASE_VERIFIED_ACCOUNT = 'COINBASE_VERIFIED_ACCOUNT',
@@ -633,7 +630,14 @@ export async function getBasenameNameExpires(username: Basename) {
     });
 
     return nameExpires;
-  } catch (error) {}
+  } catch (error) {
+    logger.error('Error fetching basename expiration date', {
+      error,
+      username,
+      tokenId,
+      chainId: chain.id,
+    });
+  }
 }
 
 export async function getBasenameAvailable(name: string, chain: Chain): Promise<boolean> {
@@ -756,16 +760,38 @@ export const getBasenameImage = (username: string) => {
   Feature flags
 */
 
-// Force EA/GA based on env
-export const IS_EARLY_ACCESS = process.env.NEXT_PUBLIC_USERNAMES_EARLY_ACCESS == 'true';
 export const USERNAMES_PINNED_CASTS_ENABLED =
   process.env.NEXT_PUBLIC_USERNAMES_PINNED_CASTS_ENABLED === 'true';
-export const REGISTER_CONTRACT_ABI = IS_EARLY_ACCESS
-  ? EARegistrarControllerAbi
-  : RegistrarControllerABI;
+export const REGISTER_CONTRACT_ABI = RegistrarControllerABI;
 
-export const REGISTER_CONTRACT_ADDRESSES = IS_EARLY_ACCESS
-  ? USERNAME_EA_REGISTRAR_CONTROLLER_ADDRESSES
-  : USERNAME_REGISTRAR_CONTROLLER_ADDRESSES;
+export const REGISTER_CONTRACT_ADDRESSES = USERNAME_REGISTRAR_CONTROLLER_ADDRESSES;
 
 export const isBasenameRenewalsKilled = process.env.NEXT_PUBLIC_KILL_BASENAMES_RENEWALS === 'true';
+
+// Grace period duration in seconds (90 days)
+export const GRACE_PERIOD_DURATION_MS = 90 * 24 * 60 * 60 * 1000;
+
+/**
+ * Check if a basename is in its grace period (expired but still renewable)
+ */
+export async function isBasenameInGracePeriod(username: Basename): Promise<boolean> {
+  try {
+    const expiresAt = await getBasenameNameExpires(username);
+    if (!expiresAt) {
+      return false;
+    }
+
+    const expirationTime = Number(expiresAt) * 1000; // Convert to milliseconds
+    const currentTime = Date.now();
+    const timeSinceExpiration = currentTime - expirationTime;
+
+    // Name is in grace period if it's expired but within the grace period duration
+    return timeSinceExpiration > 0 && timeSinceExpiration <= GRACE_PERIOD_DURATION_MS;
+  } catch (error) {
+    logger.error('Error checking if basename is in grace period', {
+      error,
+      username,
+    });
+    return false;
+  }
+}

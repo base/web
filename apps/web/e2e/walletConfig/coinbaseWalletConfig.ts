@@ -1,4 +1,5 @@
 import { base, baseSepolia } from 'viem/chains';
+
 import { configure } from '@coinbase/onchaintestkit';
 
 export const DEFAULT_PASSWORD = 'COMPLEXPASSWORD1';
@@ -20,6 +21,7 @@ const baseConfig = configure()
   // Add the network with the actual port in a custom setup
   .withNetwork({
     name: 'Base',
+
     chainId: base.id,
     symbol: 'ETH',
     // placeholder for the actual rpcUrl, which is auto injected by the node fixture

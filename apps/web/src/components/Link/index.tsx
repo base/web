@@ -1,12 +1,15 @@
 'use client';
 import { ActionType, ComponentType } from 'libs/base-ui/utils/logEvent';
 import NextLink, { LinkProps } from 'next/link';
-import { AnchorHTMLAttributes, MouseEvent, useCallback } from 'react';
+import { AnchorHTMLAttributes, MouseEvent, Ref, useCallback } from 'react';
 import { useAnalytics } from 'apps/web/contexts/Analytics';
 
-type AnchorProps = LinkProps & AnchorHTMLAttributes<HTMLAnchorElement>;
+type AnchorProps = LinkProps &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    linkRef?: Ref<HTMLAnchorElement>;
+  };
 
-export default function Link({ children, onClick, ...props }: AnchorProps) {
+export default function Link({ children, onClick, linkRef, ...props }: AnchorProps) {
   const { logEventWithContext } = useAnalytics();
 
   const handleOnClick = useCallback(
@@ -35,7 +38,7 @@ export default function Link({ children, onClick, ...props }: AnchorProps) {
   );
 
   return (
-    <NextLink {...props} onClick={handleOnClick}>
+    <NextLink {...props} onClick={handleOnClick} ref={linkRef}>
       {children}
     </NextLink>
   );
