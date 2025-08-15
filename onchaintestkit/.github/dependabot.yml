@@ -1,0 +1,13 @@
+version: 2
+updates:
+  # Maintain dependencies for the root workspace (Yarn v4)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # Keep GitHub Actions up to date
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
