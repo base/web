@@ -1,4 +1,7 @@
 import { Page, expect } from '@playwright/test';
+import { createWalletClient, http, type WalletClient } from 'viem'
+import { privateKeyToAccount } from 'viem/accounts'
+import { baseSepolia } from 'viem/chains';
 
 // Constants
 export const BASENAME_REGEX = /^[a-z0-9]{3,}$/;
@@ -78,3 +81,55 @@ export async function initiateRegistration(page: Page): Promise<void> {
   await page.waitForLoadState('networkidle');
   await registerButton.click();
 }
+
+
+
+
+
+export const account = privateKeyToAccount(process.env.TEST_PRIVATE_KEY as `0x${string}`);
+
+
+export const walletClient: WalletClient = createWalletClient({
+  chain: baseSepolia,
+  transport: http("http://localhost:8545/"),
+  // transport: http(process.env.E2E_TEST_FORK_URL),
+
+})
+
+/**
+ * Send ETH from the test account to the target address
+ * @param to The recipient address (e.g., your smart wallet)
+ * @param value The amount to send in wei (as bigint)
+ * @param rpcUrl The RPC URL to use (optional, defaults to localhost:8545)
+ * @returns The transaction hash
+ */
+export async function fundAccount(to: `0x${string}`, value: bigint, rpcUrl?: string) {
+  const client = createWalletClient({
+    chain: baseSepolia,
+    transport: http(rpcUrl || "http://localhost:8545/"),
+  })
+  
+  return client.sendTransaction({
+    account,
+    to,
+    value,
+    chain: baseSepolia,
+  })
+} 
+
+/**
+ * Check the balance of an address
+ * @param address The address to check
+ * @param rpcUrl The RPC URL to use
+ * @returns The balance in wei as bigint
+ */
+export async function getBalance(address: `0x${string}`, rpcUrl?: string): Promise<bigint> {
+  const { createPublicClient } = await import('viem');
+  
+  const client = createPublicClient({
+    chain: baseSepolia,
+    transport: http(rpcUrl || "http://localhost:8545/"),
+  });
+  
+  return client.getBalance({ address });
+} 
