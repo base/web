@@ -411,8 +411,8 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
       },
       {
         icon: 'rocket',
-        label: 'MiniKit',
-        href: '/build/minikit',
+        label: 'Mini Apps',
+        href: '/build/mini-apps',
       },
       {
         icon: 'layers',

@@ -106,10 +106,10 @@ export function BuildersDropdown({ onLinkClick }: BuildersDropdownProps) {
                 onLinkClick={onLinkClick}
               />
               <ToolMiniCard
-                title="MiniKit"
+                title="Mini Apps"
                 description="Build once. Deploy anywhere"
                 icon={miniKit as StaticImageData}
-                href="/builders/minikit"
+                href="/build/mini-apps"
                 onLinkClick={onLinkClick}
               />
             </div>

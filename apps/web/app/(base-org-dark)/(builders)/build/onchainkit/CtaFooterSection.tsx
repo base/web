@@ -15,7 +15,7 @@ const copyText = 'npx create-onchain@latest';
 const copyTextMinikit = 'npx create-onchain@latest --mini';
 
 const ockDocsUrl = 'https://docs.base.org/onchainkit/getting-started';
-const miniDocsUrl = 'https://docs.base.org/wallet-app/build-with-minikit/quickstart#quickstart';
+const miniDocsUrl = 'https://docs.base.org/mini-apps/overview';
 
 export function ExploreDocsButton({
   type = 'onchainkit',

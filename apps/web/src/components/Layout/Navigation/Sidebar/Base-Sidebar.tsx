@@ -19,7 +19,7 @@ import { Icon } from 'apps/web/src/components/Layout/Navigation/icons';
 import { ContextMenu } from 'apps/web/src/components/ContextMenu';
 import { ExternalLinkIcon } from 'apps/web/src/components/Layout/Navigation/Sidebar/ExternalLinkIcon';
 
-const buildersRoutes = ['/build', '/onchainkit', '/minikit', '/base-account', '/appchains'];
+const buildersRoutes = ['/build', '/onchainkit', '/mini-apps', '/base-account', '/appchains'];
 
 // anim variants
 const mainMenuVariants = {
@@ -71,7 +71,7 @@ export default function BaseSidebar() {
   return (
     <nav className="sticky top-4 z-10 hidden h-auto min-h-[600px] w-full flex-col pl-4 lg:flex lg:h-[calc(100dvh-32px)]">
       <ContextMenu>
-        <div className="relative z-20 pt-2 pl-2 overflow-clip">
+        <div className="relative z-20 overflow-clip pl-2 pt-2">
           <SidebarLogo />
         </div>
       </ContextMenu>
@@ -126,7 +126,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
   const currentSubMenuVariants = isMobile ? mobileSubMenuVariants : subMenuVariants;
 
   return (
-    <div className="flex relative flex-col flex-1 h-full">
+    <div className="relative flex h-full flex-1 flex-col">
       <div
         className={classNames(
           'mt-6 flex flex-1 flex-col gap-2.5 overflow-y-auto overflow-x-hidden px-4 lg:px-0',
@@ -142,14 +142,14 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
                 animate="animate"
                 exit="exit"
                 transition={transition}
-                className="flex overflow-y-auto overflow-x-hidden absolute inset-0 flex-col gap-1 max-h-max"
+                className="absolute inset-0 flex max-h-max flex-col gap-1 overflow-y-auto overflow-x-hidden"
               >
                 {routes.map((route) => {
                   // eslint-disable-next-line react-perf/jsx-no-new-function-as-prop
                   const handleClick = () => handleMenuItemClick(route);
 
                   return (
-                    <motion.div key={route.href} className="flex relative flex-col">
+                    <motion.div key={route.href} className="relative flex flex-col">
                       {route.items ? (
                         <button
                           type="button"
@@ -221,14 +221,14 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
                     },
                   )}
                 >
-                  <ChevronLeftIcon className="w-3 h-3 fill-current" />
+                  <ChevronLeftIcon className="fill-current h-3 w-3" />
                   <Text variant={TextVariant.CTALabelSm}>Back to Menu</Text>
                 </motion.button>
 
                 <div className="pt-2">
                   {getCurrentMenuItems().map(
                     (item: { href: string; label: string; icon?: string; newTab?: boolean }) => (
-                      <motion.div key={item.href} className="flex relative flex-col">
+                      <motion.div key={item.href} className="relative flex flex-col">
                         <Link
                           href={item.href}
                           target={item.newTab ? '_blank' : '_self'}
@@ -249,7 +249,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
                             },
                           )}
                         >
-                          {item.icon && <Icon name={item.icon} className="inline-block mr-2" />}
+                          {item.icon && <Icon name={item.icon} className="mr-2 inline-block" />}
                           <Text variant={TextVariant.CTALabelSm}>{item.label}</Text>
                         </Link>
                       </motion.div>
@@ -260,12 +260,12 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
                 {/* appendix if so */}
                 {activeSubMenu &&
                   routes.find((route) => route.href === activeSubMenu)?.appendix && (
-                    <div className="pt-2 border-t border-base-gray-50">
+                    <div className="border-t border-base-gray-50 pt-2">
                       {routes
                         .find((route) => route.href === activeSubMenu)
                         ?.appendix?.map(
                           (appendixItem: { href: string; label: string; newTab?: boolean }) => (
-                            <motion.div key={appendixItem.href} className="flex relative flex-col">
+                            <motion.div key={appendixItem.href} className="relative flex flex-col">
                               <Link
                                 href={appendixItem.href}
                                 target={appendixItem.newTab ? '_blank' : '_self'}
@@ -303,8 +303,8 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
       </div>
 
       {!isBuilders ? (
-        <div className="flex flex-col gap-2 px-4 pb-4 mt-auto w-full whitespace-nowrap lg:px-0 lg:pb-0">
-          <div className="flex gap-2 items-center p-2 pt-4 border-t border-base-gray-50">
+        <div className="mt-auto flex w-full flex-col gap-2 whitespace-nowrap px-4 pb-4 lg:px-0 lg:pb-0">
+          <div className="flex items-center gap-2 border-t border-base-gray-50 p-2 pt-4">
             <span className="block size-2.5 rounded-[2px] bg-base-blue" />
             <span className="font-sans text-xs text-base-blue">START HERE</span>
           </div>
@@ -335,7 +335,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
       ) : (
         <AnimatePresence>
           <motion.div
-            className="flex flex-col gap-2 px-4 pb-4 mt-auto lg:px-0 lg:pb-0"
+            className="mt-auto flex flex-col gap-2 px-4 pb-4 lg:px-0 lg:pb-0"
             // eslint-disable-next-line react-perf/jsx-no-new-object-as-prop
             initial={{ opacity: 0 }}
             // eslint-disable-next-line react-perf/jsx-no-new-object-as-prop

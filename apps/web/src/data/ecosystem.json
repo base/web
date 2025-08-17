@@ -3656,6 +3656,14 @@
     "subcategory": "payments"
   },
   {
+    "name": "SuperFund",
+    "description": "A smart USDC yield product that reallocates capital across lending protocols for optimal returns.",
+    "url": "https://funds.superlend.xyz/super-fund/base",
+    "imageUrl": "/images/partners/superfund.png",
+    "category": "defi",
+    "subcategory": "yield"
+  },
+  {
     "name": "Supra",
     "url": "https://supraoracles.com/",
     "description": "Supra is a middleware network that connects L1 and L2, Web2 and Web3, which we call an IntraLayer. Supra as an IntraLayer is a powerful framework that brings our solutions together - oracles, VRFs, and a native cross-chain protocol through singular shared-security infrastructure.",
