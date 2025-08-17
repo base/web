@@ -5,17 +5,17 @@ import {
   CtaActions,
   CtaFooterSection,
 } from 'apps/web/app/(base-org-dark)/(builders)/build/onchainkit/CtaFooterSection';
-import { MinikitAnalyticsUpsellSection } from 'apps/web/app/(base-org-dark)/(builders)/build/minikit/MinikitAnalyticsUpsellSection';
+import { MinikitAnalyticsUpsellSection } from 'apps/web/app/(base-org-dark)/(builders)/build/mini-apps/MinikitAnalyticsUpsellSection';
 import { BuildersSection } from 'apps/web/app/(base-org-dark)/(builders)/BuildersSection';
 import { BuildersContainer } from 'apps/web/app/(base-org-dark)/(builders)/BuildersContainer';
 import minikitHero from './minikit-hero.png';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
-  title: `Base | Minikit`,
+  title: `Base | Mini Apps`,
   openGraph: {
-    title: `Base | Minikit`,
-    url: `/build/minikit`,
+    title: `Base | Mini Apps`,
+    url: `/build/mini-apps`,
     images: [minikitCover.src],
   },
 };
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 export default function Minikit() {
   return (
     <BuildersContainer
-      title="MiniKit"
+      title="Mini Apps"
       asciiImageSrc={minikitHero.src}
       asciiImageContainerClassName="aspect-[1876/629] inset-auto w-full bottom-0"
       titleClassName="md:!mb-[400px]"
@@ -34,7 +34,7 @@ export default function Minikit() {
         contentBlocks={[
           <div className="order-2 max-w-[400px] md:order-1" key="minikit-hero-content">
             <div className="text-3xl leading-[1.125] tracking-[-0.96px]">
-              Deploy mini apps in the Base App with a few lines of code to access millions of users
+              Deploy mini apps in the Base app with a few lines of code to access millions of users
               on Base.
             </div>
           </div>,
