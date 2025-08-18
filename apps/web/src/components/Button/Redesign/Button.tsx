@@ -20,14 +20,14 @@ const variantStyles = {
   [ButtonVariants.Primary]:
     'text-white bg-base-black dark:bg-white dark:text-black hover:dark:text-white hover:bg-base-blue hover:dark:bg-base-blueDark active:bg-base-blue active:dark:bg-base-blueDark border border-base-black dark:border-base-blackInvert hover:border-base-blue hover:dark:border-base-blueDark active:border-base-blue active:dark:border-base-blueDark',
   [ButtonVariants.Secondary]:
-    'bg-white text-black border border-[#e5e5e5] hover:bg-[#f7f7f7] hover:border-[#dcdcdc] dark:bg-black dark:text-white hover:dark:text-black dark:border-base-gray-90 hover:dark:bg-base-gray-90 hover:dark:border-base-gray-90',
+    'text-black bg-base-gray-50 dark:bg-white dark:text-black hover:dark:text-white hover:bg-state-bA-hovered hover:dark:bg-base-blueDark active:bg-state-bA-pressed active:dark:bg-base-blueDark border-none border-base-black dark:border-base-blackInvert hover:border-base-blue hover:dark:border-base-blueDark active:border-base-blue active:dark:border-base-blueDark',
   [ButtonVariants.SecondaryOutline]:
-    'dark:text-white text-black hover:bg-base-gray-10 border border-black dark:border-white hover:dark:bg-base-gray-90 hover:dark:text-black',
+    'bg-white text-black border border-[#e5e5e5] hover:bg-[#f7f7f7] hover:border-[#dcdcdc] dark:bg-black dark:text-white hover:dark:text-black dark:border-base-gray-90 hover:dark:bg-base-gray-90 hover:dark:border-base-gray-90',
 };
 
 const sizeStyles = {
-  [ButtonSizes.Small]: 'h-9 rounded-[8px]',
-  [ButtonSizes.Large]: 'h-[52px] rounded-[12px]',
+  [ButtonSizes.Small]: 'h-9 rounded-[8px] px-4',
+  [ButtonSizes.Large]: 'h-[52px] rounded-[12px] px-6',
 };
 
 const disabledStyles = 'opacity-50 cursor-not-allowed pointer-events-none';

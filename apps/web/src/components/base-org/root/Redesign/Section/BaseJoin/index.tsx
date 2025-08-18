@@ -14,7 +14,7 @@ const card3 = Card3 as ImageType;
 export function SectionBaseJoin() {
   return (
     <Section content={content}>
-      <div className="col-span-full flex flex-col gap-8 md:flex-row">
+      <div className="flex flex-col col-span-full gap-8 md:flex-row">
         {cards.map((card) => (
           <Link key={card.index} href={card.href} className="flex-1 overflow-hidden !rounded-[8px]">
             <InteractiveCard

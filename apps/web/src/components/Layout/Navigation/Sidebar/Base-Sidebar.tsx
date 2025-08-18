@@ -19,7 +19,7 @@ import { Icon } from 'apps/web/src/components/Layout/Navigation/icons';
 import { ContextMenu } from 'apps/web/src/components/ContextMenu';
 import { ExternalLinkIcon } from 'apps/web/src/components/Layout/Navigation/Sidebar/ExternalLinkIcon';
 
-const buildersRoutes = ['/build', '/onchainkit', '/minikit', '/base-account', '/appchains'];
+const buildersRoutes = ['/build', '/onchainkit', '/mini-apps', '/base-account', '/appchains'];
 
 // anim variants
 const mainMenuVariants = {
@@ -258,43 +258,44 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
                 </div>
 
                 {/* appendix if so */}
-                {activeSubMenu && routes.find((route) => route.href === activeSubMenu)?.appendix && (
-                  <div className="border-t border-base-gray-50 pt-2">
-                    {routes
-                      .find((route) => route.href === activeSubMenu)
-                      ?.appendix?.map(
-                        (appendixItem: { href: string; label: string; newTab?: boolean }) => (
-                          <motion.div key={appendixItem.href} className="relative flex flex-col">
-                            <Link
-                              href={appendixItem.href}
-                              target={appendixItem.newTab ? '_blank' : '_self'}
-                              rel={appendixItem.newTab ? 'noopener noreferrer' : undefined}
-                              className={classNames(
-                                'group flex w-full items-center justify-between rounded-lg px-2.5 py-2 leading-[114%] transition-colors duration-150',
-                                {
-                                  'bg-base-gray-30 dark:bg-gray-90': isLinkActive({
-                                    pathname,
-                                    href: appendixItem.href,
-                                  }),
-                                  'text-black hover:bg-base-gray-30 dark:text-white dark:hover:bg-gray-90':
-                                    !isLinkActive({
+                {activeSubMenu &&
+                  routes.find((route) => route.href === activeSubMenu)?.appendix && (
+                    <div className="border-t border-base-gray-50 pt-2">
+                      {routes
+                        .find((route) => route.href === activeSubMenu)
+                        ?.appendix?.map(
+                          (appendixItem: { href: string; label: string; newTab?: boolean }) => (
+                            <motion.div key={appendixItem.href} className="relative flex flex-col">
+                              <Link
+                                href={appendixItem.href}
+                                target={appendixItem.newTab ? '_blank' : '_self'}
+                                rel={appendixItem.newTab ? 'noopener noreferrer' : undefined}
+                                className={classNames(
+                                  'group flex w-full items-center justify-between rounded-lg px-2.5 py-2 leading-[114%] transition-colors duration-150',
+                                  {
+                                    'bg-base-gray-30 dark:bg-gray-90': isLinkActive({
                                       pathname,
                                       href: appendixItem.href,
-                                    }) && !isExiting,
-                                  'text-black dark:text-white': isExiting,
-                                },
-                              )}
-                            >
-                              <Text variant={TextVariant.CTALabelSm}>{appendixItem.label}</Text>
-                              <div className="text-[#B1B7C3] group-hover:text-black dark:text-[#1E2025] group-hover:dark:text-white">
-                                <ExternalLinkIcon />
-                              </div>
-                            </Link>
-                          </motion.div>
-                        ),
-                      )}
-                  </div>
-                )}
+                                    }),
+                                    'text-black hover:bg-base-gray-30 dark:text-white dark:hover:bg-gray-90':
+                                      !isLinkActive({
+                                        pathname,
+                                        href: appendixItem.href,
+                                      }) && !isExiting,
+                                    'text-black dark:text-white': isExiting,
+                                  },
+                                )}
+                              >
+                                <Text variant={TextVariant.CTALabelSm}>{appendixItem.label}</Text>
+                                <div className="text-[#B1B7C3] group-hover:text-black dark:text-[#1E2025] group-hover:dark:text-white">
+                                  <ExternalLinkIcon />
+                                </div>
+                              </Link>
+                            </motion.div>
+                          ),
+                        )}
+                    </div>
+                  )}
               </motion.div>
             )}
           </AnimatePresence>
@@ -312,7 +313,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
             type="button"
             className="w-full"
             asChild
-            variant={ButtonVariants.Primary}
+            variant={ButtonVariants.Secondary}
             size={ButtonSizes.Small}
           >
             <Link href="https://base.app" className="group" target="_blank">
@@ -323,7 +324,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
             type="button"
             className="w-full"
             asChild
-            variant={ButtonVariants.Primary}
+            variant={ButtonVariants.Secondary}
             size={ButtonSizes.Small}
           >
             <Link href="/build" className="group">
@@ -343,7 +344,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
             exit={{ opacity: 0 }}
           >
             <Button
-              variant={ButtonVariants.Secondary}
+              variant={ButtonVariants.SecondaryOutline}
               size={ButtonSizes.Small}
               asChild
               className="w-full"
@@ -353,7 +354,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
               </Link>
             </Button>
             <Button
-              variant={ButtonVariants.Primary}
+              variant={ButtonVariants.Secondary}
               size={ButtonSizes.Small}
               asChild
               className="w-full"

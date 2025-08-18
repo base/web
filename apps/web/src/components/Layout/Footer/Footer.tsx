@@ -67,7 +67,7 @@ const LINK_SECTIONS = [
   {
     title: 'Resources',
     links: [
-      { label: 'Brand kit', href: 'https://github.com/base/brand-kit', newTab: true },
+      { label: 'Brand kit', href: 'https://www.base.org/brand', newTab: true },
       { label: 'Events', href: 'https://lu.ma/BaseMeetups', newTab: true },
     ],
   },
@@ -75,8 +75,9 @@ const LINK_SECTIONS = [
     title: 'Socials',
     links: [
       { label: 'X', href: 'https://x.com/base', newTab: true },
-      { label: 'Warpcast', href: 'https://warpcast.com/base', newTab: true },
+      { label: 'Farcaster', href: 'https://farcaster.xyz/base', newTab: true },
       { label: 'Discord', href: 'https://discord.com/invite/buildonbase', newTab: true },
+      { label: 'Reddit', href: 'https://www.reddit.com/r/BASE/', newTab: true },
     ],
   },
   {

@@ -2,7 +2,7 @@ import { Card } from 'apps/web/src/components/base-org/root/Redesign/Vision/Sect
 
 export function Cards() {
   return (
-    <div className="col-span-full grid grid-cols-1 gap-x-[min(2.25vw,_32px)] gap-y-8 lg:grid-cols-2">
+    <div className="col-span-full grid grid-cols-2 gap-x-[min(2.25vw,_32px)] gap-y-[min(2.25vw,_32px)] lg:grid-cols-4">
       {cardsContent.map((card) => (
         <Card content={card} key={`${card.index}-${card.title}`} />
       ))}
@@ -14,7 +14,8 @@ const cardsContent = [
   {
     index: '01',
     title: 'Base App',
-    description: 'An everything app where you can create, earn, trade, discover apps, and chat with friends all in one place.',
+    description:
+      'An everything app where you can create, earn, trade, discover apps, and chat with friends all in one place.',
     gltf: {
       src: '/models/upd/base-app-2.glb',
       useRgbTexture: true,
@@ -34,7 +35,8 @@ const cardsContent = [
   {
     index: '03',
     title: 'Base Chain',
-    description: 'An open network to power the global economy. Fast, open, and built to scale. Built on Ethereum, built on the Superchain.',
+    description:
+      'An open network to power the global economy. Fast, open, and built to scale. Built on Ethereum, built on the Superchain.',
     gltf: {
       src: '/models/upd/globe.glb',
       useRgbTexture: true,
