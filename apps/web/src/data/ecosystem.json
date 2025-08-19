@@ -4454,5 +4454,13 @@
     "imageUrl": "/images/partners/zora.webp",
     "category": "consumer",
     "subcategory": "creator"
+  },
+  {
+    "name": "WOWMAX",
+    "category": "defi",
+    "subcategory": "liquidity management",
+    "description": "WOWMAX is the first non-custodial DEX copy trading platform. Join the top 1 % of DEX traders by discovering and automatically copy-trading the most profitable wallets on BASE chain.",
+    "url": "https://wowmax.exchange/",
+    "imageUrl": "/images/partners/wowmax.png"
   }
 ]
