@@ -59,7 +59,7 @@ export const USERNAME_1155_DISCOUNT_VALIDATORS: AddressMap = {
 };
 
 export const USERNAME_REVERSE_REGISTRAR_ADDRESSES: AddressMap = {
-  [baseSepolia.id]: '0xa0A8401ECF248a9375a0a71C4dedc263dA18dCd7',
+  [baseSepolia.id]: '0x876eF94ce0773052a2f81921E70FF25a5e76841f',
   [base.id]: '0x79ea96012eea67a83431f1701b3dff7e37f9e282',
 };
 
