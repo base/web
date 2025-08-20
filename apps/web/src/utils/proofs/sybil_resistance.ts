@@ -6,7 +6,6 @@ import {
   USERNAME_CB1_DISCOUNT_VALIDATORS,
   USERNAME_CB_DISCOUNT_VALIDATORS,
   USERNAME_DISCOUNT_CODE_VALIDATORS,
-  USERNAME_EA_DISCOUNT_VALIDATORS,
 } from 'apps/web/src/addresses/usernames';
 import { getLinkedAddresses } from 'apps/web/src/cdp/api';
 import {
@@ -51,9 +50,6 @@ const discountTypes: DiscountTypesByChainId = {
       schemaId: ATTESTATION_VERIFIED_CB1_ACCOUNT_SCHEMA_IDS[base.id],
       discountValidatorAddress: USERNAME_CB1_DISCOUNT_VALIDATORS[base.id],
     },
-    [DiscountType.EARLY_ACCESS]: {
-      discountValidatorAddress: USERNAME_EA_DISCOUNT_VALIDATORS[base.id],
-    },
     [DiscountType.DISCOUNT_CODE]: {
       discountValidatorAddress: USERNAME_DISCOUNT_CODE_VALIDATORS[base.id],
     },
@@ -66,9 +62,6 @@ const discountTypes: DiscountTypesByChainId = {
     [DiscountType.CB1]: {
       schemaId: ATTESTATION_VERIFIED_CB1_ACCOUNT_SCHEMA_IDS[baseSepolia.id],
       discountValidatorAddress: USERNAME_CB1_DISCOUNT_VALIDATORS[baseSepolia.id],
-    },
-    [DiscountType.EARLY_ACCESS]: {
-      discountValidatorAddress: USERNAME_EA_DISCOUNT_VALIDATORS[baseSepolia.id],
     },
     [DiscountType.DISCOUNT_CODE]: {
       discountValidatorAddress: USERNAME_DISCOUNT_CODE_VALIDATORS[baseSepolia.id],

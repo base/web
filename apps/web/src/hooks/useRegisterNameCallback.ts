@@ -13,7 +13,6 @@ import useWriteContractWithReceipt, {
 import {
   convertChainIdToCoinTypeUint,
   formatBaseEthDomain,
-  IS_EARLY_ACCESS,
   normalizeEnsDomainName,
   REGISTER_CONTRACT_ABI,
   REGISTER_CONTRACT_ADDRESSES,
@@ -125,7 +124,7 @@ export function useRegisterNameCallback(
         await initiateRegisterName({
           abi: REGISTER_CONTRACT_ABI,
           address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
-          functionName: isDiscounted || IS_EARLY_ACCESS ? 'discountedRegister' : 'register',
+          functionName: isDiscounted ? 'discountedRegister' : 'register',
           args: isDiscounted ? [registerRequest, discountKey, validationData] : [registerRequest],
           value,
         });
@@ -135,7 +134,7 @@ export function useRegisterNameCallback(
             {
               abi: REGISTER_CONTRACT_ABI,
               address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
-              functionName: isDiscounted || IS_EARLY_ACCESS ? 'discountedRegister' : 'register',
+              functionName: isDiscounted ? 'discountedRegister' : 'register',
               args: isDiscounted
                 ? [registerRequest, discountKey, validationData]
                 : [registerRequest],

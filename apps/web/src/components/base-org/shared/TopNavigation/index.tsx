@@ -77,9 +77,9 @@ const links: TopNavigationLink[] = [
         href: '/builders/smart-wallet',
       },
       {
-        name: 'MiniKit',
+        name: 'Mini Apps',
         description: '',
-        href: '/builders/minikit',
+        href: '/build/mini-apps',
       },
       // TODO: Add back after launch
       // {

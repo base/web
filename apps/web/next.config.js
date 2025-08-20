@@ -364,6 +364,16 @@ module.exports = MillionLint.next({
             permanent: true,
           },
           {
+            source: '/build/minikit',
+            destination: '/build/mini-apps',
+            permanent: true,
+          },
+          {
+            source: '/builders/minikit',
+            destination: '/build/mini-apps',
+            permanent: true,
+          },
+          {
             source: '/builders/:path',
             destination: '/build/:path',
             permanent: true,
