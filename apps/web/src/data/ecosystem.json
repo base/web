@@ -4454,5 +4454,13 @@
     "imageUrl": "/images/partners/zora.webp",
     "category": "consumer",
     "subcategory": "creator"
+  },
+  {
+    "name": "Lingo",
+    "description": "Lingo – The World’s Most Rewarding Token. Stake or play on LINGO to win real-world prizes. Backed by $3B+ investors & 3,000+ partners like Nike and Netflix.",
+    "url": "https://app.lingocoin.io/",
+    "imageUrl": "/images/partners/lingocoin_logo.webp",
+    "category": "consumer",
+    "subcategory": "real world, gaming"
   }
 ]
