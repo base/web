@@ -26,6 +26,8 @@ import { useAccount } from 'wagmi';
 import { secondsInYears } from 'apps/web/src/utils/secondsInYears';
 import UpgradeableRegistrarControllerAbi from 'apps/web/src/abis/UpgradeableRegistrarControllerAbi';
 import L2ReverseRegistrarAbi from 'apps/web/src/abis/L2ReverseRegistrarAbi';
+import { encodePacked, getFunctionSelector, keccak256, type AbiFunction } from 'viem';
+import { usePublicClient, useSignMessage } from 'wagmi';
 
 type UseRegisterNameCallbackReturnType = {
   callback: () => Promise<void>;
@@ -36,6 +38,11 @@ type UseRegisterNameCallbackReturnType = {
   hasExistingBasename: boolean;
   batchCallsStatus: BatchCallsStatus;
   registerNameStatus: WriteTransactionWithReceiptStatus;
+  prepareReverseRecordSignature: () => Promise<{
+    coinTypes: readonly bigint[];
+    signatureExpiry: bigint;
+    signature: `0x${string}`;
+  }>;
 };
 
 export function useRegisterNameCallback(
@@ -51,6 +58,8 @@ export function useRegisterNameCallback(
   const { paymasterService: paymasterServiceEnabled } = useCapabilitiesSafe({
     chainId: basenameChain.id,
   });
+  const publicClient = usePublicClient({ chainId: basenameChain.id });
+  const { signMessageAsync } = useSignMessage();
 
   // If user has a basename, reverse record is set to false
   const { data: baseEnsName, isLoading: baseEnsNameIsLoading } = useBaseEnsName({
@@ -63,6 +72,11 @@ export function useRegisterNameCallback(
   );
 
   const [reverseRecord, setReverseRecord] = useState<boolean>(!hasExistingBasename);
+  const [reverseSigPayload, setReverseSigPayload] = useState<{
+    coinTypes: readonly bigint[];
+    signatureExpiry: bigint;
+    signature: `0x${string}`;
+  } | null>(null);
 
   // Transaction with paymaster enabled
   const { initiateBatchCalls, batchCallsStatus, batchCallsIsLoading, batchCallsError } =
@@ -85,6 +99,37 @@ export function useRegisterNameCallback(
   // Params
   const normalizedName = normalizeEnsDomainName(name);
   const isDiscounted = Boolean(discountKey && validationData);
+
+  const prepareReverseRecordSignature = useCallback(async () => {
+    if (!address) throw new Error('No address');
+    if (!publicClient) throw new Error('No public client');
+
+    const reverseRegistrar = await publicClient.readContract({
+      abi: UpgradeableRegistrarControllerAbi,
+      address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
+      functionName: 'reverseRegistrar',
+    });
+
+    const functionAbi = L2ReverseRegistrarAbi.find(
+      (f) => f.type === 'function' && f.name === 'setNameForAddrWithSignature',
+    ) as unknown as AbiFunction;
+    const selector = getFunctionSelector(functionAbi);
+
+    const signatureExpiry = BigInt(Math.floor(Date.now() / 1000) + 5 * 60);
+    const coinTypes = [BigInt(convertChainIdToCoinTypeUint(basenameChain.id))] as const;
+
+    const preimage = encodePacked(
+      ['address', 'bytes4', 'address', 'uint256', 'string', 'uint256[]'],
+      [reverseRegistrar, selector, address, signatureExpiry, normalizedName, coinTypes],
+    );
+
+    const digest = keccak256(preimage);
+    const signature = await signMessageAsync({ message: { raw: digest } });
+
+    const payload = { coinTypes, signatureExpiry, signature } as const;
+    setReverseSigPayload(payload);
+    return payload;
+  }, [address, basenameChain.id, normalizedName, publicClient, signMessageAsync]);
 
   // Callback
   const registerName = useCallback(async () => {
@@ -115,6 +160,23 @@ export function useRegisterNameCallback(
       ],
     });
 
+    let coinTypesForRequest: readonly bigint[] = [];
+    let signatureExpiryForRequest: bigint = 0n;
+    let signatureForRequest: `0x${string}` = '0x';
+
+    if (!paymasterServiceEnabled && reverseRecord) {
+      const payload =
+        reverseSigPayload ??
+        (await prepareReverseRecordSignature().catch((e) => {
+          logError(e, 'Reverse record signature step failed');
+          return null;
+        }));
+      if (!payload) return;
+      coinTypesForRequest = payload.coinTypes;
+      signatureExpiryForRequest = payload.signatureExpiry;
+      signatureForRequest = payload.signature;
+    }
+
     const registerRequest = {
       name: normalizedName, // The name being registered.
       owner: address, // The address of the owner for the name.
@@ -122,9 +184,9 @@ export function useRegisterNameCallback(
       resolver: UPGRADEABLE_L2_RESOLVER_ADDRESSES[basenameChain.id], // The address of the resolver to set for this name.
       data: [addressData, baseCointypeData, nameData], //  Multicallable data bytes for setting records in the associated resolver upon registration.
       reverseRecord, // Bool to decide whether to set this name as the "primary" name for the `owner`.
-      coinTypes: [],
-      signatureExpiry: 0,
-      signature: '0x',
+      coinTypes: coinTypesForRequest,
+      signatureExpiry: signatureExpiryForRequest,
+      signature: signatureForRequest,
     };
 
     try {
@@ -192,5 +254,6 @@ export function useRegisterNameCallback(
     hasExistingBasename,
     batchCallsStatus,
     registerNameStatus,
+    prepareReverseRecordSignature,
   };
 }
