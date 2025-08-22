@@ -21,6 +21,8 @@ import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react'
 import { encodeFunctionData, namehash } from 'viem';
 import { useAccount } from 'wagmi';
 import { secondsInYears } from 'apps/web/src/utils/secondsInYears';
+import UpgradeableRegistrarControllerAbi from 'apps/web/src/abis/UpgradeableRegistrarControllerAbi';
+import L2ReverseRegistrarAbi from 'apps/web/src/abis/L2ReverseRegistrarAbi';
 
 type UseRegisterNameCallbackReturnType = {
   callback: () => Promise<void>;
@@ -117,6 +119,9 @@ export function useRegisterNameCallback(
       resolver: USERNAME_L2_RESOLVER_ADDRESSES[basenameChain.id], // The address of the resolver to set for this name.
       data: [addressData, baseCointypeData, nameData], //  Multicallable data bytes for setting records in the associated resolver upon registration.
       reverseRecord, // Bool to decide whether to set this name as the "primary" name for the `owner`.
+      coinTypes: [],
+      signatureExpiry: 0,
+      signature: '0x',
     };
 
     try {
@@ -132,7 +137,7 @@ export function useRegisterNameCallback(
         await initiateBatchCalls({
           contracts: [
             {
-              abi: REGISTER_CONTRACT_ABI,
+              abi: UpgradeableRegistrarControllerAbi,
               address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
               functionName: isDiscounted ? 'discountedRegister' : 'register',
               args: isDiscounted
@@ -140,6 +145,16 @@ export function useRegisterNameCallback(
                 : [registerRequest],
               value,
             },
+            ...(reverseRecord
+              ? [
+                  {
+                    abi: L2ReverseRegistrarAbi,
+                    address: USERNAME_L2_RESOLVER_ADDRESSES[basenameChain.id],
+                    functionName: 'setName',
+                    args: [normalizedName],
+                  },
+                ]
+              : []),
           ],
           account: address,
           chain: basenameChain,
