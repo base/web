@@ -1,0 +1,3 @@
+import{u as i,j as e}from"./index-Dlxm52NL.js";import{V as o}from"./VideoPlayer-CKrpq9Vg.js";const s={title:"Overview",description:"An introduction to Hardhat",hide_table_of_contents:!1};function r(n){const t={a:"a",div:"div",h1:"h1",header:"header",...i(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.header,{children:e.jsxs(t.h1,{id:"overview",children:["Overview",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#overview",children:e.jsx(t.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,e.jsx(o,{videoId:"844387825",title:"Hardhat Overview"})]})}function c(n={}){const{wrapper:t}={...i(),...n.components};return t?e.jsx(t,{...n,children:e.jsx(r,{...n})}):r(n)}export{c as default,s as frontmatter};

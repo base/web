@@ -1,0 +1,18 @@
+import{u as t,j as e}from"./index-Dlxm52NL.js";const d={title:"eth_getTransactionCount",description:"undefined"};function s(r){const n={a:"a",blockquote:"blockquote",code:"code",div:"div",h1:"h1",h2:"h2",h3:"h3",header:"header",li:"li",ol:"ol",p:"p",pre:"pre",span:"span",table:"table",tbody:"tbody",td:"td",th:"th",thead:"thead",tr:"tr",...t(),...r.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.header,{children:e.jsxs(n.h1,{id:"eth_gettransactioncount",children:["eth_getTransactionCount",e.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#eth_gettransactioncount",children:e.jsx(n.div,{"data-autolink-icon":!0})})]})}),`
+`,e.jsxs(n.blockquote,{children:[`
+`,e.jsx(n.p,{children:"Returns the number of transactions sent from an address."}),`
+`]}),`
+`,e.jsxs(n.h2,{id:"parameters",children:["Parameters",e.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#parameters",children:e.jsx(n.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(n.ol,{children:[`
+`,e.jsxs(n.li,{children:[e.jsx(n.code,{children:"string"})," - The address to get the transaction count for"]}),`
+`,e.jsxs(n.li,{children:[e.jsx(n.code,{children:"string"}),' - Integer block number, or the string "latest", "earliest" or "pending"']}),`
+`]}),`
+`,e.jsxs(n.h3,{id:"example",children:["Example",e.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#example",children:e.jsx(n.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(e.Fragment,{children:e.jsx(n.pre,{className:"shiki shiki-themes github-light github-dark",style:{backgroundColor:"#fff","--shiki-dark-bg":"#24292e",color:"#24292e","--shiki-dark":"#e1e4e8"},tabIndex:"0",children:e.jsx(n.code,{children:e.jsxs(n.span,{className:"line",children:[e.jsx(n.span,{style:{color:"#24292E","--shiki-dark":"#E1E4E8"},children:"["}),e.jsx(n.span,{style:{color:"#032F62","--shiki-dark":"#9ECBFF"},children:'"0xc94770007dda54cF92009BFF0dE90c06F603a09f"'}),e.jsx(n.span,{style:{color:"#24292E","--shiki-dark":"#E1E4E8"},children:", "}),e.jsx(n.span,{style:{color:"#032F62","--shiki-dark":"#9ECBFF"},children:'"latest"'}),e.jsx(n.span,{style:{color:"#24292E","--shiki-dark":"#E1E4E8"},children:"]"})]})})})}),`
+`,e.jsxs(n.h2,{id:"returns",children:["Returns",e.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#returns",children:e.jsx(n.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(n.p,{children:e.jsx(n.code,{children:"string"})}),`
+`,e.jsx(n.p,{children:"A hexadecimal string representing the number of transactions sent from this address."}),`
+`,e.jsxs(n.h3,{id:"example-1",children:["Example",e.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#example-1",children:e.jsx(n.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(e.Fragment,{children:e.jsx(n.pre,{className:"shiki shiki-themes github-light github-dark",style:{backgroundColor:"#fff","--shiki-dark-bg":"#24292e",color:"#24292e","--shiki-dark":"#e1e4e8"},tabIndex:"0",children:e.jsx(n.code,{children:e.jsx(n.span,{className:"line",children:e.jsx(n.span,{style:{color:"#24292E","--shiki-dark":"#E1E4E8"},children:'"0x1" // 1'})})})})}),`
+`,e.jsxs(n.h2,{id:"errors",children:["Errors",e.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#errors",children:e.jsx(n.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(n.table,{children:[e.jsx(n.thead,{children:e.jsxs(n.tr,{children:[e.jsx(n.th,{children:"Code"}),e.jsx(n.th,{children:"Message"})]})}),e.jsx(n.tbody,{children:e.jsxs(n.tr,{children:[e.jsx(n.td,{children:"-32602"}),e.jsx(n.td,{children:"Invalid address or block parameter"})]})})]})]})}function a(r={}){const{wrapper:n}={...t(),...r.components};return n?e.jsx(n,{...r,children:e.jsx(s,{...r})}):s(r)}export{a as default,d as frontmatter};

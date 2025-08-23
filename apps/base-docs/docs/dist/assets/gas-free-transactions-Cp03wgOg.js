@@ -1,0 +1,8 @@
+import{u as s,j as e}from"./index-Dlxm52NL.js";const r={title:"Gas-free Transactions",description:"undefined"};function t(n){const a={a:"a",code:"code",div:"div",h1:"h1",h2:"h2",header:"header",li:"li",p:"p",ul:"ul",...s(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(a.header,{children:e.jsxs(a.h1,{id:"gas-free-transactions",children:["Gas-free Transactions",e.jsx(a.a,{"aria-hidden":"true",tabIndex:"-1",href:"#gas-free-transactions",children:e.jsx(a.div,{"data-autolink-icon":!0})})]})}),`
+`,e.jsx(a.p,{children:"Smart Wallet enables apps to pay for users' transaction gas fees, allowing free transactions or removing the need for users to hold native tokens."}),`
+`,e.jsxs(a.h2,{id:"technical-details",children:["Technical Details",e.jsx(a.a,{"aria-hidden":"true",tabIndex:"-1",href:"#technical-details",children:e.jsx(a.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(a.ul,{children:[`
+`,e.jsxs(a.li,{children:["Sponsored transactions are facilitated onchain via ",e.jsx(a.a,{href:"https://eips.ethereum.org/EIPS/eip-4337",children:"ERC-4337"})," compliant paymasters."]}),`
+`,e.jsxs(a.li,{children:["Apps must have a ",e.jsx(a.a,{href:"https://eips.ethereum.org/EIPS/eip-7677",children:"ERC-7677"})," compliant paymaster service."]}),`
+`,e.jsxs(a.li,{children:["Apps can share this paymaster to Smart Wallet via the ERC-7677 ",e.jsx(a.code,{children:"paymasterService"})," capability on a ",e.jsx(a.code,{children:"wallet_sendCalls"})," request."]}),`
+`]})]})}function c(n={}){const{wrapper:a}={...s(),...n.components};return a?e.jsx(a,{...n,children:e.jsx(t,{...n})}):t(n)}export{c as default,r as frontmatter};
