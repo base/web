@@ -40,7 +40,7 @@ export function PolicyBanner() {
             updated policy.
           </div>
           <button
-            className="text-md text-md transition-allactive:bg-[#06318E] flex w-auto items-center justify-center gap-3 whitespace-nowrap rounded-lg border px-4 py-2 text-black disabled:pointer-events-none disabled:opacity-40 dark:text-white"
+            className="text-md text-md transition-all active:bg-[#06318E] flex w-auto items-center justify-center gap-3 whitespace-nowrap rounded-lg border px-4 py-2 text-black disabled:pointer-events-none disabled:opacity-40 dark:text-white"
             type="button"
             onClick={onDismiss}
           >
