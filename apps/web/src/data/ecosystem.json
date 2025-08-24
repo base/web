@@ -600,6 +600,14 @@
     "imageUrl": "/images/partners/blockai.png"
   },
   {
+    "name": "BlockClock",
+    "description": "BlockClock is a decentralized, community-powered timekeeping network that uses user-verified device timestamps to establish a trustless, on-chain standard of time.",
+    "url": "https://demo.stxn.io/",
+    "imageUrl": "/images/partners/blockclock.svg",
+    "category": "consumer",
+    "subcategory": "real world"
+  },
+  {
     "name": "Blockdaemon",
     "url": "https://blockdaemon.com",
     "description": "The institutional-grade blockchain infrastructure for Web3. Blockdaemon provides an end-to-end suite of blockchain tools, including dedicated nodes, APIs, staking, liquid staking, MPC tech, and more.",
