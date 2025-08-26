@@ -71,9 +71,9 @@ const links = [
     url: '/build/onchainkit',
   },
   {
-    title: 'MiniKit',
+    title: 'Mini Apps',
     description: 'Publish your mini app to the Base app with a few lines of code.',
-    url: '/build/minikit',
+    url: '/build/mini-apps',
   },
   {
     title: 'Base Appchains',
