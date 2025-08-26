@@ -83,7 +83,7 @@ function MenuMobileButton({
                 href={subItem.href + '?utm_source=dotorg&utm_medium=nav'}
                 target={subItem.href.startsWith('https://') ? '_blank' : undefined}
                 onClick={toggleMenu}
-                className="group/sublink inline-block flex w-full items-center justify-between gap-2 rounded-2xl py-2 "
+                className="group/sublink flex w-full items-center justify-between gap-2 rounded-2xl py-2 "
               >
                 <Title level={TitleLevel.Title4}>{subItem.name}</Title>
                 <span className="pr-1 opacity-50 group-hover/sublink:opacity-100">
@@ -130,7 +130,7 @@ export default function MenuMobile({ links }: MenuMobileProps) {
               type="button"
               onClick={toggleMenu}
               aria-label="Close Menu"
-              className="rounded-xl relative z-20 bg-black px-4 py-2 pr-1"
+              className="relative z-20 rounded-xl bg-black px-4 py-2 pr-1"
             >
               <Icon name="close" color="currentColor" height="1rem" width="1rem" />
             </button>

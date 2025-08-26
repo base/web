@@ -60,6 +60,11 @@ out/
 # prevent people from accidentally committing a package-lock
 package-lock.json
 
+# E2E
+**/playwright-report
+**/test-results
+apps/web/e2e/.cache
+
 # Env files
 .env.local
 .env.development.local

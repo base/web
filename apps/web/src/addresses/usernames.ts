@@ -33,11 +33,6 @@ export const USERNAME_CB_DISCOUNT_VALIDATORS: AddressMap = {
   [base.id]: '0x012076854d030128dc72B34621287Bb585210315',
 };
 
-export const USERNAME_EA_DISCOUNT_VALIDATORS: AddressMap = {
-  [baseSepolia.id]: '0x3A0E8c2a0a28f396A5E5b69Edb2e630311f1517a',
-  [base.id]: '0x6E89d99643DB1223697C77A9F8B2Cb07E898e743',
-};
-
 export const USERNAME_BNS_DISCOUNT_VALIDATORS: AddressMap = {
   [baseSepolia.id]: '0x1DE649d8b004A44491a7D3ebbb23F4B0DA89DE78',
   [base.id]: '0x20b433c640DFb8c2e3C6aBB0533314b2d7B9f2FF',
@@ -64,7 +59,7 @@ export const USERNAME_1155_DISCOUNT_VALIDATORS: AddressMap = {
 };
 
 export const USERNAME_REVERSE_REGISTRAR_ADDRESSES: AddressMap = {
-  [baseSepolia.id]: '0xa0A8401ECF248a9375a0a71C4dedc263dA18dCd7',
+  [baseSepolia.id]: '0x876eF94ce0773052a2f81921E70FF25a5e76841f',
   [base.id]: '0x79ea96012eea67a83431f1701b3dff7e37f9e282',
 };
 

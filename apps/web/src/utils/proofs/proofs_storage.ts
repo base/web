@@ -1,8 +1,7 @@
-import { vercelDb as db } from 'apps/web/src/utils/datastores/rds';
+import { getDb } from 'apps/web/src/utils/datastores/postgres';
 import { Address } from 'viem';
 
 export enum ProofTableNamespace {
-  UsernamesEarlyAccess = 'usernames_early_access',
   BNSDiscount = 'basenames_bns_discount',
   BaseEthHolders = 'basenames_base_eth_holders_discount',
   CBIDDiscount = 'basenames_cbid_discount',
@@ -15,6 +14,7 @@ export async function getProofsByNamespaceAndAddress(
   namespace: ProofTableNamespace,
   caseInsensitive = true, // set false for big data sets
 ) {
+  const db = getDb();
   let query = db.selectFrom(proofTableName).where('namespace', '=', namespace.valueOf());
 
   /**

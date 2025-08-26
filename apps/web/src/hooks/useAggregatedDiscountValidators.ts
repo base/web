@@ -7,7 +7,6 @@ import {
   useCheckCB1Attestations,
   useCheckCBIDAttestations,
   useCheckCoinbaseAttestations,
-  useCheckEAAttestations,
   useDevconAttestations,
   useDiscountCodeAttestations,
   useSummerPassAttestations,
@@ -45,7 +44,6 @@ export function useAggregatedDiscountValidators(code?: string) {
     useActiveDiscountValidators();
   const { data: CBIDData, loading: loadingCBIDAttestations } = useCheckCBIDAttestations();
   const { data: CB1Data, loading: loadingCB1Attestations } = useCheckCB1Attestations();
-  const { data: EAData, loading: loadingEAAttestations } = useCheckEAAttestations();
   const { data: coinbaseData, loading: loadingCoinbaseAttestations } =
     useCheckCoinbaseAttestations();
   const { data: SummerPassData, loading: loadingSummerPass } = useSummerPassAttestations();
@@ -64,7 +62,6 @@ export function useAggregatedDiscountValidators(code?: string) {
     loadingCBIDAttestations ||
     loadingCB1Attestations ||
     loadingActiveDiscounts ||
-    loadingEAAttestations ||
     loadingBuildathon ||
     loadingSummerPass ||
     loadingBaseDotEth ||
@@ -92,9 +89,6 @@ export function useAggregatedDiscountValidators(code?: string) {
           ...coinbaseData,
           discountKey: validator.key,
         };
-      }
-      if (EAData && validator.discountValidator === EAData.discountValidatorAddress) {
-        discountMapping[Discount.EARLY_ACCESS] = { ...EAData, discountKey: validator.key };
       }
 
       if (
@@ -169,7 +163,6 @@ export function useAggregatedDiscountValidators(code?: string) {
     CBIDData,
     CB1Data,
     coinbaseData,
-    EAData,
     BuildathonData,
     SummerPassData,
     BaseDotEthData,

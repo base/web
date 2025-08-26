@@ -1,11 +1,14 @@
 'use client';
 import { Basename } from '@coinbase/onchainkit/identity';
+import { useErrors } from 'apps/web/contexts/Errors';
 import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
 import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import {
   buildBasenameOwnerContract,
   buildBasenameEditorContract,
+  formatDefaultUsername,
+  getBasenameNameExpires,
 } from 'apps/web/src/utils/usernames';
 import {
   Dispatch,
@@ -14,6 +17,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from 'react';
@@ -42,6 +46,9 @@ export type UsernameProfileContextProps = {
 
   currentWalletIsProfileOwner: boolean;
 
+  // Expiration
+  msUntilExpiration: number | undefined;
+
   // Permissions
   canSetAddr: boolean;
   canReclaim: boolean;
@@ -59,6 +66,7 @@ export const UsernameProfileContext = createContext<UsernameProfileContextProps>
   showProfileSettings: false,
   setShowProfileSettings: () => undefined,
   currentWalletIsProfileOwner: false,
+  msUntilExpiration: undefined,
   canSetAddr: false,
   canReclaim: false,
   canSafeTransferFrom: false,
@@ -75,7 +83,9 @@ export default function UsernameProfileProvider({
   username,
 }: UsernameProfileProviderProps) {
   const [showProfileSettings, setShowProfileSettings] = useState<boolean>(false);
+  const [msUntilExpiration, setMsUntilExpiration] = useState<number | undefined>(undefined);
   const { basenameChain } = useBasenameChain(username);
+  const { logError } = useErrors();
 
   // Current wallet
   const { address: connectedAddress, isConnected } = useAccount();
@@ -135,6 +145,29 @@ export default function UsernameProfileProvider({
   const currentWalletNeedsToReclaimProfile =
     canReclaim && !currentWalletIsProfileEditor && currentWalletIsProfileOwner;
 
+  // Check basename expiration
+  useEffect(() => {
+    const checkExpiration = async () => {
+      try {
+        const formattedUsername = await formatDefaultUsername(
+          decodeURIComponent(username) as Basename,
+        );
+        const expiresAt = await getBasenameNameExpires(formattedUsername);
+
+        if (expiresAt) {
+          const expirationTime = Number(expiresAt) * 1000;
+          const currentTime = Date.now();
+          const timeUntilExpiration = expirationTime - currentTime;
+          setMsUntilExpiration(timeUntilExpiration);
+        }
+      } catch (error) {
+        logError(error, 'Error checking basename expiration');
+      }
+    };
+
+    void checkExpiration();
+  }, [logError, username]);
+
   const profileRefetch = useCallback(async () => {
     await profileAddressRefetch();
     await profileEditorRefetch();
@@ -151,6 +184,7 @@ export default function UsernameProfileProvider({
       currentWalletIsProfileEditor,
       currentWalletIsProfileOwner,
       currentWalletIsProfileAddress,
+      msUntilExpiration,
       canSetAddr,
       canReclaim,
       canSafeTransferFrom,
@@ -167,6 +201,7 @@ export default function UsernameProfileProvider({
     currentWalletIsProfileEditor,
     currentWalletIsProfileOwner,
     currentWalletIsProfileAddress,
+    msUntilExpiration,
     canSetAddr,
     canReclaim,
     canSafeTransferFrom,

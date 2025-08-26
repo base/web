@@ -168,28 +168,28 @@ class KVManager {
 }
 
 function createDefaultKVManager() {
-  const host = isDevelopment ? process.env.KV_HOST_DEVELOPMENT : process.env.KV_HOST;
-  const port = isDevelopment
-    ? Number(process.env.KV_PORT_DEVELOPMENT)
-    : Number(process.env.KV_PORT);
+  try {
+    const host = isDevelopment ? process.env.KV_HOST_DEVELOPMENT : process.env.KV_HOST;
+    const port = isDevelopment
+      ? Number(process.env.KV_PORT_DEVELOPMENT)
+      : Number(process.env.KV_PORT);
 
-  if (!host || !port) {
-    throw new Error('No KV host or port provided');
+    if (!host || !port) {
+      throw new Error('No KV host or port provided');
+    }
+
+    return new KVManager({ host, port });
+  } catch (error) {
+    logger.error('Failed to create KV manager', error);
+    throw new Error(`Failed to create KV manager: ${error}`);
   }
-
-  return new KVManager({ host, port });
 }
 
-function createVercelKVManager() {
-  const url = isDevelopment ? process.env.KV_URL_DEVELOPMENT : process.env.KV_URL;
-  if (!url) {
-    throw new Error('No KV URL provided');
+// Exports getKv function that returns the default singleton instance of KVManager
+let kv: KVManager | undefined = undefined;
+export function getKv() {
+  if (!kv) {
+    kv = createDefaultKVManager();
   }
-  return new KVManager({ url, tls: true });
+  return kv;
 }
-
-// Exports an instance of KVManager with the default vercel KV URL
-export const kv = createVercelKVManager();
-
-// Exports an instance of KVManager with the default CBHQ KV URL
-export const cbhqKv = createDefaultKVManager();
