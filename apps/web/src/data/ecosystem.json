@@ -3664,6 +3664,14 @@
     "subcategory": "payments"
   },
   {
+    "name": "Superform",
+    "description": "Superform grows your onchain wealth. Earn the best returns on your cash and crypto, simply.",
+    "url": "https://superform.xyz",
+    "imageUrl": "/images/partners/superform.png"
+    "category": "defi",
+    "subcategory": "liquidity management"
+  },
+  {
     "name": "SuperFund",
     "description": "A smart USDC yield product that reallocates capital across lending protocols for optimal returns.",
     "url": "https://funds.superlend.xyz/super-fund/base",
