@@ -3664,6 +3664,14 @@
     "subcategory": "payments"
   },
   {
+    "name": "Superform",
+    "description": "Superform is the first user-owned neobank. Anyone can save, swap, send, and earn onchain while keeping full control of their assets.",
+    "url": "https://superform.xyz",
+    "imageUrl": "/images/partners/superform.png"
+    "category": "defi",
+    "subcategory": "liquidity management"
+  },
+  {
     "name": "SuperFund",
     "description": "A smart USDC yield product that reallocates capital across lending protocols for optimal returns.",
     "url": "https://funds.superlend.xyz/super-fund/base",
