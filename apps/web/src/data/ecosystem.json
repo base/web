@@ -1040,6 +1040,14 @@
     "subcategory": "dex"
   },
   {
+    "name": "Corgi Studio",
+    "description": "A one-stop shop for all your NFT needs. Swap tokens, Discover NFTs, All on Cronos, with support for Polygon and Base Your NFT experience, simplified.",
+    "url": "https://corgistudio.io",
+    "imageUrl": "/images/partners/corgistudio.png",
+    "category": "consumer",
+    "subcategory": "nft"
+  },
+  {
     "name": "Cornucopias",
     "description": "Welcome to Cornucopias: a new MMO where you have the freedom to live any life you desire. Up here in the clouds, the sky is no longer the limit. ",
     "url": "https://cornucopias.io",
