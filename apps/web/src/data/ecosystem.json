@@ -1784,6 +1784,14 @@
     "subcategory": "ai"
   },
   {
+  "name": "Glider",
+  "description": "Glider is a platform for creating auto-rebalancing DeFi and token portfolios. No gas. No signing. No bridging. Fully non-custodial.",
+  "url": "https://glider.fi",
+  "imageUrl": "/images/partners/glider.png",
+  "category": "defi",
+  "subcategory": "portfolio"
+  },
+  {
     "name": "Goldsky",
     "url": "https://goldsky.com/",
     "description": "Web3's Realtime Data Platform.\n\nBuild powerful dApps faster with premium blockchain indexing, instant subgraphs, and custom data streaming pipelines.",
