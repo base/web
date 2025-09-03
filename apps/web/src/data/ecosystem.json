@@ -2528,6 +2528,14 @@
     "subcategory": "ai"
   },
   {
+    "name": "Mt Pelerin",
+    "description": "Buy crypto on your own Base wallet in minutes, swap and bridge funds easily, cash out back on your bank account without a hitch.",
+    "url": "https://www.mtpelerin.com/base",
+    "imageUrl": "/images/partners/mtpelerin.png",
+    "category": "onramp",
+    "subcategory": "fiat on-ramp"
+  },
+  {
     "name": "Multisender.app",
     "description": "Multisender facilitates airdrops and other mass transactions on 20+ networks, including Base. It takes a list of recipients and their respective token amounts and automates everything else.",
     "url": "https://classic.multisender.app/",
