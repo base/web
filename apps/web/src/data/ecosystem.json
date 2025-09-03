@@ -3152,6 +3152,14 @@
     "subcategory": "node provider"
   },
   {
+    "name": "Quickswap",
+    "url": "https://dapp.quickswap.exchange/farm?chainId=8453",
+    "description": "Quickswap is an Ethereum Community DEX and home to the DragonFi ecosystem. A one-stop DeFi hub where users can swap, provide Liquidity, farm, trade perps, stake, and more",
+    "imageUrl": "/images/partners/quickswap.webp",
+    "category": "defi",
+    "subcategory": "dex"
+  },
+  {
     "name": "QuillAudits",
     "description": "Web3 security leader equipped with robust security solutions and infra, trusted by teams from ZetaChain, Taiko, Polygon and many more since 2018. ",
     "url": "https://quillaudits.com",
