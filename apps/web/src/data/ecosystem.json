@@ -4462,5 +4462,13 @@
     "description": "WOWMAX is the first non-custodial DEX copy trading platform. Join the top 1 % of DEX traders by discovering and automatically copy-trading the most profitable wallets on BASE chain.",
     "url": "https://wowmax.exchange/",
     "imageUrl": "/images/partners/wowmax.png"
+  },
+  {
+    "name": "Zora MCP Server",
+    "description": "MCP server for natural language trading on Base—buy any token created on Zora Protocol and swap any asset on Base mainnet directly from Claude Desktop or any MCP-enabled client.",
+    "url": "https://www.npmjs.com/package/@6missedcalls-ai/zora-mcp-server",
+    "imageUrl": "/images/partners/zora-mcp-server-logo.png",
+    "category": "ai",
+    "subcategory": "ai"
   }
 ]
