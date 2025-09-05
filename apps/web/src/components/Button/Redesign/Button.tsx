@@ -9,6 +9,7 @@ export enum ButtonVariants {
   Primary = 'primary',
   Secondary = 'secondary',
   SecondaryOutline = 'secondary-outline',
+  Blue = 'blue',
 }
 
 export enum ButtonSizes {
@@ -23,6 +24,8 @@ const variantStyles = {
     'text-black bg-base-gray-50 dark:bg-white dark:text-black hover:dark:text-white hover:bg-state-bA-hovered hover:dark:bg-base-blueDark active:bg-state-bA-pressed active:dark:bg-base-blueDark border-none border-base-black dark:border-base-blackInvert hover:border-base-blue hover:dark:border-base-blueDark active:border-base-blue active:dark:border-base-blueDark',
   [ButtonVariants.SecondaryOutline]:
     'bg-white text-black border border-[#e5e5e5] hover:bg-[#f7f7f7] hover:border-[#dcdcdc] dark:bg-black dark:text-white hover:dark:text-black dark:border-base-gray-90 hover:dark:bg-base-gray-90 hover:dark:border-base-gray-90',
+  [ButtonVariants.Blue]:
+    'text-white bg-base-blue hover:bg-base-black active:bg-base-black border border-base-blue hover:border-base-black active:border-base-black',
 };
 
 const sizeStyles = {
