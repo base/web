@@ -4486,5 +4486,13 @@
     "description": "WOWMAX is the first non-custodial DEX copy trading platform. Join the top 1 % of DEX traders by discovering and automatically copy-trading the most profitable wallets on BASE chain.",
     "url": "https://wowmax.exchange/",
     "imageUrl": "/images/partners/wowmax.png"
+  },
+  {
+    "name": "Agora",
+    "description": "Agora is where debates go onchain. Choose your stance, spark the clash, and earn rewards. Because words should play and pay.",
+    "url": "https://app.agora-colosseum.xyz/",
+    "imageUrl": "/images/partners/agora.png",
+    "category": "consumer",
+    "subcategory": "social"
   }
 ]
