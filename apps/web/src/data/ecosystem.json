@@ -4128,6 +4128,14 @@
     "subcategory": "dex"
   },
   {
+    "name": "UniVoucher",
+    "description": "The world's first decentralized crypto gift card protocol that lets anyone create, send, and redeem crypto gift cards in the form of a card ID and secret. Non-custodial and permissionless.",
+    "url": "https://univoucher.com",
+    "imageUrl": "/images/partners/univoucher.png",
+    "category": "defi",
+    "subcategory": "payments"
+  },
+  {
     "name": "UNKJD",
     "url": "http://unkjd.com/",
     "description": "In UNKJD players take on the role of a soccer team owner, collecting athletes and playing in the leagues. It's a fast-paced, strategic, turn-based board game.",
