@@ -103,11 +103,8 @@ export function useRegisterNameCallback(
     if (!address) throw new Error('No address');
     if (!publicClient) throw new Error('No public client');
 
-    const reverseRegistrar = await publicClient.readContract({
-      abi: UpgradeableRegistrarControllerAbi,
-      address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
-      functionName: 'reverseRegistrar',
-    });
+    // Use the L2 Reverse Registrar address configured for this chain.
+    const reverseRegistrar = USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES[basenameChain.id];
 
     const functionAbi = L2ReverseRegistrarAbi.find(
       (f) => f.type === 'function' && f.name === 'setNameForAddrWithSignature',
@@ -116,10 +113,11 @@ export function useRegisterNameCallback(
 
     const signatureExpiry = BigInt(Math.floor(Date.now() / 1000) + 5 * 60);
     const coinTypes = [BigInt(convertChainIdToCoinTypeUint(basenameChain.id))] as const;
+    const fullName = formatBaseEthDomain(name, basenameChain.id);
 
     const preimage = encodePacked(
       ['address', 'bytes4', 'address', 'uint256', 'string', 'uint256[]'],
-      [reverseRegistrar, selector, address, signatureExpiry, normalizedName, coinTypes],
+      [reverseRegistrar, selector, address, signatureExpiry, fullName, coinTypes],
     );
 
     const digest = keccak256(preimage);
@@ -128,7 +126,7 @@ export function useRegisterNameCallback(
     const payload = { coinTypes, signatureExpiry, signature } as const;
     setReverseSigPayload(payload);
     return payload;
-  }, [address, basenameChain.id, normalizedName, publicClient, signMessageAsync]);
+  }, [address, basenameChain.id, name, publicClient, signMessageAsync]);
 
   // Callback
   const registerName = useCallback(async () => {
@@ -176,13 +174,15 @@ export function useRegisterNameCallback(
       signatureForRequest = payload.signature;
     }
 
+    const reverseRecordForRequest = paymasterServiceEnabled ? false : reverseRecord;
+
     const registerRequest = {
       name: normalizedName, // The name being registered.
       owner: address, // The address of the owner for the name.
       duration: secondsInYears(years), // The duration of the registration in seconds.
       resolver: UPGRADEABLE_L2_RESOLVER_ADDRESSES[basenameChain.id], // The address of the resolver to set for this name.
       data: [addressData, baseCointypeData, nameData], //  Multicallable data bytes for setting records in the associated resolver upon registration.
-      reverseRecord, // Bool to decide whether to set this name as the "primary" name for the `owner`.
+      reverseRecord: reverseRecordForRequest, // When using paymaster (atomic batch), set via separate call instead of signature flow.
       coinTypes: coinTypesForRequest,
       signatureExpiry: signatureExpiryForRequest,
       signature: signatureForRequest,
