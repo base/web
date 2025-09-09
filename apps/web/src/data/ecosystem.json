@@ -1560,6 +1560,14 @@
     "subcategory": "nft"
   },
   {
+    "name": "Fibrous",
+    "description": "Fibrous offers optimal trade execution with advanced aggregation and innovative onchain features, enabling seamless DeFi trading across its interface and APIs on Base.",
+    "url": "https://app.fibrous.finance/en?network=base",
+    "imageUrl": "/images/partners/fibrous.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
+  },
+  {
     "name": "Fireblocks",
     "url": "https://www.fireblocks.com/",
     "description": "Fireblocks provides a suite of applications to manage digital asset operations and a complete development platform to build your business on the blockchain.",
@@ -1774,6 +1782,14 @@
     "imageUrl": "/images/partners/giza.svg",
     "category": "ai",
     "subcategory": "ai"
+  },
+  {
+  "name": "Glider",
+  "description": "Glider is a platform for creating auto-rebalancing DeFi and token portfolios. No gas. No signing. No bridging. Fully non-custodial.",
+  "url": "https://glider.fi",
+  "imageUrl": "/images/partners/glider.png",
+  "category": "defi",
+  "subcategory": "portfolio"
   },
   {
     "name": "Goldsky",
@@ -3144,6 +3160,14 @@
     "subcategory": "node provider"
   },
   {
+    "name": "Quickswap",
+    "url": "https://dapp.quickswap.exchange/farm?chainId=8453",
+    "description": "Quickswap is an Ethereum Community DEX and home to the DragonFi ecosystem. A one-stop DeFi hub where users can swap, provide Liquidity, farm, trade perps, stake, and more",
+    "imageUrl": "/images/partners/quickswap.webp",
+    "category": "defi",
+    "subcategory": "dex"
+  },
+  {
     "name": "QuillAudits",
     "description": "Web3 security leader equipped with robust security solutions and infra, trusted by teams from ZetaChain, Taiko, Polygon and many more since 2018. ",
     "url": "https://quillaudits.com",
@@ -3214,6 +3238,14 @@
     "imageUrl": "/images/partners/redstone.webp",
     "category": "infra",
     "subcategory": "data"
+  },
+  {
+    "name": "Rei Network",
+    "description": "Rei Network is an AI research organization that focuses on advancing artificial intelligence through science driven innovations.",
+    "url": "https://reisearch.box",
+    "imageUrl": "/images/partners/logo-rei.png",
+    "category": "ai",
+    "subcategory": "ai"
   },
   {
     "name": "Reflect",
@@ -4446,5 +4478,21 @@
     "imageUrl": "/images/partners/zora.webp",
     "category": "consumer",
     "subcategory": "creator"
+  },
+  {
+    "name": "WOWMAX",
+    "category": "defi",
+    "subcategory": "liquidity management",
+    "description": "WOWMAX is the first non-custodial DEX copy trading platform. Join the top 1 % of DEX traders by discovering and automatically copy-trading the most profitable wallets on BASE chain.",
+    "url": "https://wowmax.exchange/",
+    "imageUrl": "/images/partners/wowmax.png"
+  },
+  {
+    "name": "WLTH",
+    "url": "https://wlth.xyz//",
+    "description": "WLTH opens the door to tokenised pre-IPO opportunities like xAI and SpaceX, while AI-powered strategies help your assets grow on autopilot. One app. No barriers.",
+    "imageUrl": "/images/partners/wlth.webp",
+    "category": "Consumer",
+    "subcategory": "Real World"
   }
 ]
