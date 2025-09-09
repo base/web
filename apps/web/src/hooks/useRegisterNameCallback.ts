@@ -24,7 +24,6 @@ import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react'
 import { encodeFunctionData, namehash } from 'viem';
 import { useAccount } from 'wagmi';
 import { secondsInYears } from 'apps/web/src/utils/secondsInYears';
-import UpgradeableRegistrarControllerAbi from 'apps/web/src/abis/UpgradeableRegistrarControllerAbi';
 import L2ReverseRegistrarAbi from 'apps/web/src/abis/L2ReverseRegistrarAbi';
 import { encodePacked, getFunctionSelector, keccak256, type AbiFunction } from 'viem';
 import { usePublicClient, useSignMessage } from 'wagmi';
@@ -202,7 +201,7 @@ export function useRegisterNameCallback(
         await initiateBatchCalls({
           contracts: [
             {
-              abi: UpgradeableRegistrarControllerAbi,
+              abi: REGISTER_CONTRACT_ABI,
               address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
               functionName: isDiscounted ? 'discountedRegister' : 'register',
               args: isDiscounted
