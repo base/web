@@ -1,6 +1,7 @@
 import ReverseRegistrarAbi from 'apps/web/src/abis/ReverseRegistrarAbi';
 import {
   USERNAME_L2_RESOLVER_ADDRESSES,
+  USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES,
   USERNAME_REVERSE_REGISTRAR_ADDRESSES,
 } from 'apps/web/src/addresses/usernames';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
@@ -107,7 +108,7 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
             },
             {
               abi: L2ReverseRegistrarAbi,
-              address: USERNAME_L2_RESOLVER_ADDRESSES[secondaryUsernameChain.id],
+              address: USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES[secondaryUsernameChain.id],
               functionName: 'setName',
               args: [secondaryUsername],
             },
