@@ -11,16 +11,15 @@ import {
   sha256,
 } from 'viem';
 import { normalize } from 'viem/ens';
-import RegistrarControllerABI from 'apps/web/src/abis/RegistrarControllerABI';
 import L2ResolverAbi from 'apps/web/src/abis/L2Resolver';
 import RegistryAbi from 'apps/web/src/abis/RegistryAbi';
 import BaseRegistrarAbi from 'apps/web/src/abis/BaseRegistrarAbi';
 import { base, baseSepolia, mainnet } from 'viem/chains';
 import { Basename } from '@coinbase/onchainkit/identity';
 import {
+  UPGRADEABLE_REGISTRAR_CONTROLLER_ADDRESSES,
   USERNAME_BASE_REGISTRAR_ADDRESSES,
   USERNAME_BASE_REGISTRY_ADDRESSES,
-  USERNAME_REGISTRAR_CONTROLLER_ADDRESSES,
 } from 'apps/web/src/addresses/usernames';
 
 import {
@@ -56,6 +55,7 @@ import {
   ALLOWED_IMAGE_TYPE,
   MAX_IMAGE_SIZE_IN_MB,
 } from 'apps/web/app/(basenames)/api/basenames/avatar/ipfsUpload/route';
+import UpgradeableRegistrarControllerAbi from 'apps/web/src/abis/UpgradeableRegistrarControllerAbi';
 
 export const USERNAME_MIN_CHARACTER_LENGTH = 3;
 export const USERNAME_MAX_CHARACTER_LENGTH = 20;
@@ -762,9 +762,9 @@ export const getBasenameImage = (username: string) => {
 
 export const USERNAMES_PINNED_CASTS_ENABLED =
   process.env.NEXT_PUBLIC_USERNAMES_PINNED_CASTS_ENABLED === 'true';
-export const REGISTER_CONTRACT_ABI = RegistrarControllerABI;
+export const REGISTER_CONTRACT_ABI = UpgradeableRegistrarControllerAbi;
 
-export const REGISTER_CONTRACT_ADDRESSES = USERNAME_REGISTRAR_CONTROLLER_ADDRESSES;
+export const REGISTER_CONTRACT_ADDRESSES = UPGRADEABLE_REGISTRAR_CONTROLLER_ADDRESSES;
 
 export const isBasenameRenewalsKilled = process.env.NEXT_PUBLIC_KILL_BASENAMES_RENEWALS === 'true';
 
