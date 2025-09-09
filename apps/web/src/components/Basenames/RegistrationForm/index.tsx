@@ -1,6 +1,5 @@
 import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { useErrors } from 'apps/web/contexts/Errors';
-import { UPGRADEABLE_REGISTRAR_CONTROLLER_ADDRESSES } from 'apps/web/src/addresses/usernames';
 import { PremiumExplainerModal } from 'apps/web/src/components/Basenames/PremiumExplainerModal';
 import { useRegistration } from 'apps/web/src/components/Basenames/RegistrationContext';
 import RegistrationLearnMoreModal from 'apps/web/src/components/Basenames/RegistrationLearnMoreModal';
@@ -18,7 +17,11 @@ import {
   useNameRegistrationPrice,
 } from 'apps/web/src/hooks/useNameRegistrationPrice';
 import { useRentPrice } from 'apps/web/src/hooks/useRentPrice';
-import { formatBaseEthDomain } from 'apps/web/src/utils/usernames';
+import {
+  formatBaseEthDomain,
+  REGISTER_CONTRACT_ABI,
+  REGISTER_CONTRACT_ADDRESSES,
+} from 'apps/web/src/utils/usernames';
 import classNames from 'classnames';
 import { ActionType } from 'libs/base-ui/utils/logEvent';
 import { ChangeEvent, useCallback, useState } from 'react';
@@ -28,7 +31,6 @@ import { formatEtherPrice } from 'apps/web/src/utils/formatEtherPrice';
 import { formatUsdPrice } from 'apps/web/src/utils/formatUsdPrice';
 import { ConnectButton, useConnectModal } from '@rainbow-me/rainbowkit';
 import { Button, ButtonSizes, ButtonVariants } from 'apps/web/src/components/Button/Button';
-import UpgradeableRegistrarControllerAbi from 'apps/web/src/abis/UpgradeableRegistrarControllerAbi';
 
 export default function RegistrationForm() {
   const { chain: connectedChain, address } = useAccount();
@@ -100,8 +102,8 @@ export default function RegistrationForm() {
   );
 
   const { data: hasRegisteredWithDiscount } = useReadContract({
-    abi: UpgradeableRegistrarControllerAbi,
-    address: UPGRADEABLE_REGISTRAR_CONTROLLER_ADDRESSES[basenameChain.id],
+    abi: REGISTER_CONTRACT_ABI,
+    address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
     functionName: 'hasRegisteredWithDiscount',
     args: [[address ?? zeroAddress]],
   });

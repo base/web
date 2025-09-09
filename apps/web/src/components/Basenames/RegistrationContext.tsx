@@ -1,5 +1,4 @@
 'use client';
-import { UPGRADEABLE_REGISTRAR_CONTROLLER_ADDRESSES } from 'apps/web/src/addresses/usernames';
 import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { useErrors } from 'apps/web/contexts/Errors';
 import {
@@ -9,7 +8,13 @@ import {
 } from 'apps/web/src/hooks/useAggregatedDiscountValidators';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import { useRegisterNameCallback } from 'apps/web/src/hooks/useRegisterNameCallback';
-import { Discount, formatBaseEthDomain, isValidDiscount } from 'apps/web/src/utils/usernames';
+import {
+  Discount,
+  formatBaseEthDomain,
+  isValidDiscount,
+  REGISTER_CONTRACT_ABI,
+  REGISTER_CONTRACT_ADDRESSES,
+} from 'apps/web/src/utils/usernames';
 import { ActionType } from 'libs/base-ui/utils/logEvent';
 import { useRouter } from 'next/navigation';
 import {
@@ -35,7 +40,6 @@ import { BatchCallsStatus } from 'apps/web/src/hooks/useWriteContractsWithLogs';
 import { WriteTransactionWithReceiptStatus } from 'apps/web/src/hooks/useWriteContractWithReceipt';
 import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
 import { Basename } from '@coinbase/onchainkit/identity';
-import UpgradeableRegistrarControllerAbi from 'apps/web/src/abis/UpgradeableRegistrarControllerAbi';
 
 export enum RegistrationSteps {
   Search = 'search',
@@ -174,8 +178,8 @@ export default function RegistrationProvider({ children, code }: RegistrationPro
 
   // Has already registered with discount
   const { data: hasRegisteredWithDiscount } = useReadContract({
-    abi: UpgradeableRegistrarControllerAbi,
-    address: UPGRADEABLE_REGISTRAR_CONTROLLER_ADDRESSES[basenameChain.id],
+    abi: REGISTER_CONTRACT_ABI,
+    address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
     functionName: 'hasRegisteredWithDiscount',
     args: [[address ?? zeroAddress]],
   });
