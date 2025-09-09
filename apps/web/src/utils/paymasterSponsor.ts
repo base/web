@@ -1,4 +1,4 @@
-import RegistrarControllerABI from 'apps/web/src/abis/RegistrarControllerABI';
+import UpgradeableRegistrarControllerAbi from 'apps/web/src/abis/UpgradeableRegistrarControllerAbi';
 import { ENTRYPOINT_ADDRESS_V06, UserOperation } from 'permissionless';
 import {
   Address,
@@ -108,7 +108,7 @@ export async function willSponsor({
     }
 
     const innerCalldata = decodeFunctionData({
-      abi: RegistrarControllerABI,
+      abi: UpgradeableRegistrarControllerAbi,
       data: calls[callToCheckIndex].data,
     });
     if (!['register', 'discountedRegister'].includes(innerCalldata.functionName)) {

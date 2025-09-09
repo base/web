@@ -1,7 +1,6 @@
 import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { useErrors } from 'apps/web/contexts/Errors';
-import RegistrarControllerABI from 'apps/web/src/abis/RegistrarControllerABI';
-import { USERNAME_REGISTRAR_CONTROLLER_ADDRESSES } from 'apps/web/src/addresses/usernames';
+import { UPGRADEABLE_REGISTRAR_CONTROLLER_ADDRESSES } from 'apps/web/src/addresses/usernames';
 import { PremiumExplainerModal } from 'apps/web/src/components/Basenames/PremiumExplainerModal';
 import { useRegistration } from 'apps/web/src/components/Basenames/RegistrationContext';
 import RegistrationLearnMoreModal from 'apps/web/src/components/Basenames/RegistrationLearnMoreModal';
@@ -29,6 +28,7 @@ import { formatEtherPrice } from 'apps/web/src/utils/formatEtherPrice';
 import { formatUsdPrice } from 'apps/web/src/utils/formatUsdPrice';
 import { ConnectButton, useConnectModal } from '@rainbow-me/rainbowkit';
 import { Button, ButtonSizes, ButtonVariants } from 'apps/web/src/components/Button/Button';
+import UpgradeableRegistrarControllerAbi from 'apps/web/src/abis/UpgradeableRegistrarControllerAbi';
 
 export default function RegistrationForm() {
   const { chain: connectedChain, address } = useAccount();
@@ -100,10 +100,10 @@ export default function RegistrationForm() {
   );
 
   const { data: hasRegisteredWithDiscount } = useReadContract({
-    abi: RegistrarControllerABI,
-    address: USERNAME_REGISTRAR_CONTROLLER_ADDRESSES[basenameChain.id],
-    functionName: 'discountedRegistrants',
-    args: [address ?? zeroAddress],
+    abi: UpgradeableRegistrarControllerAbi,
+    address: UPGRADEABLE_REGISTRAR_CONTROLLER_ADDRESSES[basenameChain.id],
+    functionName: 'hasRegisteredWithDiscount',
+    args: [[address ?? zeroAddress]],
   });
 
   const price = hasRegisteredWithDiscount ? initialPrice : discountedPrice ?? initialPrice;

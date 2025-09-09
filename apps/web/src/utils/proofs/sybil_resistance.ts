@@ -1,7 +1,6 @@
 import { getAttestations } from '@coinbase/onchainkit/identity';
 import { getKv } from 'apps/web/src/utils/datastores/kv';
 import { CoinbaseProofResponse } from 'apps/web/app/(basenames)/api/proofs/coinbase/route';
-import RegistrarControllerABI from 'apps/web/src/abis/RegistrarControllerABI';
 import {
   USERNAME_CB1_DISCOUNT_VALIDATORS,
   USERNAME_CB_DISCOUNT_VALIDATORS,

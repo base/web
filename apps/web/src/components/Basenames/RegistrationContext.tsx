@@ -1,6 +1,5 @@
 'use client';
-import RegistrarControllerABI from 'apps/web/src/abis/RegistrarControllerABI';
-import { USERNAME_REGISTRAR_CONTROLLER_ADDRESSES } from 'apps/web/src/addresses/usernames';
+import { UPGRADEABLE_REGISTRAR_CONTROLLER_ADDRESSES } from 'apps/web/src/addresses/usernames';
 import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { useErrors } from 'apps/web/contexts/Errors';
 import {
@@ -36,6 +35,7 @@ import { BatchCallsStatus } from 'apps/web/src/hooks/useWriteContractsWithLogs';
 import { WriteTransactionWithReceiptStatus } from 'apps/web/src/hooks/useWriteContractWithReceipt';
 import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
 import { Basename } from '@coinbase/onchainkit/identity';
+import UpgradeableRegistrarControllerAbi from 'apps/web/src/abis/UpgradeableRegistrarControllerAbi';
 
 export enum RegistrationSteps {
   Search = 'search',
@@ -174,10 +174,10 @@ export default function RegistrationProvider({ children, code }: RegistrationPro
 
   // Has already registered with discount
   const { data: hasRegisteredWithDiscount } = useReadContract({
-    abi: RegistrarControllerABI,
-    address: USERNAME_REGISTRAR_CONTROLLER_ADDRESSES[basenameChain.id],
-    functionName: 'discountedRegistrants',
-    args: [address ?? zeroAddress],
+    abi: UpgradeableRegistrarControllerAbi,
+    address: UPGRADEABLE_REGISTRAR_CONTROLLER_ADDRESSES[basenameChain.id],
+    functionName: 'hasRegisteredWithDiscount',
+    args: [[address ?? zeroAddress]],
   });
 
   const { data: discountedPrice } = useDiscountedNameRegistrationPrice(
