@@ -59,10 +59,11 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
       eventName: 'update_primary_name',
     });
 
-  const { initiateBatchCalls, batchCallsStatus, batchCallsIsLoading } = useWriteContractsWithLogs({
-    chain: secondaryUsernameChain,
-    eventName: 'update_primary_name',
-  });
+  const { initiateBatchCalls, batchCallsIsSuccess, batchCallsIsLoading } =
+    useWriteContractsWithLogs({
+      chain: secondaryUsernameChain,
+      eventName: 'update_primary_name',
+    });
 
   useEffect(() => {
     if (transactionIsSuccess) {
@@ -144,7 +145,6 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
     setPrimaryName,
     canSetUsernameAsPrimary,
     isLoading,
-    transactionIsSuccess,
-    batchCallsStatus,
+    transactionIsSuccess: transactionIsSuccess || batchCallsIsSuccess,
   };
 }
