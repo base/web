@@ -17,8 +17,8 @@ import useCapabilitiesSafe from 'apps/web/src/hooks/useCapabilitiesSafe';
 import L2ReverseRegistrarAbi from 'apps/web/src/abis/L2ReverseRegistrarAbi';
 import UpgradeableRegistrarControllerAbi from 'apps/web/src/abis/UpgradeableRegistrarControllerAbi';
 import { UPGRADEABLE_REGISTRAR_CONTROLLER_ADDRESSES } from 'apps/web/src/addresses/usernames';
-import { encodePacked, getFunctionSelector, keccak256, type AbiFunction } from 'viem';
-import { convertChainIdToCoinTypeUint } from 'apps/web/src/utils/usernames';
+import { type AbiFunction } from 'viem';
+import { buildReverseRegistrarSignatureDigest } from 'apps/web/src/utils/usernames';
 
 /*
   A hook to set a name as primary for resolution.
@@ -85,18 +85,17 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
     const functionAbi = L2ReverseRegistrarAbi.find(
       (f) => f.type === 'function' && f.name === 'setNameForAddrWithSignature',
     ) as unknown as AbiFunction;
-    const selector = getFunctionSelector(functionAbi);
 
     const signatureExpiry = BigInt(Math.floor(Date.now() / 1000) + 5 * 60);
-    const coinTypes = [BigInt(convertChainIdToCoinTypeUint(secondaryUsernameChain.id))] as const;
-    const fullName = secondaryUsername as string;
-
-    const preimage = encodePacked(
-      ['address', 'bytes4', 'address', 'uint256', 'string', 'uint256[]'],
-      [reverseRegistrar, selector, address, signatureExpiry, fullName, coinTypes],
-    );
-
-    const digest = keccak256(preimage);
+    const nameLabel = (secondaryUsername as string).split('.')[0];
+    const { digest, coinTypes } = buildReverseRegistrarSignatureDigest({
+      reverseRegistrar,
+      functionAbi,
+      address,
+      chainId: secondaryUsernameChain.id,
+      name: nameLabel,
+      signatureExpiry,
+    });
     const signature = await signMessageAsync({ message: { raw: digest } });
 
     const payload = { coinTypes, signatureExpiry, signature } as const;
