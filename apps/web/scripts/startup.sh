@@ -2,6 +2,7 @@
 
 # Wait for config service to map env vars
 until [ -f /var/env/.env ]; do
+  echo "Waiting for config service to map env vars"
   sleep 5
 done
 source /var/env/.env

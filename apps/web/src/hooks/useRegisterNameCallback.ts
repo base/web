@@ -1,6 +1,9 @@
 import { useErrors } from 'apps/web/contexts/Errors';
 import L2ResolverAbi from 'apps/web/src/abis/L2Resolver';
-import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
+import {
+  UPGRADEABLE_L2_RESOLVER_ADDRESSES,
+  USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES,
+} from 'apps/web/src/addresses/usernames';
 import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import useCapabilitiesSafe from 'apps/web/src/hooks/useCapabilitiesSafe';
@@ -13,7 +16,6 @@ import useWriteContractWithReceipt, {
 import {
   convertChainIdToCoinTypeUint,
   formatBaseEthDomain,
-  IS_EARLY_ACCESS,
   normalizeEnsDomainName,
   REGISTER_CONTRACT_ABI,
   REGISTER_CONTRACT_ADDRESSES,
@@ -22,6 +24,7 @@ import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react'
 import { encodeFunctionData, namehash } from 'viem';
 import { useAccount } from 'wagmi';
 import { secondsInYears } from 'apps/web/src/utils/secondsInYears';
+import L2ReverseRegistrarAbi from 'apps/web/src/abis/L2ReverseRegistrarAbi';
 
 type UseRegisterNameCallbackReturnType = {
   callback: () => Promise<void>;
@@ -115,9 +118,12 @@ export function useRegisterNameCallback(
       name: normalizedName, // The name being registered.
       owner: address, // The address of the owner for the name.
       duration: secondsInYears(years), // The duration of the registration in seconds.
-      resolver: USERNAME_L2_RESOLVER_ADDRESSES[basenameChain.id], // The address of the resolver to set for this name.
+      resolver: UPGRADEABLE_L2_RESOLVER_ADDRESSES[basenameChain.id], // The address of the resolver to set for this name.
       data: [addressData, baseCointypeData, nameData], //  Multicallable data bytes for setting records in the associated resolver upon registration.
       reverseRecord, // Bool to decide whether to set this name as the "primary" name for the `owner`.
+      coinTypes: [],
+      signatureExpiry: 0,
+      signature: '0x',
     };
 
     try {
@@ -125,7 +131,7 @@ export function useRegisterNameCallback(
         await initiateRegisterName({
           abi: REGISTER_CONTRACT_ABI,
           address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
-          functionName: isDiscounted || IS_EARLY_ACCESS ? 'discountedRegister' : 'register',
+          functionName: isDiscounted ? 'discountedRegister' : 'register',
           args: isDiscounted ? [registerRequest, discountKey, validationData] : [registerRequest],
           value,
         });
@@ -135,12 +141,22 @@ export function useRegisterNameCallback(
             {
               abi: REGISTER_CONTRACT_ABI,
               address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
-              functionName: isDiscounted || IS_EARLY_ACCESS ? 'discountedRegister' : 'register',
+              functionName: isDiscounted ? 'discountedRegister' : 'register',
               args: isDiscounted
                 ? [registerRequest, discountKey, validationData]
                 : [registerRequest],
               value,
             },
+            ...(reverseRecord
+              ? [
+                  {
+                    abi: L2ReverseRegistrarAbi,
+                    address: USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES[basenameChain.id],
+                    functionName: 'setName',
+                    args: [normalizedName],
+                  },
+                ]
+              : []),
           ],
           account: address,
           chain: basenameChain,

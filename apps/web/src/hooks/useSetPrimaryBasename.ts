@@ -1,6 +1,7 @@
 import ReverseRegistrarAbi from 'apps/web/src/abis/ReverseRegistrarAbi';
 import {
   USERNAME_L2_RESOLVER_ADDRESSES,
+  USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES,
   USERNAME_REVERSE_REGISTRAR_ADDRESSES,
 } from 'apps/web/src/addresses/usernames';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
@@ -11,6 +12,9 @@ import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
 import { useErrors } from 'apps/web/contexts/Errors';
 import useWriteContractWithReceipt from 'apps/web/src/hooks/useWriteContractWithReceipt';
 import { useUsernameProfile } from 'apps/web/src/components/Basenames/UsernameProfileContext';
+import useWriteContractsWithLogs from 'apps/web/src/hooks/useWriteContractsWithLogs';
+import useCapabilitiesSafe from 'apps/web/src/hooks/useCapabilitiesSafe';
+import L2ReverseRegistrarAbi from 'apps/web/src/abis/L2ReverseRegistrarAbi';
 
 /*
   A hook to set a name as primary for resolution.
@@ -31,6 +35,9 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
 
   const { currentWalletIsProfileEditor } = useUsernameProfile();
   const { basenameChain: secondaryUsernameChain } = useBasenameChain(secondaryUsername);
+  const { paymasterService: paymasterServiceEnabled } = useCapabilitiesSafe({
+    chainId: secondaryUsernameChain.id,
+  });
 
   // Get current primary username
   // Note: This is sometimes undefined
@@ -52,6 +59,12 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
       eventName: 'update_primary_name',
     });
 
+  const { initiateBatchCalls, batchCallsIsSuccess, batchCallsIsLoading } =
+    useWriteContractsWithLogs({
+      chain: secondaryUsernameChain,
+      eventName: 'update_primary_name',
+    });
+
   useEffect(() => {
     if (transactionIsSuccess) {
       refetchPrimaryUsername()
@@ -68,17 +81,43 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
     if (!address) return undefined;
 
     try {
-      await initiateTransaction({
-        abi: ReverseRegistrarAbi,
-        address: USERNAME_REVERSE_REGISTRAR_ADDRESSES[secondaryUsernameChain.id],
-        args: [
-          address,
-          address,
-          USERNAME_L2_RESOLVER_ADDRESSES[secondaryUsernameChain.id],
-          secondaryUsername,
-        ],
-        functionName: 'setNameForAddr',
-      });
+      if (!paymasterServiceEnabled) {
+        await initiateTransaction({
+          abi: ReverseRegistrarAbi,
+          address: USERNAME_REVERSE_REGISTRAR_ADDRESSES[secondaryUsernameChain.id],
+          args: [
+            address,
+            address,
+            USERNAME_L2_RESOLVER_ADDRESSES[secondaryUsernameChain.id],
+            secondaryUsername,
+          ],
+          functionName: 'setNameForAddr',
+        });
+      } else {
+        await initiateBatchCalls({
+          contracts: [
+            {
+              abi: ReverseRegistrarAbi,
+              address: USERNAME_REVERSE_REGISTRAR_ADDRESSES[secondaryUsernameChain.id],
+              args: [
+                address,
+                address,
+                USERNAME_L2_RESOLVER_ADDRESSES[secondaryUsernameChain.id],
+                secondaryUsername,
+              ],
+              functionName: 'setNameForAddr',
+            },
+            {
+              abi: L2ReverseRegistrarAbi,
+              address: USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES[secondaryUsernameChain.id],
+              functionName: 'setName',
+              args: [secondaryUsername],
+            },
+          ],
+          account: address,
+          chain: secondaryUsernameChain,
+        });
+      }
     } catch (error) {
       logError(error, 'Set primary name transaction canceled');
       return undefined;
@@ -89,12 +128,23 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
     secondaryUsername,
     primaryUsername,
     address,
+    paymasterServiceEnabled,
     initiateTransaction,
     secondaryUsernameChain.id,
+    initiateBatchCalls,
     logError,
   ]);
 
-  const isLoading = transactionIsLoading || primaryUsernameIsLoading || primaryUsernameIsFetching;
+  const isLoading =
+    transactionIsLoading ||
+    batchCallsIsLoading ||
+    primaryUsernameIsLoading ||
+    primaryUsernameIsFetching;
 
-  return { setPrimaryName, canSetUsernameAsPrimary, isLoading, transactionIsSuccess };
+  return {
+    setPrimaryName,
+    canSetUsernameAsPrimary,
+    isLoading,
+    transactionIsSuccess: transactionIsSuccess || batchCallsIsSuccess,
+  };
 }
