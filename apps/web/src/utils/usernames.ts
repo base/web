@@ -9,6 +9,8 @@ import {
   createPublicClient,
   http,
   sha256,
+  getFunctionSelector,
+  type AbiFunction,
 } from 'viem';
 import { normalize } from 'viem/ens';
 import L2ResolverAbi from 'apps/web/src/abis/L2Resolver';
@@ -365,6 +367,34 @@ export const convertChainIdToCoinType = (chainId: number): string => {
 export const convertChainIdToCoinTypeUint = (chainId: number): number => {
   return (0x80000000 | chainId) >>> 0;
 };
+
+export function buildReverseRegistrarSignatureDigest({
+  reverseRegistrar,
+  functionAbi,
+  address,
+  chainId,
+  name,
+  signatureExpiry,
+}: {
+  reverseRegistrar: `0x${string}`;
+  functionAbi: AbiFunction;
+  address: `0x${string}`;
+  chainId: number;
+  name: string;
+  signatureExpiry: bigint;
+}) {
+  const coinTypes = [BigInt(convertChainIdToCoinTypeUint(chainId))] as const;
+  const fullName = formatBaseEthDomain(name, chainId);
+  const selector = getFunctionSelector(functionAbi);
+
+  const preimage = encodePacked(
+    ['address', 'bytes4', 'address', 'uint256', 'string', 'uint256[]'],
+    [reverseRegistrar, selector, address, signatureExpiry, fullName, coinTypes],
+  );
+  const digest = keccak256(preimage);
+
+  return { digest, coinTypes, fullName } as const;
+}
 
 export const convertReverseNodeToBytes = ({
   address,

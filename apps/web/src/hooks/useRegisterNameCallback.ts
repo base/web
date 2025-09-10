@@ -19,14 +19,15 @@ import {
   normalizeEnsDomainName,
   REGISTER_CONTRACT_ABI,
   REGISTER_CONTRACT_ADDRESSES,
+  buildReverseRegistrarSignatureDigest,
 } from 'apps/web/src/utils/usernames';
-import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useMemo, useRef, useState } from 'react';
 import { encodeFunctionData, namehash } from 'viem';
 import { useAccount } from 'wagmi';
 import { secondsInYears } from 'apps/web/src/utils/secondsInYears';
 import L2ReverseRegistrarAbi from 'apps/web/src/abis/L2ReverseRegistrarAbi';
-import { encodePacked, getFunctionSelector, keccak256, type AbiFunction } from 'viem';
-import { usePublicClient, useSignMessage } from 'wagmi';
+import { getFunctionSelector, type AbiFunction, type WriteContractParameters } from 'viem';
+import { useSignMessage } from 'wagmi';
 
 type UseRegisterNameCallbackReturnType = {
   callback: () => Promise<void>;
@@ -37,7 +38,7 @@ type UseRegisterNameCallbackReturnType = {
   hasExistingBasename: boolean;
   batchCallsStatus: BatchCallsStatus;
   registerNameStatus: WriteTransactionWithReceiptStatus;
-  prepareReverseRecordSignature: () => Promise<{
+  signMessageForReverseRecord: () => Promise<{
     coinTypes: readonly bigint[];
     signatureExpiry: bigint;
     signature: `0x${string}`;
@@ -57,7 +58,6 @@ export function useRegisterNameCallback(
   const { paymasterService: paymasterServiceEnabled } = useCapabilitiesSafe({
     chainId: basenameChain.id,
   });
-  const publicClient = usePublicClient({ chainId: basenameChain.id });
   const { signMessageAsync } = useSignMessage();
 
   // If user has a basename, reverse record is set to false
@@ -71,7 +71,8 @@ export function useRegisterNameCallback(
   );
 
   const [reverseRecord, setReverseRecord] = useState<boolean>(!hasExistingBasename);
-  const [reverseSigPayload, setReverseSigPayload] = useState<{
+  const [signatureError, setSignatureError] = useState<Error | null>(null);
+  const reverseSigPayloadRef = useRef<{
     coinTypes: readonly bigint[];
     signatureExpiry: bigint;
     signature: `0x${string}`;
@@ -99,38 +100,33 @@ export function useRegisterNameCallback(
   const normalizedName = normalizeEnsDomainName(name);
   const isDiscounted = Boolean(discountKey && validationData);
 
-  const prepareReverseRecordSignature = useCallback(async () => {
+  const signMessageForReverseRecord = useCallback(async () => {
     if (!address) throw new Error('No address');
-    if (!publicClient) throw new Error('No public client');
-
-    // Use the L2 Reverse Registrar address configured for this chain.
     const reverseRegistrar = USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES[basenameChain.id];
 
     const functionAbi = L2ReverseRegistrarAbi.find(
       (f) => f.type === 'function' && f.name === 'setNameForAddrWithSignature',
     ) as unknown as AbiFunction;
-    const selector = getFunctionSelector(functionAbi);
-
     const signatureExpiry = BigInt(Math.floor(Date.now() / 1000) + 5 * 60);
-    const coinTypes = [BigInt(convertChainIdToCoinTypeUint(basenameChain.id))] as const;
-    const fullName = formatBaseEthDomain(name, basenameChain.id);
-
-    const preimage = encodePacked(
-      ['address', 'bytes4', 'address', 'uint256', 'string', 'uint256[]'],
-      [reverseRegistrar, selector, address, signatureExpiry, fullName, coinTypes],
-    );
-
-    const digest = keccak256(preimage);
+    const { digest, coinTypes } = buildReverseRegistrarSignatureDigest({
+      reverseRegistrar,
+      functionAbi,
+      address,
+      chainId: basenameChain.id,
+      name,
+      signatureExpiry,
+    });
     const signature = await signMessageAsync({ message: { raw: digest } });
 
     const payload = { coinTypes, signatureExpiry, signature } as const;
-    setReverseSigPayload(payload);
+    reverseSigPayloadRef.current = payload;
     return payload;
-  }, [address, basenameChain.id, name, publicClient, signMessageAsync]);
+  }, [address, basenameChain.id, name, signMessageAsync]);
 
   // Callback
   const registerName = useCallback(async () => {
     if (!address) return;
+    setSignatureError(null);
 
     const addressData = encodeFunctionData({
       abi: L2ResolverAbi,
@@ -162,16 +158,24 @@ export function useRegisterNameCallback(
     let signatureForRequest: `0x${string}` = '0x';
 
     if (!paymasterServiceEnabled && reverseRecord) {
-      const payload =
-        reverseSigPayload ??
-        (await prepareReverseRecordSignature().catch((e) => {
+      let payload = reverseSigPayloadRef.current;
+      if (!payload) {
+        try {
+          payload = await signMessageForReverseRecord();
+        } catch (e) {
           logError(e, 'Reverse record signature step failed');
-          return null;
-        }));
-      if (!payload) return;
-      coinTypesForRequest = payload.coinTypes;
-      signatureExpiryForRequest = payload.signatureExpiry;
-      signatureForRequest = payload.signature;
+          const msg = e instanceof Error && e.message ? e.message : 'Unknown error';
+          setSignatureError(new Error(`Could not prepare reverse record signature: ${msg}`));
+          return;
+        }
+      }
+      if (!payload) {
+        setSignatureError(new Error('Could not prepare reverse record signature'));
+        return;
+      }
+      coinTypesForRequest = payload?.coinTypes ?? [];
+      signatureExpiryForRequest = payload?.signatureExpiry ?? '0x';
+      signatureForRequest = payload?.signature ?? '0x';
     }
 
     const reverseRecordForRequest = paymasterServiceEnabled ? false : reverseRecord;
@@ -196,7 +200,9 @@ export function useRegisterNameCallback(
           functionName: isDiscounted ? 'discountedRegister' : 'register',
           args: isDiscounted ? [registerRequest, discountKey, validationData] : [registerRequest],
           value,
-        });
+          chain: basenameChain,
+          account: address,
+        } as unknown as WriteContractParameters);
       } else {
         await initiateBatchCalls({
           contracts: [
@@ -247,12 +253,12 @@ export function useRegisterNameCallback(
   return {
     callback: registerName,
     isPending: registerNameIsLoading || batchCallsIsLoading,
-    error: registerNameError ?? batchCallsError,
+    error: signatureError ?? registerNameError ?? batchCallsError,
     reverseRecord,
     setReverseRecord,
     hasExistingBasename,
     batchCallsStatus,
     registerNameStatus,
-    prepareReverseRecordSignature,
+    signMessageForReverseRecord,
   };
 }
