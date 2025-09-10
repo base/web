@@ -142,7 +142,7 @@ export function useRegisterNameCallback(
     });
 
     let coinTypesForRequest: readonly bigint[] = [];
-    let signatureExpiryForRequest: bigint = 0n;
+    let signatureExpiryForRequest = 0n;
     let signatureForRequest: `0x${string}` = '0x';
 
     if (!paymasterServiceEnabled && reverseRecord) {
@@ -224,6 +224,7 @@ export function useRegisterNameCallback(
     normalizedName,
     paymasterServiceEnabled,
     reverseRecord,
+    signMessageForReverseRecord,
     validationData,
     value,
     years,
