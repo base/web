@@ -5,9 +5,9 @@ import {
   USERNAME_REVERSE_REGISTRAR_ADDRESSES,
 } from 'apps/web/src/addresses/usernames';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Basename } from '@coinbase/onchainkit/identity';
-import { useAccount } from 'wagmi';
+import { useAccount, usePublicClient, useSignMessage } from 'wagmi';
 import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
 import { useErrors } from 'apps/web/contexts/Errors';
 import useWriteContractWithReceipt from 'apps/web/src/hooks/useWriteContractWithReceipt';
@@ -15,6 +15,10 @@ import { useUsernameProfile } from 'apps/web/src/components/Basenames/UsernamePr
 import useWriteContractsWithLogs from 'apps/web/src/hooks/useWriteContractsWithLogs';
 import useCapabilitiesSafe from 'apps/web/src/hooks/useCapabilitiesSafe';
 import L2ReverseRegistrarAbi from 'apps/web/src/abis/L2ReverseRegistrarAbi';
+import UpgradeableRegistrarControllerAbi from 'apps/web/src/abis/UpgradeableRegistrarControllerAbi';
+import { UPGRADEABLE_REGISTRAR_CONTROLLER_ADDRESSES } from 'apps/web/src/addresses/usernames';
+import { encodePacked, getFunctionSelector, keccak256, type AbiFunction } from 'viem';
+import { convertChainIdToCoinTypeUint } from 'apps/web/src/utils/usernames';
 
 /*
   A hook to set a name as primary for resolution.
@@ -38,6 +42,8 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
   const { paymasterService: paymasterServiceEnabled } = useCapabilitiesSafe({
     chainId: secondaryUsernameChain.id,
   });
+  const publicClient = usePublicClient({ chainId: secondaryUsernameChain.id });
+  const { signMessageAsync } = useSignMessage();
 
   // Get current primary username
   // Note: This is sometimes undefined
@@ -65,6 +71,39 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
       eventName: 'update_primary_name',
     });
 
+  const [reverseSigPayload, setReverseSigPayload] = useState<{
+    coinTypes: readonly bigint[];
+    signatureExpiry: bigint;
+    signature: `0x${string}`;
+  } | null>(null);
+
+  const prepareReverseRecordSignature = useCallback(async () => {
+    if (!address) throw new Error('No address');
+    if (!publicClient) throw new Error('No public client');
+
+    const reverseRegistrar = USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES[secondaryUsernameChain.id];
+    const functionAbi = L2ReverseRegistrarAbi.find(
+      (f) => f.type === 'function' && f.name === 'setNameForAddrWithSignature',
+    ) as unknown as AbiFunction;
+    const selector = getFunctionSelector(functionAbi);
+
+    const signatureExpiry = BigInt(Math.floor(Date.now() / 1000) + 5 * 60);
+    const coinTypes = [BigInt(convertChainIdToCoinTypeUint(secondaryUsernameChain.id))] as const;
+    const fullName = secondaryUsername as string;
+
+    const preimage = encodePacked(
+      ['address', 'bytes4', 'address', 'uint256', 'string', 'uint256[]'],
+      [reverseRegistrar, selector, address, signatureExpiry, fullName, coinTypes],
+    );
+
+    const digest = keccak256(preimage);
+    const signature = await signMessageAsync({ message: { raw: digest } });
+
+    const payload = { coinTypes, signatureExpiry, signature } as const;
+    setReverseSigPayload(payload);
+    return payload;
+  }, [address, publicClient, secondaryUsername, secondaryUsernameChain.id, signMessageAsync]);
+
   useEffect(() => {
     if (transactionIsSuccess) {
       refetchPrimaryUsername()
@@ -82,16 +121,21 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
 
     try {
       if (!paymasterServiceEnabled) {
+        const payload =
+          reverseSigPayload ??
+          (await prepareReverseRecordSignature().catch((e) => {
+            logError(e, 'Reverse record signature step failed');
+            return null;
+          }));
+        if (!payload) return undefined;
+
+        const nameLabel = (secondaryUsername as string).split('.')[0];
+
         await initiateTransaction({
-          abi: ReverseRegistrarAbi,
-          address: USERNAME_REVERSE_REGISTRAR_ADDRESSES[secondaryUsernameChain.id],
-          args: [
-            address,
-            address,
-            USERNAME_L2_RESOLVER_ADDRESSES[secondaryUsernameChain.id],
-            secondaryUsername,
-          ],
-          functionName: 'setNameForAddr',
+          abi: UpgradeableRegistrarControllerAbi,
+          address: UPGRADEABLE_REGISTRAR_CONTROLLER_ADDRESSES[secondaryUsernameChain.id],
+          args: [nameLabel, payload.signatureExpiry, payload.coinTypes, payload.signature],
+          functionName: 'setReverseRecord',
         });
       } else {
         await initiateBatchCalls({
