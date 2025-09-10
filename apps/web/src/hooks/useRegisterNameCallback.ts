@@ -26,7 +26,7 @@ import { encodeFunctionData, namehash } from 'viem';
 import { useAccount } from 'wagmi';
 import { secondsInYears } from 'apps/web/src/utils/secondsInYears';
 import L2ReverseRegistrarAbi from 'apps/web/src/abis/L2ReverseRegistrarAbi';
-import { type AbiFunction, type WriteContractParameters } from 'viem';
+import { type AbiFunction } from 'viem';
 import { useSignMessage } from 'wagmi';
 
 type UseRegisterNameCallbackReturnType = {
