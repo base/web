@@ -130,7 +130,7 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
     address,
     paymasterServiceEnabled,
     initiateTransaction,
-    secondaryUsernameChain,
+    secondaryUsernameChain.id,
     initiateBatchCalls,
     logError,
   ]);
