@@ -5,9 +5,9 @@ import {
   USERNAME_REVERSE_REGISTRAR_ADDRESSES,
 } from 'apps/web/src/addresses/usernames';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Basename } from '@coinbase/onchainkit/identity';
-import { useAccount, usePublicClient, useSignMessage } from 'wagmi';
+import { useAccount, useSignMessage } from 'wagmi';
 import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
 import { useErrors } from 'apps/web/contexts/Errors';
 import useWriteContractWithReceipt from 'apps/web/src/hooks/useWriteContractWithReceipt';
@@ -42,7 +42,6 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
   const { paymasterService: paymasterServiceEnabled } = useCapabilitiesSafe({
     chainId: secondaryUsernameChain.id,
   });
-  const publicClient = usePublicClient({ chainId: secondaryUsernameChain.id });
   const { signMessageAsync } = useSignMessage();
 
   // Get current primary username
@@ -71,15 +70,8 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
       eventName: 'update_primary_name',
     });
 
-  const [reverseSigPayload, setReverseSigPayload] = useState<{
-    coinTypes: readonly bigint[];
-    signatureExpiry: bigint;
-    signature: `0x${string}`;
-  } | null>(null);
-
-  const prepareReverseRecordSignature = useCallback(async () => {
+  const signMessageForReverseRecord = useCallback(async () => {
     if (!address) throw new Error('No address');
-    if (!publicClient) throw new Error('No public client');
 
     const reverseRegistrar = USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES[secondaryUsernameChain.id];
     const functionAbi = L2ReverseRegistrarAbi.find(
@@ -97,11 +89,8 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
       signatureExpiry,
     });
     const signature = await signMessageAsync({ message: { raw: digest } });
-
-    const payload = { coinTypes, signatureExpiry, signature } as const;
-    setReverseSigPayload(payload);
-    return payload;
-  }, [address, publicClient, secondaryUsername, secondaryUsernameChain.id, signMessageAsync]);
+    return { coinTypes, signatureExpiry, signature } as const;
+  }, [address, secondaryUsername, secondaryUsernameChain.id, signMessageAsync]);
 
   useEffect(() => {
     if (transactionIsSuccess) {
@@ -120,13 +109,17 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
 
     try {
       if (!paymasterServiceEnabled) {
-        const payload =
-          reverseSigPayload ??
-          (await prepareReverseRecordSignature().catch((e) => {
-            logError(e, 'Reverse record signature step failed');
-            return null;
-          }));
-        if (!payload) return undefined;
+        let payload: {
+          coinTypes: readonly bigint[];
+          signatureExpiry: bigint;
+          signature: `0x${string}`;
+        };
+        try {
+          payload = await signMessageForReverseRecord();
+        } catch (e) {
+          logError(e, 'Reverse record signature step failed');
+          return undefined;
+        }
 
         const nameLabel = (secondaryUsername as string).split('.')[0];
 
