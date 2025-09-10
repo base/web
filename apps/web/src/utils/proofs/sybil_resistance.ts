@@ -34,7 +34,6 @@ import {
 } from 'viem';
 import { sign } from 'viem/accounts';
 import { base, baseSepolia } from 'viem/chains';
-import UpgradeableRegistrarControllerAbi from 'apps/web/src/abis/UpgradeableRegistrarControllerAbi';
 
 const EXPIRY = process.env.USERNAMES_SIGNATURE_EXPIRATION_SECONDS ?? '30';
 const previousClaimsKVPrefix = 'username:claims:';
