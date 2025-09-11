@@ -43,6 +43,7 @@ export function useNameList() {
       }
     },
     enabled: !!address,
+    placeholderData: (prev) => prev,
   });
 
   // Navigation functions
@@ -110,13 +111,8 @@ export function useRemoveNameFromUI(domain: Basename) {
   const queryClient = useQueryClient();
 
   const removeNameFromUI = useCallback(() => {
-    queryClient.setQueryData(
-      ['usernames', address, network],
-      (prevData: ManagedAddressesResponse) => {
-        return { ...prevData, data: prevData.data.filter((name) => name.domain !== domain) };
-      },
-    );
-  }, [address, domain, network, queryClient]);
+    void queryClient.invalidateQueries({ queryKey: ['usernames', address, network] });
+  }, [address, network, queryClient]);
 
   return { removeNameFromUI };
 }
@@ -138,31 +134,18 @@ export function useUpdatePrimaryName(domain: Basename) {
   const setPrimaryUsername = useCallback(async () => {
     try {
       await setPrimaryName();
+      void queryClient.invalidateQueries({ queryKey: ['usernames', address, network] });
     } catch (error) {
       logError(error, 'Failed to update primary name');
       throw error;
     }
-  }, [logError, setPrimaryName]);
+  }, [address, network, logError, queryClient, setPrimaryName]);
 
   useEffect(() => {
     if (transactionIsSuccess) {
-      queryClient.setQueryData(
-        ['usernames', address, network],
-        (prevData: ManagedAddressesResponse) => {
-          return {
-            ...prevData,
-            data: prevData.data.map((name) =>
-              name.domain === domain
-                ? { ...name, is_primary: true }
-                : name.is_primary
-                ? { ...name, is_primary: false }
-                : name,
-            ),
-          };
-        },
-      );
+      void queryClient.invalidateQueries({ queryKey: ['usernames', address, network] });
     }
-  }, [transactionIsSuccess, address, domain, network, queryClient]);
+  }, [transactionIsSuccess, address, network, queryClient]);
 
   return { setPrimaryUsername };
 }

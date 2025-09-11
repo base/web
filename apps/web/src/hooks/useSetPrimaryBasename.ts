@@ -129,6 +129,9 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
           args: [nameLabel, payload.signatureExpiry, payload.coinTypes, payload.signature],
           functionName: 'setReverseRecord',
         });
+        await refetchPrimaryUsername().catch((error) =>
+          logError(error, 'failed to refetch username'),
+        );
       } else {
         await initiateBatchCalls({
           contracts: [
@@ -153,6 +156,9 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
           account: address,
           chain: secondaryUsernameChain,
         });
+        await refetchPrimaryUsername().catch((error) =>
+          logError(error, 'failed to refetch username'),
+        );
       }
     } catch (error) {
       logError(error, 'Set primary name transaction canceled');
