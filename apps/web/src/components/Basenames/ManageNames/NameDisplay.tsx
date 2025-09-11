@@ -23,6 +23,13 @@ import { isBasenameRenewalsKilled } from 'apps/web/src/utils/usernames';
 import { useRouter } from 'next/navigation';
 import { ActionType } from 'libs/base-ui/utils/logEvent';
 import { useAnalytics } from 'apps/web/contexts/Analytics';
+import { usePrimaryUpdate } from './primaryUpdateContext';
+import { ReloadIcon } from '@radix-ui/react-icons';
+// Work around TS type incompatibility in this project by casting the Radix icon
+const Spinner = ReloadIcon as unknown as (props: {
+  className?: string;
+  'aria-hidden'?: boolean;
+}) => JSX.Element;
 
 const transitionClasses = 'transition-all duration-700 ease-in-out';
 
@@ -59,7 +66,8 @@ export default function NameDisplay({
   const expirationText = formatDistanceToNow(parseISO(expiresAt), { addSuffix: true });
   const name = domain.split('.')[0];
 
-  const { setPrimaryUsername } = useUpdatePrimaryName(domain as Basename);
+  const { setPrimaryUsername, isPending } = useUpdatePrimaryName(domain as Basename);
+  const { isUpdatingPrimary } = usePrimaryUpdate();
 
   // Transfer state and callbacks
   const [isTransferModalOpen, setIsTransferModalOpen] = useState<boolean>(false);
@@ -102,7 +110,12 @@ export default function NameDisplay({
         </Link>
         <div className="flex items-center gap-2">
           {isPrimary && (
-            <span className="rounded-full bg-white px-2 py-1 text-sm text-black">Primary</span>
+            <span className="flex items-center gap-2 rounded-full bg-white px-2 py-1 text-sm text-black">
+              {isPending || isUpdatingPrimary ? (
+                <Spinner className="h-3 w-3 animate-spin" aria-hidden={true} />
+              ) : null}
+              <span>Primary</span>
+            </span>
           )}
           <Dropdown>
             <DropdownToggle>

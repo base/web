@@ -189,6 +189,7 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
     canSetUsernameAsPrimary,
     isLoading,
     transactionIsSuccess: transactionIsSuccess || batchCallsIsSuccess,
+    isWriting: transactionIsLoading || batchCallsIsLoading,
     error: signatureError,
   };
 }

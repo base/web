@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { usePrimaryUpdate } from './primaryUpdateContext';
 import { useErrors } from 'apps/web/contexts/Errors';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useAccount, useChainId } from 'wagmi';
@@ -127,9 +128,10 @@ export function useUpdatePrimaryName(domain: Basename) {
   const network = chainId === 8453 ? 'base-mainnet' : 'base-sepolia';
 
   // Hook to update primary name
-  const { setPrimaryName, transactionIsSuccess } = useSetPrimaryBasename({
+  const { setPrimaryName, transactionIsSuccess, isWriting } = useSetPrimaryBasename({
     secondaryUsername: domain,
   });
+  const { setIsUpdatingPrimary } = usePrimaryUpdate();
 
   const setPrimaryUsername = useCallback(async () => {
     try {
@@ -137,6 +139,7 @@ export function useUpdatePrimaryName(domain: Basename) {
       void queryClient.invalidateQueries({ queryKey: ['usernames', address, network] });
     } catch (error) {
       logError(error, 'Failed to update primary name');
+      setIsUpdatingPrimary(false);
       throw error;
     }
   }, [address, network, logError, queryClient, setPrimaryName]);
@@ -145,7 +148,12 @@ export function useUpdatePrimaryName(domain: Basename) {
     if (transactionIsSuccess) {
       void queryClient.invalidateQueries({ queryKey: ['usernames', address, network] });
     }
-  }, [transactionIsSuccess, address, network, queryClient]);
+  }, [transactionIsSuccess, address, network, queryClient, setIsUpdatingPrimary]);
 
-  return { setPrimaryUsername };
+  // Drive the spinner strictly off the on-chain write phase
+  useEffect(() => {
+    setIsUpdatingPrimary(isWriting);
+  }, [isWriting, setIsUpdatingPrimary]);
+
+  return { setPrimaryUsername, isPending: isWriting, transactionIsSuccess };
 }
