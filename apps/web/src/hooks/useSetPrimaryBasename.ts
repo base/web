@@ -5,7 +5,7 @@ import {
   USERNAME_REVERSE_REGISTRAR_ADDRESSES,
 } from 'apps/web/src/addresses/usernames';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Basename } from '@coinbase/onchainkit/identity';
 import { useAccount, useSignMessage } from 'wagmi';
 import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
@@ -43,6 +43,8 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
     chainId: secondaryUsernameChain.id,
   });
   const { signMessageAsync } = useSignMessage();
+
+  const [signatureError, setSignatureError] = useState<Error | null>(null);
 
   // Get current primary username
   // Note: This is sometimes undefined
@@ -115,9 +117,12 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
           signature: `0x${string}`;
         };
         try {
+          setSignatureError(null);
           payload = await signMessageForReverseRecord();
         } catch (e) {
           logError(e, 'Reverse record signature step failed');
+          const msg = e instanceof Error && e.message ? e.message : 'Unknown error';
+          setSignatureError(new Error(`Could not prepare reverse record signature: ${msg}`));
           return undefined;
         }
 
@@ -188,5 +193,6 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
     canSetUsernameAsPrimary,
     isLoading,
     transactionIsSuccess: transactionIsSuccess || batchCallsIsSuccess,
+    error: signatureError,
   };
 }
