@@ -65,7 +65,7 @@ export default function NameDisplay({
   const [isTransferModalOpen, setIsTransferModalOpen] = useState<boolean>(false);
   const openTransferModal = useCallback(() => setIsTransferModalOpen(true), []);
   const closeTransferModal = useCallback(() => setIsTransferModalOpen(false), []);
-  const { removeNameFromUI } = useRemoveNameFromUI(domain as Basename);
+  const { removeNameFromUI } = useRemoveNameFromUI();
 
   // Renewal state and callbacks
   const [isRenewalModalOpen, setIsRenewalModalOpen] = useState<boolean>(false);

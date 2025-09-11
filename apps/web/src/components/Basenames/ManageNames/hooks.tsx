@@ -103,7 +103,7 @@ export function useNameList() {
   };
 }
 
-export function useRemoveNameFromUI(domain: Basename) {
+export function useRemoveNameFromUI() {
   const { address } = useAccount();
   const chainId = useChainId();
 
