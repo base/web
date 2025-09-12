@@ -24,12 +24,6 @@ import { useRouter } from 'next/navigation';
 import { ActionType } from 'libs/base-ui/utils/logEvent';
 import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { usePrimaryUpdate } from './primaryUpdateContext';
-import { ReloadIcon } from '@radix-ui/react-icons';
-// Work around TS type incompatibility in this project by casting the Radix icon
-const Spinner = ReloadIcon as unknown as (props: {
-  className?: string;
-  'aria-hidden'?: boolean;
-}) => JSX.Element;
 
 const transitionClasses = 'transition-all duration-700 ease-in-out';
 
@@ -112,7 +106,7 @@ export default function NameDisplay({
           {isPrimary && (
             <span className="flex items-center gap-2 rounded-full bg-white px-2 py-1 text-sm text-black">
               {isPending || isUpdatingPrimary ? (
-                <Spinner className="h-3 w-3 animate-spin" aria-hidden={true} />
+                <Icon name="spinner" color="currentColor" width="12px" height="12px" />
               ) : null}
               <span>Primary</span>
             </span>
