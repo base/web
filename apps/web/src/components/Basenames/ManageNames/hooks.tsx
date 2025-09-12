@@ -109,19 +109,15 @@ export function useRemoveNameFromUI() {
 
   const network = chainId === 8453 ? 'base-mainnet' : 'base-sepolia';
   const queryClient = useQueryClient();
-  const [isUpdatingPrimary, setIsUpdatingPrimary] = useState(false);
 
   const removeNameFromUI = useCallback(() => {
     void queryClient.invalidateQueries({ queryKey: ['usernames', address, network] });
   }, [address, network, queryClient]);
 
-  return { removeNameFromUI, isUpdatingPrimary, setIsUpdatingPrimary };
+  return { removeNameFromUI };
 }
 
-export function useUpdatePrimaryName(
-  domain: Basename,
-  opts?: { setIsUpdatingPrimary?: (v: boolean) => void },
-) {
+export function useUpdatePrimaryName(domain: Basename) {
   const { address } = useAccount();
   const chainId = useChainId();
   const { logError } = useErrors();
@@ -131,21 +127,19 @@ export function useUpdatePrimaryName(
   const network = chainId === 8453 ? 'base-mainnet' : 'base-sepolia';
 
   // Hook to update primary name
-  const { setPrimaryName, transactionIsSuccess, isWriting } = useSetPrimaryBasename({
+  const { setPrimaryName, transactionIsSuccess, transactionPending } = useSetPrimaryBasename({
     secondaryUsername: domain,
   });
 
   const setPrimaryUsername = useCallback(async () => {
     try {
-      if (opts?.setIsUpdatingPrimary) opts.setIsUpdatingPrimary(true);
       await setPrimaryName();
       void queryClient.invalidateQueries({ queryKey: ['usernames', address, network] });
     } catch (error) {
       logError(error, 'Failed to update primary name');
-      if (opts?.setIsUpdatingPrimary) opts.setIsUpdatingPrimary(false);
       throw error;
     }
-  }, [address, network, logError, queryClient, opts, setPrimaryName]);
+  }, [address, network, logError, queryClient, setPrimaryName]);
 
   useEffect(() => {
     if (transactionIsSuccess) {
@@ -153,10 +147,5 @@ export function useUpdatePrimaryName(
     }
   }, [transactionIsSuccess, address, network, queryClient]);
 
-  // Drive the spinner strictly off the on-chain write phase
-  useEffect(() => {
-    if (opts?.setIsUpdatingPrimary) opts.setIsUpdatingPrimary(isWriting);
-  }, [isWriting, opts]);
-
-  return { setPrimaryUsername, isPending: isWriting, transactionIsSuccess };
+  return { setPrimaryUsername, isPending: transactionPending, transactionIsSuccess };
 }

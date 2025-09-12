@@ -45,8 +45,6 @@ type NameDisplayProps = {
   tokenId: string;
   expiresAt: string;
   refetchNames: () => void;
-  isUpdatingPrimary: boolean;
-  setIsUpdatingPrimary: (v: boolean) => void;
 };
 
 export default function NameDisplay({
@@ -55,8 +53,6 @@ export default function NameDisplay({
   tokenId,
   expiresAt,
   refetchNames,
-  isUpdatingPrimary,
-  setIsUpdatingPrimary,
 }: NameDisplayProps) {
   const router = useRouter();
   const { logEventWithContext } = useAnalytics();
@@ -64,9 +60,7 @@ export default function NameDisplay({
   const name = domain.split('.')[0];
 
   const { removeNameFromUI } = useRemoveNameFromUI();
-  const { setPrimaryUsername, isPending } = useUpdatePrimaryName(domain as Basename, {
-    setIsUpdatingPrimary,
-  });
+  const { setPrimaryUsername, isPending } = useUpdatePrimaryName(domain as Basename);
 
   // Transfer state and callbacks
   const [isTransferModalOpen, setIsTransferModalOpen] = useState<boolean>(false);
@@ -109,7 +103,7 @@ export default function NameDisplay({
         <div className="flex items-center gap-2">
           {isPrimary && (
             <span className="flex items-center gap-2 rounded-full bg-white px-2 py-1 text-sm text-black">
-              {isPending || isUpdatingPrimary ? (
+              {isPending ? (
                 <Icon name="spinner" color="currentColor" width="12px" height="12px" />
               ) : null}
               <span>Primary</span>

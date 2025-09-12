@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import NameDisplay from './NameDisplay';
 import { useNameList } from 'apps/web/src/components/Basenames/ManageNames/hooks';
 import { useErrors } from 'apps/web/contexts/Errors';
@@ -43,7 +43,6 @@ export default function NamesList() {
     currentPageNumber,
   } = useNameList();
   const { logError } = useErrors();
-  const [isUpdatingPrimary, setIsUpdatingPrimary] = useState(false);
 
   const refetchNames = useCallback(() => {
     refetch().catch((e) => {
@@ -95,8 +94,6 @@ export default function NamesList() {
             tokenId={name.token_id}
             expiresAt={name.expires_at}
             refetchNames={refetchNames}
-            isUpdatingPrimary={isUpdatingPrimary}
-            setIsUpdatingPrimary={setIsUpdatingPrimary}
           />
         ))}
       </ul>
