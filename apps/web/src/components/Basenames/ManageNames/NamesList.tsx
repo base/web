@@ -1,33 +1,30 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import NameDisplay from './NameDisplay';
 import { useNameList } from 'apps/web/src/components/Basenames/ManageNames/hooks';
 import { useErrors } from 'apps/web/contexts/Errors';
 import Link from 'apps/web/src/components/Link';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
-import { PrimaryUpdateProvider } from './primaryUpdateContext';
 
 const usernameManagementListAnalyticContext = 'username_management_list';
 
 function NamesLayout({ children }: { children: React.ReactNode }) {
   return (
     <AnalyticsProvider context={usernameManagementListAnalyticContext}>
-      <PrimaryUpdateProvider>
-        <div className="mx-auto max-w-2xl space-y-4 px-6 pb-16 pt-4">
-          <div className="flex items-center justify-between">
-            <h1 className="mb-4 text-3xl font-bold">My Basenames</h1>
-            <Link
-              className="rounded-lg bg-palette-backgroundAlternate p-2 text-sm text-palette-foreground"
-              href="/names/"
-            >
-              <Icon name="plus" color="currentColor" width="12px" height="12px" />
-            </Link>
-          </div>
-          {children}
+      <div className="mx-auto max-w-2xl space-y-4 px-6 pb-16 pt-4">
+        <div className="flex items-center justify-between">
+          <h1 className="mb-4 text-3xl font-bold">My Basenames</h1>
+          <Link
+            className="rounded-lg bg-palette-backgroundAlternate p-2 text-sm text-palette-foreground"
+            href="/names/"
+          >
+            <Icon name="plus" color="currentColor" width="12px" height="12px" />
+          </Link>
         </div>
-      </PrimaryUpdateProvider>
+        {children}
+      </div>
     </AnalyticsProvider>
   );
 }
@@ -46,6 +43,7 @@ export default function NamesList() {
     currentPageNumber,
   } = useNameList();
   const { logError } = useErrors();
+  const [isUpdatingPrimary, setIsUpdatingPrimary] = useState(false);
 
   const refetchNames = useCallback(() => {
     refetch().catch((e) => {
@@ -97,6 +95,8 @@ export default function NamesList() {
             tokenId={name.token_id}
             expiresAt={name.expires_at}
             refetchNames={refetchNames}
+            isUpdatingPrimary={isUpdatingPrimary}
+            setIsUpdatingPrimary={setIsUpdatingPrimary}
           />
         ))}
       </ul>

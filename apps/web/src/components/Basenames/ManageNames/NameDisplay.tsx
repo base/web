@@ -23,7 +23,6 @@ import { isBasenameRenewalsKilled } from 'apps/web/src/utils/usernames';
 import { useRouter } from 'next/navigation';
 import { ActionType } from 'libs/base-ui/utils/logEvent';
 import { useAnalytics } from 'apps/web/contexts/Analytics';
-import { usePrimaryUpdate } from './primaryUpdateContext';
 
 const transitionClasses = 'transition-all duration-700 ease-in-out';
 
@@ -46,6 +45,8 @@ type NameDisplayProps = {
   tokenId: string;
   expiresAt: string;
   refetchNames: () => void;
+  isUpdatingPrimary: boolean;
+  setIsUpdatingPrimary: (v: boolean) => void;
 };
 
 export default function NameDisplay({
@@ -54,20 +55,23 @@ export default function NameDisplay({
   tokenId,
   expiresAt,
   refetchNames,
+  isUpdatingPrimary,
+  setIsUpdatingPrimary,
 }: NameDisplayProps) {
   const router = useRouter();
   const { logEventWithContext } = useAnalytics();
   const expirationText = formatDistanceToNow(parseISO(expiresAt), { addSuffix: true });
   const name = domain.split('.')[0];
 
-  const { setPrimaryUsername, isPending } = useUpdatePrimaryName(domain as Basename);
-  const { isUpdatingPrimary } = usePrimaryUpdate();
+  const { removeNameFromUI } = useRemoveNameFromUI();
+  const { setPrimaryUsername, isPending } = useUpdatePrimaryName(domain as Basename, {
+    setIsUpdatingPrimary,
+  });
 
   // Transfer state and callbacks
   const [isTransferModalOpen, setIsTransferModalOpen] = useState<boolean>(false);
   const openTransferModal = useCallback(() => setIsTransferModalOpen(true), []);
   const closeTransferModal = useCallback(() => setIsTransferModalOpen(false), []);
-  const { removeNameFromUI } = useRemoveNameFromUI();
 
   // Renewal state and callbacks
   const [isRenewalModalOpen, setIsRenewalModalOpen] = useState<boolean>(false);

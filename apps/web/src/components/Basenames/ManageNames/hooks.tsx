@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react';
-import { usePrimaryUpdate } from './primaryUpdateContext';
 import { useErrors } from 'apps/web/contexts/Errors';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useAccount, useChainId } from 'wagmi';
@@ -110,15 +109,19 @@ export function useRemoveNameFromUI() {
 
   const network = chainId === 8453 ? 'base-mainnet' : 'base-sepolia';
   const queryClient = useQueryClient();
+  const [isUpdatingPrimary, setIsUpdatingPrimary] = useState(false);
 
   const removeNameFromUI = useCallback(() => {
     void queryClient.invalidateQueries({ queryKey: ['usernames', address, network] });
   }, [address, network, queryClient]);
 
-  return { removeNameFromUI };
+  return { removeNameFromUI, isUpdatingPrimary, setIsUpdatingPrimary };
 }
 
-export function useUpdatePrimaryName(domain: Basename) {
+export function useUpdatePrimaryName(
+  domain: Basename,
+  opts?: { setIsUpdatingPrimary?: (v: boolean) => void },
+) {
   const { address } = useAccount();
   const chainId = useChainId();
   const { logError } = useErrors();
@@ -131,29 +134,29 @@ export function useUpdatePrimaryName(domain: Basename) {
   const { setPrimaryName, transactionIsSuccess, isWriting } = useSetPrimaryBasename({
     secondaryUsername: domain,
   });
-  const { setIsUpdatingPrimary } = usePrimaryUpdate();
 
   const setPrimaryUsername = useCallback(async () => {
     try {
+      if (opts?.setIsUpdatingPrimary) opts.setIsUpdatingPrimary(true);
       await setPrimaryName();
       void queryClient.invalidateQueries({ queryKey: ['usernames', address, network] });
     } catch (error) {
       logError(error, 'Failed to update primary name');
-      setIsUpdatingPrimary(false);
+      if (opts?.setIsUpdatingPrimary) opts.setIsUpdatingPrimary(false);
       throw error;
     }
-  }, [address, network, logError, queryClient, setPrimaryName]);
+  }, [address, network, logError, queryClient, opts, setPrimaryName]);
 
   useEffect(() => {
     if (transactionIsSuccess) {
       void queryClient.invalidateQueries({ queryKey: ['usernames', address, network] });
     }
-  }, [transactionIsSuccess, address, network, queryClient, setIsUpdatingPrimary]);
+  }, [transactionIsSuccess, address, network, queryClient]);
 
   // Drive the spinner strictly off the on-chain write phase
   useEffect(() => {
-    setIsUpdatingPrimary(isWriting);
-  }, [isWriting, setIsUpdatingPrimary]);
+    if (opts?.setIsUpdatingPrimary) opts.setIsUpdatingPrimary(isWriting);
+  }, [isWriting, opts]);
 
   return { setPrimaryUsername, isPending: isWriting, transactionIsSuccess };
 }
