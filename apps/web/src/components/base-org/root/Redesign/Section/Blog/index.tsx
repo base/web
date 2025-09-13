@@ -53,13 +53,7 @@ function BlogCarouselControls({
     [onDotClick],
   );
   return (
-    <motion.div
-      // className="absolute bottom-4 left-4 z-30 md:bottom-[52px] md:left-auto md:right-6 xl:bottom-[48px] xl:right-12"
-      className=""
-      variants={controlsVariants}
-      initial="hidden"
-      animate="visible"
-    >
+    <motion.div className="" variants={controlsVariants} initial="hidden" animate="visible">
       <div className="flex gap-3">
         {displayedPosts.map((post, index) => (
           <motion.button
