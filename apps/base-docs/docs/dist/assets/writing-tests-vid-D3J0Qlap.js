@@ -1,0 +1,3 @@
+import{u as s,j as t}from"./index-Dlxm52NL.js";import{V as r}from"./VideoPlayer-CKrpq9Vg.js";const d={title:"Writing Tests",description:"An introduction to writing tests.",hide_table_of_contents:!1};function i(n){const e={a:"a",div:"div",h1:"h1",header:"header",...s(),...n.components};return t.jsxs(t.Fragment,{children:[t.jsx(e.header,{children:t.jsxs(e.h1,{id:"writing-tests",children:["Writing Tests",t.jsx(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#writing-tests",children:t.jsx(e.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,t.jsx(r,{videoId:"840620773",title:"Testing Overview"})]})}function c(n={}){const{wrapper:e}={...s(),...n.components};return e?t.jsx(e,{...n,children:t.jsx(i,{...n})}):i(n)}export{c as default,d as frontmatter};
