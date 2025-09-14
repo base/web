@@ -13,12 +13,14 @@ require('dotenv').config({ path: './.env' });
 const PORT = process.env.PORT ?? 3000;
 
 // Set webServer.url and use.baseURL with the location of the WebServer respecting the correct set port
+
 const baseURL = `http://localhost:${PORT}/names`;
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+
   timeout: 2 * 60 * 1000,
   testDir: './e2e/tests',
   /* Run tests in files in parallel */
@@ -26,6 +28,7 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
+
   retries: process.env.CI ? 6 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : 4,
@@ -40,6 +43,7 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
 
+
     // Set environment variables for the browser context
     launchOptions: {
       env: {
@@ -51,6 +55,7 @@ export default defineConfig({
 
   /* Increase default expect timeout */
   expect: {
+
     timeout: 30000,
   },
 
@@ -98,6 +103,7 @@ export default defineConfig({
   webServer: {
     command: 'cd ../.. && yarn workspace @app/web dev',
     url: baseURL,
+
     timeout: 120 * 1000,
     reuseExistingServer: !process.env.CI,
   },
