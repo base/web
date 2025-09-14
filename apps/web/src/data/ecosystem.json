@@ -4488,6 +4488,14 @@
     "imageUrl": "/images/partners/wowmax.png"
   },
   {
+  "name": "Ethy AI",
+  "description": "Ethy is your autonomous trading assistant. Define your strategies in plain language, tap into alpha from expert agents, and let Ethy monitor markets and execute for you 24/7.",
+  "url": "https://ethyai.app/",
+  "imageUrl": "/images/partners/ethyai.png",
+  "category": "ai",
+  "subcategory": "ai"
+  },
+  {
     "name": "WLTH",
     "url": "https://wlth.xyz//",
     "description": "WLTH opens the door to tokenised pre-IPO opportunities like xAI and SpaceX, while AI-powered strategies help your assets grow on autopilot. One app. No barriers.",
