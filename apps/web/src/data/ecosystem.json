@@ -752,6 +752,14 @@
     "subcategory": "bridge"
   },
   {
+    "name": "Bunni",
+    "url": "https://bunni.xyz/?chain=base",
+    "description": "Bunni is the most advanced DEX ever built. Bunni maximizes LP profits in all market conditions using its first-of-its-kind Shapeshifting Liquidity and features like rehypothecation & dynamic swap fee.",
+    "imageUrl": "/images/partners/bunni.png",
+    "category": "defi",
+    "subcategory": "dex"
+  },
+  {
     "name": "Burner",
     "description": "Burner is a low cost hardware wallet designed for gifting crypto. It works entirely through your mobile web browser and NFC, no app needed.",
     "url": "https://burner.pro/",
