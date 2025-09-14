@@ -1,0 +1,3 @@
+import{u as i,j as t}from"./index-Dlxm52NL.js";import{V as r}from"./VideoPlayer-CKrpq9Vg.js";const s={title:"Introduction",description:"Learn about the Solidity programming language.",hide_table_of_contents:!1};function o(e){const n={a:"a",div:"div",h1:"h1",header:"header",...i(),...e.components};return t.jsxs(t.Fragment,{children:[t.jsx(n.header,{children:t.jsxs(n.h1,{id:"introduction",children:["Introduction",t.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#introduction",children:t.jsx(n.div,{"data-autolink-icon":!0})})]})}),`
+`,`
+`,t.jsx(r,{videoId:"808096815",title:"Introduction to Solidity"})]})}function c(e={}){const{wrapper:n}={...i(),...e.components};return n?t.jsx(n,{...e,children:t.jsx(o,{...e})}):o(e)}export{c as default,s as frontmatter};
