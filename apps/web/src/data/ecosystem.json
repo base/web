@@ -4494,5 +4494,13 @@
     "imageUrl": "/images/partners/wlth.webp",
     "category": "Consumer",
     "subcategory": "Real World"
+  },
+  {
+    "name": "DeGov.AI",
+    "url": "https://degov.ai",
+    "description": "DeGov is an open-source DAO governance platform built on OpenZeppelin's Governor contract, integrating an AI agent delegate and voting assistant to facilitate enhanced decision-making in DAOs.",
+    "imageUrl": "/images/partners/degov.png",
+    "category": "consumer",
+    "subcategory": "dao"
   }
 ]
