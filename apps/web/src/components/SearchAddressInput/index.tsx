@@ -5,6 +5,7 @@ import { Address, isAddress } from 'viem';
 import { useEnsAddress } from 'wagmi';
 import { isBasename, isEnsName } from 'apps/web/src/utils/usernames';
 import useBasenameResolver from 'apps/web/src/hooks/useBasenameResolver';
+import { Basename } from '@coinbase/onchainkit/identity';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import { truncateMiddle } from 'libs/base-ui/utils/string';
@@ -17,6 +18,11 @@ type SearchAddressInputProps = {
   onChange: (value: string) => void;
 };
 export default function SearchAddressInput({ onChange }: SearchAddressInputProps) {
+  const truncateMiddleSafe = truncateMiddle as (
+    value: string,
+    start: number,
+    end: number,
+  ) => string;
   const [value, setValue] = useState<string>('');
 
   /* 1. User enters an address */
@@ -32,8 +38,7 @@ export default function SearchAddressInput({ onChange }: SearchAddressInputProps
 
   const { basenameChain } = useBasenameChain();
 
-  // Dynamically fetched resolver for a Basename value
-  const { data: resolverAddress } = useBasenameResolver({ username: value as unknown as string });
+  const { data: resolverAddress } = useBasenameResolver({ username: value as Basename });
 
   const { data: basenameAddress, isLoading: basenameAddressIsLoading } = useEnsAddress({
     name: value.toLowerCase(),
@@ -104,7 +109,7 @@ export default function SearchAddressInput({ onChange }: SearchAddressInputProps
               <span>
                 View {showUsername && <strong>{username}</strong>}
                 {!showUsername && finalAddress && (
-                  <strong>{truncateMiddle(finalAddress, 6, 4)}</strong>
+                  <strong>{truncateMiddleSafe(String(finalAddress), 6, 4)}</strong>
                 )}{' '}
                 {baseBlockExplorerName}
               </span>

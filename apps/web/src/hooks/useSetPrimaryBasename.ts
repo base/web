@@ -136,12 +136,15 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
           functionName: 'setReverseRecord',
         });
       } else {
+        if (!resolverAddress) {
+          return undefined;
+        }
         await initiateBatchCalls({
           contracts: [
             {
               abi: ReverseRegistrarAbi,
               address: USERNAME_REVERSE_REGISTRAR_ADDRESSES[secondaryUsernameChain.id],
-              args: [address, address, resolverAddress!, secondaryUsername],
+              args: [address, address, resolverAddress, secondaryUsername],
               functionName: 'setNameForAddr',
             },
             {

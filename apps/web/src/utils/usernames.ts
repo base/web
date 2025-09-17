@@ -720,7 +720,7 @@ export async function getBasenameTextRecord(username: Basename, key: UsernameTex
       args: [namehash(username as string), key],
       functionName: 'text',
     });
-    return textRecord as string;
+    return textRecord;
   } catch (error) {}
 }
 
@@ -743,12 +743,12 @@ export async function getBasenameTextRecords(username: Basename) {
 export async function fetchResolverAddress(username: Basename): Promise<Address> {
   const chain = getChainForBasename(username);
   const client = getBasenamePublicClient(chain.id);
-  return (await client.readContract({
+  return client.readContract({
     abi: RegistryAbi,
     address: USERNAME_BASE_REGISTRY_ADDRESSES[chain.id],
     functionName: 'resolver',
     args: [namehash(username as string)],
-  })) as Address;
+  });
 }
 
 export async function fetchResolverAddressByNode(
@@ -756,12 +756,12 @@ export async function fetchResolverAddressByNode(
   node: `0x${string}`,
 ): Promise<Address> {
   const client = getBasenamePublicClient(chainId);
-  return (await client.readContract({
+  return client.readContract({
     abi: RegistryAbi,
     address: USERNAME_BASE_REGISTRY_ADDRESSES[chainId],
     functionName: 'resolver',
     args: [node],
-  })) as Address;
+  });
 }
 
 /*

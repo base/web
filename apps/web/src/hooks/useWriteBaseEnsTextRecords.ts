@@ -7,8 +7,9 @@ import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import useReadBaseEnsTextRecords from 'apps/web/src/hooks/useReadBaseEnsTextRecords';
 import useWriteContractWithReceipt from 'apps/web/src/hooks/useWriteContractWithReceipt';
 import { UsernameTextRecords, UsernameTextRecordKeys } from 'apps/web/src/utils/usernames';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState, Dispatch, SetStateAction } from 'react';
 import { namehash, encodeFunctionData } from 'viem';
+import { Basename } from '@coinbase/onchainkit/identity';
 
 export type UseWriteBaseEnsTextRecordsProps = {
   username: BaseEnsNameData;
@@ -27,10 +28,22 @@ export type UseWriteBaseEnsTextRecordsProps = {
 
 */
 
+export type UseWriteBaseEnsTextRecordsReturn = {
+  existingTextRecords: UsernameTextRecords;
+  updateTextRecords: (key: UsernameTextRecordKeys, value: string) => void;
+  updatedTextRecords: UsernameTextRecords;
+  setUpdatedTextRecords: Dispatch<SetStateAction<UsernameTextRecords>>;
+  writeTextRecords: () => Promise<void>;
+  hasChanged: boolean;
+  writeTextRecordsIsPending: boolean;
+  writeTextRecordsIsError: boolean;
+  writeTextRecordsError: unknown;
+};
+
 export default function useWriteBaseEnsTextRecords({
   username,
   onSuccess,
-}: UseWriteBaseEnsTextRecordsProps) {
+}: UseWriteBaseEnsTextRecordsProps): UseWriteBaseEnsTextRecordsReturn {
   // Errors
   const { logError } = useErrors();
 
@@ -77,7 +90,7 @@ export default function useWriteBaseEnsTextRecords({
 
   const { basenameChain } = useBasenameChain();
 
-  const { data: resolverAddress } = useBasenameResolver({ username });
+  const { data: resolverAddress } = useBasenameResolver({ username: username as Basename });
 
   const {
     initiateTransaction: initiateWriteTextRecords,
@@ -97,6 +110,8 @@ export default function useWriteBaseEnsTextRecords({
   const writeTextRecords = useCallback(async () => {
     if (!username) return Promise.reject(new Error('Cannot write text records without a name'));
     if (!hasChanged) return onSuccess?.();
+    if (!resolverAddress)
+      return Promise.reject(new Error('Cannot write text records without a resolver address'));
 
     const nameHash = namehash(username);
 
@@ -112,7 +127,7 @@ export default function useWriteBaseEnsTextRecords({
 
     await initiateWriteTextRecords({
       abi: L2ResolverAbi,
-      address: resolverAddress!,
+      address: resolverAddress,
       args: [nameHash, textRecordsBytes],
       functionName: 'multicallWithNodeCheck',
     });
