@@ -42,7 +42,7 @@ export default function useBasenameResolver({
   });
 
   return {
-    data: resolverAddress as Address | undefined,
+    data: resolverAddress,
     isError,
     error,
     refetch,
