@@ -107,7 +107,7 @@ export default function ProfileTransferOwnershipProvider({
   const setAddrContract = useMemo(() => {
     if (!isValidRecipientAddress || !profileUsername || !resolverAddress) return;
 
-    const nodeHash = namehash(formatBaseEthDomain(profileUsername, basenameChain.id));
+    const nodeHash = namehash(profileUsername);
 
     const legacyAddrData = encodeFunctionData({
       abi: L2ResolverAbi,
