@@ -1,7 +1,7 @@
 {
   "name": "River",
-  "url": "https://app.river.inc",
-  "description": "River is building the circulatory system for crypto, connecting assets, liquidity, and yield across chains. Powered by the omni-CDP stablecoin protocol, earn, leverage, and scale — all without selling your assets.",
+  "url": "https://app.river.inc/",
+  "description": "River is building the first chain-abstraction stablecoin system that connects assets, liquidity, and yield across ecosystems.",
   "imageUrl": "/images/partners/river.png",
   "category": "defi",
   "subcategory": "stablecoin"
