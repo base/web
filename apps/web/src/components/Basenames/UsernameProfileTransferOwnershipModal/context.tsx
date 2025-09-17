@@ -92,6 +92,8 @@ export default function ProfileTransferOwnershipProvider({
     username: profileUsername,
   });
 
+  console.log('resolverAddress', resolverAddress);
+
   // States
   const [recipientAddress, setRecipientAddress] = useState<string>('');
   const [currentOwnershipStep, setCurrentOwnershipStep] = useState<OwnershipSteps>(
@@ -103,27 +105,30 @@ export default function ProfileTransferOwnershipProvider({
   const tokenId = getTokenIdFromBasename(profileUsername);
 
   // Contract write calls
+  // Step 1, set the address records (legacy and ENSIP-11)
   const setAddrContract = useMemo(() => {
     if (!isValidRecipientAddress || !profileUsername || !resolverAddress) return;
 
     const nodeHash = namehash(profileUsername);
 
+    console.log('nodeHash', nodeHash);
+
     const legacyAddrData = encodeFunctionData({
       abi: L2ResolverAbi,
       functionName: 'setAddr',
-      args: [namehash(formatBaseEthDomain(profileUsername, basenameChain.id)), recipientAddress],
+      args: [nodeHash, recipientAddress],
     });
+
+    console.log('legacyAddrData', legacyAddrData);
 
     // Set addr with ENSIP-11 address
     const baseAddrData = encodeFunctionData({
       abi: L2ResolverAbi,
       functionName: 'setAddr',
-      args: [
-        namehash(formatBaseEthDomain(profileUsername, basenameChain.id)),
-        BigInt(convertChainIdToCoinTypeUint(basenameChain.id)),
-        recipientAddress,
-      ],
+      args: [nodeHash, BigInt(convertChainIdToCoinTypeUint(basenameChain.id)), recipientAddress],
     });
+
+    console.log('baseAddrData', baseAddrData);
 
     return {
       abi: L2ResolverAbi,
@@ -133,11 +138,13 @@ export default function ProfileTransferOwnershipProvider({
     } as ContractFunctionParameters;
   }, [isValidRecipientAddress, profileUsername, recipientAddress, resolverAddress]);
 
+  // Step 2, reclaim the basename
   const reclaimContract = useMemo(() => {
     if (!tokenId || !isValidRecipientAddress) return;
     return buildBasenameReclaimContract(profileUsername, recipientAddress);
   }, [isValidRecipientAddress, profileUsername, recipientAddress, tokenId]);
 
+  // Step 3, safe transfer the basename NFT to the recipient
   const safeTransferFromContract = useMemo(() => {
     if (!tokenId || !isValidRecipientAddress || !address) return;
 
@@ -149,6 +156,7 @@ export default function ProfileTransferOwnershipProvider({
     } as ContractFunctionParameters;
   }, [address, basenameChain.id, isValidRecipientAddress, recipientAddress, tokenId]);
 
+  // Step 4, set the reverse resolution record
   const setNameContract = useMemo(() => {
     return {
       abi: L2ReverseRegistrarAbi,
