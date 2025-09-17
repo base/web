@@ -11,7 +11,6 @@ import { isDevelopment } from 'apps/web/src/constants';
 import ImageRaw from 'apps/web/src/components/ImageRaw';
 import { getIpfsGatewayUrl, IpfsUrl, IsValidIpfsUrl } from 'apps/web/src/utils/urls';
 import { logger } from 'apps/web/src/utils/logger';
-import { namehash } from 'viem';
 import { Basename } from '@coinbase/onchainkit/identity';
 import { getCloudinaryMediaUrl } from 'apps/web/src/utils/images';
 import { readFile } from 'node:fs/promises';

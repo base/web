@@ -17,7 +17,6 @@ import { getIpfsGatewayUrl, IpfsUrl, IsValidIpfsUrl } from 'apps/web/src/utils/u
 import { Basename } from '@coinbase/onchainkit/identity';
 import { getCloudinaryMediaUrl } from 'apps/web/src/utils/images';
 import { logger } from 'apps/web/src/utils/logger';
-import { namehash } from 'viem';
 export const runtime = 'edge';
 
 const size = {

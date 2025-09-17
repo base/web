@@ -31,7 +31,7 @@ import useWriteContractsWithLogs, {
 } from 'apps/web/src/hooks/useWriteContractsWithLogs';
 import useBasenameResolver from 'apps/web/src/hooks/useBasenameResolver';
 import L2ReverseRegistrarAbi from 'apps/web/src/abis/L2ReverseRegistrarAbi';
-import { convertChainIdToCoinTypeUint, formatBaseEthDomain } from 'apps/web/src/utils/usernames';
+import { convertChainIdToCoinTypeUint } from 'apps/web/src/utils/usernames';
 
 type ProfileTransferOwnershipProviderProps = {
   children?: ReactNode;
