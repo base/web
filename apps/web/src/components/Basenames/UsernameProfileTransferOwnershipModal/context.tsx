@@ -18,19 +18,20 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { ContractFunctionParameters, Hash, isAddress, namehash } from 'viem';
+import { ContractFunctionParameters, Hash, isAddress, namehash, encodeFunctionData } from 'viem';
 import { useAccount } from 'wagmi';
-import L2Resolver from 'apps/web/src/abis/L2Resolver';
+import L2ResolverAbi from 'apps/web/src/abis/L2Resolver';
 import BaseRegistrarAbi from 'apps/web/src/abis/BaseRegistrarAbi';
-import ReverseRegistrarAbi from 'apps/web/src/abis/ReverseRegistrarAbi';
 import {
   USERNAME_BASE_REGISTRAR_ADDRESSES,
-  USERNAME_L2_RESOLVER_ADDRESSES,
-  USERNAME_REVERSE_REGISTRAR_ADDRESSES,
+  USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES,
 } from 'apps/web/src/addresses/usernames';
 import useWriteContractsWithLogs, {
   BatchCallsStatus,
 } from 'apps/web/src/hooks/useWriteContractsWithLogs';
+import useBasenameResolver from 'apps/web/src/hooks/useBasenameResolver';
+import L2ReverseRegistrarAbi from 'apps/web/src/abis/L2ReverseRegistrarAbi';
+import { convertChainIdToCoinTypeUint, formatBaseEthDomain } from 'apps/web/src/utils/usernames';
 
 type ProfileTransferOwnershipProviderProps = {
   children?: ReactNode;
@@ -86,6 +87,11 @@ export default function ProfileTransferOwnershipProvider({
   const { basenameChain } = useBasenameChain(profileUsername);
   const { logError } = useErrors();
 
+  // Fetch resolver address from registry for the basename
+  const { data: resolverAddress } = useBasenameResolver({
+    username: profileUsername,
+  });
+
   // States
   const [recipientAddress, setRecipientAddress] = useState<string>('');
   const [currentOwnershipStep, setCurrentOwnershipStep] = useState<OwnershipSteps>(
@@ -98,15 +104,34 @@ export default function ProfileTransferOwnershipProvider({
 
   // Contract write calls
   const setAddrContract = useMemo(() => {
-    if (!isValidRecipientAddress || !profileUsername) return;
+    if (!isValidRecipientAddress || !profileUsername || !resolverAddress) return;
+
+    const nodeHash = namehash(profileUsername);
+
+    const legacyAddrData = encodeFunctionData({
+      abi: L2ResolverAbi,
+      functionName: 'setAddr',
+      args: [namehash(formatBaseEthDomain(profileUsername, basenameChain.id)), recipientAddress],
+    });
+
+    // Set addr with ENSIP-11 address
+    const baseAddrData = encodeFunctionData({
+      abi: L2ResolverAbi,
+      functionName: 'setAddr',
+      args: [
+        namehash(formatBaseEthDomain(profileUsername, basenameChain.id)),
+        BigInt(convertChainIdToCoinTypeUint(basenameChain.id)),
+        recipientAddress,
+      ],
+    });
 
     return {
-      abi: L2Resolver,
-      address: USERNAME_L2_RESOLVER_ADDRESSES[basenameChain.id],
-      args: [namehash(profileUsername), recipientAddress],
-      functionName: 'setAddr',
+      abi: L2ResolverAbi,
+      address: resolverAddress,
+      args: [nodeHash, [legacyAddrData, baseAddrData]],
+      functionName: 'multicallWithNodeCheck',
     } as ContractFunctionParameters;
-  }, [basenameChain.id, isValidRecipientAddress, profileUsername, recipientAddress]);
+  }, [isValidRecipientAddress, profileUsername, recipientAddress, resolverAddress]);
 
   const reclaimContract = useMemo(() => {
     if (!tokenId || !isValidRecipientAddress) return;
@@ -126,8 +151,8 @@ export default function ProfileTransferOwnershipProvider({
 
   const setNameContract = useMemo(() => {
     return {
-      abi: ReverseRegistrarAbi,
-      address: USERNAME_REVERSE_REGISTRAR_ADDRESSES[basenameChain.id],
+      abi: L2ReverseRegistrarAbi,
+      address: USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES[basenameChain.id],
       args: [''],
       functionName: 'setName',
     } as ContractFunctionParameters;
@@ -358,7 +383,9 @@ export default function ProfileTransferOwnershipProvider({
   }, [batchCallsStatus]);
 
   // Either the batch call hash or the single NFT transaction hash
-  const ownershipTransactionHash = batchCallTransactionHash ?? safeTransferFromTransactionHash;
+  const ownershipTransactionHash = (batchCallTransactionHash ?? safeTransferFromTransactionHash) as
+    | Hash
+    | undefined;
 
   const value = useMemo(() => {
     return {
