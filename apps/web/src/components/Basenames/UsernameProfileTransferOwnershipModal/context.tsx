@@ -128,7 +128,13 @@ export default function ProfileTransferOwnershipProvider({
       args: [nodeHash, [legacyAddrData, baseAddrData]],
       functionName: 'multicallWithNodeCheck',
     } as ContractFunctionParameters;
-  }, [isValidRecipientAddress, profileUsername, recipientAddress, resolverAddress]);
+  }, [
+    isValidRecipientAddress,
+    profileUsername,
+    recipientAddress,
+    resolverAddress,
+    basenameChain.id,
+  ]);
 
   // Step 2, reclaim the basename
   const reclaimContract = useMemo(() => {
