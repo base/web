@@ -31,7 +31,7 @@ import useWriteContractsWithLogs, {
 } from 'apps/web/src/hooks/useWriteContractsWithLogs';
 import useBasenameResolver from 'apps/web/src/hooks/useBasenameResolver';
 import L2ReverseRegistrarAbi from 'apps/web/src/abis/L2ReverseRegistrarAbi';
-import { convertChainIdToCoinTypeUint } from 'apps/web/src/utils/usernames';
+import { convertChainIdToCoinTypeUint, formatBaseEthDomain } from 'apps/web/src/utils/usernames';
 
 type ProfileTransferOwnershipProviderProps = {
   children?: ReactNode;
@@ -107,7 +107,7 @@ export default function ProfileTransferOwnershipProvider({
   const setAddrContract = useMemo(() => {
     if (!isValidRecipientAddress || !profileUsername || !resolverAddress) return;
 
-    const nodeHash = namehash(profileUsername);
+    const nodeHash = namehash(formatBaseEthDomain(profileUsername, basenameChain.id));
 
     const legacyAddrData = encodeFunctionData({
       abi: L2ResolverAbi,
