@@ -1792,12 +1792,12 @@
     "subcategory": "ai"
   },
   {
-  "name": "Glider",
-  "description": "Glider is a platform for creating auto-rebalancing DeFi and token portfolios. No gas. No signing. No bridging. Fully non-custodial.",
-  "url": "https://glider.fi",
-  "imageUrl": "/images/partners/glider.png",
-  "category": "defi",
-  "subcategory": "portfolio"
+    "name": "Glider",
+    "description": "Glider is a platform for creating auto-rebalancing DeFi and token portfolios. No gas. No signing. No bridging. Fully non-custodial.",
+    "url": "https://glider.fi",
+    "imageUrl": "/images/partners/glider.png",
+    "category": "defi",
+    "subcategory": "portfolio"
   },
   {
     "name": "Goldsky",
@@ -2806,6 +2806,14 @@
     "imageUrl": "/images/partners/onboard.webp",
     "category": "onramp",
     "subcategory": "fiat on-ramp"
+  },
+  {
+    "name": "OnChainWin",
+    "url": "https://onchainwin.com",
+    "description": "OnChainWin is a Web3 technology provider that delivers outsourceable, verifiably fair raffle infrastructure and creating raffles on EVM-compatible networks.",
+    "imageUrl": "/images/partners/onchainwin.png",
+    "category": "consumer",
+    "subcategory": "creator real world gaming"
   },
   {
     "name": "Onramp Money",
