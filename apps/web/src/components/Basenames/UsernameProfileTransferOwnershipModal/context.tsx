@@ -88,9 +88,7 @@ export default function ProfileTransferOwnershipProvider({
   const { logError } = useErrors();
 
   // Fetch resolver address from registry for the basename
-  const { data: resolverAddress } = useBasenameResolver({
-    username: profileUsername,
-  });
+  const { data: resolverAddress } = useBasenameResolver({ username: profileUsername });
 
   // States
   const [recipientAddress, setRecipientAddress] = useState<string>('');

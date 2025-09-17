@@ -1,6 +1,6 @@
 import { useErrors } from 'apps/web/contexts/Errors';
 import L2ResolverAbi from 'apps/web/src/abis/L2Resolver';
-import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
+import useBasenameResolver from 'apps/web/src/hooks/useBasenameResolver';
 import useBaseEnsAvatar from 'apps/web/src/hooks/useBaseEnsAvatar';
 import { BaseEnsNameData } from 'apps/web/src/hooks/useBaseEnsName';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
@@ -77,6 +77,8 @@ export default function useWriteBaseEnsTextRecords({
 
   const { basenameChain } = useBasenameChain();
 
+  const { data: resolverAddress } = useBasenameResolver({ username });
+
   const {
     initiateTransaction: initiateWriteTextRecords,
     transactionIsLoading: writeTextRecordsTransactionIsLoading,
@@ -110,7 +112,7 @@ export default function useWriteBaseEnsTextRecords({
 
     await initiateWriteTextRecords({
       abi: L2ResolverAbi,
-      address: USERNAME_L2_RESOLVER_ADDRESSES[basenameChain.id],
+      address: resolverAddress!,
       args: [nameHash, textRecordsBytes],
       functionName: 'multicallWithNodeCheck',
     });
@@ -120,6 +122,7 @@ export default function useWriteBaseEnsTextRecords({
     initiateWriteTextRecords,
     keysToUpdate,
     onSuccess,
+    resolverAddress,
     updatedTextRecords,
     username,
   ]);

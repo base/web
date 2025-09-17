@@ -4,7 +4,7 @@ import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
 import { Address, isAddress } from 'viem';
 import { useEnsAddress } from 'wagmi';
 import { isBasename, isEnsName } from 'apps/web/src/utils/usernames';
-import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
+import useBasenameResolver from 'apps/web/src/hooks/useBasenameResolver';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import { truncateMiddle } from 'libs/base-ui/utils/string';
@@ -32,12 +32,15 @@ export default function SearchAddressInput({ onChange }: SearchAddressInputProps
 
   const { basenameChain } = useBasenameChain();
 
+  // Dynamically fetched resolver for a Basename value
+  const { data: resolverAddress } = useBasenameResolver({ username: value as unknown as string });
+
   const { data: basenameAddress, isLoading: basenameAddressIsLoading } = useEnsAddress({
     name: value.toLowerCase(),
-    universalResolverAddress: USERNAME_L2_RESOLVER_ADDRESSES[basenameChain.id],
+    universalResolverAddress: resolverAddress,
     chainId: basenameChain.id,
     query: {
-      enabled: validBasename,
+      enabled: validBasename && !!resolverAddress,
       retry: false,
     },
   });
