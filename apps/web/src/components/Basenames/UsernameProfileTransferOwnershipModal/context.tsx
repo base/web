@@ -92,8 +92,6 @@ export default function ProfileTransferOwnershipProvider({
     username: profileUsername,
   });
 
-  console.log('resolverAddress', resolverAddress);
-
   // States
   const [recipientAddress, setRecipientAddress] = useState<string>('');
   const [currentOwnershipStep, setCurrentOwnershipStep] = useState<OwnershipSteps>(
@@ -111,15 +109,11 @@ export default function ProfileTransferOwnershipProvider({
 
     const nodeHash = namehash(profileUsername);
 
-    console.log('nodeHash', nodeHash);
-
     const legacyAddrData = encodeFunctionData({
       abi: L2ResolverAbi,
       functionName: 'setAddr',
       args: [nodeHash, recipientAddress],
     });
-
-    console.log('legacyAddrData', legacyAddrData);
 
     // Set addr with ENSIP-11 address
     const baseAddrData = encodeFunctionData({
@@ -127,8 +121,6 @@ export default function ProfileTransferOwnershipProvider({
       functionName: 'setAddr',
       args: [nodeHash, BigInt(convertChainIdToCoinTypeUint(basenameChain.id)), recipientAddress],
     });
-
-    console.log('baseAddrData', baseAddrData);
 
     return {
       abi: L2ResolverAbi,
