@@ -748,15 +748,6 @@ export function buildRegistryResolverReadParams(username: Basename) {
   };
 }
 
-export function buildRegistryResolverReadByNodeParams(chainId: number, node: `0x${string}`) {
-  return {
-    abi: RegistryAbi,
-    address: USERNAME_BASE_REGISTRY_ADDRESSES[chainId],
-    functionName: 'resolver' as const,
-    args: [node] as const,
-  };
-}
-
 export async function fetchResolverAddress(username: Basename): Promise<Address> {
   const chain = getChainForBasename(username);
   const client = getBasenamePublicClient(chain.id);
@@ -768,7 +759,12 @@ export async function fetchResolverAddressByNode(
   node: `0x${string}`,
 ): Promise<Address> {
   const client = getBasenamePublicClient(chainId);
-  return client.readContract(buildRegistryResolverReadByNodeParams(chainId, node));
+  return client.readContract({
+    abi: RegistryAbi,
+    address: USERNAME_BASE_REGISTRY_ADDRESSES[chainId],
+    functionName: 'resolver' as const,
+    args: [node] as const,
+  });
 }
 
 /*
