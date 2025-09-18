@@ -3,6 +3,11 @@ import { base, baseSepolia } from 'viem/chains';
 
 type AddressMap = Record<number, Address>;
 
+export const USERNAME_L2_RESOLVER_ADDRESSES: AddressMap = {
+  [baseSepolia.id]: '0x6533C94869D28fAA8dF77cc63f9e2b2D6Cf77eBA',
+  [base.id]: '0xC6d566A56A1aFf6508b41f6c90ff131615583BCD',
+};
+
 export const USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES: AddressMap = {
   [baseSepolia.id]: '0x00000BeEF055f7934784D6d81b6BC86665630dbA',
   [base.id]: '0x0000000000D8e504002cC26E3Ec46D81971C1664',

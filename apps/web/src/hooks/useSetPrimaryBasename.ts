@@ -2,6 +2,7 @@ import ReverseRegistrarAbi from 'apps/web/src/abis/ReverseRegistrarAbi';
 import {
   USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES,
   USERNAME_REVERSE_REGISTRAR_ADDRESSES,
+  USERNAME_L2_RESOLVER_ADDRESSES,
 } from 'apps/web/src/addresses/usernames';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import { useCallback, useEffect, useState } from 'react';
@@ -18,7 +19,6 @@ import UpgradeableRegistrarControllerAbi from 'apps/web/src/abis/UpgradeableRegi
 import { UPGRADEABLE_REGISTRAR_CONTROLLER_ADDRESSES } from 'apps/web/src/addresses/usernames';
 import { type AbiFunction } from 'viem';
 import { buildReverseRegistrarSignatureDigest } from 'apps/web/src/utils/usernames';
-import useBasenameResolver from 'apps/web/src/hooks/useBasenameResolver';
 
 /*
   A hook to set a name as primary for resolution.
@@ -43,7 +43,6 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
     chainId: secondaryUsernameChain.id,
   });
   const { signMessageAsync } = useSignMessage();
-  const { data: resolverAddress } = useBasenameResolver({ username: secondaryUsername });
 
   const [signatureError, setSignatureError] = useState<Error | null>(null);
 
@@ -136,15 +135,18 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
           functionName: 'setReverseRecord',
         });
       } else {
-        if (!resolverAddress) {
-          return undefined;
-        }
         await initiateBatchCalls({
           contracts: [
             {
               abi: ReverseRegistrarAbi,
               address: USERNAME_REVERSE_REGISTRAR_ADDRESSES[secondaryUsernameChain.id],
-              args: [address, address, resolverAddress, secondaryUsername],
+              // Write legacy reverse record against legacy L2Resolver for compatibility with long tail of hardcoded tooling
+              args: [
+                address,
+                address,
+                USERNAME_L2_RESOLVER_ADDRESSES[secondaryUsernameChain.id],
+                secondaryUsername,
+              ],
               functionName: 'setNameForAddr',
             },
             {
@@ -174,7 +176,6 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
     secondaryUsernameChain.id,
     signMessageForReverseRecord,
     initiateBatchCalls,
-    resolverAddress,
     logError,
   ]);
 
