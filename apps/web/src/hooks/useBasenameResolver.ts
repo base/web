@@ -1,9 +1,7 @@
 import { useReadContract } from 'wagmi';
-import { namehash, type Address } from 'viem';
+import { type Address } from 'viem';
 import { type Basename } from '@coinbase/onchainkit/identity';
-import { getChainForBasename } from 'apps/web/src/utils/usernames';
-import { USERNAME_BASE_REGISTRY_ADDRESSES } from 'apps/web/src/addresses/usernames';
-import RegistryAbi from 'apps/web/src/abis/RegistryAbi';
+import { buildRegistryResolverReadParams } from 'apps/web/src/utils/usernames';
 
 export type UseBasenameResolverProps = {
   username: Basename;
@@ -22,8 +20,7 @@ export type UseBasenameResolverReturn = {
 export default function useBasenameResolver({
   username,
 }: UseBasenameResolverProps): UseBasenameResolverReturn {
-  const chain = getChainForBasename(username);
-  const nodeHash = namehash(username as string);
+  const readParams = buildRegistryResolverReadParams(username);
 
   const {
     data: resolverAddress,
@@ -31,10 +28,7 @@ export default function useBasenameResolver({
     error,
     refetch,
   } = useReadContract({
-    abi: RegistryAbi,
-    address: USERNAME_BASE_REGISTRY_ADDRESSES[chain.id],
-    functionName: 'resolver',
-    args: [nodeHash],
+    ...readParams,
     query: {
       enabled: !!username,
       refetchOnWindowFocus: false,

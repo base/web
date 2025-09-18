@@ -4,8 +4,7 @@ import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
 import { Address, isAddress } from 'viem';
 import { useEnsAddress } from 'wagmi';
 import { isBasename, isEnsName } from 'apps/web/src/utils/usernames';
-import useBasenameResolver from 'apps/web/src/hooks/useBasenameResolver';
-import { Basename } from '@coinbase/onchainkit/identity';
+import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import { truncateMiddle } from 'libs/base-ui/utils/string';
@@ -18,11 +17,6 @@ type SearchAddressInputProps = {
   onChange: (value: string) => void;
 };
 export default function SearchAddressInput({ onChange }: SearchAddressInputProps) {
-  const truncateMiddleSafe = truncateMiddle as (
-    value: string,
-    start: number,
-    end: number,
-  ) => string;
   const [value, setValue] = useState<string>('');
 
   /* 1. User enters an address */
@@ -38,14 +32,13 @@ export default function SearchAddressInput({ onChange }: SearchAddressInputProps
 
   const { basenameChain } = useBasenameChain();
 
-  const { data: resolverAddress } = useBasenameResolver({ username: value as Basename });
-
+  // TODO: Use wagmi's ENSIP-19 integration after data migration is complete
   const { data: basenameAddress, isLoading: basenameAddressIsLoading } = useEnsAddress({
     name: value.toLowerCase(),
-    universalResolverAddress: resolverAddress,
+    universalResolverAddress: USERNAME_L2_RESOLVER_ADDRESSES[basenameChain.id],
     chainId: basenameChain.id,
     query: {
-      enabled: validBasename && !!resolverAddress,
+      enabled: validBasename,
       retry: false,
     },
   });
@@ -109,7 +102,7 @@ export default function SearchAddressInput({ onChange }: SearchAddressInputProps
               <span>
                 View {showUsername && <strong>{username}</strong>}
                 {!showUsername && finalAddress && (
-                  <strong>{truncateMiddleSafe(String(finalAddress), 6, 4)}</strong>
+                  <strong>{truncateMiddle(finalAddress, 6, 4)}</strong>
                 )}{' '}
                 {baseBlockExplorerName}
               </span>

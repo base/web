@@ -714,12 +714,9 @@ export async function getBasenameTextRecord(username: Basename, key: UsernameTex
   try {
     const client = getBasenamePublicClient(chain.id);
     const resolverAddress = await fetchResolverAddress(username);
-    const textRecord = await client.readContract({
-      abi: L2ResolverAbi,
-      address: resolverAddress,
-      args: [namehash(username as string), key],
-      functionName: 'text',
-    });
+    const textRecord = await client.readContract(
+      buildBasenameTextRecordContract(username, key, resolverAddress),
+    );
     return textRecord;
   } catch (error) {}
 }
@@ -740,15 +737,30 @@ export async function getBasenameTextRecords(username: Basename) {
 }
 
 // Resolver helpers
+export function buildRegistryResolverReadParams(username: Basename) {
+  const chain = getChainForBasename(username);
+  const node = namehash(username as string);
+  return {
+    abi: RegistryAbi,
+    address: USERNAME_BASE_REGISTRY_ADDRESSES[chain.id],
+    functionName: 'resolver' as const,
+    args: [node] as const,
+  };
+}
+
+export function buildRegistryResolverReadByNodeParams(chainId: number, node: `0x${string}`) {
+  return {
+    abi: RegistryAbi,
+    address: USERNAME_BASE_REGISTRY_ADDRESSES[chainId],
+    functionName: 'resolver' as const,
+    args: [node] as const,
+  };
+}
+
 export async function fetchResolverAddress(username: Basename): Promise<Address> {
   const chain = getChainForBasename(username);
   const client = getBasenamePublicClient(chain.id);
-  return client.readContract({
-    abi: RegistryAbi,
-    address: USERNAME_BASE_REGISTRY_ADDRESSES[chain.id],
-    functionName: 'resolver',
-    args: [namehash(username as string)],
-  });
+  return client.readContract(buildRegistryResolverReadParams(username));
 }
 
 export async function fetchResolverAddressByNode(
@@ -756,12 +768,7 @@ export async function fetchResolverAddressByNode(
   node: `0x${string}`,
 ): Promise<Address> {
   const client = getBasenamePublicClient(chainId);
-  return client.readContract({
-    abi: RegistryAbi,
-    address: USERNAME_BASE_REGISTRY_ADDRESSES[chainId],
-    functionName: 'resolver',
-    args: [node],
-  });
+  return client.readContract(buildRegistryResolverReadByNodeParams(chainId, node));
 }
 
 /*

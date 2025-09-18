@@ -12,11 +12,6 @@ import { mainnet } from 'viem/chains';
 import { useEnsAvatar, useEnsName } from 'wagmi';
 
 export default function WalletIdentity({ address }: { address: Address }) {
-  const truncateMiddleSafe = truncateMiddle as (
-    value: string,
-    start: number,
-    end: number,
-  ) => string;
   const { basenameChain } = useBasenameChain();
   const { data: basename } = useBaseEnsName({
     address: address,
@@ -69,8 +64,8 @@ export default function WalletIdentity({ address }: { address: Address }) {
       )}
 
       <div>
-        <strong>{basename ?? truncateMiddleSafe(address, 6, 4)}</strong>
-        {!!basename && <p className="text-gray-40">{truncateMiddleSafe(address, 6, 4)}</p>}
+        <strong>{basename ?? truncateMiddle(address, 6, 4)}</strong>
+        {!!basename && <p className="text-gray-40">{truncateMiddle(address, 6, 4)}</p>}
       </div>
     </div>
   );
