@@ -24,13 +24,13 @@ import L2ResolverAbi from 'apps/web/src/abis/L2Resolver';
 import BaseRegistrarAbi from 'apps/web/src/abis/BaseRegistrarAbi';
 import {
   USERNAME_BASE_REGISTRAR_ADDRESSES,
-  USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES,
+  USERNAME_REVERSE_REGISTRAR_ADDRESSES,
 } from 'apps/web/src/addresses/usernames';
 import useWriteContractsWithLogs, {
   BatchCallsStatus,
 } from 'apps/web/src/hooks/useWriteContractsWithLogs';
 import useBasenameResolver from 'apps/web/src/hooks/useBasenameResolver';
-import L2ReverseRegistrarAbi from 'apps/web/src/abis/L2ReverseRegistrarAbi';
+import ReverseRegistrarAbi from 'apps/web/src/abis/ReverseRegistrarAbi';
 import { convertChainIdToCoinTypeUint } from 'apps/web/src/utils/usernames';
 
 type ProfileTransferOwnershipProviderProps = {
@@ -157,8 +157,8 @@ export default function ProfileTransferOwnershipProvider({
   // Step 4, set the reverse resolution record
   const setNameContract = useMemo(() => {
     return {
-      abi: L2ReverseRegistrarAbi,
-      address: USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES[basenameChain.id],
+      abi: ReverseRegistrarAbi,
+      address: USERNAME_REVERSE_REGISTRAR_ADDRESSES[basenameChain.id],
       args: [''],
       functionName: 'setName',
     } as ContractFunctionParameters;
