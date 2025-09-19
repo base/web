@@ -21,7 +21,7 @@ export function MinikitAnalyticsUpsellSection() {
           size={ButtonSizes.Small}
         >
           <Link href="https://base.dev/" className="tracking-normal">
-            Join waitlist
+            Get started
           </Link>
         </Button>
       </div>
