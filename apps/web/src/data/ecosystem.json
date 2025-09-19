@@ -1480,6 +1480,14 @@
     "subcategory": "gaming"
   },
   {
+  "name": "Ethy AI",
+  "description": "Ethy is your autonomous trading assistant. Define your strategies in plain language, tap into alpha from expert agents, and let Ethy monitor markets and execute for you 24/7.",
+  "url": "https://ethyai.app/",
+  "imageUrl": "/images/partners/ethyai.png",
+  "category": "ai",
+  "subcategory": "ai"
+  },
+  {
     "name": "Euler",
     "description": "Euler revolutionizes DeFi by letting any asset become collateral for a lending market. Builders can create and manage markets exactly how they want, with institutional-grade security.",
     "url": "https://app.euler.finance/?network=base",
