@@ -9,20 +9,19 @@ import {
   createPublicClient,
   http,
   sha256,
+  getFunctionSelector,
+  type AbiFunction,
 } from 'viem';
 import { normalize } from 'viem/ens';
-import RegistrarControllerABI from 'apps/web/src/abis/RegistrarControllerABI';
-import EARegistrarControllerAbi from 'apps/web/src/abis/EARegistrarControllerAbi';
 import L2ResolverAbi from 'apps/web/src/abis/L2Resolver';
 import RegistryAbi from 'apps/web/src/abis/RegistryAbi';
 import BaseRegistrarAbi from 'apps/web/src/abis/BaseRegistrarAbi';
 import { base, baseSepolia, mainnet } from 'viem/chains';
 import { Basename } from '@coinbase/onchainkit/identity';
 import {
+  UPGRADEABLE_REGISTRAR_CONTROLLER_ADDRESSES,
   USERNAME_BASE_REGISTRAR_ADDRESSES,
   USERNAME_BASE_REGISTRY_ADDRESSES,
-  USERNAME_EA_REGISTRAR_CONTROLLER_ADDRESSES,
-  USERNAME_REGISTRAR_CONTROLLER_ADDRESSES,
 } from 'apps/web/src/addresses/usernames';
 
 import {
@@ -32,7 +31,6 @@ import {
   IsValidVercelBlobUrl,
 } from 'apps/web/src/utils/urls';
 import { getBasenamePublicClient } from 'apps/web/src/hooks/useBasenameChain';
-import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
 import { logger } from 'apps/web/src/utils/logger';
 
 // Note: The animations provided by the studio team didn't match the number from our SVGs
@@ -58,6 +56,7 @@ import {
   ALLOWED_IMAGE_TYPE,
   MAX_IMAGE_SIZE_IN_MB,
 } from 'apps/web/app/(basenames)/api/basenames/avatar/ipfsUpload/route';
+import UpgradeableRegistrarControllerAbi from 'apps/web/src/abis/UpgradeableRegistrarControllerAbi';
 
 export const USERNAME_MIN_CHARACTER_LENGTH = 3;
 export const USERNAME_MAX_CHARACTER_LENGTH = 20;
@@ -368,6 +367,34 @@ export const convertChainIdToCoinTypeUint = (chainId: number): number => {
   return (0x80000000 | chainId) >>> 0;
 };
 
+export function buildReverseRegistrarSignatureDigest({
+  reverseRegistrar,
+  functionAbi,
+  address,
+  chainId,
+  name,
+  signatureExpiry,
+}: {
+  reverseRegistrar: `0x${string}`;
+  functionAbi: AbiFunction;
+  address: `0x${string}`;
+  chainId: number;
+  name: string;
+  signatureExpiry: bigint;
+}) {
+  const coinTypes = [BigInt(convertChainIdToCoinTypeUint(chainId))] as const;
+  const fullName = formatBaseEthDomain(name, chainId);
+  const selector = getFunctionSelector(functionAbi);
+
+  const preimage = encodePacked(
+    ['address', 'bytes4', 'address', 'uint256', 'string', 'uint256[]'],
+    [reverseRegistrar, selector, address, signatureExpiry, fullName, coinTypes],
+  );
+  const digest = keccak256(preimage);
+
+  return { digest, coinTypes, fullName } as const;
+}
+
 export const convertReverseNodeToBytes = ({
   address,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -392,7 +419,6 @@ export const convertReverseNodeToBytes = ({
 };
 
 export enum Discount {
-  EARLY_ACCESS = 'EARLY_ACCESS',
   CBID = 'CBID',
   CB1 = 'CB1',
   COINBASE_VERIFIED_ACCOUNT = 'COINBASE_VERIFIED_ACCOUNT',
@@ -562,9 +588,10 @@ export async function getBasenameAddress(username: Basename) {
 
   try {
     const client = getBasenamePublicClient(chain.id);
+    const resolverAddress = await fetchResolverAddress(username);
     const ensAddress = await client.getEnsAddress({
       name: normalize(username as string),
-      universalResolverAddress: USERNAME_L2_RESOLVER_ADDRESSES[chain.id],
+      universalResolverAddress: resolverAddress,
     });
     return ensAddress;
   } catch (error) {}
@@ -633,7 +660,14 @@ export async function getBasenameNameExpires(username: Basename) {
     });
 
     return nameExpires;
-  } catch (error) {}
+  } catch (error) {
+    logger.error('Error fetching basename expiration date', {
+      error,
+      username,
+      tokenId,
+      chainId: chain.id,
+    });
+  }
 }
 
 export async function getBasenameAvailable(name: string, chain: Chain): Promise<boolean> {
@@ -664,11 +698,11 @@ export async function getBasenameAvailable(name: string, chain: Chain): Promise<
 export function buildBasenameTextRecordContract(
   username: Basename,
   key: UsernameTextRecordKeys,
+  resolverAddress: Address,
 ): ContractFunctionParameters {
-  const chain = getChainForBasename(username);
   return {
     abi: L2ResolverAbi,
-    address: USERNAME_L2_RESOLVER_ADDRESSES[chain.id],
+    address: resolverAddress,
     args: [namehash(username as string), key],
     functionName: 'text',
   };
@@ -679,9 +713,11 @@ export async function getBasenameTextRecord(username: Basename, key: UsernameTex
   const chain = getChainForBasename(username);
   try {
     const client = getBasenamePublicClient(chain.id);
-    const contractParameters = buildBasenameTextRecordContract(username, key);
-    const textRecord = await client.readContract(contractParameters);
-    return textRecord as string;
+    const resolverAddress = await fetchResolverAddress(username);
+    const textRecord = await client.readContract(
+      buildBasenameTextRecordContract(username, key, resolverAddress),
+    );
+    return textRecord;
   } catch (error) {}
 }
 
@@ -689,15 +725,46 @@ export async function getBasenameTextRecord(username: Basename, key: UsernameTex
 export async function getBasenameTextRecords(username: Basename) {
   const chain = getChainForBasename(username);
   try {
-    const readContracts: ContractFunctionParameters[] = textRecordsKeysEnabled.map((key) => {
-      return buildBasenameTextRecordContract(username, key);
-    });
-
     const client = getBasenamePublicClient(chain.id);
+    const resolverAddress = await fetchResolverAddress(username);
+    const readContracts: ContractFunctionParameters[] = textRecordsKeysEnabled.map((key) => {
+      return buildBasenameTextRecordContract(username, key, resolverAddress);
+    });
     const textRecords = await client.multicall({ contracts: readContracts });
 
     return textRecords;
   } catch (error) {}
+}
+
+// Resolver helpers
+export function buildRegistryResolverReadParams(username: Basename) {
+  const chain = getChainForBasename(username);
+  const node = namehash(username as string);
+  return {
+    abi: RegistryAbi,
+    address: USERNAME_BASE_REGISTRY_ADDRESSES[chain.id],
+    functionName: 'resolver' as const,
+    args: [node] as const,
+  };
+}
+
+export async function fetchResolverAddress(username: Basename): Promise<Address> {
+  const chain = getChainForBasename(username);
+  const client = getBasenamePublicClient(chain.id);
+  return client.readContract(buildRegistryResolverReadParams(username));
+}
+
+export async function fetchResolverAddressByNode(
+  chainId: number,
+  node: `0x${string}`,
+): Promise<Address> {
+  const client = getBasenamePublicClient(chainId);
+  return client.readContract({
+    abi: RegistryAbi,
+    address: USERNAME_BASE_REGISTRY_ADDRESSES[chainId],
+    functionName: 'resolver' as const,
+    args: [node] as const,
+  });
 }
 
 /*
@@ -756,14 +823,38 @@ export const getBasenameImage = (username: string) => {
   Feature flags
 */
 
-// Force EA/GA based on env
-export const IS_EARLY_ACCESS = process.env.NEXT_PUBLIC_USERNAMES_EARLY_ACCESS == 'true';
 export const USERNAMES_PINNED_CASTS_ENABLED =
   process.env.NEXT_PUBLIC_USERNAMES_PINNED_CASTS_ENABLED === 'true';
-export const REGISTER_CONTRACT_ABI = IS_EARLY_ACCESS
-  ? EARegistrarControllerAbi
-  : RegistrarControllerABI;
+export const REGISTER_CONTRACT_ABI = UpgradeableRegistrarControllerAbi;
 
-export const REGISTER_CONTRACT_ADDRESSES = IS_EARLY_ACCESS
-  ? USERNAME_EA_REGISTRAR_CONTROLLER_ADDRESSES
-  : USERNAME_REGISTRAR_CONTROLLER_ADDRESSES;
+export const REGISTER_CONTRACT_ADDRESSES = UPGRADEABLE_REGISTRAR_CONTROLLER_ADDRESSES;
+
+export const isBasenameRenewalsKilled = process.env.NEXT_PUBLIC_KILL_BASENAMES_RENEWALS === 'true';
+
+// Grace period duration in seconds (90 days)
+export const GRACE_PERIOD_DURATION_MS = 90 * 24 * 60 * 60 * 1000;
+
+/**
+ * Check if a basename is in its grace period (expired but still renewable)
+ */
+export async function isBasenameInGracePeriod(username: Basename): Promise<boolean> {
+  try {
+    const expiresAt = await getBasenameNameExpires(username);
+    if (!expiresAt) {
+      return false;
+    }
+
+    const expirationTime = Number(expiresAt) * 1000; // Convert to milliseconds
+    const currentTime = Date.now();
+    const timeSinceExpiration = currentTime - expirationTime;
+
+    // Name is in grace period if it's expired but within the grace period duration
+    return timeSinceExpiration > 0 && timeSinceExpiration <= GRACE_PERIOD_DURATION_MS;
+  } catch (error) {
+    logger.error('Error checking if basename is in grace period', {
+      error,
+      username,
+    });
+    return false;
+  }
+}

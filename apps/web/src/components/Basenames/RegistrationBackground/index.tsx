@@ -1,11 +1,8 @@
 'use client';
 import { Transition } from '@headlessui/react';
 import { FloatingENSPills } from 'apps/web/src/components/Basenames/FloatingENSPills';
-import {
-  RegistrationSteps,
-  registrationTransitionDuration,
-  useRegistration,
-} from 'apps/web/src/components/Basenames/RegistrationContext';
+import { registrationTransitionDuration } from 'apps/web/src/components/Basenames/RegistrationContext';
+import { FlowBackgroundSteps } from 'apps/web/src/components/Basenames/shared/types';
 
 import fireworks from './assets/fireworks.webm';
 import globe from './assets/globe.webm';
@@ -13,13 +10,15 @@ import vortexJson from './assets/vortex.json';
 import classNames from 'classnames';
 import LottieAnimation from 'apps/web/src/components/LottieAnimation';
 
-export default function RegistrationBackground() {
-  const { registrationStep } = useRegistration();
-
-  const isSearch = registrationStep === RegistrationSteps.Search;
-  const isClaim = registrationStep === RegistrationSteps.Claim;
-  const isPending = registrationStep === RegistrationSteps.Pending;
-  const isSuccess = registrationStep === RegistrationSteps.Success;
+export default function RegistrationBackground({
+  backgroundStep,
+}: {
+  backgroundStep: FlowBackgroundSteps;
+}) {
+  const isSearch = backgroundStep === FlowBackgroundSteps.Search;
+  const isForm = backgroundStep === FlowBackgroundSteps.Form;
+  const isPending = backgroundStep === FlowBackgroundSteps.Pending;
+  const isSuccess = backgroundStep === FlowBackgroundSteps.Success;
 
   const grayVideoBackgroundClasses = classNames(
     'pointer-events-none absolute inset-0 w-full h-full -z-10 bg-[#F7F7F7]',
@@ -51,7 +50,7 @@ export default function RegistrationBackground() {
       </Transition>
       <Transition
         appear
-        show={isClaim}
+        show={isForm}
         className={classNames(
           'transition-opacity',
           registrationTransitionDuration,
@@ -65,7 +64,7 @@ export default function RegistrationBackground() {
         {/* TODO: Lottie animation file */}
         <Transition
           appear
-          show={isClaim}
+          show={isForm}
           className={classNames(
             'transform-gpu transition-all',
             registrationTransitionDuration,

@@ -9,6 +9,7 @@ import {
   registrationTransitionDuration,
   useRegistration,
 } from 'apps/web/src/components/Basenames/RegistrationContext';
+import { FlowBackgroundSteps } from 'apps/web/src/components/Basenames/shared/types';
 import RegistrationForm from 'apps/web/src/components/Basenames/RegistrationForm';
 import RegistrationProfileForm from 'apps/web/src/components/Basenames/RegistrationProfileForm';
 import RegistrationSearchInput from 'apps/web/src/components/Basenames/RegistrationSearchInput';
@@ -17,17 +18,11 @@ import RegistrationSuccessMessage from 'apps/web/src/components/Basenames/Regist
 import { UsernamePill } from 'apps/web/src/components/Basenames/UsernamePill';
 import { UsernamePillVariants } from 'apps/web/src/components/Basenames/UsernamePill/types';
 import useBasenameChain, { supportedChainIds } from 'apps/web/src/hooks/useBasenameChain';
-import {
-  formatBaseEthDomain,
-  IS_EARLY_ACCESS,
-  USERNAME_DOMAINS,
-} from 'apps/web/src/utils/usernames';
+import { formatBaseEthDomain, USERNAME_DOMAINS } from 'apps/web/src/utils/usernames';
 import classNames from 'classnames';
 import { useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useAccount, useSwitchChain } from 'wagmi';
-import { InformationCircleIcon } from '@heroicons/react/16/solid';
-import Tooltip from 'apps/web/src/components/Tooltip';
 import RegistrationShareOnSocials from 'apps/web/src/components/Basenames/RegistrationShareOnSocials';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import { isDevelopment } from 'libs/base-ui/constants';
@@ -82,6 +77,23 @@ export function RegistrationFlow() {
   const isPending = registrationStep === RegistrationSteps.Pending;
   const isSuccess = registrationStep === RegistrationSteps.Success;
   const isProfile = registrationStep === RegistrationSteps.Profile;
+
+  // Map registration steps to background animation steps
+  const backgroundStep = useMemo(() => {
+    switch (registrationStep) {
+      case RegistrationSteps.Search:
+        return FlowBackgroundSteps.Search;
+      case RegistrationSteps.Claim:
+        return FlowBackgroundSteps.Form;
+      case RegistrationSteps.Pending:
+        return FlowBackgroundSteps.Pending;
+      case RegistrationSteps.Success:
+      case RegistrationSteps.Profile:
+        return FlowBackgroundSteps.Success;
+      default:
+        return FlowBackgroundSteps.Search;
+    }
+  }, [registrationStep]);
 
   const layoutPadding = 'px-4 md:px-8';
   const absoluteLayoutPosition = 'top-[40vh] md:top-[50vh]';
@@ -163,31 +175,6 @@ export function RegistrationFlow() {
               variant={RegistrationSearchInputVariant.Large}
               placeholder="Search for a name"
             />
-            {IS_EARLY_ACCESS && (
-              <Tooltip
-                content="shrek.base.eth is already taken."
-                className="mx-auto mt-6 flex items-center justify-center"
-              >
-                <>
-                  <p
-                    className={classNames({
-                      'text-white': searchInputFocused,
-                      'text-gray-40': !searchInputFocused,
-                    })}
-                  >
-                    You can claim one Basename per wallet for early access.
-                  </p>
-                  <InformationCircleIcon
-                    width={12}
-                    height={12}
-                    className={classNames('ml-1 hidden sm:block', {
-                      'fill-white': searchInputFocused,
-                      'fill-gray-40': !searchInputFocused,
-                    })}
-                  />
-                </>
-              </Tooltip>
-            )}
           </Transition>
         </Transition>
         {/* 2 - Username Pill */}
@@ -359,7 +346,7 @@ export function RegistrationFlow() {
         </Transition>
 
         {/* Misc: Animated background for each steps */}
-        <RegistrationBackground />
+        <RegistrationBackground backgroundStep={backgroundStep} />
       </section>
     </>
   );
