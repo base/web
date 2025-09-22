@@ -12,7 +12,7 @@ import {
   UsernameTextRecordKeys,
 } from 'apps/web/src/utils/usernames';
 import { base, baseSepolia } from 'viem/chains';
-import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
+import { fetchResolverAddress } from 'apps/web/src/utils/usernames';
 import { getIpfsGatewayUrl, IpfsUrl, IsValidIpfsUrl } from 'apps/web/src/utils/urls';
 import { Basename } from '@coinbase/onchainkit/identity';
 import { getCloudinaryMediaUrl } from 'apps/web/src/utils/images';
@@ -75,10 +75,11 @@ export default async function OpenGraphImage(props: ImageRouteProps) {
   // NOTE: Do we want to fail if the name doesn't exist?
   try {
     const client = getBasenamePublicClient(chain.id);
+    const resolverAddress = await fetchResolverAddress(username as Basename);
     const avatar = await client.getEnsText({
       name: username,
       key: UsernameTextRecordKeys.Avatar,
-      universalResolverAddress: USERNAME_L2_RESOLVER_ADDRESSES[chain.id],
+      universalResolverAddress: resolverAddress,
     });
 
     if (avatar) {
