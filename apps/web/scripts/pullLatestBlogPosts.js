@@ -163,7 +163,7 @@ async function main() {
 
     const publicImagePath = path.join('public', 'images', 'blog', fileName);
     await downloadImage(post.imageUrl, publicImagePath);
-    post.publicImagePath = publicImagePath.replace('public', '');
+    post.publicImagePath = '/' + path.relative('public', publicImagePath);
   }
 
   // Save the results as JSON
