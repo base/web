@@ -2768,6 +2768,14 @@
     "subcategory": "bridge"
   },
   {
+    "name": "Omni Exchange",
+    "url": "https://omni.exchange",
+    "description": "Omni is a next-gen multichain DEX with V4 architecture and veToken governance. It unifies crosschain liquidity and enables sustainable emissions via voting — built for scalable, innovative growth.",
+    "imageUrl": "/images/partners/omniexchange.webp",
+    "category": "defi",
+    "subcategory": "dex"
+  },
+  {
     "name": "OmniHub",
     "description": "OmniHub NFT Launchpad allows creators to launch NFT collections. With an intuitive design, users can create digital art objects without needing special programming skills, and it takes less than a minute to start. OmniHub also incorporates AI technology, enabling the creation of unique art pieces that can be seamlessly transformed into digital assets.",
     "url": "https://omnihub.xyz/collections?chain=base",
