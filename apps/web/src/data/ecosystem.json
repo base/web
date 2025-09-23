@@ -2104,6 +2104,14 @@
     "subcategory": "bridge"
   },
   {
+    "name": "Karum",
+    "description": "Karum is a coordination layer for autonomous AI agents, helping them find each other, prove their reliability, and transact across any ecosystem through one seamless rail.",
+    "url": "https://www.karum.ai/",
+    "imageUrl": "/images/partners/karum.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "King of the Degens",
     "description": "King of the Degens is an Onchain RPG on Farcaster. Players are streamed $DEGEN in real time and storm the castle to become King!",
     "url": "https://www.degen.game/kotd",
