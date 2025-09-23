@@ -24,6 +24,14 @@
     "subcategory": "developer tool"
   },
   {
+    "name": "1BETKEY",
+    "description": "Provably fair crypto betting platform powered by Chainlink VRF. Transparent blockchain casino with verifiable random results, custom seeds, and multiple bet repetitions.",
+    "url": "https://1betkey.com",
+    "imageUrl": "/images/partners/1betkey.png",
+    "category": "consumer",
+    "subcategory": "gaming"
+  },
+  {
     "name": "1rpc",
     "url": "https://1rpc.io",
     "description": "1RPC is a private RPC relay that eradicates metadata exposure and leakage, allowing users to gain control of their interactions with the blockchain with a one-click user experience.",
