@@ -4510,5 +4510,13 @@
     "imageUrl": "/images/partners/wlth.webp",
     "category": "Consumer",
     "subcategory": "Real World"
+  },
+  {
+    "name": "Levva",
+    "url": "https://levva.fi/",
+    "description": "DeFi too complicated? You’re missing real yield. LevvAI invests your crypto for you. One click, no stress, passive income from Pendle, Aave and more.",
+    "imageUrl": "/images/partners/levva.png",
+    "category": "defi",
+    "subcategory": "portfolios"
   }
 ]
