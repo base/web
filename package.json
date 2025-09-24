@@ -8,6 +8,10 @@
     "build": "yarn workspaces foreach --exclude @app/bridge run build",
     "lint": "yarn workspaces foreach --exclude @app/bridge run lint",
     "test": "yarn workspaces foreach --exclude @app/bridge run test",
+    "test:e2e": "yarn workspace @app/web test:e2e",
+    "test:e2e:ui": "yarn workspace @app/web test:e2e:ui",
+    "test:e2e:debug": "yarn workspace @app/web test:e2e:debug",
+    "test:e2e:headed": "yarn workspace @app/web test:e2e:headed",
     "postinstall": "sh -c 'if [ command -v ./node_modules/.bin/husky ]; then ./node_modules/.bin/husky install; fi;'",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable"
@@ -20,7 +24,9 @@
   ],
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
+    "@coinbase/onchaintestkit": "^1.1.0",
     "@graphql-eslint/eslint-plugin": "^3.10.4",
+    "@playwright/test": "^1.53.1",
     "@swc/core": "^1.2.173",
     "@swc/jest": "0.2.20",
     "@testing-library/jest-dom": "^6.5.0",
@@ -69,7 +75,8 @@
   },
   "resolutions": {
     "@coinbase/cookie-manager": "1.1.1",
-    "next-transpile-modules": "^10.0.0"
+    "next-transpile-modules": "^10.0.0",
+    "wagmi": "2.14.12"
   },
   "resolutionComments": {
     "next-transpile-modules": "Next compatibility"

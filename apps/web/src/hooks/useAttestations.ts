@@ -18,7 +18,7 @@ import {
 } from 'apps/web/src/addresses/usernames';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import { MerkleTreeProofResponse } from 'apps/web/src/utils/proofs';
-import { Discount, IS_EARLY_ACCESS } from 'apps/web/src/utils/usernames';
+import { Discount } from 'apps/web/src/utils/usernames';
 import { useEffect, useMemo, useState } from 'react';
 import { Address, ReadContractErrorType, encodeAbiParameters } from 'viem';
 import { useAccount, useReadContract } from 'wagmi';
@@ -54,7 +54,7 @@ export function useCheckCBIDAttestations(): AttestationHookReturns {
       }
     }
 
-    if (address && !IS_EARLY_ACCESS) {
+    if (address) {
       checkCBIDAttestations(address).catch((error) => {
         logError(error, 'Error checking CB.ID attestation');
       });
@@ -130,7 +130,7 @@ export function useCheckCoinbaseAttestations() {
       }
     }
 
-    if (address && !IS_EARLY_ACCESS) {
+    if (address) {
       checkCoinbaseAttestations(address).catch((error) => {
         logError(error, 'Error checking Coinbase account attestations');
       });
@@ -192,7 +192,7 @@ export function useCheckCB1Attestations() {
       }
     }
 
-    if (address && !IS_EARLY_ACCESS) {
+    if (address) {
       checkCB1Attestations(address).catch((error) => {
         logError(error, 'Error checking CB1 attestation');
       });
@@ -227,67 +227,6 @@ export function useCheckCB1Attestations() {
     };
   }
   return { data: null, loading: loading || isLoading, error };
-}
-
-export function useCheckEAAttestations(): AttestationHookReturns {
-  const { logError } = useErrors();
-  const { address } = useAccount();
-  const [EAProofResponse, setEAProofResponse] = useState<MerkleTreeProofResponse | null>(null);
-  const { basenameChain } = useBasenameChain();
-
-  useEffect(() => {
-    async function checkEarlyAccess(a: string) {
-      const params = new URLSearchParams();
-      params.append('address', a);
-      params.append('chain', basenameChain.id.toString());
-      const response = await fetch(`/api/proofs/earlyAccess?${params}`);
-      if (response.ok) {
-        const result = (await response.json()) as MerkleTreeProofResponse;
-        setEAProofResponse(result);
-      }
-    }
-
-    if (address && IS_EARLY_ACCESS) {
-      checkEarlyAccess(address).catch((error) => {
-        logError(error, 'Error checking early access');
-      });
-    }
-  }, [address, basenameChain.id, logError]);
-
-  const encodedProof = useMemo(
-    () =>
-      EAProofResponse?.proofs
-        ? encodeAbiParameters([{ type: 'bytes32[]' }], [EAProofResponse?.proofs])
-        : '0x0',
-    [EAProofResponse?.proofs],
-  );
-
-  const readContractArgs = useMemo(() => {
-    if (!EAProofResponse?.proofs || !address) {
-      return {};
-    }
-    return {
-      address: EAProofResponse?.discountValidatorAddress,
-      abi: EarlyAccessValidatorABI,
-      functionName: 'isValidDiscountRegistration',
-      args: [address, encodedProof],
-    };
-  }, [address, EAProofResponse?.discountValidatorAddress, EAProofResponse?.proofs, encodedProof]);
-
-  const { data: isValid, isLoading, error } = useReadContract(readContractArgs);
-
-  if (isValid && EAProofResponse && address && IS_EARLY_ACCESS) {
-    return {
-      data: {
-        discountValidatorAddress: EAProofResponse.discountValidatorAddress,
-        discount: Discount.EARLY_ACCESS,
-        validationData: encodedProof,
-      },
-      loading: false,
-      error: null,
-    };
-  }
-  return { data: null, loading: isLoading, error };
 }
 
 // erc 1155 validator
@@ -390,7 +329,7 @@ export function useBaseDotEthAttestations() {
       }
     }
 
-    if (address && !IS_EARLY_ACCESS) {
+    if (address) {
       checkBaseDotEthAttestations(address).catch((error) => {
         logError(error, 'Error checking BaseDotEth attestation');
       });
@@ -526,7 +465,7 @@ export function useDiscountCodeAttestations(code?: string) {
       }
     }
 
-    if (address && !IS_EARLY_ACCESS && !!code) {
+    if (address && !!code) {
       checkDiscountCode(address, code).catch((error) => {
         logError(error, 'Error checking Discount code');
       });

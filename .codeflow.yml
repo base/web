@@ -4,6 +4,8 @@ secure:
   requires_mfa: true
   requires_verified: true
   upstream_repository: base/web
+  branches:
+    - staging
 
 build:
   engines:
@@ -11,10 +13,6 @@ build:
         name: web
         path: ./apps/web/Dockerfile
         architecture: arm64
-    - BaldurECR:
-        name: docs
-        path: ./apps/base-docs/Dockerfile
-        architecture: amd64
   multi_arch: true
 
 operate:

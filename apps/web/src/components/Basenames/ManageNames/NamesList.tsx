@@ -30,7 +30,18 @@ function NamesLayout({ children }: { children: React.ReactNode }) {
 }
 
 export default function NamesList() {
-  const { namesData, isLoading, error, refetch } = useNameList();
+  const {
+    namesData,
+    isLoading,
+    error,
+    refetch,
+    goToNextPage,
+    goToPreviousPage,
+    hasPrevious,
+    hasNext,
+    totalCount,
+    currentPageNumber,
+  } = useNameList();
   const { logError } = useErrors();
 
   const refetchNames = useCallback(() => {
@@ -86,6 +97,45 @@ export default function NamesList() {
           />
         ))}
       </ul>
+
+      {/* Pagination Controls */}
+      {(hasPrevious || hasNext) && (
+        <div className="mt-8 flex flex-col gap-4">
+          {/* Page indicator */}
+          <div className="text-center text-sm text-palette-foregroundMuted">
+            Page {currentPageNumber} • {totalCount} total names
+          </div>
+
+          {/* Navigation buttons */}
+          <div className="flex justify-center gap-4">
+            <button
+              type="button"
+              onClick={goToPreviousPage}
+              disabled={!hasPrevious}
+              className={`flex w-20 items-center justify-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                hasPrevious
+                  ? 'hover:bg-blue-700 bg-blue-600 text-white'
+                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              }`}
+            >
+              Prev
+            </button>
+
+            <button
+              type="button"
+              onClick={goToNextPage}
+              disabled={!hasNext}
+              className={`flex w-20 items-center justify-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                hasNext
+                  ? 'hover:bg-blue-700 bg-blue-600 text-white'
+                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              }`}
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      )}
     </NamesLayout>
   );
 }
