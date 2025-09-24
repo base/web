@@ -59,13 +59,13 @@ export default function NameDisplay({
   const expirationText = formatDistanceToNow(parseISO(expiresAt), { addSuffix: true });
   const name = domain.split('.')[0];
 
-  const { setPrimaryUsername } = useUpdatePrimaryName(domain as Basename);
+  const { removeNameFromUI } = useRemoveNameFromUI();
+  const { setPrimaryUsername, isPending } = useUpdatePrimaryName(domain as Basename);
 
   // Transfer state and callbacks
   const [isTransferModalOpen, setIsTransferModalOpen] = useState<boolean>(false);
   const openTransferModal = useCallback(() => setIsTransferModalOpen(true), []);
   const closeTransferModal = useCallback(() => setIsTransferModalOpen(false), []);
-  const { removeNameFromUI } = useRemoveNameFromUI(domain as Basename);
 
   // Renewal state and callbacks
   const [isRenewalModalOpen, setIsRenewalModalOpen] = useState<boolean>(false);
@@ -102,7 +102,12 @@ export default function NameDisplay({
         </Link>
         <div className="flex items-center gap-2">
           {isPrimary && (
-            <span className="rounded-full bg-white px-2 py-1 text-sm text-black">Primary</span>
+            <span className="flex items-center gap-2 rounded-full bg-white px-2 py-1 text-sm text-black">
+              {isPending ? (
+                <Icon name="spinner" color="currentColor" width="12px" height="12px" />
+              ) : null}
+              <span>Primary</span>
+            </span>
           )}
           <Dropdown>
             <DropdownToggle>

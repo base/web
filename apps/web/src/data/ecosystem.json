@@ -1480,6 +1480,14 @@
     "subcategory": "gaming"
   },
   {
+  "name": "Ethy AI",
+  "description": "Ethy is your autonomous trading assistant. Define your strategies in plain language, tap into alpha from expert agents, and let Ethy monitor markets and execute for you 24/7.",
+  "url": "https://ethyai.app/",
+  "imageUrl": "/images/partners/ethyai.png",
+  "category": "ai",
+  "subcategory": "ai"
+  },
+  {
     "name": "Euler",
     "description": "Euler revolutionizes DeFi by letting any asset become collateral for a lending market. Builders can create and manage markets exactly how they want, with institutional-grade security.",
     "url": "https://app.euler.finance/?network=base",
@@ -2758,6 +2766,14 @@
     "imageUrl": "/images/partners/omni_network.webp",
     "category": "infra",
     "subcategory": "bridge"
+  },
+  {
+    "name": "Omni Exchange",
+    "url": "https://omni.exchange",
+    "description": "Omni is a next-gen multichain DEX with V4 architecture and veToken governance. It unifies crosschain liquidity and enables sustainable emissions via voting — built for scalable, innovative growth.",
+    "imageUrl": "/images/partners/omniexchange.webp",
+    "category": "defi",
+    "subcategory": "dex"
   },
   {
     "name": "OmniHub",
@@ -4488,11 +4504,27 @@
     "subcategory": "creator"
   },
   {
+    "name": "Pinto",
+    "description": "Pinto is low volatility, yield generating money: infinitely scalable, trust-minimized and non-custodial. Users can earn additional yield through active participation in protocol maintenance.",
+    "url": "https://pinto.money/",
+    "imageUrl": "/images/partners/pinto.png",
+    "category": "defi",
+    "subcategory": "stablecoin"
+  },
+  {
     "name": "WOWMAX",
     "category": "defi",
     "subcategory": "liquidity management",
     "description": "WOWMAX is the first non-custodial DEX copy trading platform. Join the top 1 % of DEX traders by discovering and automatically copy-trading the most profitable wallets on BASE chain.",
     "url": "https://wowmax.exchange/",
     "imageUrl": "/images/partners/wowmax.png"
+  },
+  {
+    "name": "WLTH",
+    "url": "https://wlth.xyz//",
+    "description": "WLTH opens the door to tokenised pre-IPO opportunities like xAI and SpaceX, while AI-powered strategies help your assets grow on autopilot. One app. No barriers.",
+    "imageUrl": "/images/partners/wlth.webp",
+    "category": "Consumer",
+    "subcategory": "Real World"
   }
 ]
