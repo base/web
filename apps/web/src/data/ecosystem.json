@@ -1296,6 +1296,14 @@
     "subcategory": "developer tool"
   },
   {
+    "name": "District",
+    "description": "District is the next generation launchpad on Base. District helps builders take their project from idea to launch to growth. Whether its ICM, DAOs, AI agents, or memes - District is for builders.",
+    "url": "https://district.xyz",
+    "imageUrl": "/images/partners/district.webp",
+    "category": "consumer",
+    "subcategory": "creator"
+  },
+  {
     "name": "DLN",
     "url": "https://dln.trade/",
     "description": "DLN is a high performance non-custodial exchange that enables fast, highly capital-efficient, and secure native trading across chains with zero locked liquidity.",
@@ -1480,12 +1488,12 @@
     "subcategory": "gaming"
   },
   {
-  "name": "Ethy AI",
-  "description": "Ethy is your autonomous trading assistant. Define your strategies in plain language, tap into alpha from expert agents, and let Ethy monitor markets and execute for you 24/7.",
-  "url": "https://ethyai.app/",
-  "imageUrl": "/images/partners/ethyai.png",
-  "category": "ai",
-  "subcategory": "ai"
+    "name": "Ethy AI",
+    "description": "Ethy is your autonomous trading assistant. Define your strategies in plain language, tap into alpha from expert agents, and let Ethy monitor markets and execute for you 24/7.",
+    "url": "https://ethyai.app/",
+    "imageUrl": "/images/partners/ethyai.png",
+    "category": "ai",
+    "subcategory": "ai"
   },
   {
     "name": "Euler",
@@ -1792,12 +1800,12 @@
     "subcategory": "ai"
   },
   {
-  "name": "Glider",
-  "description": "Glider is a platform for creating auto-rebalancing DeFi and token portfolios. No gas. No signing. No bridging. Fully non-custodial.",
-  "url": "https://glider.fi",
-  "imageUrl": "/images/partners/glider.png",
-  "category": "defi",
-  "subcategory": "portfolio"
+    "name": "Glider",
+    "description": "Glider is a platform for creating auto-rebalancing DeFi and token portfolios. No gas. No signing. No bridging. Fully non-custodial.",
+    "url": "https://glider.fi",
+    "imageUrl": "/images/partners/glider.png",
+    "category": "defi",
+    "subcategory": "portfolio"
   },
   {
     "name": "Goldsky",
@@ -4526,5 +4534,13 @@
     "imageUrl": "/images/partners/wlth.webp",
     "category": "Consumer",
     "subcategory": "Real World"
+  },
+  {
+    "name": "Levva",
+    "url": "https://levva.fi/",
+    "description": "DeFi too complicated? You’re missing real yield. LevvAI invests your crypto for you. One click, no stress, passive income from Pendle, Aave and more.",
+    "imageUrl": "/images/partners/levva.png",
+    "category": "defi",
+    "subcategory": "portfolios"
   }
 ]
