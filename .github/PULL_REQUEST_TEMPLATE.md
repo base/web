@@ -14,7 +14,3 @@ BaseWeb
 - [] base.org/name/jesse
 - [] base.org/manage-names
 - [] base.org/resources
-
-BaseDocs
-- [] docs.base.org
-- [] docs sub-pages

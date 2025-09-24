@@ -2,6 +2,8 @@
 
 import classNames from 'classnames';
 import { useCallback } from 'react';
+import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
+import { variantStyles } from 'apps/web/src/components/base-org/typography/TextRedesign';
 
 type Props = {
   tag: string;
@@ -20,11 +22,14 @@ export function TagChip({ tag, isSelected, selectTag, className }: Props) {
   );
 
   const buttonClasses = classNames(
-    'uppercase tracking-wider border border-white/20 h-10 whitespace-nowrap rounded-full px-4 transition-colors',
+    variantStyles[TextVariant.CTALabelSm],
+    'h-8 whitespace-nowrap rounded-[8px] border px-2 transition-colors',
     className,
+    tag === 'ai' ? 'uppercase' : 'capitalize',
     {
-      'bg-white text-black': isSelected,
-      'text-white/50 hover:bg-white/20 hover:text-white': !isSelected,
+      'bg-base-black text-base-white border-base-black': isSelected,
+      'text-base-gray-200 transition-colors hover:bg-base-gray-30 hover:text-black border-base-gray-200':
+        !isSelected,
     },
   );
 

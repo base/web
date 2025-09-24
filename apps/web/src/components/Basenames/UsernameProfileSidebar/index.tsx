@@ -6,7 +6,11 @@ import { useUsernameProfile } from 'apps/web/src/components/Basenames/UsernamePr
 import UsernameProfileKeywords from 'apps/web/src/components/Basenames/UsernameProfileKeywords';
 import { Button, ButtonVariants } from 'apps/web/src/components/Button/Button';
 import useReadBaseEnsTextRecords from 'apps/web/src/hooks/useReadBaseEnsTextRecords';
-import { buildBasenameReclaimContract, UsernameTextRecordKeys } from 'apps/web/src/utils/usernames';
+import {
+  buildBasenameReclaimContract,
+  isBasenameRenewalsKilled,
+  UsernameTextRecordKeys,
+} from 'apps/web/src/utils/usernames';
 import { ActionType } from 'libs/base-ui/utils/logEvent';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useAccount } from 'wagmi';
@@ -15,6 +19,7 @@ import useWriteContractWithReceipt, {
   WriteTransactionWithReceiptStatus,
 } from 'apps/web/src/hooks/useWriteContractWithReceipt';
 import { useErrors } from 'apps/web/contexts/Errors';
+import { useRouter } from 'next/navigation';
 
 export default function UsernameProfileSidebar() {
   const {
@@ -31,6 +36,7 @@ export default function UsernameProfileSidebar() {
   const { basenameChain } = useBasenameChain(profileUsername);
   const { logError } = useErrors();
   const { logEventWithContext } = useAnalytics();
+  const router = useRouter();
 
   const toggleSettings = useCallback(() => {
     if (!currentWalletIsProfileEditor) return;
@@ -42,6 +48,13 @@ export default function UsernameProfileSidebar() {
     setShowProfileSettings,
     showProfileSettings,
   ]);
+
+  const handleExtendRegistration = useCallback(() => {
+    logEventWithContext('extend_registration_button_clicked', ActionType.click, {
+      context: 'profile_sidebar',
+    });
+    router.push(`/name/${profileUsername}/renew`);
+  }, [logEventWithContext, profileUsername, router]);
 
   const { existingTextRecords } = useReadBaseEnsTextRecords({
     username: profileUsername,
@@ -90,9 +103,21 @@ export default function UsernameProfileSidebar() {
         address={profileAddress}
       />
       {currentWalletIsProfileEditor && (
-        <Button variant={ButtonVariants.Gray} rounded fullWidth onClick={toggleSettings}>
-          {showProfileSettings ? 'Back to Profile' : 'Manage Profile'}
-        </Button>
+        <div className="flex flex-col gap-2">
+          <Button variant={ButtonVariants.Gray} rounded fullWidth onClick={toggleSettings}>
+            {showProfileSettings ? 'Back to Profile' : 'Manage Profile'}
+          </Button>
+          {!isBasenameRenewalsKilled && (
+            <Button
+              variant={ButtonVariants.Gray}
+              rounded
+              fullWidth
+              onClick={handleExtendRegistration}
+            >
+              Extend Registration
+            </Button>
+          )}
+        </div>
       )}
       {currentWalletNeedsToReclaimProfile && (
         <Button

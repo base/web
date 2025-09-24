@@ -1,9 +1,10 @@
 import JobsScript from 'apps/web/app/(base-org)/jobs/JobsScript';
+import ErrorsProvider from 'apps/web/contexts/Errors';
 import Container from 'apps/web/src/components/base-org/Container';
-import Title from 'apps/web/src/components/base-org/typography/Title';
-import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
 import { JobType } from 'apps/web/src/components/Jobs/Job';
 import JobsList from 'apps/web/src/components/Jobs/JobsList';
+import { Hero } from 'apps/web/src/components/Jobs/Redesign/Hero';
+import { WebGLCanvas } from 'apps/web/src/components/WebGL/WebGLCanvas';
 import { greenhouseApiUrl } from 'apps/web/src/constants';
 import type { Metadata } from 'next';
 
@@ -33,16 +34,19 @@ export default async function Jobs() {
   const jobs = await getJobs();
 
   return (
-    <main className="flex w-full grow flex-col items-center pt-20">
+    <ErrorsProvider context="base_landing_page">
+      <div id="webgl-canvas-jobs" className="overflow-hidden absolute top-0 left-0 w-full h-full">
+        <div className="w-full h-full -z-1">
+          <WebGLCanvas />
+        </div>
+      </div>
       <JobsScript />
-      <Container>
-        <section className="mb-[140px] flex w-full flex-col pb-10 pt-20 ">
-          <Title level={TitleLevel.Display3}>Join our team</Title>
-          <div className="flex w-full flex-col font-display text-sm text-white lg:text-xl">
-            <JobsList jobs={jobs} />
-          </div>
-        </section>
+      <Container className="lg:pt-0">
+        <div className="flex flex-col col-span-full gap-12">
+          <Hero />
+          <JobsList jobs={jobs} />
+        </div>
       </Container>
-    </main>
+    </ErrorsProvider>
   );
 }
