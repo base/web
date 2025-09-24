@@ -4504,6 +4504,14 @@
     "subcategory": "creator"
   },
   {
+    "name": "Pinto",
+    "description": "Pinto is low volatility, yield generating money: infinitely scalable, trust-minimized and non-custodial. Users can earn additional yield through active participation in protocol maintenance.",
+    "url": "https://pinto.money/",
+    "imageUrl": "/images/partners/pinto.png",
+    "category": "defi",
+    "subcategory": "stablecoin"
+  },
+  {
     "name": "WOWMAX",
     "category": "defi",
     "subcategory": "liquidity management",
