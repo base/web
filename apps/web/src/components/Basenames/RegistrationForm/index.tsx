@@ -1,7 +1,5 @@
 import { useAnalytics } from 'apps/web/contexts/Analytics';
 import { useErrors } from 'apps/web/contexts/Errors';
-import RegistrarControllerABI from 'apps/web/src/abis/RegistrarControllerABI';
-import { USERNAME_REGISTRAR_CONTROLLER_ADDRESSES } from 'apps/web/src/addresses/usernames';
 import { PremiumExplainerModal } from 'apps/web/src/components/Basenames/PremiumExplainerModal';
 import { useRegistration } from 'apps/web/src/components/Basenames/RegistrationContext';
 import RegistrationLearnMoreModal from 'apps/web/src/components/Basenames/RegistrationLearnMoreModal';
@@ -19,7 +17,11 @@ import {
   useNameRegistrationPrice,
 } from 'apps/web/src/hooks/useNameRegistrationPrice';
 import { useRentPrice } from 'apps/web/src/hooks/useRentPrice';
-import { formatBaseEthDomain } from 'apps/web/src/utils/usernames';
+import {
+  formatBaseEthDomain,
+  REGISTER_CONTRACT_ABI,
+  REGISTER_CONTRACT_ADDRESSES,
+} from 'apps/web/src/utils/usernames';
 import classNames from 'classnames';
 import { ActionType } from 'libs/base-ui/utils/logEvent';
 import { ChangeEvent, useCallback, useState } from 'react';
@@ -100,10 +102,10 @@ export default function RegistrationForm() {
   );
 
   const { data: hasRegisteredWithDiscount } = useReadContract({
-    abi: RegistrarControllerABI,
-    address: USERNAME_REGISTRAR_CONTROLLER_ADDRESSES[basenameChain.id],
-    functionName: 'discountedRegistrants',
-    args: [address ?? zeroAddress],
+    abi: REGISTER_CONTRACT_ABI,
+    address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
+    functionName: 'hasRegisteredWithDiscount',
+    args: [[address ?? zeroAddress]],
   });
 
   const price = hasRegisteredWithDiscount ? initialPrice : discountedPrice ?? initialPrice;

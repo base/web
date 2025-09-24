@@ -7,13 +7,13 @@ import {
 } from 'apps/web/src/utils/usernames';
 import { encodePacked, keccak256, namehash, toHex } from 'viem';
 import { getBasenamePublicClient } from 'apps/web/src/hooks/useBasenameChain';
-import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
 import L2Resolver from 'apps/web/src/abis/L2Resolver';
 import { Basename } from '@coinbase/onchainkit/identity';
 import { logger } from 'apps/web/src/utils/logger';
 import { premintMapping } from 'apps/web/app/(basenames)/api/basenames/metadata/premintsMapping';
 import { getChain } from 'apps/web/src/utils/basenames/getChain';
 import { getDomain } from 'apps/web/src/utils/basenames/getDomain';
+import { fetchResolverAddressByNode } from 'apps/web/src/utils/usernames';
 
 export const runtime = 'edge';
 
@@ -49,9 +49,10 @@ export async function GET(
   let basenameFormatted, nameExpires;
   try {
     const client = getBasenamePublicClient(chainId);
+    const resolverAddress = await fetchResolverAddressByNode(chainId, namehashNode);
     basenameFormatted = await client.readContract({
       abi: L2Resolver,
-      address: USERNAME_L2_RESOLVER_ADDRESSES[chainId],
+      address: resolverAddress,
       args: [namehashNode],
       functionName: 'name',
     });

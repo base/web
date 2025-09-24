@@ -378,6 +378,11 @@ module.exports = MillionLint.next({
             destination: '/build/:path',
             permanent: true,
           },
+          {
+            source: '/500',
+            destination: '/',
+            permanent: false,
+          },
         ];
       },
     },
