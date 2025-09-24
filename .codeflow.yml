@@ -4,6 +4,8 @@ secure:
   requires_mfa: true
   requires_verified: true
   upstream_repository: base/web
+  branches:
+    - staging
 
 build:
   engines:
