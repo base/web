@@ -6,7 +6,7 @@ import {
 } from 'apps/web/src/utils/usernames';
 import twemoji from 'twemoji';
 import { getBasenamePublicClient } from 'apps/web/src/hooks/useBasenameChain';
-import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
+import { fetchResolverAddress } from 'apps/web/src/utils/usernames';
 import { isDevelopment } from 'apps/web/src/constants';
 import ImageRaw from 'apps/web/src/components/ImageRaw';
 import { getIpfsGatewayUrl, IpfsUrl, IsValidIpfsUrl } from 'apps/web/src/utils/urls';
@@ -48,10 +48,11 @@ export async function GET(request: Request, { params }: { params: Promise<{ name
 
   try {
     const client = getBasenamePublicClient(chain.id);
+    const resolverAddress = await fetchResolverAddress(username as Basename);
     const avatar = await client.getEnsText({
       name: username,
       key: UsernameTextRecordKeys.Avatar,
-      universalResolverAddress: USERNAME_L2_RESOLVER_ADDRESSES[chain.id],
+      universalResolverAddress: resolverAddress,
     });
 
     if (avatar) {
