@@ -1,8 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 import defaultTheme from 'tailwindcss/defaultTheme';
 import path from 'node:path';
+import textScalePlugin from 'tailwindcss-text-scale';
 
 module.exports = {
+  darkMode: 'selector',
   content: [
     './app/**/*.{js,ts,jsx,tsx}',
     './pages/**/*.{js,ts,jsx,tsx}',
@@ -23,6 +25,26 @@ module.exports = {
       illoblack: '#0A0B0D',
       transparent: 'transparent',
       currentColor: 'currentColor',
+      base: {
+        white: 'rgba(255, 255, 255, 1)',
+        black: 'rgb(50, 50, 50, 1)',
+        blackInvert: 'rgb(205, 205, 205, 1)',
+        gray: {
+          10: 'rgb(238, 240, 243)',
+          25: 'rgba(250, 250, 250, 1)',
+          30: 'rgba(247, 247, 247, 1)',
+          50: 'rgba(242, 242, 242, 1)',
+          100: 'rgba(217, 217, 227, 1)',
+          150: 'rgba(177, 183, 195, 1)',
+          200: 'rgba(113, 120, 134, 1)',
+        },
+        blue: 'rgba(0, 0, 255, 1)',
+        blueDark: '#7575FF',
+        yellow: 'rgba(255, 210, 0, 1)',
+        green: 'rgba(182, 245, 105, 1)',
+        pink: 'rgba(254, 168, 205, 1)',
+        'light-blue': 'rgba(60, 138, 255, 1)',
+      },
       blue: {
         0: '#F5F8FF',
         5: '#D3E1FF',
@@ -508,12 +530,23 @@ module.exports = {
       fontFamily: {
         display: ['var(--font-coinbase-display)', ...defaultTheme.fontFamily.sans],
         sans: ['var(--font-coinbase-sans)', ...defaultTheme.fontFamily.sans],
+        'sans-text': ['var(--font-base-sans-text)', ...defaultTheme.fontFamily.sans],
         mono: ['var(--font-coinbase-mono)', ...defaultTheme.fontFamily.sans],
+        doto: ['var(--font-doto)', ...defaultTheme.fontFamily.sans],
         britney: ['var(--font-britney)', ...defaultTheme.fontFamily.sans],
+        'inter-tight': ['var(--font-inter-tight)', ...defaultTheme.fontFamily.sans],
+        inter: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
+        'roboto-mono': ['var(--font-roboto-mono)', ...defaultTheme.fontFamily.sans],
       },
-      backgroundImage: {
-        empowered_by_coinbase: "url('/images/empowered_by_coinbase.png')",
-        bootcamp_background_image: "url('/images/bootcamp-background.png')",
+      fontSize: {
+        '3xl': '2rem',
+        '4xl': '2.5rem',
+        '5xl': '3rem',
+        '6xl': '3.5rem',
+        '7xl': '4rem',
+        '8xl': '4.5rem',
+        '9xl': '5rem',
+        '10xl': '5.5rem',
       },
       transitionTimingFunction: {
         partners: 'cubic-bezier(0.25, 1, 0.25, 1)',
@@ -582,6 +615,14 @@ module.exports = {
           from: { transform: 'translateY(0)' },
           to: { transform: 'translateY(calc(-100% - var(--gap)))' },
         },
+        'accordion-down': {
+          from: { height: '0', opacity: '0' },
+          to: { height: 'var(--radix-accordion-content-height)', opacity: '1' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)', opacity: '1' },
+          to: { height: '0', opacity: '0' },
+        },
       },
       animation: {
         'slide-left': 'slide-left var(--animation-duration, 20s) linear infinite',
@@ -594,6 +635,8 @@ module.exports = {
         pulsate: 'pulsate 2s linear infinite',
         marquee: 'marquee var(--duration) linear infinite',
         'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
+        'accordion-down': 'accordion-down 0.2s cubic-bezier(0.4, 0.0, 0.2, 1)',
+        'accordion-up': 'accordion-up 0.2s cubic-bezier(0.4, 0.0, 0.2, 1)',
       },
       zIndex: {
         1: '1',
@@ -613,5 +656,18 @@ module.exports = {
       animation: ['group-hover'],
     },
   },
-  plugins: [],
+  plugins: [
+    textScalePlugin({
+      minScreen: 1440,
+      maxScreen: 1920,
+    }),
+    require('tailwindcss-animate'),
+    function ({ addUtilities }) {
+      addUtilities({
+        '.scrollbar-gutter-stable': {
+          'scrollbar-gutter': 'stable',
+        },
+      });
+    },
+  ],
 };

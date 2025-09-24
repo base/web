@@ -45,7 +45,7 @@ export default function Modal({
   );
 
   const dialogClasses = classNames(
-    'md:border-gray-40/20 flex h-screen max-h-screen overflow-y-scroll md:h-full w-full flex-col gap-4 md:rounded-3xl md:border bg-white p-6 md:p-10 shadow-lg sm:h-auto ',
+    'md:border-gray-40/20 flex h-screen max-h-screen overflow-y-auto md:h-full w-full flex-col gap-4 md:rounded-3xl md:border bg-white p-6 md:p-10 shadow-lg sm:h-auto ',
     {
       'max-w-lg': size === ModalSizes.Medium,
       'max-w-xl': size === ModalSizes.Large,

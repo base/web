@@ -1,4 +1,4 @@
-import { getDb } from 'apps/web/src/utils/datastores/rds';
+import { getDb } from 'apps/web/src/utils/datastores/postgres';
 
 const publicTableName = 'public.basenames_discount_codes';
 
