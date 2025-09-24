@@ -47,10 +47,10 @@ export function Tools() {
           href="/builders/base-appchains"
         />
         <ToolCard
-          title="MiniKit"
+          title="Mini Apps"
           description="Feature your mini app on decentralized social platforms with a few lines of code."
           icon={miniKit as StaticImageData}
-          href="/builders/minikit"
+          href="/build/mini-apps"
         />
       </div>
     </section>

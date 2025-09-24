@@ -78,17 +78,19 @@ export function BlogCardImage({
   return (
     <div ref={imageRef} className="relative w-full flex-[4] overflow-hidden md:flex-[2]">
       <div className="overflow-hidden relative w-full h-full">
-        {shader ? (<WebGLView
-          fragmentShader={interactiveCardFragmentShader}
-          customUniforms={customUniforms}
-          borderRadiusCorners={[8, 8, 0, 0] as const}
-        />) : (
+        {shader ? (
+          <WebGLView
+            fragmentShader={interactiveCardFragmentShader}
+            customUniforms={customUniforms}
+            borderRadiusCorners={[8, 8, 0, 0] as const}
+          />
+        ) : (
           <NextImage
             src={backgroundImage}
             alt={backgroundImage}
             width={imageDimensions.width}
             height={imageDimensions.height}
-            className="object-cover w-full h-full"
+            className="aspect-[2/1] h-full w-full object-cover"
             quality={90}
           />
         )}

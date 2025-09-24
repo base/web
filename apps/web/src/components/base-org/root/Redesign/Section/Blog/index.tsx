@@ -10,11 +10,10 @@ import {
 import classNames from 'classnames';
 import { levelStyles } from 'apps/web/src/components/base-org/typography/TitleRedesign';
 import { variantStyles } from 'apps/web/src/components/base-org/typography/TextRedesign';
-import {
-  Button,
-  ButtonSizes,
-  ButtonVariants,
-} from 'apps/web/src/components/Button/Redesign/Button';
+
+import AnimatedButton from 'apps/web/src/components/Button/AnimatedButton';
+import Text from 'apps/web/src/components/base-org/typography/TextRedesign';
+import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
 import Link from 'apps/web/src/components/Link';
 import { BlogCardImage } from 'apps/web/src/components/base-org/root/Redesign/Section/Blog/BlogCardImage';
 
@@ -22,14 +21,10 @@ export function SectionBlog() {
   return (
     <Section content={content}>
       <BlogCarousel />
-      <Button
-        variant={ButtonVariants.Secondary}
-        asChild
-        className="col-span-full sm:col-span-3"
-        size={ButtonSizes.Small}
-      >
-        <Link href="https://blog.base.org">Read more</Link>
-      </Button>
+
+      <Link href="https://blog.base.org">
+        <AnimatedButton text="Read more" />
+      </Link>
     </Section>
   );
 }
@@ -47,18 +42,23 @@ function BlogCarouselControls({
   currentIndex: number;
   onDotClick: (index: number) => () => void;
 }) {
+  const handleButtonClick = useCallback(
+    (index: number) => {
+      return (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        onDotClick(index)();
+      };
+    },
+    [onDotClick],
+  );
   return (
-    <motion.div
-      className="absolute bottom-4 left-4 z-30 md:bottom-[52px] md:left-auto md:right-6 xl:bottom-[48px] xl:right-12"
-      variants={controlsVariants}
-      initial="hidden"
-      animate="visible"
-    >
+    <motion.div className="" variants={controlsVariants} initial="hidden" animate="visible">
       <div className="flex gap-3">
         {displayedPosts.map((post, index) => (
           <motion.button
             key={post.title}
-            onClick={onDotClick(index)}
+            onClick={handleButtonClick(index)}
             className="relative h-10 w-10 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
           >
             <motion.div
@@ -103,7 +103,7 @@ function BlogCarousel() {
   return (
     <div className="relative col-span-full overflow-hidden rounded-lg">
       {/* blog card container */}
-      <div className="relative col-span-full h-[400px] md:h-[500px] lg:h-[700px]">
+      <div className="relative col-span-full">
         <BlogCard
           title={currentPost.title}
           subtitle={currentPost.subtitle}
@@ -113,26 +113,18 @@ function BlogCarousel() {
           animationKey={currentIndex}
           brightness={currentPost.brightness}
           contrast={currentPost.contrast}
+          carouselControls={
+            <BlogCarouselControls
+              displayedPosts={displayedPosts}
+              currentIndex={currentIndex}
+              onDotClick={handleDotClick}
+            />
+          }
         />
       </div>
-
-      {/* controls */}
-      <BlogCarouselControls
-        displayedPosts={displayedPosts}
-        currentIndex={currentIndex}
-        onDotClick={handleDotClick}
-      />
     </div>
   );
 }
-
-type BlogCardProps = {
-  title: string;
-  subtitle: string;
-  href: string;
-  backgroundImage: string;
-  className?: string;
-};
 
 function BlogCardSlideNumber({ slideNumber }: { slideNumber: number }) {
   return (
@@ -153,32 +145,33 @@ function BlogCardContent({
   subtitle,
   slideNumber,
   animationKey,
+  carouselControls,
 }: {
   title: string;
   subtitle: string;
   slideNumber: number;
   animationKey: number;
+  carouselControls?: React.ReactNode;
 }) {
   return (
     <div className="relative flex flex-[3] bg-base-gray-25 md:flex-none">
       <BlogCardSlideNumber slideNumber={slideNumber} />
       <AnimatePresence initial={false} mode="wait">
-        <motion.div
-          key={animationKey}
-          className="w-full"
-          variants={textVariants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={blogCardTransition}
-        >
+        <motion.div className="w-full" key={animationKey}>
           <div className="w-full p-4 pt-8 sm:pt-12 md:px-6 md:py-12 xl:px-12">
-            <div className="flex items-end justify-between">
+            <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end md:gap-2">
               {/* text */}
-              <div className="flex flex-1 flex-col gap-4 md:max-w-[380px] lg:max-w-[420px] xl:h-36 xl:max-w-[600px]">
+              <motion.div
+                className="flex flex-1 flex-col gap-4 md:max-w-[380px] lg:max-w-[420px] xl:h-36 xl:max-w-[600px]"
+                variants={textVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={blogCardTransition}
+              >
                 <motion.h5
                   className={classNames(
-                    levelStyles['h6-regular'],
+                    levelStyles['h2-regular'],
                     '!flex items-end text-pretty md:h-12 md:items-center lg:line-clamp-2 lg:h-14 xl:h-auto xl:items-end',
                   )}
                   initial={textConfig1.initial}
@@ -187,7 +180,7 @@ function BlogCardContent({
                 >
                   {title}
                 </motion.h5>
-                <motion.p
+                <motion.div
                   className={classNames(
                     variantStyles.body,
                     'hidden text-pretty !text-base-gray-200 xl:line-clamp-3 xl:block xl:h-auto',
@@ -196,9 +189,10 @@ function BlogCardContent({
                   animate={textConfig2.animate}
                   transition={textConfig2.transition}
                 >
-                  {subtitle}
-                </motion.p>
-              </div>
+                  <Text variant={TextVariant.Body}>{subtitle}</Text>
+                </motion.div>
+              </motion.div>
+              {carouselControls}
             </div>
           </div>
         </motion.div>
@@ -206,6 +200,15 @@ function BlogCardContent({
     </div>
   );
 }
+
+type BlogCardProps = {
+  title: string;
+  subtitle: string;
+  href: string;
+  backgroundImage: string;
+  className?: string;
+  carouselControls?: React.ReactNode;
+};
 
 function BlogCard({
   title,
@@ -217,6 +220,7 @@ function BlogCard({
   animationKey,
   brightness,
   contrast,
+  carouselControls,
 }: BlogCardProps & {
   slideNumber: number;
   animationKey: number;
@@ -241,6 +245,7 @@ function BlogCard({
         subtitle={subtitle}
         slideNumber={slideNumber}
         animationKey={animationKey}
+        carouselControls={carouselControls}
       />
     </Link>
   );

@@ -65,6 +65,8 @@ const ccaLiteDomains = 'https://cca-lite.coinbase.com';
 const sprigDomains = 'https://api.sprig.com https://cdn.sprig.com';
 const walletconnectDomains =
   'https://*.walletconnect.org wss://*.walletconnect.org wss://*.walletconnect.com https://*.walletconnect.com https://explorer-api.walletconnect.com';
+const metamaskDomains =
+  'wss://metamask-sdk.api.cx.metamask.io https://metamask-sdk.api.cx.metamask.io';
 
 const contentSecurityPolicy = {
   'default-src': [
@@ -128,6 +130,8 @@ const contentSecurityPolicy = {
     'https://blue-api.morpho.org/graphql', // morpho
     'https://base-sepolia.easscan.org/graphql', // nft
     'https://*.google-analytics.com',
+    'wss://metamask-sdk.api.cx.metamask.io', // MetaMask SDK websocket
+    'https://metamask-sdk.api.cx.metamask.io', // MetaMask SDK API
   ],
   'frame-src': ['https://p.datadoghq.com', walletconnectDomains],
   'frame-ancestors': ["'self'", baseXYZDomains],
@@ -360,9 +364,24 @@ module.exports = MillionLint.next({
             permanent: true,
           },
           {
+            source: '/build/minikit',
+            destination: '/build/mini-apps',
+            permanent: true,
+          },
+          {
+            source: '/builders/minikit',
+            destination: '/build/mini-apps',
+            permanent: true,
+          },
+          {
             source: '/builders/:path',
             destination: '/build/:path',
             permanent: true,
+          },
+          {
+            source: '/500',
+            destination: '/',
+            permanent: false,
           },
         ];
       },

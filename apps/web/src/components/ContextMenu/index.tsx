@@ -27,12 +27,15 @@ export function ContextMenu({ children }: { children: React.ReactNode }) {
       <DropdownMenu.Trigger asChild disabled>
         <div onContextMenu={handleContextMenu}>{children}</div>
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content className="fixed left-8 top-2 z-[200] flex h-fit w-fit -translate-x-1/2 flex-col rounded-lg border border-base-black bg-base-white p-1">
-        <DropdownMenu.Item className="group w-full cursor-pointer rounded-[4px] p-2 !text-sm hover:bg-[#fafafa]">
+      <DropdownMenu.Content
+        className="fixed left-8 top-2 z-[200] flex h-fit w-fit -translate-x-1/2 flex-col rounded-lg 
+      border !border-base-gray-150 bg-base-white p-1 dark:border-base-gray-150 dark:bg-black"
+      >
+        <DropdownMenu.Item className="group w-full cursor-pointer rounded-[4px] p-2 !text-sm hover:bg-[#fafafa] dark:hover:bg-white/20">
           <Link
             download="/base-square.svg"
             href="/base-square.svg"
-            className="flex items-center gap-2"
+            className="flex gap-2 items-center"
             onClick={handleClick}
           >
             <DownloadIcon />
@@ -44,11 +47,11 @@ export function ContextMenu({ children }: { children: React.ReactNode }) {
             </Text>
           </Link>
         </DropdownMenu.Item>
-        <DropdownMenu.Item className="group w-full cursor-pointer rounded-[4px] p-2 !text-sm hover:bg-[#fafafa]">
+        <DropdownMenu.Item className="group w-full cursor-pointer rounded-[4px] p-2 !text-sm hover:bg-[#fafafa] dark:hover:bg-white/20">
           <Link
             download="/base-logo.svg"
             href="/base-logo.svg"
-            className="flex items-center gap-2"
+            className="flex gap-2 items-center"
             onClick={handleClick}
           >
             <DownloadIcon />
@@ -60,13 +63,30 @@ export function ContextMenu({ children }: { children: React.ReactNode }) {
             </Text>
           </Link>
         </DropdownMenu.Item>
-        <DropdownMenu.Separator className="my-1 border border-base-gray-50" />
-        <DropdownMenu.Item className="group w-full cursor-pointer rounded-[4px] p-2 !text-sm hover:bg-[#fafafa]">
+        <DropdownMenu.Separator className="my-1 border border-base-gray-50 dark:border-base-gray-200" />
+        <DropdownMenu.Item className="group w-full cursor-pointer rounded-[4px] p-2 !text-sm hover:bg-[#fafafa] dark:hover:bg-white/20">
           <Link
             prefetch={false}
             download="/base-brand.zip"
             href="/base-brand.zip"
-            className="flex items-center gap-2"
+            className="flex gap-2 items-center"
+            onClick={handleClick}
+          >
+            <FolderIcon className="!fill-base-gray-200" />
+            <Text
+              variant={TextVariant.Caption}
+              className="flex-1 !whitespace-nowrap !text-sm !leading-none"
+            >
+              Download brand kit as <span className="text-base-gray-150">.zip</span>
+            </Text>
+          </Link>
+        </DropdownMenu.Item>
+        <DropdownMenu.Item className="group w-full cursor-pointer rounded-[4px] p-2 !text-sm hover:bg-[#fafafa] dark:hover:bg-white/20">
+          <Link
+            target="_blank"
+            prefetch={false}
+            href="https://www.figma.com/community/file/1529530736583775083/base-brand-guidelines-community-kit"
+            className="flex gap-2 items-center"
             onClick={handleClick}
           >
             <FolderIcon />
@@ -74,7 +94,7 @@ export function ContextMenu({ children }: { children: React.ReactNode }) {
               variant={TextVariant.Caption}
               className="flex-1 !whitespace-nowrap !text-sm !leading-none"
             >
-              Download brand kit as <span className="text-base-gray-150">.zip</span>
+              View brand kit as <span className="text-base-gray-150">Figma</span>
             </Text>
           </Link>
         </DropdownMenu.Item>

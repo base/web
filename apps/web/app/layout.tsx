@@ -100,6 +100,18 @@ const coinbaseSans = localFont({
   variable: '--font-coinbase-sans',
 });
 
+const baseSans = localFont({
+  src: [
+    {
+      path: '../src/fonts/base-sans/BaseSans-RegularText.woff',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+  display: 'swap',
+  variable: '--font-base-sans-text',
+});
+
 const coinbaseMono = localFont({
   src: [
     {
@@ -191,6 +203,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     interTight.variable,
     inter.variable,
     robotoMono.variable,
+    baseSans.variable,
   ].join(' ');
 
   return (
@@ -219,7 +232,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
 
-      <body className="flex min-h-screen flex-col antialiased">
+      <body className="flex flex-col min-h-screen antialiased">
         <AppProviders>
           <DatadogInit />
           {children}
