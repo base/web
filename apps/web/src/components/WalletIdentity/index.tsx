@@ -6,7 +6,7 @@ import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import { getBasenameImage } from 'apps/web/src/utils/usernames';
 import { truncateMiddle } from 'libs/base-ui/utils/string';
-import Image from 'next/image';
+import ImageWithLoading from 'apps/web/src/components/ImageWithLoading';
 import { Address } from 'viem';
 import { mainnet } from 'viem/chains';
 import { useEnsAvatar, useEnsName } from 'wagmi';
@@ -49,7 +49,17 @@ export default function WalletIdentity({ address }: { address: Address }) {
         <Avatar
           address={address}
           chain={basenameChain}
-          defaultComponent={<Image src={avatar} height={32} width={32} alt={deterministicName} />}
+          defaultComponent={
+            <ImageWithLoading
+              src={avatar}
+              alt={deterministicName}
+              width={32}
+              height={32}
+              wrapperClassName="h-8 w-8 overflow-hidden rounded-full"
+              imageClassName="object-cover w-full h-full"
+              backgroundClassName="bg-blue-500"
+            />
+          }
         />
       )}
 

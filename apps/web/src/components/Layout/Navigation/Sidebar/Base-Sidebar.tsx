@@ -360,7 +360,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
               className="w-full"
             >
               <Link
-                href="https://docs.base.org/wallet-app/introduction/getting-started"
+                href="https://docs.base.org/mini-apps/quickstart/new-apps/install"
                 target="_blank"
                 rel="noreferrer noopener"
               >
