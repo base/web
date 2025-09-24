@@ -31,7 +31,6 @@ import {
   IsValidVercelBlobUrl,
 } from 'apps/web/src/utils/urls';
 import { getBasenamePublicClient } from 'apps/web/src/hooks/useBasenameChain';
-import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
 import { logger } from 'apps/web/src/utils/logger';
 
 // Note: The animations provided by the studio team didn't match the number from our SVGs
@@ -589,9 +588,10 @@ export async function getBasenameAddress(username: Basename) {
 
   try {
     const client = getBasenamePublicClient(chain.id);
+    const resolverAddress = await fetchResolverAddress(username);
     const ensAddress = await client.getEnsAddress({
       name: normalize(username as string),
-      universalResolverAddress: USERNAME_L2_RESOLVER_ADDRESSES[chain.id],
+      universalResolverAddress: resolverAddress,
     });
     return ensAddress;
   } catch (error) {}
@@ -698,11 +698,11 @@ export async function getBasenameAvailable(name: string, chain: Chain): Promise<
 export function buildBasenameTextRecordContract(
   username: Basename,
   key: UsernameTextRecordKeys,
+  resolverAddress: Address,
 ): ContractFunctionParameters {
-  const chain = getChainForBasename(username);
   return {
     abi: L2ResolverAbi,
-    address: USERNAME_L2_RESOLVER_ADDRESSES[chain.id],
+    address: resolverAddress,
     args: [namehash(username as string), key],
     functionName: 'text',
   };
@@ -713,9 +713,11 @@ export async function getBasenameTextRecord(username: Basename, key: UsernameTex
   const chain = getChainForBasename(username);
   try {
     const client = getBasenamePublicClient(chain.id);
-    const contractParameters = buildBasenameTextRecordContract(username, key);
-    const textRecord = await client.readContract(contractParameters);
-    return textRecord as string;
+    const resolverAddress = await fetchResolverAddress(username);
+    const textRecord = await client.readContract(
+      buildBasenameTextRecordContract(username, key, resolverAddress),
+    );
+    return textRecord;
   } catch (error) {}
 }
 
@@ -723,15 +725,46 @@ export async function getBasenameTextRecord(username: Basename, key: UsernameTex
 export async function getBasenameTextRecords(username: Basename) {
   const chain = getChainForBasename(username);
   try {
-    const readContracts: ContractFunctionParameters[] = textRecordsKeysEnabled.map((key) => {
-      return buildBasenameTextRecordContract(username, key);
-    });
-
     const client = getBasenamePublicClient(chain.id);
+    const resolverAddress = await fetchResolverAddress(username);
+    const readContracts: ContractFunctionParameters[] = textRecordsKeysEnabled.map((key) => {
+      return buildBasenameTextRecordContract(username, key, resolverAddress);
+    });
     const textRecords = await client.multicall({ contracts: readContracts });
 
     return textRecords;
   } catch (error) {}
+}
+
+// Resolver helpers
+export function buildRegistryResolverReadParams(username: Basename) {
+  const chain = getChainForBasename(username);
+  const node = namehash(username as string);
+  return {
+    abi: RegistryAbi,
+    address: USERNAME_BASE_REGISTRY_ADDRESSES[chain.id],
+    functionName: 'resolver' as const,
+    args: [node] as const,
+  };
+}
+
+export async function fetchResolverAddress(username: Basename): Promise<Address> {
+  const chain = getChainForBasename(username);
+  const client = getBasenamePublicClient(chain.id);
+  return client.readContract(buildRegistryResolverReadParams(username));
+}
+
+export async function fetchResolverAddressByNode(
+  chainId: number,
+  node: `0x${string}`,
+): Promise<Address> {
+  const client = getBasenamePublicClient(chainId);
+  return client.readContract({
+    abi: RegistryAbi,
+    address: USERNAME_BASE_REGISTRY_ADDRESSES[chainId],
+    functionName: 'resolver' as const,
+    args: [node] as const,
+  });
 }
 
 /*

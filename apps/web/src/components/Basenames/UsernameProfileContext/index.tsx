@@ -1,7 +1,7 @@
 'use client';
 import { Basename } from '@coinbase/onchainkit/identity';
 import { useErrors } from 'apps/web/contexts/Errors';
-import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
+import useBasenameResolver from 'apps/web/src/hooks/useBasenameResolver';
 import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import {
@@ -86,6 +86,7 @@ export default function UsernameProfileProvider({
   const [msUntilExpiration, setMsUntilExpiration] = useState<number | undefined>(undefined);
   const { basenameChain } = useBasenameChain(username);
   const { logError } = useErrors();
+  const { data: resolverAddress } = useBasenameResolver({ username });
 
   // Current wallet
   const { address: connectedAddress, isConnected } = useAccount();
@@ -98,8 +99,9 @@ export default function UsernameProfileProvider({
   } = useEnsAddress({
     name: username,
     chainId: basenameChain.id,
-    universalResolverAddress: USERNAME_L2_RESOLVER_ADDRESSES[basenameChain.id],
+    universalResolverAddress: resolverAddress,
     query: {
+      enabled: !!resolverAddress,
       retry: false,
       refetchOnWindowFocus: false,
     },

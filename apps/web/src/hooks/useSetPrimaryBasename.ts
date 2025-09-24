@@ -1,8 +1,8 @@
 import ReverseRegistrarAbi from 'apps/web/src/abis/ReverseRegistrarAbi';
 import {
-  USERNAME_L2_RESOLVER_ADDRESSES,
   USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES,
   USERNAME_REVERSE_REGISTRAR_ADDRESSES,
+  USERNAME_L2_RESOLVER_ADDRESSES,
 } from 'apps/web/src/addresses/usernames';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import { useCallback, useEffect, useState } from 'react';
@@ -140,6 +140,7 @@ export default function useSetPrimaryBasename({ secondaryUsername }: UseSetPrima
             {
               abi: ReverseRegistrarAbi,
               address: USERNAME_REVERSE_REGISTRAR_ADDRESSES[secondaryUsernameChain.id],
+              // Write legacy reverse record against legacy L2Resolver for compatibility with long tail of hardcoded tooling
               args: [
                 address,
                 address,
