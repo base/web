@@ -59,7 +59,7 @@ export function Card({ content }: { content: CardContent }) {
           modelRotation={content.gltf?.modelRotation}
         />
       </div>
-      <div className="absolute inset-0 right-0 bottom-0 left-0 px-2 py-1">
+      <div className="absolute inset-0 bottom-0 left-0 right-0 px-2 py-1">
         <motion.div
           className="flex flex-col gap-3"
           variants={contentVariants}
