@@ -4,9 +4,11 @@ import classNames from 'classnames';
 import { useCallback, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { useCopyToClipboard } from 'usehooks-ts';
+import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
 
 export function CustomWalletAdvancedAddressDetails() {
   const { address, chain } = useAccount();
+  const { data: primaryName } = useBaseEnsName({ address: address as `0x${string}` | undefined });
   const [copyText, setCopyText] = useState('Copy');
 
   const [, copy] = useCopyToClipboard();
@@ -52,6 +54,7 @@ export function CustomWalletAdvancedAddressDetails() {
             className={classNames(
               'hover:text-[var(--ock-text-foreground-muted)] active:text-[var(--ock-text-primary)]',
             )}
+            name={primaryName ?? undefined}
           />
         </button>
         <button

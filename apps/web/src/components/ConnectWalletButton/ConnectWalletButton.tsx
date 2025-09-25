@@ -23,6 +23,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useCopyToClipboard, useMediaQuery } from 'usehooks-ts';
 import { useAccount, useSwitchChain } from 'wagmi';
 import { DynamicCryptoProviders } from 'apps/web/app/CryptoProviders.dynamic';
+import useBaseEnsName from 'apps/web/src/hooks/useBaseEnsName';
 
 export enum ConnectWalletButtonVariants {
   BaseOrg,
@@ -64,6 +65,7 @@ export function ConnectWalletButton({
   const { address, connector, isConnected, isConnecting, isReconnecting, chain } = useAccount();
   const chainSupported = !!chain && supportedChainIds.includes(chain.id);
   const { basenameChain } = useBasenameChain();
+  const { data: primaryName } = useBaseEnsName({ address: address as `0x${string}` | undefined });
   const [, copy] = useCopyToClipboard();
   const copyAddress = useCallback(() => void copy(address ?? ''), [address, copy]);
 
@@ -140,7 +142,14 @@ export function ConnectWalletButton({
       <ConnectWallet className={buttonClasses}>
         <div className="flex items-center gap-2">
           <UserAvatar />
-          {isDesktop && <Name chain={basenameChain} className={userAddressClasses} />}
+          {isDesktop && (
+            <Name
+              chain={basenameChain}
+              className={userAddressClasses}
+              // Override with ENSIP-19 or L2 fallback primary name if available
+              name={primaryName ?? undefined}
+            />
+          )}
         </div>
       </ConnectWallet>
 
@@ -151,6 +160,7 @@ export function ConnectWalletButton({
             onClick={copyAddress}
             chain={basenameChain}
             className="cursor-pointer font-display transition-all hover:opacity-65"
+            name={primaryName ?? undefined}
           />
           <EthBalance className="font-display" />
         </Identity>

@@ -50,7 +50,7 @@ const config = createConfig({
   transports: {
     [base.id]: http(cdpBaseRpcEndpoint),
     [baseSepolia.id]: http(cdpBaseSepoliaRpcEndpoint),
-    [mainnet.id]: http(),
+    [mainnet.id]: http(process.env.NEXT_PUBLIC_MAINNET_RPC_URL),
   },
   ssr: true,
 });
