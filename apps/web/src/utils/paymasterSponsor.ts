@@ -1,4 +1,3 @@
-import RegistrarControllerABI from 'apps/web/src/abis/RegistrarControllerABI';
 import { ENTRYPOINT_ADDRESS_V06, UserOperation } from 'permissionless';
 import {
   Address,
@@ -18,7 +17,7 @@ import {
   coinbaseSmartWalletABI,
   magicSpendAddress,
 } from '../constants';
-import { REGISTER_CONTRACT_ADDRESSES } from 'apps/web/src/utils/usernames';
+import { REGISTER_CONTRACT_ABI, REGISTER_CONTRACT_ADDRESSES } from 'apps/web/src/utils/usernames';
 import { logger } from 'apps/web/src/utils/logger';
 
 const baseSepoliaClient = createPublicClient({
@@ -108,7 +107,7 @@ export async function willSponsor({
     }
 
     const innerCalldata = decodeFunctionData({
-      abi: RegistrarControllerABI,
+      abi: REGISTER_CONTRACT_ABI,
       data: calls[callToCheckIndex].data,
     });
     if (!['register', 'discountedRegister'].includes(innerCalldata.functionName)) {

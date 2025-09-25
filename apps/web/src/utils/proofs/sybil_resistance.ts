@@ -1,7 +1,6 @@
 import { getAttestations } from '@coinbase/onchainkit/identity';
 import { getKv } from 'apps/web/src/utils/datastores/kv';
 import { CoinbaseProofResponse } from 'apps/web/app/(basenames)/api/proofs/coinbase/route';
-import RegistrarControllerABI from 'apps/web/src/abis/RegistrarControllerABI';
 import {
   USERNAME_CB1_DISCOUNT_VALIDATORS,
   USERNAME_CB_DISCOUNT_VALIDATORS,
@@ -24,7 +23,7 @@ import {
   ProofsException,
   VerifiedAccount,
 } from 'apps/web/src/utils/proofs/types';
-import { REGISTER_CONTRACT_ADDRESSES } from 'apps/web/src/utils/usernames';
+import { REGISTER_CONTRACT_ABI, REGISTER_CONTRACT_ADDRESSES } from 'apps/web/src/utils/usernames';
 import {
   Address,
   encodeAbiParameters,
@@ -77,7 +76,7 @@ export async function hasRegisteredWithDiscount(
 
   return publicClient.readContract({
     address: REGISTER_CONTRACT_ADDRESSES[chainId],
-    abi: RegistrarControllerABI,
+    abi: REGISTER_CONTRACT_ABI,
     functionName: 'hasRegisteredWithDiscount',
     args: [addresses],
   });
