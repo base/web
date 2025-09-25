@@ -11,6 +11,9 @@ import DropdownMenu from 'apps/web/src/components/DropdownMenu';
 import DropdownToggle from 'apps/web/src/components/DropdownToggle';
 import { useCallback } from 'react';
 
+// Hide this dev-only component during automated E2E tests.
+const isE2ETest = process.env.NEXT_PUBLIC_E2E_TEST === 'true' || process.env.E2E_TEST === 'true';
+
 export function DropdownItemSwitcher({
   registrationStep,
 }: {
@@ -24,6 +27,9 @@ export function DropdownItemSwitcher({
 }
 
 export default function RegistrationStateSwitcher() {
+  if (isE2ETest) {
+    return null;
+  }
   return (
     <div className="absolute right-10 top-20 z-50 shadow-lg">
       <Dropdown>

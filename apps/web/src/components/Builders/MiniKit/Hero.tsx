@@ -34,7 +34,7 @@ export function Hero() {
             className="h-5 w-5"
           />
           <Title level={TitleLevel.Title3} className="font-bold">
-            MiniKit
+            Mini Apps
           </Title>
         </div>
         <Title level={TitleLevel.Display3} className="font-bold max-sm:hidden">
@@ -44,7 +44,7 @@ export function Hero() {
           All-you-need to build and grow your mini apps
         </Title>
         <Title level={TitleLevel.Title3} className="max-w-2xl text-gray-muted">
-          MiniKit makes it simple to build and supercharge distribution across decentralized
+          Mini apps make it simple to build and supercharge distribution across decentralized
           platforms.
         </Title>
 
