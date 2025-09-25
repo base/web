@@ -4520,6 +4520,14 @@
     "subcategory": "creator"
   },
   {
+    "name": "Suby",
+    "description": "Crypto payment layer for paid communities on Telegram & Discord — instant access, recurring subs, multi-chain support.",
+    "url": "https://suby.fi",
+    "imageUrl": "/images/partners/suby.png",
+    "category": "consumer",
+    "subcategory": "payments"
+  },
+  {  
     "name": "Pinto",
     "description": "Pinto is low volatility, yield generating money: infinitely scalable, trust-minimized and non-custodial. Users can earn additional yield through active participation in protocol maintenance.",
     "url": "https://pinto.money/",
