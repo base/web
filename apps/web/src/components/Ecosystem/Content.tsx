@@ -2,7 +2,7 @@
 
 import ecosystemApps from 'apps/web/src/data/ecosystem.json';
 import { SearchBar } from 'apps/web/src/components/Ecosystem/SearchBar';
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useCallback } from 'react';
 import { List } from 'apps/web/src/components/Ecosystem/List';
 import { useSearchParams } from 'next/navigation';
 import { EcosystemFilters } from 'apps/web/src/components/Ecosystem/EcosystemFilters';
@@ -97,7 +97,7 @@ const updateUrlParams = (params: { categories?: string[]; subcategories?: string
 
 export default function Content() {
   const [search, setSearch] = useState('');
-  const [showCount, setShowCount] = useState<number>(16);
+  const [showCount, setShowCount] = useState<number>(15); // changed from 16 to 15 to match design w/ multiple of 3
   const searchParams = useSearchParams();
   const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>(() => {
     const subcategories = searchParams?.get('subcategory');
@@ -128,6 +128,10 @@ export default function Content() {
     [selectedSubcategories, search],
   );
 
+  const onClearSearch = useCallback(() => {
+    setSearch('');
+  }, [setSearch]);
+
   useEffect(() => {
     updateUrlParams({
       categories: selectedCategories,
@@ -136,24 +140,24 @@ export default function Content() {
   }, [selectedCategories, selectedSubcategories]);
 
   return (
-    <div className="flex min-h-32 w-full flex-col gap-10 pb-32">
-      <div className="flex flex-col justify-between gap-8 lg:flex-row lg:gap-12">
-        <EcosystemFilters
-          config={config}
-          selectedCategories={selectedCategories}
-          selectedSubcategories={selectedSubcategories}
-          setSelectedSubcategories={setSelectedSubcategories}
-        />
+    <div className="flex min-h-32 w-full flex-col gap-10">
+      <div className="flex justify-between">
+        <div className="flex gap-1 font-sans">
+          <EcosystemFilters
+            config={config}
+            selectedCategories={selectedCategories}
+            selectedSubcategories={selectedSubcategories}
+            setSelectedSubcategories={setSelectedSubcategories}
+          />
 
-        <div className="order-first lg:order-last">
-          <SearchBar search={search} setSearch={setSearch} />
+          <EcosystemFiltersMobile
+            categories={config}
+            selectedSubcategories={selectedSubcategories}
+            onSubcategorySelect={setSelectedSubcategories}
+          />
         </div>
 
-        <EcosystemFiltersMobile
-          categories={config}
-          selectedSubcategories={selectedSubcategories}
-          onSubcategorySelect={setSelectedSubcategories}
-        />
+        <SearchBar search={search} setSearch={setSearch} />
       </div>
       <List
         selectedCategories={selectedCategories}
@@ -161,6 +165,7 @@ export default function Content() {
         apps={filteredEcosystemApps}
         showCount={showCount}
         setShowCount={setShowCount}
+        onClearSearch={onClearSearch}
       />
     </div>
   );

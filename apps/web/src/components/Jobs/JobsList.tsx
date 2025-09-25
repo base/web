@@ -1,7 +1,6 @@
 import { Job } from 'apps/web/src/components/Jobs/Job';
-import Card from 'apps/web/src/components/base-org/Card';
-import Title from 'apps/web/src/components/base-org/typography/Title';
-import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
+import Title from 'apps/web/src/components/base-org/typography/TitleRedesign';
+import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRedesign/types';
 
 type Department = {
   id: string;
@@ -38,24 +37,22 @@ export default async function JobsList({ jobs }: { jobs: JobType[] }) {
   }));
 
   return !jobs.length ? (
-    <p className="text-md my-8 p-1">Loading jobs...</p>
+    <p className="p-1 my-8 text-md">Loading jobs...</p>
   ) : (
-    <div className="mt-10 flex w-full flex-col">
+    <div className="flex flex-col mt-10 w-full">
       <div className="flex flex-col gap-12">
         {departments.map((department) => (
           <div key={department.id}>
-            <Title level={TitleLevel.Title1} className="mb-6">
+            <Title level={TitleLevel.H4Regular} className="mb-10">
               {department.name === 'Business Development & Partnerships'
                 ? 'Ecosystem'
                 : department.name}
             </Title>
-            <Card innerClassName="p-6 transition-all bg-[#0A0B0C] hover:bg-[#111111]">
-              <div className="flex flex-col gap-2">
-                {department.jobs?.map((job) => (
-                  <Job key={job.id} job={job} />
-                ))}
-              </div>
-            </Card>
+            <div className="flex flex-col">
+              {department.jobs?.map((job) => (
+                <Job key={job.id} job={job} />
+              ))}
+            </div>
           </div>
         ))}
       </div>
