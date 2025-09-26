@@ -129,6 +129,7 @@ __metadata:
     "@radix-ui/react-popover": ^1.1.1
     "@radix-ui/react-slot": ^1.2.3
     "@radix-ui/react-tooltip": ^1.1.2
+    "@rainbow-me/rainbowkit": ^2.1.5
     "@react-three/drei": ^9.113.0
     "@react-three/fiber": ^9.0.0-alpha.8
     "@react-three/postprocessing": ^3.0.0-rc.0
@@ -2309,6 +2310,13 @@ __metadata:
   dependencies:
     tslib: ^2.4.0
   checksum: ff2074809638ed878e476ece370c6eae7e6257bf029a581bb7a290488d8f2a08c420a65988c7f03bfc6bb689218f0cd995d2f935bd182150b357fc2341142f4f
+  languageName: node
+  linkType: hard
+
+"@emotion/hash@npm:^0.9.0":
+  version: 0.9.2
+  resolution: "@emotion/hash@npm:0.9.2"
+  checksum: 379bde2830ccb0328c2617ec009642321c0e009a46aa383dfbe75b679c6aea977ca698c832d225a893901f29d7b3eef0e38cf341f560f6b2b56f1ff23c172387
   languageName: node
   linkType: hard
 
@@ -7471,6 +7479,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rainbow-me/rainbowkit@npm:^2.1.5":
+  version: 2.2.8
+  resolution: "@rainbow-me/rainbowkit@npm:2.2.8"
+  dependencies:
+    "@vanilla-extract/css": 1.17.3
+    "@vanilla-extract/dynamic": 2.1.4
+    "@vanilla-extract/sprinkles": 1.6.4
+    clsx: 2.1.1
+    cuer: 0.0.2
+    react-remove-scroll: 2.6.2
+    ua-parser-js: ^1.0.37
+  peerDependencies:
+    "@tanstack/react-query": ">=5.0.0"
+    react: ">=18"
+    react-dom: ">=18"
+    viem: 2.x
+    wagmi: ^2.9.0
+  checksum: 19bf3f460846b46a5c3d2cb0d7e2c3cd5e739e820d900fe7532ff41805b982b8c91a4ff49663f7aaa0afa26f7ff5a095f7d0ae53f30ad5366d966d38a51c0c20
+  languageName: node
+  linkType: hard
+
 "@react-spring/animated@npm:~9.7.5":
   version: 9.7.5
   resolution: "@react-spring/animated@npm:9.7.5"
@@ -9359,6 +9388,51 @@ __metadata:
   peerDependencies:
     react: ">= 16.8.0"
   checksum: 763ef5fe5e91715a20beac0d430b0ffd815f1ab761ffdd8a0c8352fa680411123b3855815a77b4e2d1018878ba515424f9daa863ea797c3dd089032fb539ec22
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/css@npm:1.17.3":
+  version: 1.17.3
+  resolution: "@vanilla-extract/css@npm:1.17.3"
+  dependencies:
+    "@emotion/hash": ^0.9.0
+    "@vanilla-extract/private": ^1.0.8
+    css-what: ^6.1.0
+    cssesc: ^3.0.0
+    csstype: ^3.0.7
+    dedent: ^1.5.3
+    deep-object-diff: ^1.1.9
+    deepmerge: ^4.2.2
+    lru-cache: ^10.4.3
+    media-query-parser: ^2.0.2
+    modern-ahocorasick: ^1.0.0
+    picocolors: ^1.0.0
+  checksum: 0af0f7532eeea1ea45b8e8214b0567a98d6f63b8422c480c829fe214fb360cc9e4f6a34db259d4682b7fbbbfacba5313f13674b3c1aad69f8fa7ccf90ad14997
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/dynamic@npm:2.1.4":
+  version: 2.1.4
+  resolution: "@vanilla-extract/dynamic@npm:2.1.4"
+  dependencies:
+    "@vanilla-extract/private": ^1.0.8
+  checksum: 832ff943face07ee92882b5e72b812668a0c76caf71644ae638bda2211caf97c40d441d8f9d792c56eda9a76cba4a60e1a85368844b0c937f7b5174b88f6724c
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/private@npm:^1.0.8":
+  version: 1.0.9
+  resolution: "@vanilla-extract/private@npm:1.0.9"
+  checksum: 0f47b9faa9dc40c6cf7d2b48c16a6398b870c448db9276850449ecab1059ab10b354c67a574e0b2f6cb54054a20dfa42cf30f2f39e55dc4ab7c6cdc0ffbf7bbe
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/sprinkles@npm:1.6.4":
+  version: 1.6.4
+  resolution: "@vanilla-extract/sprinkles@npm:1.6.4"
+  peerDependencies:
+    "@vanilla-extract/css": ^1.0.0
+  checksum: e4fea79a4f49c2b8095892f6d758958548ee8513c7ee27dd1f229c2639bd5271674d117facf79dbdb31d218a64d208e56489dc7a810c9ad30b7454b355298beb
   languageName: node
   linkType: hard
 
@@ -11315,17 +11389,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clsx@npm:2.1.1, clsx@npm:^2.0.0, clsx@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "clsx@npm:2.1.1"
+  checksum: acd3e1ab9d8a433ecb3cc2f6a05ab95fe50b4a3cfc5ba47abb6cbf3754585fcb87b84e90c822a1f256c4198e3b41c7f6c391577ffc8678ad587fc0976b24fd57
+  languageName: node
+  linkType: hard
+
 "clsx@npm:^1.2.1":
   version: 1.2.1
   resolution: "clsx@npm:1.2.1"
   checksum: 30befca8019b2eb7dbad38cff6266cf543091dae2825c856a62a8ccf2c3ab9c2907c4d12b288b73101196767f66812365400a227581484a05f968b0307cfaf12
-  languageName: node
-  linkType: hard
-
-"clsx@npm:^2.0.0, clsx@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "clsx@npm:2.1.1"
-  checksum: acd3e1ab9d8a433ecb3cc2f6a05ab95fe50b4a3cfc5ba47abb6cbf3754585fcb87b84e90c822a1f256c4198e3b41c7f6c391577ffc8678ad587fc0976b24fd57
   languageName: node
   linkType: hard
 
@@ -11806,7 +11880,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csstype@npm:^3.0.2":
+"csstype@npm:^3.0.2, csstype@npm:^3.0.7":
   version: 3.1.3
   resolution: "csstype@npm:3.1.3"
   checksum: 8db785cc92d259102725b3c694ec0c823f5619a84741b5c7991b8ad135dfaa66093038a1cc63e03361a6cd28d122be48f2106ae72334e067dd619a51f49eddf7
@@ -11819,6 +11893,22 @@ __metadata:
   bin:
     csv-parser: bin/csv-parser
   checksum: 96b35d368ad495893ba047aa02e3116c879aa0f12309f18a5b4d597ab2887e900f08eaa112beb9fb735583b0fa356bc9f1eb74a3d5aced29c2a66c2c63c226a1
+  languageName: node
+  linkType: hard
+
+"cuer@npm:0.0.2":
+  version: 0.0.2
+  resolution: "cuer@npm:0.0.2"
+  dependencies:
+    qr: ~0
+  peerDependencies:
+    react: ">=18"
+    react-dom: ">=18"
+    typescript: ">=5.4.0"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: adc91fb878566eb42ae08da53cfb0045d5f79544807ef652ad488029779606cf4ae0ef53b5c7cf2ddf2e709e151e3db903fc5f9977ff5c060625a92af816d887
   languageName: node
   linkType: hard
 
@@ -12133,6 +12223,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dedent@npm:^1.5.3":
+  version: 1.6.0
+  resolution: "dedent@npm:1.6.0"
+  peerDependencies:
+    babel-plugin-macros: ^3.1.0
+  peerDependenciesMeta:
+    babel-plugin-macros:
+      optional: true
+  checksum: ecaa83968b3db4ffeadf8f679c01280f8679ec79993d7e203c0281d7926e883bb79f42b263ba0df1f78e146e4b0be1b9a5b922b1fe040cb89b09977bc9c25b38
+  languageName: node
+  linkType: hard
+
 "deep-equal@npm:^2.0.5":
   version: 2.2.3
   resolution: "deep-equal@npm:2.2.3"
@@ -12170,6 +12272,13 @@ __metadata:
   version: 0.1.4
   resolution: "deep-is@npm:0.1.4"
   checksum: edb65dd0d7d1b9c40b2f50219aef30e116cedd6fc79290e740972c132c09106d2e80aa0bc8826673dd5a00222d4179c84b36a790eef63a4c4bca75a37ef90804
+  languageName: node
+  linkType: hard
+
+"deep-object-diff@npm:^1.1.9":
+  version: 1.1.9
+  resolution: "deep-object-diff@npm:1.1.9"
+  checksum: ecd42455e4773f653595d28070295e7aaa8402db5f8ab21d0bec115a7cb4de5e207a5665514767da5f025c96597f1d3a0a4888aeb4dd49e03c996871a3aa05ef
   languageName: node
   linkType: hard
 
@@ -17236,6 +17345,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"media-query-parser@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "media-query-parser@npm:2.0.2"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+  checksum: 8ef956d9e63fe6f4041988beda69843b3a6bb48228ea2923a066f6e7c8f7c5dba75fae357318c48a97ed5beae840b8425cb7e727fc1bb77acc65f2005f8945ab
+  languageName: node
+  linkType: hard
+
 "memoize-one@npm:^5.0.0":
   version: 5.2.1
   resolution: "memoize-one@npm:5.2.1"
@@ -17554,6 +17672,13 @@ __metadata:
   version: 1.0.4
   resolution: "mmd-parser@npm:1.0.4"
   checksum: 892cc317598440c43919250ec95aec26349db977e64bbe37d0fa8d6a8076e190105e5e687221225dd9afa8937d9d2d06ddab77586c2bc4781cb6855a2938d95b
+  languageName: node
+  linkType: hard
+
+"modern-ahocorasick@npm:^1.0.0":
+  version: 1.1.0
+  resolution: "modern-ahocorasick@npm:1.1.0"
+  checksum: 78b99840c9af086c1e36a594ee85bebd8c19d48e2ef31a67d1bad0e673ac12fc931e5961abb5b16daaf820af4923e700f76b1793b7413e18782230162866a0af
   languageName: node
   linkType: hard
 
@@ -19522,6 +19647,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"qr@npm:~0":
+  version: 0.5.0
+  resolution: "qr@npm:0.5.0"
+  checksum: 4e8631ae3cb8466b7a46f8ba9d4e4c504053b68d16ccc5608394bc1162fec685735a92912c8de351fbcfa8d08bef34d8fdd323c574bf0830f65d91a3fbb2ae4d
+  languageName: node
+  linkType: hard
+
 "qrcode.react@npm:^3.1.0":
   version: 3.2.0
   resolution: "qrcode.react@npm:3.2.0"
@@ -19780,6 +19912,25 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 2c7fe9cbd766f5e54beb4bec2e2efb2de3583037b23fef8fa511ab426ed7f1ae992382db5acd8ab5bfb030a4b93a06a2ebca41377d6eeaf0e6791bb0a59616a4
+  languageName: node
+  linkType: hard
+
+"react-remove-scroll@npm:2.6.2":
+  version: 2.6.2
+  resolution: "react-remove-scroll@npm:2.6.2"
+  dependencies:
+    react-remove-scroll-bar: ^2.3.7
+    react-style-singleton: ^2.2.1
+    tslib: ^2.1.0
+    use-callback-ref: ^1.3.3
+    use-sidecar: ^1.1.2
+  peerDependencies:
+    "@types/react": "*"
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 310e6e6d2f28226a1751dc5084a2dce49167f0b69e3d78d6510f329f423ee313d4f6477f5e1adccb68baef40a7af75541e980a8c398cb82ea0d3573e514e8124
   languageName: node
   linkType: hard
 
@@ -22347,6 +22498,15 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: ab417a2f398380c90a6cf5a5f74badd17866adf57f1165617d6a551f059c3ba0a3e4da0d147b3ac5681db9ac76a303c5876394b13b3de75fdd5b1eaa06181c9d
+  languageName: node
+  linkType: hard
+
+"ua-parser-js@npm:^1.0.37":
+  version: 1.0.40
+  resolution: "ua-parser-js@npm:1.0.40"
+  bin:
+    ua-parser-js: script/cli.js
+  checksum: ae555a33dc9395dd877e295d6adbf5634e047aad7c3358328830218f3ca3a6233e35848cd355465a7612f269860e8029984389282940c7a27c9af4dfcdbba8c3
   languageName: node
   linkType: hard
 

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Sidebar from 'apps/web/src/components/Layout/Navigation/Sidebar';
 import { Footer } from 'apps/web/src/components/Layout/Footer/Footer';
 import MobileNav from 'apps/web/src/components/Layout/Navigation/MobileNav';
+import { DynamicWrappedGasPriceDropdown } from 'apps/web/src/components/Layout/Navigation/GasPriceDropdown';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
 
 export const metadata: Metadata = {
@@ -39,6 +40,11 @@ export default function BaseOrgLayoutDark({
           {children}
         </main>
         <Footer />
+      </div>
+
+      {/* Gas Price Dropdown - Top Right */}
+      <div className="fixed right-4 top-4 z-50 hidden lg:block">
+        <DynamicWrappedGasPriceDropdown />
       </div>
     </div>
   );

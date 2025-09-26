@@ -1,13 +1,11 @@
 'use client';
 
 import Title from 'apps/web/src/components/base-org/typography/TitleRedesign';
+import Text from 'apps/web/src/components/base-org/typography/TextRedesign';
+import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRedesign/types';
-import {
-  Button,
-  ButtonSizes,
-  ButtonVariants,
-} from 'apps/web/src/components/Button/Redesign/Button';
-import Image from 'next/image';
+import AnimatedButton from 'apps/web/src/components/Button/AnimatedButton';
+
 import { motion, Variants, cubicBezier } from 'motion/react';
 import Link from 'apps/web/src/components/Link';
 import Container from 'apps/web/src/components/base-org/Container';
@@ -75,7 +73,7 @@ export function Section({ content, children, className, disableWrapperAnimation 
   return (
     <Container className={classNames('relative lg:py-40', className)}>
       <WrapperComponent
-        className="col-span-full grid grid-cols-9 gap-x-[min(2.25vw,_32px)] gap-y-8"
+        className="col-span-full grid grid-cols-12 gap-x-[min(2.25vw,_32px)] gap-y-6 lg:gap-y-8"
         {...(!disableWrapperAnimation && {
           variants: contentVariants,
           initial: 'hidden',
@@ -85,34 +83,53 @@ export function Section({ content, children, className, disableWrapperAnimation 
       >
         {content.prefix && (
           <motion.div {...itemProps} className="col-span-full">
-            <Image
-              src={content.prefix.src}
-              alt={content.prefix.alt}
-              width={content.prefix.width}
-              height={content.prefix.height}
-              draggable={false}
-            />
-          </motion.div>
-        )}
-        <motion.div {...itemProps} className="col-span-full lg:col-span-7">
-          <Title level={TitleLevel.H4Regular} as="h2">
-            {content.title}
-          </Title>
-        </motion.div>
-        {content.description && (
-          <motion.div {...itemProps} className="col-span-full lg:col-span-7">
-            <Title level={TitleLevel.H6Regular} as="h3">
-              {content.description}
+            <Title
+              level={TitleLevel.H1Regular}
+              className="-mb-6 !text-3xl !leading-[1.125] !tracking-[-0.96px] lg:-mb-8"
+              as="h2"
+            >
+              {content?.prefix?.alt}
             </Title>
           </motion.div>
         )}
-        {content.cta?.label && (
-          <motion.div {...itemProps} className="col-span-full block sm:col-span-3">
-            <Button variant={ButtonVariants.Secondary} asChild fullWidth size={ButtonSizes.Small}>
-              <Link href={content.cta.href}>{content.cta.label}</Link>
-            </Button>
-          </motion.div>
-        )}
+
+        <motion.div {...itemProps} className="col-span-full lg:col-span-6 lg:max-w-[400px]">
+          <Title
+            level={TitleLevel.H1Regular}
+            className={classNames('!text-3xl !leading-[1.125] !tracking-[-0.96px]', {
+              '!text-base-gray-200': content.prefix?.alt,
+            })}
+            as="h2"
+          >
+            {content.title}
+          </Title>
+        </motion.div>
+
+        <div className="flex flex-col col-span-full gap-6 lg:col-span-6 lg:mt-0">
+          {content.description && (
+            <motion.div {...itemProps} className="col-span-full lg:col-span-6 lg:max-w-[400px]">
+              <Text
+                className="!whitespace-pre-wrap !text-base-gray-200"
+                variant={TextVariant.BodyLarge}
+              >
+                {content.description}
+              </Text>
+            </motion.div>
+          )}
+
+          {content.cta?.label && (
+            <motion.div {...itemProps} className="block col-span-full sm:col-span-3">
+              <Link href={content.cta.href}>
+                <AnimatedButton
+                  text={content.cta.label}
+                  backgroundColor="#0000ff"
+                  textColor="#fff"
+                />
+              </Link>
+            </motion.div>
+          )}
+        </div>
+
         {children && (
           <div className="col-span-full grid grid-cols-9 gap-x-[min(2.25vw,_32px)] gap-y-10 pt-2">
             {children}

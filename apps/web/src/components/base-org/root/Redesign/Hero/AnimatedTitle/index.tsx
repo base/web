@@ -20,7 +20,7 @@ const containerVariants: Variants = {
 };
 
 export function AnimatedTitle() {
-  const titleLines = ['A global', 'economy, built', 'by all of us'];
+  const titleLines = ['A global economy,', 'built by all of us'];
 
   return (
     <motion.div
@@ -29,7 +29,7 @@ export function AnimatedTitle() {
       animate="visible"
       className="row-start-1 row-end-3 mt-8 max-w-[900px] lg:mt-12"
     >
-      <Title level={TitleLevel.H2Regular} as="h1">
+      <Title level={TitleLevel.H0Medium} as="h1">
         {titleLines.map((line) => (
           <motion.span key={line} variants={itemContentVariants} className="block">
             {line}

@@ -600,6 +600,14 @@
     "imageUrl": "/images/partners/blockai.png"
   },
   {
+    "name": "BlockClock",
+    "description": "BlockClock is a decentralized, community-powered timekeeping network that uses user-verified device timestamps to establish a trustless, on-chain standard of time.",
+    "url": "https://demo.stxn.io/",
+    "imageUrl": "/images/partners/blockclock.svg",
+    "category": "consumer",
+    "subcategory": "real world"
+  },
+  {
     "name": "Blockdaemon",
     "url": "https://blockdaemon.com",
     "description": "The institutional-grade blockchain infrastructure for Web3. Blockdaemon provides an end-to-end suite of blockchain tools, including dedicated nodes, APIs, staking, liquid staking, MPC tech, and more.",
@@ -622,6 +630,14 @@
     "imageUrl": "/images/partners/blocknative.webp",
     "category": "infra",
     "subcategory": "developer tool"
+  },
+  {
+    "name": "Blockops Network",
+    "url": "https://www.blockops.network/",
+    "description": "BlockOps simplifies Web3 infrastructure with scalable RPCs, streamlined node deployment, and real-time observability. Through tools like Mission Control and Telescope, it accelerates blockchain operations for developers and node operators across Ethereum, Base, and emerging appchains.",
+    "imageUrl": "/images/partners/blockops.png",
+    "category": "infra",
+    "subcategory": "developer tool,node provider"
   },
   {
     "name": "BlockPI Network",
@@ -862,6 +878,14 @@
     "imageUrl": "/images/partners/civic.png",
     "category": "infra",
     "subcategory": "identity"
+  },
+  {
+    "name": "CleanApp",
+    "description": "Global, distributed and verifiable tracing/mapping networks for reporting an issue and finding resolvers",
+    "url": "https://www.cleanapp.io/",
+    "imageUrl": "/images/partners/cleanapp.png",
+    "category": "consumer",
+    "subcategory": "ai"
   },
   {
     "name": "Cobo Argus",
@@ -1288,6 +1312,14 @@
     "subcategory": "developer tool"
   },
   {
+    "name": "District",
+    "description": "District is the next generation launchpad on Base. District helps builders take their project from idea to launch to growth. Whether its ICM, DAOs, AI agents, or memes - District is for builders.",
+    "url": "https://district.xyz",
+    "imageUrl": "/images/partners/district.webp",
+    "category": "consumer",
+    "subcategory": "creator"
+  },
+  {
     "name": "DLN",
     "url": "https://dln.trade/",
     "description": "DLN is a high performance non-custodial exchange that enables fast, highly capital-efficient, and secure native trading across chains with zero locked liquidity.",
@@ -1472,6 +1504,14 @@
     "subcategory": "gaming"
   },
   {
+    "name": "Ethy AI",
+    "description": "Ethy is your autonomous trading assistant. Define your strategies in plain language, tap into alpha from expert agents, and let Ethy monitor markets and execute for you 24/7.",
+    "url": "https://ethyai.app/",
+    "imageUrl": "/images/partners/ethyai.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "Euler",
     "description": "Euler revolutionizes DeFi by letting any asset become collateral for a lending market. Builders can create and manage markets exactly how they want, with institutional-grade security.",
     "url": "https://app.euler.finance/?network=base",
@@ -1528,6 +1568,14 @@
     "subcategory": "gaming"
   },
   {
+    "name": "Factor.fi",
+    "description": "With Factor, anyone can drag-and-drop DeFi, no coding required. Create and share multi-protocol strategies that automate yield amplification across DeFi, or deposit into strategies with just one click.",
+    "url": "https://factor.fi/",
+    "imageUrl": "/images/partners/FactorLogo.png",
+    "category": "defi",
+    "subcategory": "liquidity management"
+  },
+  {
     "name": "Farworld",
     "description": "A mysterious world 🪐 filled with mysterious creatures 👾 The onchain monster collecting game of Farcaster, built on Base.",
     "url": "https://farworld.gg",
@@ -1542,6 +1590,14 @@
     "imageUrl": "/images/partners/fashion-fun.png",
     "category": "consumer",
     "subcategory": "nft"
+  },
+  {
+    "name": "Fibrous",
+    "description": "Fibrous offers optimal trade execution with advanced aggregation and innovative onchain features, enabling seamless DeFi trading across its interface and APIs on Base.",
+    "url": "https://app.fibrous.finance/en?network=base",
+    "imageUrl": "/images/partners/fibrous.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
   },
   {
     "name": "Fireblocks",
@@ -1758,6 +1814,14 @@
     "imageUrl": "/images/partners/giza.svg",
     "category": "ai",
     "subcategory": "ai"
+  },
+  {
+    "name": "Glider",
+    "description": "Glider is a platform for creating auto-rebalancing DeFi and token portfolios. No gas. No signing. No bridging. Fully non-custodial.",
+    "url": "https://glider.fi",
+    "imageUrl": "/images/partners/glider.png",
+    "category": "defi",
+    "subcategory": "portfolio"
   },
   {
     "name": "Goldsky",
@@ -2062,6 +2126,14 @@
     "imageUrl": "/images/partners/jumper_exchange.webp",
     "category": "infra",
     "subcategory": "bridge"
+  },
+  {
+    "name": "Karum",
+    "description": "Karum is a coordination layer for autonomous AI agents, helping them find each other, prove their reliability, and transact across any ecosystem through one seamless rail.",
+    "url": "https://www.karum.ai/",
+    "imageUrl": "/images/partners/karum.png",
+    "category": "ai",
+    "subcategory": "ai"
   },
   {
     "name": "King of the Degens",
@@ -2504,6 +2576,14 @@
     "subcategory": "ai"
   },
   {
+    "name": "Mt Pelerin",
+    "description": "Buy crypto on your own Base wallet in minutes, swap and bridge funds easily, cash out back on your bank account without a hitch.",
+    "url": "https://www.mtpelerin.com/base",
+    "imageUrl": "/images/partners/mtpelerin.png",
+    "category": "onramp",
+    "subcategory": "fiat on-ramp"
+  },
+  {
     "name": "Multisender.app",
     "description": "Multisender facilitates airdrops and other mass transactions on 20+ networks, including Base. It takes a list of recipients and their respective token amounts and automates everything else.",
     "url": "https://classic.multisender.app/",
@@ -2726,6 +2806,14 @@
     "imageUrl": "/images/partners/omni_network.webp",
     "category": "infra",
     "subcategory": "bridge"
+  },
+  {
+    "name": "Omni Exchange",
+    "url": "https://omni.exchange",
+    "description": "Omni is a next-gen multichain DEX with V4 architecture and veToken governance. It unifies crosschain liquidity and enables sustainable emissions via voting — built for scalable, innovative growth.",
+    "imageUrl": "/images/partners/omniexchange.webp",
+    "category": "defi",
+    "subcategory": "dex"
   },
   {
     "name": "OmniHub",
@@ -3128,6 +3216,14 @@
     "subcategory": "node provider"
   },
   {
+    "name": "Quickswap",
+    "url": "https://dapp.quickswap.exchange/farm?chainId=8453",
+    "description": "Quickswap is an Ethereum Community DEX and home to the DragonFi ecosystem. A one-stop DeFi hub where users can swap, provide Liquidity, farm, trade perps, stake, and more",
+    "imageUrl": "/images/partners/quickswap.webp",
+    "category": "defi",
+    "subcategory": "dex"
+  },
+  {
     "name": "QuillAudits",
     "description": "Web3 security leader equipped with robust security solutions and infra, trusted by teams from ZetaChain, Taiko, Polygon and many more since 2018. ",
     "url": "https://quillaudits.com",
@@ -3198,6 +3294,14 @@
     "imageUrl": "/images/partners/redstone.webp",
     "category": "infra",
     "subcategory": "data"
+  },
+  {
+    "name": "Rei Network",
+    "description": "Rei Network is an AI research organization that focuses on advancing artificial intelligence through science driven innovations.",
+    "url": "https://reisearch.box",
+    "imageUrl": "/images/partners/logo-rei.png",
+    "category": "ai",
+    "subcategory": "ai"
   },
   {
     "name": "Reflect",
@@ -3374,6 +3478,14 @@
     "imageUrl": "/images/partners/securedapp.png",
     "category": "infra",
     "subcategory": "security"
+  },
+  {
+    "name": "SEDA",
+    "description": "SEDA, the internet onchain. Deploy application-specific data feeds for any data type in seconds.",
+    "url": "https://seda.xyz",
+    "imageUrl": "/images/partners/seda.png",
+    "category": "infra",
+    "subcategory": "data"
   },
   {
     "name": "Send",
@@ -3600,6 +3712,14 @@
     "subcategory": "dex"
   },
   {
+    "name": "STXN",
+    "description": "Build the future of decentralized, hybrid apps with technology that marries web2 and web3.",
+    "url": "https://stxn.io/",
+    "imageUrl": "/images/partners/stxn.svg",
+    "category": "infra",
+    "subcategory": "developer tool"
+  },
+  {
     "name": "SubQuery",
     "url": "https://subquery.network/",
     "description": "SubQuery is a fast, flexible, and reliable open-source data decentralised infrastructure network, providing both RPC and indexed data to consumers around the world. The SubQuery Data Indexer is a open-source data indexer that provides you with custom APIs for your web3 project across all of our supported chains. SubQuery AI Apps framework makes building decentralised AI Applications fast and easy.",
@@ -3630,6 +3750,14 @@
     "imageUrl": "/images/partners/superfluid.webp",
     "category": "consumer",
     "subcategory": "payments"
+  },
+  {
+    "name": "SuperFund",
+    "description": "A smart USDC yield product that reallocates capital across lending protocols for optimal returns.",
+    "url": "https://funds.superlend.xyz/super-fund/base",
+    "imageUrl": "/images/partners/superfund.png",
+    "category": "defi",
+    "subcategory": "yield"
   },
   {
     "name": "Supra",
@@ -4160,6 +4288,14 @@
     "subcategory": "dex aggregator"
   },
   {
+    "name": "Velvet",
+    "description": "Unlock AI Superpowers for trading & DeFi",
+    "url": "https://dapp.velvet.capital",
+    "imageUrl": "/images/partners/velvet.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "description": "Venice is a private, uncensored AI app with an API for agents and developers. Powered by decentralized inference and open-source models, Venice delivers unrestricted access to AI without storing your data.",
     "imageUrl": "/images/partners/venice.svg",
     "name": "Venice",
@@ -4414,5 +4550,53 @@
     "imageUrl": "/images/partners/zora.webp",
     "category": "consumer",
     "subcategory": "creator"
+  },
+  {
+    "name": "Pinto",
+    "description": "Pinto is low volatility, yield generating money: infinitely scalable, trust-minimized and non-custodial. Users can earn additional yield through active participation in protocol maintenance.",
+    "url": "https://pinto.money/",
+    "imageUrl": "/images/partners/pinto.png",
+    "category": "defi",
+    "subcategory": "stablecoin"
+  },
+  {
+    "name": "WOWMAX",
+    "category": "defi",
+    "subcategory": "liquidity management",
+    "description": "WOWMAX is the first non-custodial DEX copy trading platform. Join the top 1 % of DEX traders by discovering and automatically copy-trading the most profitable wallets on BASE chain.",
+    "url": "https://wowmax.exchange/",
+    "imageUrl": "/images/partners/wowmax.png"
+  },
+  {
+    "name": "Zora MCP Server",
+    "description": "MCP server for natural language trading on Base—buy any token created on Zora Protocol and swap any asset on Base mainnet directly from Claude Desktop or any MCP-enabled client.",
+    "url": "https://www.npmjs.com/package/@6missedcalls-ai/zora-mcp-server",
+    "imageUrl": "/images/partners/zora-mcp-server-logo.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
+    "name": "WLTH",
+    "url": "https://wlth.xyz//",
+    "description": "WLTH opens the door to tokenised pre-IPO opportunities like xAI and SpaceX, while AI-powered strategies help your assets grow on autopilot. One app. No barriers.",
+    "imageUrl": "/images/partners/wlth.webp",
+    "category": "Consumer",
+    "subcategory": "Real World"
+  },
+  {
+    "name": "DeGov.AI",
+    "url": "https://degov.ai",
+    "description": "DeGov is an open-source DAO governance platform built on OpenZeppelin's Governor contract, integrating an AI agent delegate and voting assistant to facilitate enhanced decision-making in DAOs.",
+    "imageUrl": "/images/partners/degov.png",
+    "category": "consumer",
+    "subcategory": "dao"
+  },
+  {
+    "name": "Levva",
+    "url": "https://levva.fi/",
+    "description": "DeFi too complicated? You’re missing real yield. LevvAI invests your crypto for you. One click, no stress, passive income from Pendle, Aave and more.",
+    "imageUrl": "/images/partners/levva.png",
+    "category": "defi",
+    "subcategory": "portfolios"
   }
 ]

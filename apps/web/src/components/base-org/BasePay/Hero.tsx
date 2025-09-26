@@ -16,9 +16,9 @@ export default function Hero() {
       <div className="relative mb-52 h-[412px] w-full lg:mb-12 lg:h-[670px] xl:h-[870px]">
         {/* AsciiFluidScene Background */}
         <div className="absolute inset-0">
-          <div className="h-full w-full">
+          <div className="w-full h-full">
             <AsciiFluidScene
-              className="flex h-full w-full"
+              className="flex w-full h-full"
               imageUrl={defaultImg.src}
               enableInteractivity
               radius={0.35}
@@ -28,7 +28,7 @@ export default function Hero() {
         </div>
 
         {/* Content Layer */}
-        <div className="pointer-events-none relative z-10 flex h-full flex-col justify-start gap-12 px-6 pt-12 md:px-10 md:pt-16 lg:px-14 lg:pt-20">
+        <div className="flex relative z-10 flex-col gap-12 justify-start px-6 pt-12 h-full pointer-events-none md:px-10 md:pt-16 lg:px-14 lg:pt-20">
           <div className="h-[19px] w-[82px] md:h-[33px] md:w-[142px]">
             <ImageWithLoading
               src="/images/basepay/logo.svg"
@@ -37,15 +37,15 @@ export default function Hero() {
               height={33}
             />
           </div>
-          <Title className="text-left text-[3.75rem] md:text-[7.5rem]" level={TitleLevel.H2Regular}>
+          <Title className="text-left" level={TitleLevel.H4Regular}>
             The fastest way to pay with USDC
           </Title>
 
-          <div className="flex max-w-xs flex-col items-start gap-5 md:max-w-md md:flex-row">
+          <div className="flex flex-col gap-5 items-start max-w-xs md:max-w-md md:flex-row">
             <Button
               variant={ButtonVariants.Primary}
               size={ButtonSizes.Small}
-              className="pointer-events-auto w-full"
+              className="w-full pointer-events-auto"
             >
               <Link
                 href="https://docs.base.org/base-account/guides/accept-payments"
@@ -59,7 +59,7 @@ export default function Hero() {
             <Button
               variant={ButtonVariants.Secondary}
               size={ButtonSizes.Small}
-              className="pointer-events-auto w-full"
+              className="w-full pointer-events-auto"
             >
               <Link
                 href="https://coinbaseshop.com/cart/49933861617970:1?discount=BASE10"
