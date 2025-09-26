@@ -1,7 +1,12 @@
 import { useMemo } from 'react';
-import Link from 'next/link';
-import Button from 'apps/web/src/components/base-org/Button';
-import { ButtonSizes, ButtonVariants } from 'apps/web/src/components/base-org/Button/types';
+import Link from 'apps/web/src/components/Link';
+import {
+  Button,
+  ButtonVariants,
+  ButtonSizes,
+} from 'apps/web/src/components/Button/Redesign/Button';
+import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRedesign/types';
+import Title from 'apps/web/src/components/base-org/typography/TitleRedesign';
 
 type Department = {
   id: string;
@@ -38,17 +43,17 @@ export function Job({ job }: JobProps) {
       href={href}
       rel="noreferrer"
       target="_blank"
-      className="inline-block w-full rounded-2xl bg-white/0 p-4 transition-all hover:bg-white/20"
+      className="inline-block w-full border-t border-base-black bg-white/0 px-2 py-4 transition-all hover:bg-white/20"
     >
-      <div className="flex w-full flex-col items-center justify-between text-white sm:flex-row">
+      <div className="flex w-full flex-col justify-between sm:flex-row sm:items-center">
         <div className="flex w-full flex-col">
-          <p className="w-full text-xl">{title}</p>
+          <Title level={TitleLevel.H6Regular}>{title}</Title>
         </div>
 
         <Button
-          variant={ButtonVariants.Secondary}
-          size={ButtonSizes.Large}
-          className="mt-4 w-full border sm:mt-0 sm:w-auto"
+          variant={ButtonVariants.Primary}
+          size={ButtonSizes.Small}
+          className="mt-4 w-[150px] sm:mt-0"
         >
           <p className="text-sm">Apply now</p>
         </Button>

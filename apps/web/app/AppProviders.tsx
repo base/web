@@ -15,7 +15,6 @@ import ClientAnalyticsScript from 'apps/web/src/components/ClientAnalyticsScript
 import dynamic from 'next/dynamic';
 import ErrorsProvider from 'apps/web/contexts/Errors';
 import { logger } from 'apps/web/src/utils/logger';
-import { PolicyBanner } from 'apps/web/src/components/Banner/PolicyBanner';
 
 const DynamicCookieBannerWrapper = dynamic(
   async () => import('apps/web/src/components/CookieBannerWrapper'),
@@ -30,8 +29,7 @@ type AppProvidersProps = {
   children: React.ReactNode;
 };
 
-// TODO: Not all pages need all these components, ideally should be split and put
-//       on the sub-layouts
+// TODO: Not all pages need all these components, ideally should be split and put on the sub-layouts
 export default function AppProviders({ children }: AppProvidersProps) {
   const trackingPreference = useRef<TrackingPreference | undefined>();
 
@@ -83,7 +81,6 @@ export default function AppProviders({ children }: AppProvidersProps) {
         onPreferenceChange={setTrackingPreference}
         config={cookieManagerConfig}
       >
-        <PolicyBanner />
         <ClientAnalyticsScript />
         <TooltipProvider>
           <ExperimentsProvider>

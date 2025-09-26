@@ -1,0 +1,8 @@
+{
+  "name": "FailSafe",
+  "url": "https://getfailsafe.com",
+  "description": "Launch and scale securely with expert audits and real-time risk monitoring. Built for high-stakes smart contracts. Trusted by exchanges, stablecoin issuers, and DeFi protocols.",
+  "imageUrl": "/images/partners/failsafe.png",
+  "category": "infra",
+  "subcategory": "security"
+}
