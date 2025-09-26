@@ -60,9 +60,12 @@ class CustomLogger {
         break;
       case 'error':
         console.error(logEntry);
-        bugsnagNotify(logEntry, (e) => e.addMetadata('baseweb', { meta })).catch((e) =>
-          console.error('Error reporting to Bugsnag', e),
-        );
+        // Skip Bugsnag during E2E tests
+        if (process.env.E2E_TEST !== 'true') {
+          bugsnagNotify(message, (e) => e.addMetadata('baseweb', { meta })).catch((e) =>
+            console.error('Error reporting to Bugsnag', e),
+          );
+        }
         break;
       default:
         console.log(logEntry);
@@ -78,6 +81,11 @@ class CustomLogger {
   }
 
   public error(message: string, error: Error | unknown, meta?: Record<string, unknown>) {
+    // Skip logging entirely during E2E tests to prevent noise from expected errors
+    if (process.env.E2E_TEST === 'true') {
+      return;
+    }
+
     const e =
       error instanceof Error
         ? {

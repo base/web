@@ -32,6 +32,7 @@ export default function SearchAddressInput({ onChange }: SearchAddressInputProps
 
   const { basenameChain } = useBasenameChain();
 
+  // TODO: Use wagmi's ENSIP-19 integration after data migration is complete
   const { data: basenameAddress, isLoading: basenameAddressIsLoading } = useEnsAddress({
     name: value.toLowerCase(),
     universalResolverAddress: USERNAME_L2_RESOLVER_ADDRESSES[basenameChain.id],

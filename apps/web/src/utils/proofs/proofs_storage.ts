@@ -1,8 +1,7 @@
-import { getDb } from 'apps/web/src/utils/datastores/rds';
+import { getDb } from 'apps/web/src/utils/datastores/postgres';
 import { Address } from 'viem';
 
 export enum ProofTableNamespace {
-  UsernamesEarlyAccess = 'usernames_early_access',
   BNSDiscount = 'basenames_bns_discount',
   BaseEthHolders = 'basenames_base_eth_holders_discount',
   CBIDDiscount = 'basenames_cbid_discount',

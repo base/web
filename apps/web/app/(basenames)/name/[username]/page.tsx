@@ -2,7 +2,7 @@ import { Basename } from '@coinbase/onchainkit/identity';
 import ProfileProviders from 'apps/web/app/(basenames)/name/[username]/ProfileProviders';
 import ErrorsProvider from 'apps/web/contexts/Errors';
 import UsernameProfile from 'apps/web/src/components/Basenames/UsernameProfile';
-import { redirectIfNotNameOwner } from 'apps/web/src/utils/redirectIfNotNameOwner';
+import { redirectIfNameDoesNotExist } from 'apps/web/src/utils/redirectIfNameDoesNotExist';
 import {
   formatDefaultUsername,
   getBasenameTextRecord,
@@ -38,7 +38,7 @@ export async function generateMetadata(props: UsernameProfileProps): Promise<Met
 export default async function Username(props: UsernameProfileProps) {
   const params = await props.params;
   let username = await formatDefaultUsername(decodeURIComponent(params.username) as Basename);
-  await redirectIfNotNameOwner(username);
+  await redirectIfNameDoesNotExist(username);
 
   const usernameProfilePageClasses = classNames(
     'mx-auto mt-32 flex min-h-screen w-full max-w-[1440px] flex-col justify-between gap-10 px-4 px-4 pb-16 md:flex-row md:px-8',
