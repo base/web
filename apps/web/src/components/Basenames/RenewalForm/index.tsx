@@ -5,27 +5,24 @@ import { Icon } from 'apps/web/src/components/Icon/Icon';
 import useBasenameChain, { supportedChainIds } from 'apps/web/src/hooks/useBasenameChain';
 import useCapabilitiesSafe from 'apps/web/src/hooks/useCapabilitiesSafe';
 import { useEthPriceFromUniswap } from 'apps/web/src/hooks/useEthPriceFromUniswap';
-import { useRenewNameCallback } from 'apps/web/src/hooks/useRenewNameCallback';
-import { BatchCallsStatus } from 'apps/web/src/hooks/useWriteContractsWithLogs';
-import { WriteTransactionWithReceiptStatus } from 'apps/web/src/hooks/useWriteContractWithReceipt';
+import { useRenewal } from 'apps/web/src/components/Basenames/RenewalContext';
 import classNames from 'classnames';
 import { ActionType } from 'libs/base-ui/utils/logEvent';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useAccount, useBalance, useSwitchChain } from 'wagmi';
 import { RenewalButton } from './RenewalButton';
 import { formatUsdPrice } from 'apps/web/src/utils/formatUsdPrice';
 import { formatEtherPrice } from 'apps/web/src/utils/formatEtherPrice';
 import YearSelector from 'apps/web/src/components/Basenames/YearSelector';
-import { formatBaseEthDomain, getBasenameNameExpires } from 'apps/web/src/utils/usernames';
 
-export default function RenewalForm({ name }: { name: string }) {
+export default function RenewalForm() {
   const { chain: connectedChain, address } = useAccount();
-  const [years, setYears] = useState(1);
-  const [expirationDate, setExpirationDate] = useState<string | undefined>(undefined);
   const { logEventWithContext } = useAnalytics();
   const { logError } = useErrors();
   const { basenameChain } = useBasenameChain();
   const { switchChain } = useSwitchChain();
+
+  const { years, setYears, renewBasename, price, isPending, expirationDate } = useRenewal();
 
   const switchToIntendedNetwork = useCallback(
     () => switchChain({ chainId: basenameChain.id }),
@@ -36,35 +33,6 @@ export default function RenewalForm({ name }: { name: string }) {
     () => connectedChain && supportedChainIds.includes(connectedChain.id),
     [connectedChain],
   );
-
-  const fetchExpirationDate = useCallback(async () => {
-    try {
-      const formattedName = formatBaseEthDomain(name, basenameChain.id);
-      const expiresAt = await getBasenameNameExpires(formattedName);
-      if (expiresAt) {
-        const date = new Date(Number(expiresAt) * 1000);
-        const formatted = date.toLocaleDateString('en-US', {
-          month: '2-digit',
-          day: '2-digit',
-          year: 'numeric',
-        });
-        setExpirationDate(formatted);
-      }
-    } catch (error) {
-      logError(error, 'Failed to fetch basename expiration date');
-    }
-  }, [name, basenameChain.id, logError]);
-
-  const {
-    callback: renewBasename,
-    value: price,
-    isPending,
-    renewNameStatus,
-    batchCallsStatus,
-  } = useRenewNameCallback({
-    name,
-    years,
-  });
 
   const increment = useCallback(() => {
     setYears((n) => n + 1);
@@ -109,20 +77,6 @@ export default function RenewalForm({ name }: { name: string }) {
   const mainRenewalElementClasses = classNames(
     'z-10 flex flex-col items-start justify-between gap-6 bg-[#F7F7F7] p-8 text-gray-60 shadow-xl md:flex-row md:items-center relative z-20 rounded-2xl',
   );
-
-  useEffect(() => {
-    void fetchExpirationDate();
-  }, [fetchExpirationDate]);
-
-  useEffect(() => {
-    if (
-      renewNameStatus === WriteTransactionWithReceiptStatus.Success ||
-      batchCallsStatus === BatchCallsStatus.Success
-    ) {
-      setYears(1);
-      void fetchExpirationDate();
-    }
-  }, [renewNameStatus, batchCallsStatus, fetchExpirationDate]);
 
   if (address && !isOnSupportedNetwork) {
     return (
@@ -170,16 +124,22 @@ export default function RenewalForm({ name }: { name: string }) {
             <p className="text-sm text-state-n-hovered">your ETH balance is insufficient</p>
           )}
         </div>
-
-        <div className="flex w-full max-w-full flex-col items-center gap-3 md:max-w-[13rem]">
-          <RenewalButton
-            correctChain={correctChain}
-            renewNameCallback={renewNameCallback}
-            switchToIntendedNetwork={switchToIntendedNetwork}
-            disabled={!price || insufficientFundsNoAuxFundsAndCorrectChain}
-            isLoading={isPending}
-          />
-          {expirationDate && <p className="text-md text-gray-50">Expires {expirationDate}</p>}
+        <div className="flex flex-col gap-2">
+          {expirationDate && (
+            <div className="text-right">
+              <p className="text-sm text-gray-60">Current expiration:</p>
+              <p className="text-sm font-semibold text-gray-80">{expirationDate}</p>
+            </div>
+          )}
+          <div className="w-full max-w-full md:max-w-[13rem]">
+            <RenewalButton
+              correctChain={correctChain}
+              renewNameCallback={renewNameCallback}
+              switchToIntendedNetwork={switchToIntendedNetwork}
+              disabled={insufficientFundsNoAuxFundsAndCorrectChain}
+              isLoading={isPending}
+            />
+          </div>
         </div>
       </div>
     </div>

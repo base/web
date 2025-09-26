@@ -21,8 +21,20 @@ import {
  * @param metamask - The MetaMask wallet instance
  */
 export async function connectWallet(page: Page, metamask: MetaMask): Promise<void> {
+  // only /names path has wallet connection
+  if (!page.url().includes('/names')) {
+    await page.goto('/names');
+  }
+
   console.log('[connectWallet] Current URL before connect:', page.url());
   // Open wallet connect modal
+
+  // Check to see if there's the I acknowledge button
+  const newPrivacyPolicyButton = page.getByText('I Acknowledge');
+  if (await newPrivacyPolicyButton.isVisible()) {
+    await newPrivacyPolicyButton.click();
+  }
+
   await page.getByTestId('ockConnectButton').first().click();
   console.log('[connectWallet] Wallet connect modal opened');
 

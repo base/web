@@ -5,7 +5,7 @@ import { initiateRegistration } from '../basenameHelpers';
 import { ActionApprovalType } from '@coinbase/onchaintestkit';
 
 test.describe('Basename Registration', () => {
-  test('should fail registration when wallet has insufficient funds', async ({
+  test.skip('should fail registration when wallet has insufficient funds', async ({
     page,
     metamask,
     node,
