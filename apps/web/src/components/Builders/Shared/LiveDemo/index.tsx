@@ -11,6 +11,7 @@ import { Swap } from '@coinbase/onchainkit/swap';
 import { Transaction } from '@coinbase/onchainkit/transaction';
 import {
   ConnectWallet,
+  ConnectWalletText,
   Wallet,
   WalletAdvancedAddressDetails,
   WalletAdvancedTokenHoldings,
@@ -25,6 +26,7 @@ import {
   codeSnippets,
   codeStyles,
   COMPONENT_DESCRIPTIONS,
+  COMPONENT_HEADERS,
   earnVaultAddress,
   fundPresetAmountInputs,
   ONCHAINKIT_DEMO_TABS,
@@ -41,23 +43,32 @@ import Text from 'apps/web/src/components/base-org/typography/Text';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/Text/types';
 import Link from 'apps/web/src/components/Link';
 import { NFTDemo } from './NFTDemo';
+import { BaseLogo } from 'apps/web/src/components/Builders/Shared/LiveDemo/BaseLogo';
 
 type LiveDemoProps = {
   components: (typeof ONCHAINKIT_DEMO_TABS)[number][];
   title?: string;
   hideDescription?: boolean;
+  smartWalletOnly?: boolean;
+  defaultTab?: Tab;
 };
 
 const walletAdvancedAddressDetailsClasses = {
   avatar: '!hidden',
 };
 
-export function LiveDemo({ components, title, hideDescription = false }: LiveDemoProps) {
+export function LiveDemo({
+  components,
+  title,
+  hideDescription = false,
+  smartWalletOnly = false,
+  defaultTab = 'Wallet',
+}: LiveDemoProps) {
   const [mode, setMode] = useState<'light' | 'dark'>('dark');
   const [isMounted, setIsMounted] = useState(false);
   const [content, setContent] = useState<'code' | 'preview'>('code');
   const [isComponentMenuOpen, setIsComponentMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<Tab>('Wallet');
+  const [activeTab, setActiveTab] = useState<Tab>(defaultTab || 'Wallet');
   const [copied, setCopied] = useState(false);
 
   const buttonClasses = useMemo(
@@ -77,9 +88,40 @@ export function LiveDemo({ components, title, hideDescription = false }: LiveDem
     }
 
     switch (activeTab) {
+      case 'SmartWallet':
+        return (
+          <Wallet className="base-dark">
+            <ConnectWallet
+              className={classNames(
+                'group rounded-lg px-10 py-4 font-sans',
+                mode === 'dark'
+                  ? 'bg-white hover:border-[#FFFFFF] hover:bg-[#F5F5F5] active:border-[#FFFFFF] active:bg-[#EEEEEE]'
+                  : 'bg-black hover:border-[#1A1A1A] hover:bg-[#2A2A2A] active:border-[#2A2A2A] active:bg-[#3A3A3A]',
+              )}
+            >
+              <ConnectWalletText
+                className={classNames(
+                  'font-sans font-[500]',
+                  mode === 'dark' ? 'text-black hover:text-black' : 'text-white hover:text-white',
+                )}
+              >
+                <div className="flex items-center gap-2">
+                  {mode === 'dark' ? <BaseLogo fill="blue" /> : <BaseLogo fill="white" />}
+                  Sign in with Base
+                </div>
+              </ConnectWalletText>
+            </ConnectWallet>
+            <WalletDropdown>
+              <WalletAdvancedWalletActions />
+              <WalletAdvancedAddressDetails classNames={walletAdvancedAddressDetailsClasses} />
+              <WalletAdvancedTransactionActions />
+              <WalletAdvancedTokenHoldings />
+            </WalletDropdown>
+          </Wallet>
+        );
       case 'Wallet':
         return (
-          <Wallet>
+          <Wallet className="base-dark">
             <ConnectWallet />
             <WalletDropdown>
               <WalletAdvancedWalletActions />
@@ -90,17 +132,17 @@ export function LiveDemo({ components, title, hideDescription = false }: LiveDem
           </Wallet>
         );
       case 'Buy':
-        return <Buy toToken={usdcToken} disabled />;
+        return <Buy toToken={usdcToken} disabled className="base-dark" />;
       case 'Pay':
         return (
-          <Checkout productId="my-product-id">
+          <Checkout productId="my-product-id" className="base-dark">
             <CheckoutButton className="text-white" />
           </Checkout>
         );
       case 'Swap':
-        return <Swap to={swappableTokens} from={swappableTokens} className="w-full" />;
+        return <Swap to={swappableTokens} from={swappableTokens} className="base-dark w-full" />;
       case 'Earn':
-        return <Earn vaultAddress={earnVaultAddress} />;
+        return <Earn vaultAddress={earnVaultAddress} className="base-dark" />;
       case 'Mint':
         return <NFTDemo />;
       case 'Fund':
@@ -110,15 +152,15 @@ export function LiveDemo({ components, title, hideDescription = false }: LiveDem
             country="US"
             currency="USD"
             presetAmountInputs={fundPresetAmountInputs}
-            className="w-[300px] max-w-full md:w-[400px]"
+            className="base-dark w-[300px] max-w-full md:w-[400px]"
           />
         );
       case 'Transact':
-        return <Transaction calls={CLICK_CALLS} className="mr-auto w-auto" />;
+        return <Transaction calls={CLICK_CALLS} className="base-dark mx-auto w-auto" />;
       default:
         return null;
     }
-  }, [isMounted, activeTab]);
+  }, [isMounted, activeTab, mode]);
 
   useEffect(() => {
     setIsMounted(true);
@@ -152,6 +194,7 @@ export function LiveDemo({ components, title, hideDescription = false }: LiveDem
         copied={copied}
         title={title}
         hideDescription={hideDescription}
+        smartWalletOnly={smartWalletOnly}
       />
       <MobileDemo
         components={components}
@@ -166,6 +209,7 @@ export function LiveDemo({ components, title, hideDescription = false }: LiveDem
         toggleMode={toggleMode}
         setContent={setContent}
         title={title}
+        smartWalletOnly={smartWalletOnly}
       />
     </>
   );
@@ -183,6 +227,7 @@ function DesktopDemo({
   copied,
   title,
   hideDescription,
+  smartWalletOnly,
 }: {
   components: (typeof ONCHAINKIT_DEMO_TABS)[number][];
   mode: 'dark' | 'light';
@@ -195,6 +240,7 @@ function DesktopDemo({
   copied: boolean;
   title?: string;
   hideDescription?: boolean;
+  smartWalletOnly?: boolean;
 }) {
   const createTabSelectionHandler = useCallback(
     (tab: Tab) => () => {
@@ -227,7 +273,7 @@ function DesktopDemo({
             mode === 'dark' ? 'border-dark-palette-line/20' : 'border-dark-palette-line/20',
           )}
         >
-          {components?.length > 1 && (
+          {components?.length > 0 && (
             <div className="no-scrollbar items-center space-x-8 overflow-x-auto">
               <div className="flex space-x-8 px-1">
                 {components.map((component) => (
@@ -240,7 +286,7 @@ function DesktopDemo({
                       activeTab === component ? buttonClasses.active : buttonClasses.inactive,
                     )}
                   >
-                    {component}
+                    {COMPONENT_HEADERS[component as Tab] ?? component}
                   </button>
                 ))}
               </div>
@@ -259,18 +305,6 @@ function DesktopDemo({
               )}
             >
               Docs
-            </Link>
-            <Link
-              href="https://docs.base.org/builderkits/onchainkit/llms.txt"
-              target="_blank"
-              className={classNames(
-                'rounded-lg border px-3 py-1 transition-colors',
-                mode === 'dark'
-                  ? 'border-dark-palette-line/20 hover:bg-white/10'
-                  : 'border-dark-palette-line/20 text-dark-palette-backgroundAlternate hover:bg-white/10',
-              )}
-            >
-              AI docs
             </Link>
             <Link
               href="https://onchainkit.xyz/playground"
@@ -337,7 +371,11 @@ function DesktopDemo({
         )}
 
         <div className="grid h-auto min-h-[600px] grid-cols-1 lg:grid-cols-2">
-          <ComponentDemo mode={mode} demoComponent={demoComponent} />
+          <ComponentDemo
+            mode={mode}
+            demoComponent={demoComponent}
+            smartWalletOnly={smartWalletOnly}
+          />
           <div className="h-[300px] py-6 pl-6 pr-1 lg:h-full">
             <div className={`${mode} relative h-full`}>
               <CodeSnippet code={codeSnippets[activeTab]} />
@@ -362,6 +400,7 @@ function MobileDemo({
   toggleMode,
   setContent,
   title,
+  smartWalletOnly = false,
 }: {
   components: (typeof ONCHAINKIT_DEMO_TABS)[number][];
   mode: 'dark' | 'light';
@@ -375,6 +414,7 @@ function MobileDemo({
   toggleMode: () => void;
   setContent: (content: 'code' | 'preview') => void;
   title?: string;
+  smartWalletOnly?: boolean;
 }) {
   const createTabSelectionHandler = useCallback(
     (tab: Tab) => () => {
@@ -552,7 +592,11 @@ function MobileDemo({
 
         <div className="grid grid-cols-1 text-xs">
           {content === 'preview' ? (
-            <ComponentDemo mode={mode} demoComponent={demoComponent} />
+            <ComponentDemo
+              mode={mode}
+              demoComponent={demoComponent}
+              smartWalletOnly={smartWalletOnly}
+            />
           ) : (
             <div className="h-[300px] p-6">
               <div className={`${mode} relative h-full`}>
@@ -569,9 +613,11 @@ function MobileDemo({
 function ComponentDemo({
   mode,
   demoComponent,
+  smartWalletOnly = false,
 }: {
   mode: 'dark' | 'light';
   demoComponent: React.ReactNode;
+  smartWalletOnly?: boolean;
 }) {
   return (
     <div
@@ -583,7 +629,7 @@ function ComponentDemo({
         mode === 'dark' ? 'border-dark-palette-line/20' : 'border-dark-palette-line/20',
       )}
     >
-      <DynamicCryptoProviders mode={mode} theme="default">
+      <DynamicCryptoProviders mode={mode} theme="base" smartWalletOnly={smartWalletOnly}>
         {demoComponent}
       </DynamicCryptoProviders>
     </div>
