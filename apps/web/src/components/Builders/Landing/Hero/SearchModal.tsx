@@ -119,8 +119,8 @@ const searchConfig: SearchCategory[] = [
         iconRotation: 'rotate-180',
       },
       {
-        label: 'MiniKit',
-        href: '/builders/minikit',
+        label: 'Mini Apps',
+        href: '/build/mini-apps',
         icon: 'backArrow',
         iconRotation: 'rotate-180',
       },

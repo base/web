@@ -1,12 +1,10 @@
 import { getAttestations } from '@coinbase/onchainkit/identity';
 import { getKv } from 'apps/web/src/utils/datastores/kv';
 import { CoinbaseProofResponse } from 'apps/web/app/(basenames)/api/proofs/coinbase/route';
-import RegistrarControllerABI from 'apps/web/src/abis/RegistrarControllerABI';
 import {
   USERNAME_CB1_DISCOUNT_VALIDATORS,
   USERNAME_CB_DISCOUNT_VALIDATORS,
   USERNAME_DISCOUNT_CODE_VALIDATORS,
-  USERNAME_EA_DISCOUNT_VALIDATORS,
 } from 'apps/web/src/addresses/usernames';
 import { getLinkedAddresses } from 'apps/web/src/cdp/api';
 import {
@@ -25,7 +23,7 @@ import {
   ProofsException,
   VerifiedAccount,
 } from 'apps/web/src/utils/proofs/types';
-import { REGISTER_CONTRACT_ADDRESSES } from 'apps/web/src/utils/usernames';
+import { REGISTER_CONTRACT_ABI, REGISTER_CONTRACT_ADDRESSES } from 'apps/web/src/utils/usernames';
 import {
   Address,
   encodeAbiParameters,
@@ -51,9 +49,6 @@ const discountTypes: DiscountTypesByChainId = {
       schemaId: ATTESTATION_VERIFIED_CB1_ACCOUNT_SCHEMA_IDS[base.id],
       discountValidatorAddress: USERNAME_CB1_DISCOUNT_VALIDATORS[base.id],
     },
-    [DiscountType.EARLY_ACCESS]: {
-      discountValidatorAddress: USERNAME_EA_DISCOUNT_VALIDATORS[base.id],
-    },
     [DiscountType.DISCOUNT_CODE]: {
       discountValidatorAddress: USERNAME_DISCOUNT_CODE_VALIDATORS[base.id],
     },
@@ -66,9 +61,6 @@ const discountTypes: DiscountTypesByChainId = {
     [DiscountType.CB1]: {
       schemaId: ATTESTATION_VERIFIED_CB1_ACCOUNT_SCHEMA_IDS[baseSepolia.id],
       discountValidatorAddress: USERNAME_CB1_DISCOUNT_VALIDATORS[baseSepolia.id],
-    },
-    [DiscountType.EARLY_ACCESS]: {
-      discountValidatorAddress: USERNAME_EA_DISCOUNT_VALIDATORS[baseSepolia.id],
     },
     [DiscountType.DISCOUNT_CODE]: {
       discountValidatorAddress: USERNAME_DISCOUNT_CODE_VALIDATORS[baseSepolia.id],
@@ -84,7 +76,7 @@ export async function hasRegisteredWithDiscount(
 
   return publicClient.readContract({
     address: REGISTER_CONTRACT_ADDRESSES[chainId],
-    abi: RegistrarControllerABI,
+    abi: REGISTER_CONTRACT_ABI,
     functionName: 'hasRegisteredWithDiscount',
     args: [addresses],
   });

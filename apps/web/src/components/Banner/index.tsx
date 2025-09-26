@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 type BannerProps = {
   bgColor?: string;
@@ -26,9 +26,9 @@ export function Banner({
 }: BannerProps) {
   const [isOpen, setIsOpen] = useState(true);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setIsOpen(false);
-  };
+  }, []);
 
   if (!isOpen) {
     return null;
