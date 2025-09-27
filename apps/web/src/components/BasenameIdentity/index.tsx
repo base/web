@@ -1,6 +1,6 @@
 'use client';
 import { Basename } from '@coinbase/onchainkit/identity';
-import { USERNAME_L2_RESOLVER_ADDRESSES } from 'apps/web/src/addresses/usernames';
+import useBasenameResolver from 'apps/web/src/hooks/useBasenameResolver';
 import BasenameAvatar from 'apps/web/src/components/Basenames/BasenameAvatar';
 import useBasenameChain from 'apps/web/src/hooks/useBasenameChain';
 import { truncateMiddle } from 'libs/base-ui/utils/string';
@@ -8,10 +8,13 @@ import { useEnsAddress } from 'wagmi';
 
 export default function BasenameIdentity({ username }: { username: Basename }) {
   const { basenameChain } = useBasenameChain();
+  const { data: resolverAddress } = useBasenameResolver({ username });
 
   const { data: basenameAddress } = useEnsAddress({
     name: username,
-    universalResolverAddress: USERNAME_L2_RESOLVER_ADDRESSES[basenameChain.id],
+    universalResolverAddress: resolverAddress,
+    chainId: basenameChain.id,
+    query: { enabled: !!resolverAddress },
   });
 
   return (

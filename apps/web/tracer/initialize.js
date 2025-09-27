@@ -27,7 +27,7 @@ const initTracer = () => {
   tracer.use('http', {
     enabled: true,
     service: process.env.CODEFLOW_PROJECT_NAME,
-    blocklist: /_health/,
+    blocklist: [/_health/, /500/],
   });
 
   return tracer;

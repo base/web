@@ -349,8 +349,12 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
               asChild
               className="w-full"
             >
-              <Link href="https://www.base.dev/" target="_blank" rel="noreferrer noopener">
-                Grow your app
+              <Link
+                href="https://docs.base.org/get-started/base"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                See the docs
               </Link>
             </Button>
             <Button
@@ -359,11 +363,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
               asChild
               className="w-full"
             >
-              <Link
-                href="https://docs.base.org/wallet-app/introduction/getting-started"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
+              <Link href="https://www.base.dev/" target="_blank" rel="noreferrer noopener">
                 Start building
               </Link>
             </Button>
