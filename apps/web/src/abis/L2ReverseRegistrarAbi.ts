@@ -1,6 +1,25 @@
 export default [
   {
     type: 'function',
+    name: 'nameForAddr',
+    inputs: [
+      {
+        name: 'addr',
+        type: 'address',
+        internalType: 'address',
+      },
+    ],
+    outputs: [
+      {
+        name: 'name',
+        type: 'string',
+        internalType: 'string',
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
     name: 'setName',
     inputs: [
       {
