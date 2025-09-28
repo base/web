@@ -2,15 +2,15 @@
 
 ## 1. Purpose
 
-This Code of Conduct outlines our expectations for all those who participate in our community, as well as the consequences for unacceptable behavior. The primary goal is to create a safe and inclusive environment for everyone, regardless of age, gender, sexual orientation, disability, ethnicity, or religion.
+This Code of Conduct outlines expectations for all community participants and the consequences of unacceptable behavior. Our goal is to create a safe, inclusive environment for everyone, regardless of age, gender, sexual orientation, disability, ethnicity, or religion.
 
 ## 2. Expected Behavior
 
 We expect all community members to:
 
-- Exercise empathy and kindness towards other community members.
+- Show empathy and kindness towards other community members.
 - Avoid using offensive or derogatory language.
-- Be respectful of differing viewpoints and experiences.
+- Respect differing viewpoints and experiences.
 - Give and gracefully accept constructive feedback.
 - Focus on what is best for the community as a whole.
 
@@ -23,21 +23,20 @@ Unacceptable behavior from any community member will not be tolerated and includ
 - Personal attacks or intimidation.
 - Public or private harassment.
 - Publishing others' private information, such as a physical or email address, without explicit permission.
-- Other conduct which could reasonably be considered inappropriate in a professional setting.
+- Any other conduct reasonably considered inappropriate in a professional setting.
 
 ## 4. Reporting Issues
 
-If you experience or witness unacceptable behavior—or have any other concerns—please report it by opening a support ticket in the [Base Discord](https://base.org/discord). All reports will be handled with discretion.
+If you experience or witness unacceptable behavior—or have any other concerns—report it by opening a support ticket in the [Base Discord](https://base.org/discord). All reports will be handled with discretion.
 
 ## 5. Consequences for Unacceptable Behavior
 
-Unacceptable behavior from any community member, including project owners and maintainers, will not be tolerated. Anyone asked to stop unacceptable behavior is expected to comply immediately.
-
-If a community member engages in unacceptable behavior, the project maintainers may take action they deem appropriate, including a temporary ban or permanent expulsion from the community without warning.
+Unacceptable behavior from any community member, including project owners and maintainers, will not be tolerated. Anyone asked to stop unacceptable behavior must comply immediately.
+If a community member engages in unacceptable behavior, the project maintainers may take action they deem appropriate, including a temporary suspension or permanent removal from the community, without prior warning.
 
 ## 6. Scope
 
-This Code of Conduct applies within all project spaces, and it also applies when an individual is representing as part of the project or its community in public spaces.
+This Code of Conduct applies within all project spaces, and it also applies when an individual represents the project or community in public spaces.
 
 ## 7. Attribution
 
