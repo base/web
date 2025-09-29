@@ -1,0 +1,8 @@
+{
+  "name": "CoinEx Wallet",
+  "description": "CoinEx Wallet is a one-stop Web3 wallet for managing multi-crypto assets. Allowing users to manage assets of 1,000,000+ tokens on 58+ networks, such as BTC, ETH, CET, etc., and providing swap, staking, transaction accelerator, DApp explorer, and more.",
+  "url": "https://wallet.coinex.com/",
+  "imageUrl": "/images/partners/coinex-wallet.png",
+  "category": "wallet",
+  "subcategory": "self-custody"
+}
