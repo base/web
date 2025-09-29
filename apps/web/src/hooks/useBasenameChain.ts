@@ -7,6 +7,9 @@ import { Basename } from '@coinbase/onchainkit/identity';
 import { getChainForBasename } from 'apps/web/src/utils/usernames';
 import { isDevelopment } from 'apps/web/src/constants';
 
+// Detect automated E2E environment (client or server).
+const isE2ETest = process.env.NEXT_PUBLIC_E2E_TEST === 'true' || process.env.E2E_TEST === 'true';
+
 export function getBasenamePublicClient(chainId: number) {
   const rpcEndpoint = chainId === baseSepolia.id ? cdpBaseSepoliaRpcEndpoint : cdpBaseRpcEndpoint;
   const chain = chainId === baseSepolia.id ? baseSepolia : base;
@@ -34,7 +37,9 @@ export default function useBasenameChain(username?: Basename) {
       return connectedChain;
     }
 
-    // Not connected, default to Sepolia for development, base for other envs
+    // Not connected: use Base mainnet when running E2E tests; otherwise default as before
+    if (isE2ETest) return base;
+
     return isDevelopment ? baseSepolia : base;
   }, [connectedChain, username]);
 
