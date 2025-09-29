@@ -14,8 +14,20 @@ export type AnalyticsContextProps = {
 };
 
 export const AnalyticsContext = createContext<AnalyticsContextProps>({
-  logEventWithContext: function () {
-    return undefined;
+  logEventWithContext: (eventName: string, action: ActionType, eventData?: CCAEventData) => {
+    const sanitizedEventName = eventName.toLocaleLowerCase();
+    if (typeof window === 'undefined') return;
+
+    logEvent(
+      sanitizedEventName,
+      {
+        action,
+        context: 'none',
+        page_path: window.location.pathname,
+        ...eventData,
+      },
+      AnalyticsEventImportance.high,
+    );
   },
   fullContext: '',
 });
