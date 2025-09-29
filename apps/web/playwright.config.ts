@@ -13,7 +13,7 @@ require('dotenv').config({ path: './.env' });
 const PORT = process.env.PORT ?? 3000;
 
 // Set webServer.url and use.baseURL with the location of the WebServer respecting the correct set port
-const baseURL = `http://localhost:${PORT}`;
+const baseURL = `http://localhost:${PORT}/names`;
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -26,9 +26,9 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: 6,
+  retries: process.env.CI ? 6 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: 1,
+  workers: process.env.CI ? 1 : 4,
   maxFailures: 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',

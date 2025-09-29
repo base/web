@@ -3,9 +3,12 @@ import {
   RegistrationSteps,
   useRegistration,
 } from 'apps/web/src/components/Basenames/RegistrationContext';
-import { Button, ButtonVariants } from 'apps/web/src/components/Button/Button';
+import { ButtonVariants } from 'apps/web/src/components/Button/Button';
+import SuccessMessage, {
+  SuccessAction,
+} from 'apps/web/src/components/Basenames/shared/SuccessMessage';
 import { ActionType } from 'libs/base-ui/utils/logEvent';
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useMemo } from 'react';
 import { useAccount } from 'wagmi';
 import USDCClaimModal from './USDCClaimModal';
 
@@ -49,29 +52,40 @@ export default function RegistrationSuccessMessage() {
     redirectToProfile();
   }, [logEventWithContext, redirectToProfile]);
 
+  const actions: SuccessAction[] = useMemo(() => {
+    const baseActions: SuccessAction[] = [
+      {
+        label: 'Go to Profile',
+        onClick: goToProfileOnClick,
+        variant: ButtonVariants.Secondary,
+      },
+    ];
+
+    if (code) {
+      return [
+        {
+          label: 'Claim USDC',
+          onClick: claimUSDC,
+          isPrimary: true,
+        },
+        ...baseActions,
+      ];
+    } else {
+      return [
+        {
+          label: 'Customize Profile',
+          onClick: customizeProfileOnClick,
+          isPrimary: true,
+        },
+        ...baseActions,
+      ];
+    }
+  }, [code, claimUSDC, customizeProfileOnClick, goToProfileOnClick]);
+
   return (
     <>
       {popupMessage && <USDCClaimModal message={popupMessage} onClose={closePopup} />}
-      <div className="items-left mx-auto flex w-full max-w-[65rem] flex-col justify-between gap-6 rounded-3xl border border-[#266EFF] bg-blue-600 p-10 shadow-xl transition-all duration-500 md:flex-row md:items-center">
-        <h1 className="text-center text-3xl font-bold tracking-wider text-white md:text-left">
-          Congrats!
-          <br className="md:hidden" /> This name is yours!
-        </h1>
-        <div className="flex flex-col gap-4 md:flex-row">
-          {code ? (
-            <Button rounded fullWidth onClick={claimUSDC}>
-              Claim USDC
-            </Button>
-          ) : (
-            <Button rounded fullWidth onClick={customizeProfileOnClick}>
-              Customize Profile
-            </Button>
-          )}
-          <Button rounded fullWidth variant={ButtonVariants.Secondary} onClick={goToProfileOnClick}>
-            Go to Profile
-          </Button>
-        </div>
-      </div>
+      <SuccessMessage title="Congrats!" subtitle="This name is yours!" actions={actions} />
     </>
   );
 }
