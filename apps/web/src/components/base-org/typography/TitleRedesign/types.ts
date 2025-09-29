@@ -1,0 +1,16 @@
+export const enum TitleLevel {
+  H0Medium = 'h0-medium',
+  H1Medium = 'h1-medium',
+  H1Regular = 'h1-regular',
+  H2Medium = 'h2-medium',
+  H2Regular = 'h2-regular',
+  H3Medium = 'h3-medium',
+  H3Regular = 'h3-regular',
+  H4Regular = 'h4-regular',
+  H4Mono = 'h4-mono',
+  H4MonoSmall = 'h4-mono-small',
+  H5Medium = 'h5-medium',
+  H5Regular = 'h5-regular',
+  H6Regular = 'h6-regular',
+  H6Mono = 'h6-mono',
+}
