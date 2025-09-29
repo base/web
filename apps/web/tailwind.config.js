@@ -530,6 +530,7 @@ module.exports = {
       fontFamily: {
         display: ['var(--font-coinbase-display)', ...defaultTheme.fontFamily.sans],
         sans: ['var(--font-coinbase-sans)', ...defaultTheme.fontFamily.sans],
+        'sans-text': ['var(--font-base-sans-text)', ...defaultTheme.fontFamily.sans],
         mono: ['var(--font-coinbase-mono)', ...defaultTheme.fontFamily.sans],
         doto: ['var(--font-doto)', ...defaultTheme.fontFamily.sans],
         britney: ['var(--font-britney)', ...defaultTheme.fontFamily.sans],

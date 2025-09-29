@@ -10,14 +10,12 @@ import {
   USERNAME_BASE_ETH_HOLDERS_DISCOUNT_VALIDATORS,
   USERNAME_BNS_DISCOUNT_VALIDATORS,
   USERNAME_CB_ID_DISCOUNT_VALIDATORS,
-  USERNAME_EA_DISCOUNT_VALIDATORS,
 } from 'apps/web/src/addresses/usernames';
 
 const validators: Record<ProofTableNamespace, Record<number, Address>> = {
   [ProofTableNamespace.CBIDDiscount]: USERNAME_CB_ID_DISCOUNT_VALIDATORS,
   [ProofTableNamespace.BaseEthHolders]: USERNAME_BASE_ETH_HOLDERS_DISCOUNT_VALIDATORS,
   [ProofTableNamespace.BNSDiscount]: USERNAME_BNS_DISCOUNT_VALIDATORS,
-  [ProofTableNamespace.UsernamesEarlyAccess]: USERNAME_EA_DISCOUNT_VALIDATORS,
 };
 
 export function proofValidation(

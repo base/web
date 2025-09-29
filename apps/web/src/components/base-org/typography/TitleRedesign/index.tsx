@@ -21,24 +21,21 @@ const defaultTags: Record<TitleLevel, ElementType> = {
 
 export const levelStyles: Record<TitleLevel, string> = {
   [TitleLevel.H0Medium]:
-    'font-sans text-[11.875rem] lg:text-[6.25rem] leading-[92%] font-medium tracking-[-0.3125rem]',
-  [TitleLevel.H1Medium]:
-    'font-sans text-[4.5rem] lg:text-[10rem] leading-[92%] font-medium tracking-[-0.18rem]',
-  [TitleLevel.H1Regular]:
-    'font-sans text-[4.5rem] lg:text-[10rem] leading-[92%] tracking-[-0.18rem]',
+    'font-sans text-[3.5rem] lg:text-[5rem] leading-[100%] tracking-[-0.175rem] lg:tracking-[-0.25rem]',
+  [TitleLevel.H1Medium]: 'font-sans text-[5rem] leading-[100%] font-medium tracking-[-0.25rem]',
+  [TitleLevel.H1Regular]: 'font-sans text-[2.25rem] leading-[110%] tracking-[-0.0625rem]',
   [TitleLevel.H2Medium]:
-    'font-sans text-[3.75rem] lg:text-[7.5rem] leading-[92%] font-medium tracking-[-0.15rem]',
-  [TitleLevel.H2Regular]:
-    'font-sans text-[3.75rem] lg:text-[7.5rem] leading-[92%] tracking-[-0.2rem]',
+    'font-sans text-[1.5rem] leading-[110%] font-medium tracking-[-0.03125rem]',
+  [TitleLevel.H2Regular]: 'font-sans text-[1.5rem] leading-[110%] tracking-[-0.03125rem]',
   [TitleLevel.H3Medium]:
     'font-sans text-[3rem] lg:text-[5rem] leading-[100%] tracking-[-0.12rem] font-medium',
   [TitleLevel.H3Regular]: 'font-sans text-[3rem] lg:text-[5rem] leading-[100%] tracking-[-0.12rem]',
   [TitleLevel.H4Regular]:
-    'font-sans text-[2.25rem] lg:text-[4rem] leading-[110%] tracking-[-0.1125rem]',
+    'font-sans text-[2.25rem] lg:text-[4rem] leading-[110%] tracking-[-0.125rem] lg:tracking-[-0.22rem]',
   [TitleLevel.H4Mono]:
     'font-mono text-[2.25rem] lg:text-[4rem] leading-[110%] tracking-[-0.1125rem] font-light',
   [TitleLevel.H4MonoSmall]:
-    'font-mono text-[1.75rem] lg:text-[3rem] leading-[110%] tracking-[-0.0875rem] font-light',
+    'font-mono text-[1.625rem] lg:text-[2rem] leading-[105%] tracking-[-0.04875rem] font-light',
   [TitleLevel.H5Medium]:
     'font-sans text-[1.625rem] lg:text-[2rem] leading-[105%] tracking-[-0.04875rem] font-medium',
   [TitleLevel.H5Regular]:

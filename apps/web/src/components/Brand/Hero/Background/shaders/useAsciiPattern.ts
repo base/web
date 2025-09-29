@@ -23,6 +23,8 @@ type AsciiPatternUniforms = {
   uImage: { value: THREE.Texture | null };
   uImageDimensions: { value: THREE.Vector2 };
   uResolution: { value: THREE.Vector2 };
+  uLogicalResolution: { value: THREE.Vector2 };
+  uCoordinateScale: { value: number };
   uPatternCount: { value: number };
   uBaseTileSize: { value: number };
   uTime: { value: number };
@@ -69,6 +71,8 @@ type UseAsciiPatternOptions = {
   containerHeight?: number;
   darkMode?: boolean;
   bottomFade?: boolean;
+  logicalWidth?: number;
+  logicalHeight?: number;
 };
 
 export function useAsciiPattern({
@@ -91,12 +95,21 @@ export function useAsciiPattern({
   containerHeight,
   darkMode = false,
   bottomFade = false,
+  logicalWidth,
+  logicalHeight,
 }: UseAsciiPatternOptions) {
   const threeWidth = useThree((state) => Math.round(state.size.width));
   const threeHeight = useThree((state) => Math.round(state.size.height));
 
   const width = containerWidth ?? threeWidth;
   const height = containerHeight ?? threeHeight;
+
+  // Use logical dimensions if provided (for coordinate calculations)
+  const logWidth = logicalWidth ?? width;
+  const logHeight = logicalHeight ?? height;
+
+  // Calculate coordinate scale factor to convert from render target coords to logical coords
+  const coordinateScale = logWidth / width;
 
   const [imageTexture, setImageTexture] = useState<THREE.Texture | null>(null);
   const timeRef = useRef(0);
@@ -115,6 +128,8 @@ export function useAsciiPattern({
     uResolution: {
       value: new Vector2(1, 1),
     },
+    uLogicalResolution: { value: new Vector2(1, 1) },
+    uCoordinateScale: { value: 1.0 },
     uPatternCount: { value: 6 },
     uBaseTileSize: { value: 8 },
     uTime: { value: 0 },
@@ -163,6 +178,8 @@ export function useAsciiPattern({
   uniforms.uRandomSpread.value = randomSpread;
   uniforms.uRandomThreshold.value = randomThreshold;
   uniforms.uResolution.value.set(width, height);
+  uniforms.uLogicalResolution.value.set(logWidth, logHeight);
+  uniforms.uCoordinateScale.value = coordinateScale;
   uniforms.uUseWhiteBackground.value = useWhiteBackground;
   uniforms.uSaturation.value = saturation;
   uniforms.uBrightness.value = brightnessMotion.get();
@@ -190,6 +207,8 @@ export function useAsciiPattern({
         uniform vec2 uImageDimensions;
         uniform sampler2D uDeformTexture;
         uniform vec2 uResolution;
+        uniform vec2 uLogicalResolution;
+        uniform float uCoordinateScale;
         uniform int uPatternCount;
         uniform float uBaseTileSize;
         uniform float uTime;
@@ -256,6 +275,18 @@ export function useAsciiPattern({
           return texture2D(atlas, atlasUV);
         }
 
+        vec4 sampleAltPatternAtlas(sampler2D atlas, int atlasColumns, int patternIndex, vec2 uv) {
+          float colIndex = float(patternIndex);
+          
+          // Add small margin to prevent bleeding - for alt patterns
+          vec2 margin = vec2(0.5 / 512.0, 0.0);
+          vec2 scaledUV = uv * (1.0 - 2.0 * margin.x) + margin;
+          
+          vec2 atlasOffset = vec2(colIndex / float(atlasColumns), 0.0);
+          vec2 atlasUV = (scaledUV / vec2(float(atlasColumns), 1.0)) + atlasOffset;
+          return texture2D(atlas, atlasUV);
+        }
+
         vec2 getCoveredUV(vec2 uv, vec2 containerSize, vec2 imageSize) {
           vec2 containerAspect = containerSize / max(containerSize.x, containerSize.y);
           vec2 imageAspect = imageSize / max(imageSize.x, imageSize.y);
@@ -319,10 +350,11 @@ export function useAsciiPattern({
         }
 
         void main() {
-          vec2 pix = gl_FragCoord.xy;
+          // Scale coordinates from render resolution to logical resolution
+          vec2 pix = gl_FragCoord.xy * uCoordinateScale;
           vec2 tilePos = floor(pix / uBaseTileSize) * uBaseTileSize;
-          vec2 tileCenterUV = (tilePos + uBaseTileSize * 0.5) / uResolution;
-          vec2 adjustedTileCenter = getCoveredUV(tileCenterUV, uResolution, uImageDimensions);
+          vec2 tileCenterUV = (tilePos + uBaseTileSize * 0.5) / uLogicalResolution;
+          vec2 adjustedTileCenter = getCoveredUV(tileCenterUV, uLogicalResolution, uImageDimensions);
 
           if (adjustedTileCenter.x < 0.0 || adjustedTileCenter.x > 1.0 || adjustedTileCenter.y < 0.0 || adjustedTileCenter.y > 1.0) {
             if (uDarkMode > 0.5) {
@@ -415,22 +447,30 @@ export function useAsciiPattern({
           else if (patternIndex == 4) regularAtlasIndex = max(0, uPatternAtlasColumns - 5);
           else regularAtlasIndex = 0;
 
-          // Alt patterns use forward order
-          int altAtlasIndex = min(patternIndex, uAltPatternAtlasColumns - 1);
+          int altPatternIndex;
+          if (lum < 0.1) altPatternIndex = 0;
+          else if (lum < 0.3) altPatternIndex = 1;
+          else if (lum < 0.5) altPatternIndex = 2;
+          else if (lum < 0.7) altPatternIndex = 3;
+          else if (lum < 0.9) altPatternIndex = 4;
+          else altPatternIndex = 5;
+          
+          altPatternIndex = clamp(altPatternIndex, 0, 5);
+          int altAtlasIndex = min(altPatternIndex, uAltPatternAtlasColumns - 1);
 
-          altPatternColor = samplePatternAtlas(uAltPatternAtlas, uAltPatternAtlasColumns, altAtlasIndex, patternUV);
+          altPatternColor = sampleAltPatternAtlas(uAltPatternAtlas, uAltPatternAtlasColumns, altAtlasIndex, patternUV);
           regularPatternColor = samplePatternAtlas(uPatternAtlas, uPatternAtlasColumns, regularAtlasIndex, patternUV);
 
           vec4 patternColor = mix(regularPatternColor, altPatternColor, transitionFactor);
 
-          vec3 altColor = getColorForIntensity(patternIndex, altPatternColor.a, true, originalCol, altPatternColor);
+          vec3 altColor = getColorForIntensity(altPatternIndex, altPatternColor.a, true, originalCol, altPatternColor);
           vec3 regularColor = getColorForIntensity(patternIndex, regularPatternColor.a, false, originalCol, regularPatternColor);
 
-          vec3 finalColor = mix(regularColor, altColor, transitionFactor);
 
-          if (finalColor.r >= 0.999 && finalColor.g >= 0.999 && finalColor.b >= 0.999) {
-            // Fallback patterns
-            vec4 altFallbackPattern = samplePatternAtlas(uAltPatternAtlas, uAltPatternAtlasColumns, 1, patternUV);
+          bool regularNeedsFallback = (regularColor.r >= 0.999 && regularColor.g >= 0.999 && regularColor.b >= 0.999);
+          
+          if (regularNeedsFallback) {
+            // this fallback for the regular candle pattern mixes some pattern indexes. happy accident that makes it look richer and brings more visual interest
             vec4 regularFallbackPattern;
             if (patternIndex <= 2) {
               regularFallbackPattern = samplePatternAtlas(uPatternAtlas, uPatternAtlasColumns, uPatternAtlasColumns - 2, patternUV);
@@ -438,33 +478,18 @@ export function useAsciiPattern({
               regularFallbackPattern = samplePatternAtlas(uPatternAtlas, uPatternAtlasColumns, uPatternAtlasColumns - 3, patternUV);
             }
 
-            vec3 altFallbackColor;
-            vec3 backgroundColor = vec3(1.0, 1.0, 1.0);
-            if (uDarkMode > 0.5) {
-              backgroundColor = vec3(0.0, 0.0, 0.0);
-            }
-
-            if (altFallbackPattern.a < 0.001) {
-              altFallbackColor = backgroundColor;
-            } else {
-              if (uUseOriginalSvgColors > 0.5) {
-                altFallbackColor = mix(backgroundColor, altFallbackPattern.rgb, altFallbackPattern.a);
-              } else {
-                vec3 blendedColor = mix(backgroundColor, originalCol, altFallbackPattern.a);
-                altFallbackColor = mix(backgroundColor, blendedColor, uAltPatternOpacity);
-              }
-            }
-
-            vec3 regularFallbackColor;
-
             if (regularFallbackPattern.a < 0.001) {
-              regularFallbackColor = backgroundColor;
+              vec3 backgroundColor = vec3(1.0, 1.0, 1.0);
+              if (uDarkMode > 0.5) {
+                backgroundColor = vec3(0.0, 0.0, 0.0);
+              }
+              regularColor = backgroundColor;
             } else {
-              regularFallbackColor = vec3(0.925, 0.925, 0.925);
+              regularColor = vec3(0.925, 0.925, 0.925);
             }
-
-            finalColor = mix(regularFallbackColor, altFallbackColor, transitionFactor);
           }
+
+          vec3 finalColor = mix(regularColor, altColor, transitionFactor);
 
           // Apply bottom fade to final output
           if (uBottomFade > 0.5) {
@@ -496,8 +521,8 @@ export function useAsciiPattern({
     textureLoader.load(imageUrl, (texture) => {
       if (controller.signal.aborted) return;
       texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping;
-      texture.magFilter = THREE.NearestFilter;
-      texture.minFilter = THREE.NearestFilter;
+      texture.magFilter = THREE.LinearFilter;
+      texture.minFilter = THREE.LinearFilter;
       texture.anisotropy = 1;
       setImageTexture(texture);
     });
@@ -512,8 +537,8 @@ export function useAsciiPattern({
 
     textureLoader.load('/patterns/pat3.png', (texture) => {
       texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-      texture.magFilter = THREE.NearestFilter;
-      texture.minFilter = THREE.NearestFilter;
+      texture.magFilter = THREE.LinearFilter;
+      texture.minFilter = THREE.LinearFilter;
       texture.anisotropy = 1;
       uniforms.uPatternAtlas.value = texture;
       uniforms.uPatternAtlasColumns.value = 4;
@@ -523,8 +548,8 @@ export function useAsciiPattern({
     const altPatternColumns = altPattern?.columns ?? 6;
     textureLoader.load(altPatternUrl, (texture) => {
       texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-      texture.magFilter = THREE.NearestFilter;
-      texture.minFilter = THREE.NearestFilter;
+      texture.magFilter = THREE.LinearFilter;
+      texture.minFilter = THREE.LinearFilter;
       texture.anisotropy = 1;
       uniforms.uAltPatternAtlas.value = texture;
       uniforms.uAltPatternAtlasColumns.value = altPatternColumns;

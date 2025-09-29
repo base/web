@@ -132,8 +132,7 @@ export default function RegistrationFAQ() {
                       className="text-blue-600 hover:underline"
                     >
                       Coinbase One Verification
-                    </a>{' '}
-                    (free renewals with active subscription)
+                    </a>
                   </li>
                   <li>
                     <a
