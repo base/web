@@ -27,7 +27,7 @@ export function Hero() {
           alt="agentkit"
           width={32}
           height={32}
-          className="h-5 w-5"
+          className="w-5 h-5"
         />
         <Title level={TitleLevel.Title3} className="font-bold">
           AgentKit
@@ -44,7 +44,7 @@ export function Hero() {
         and allow them to transact onchain.
       </Title>
 
-      <div className="flex gap-4 bg-black pb-24  pt-5 max-sm:flex-col">
+      <div className="flex gap-4 pt-4 pb-24 bg-black max-sm:flex-col md:pt-5">
         <button
           type="button"
           className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-lg bg-white px-4 pb-3 pt-3 font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90 max-sm:mr-auto"
