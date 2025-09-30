@@ -290,7 +290,7 @@ module.exports = MillionLint.next({
             headers: [
               ...securityHeaders,
               {
-                key: 'Cross-Origin-Opener-Policy',
+                key: 'cross-origin-opener-policy',
                 value: 'unsafe-none',
               },
             ],
