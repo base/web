@@ -5,4 +5,5 @@ export enum TextVariant {
   CTALabelSm = 'cta-label-sm',
   Caption = 'caption',
   CaptionMono = 'caption-mono',
+  BodyLarge = 'BodyLarge',
 }

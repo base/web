@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 const defaultTags: Record<TextVariant, ElementType> = {
   [TextVariant.Body]: 'p',
+  [TextVariant.BodyLarge]: 'p',
   [TextVariant.BodyMono]: 'p',
   [TextVariant.CTALabel]: 'span',
   [TextVariant.CTALabelSm]: 'span',
@@ -12,7 +13,8 @@ const defaultTags: Record<TextVariant, ElementType> = {
 };
 
 export const variantStyles: Record<TextVariant, string> = {
-  [TextVariant.Body]: 'font-sans text-[1rem] leading-[130%]',
+  [TextVariant.BodyLarge]: 'font-sans-text text-[1.125rem] leading-[130%] tracking-[-0.015625rem]',
+  [TextVariant.Body]: 'font-sans-text text-[1rem] leading-[130%]',
   [TextVariant.BodyMono]: 'font-mono font-[350] text-[1rem] tracking-[0.0175rem] leading-[100%]',
   [TextVariant.CTALabel]: 'font-sans text-[0.9375rem] font-medium leading-[114%]',
   [TextVariant.CTALabelSm]:

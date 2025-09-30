@@ -1,5 +1,7 @@
 import Link from 'apps/web/src/components/Link';
 import cx from 'classnames';
+import Title from 'apps/web/src/components/base-org/typography/TitleRedesign';
+import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRedesign/types';
 
 type Props = {
   links: {
@@ -11,7 +13,7 @@ type Props = {
 
 export function LinkStack({ links }: Props) {
   return (
-    <ul className="flex w-full flex-col gap-0">
+    <ul className="flex flex-col gap-0 w-full">
       {links.map((link, index) => {
         const isExternal = link.url.startsWith('http');
 
@@ -30,7 +32,7 @@ export function LinkStack({ links }: Props) {
             >
               <div className="flex flex-col gap-3">
                 <div className="text-4xl leading-[1.15] tracking-[-1.6px] md:text-7xl md:leading-none md:tracking-[-2.56px]">
-                  {link.title}
+                  <Title level={TitleLevel.H2Regular}>{link.title}</Title>
                 </div>
                 <div className="max-w-[325px] leading-[1.25] text-gray-20">{link.description}</div>
               </div>

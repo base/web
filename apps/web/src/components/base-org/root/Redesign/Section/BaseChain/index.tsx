@@ -196,7 +196,7 @@ export function AnimatedText({
         return (
           <div
             key={id}
-            className={classNames('relative overflow-hidden', titleClass)}
+            className={classNames('overflow-hidden relative', titleClass)}
             style={containerStyle}
           >
             <motion.div
@@ -215,7 +215,7 @@ export function AnimatedText({
                     whileInView={isFinalChar ? finalCharAnimation : animationConfig.whileInView}
                     viewport={animationConfig.viewport}
                     transition={getTransition(delay + index * 0.1, charIndex)}
-                    className={classNames(titleClass, 'block')}
+                    className={classNames(titleClass, 'block !font-mono')}
                     style={charStyle}
                   >
                     {charObj.char === ' ' ? '\u00A0' : charObj.char}
@@ -232,7 +232,7 @@ export function AnimatedText({
 
 function MetricCard({ title, icon, value, unit }: MetricCardProps) {
   return (
-    <div className="flex w-full flex-col rounded-lg bg-base-gray-25/90 p-4 backdrop-blur-sm md:w-[250px]">
+    <div className="pointer-events-none flex w-full flex-col rounded-lg bg-base-gray-25/90 p-4 backdrop-blur-sm md:w-[250px]">
       <div className="flex justify-between items-start mb-4">
         <div className="flex flex-col gap-1">
           <Text variant={TextVariant.Body}>{title}</Text>
@@ -240,11 +240,16 @@ function MetricCard({ title, icon, value, unit }: MetricCardProps) {
         <div className="flex-shrink-0 ml-2 w-6 h-6">{icon}</div>
       </div>
       <div className="flex gap-2 items-end">
-        <AnimatedText text={value} titleLevel={TitleLevel.H4MonoSmall} delay={0.2} />
+        <AnimatedText
+          text={value}
+          titleLevel={TitleLevel.H1Regular}
+          className="!font-mono"
+          delay={0.2}
+        />
         {unit && (
           <AnimatedText
             text={unit}
-            titleLevel={TitleLevel.H6Mono}
+            titleLevel={TitleLevel.H2Regular}
             className="pb-[9px] lg:pb-2"
             delay={0.2}
           />

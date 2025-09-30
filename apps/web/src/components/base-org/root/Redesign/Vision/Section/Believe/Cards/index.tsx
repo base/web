@@ -2,7 +2,7 @@ import { Card } from 'apps/web/src/components/base-org/root/Redesign/Vision/Sect
 
 export function BelieveSectionCards() {
   return (
-    <div className="col-span-full grid grid-cols-1 gap-x-[min(2.25vw,_32px)] gap-y-8 lg:grid-cols-2">
+    <div className="col-span-full grid grid-cols-2 gap-x-[min(2.25vw,_32px)] gap-y-[min(2.25vw,_32px)] lg:grid-cols-4">
       {cardsContent.map((card) => (
         <Card content={card} key={`${card.index}-${card.title}`} />
       ))}
