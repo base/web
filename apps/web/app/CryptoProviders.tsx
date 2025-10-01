@@ -25,11 +25,11 @@ const connectors = connectorsForWallets(
       wallets: [
         coinbaseWallet,
         metaMaskWallet,
+        rabbyWallet,
         uniswapWallet,
         rainbowWallet,
         phantomWallet,
         walletConnectWallet,
-        rabbyWallet,
       ],
     },
   ],
