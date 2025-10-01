@@ -7,7 +7,7 @@ import { useGasPrice } from 'wagmi';
 import dynamic from 'next/dynamic';
 
 const SimpleCryptoProvider = dynamic(
-  () => import('apps/web/app/SimpleCryptoProviders').then((mod) => mod.SimpleCryptoProvider),
+  () => import('apps/web/app/SimpleCryptoProviders').then(async (mod) => mod.SimpleCryptoProvider),
   {
     ssr: false,
   },
