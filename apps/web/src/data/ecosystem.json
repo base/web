@@ -4606,5 +4606,13 @@
     "imageUrl": "/images/partners/levva.png",
     "category": "defi",
     "subcategory": "portfolios"
+  },
+  {
+    "name": "FarRank",
+    "url": "https://farrank.info",
+    "description": "Farcaster miniapp helps users check their Farcaster metrics and points on the Base network.",
+    "imageUrl": "/images/partners/farrank.png",
+    "category": "consumer",
+    "subcategory": "portfolios"
   }
 ]
