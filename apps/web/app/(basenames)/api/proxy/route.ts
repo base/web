@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { isAddress } from 'viem';
 
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
-const BASESCAN_API_KEY = process.env.BASESCAN_API_KEY;
 const TALENT_PROTOCOL_API_KEY = process.env.TALENT_PROTOCOL_API_KEY;
 
 export async function GET(req: NextRequest) {

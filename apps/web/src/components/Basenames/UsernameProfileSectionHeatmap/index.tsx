@@ -6,7 +6,7 @@ import {
 } from 'apps/web/src/components/Basenames/UsernameProfileSectionHeatmap/contracts';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import Image from 'next/image';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { ComponentType, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import CalendarHeatmap, { ReactCalendarHeatmapValue } from 'react-calendar-heatmap';
 import { Address } from 'viem';
 import './cal.css';
@@ -162,12 +162,19 @@ export default function UsernameProfileSectionHeatmap() {
     };
   };
 
+  type EtherscanEnvelope = {
+    status?: '1' | '0';
+    message?: string;
+    result?: unknown;
+    data?: { result?: unknown };
+  };
+
   const fetchTransactions = useCallback(
     async (apiUrl: string, retryCount = 3): Promise<Transaction[]> => {
       try {
         const response = await fetch(apiUrl);
-        const json = (await response.json()) as any;
-        const data = json?.data ?? json;
+        const json = (await response.json()) as EtherscanEnvelope | { data?: EtherscanEnvelope };
+        const data: EtherscanEnvelope = (json as any)?.data ?? (json as EtherscanEnvelope);
 
         if (data?.status === '1' && Array.isArray(data?.result)) {
           return data.result as Transaction[];
@@ -455,14 +462,21 @@ export default function UsernameProfileSectionHeatmap() {
             style={{ direction: 'rtl' }}
             className="w-full max-w-full overflow-x-auto overflow-y-hidden whitespace-nowrap"
           >
-            <CalendarHeatmap
-              startDate={new Date(new Date().setFullYear(new Date().getFullYear() - 1))}
-              endDate={new Date()}
-              horizontal
-              values={heatmapData}
-              classForValue={classForValue}
-              titleForValue={titleForValue}
-            />
+            {(() => {
+              const AnyCalendarHeatmap = CalendarHeatmap as unknown as ComponentType<
+                Record<string, unknown>
+              >;
+              return (
+                <AnyCalendarHeatmap
+                  startDate={new Date(new Date().setFullYear(new Date().getFullYear() - 1))}
+                  endDate={new Date()}
+                  horizontal
+                  values={heatmapData}
+                  classForValue={classForValue}
+                  titleForValue={titleForValue}
+                />
+              );
+            })()}
           </div>
         </div>
         <Collapsible.Trigger className="flex w-full flex-row items-center border-t border-palette-line/20 px-6 py-4">
