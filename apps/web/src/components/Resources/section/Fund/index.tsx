@@ -22,14 +22,15 @@ const ITEMS = [
     href: 'https://docs.google.com/forms/d/e/1FAIpQLSeiSAod4PAbXlvvDGtHWu-GqzGpvHYfaTQR2f77AawD7GYc4Q/viewform',
   },
   {
-    title: 'Base builder rewards',
+    title: 'Base Builder Rewards',
     description:
-      'Connect to Talent Protocol and build to be eligible for a share of 2 ETH in weekly rewards.',
-    href: 'https://mirror.xyz/talentprotocol.eth/aVAJ0vDVj7wB3MNRAmC_Q6EXuXUh2rt5SEU24hDnza4?utm_source=dotorg&urm_medium=builderkit',
+      'The Base ecosystem offers multiple funding pathways designed specifically for builders at every stage, from weekend hacks to full-scale businesses.',
+    href: 'https://docs.base.org/get-started/get-funded',
   },
   {
-    title: 'Gas credits',
-    description: 'Eligible projects may receive up to $15K in gas credits for their users.',
-    href: 'https://www.smartwallet.dev/base-gasless-campaign/?utm_source=dotorg&utm_medium=builderkit',
+    title: 'Paymaster Gas Credits',
+    description:
+      'Get up to $600 in free Paymaster credits for signing up, and build gasless onchain apps that make it easier for your users to onboard.',
+    href: 'https://www.coinbase.com/developer-platform/products/paymaster',
   },
 ];
