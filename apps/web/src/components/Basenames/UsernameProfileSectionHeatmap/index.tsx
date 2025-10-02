@@ -169,12 +169,22 @@ export default function UsernameProfileSectionHeatmap() {
     data?: { result?: unknown };
   };
 
+  const isObject = (value: unknown): value is Record<string, unknown> => {
+    return typeof value === 'object' && value !== null;
+  };
+
+  const hasDataEnvelope = (value: unknown): value is { data: EtherscanEnvelope } => {
+    return isObject(value) && 'data' in value && isObject((value as { data?: unknown }).data);
+  };
+
   const fetchTransactions = useCallback(
     async (apiUrl: string, retryCount = 3): Promise<Transaction[]> => {
       try {
         const response = await fetch(apiUrl);
-        const json = (await response.json()) as EtherscanEnvelope | { data?: EtherscanEnvelope };
-        const data: EtherscanEnvelope = (json as any)?.data ?? (json as EtherscanEnvelope);
+        const json: unknown = await response.json();
+        const data: EtherscanEnvelope = hasDataEnvelope(json)
+          ? (json as { data: EtherscanEnvelope }).data
+          : (json as EtherscanEnvelope);
 
         if (data?.status === '1' && Array.isArray(data?.result)) {
           return data.result as Transaction[];
