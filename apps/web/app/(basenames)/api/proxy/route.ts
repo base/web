@@ -43,32 +43,12 @@ export async function GET(req: NextRequest) {
     });
 
     const contentType = externalResponse.headers.get('content-type');
-    const maskedApiUrl = apiUrl.replace(/(apikey=)[^&]+/i, '$1****');
     let responseData;
     if (contentType?.includes('application/json')) {
       responseData = await externalResponse.json();
     } else {
       responseData = await externalResponse.text();
     }
-
-    // Log upstream V1 deprecation warnings safely (masked URL)
-    try {
-      const maybeJson = typeof responseData === 'string' ? JSON.parse(responseData) : responseData;
-      if (
-        maybeJson?.status === '0' &&
-        typeof maybeJson?.message === 'string' &&
-        maybeJson.message.toLowerCase().includes('deprecated')
-      ) {
-        console.warn('[api/proxy] Upstream API deprecation warning', {
-          apiType,
-          apiUrl: maskedApiUrl,
-          message: maybeJson.message,
-        });
-      }
-    } catch {
-      // ignore non-JSON bodies
-    }
-
     if (externalResponse.ok) {
       return NextResponse.json({ data: responseData });
     } else {
