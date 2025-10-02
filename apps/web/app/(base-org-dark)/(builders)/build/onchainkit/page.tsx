@@ -9,7 +9,7 @@ import {
 } from 'apps/web/app/(base-org-dark)/(builders)/build/onchainkit/CtaFooterSection';
 import { BuildersSection } from 'apps/web/app/(base-org-dark)/(builders)/BuildersSection';
 import { BuildersContainer } from 'apps/web/app/(base-org-dark)/(builders)/BuildersContainer';
-import ockHero from './ock-hero.png';
+import ockHero from './ock-hero.avif';
 const demoComponents = ['Wallet', 'Buy', 'Fund', 'Earn', 'Transact'];
 
 export const metadata: Metadata = {
