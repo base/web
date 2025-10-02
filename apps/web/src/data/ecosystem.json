@@ -4552,6 +4552,14 @@
     "subcategory": "creator"
   },
   {
+    "name": "KOLZ",
+    "description": "A cutting-edge Web3 influencer platform designed to bridge the gap between leading influencers in the cryptocurrency and blockchain space (known as KOLs - Key Opinion Leaders) and their followers.",
+    "url": "https://kolz.chat/",
+    "imageUrl": "/images/partners/kolz.png",
+    "category": "infra",
+    "subcategory": "ai"
+  },
+  {
     "name": "Pinto",
     "description": "Pinto is low volatility, yield generating money: infinitely scalable, trust-minimized and non-custodial. Users can earn additional yield through active participation in protocol maintenance.",
     "url": "https://pinto.money/",
