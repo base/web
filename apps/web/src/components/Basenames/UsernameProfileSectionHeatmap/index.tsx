@@ -6,7 +6,7 @@ import {
 } from 'apps/web/src/components/Basenames/UsernameProfileSectionHeatmap/contracts';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
 import Image from 'next/image';
-import { ComponentType, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import CalendarHeatmap, { ReactCalendarHeatmapValue } from 'react-calendar-heatmap';
 import { Address } from 'viem';
 import './cal.css';
@@ -162,53 +162,32 @@ export default function UsernameProfileSectionHeatmap() {
     };
   };
 
-  type EtherscanEnvelope = {
-    status?: '1' | '0';
-    message?: string;
-    result?: unknown;
-    data?: { result?: unknown };
-  };
-
-  const isObject = (value: unknown): value is Record<string, unknown> => {
-    return typeof value === 'object' && value !== null;
-  };
-
-  const hasDataEnvelope = (value: unknown): value is { data: EtherscanEnvelope } => {
-    return isObject(value) && 'data' in value && isObject((value as { data?: unknown }).data);
+  type EtherscanApiResponse = {
+    status: '1' | '0';
+    message: string;
+    result: unknown;
   };
 
   const fetchTransactions = useCallback(
     async (apiUrl: string, retryCount = 3): Promise<Transaction[]> => {
       try {
         const response = await fetch(apiUrl);
-        const json: unknown = await response.json();
-        const data: EtherscanEnvelope = hasDataEnvelope(json)
-          ? (json as { data: EtherscanEnvelope }).data
-          : (json as EtherscanEnvelope);
+        const json = (await response.json()) as { data: EtherscanApiResponse };
+        const data = json.data;
 
-        if (data?.status === '1' && Array.isArray(data?.result)) {
+        if (data.status === '1' && Array.isArray(data.result)) {
           return data.result as Transaction[];
         }
 
-        // Support potential V2 nested shape: data.data.result
-        if (Array.isArray(data?.data?.result)) {
-          return data.data.result as Transaction[];
-        }
-
-        // Some endpoints may omit status but still return an array
-        if (Array.isArray(data?.result)) {
-          return data.result as Transaction[];
-        }
-
-        if (data?.status === '0' && data?.message === 'No transactions found') {
+        if (data.status === '0' && data.message === 'No transactions found') {
           return []; // Return an empty array for no transactions
-        } else if (data?.status === '0' && data?.message === 'Exception') {
+        } else if (data.status === '0' && data.message === 'Exception') {
           if (retryCount > 0) {
             console.log(`API returned an exception. Retrying... (${retryCount} attempts left)`);
             await new Promise((resolve) => setTimeout(resolve, 2000));
             return await fetchTransactions(apiUrl, retryCount - 1);
           } else {
-            throw new Error(`API Error: ${data?.message}`);
+            throw new Error(`API Error: ${data.message}`);
           }
         } else {
           console.error('Unexpected API response structure:', json);
@@ -472,21 +451,15 @@ export default function UsernameProfileSectionHeatmap() {
             style={{ direction: 'rtl' }}
             className="w-full max-w-full overflow-x-auto overflow-y-hidden whitespace-nowrap"
           >
-            {(() => {
-              const AnyCalendarHeatmap = CalendarHeatmap as unknown as ComponentType<
-                Record<string, unknown>
-              >;
-              return (
-                <AnyCalendarHeatmap
-                  startDate={new Date(new Date().setFullYear(new Date().getFullYear() - 1))}
-                  endDate={new Date()}
-                  horizontal
-                  values={heatmapData}
-                  classForValue={classForValue}
-                  titleForValue={titleForValue}
-                />
-              );
-            })()}
+            {/* @ts-expect-error react-calendar-heatmap has incompatible JSX types in our setup; runtime is fine */}
+            <CalendarHeatmap
+              startDate={new Date(new Date().setFullYear(new Date().getFullYear() - 1))}
+              endDate={new Date()}
+              horizontal
+              values={heatmapData}
+              classForValue={classForValue}
+              titleForValue={titleForValue}
+            />
           </div>
         </div>
         <Collapsible.Trigger className="flex w-full flex-row items-center border-t border-palette-line/20 px-6 py-4">
