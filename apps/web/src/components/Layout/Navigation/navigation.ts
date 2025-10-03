@@ -376,6 +376,10 @@ export const BRAND_ROUTES: BrandRoute[] = [
         label: 'Lockup Examples',
         link: '#lockup-examples',
       },
+      {
+        label: 'Partner Lockup',
+        link: '#partner-lockup',
+      },
     ],
   },
   {
