@@ -3160,6 +3160,14 @@
     "subcategory": "developer tool"
   },
   {
+    "name": "ProductMint",
+    "description": "Tokenize products and subscriptions as tradable RWAs via NFTs, with automated renewals, dynamic pricing, and lower fees than legacy payment processors. No Web2 dependencies, true ownership for all.",
+    "url": "https://productmint.io",
+    "imageUrl": "/images/partners/product-mint.png",
+    "category": "consumer",
+    "subcategory": "real world"
+  },
+  {
     "name": "Prophouse",
     "url": "https://prop.house",
     "description": "Prop House is public infrastructure by Nouns DAO that helps internet communities incentivize ecosystem development.",
@@ -4606,13 +4614,5 @@
     "imageUrl": "/images/partners/levva.png",
     "category": "defi",
     "subcategory": "portfolios"
-  },
-  {
-    "name": "ProductMint",
-    "description": "Tokenize products and subscriptions as tradable RWAs via NFTs, with automated renewals, dynamic pricing, and lower fees than legacy payment processors. No Web2 dependencies, true ownership for all.",
-    "url": "https://productmint.io",
-    "imageUrl": "/images/partners/product-mint.png",
-    "category": "consumer",
-    "subcategory": "real world"
   }
 ]
