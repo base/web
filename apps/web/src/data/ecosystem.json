@@ -4611,7 +4611,7 @@
     "name": "ProductMint",
     "description": "Tokenize products and subscriptions as tradable RWAs via NFTs, with automated renewals, dynamic pricing, and lower fees than legacy payment processors. No Web2 dependencies, true ownership for all.",
     "url": "https://productmint.io",
-    "imageUrl": "/images/partners/ProductMint.png",
+    "imageUrl": "/images/partners/product-mint.png",
     "category": "consumer",
     "subcategory": "real world"
   }
