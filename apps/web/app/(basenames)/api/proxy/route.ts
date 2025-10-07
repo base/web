@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { isAddress } from 'viem';
 
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
-const BASESCAN_API_KEY = process.env.BASESCAN_API_KEY;
 const TALENT_PROTOCOL_API_KEY = process.env.TALENT_PROTOCOL_API_KEY;
 
 export async function GET(req: NextRequest) {
@@ -19,16 +18,16 @@ export async function GET(req: NextRequest) {
   try {
     switch (apiType) {
       case 'etherscan':
-        apiUrl = `https://api.etherscan.io/api?address=${address}&apikey=${ETHERSCAN_API_KEY}&module=account&action=txlist`;
+        apiUrl = `https://api.etherscan.io/v2/api?module=account&action=txlist&address=${address}&chainid=1&apikey=${ETHERSCAN_API_KEY}`;
         break;
       case 'base-sepolia':
-        apiUrl = `https://api-sepolia.basescan.org/api?address=${address}&apikey=${BASESCAN_API_KEY}&module=account&action=txlistinternal`;
+        apiUrl = `https://api.etherscan.io/v2/api?module=account&action=txlistinternal&address=${address}&chainid=84532&apikey=${ETHERSCAN_API_KEY}`;
         break;
       case 'basescan':
-        apiUrl = `https://api.basescan.org/api?address=${address}&apikey=${BASESCAN_API_KEY}&module=account&action=txlist`;
+        apiUrl = `https://api.etherscan.io/v2/api?module=account&action=txlist&address=${address}&chainid=8453&apikey=${ETHERSCAN_API_KEY}`;
         break;
       case 'basescan-internal':
-        apiUrl = `https://api.basescan.org/api?address=${address}&apikey=${BASESCAN_API_KEY}&module=account&action=txlistinternal`;
+        apiUrl = `https://api.etherscan.io/v2/api?module=account&action=txlistinternal&address=${address}&chainid=8453&apikey=${ETHERSCAN_API_KEY}`;
         break;
       default:
         return NextResponse.json({ error: 'Invalid apiType parameter' }, { status: 400 });
@@ -49,7 +48,6 @@ export async function GET(req: NextRequest) {
     } else {
       responseData = await externalResponse.text();
     }
-
     if (externalResponse.ok) {
       return NextResponse.json({ data: responseData });
     } else {

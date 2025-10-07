@@ -12,7 +12,6 @@ import {
   coinbaseWallet,
   metaMaskWallet,
   phantomWallet,
-  rabbyWallet,
   rainbowWallet,
   uniswapWallet,
   walletConnectWallet,
@@ -25,7 +24,6 @@ const connectors = connectorsForWallets(
       wallets: [
         coinbaseWallet,
         metaMaskWallet,
-        rabbyWallet,
         uniswapWallet,
         rainbowWallet,
         phantomWallet,

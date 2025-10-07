@@ -16,20 +16,20 @@ export default function ResourcesGetNoticedSection() {
 
 const ITEMS = [
   {
-    title: 'Marketing amplification guidelines',
+    title: 'Marketing Amplification Guidelines',
     description:
       'Use our style guide and tag @base on X and Farcaster to be eligible for amplification.',
     href: 'https://github.com/base-org/brand-kit/blob/main/guides/editorial-style-guide.md',
   },
   {
-    title: 'Base community builds channel',
+    title: 'Base Builders Farcaster Channel',
     description:
       'Share your project on /base and /base-builds to get community feedback on Farcaster.',
     href: 'https://warpcast.com/~/channel/base-builds/?utm_source=dotorg&utm_medium=builderkit',
   },
   {
-    title: 'Participate in a virtual event',
-    description: 'Apply here to host or participate in a Base virtual event.',
-    href: 'https://forms.gle/91jxqLARkHQvMc2M9/?utm_source=dotorg&utm_medium=builderkit',
+    title: 'Base Builders X List',
+    description: 'Discover some of the most vocal community leaders in the Base ecosystem.',
+    href: 'https://x.com/i/lists/1869425408573075694',
   },
 ];

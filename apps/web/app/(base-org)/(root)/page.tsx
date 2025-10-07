@@ -2,35 +2,92 @@ import AnalyticsProvider from 'apps/web/contexts/Analytics';
 import ErrorsProvider from 'apps/web/contexts/Errors';
 import { Hero } from 'apps/web/src/components/base-org/root/Redesign/Hero';
 import { SectionBaseApp } from 'apps/web/src/components/base-org/root/Redesign/Section/BaseApp';
-import { SectionBaseBuilders } from 'apps/web/src/components/base-org/root/Redesign/Section/BaseBuilders';
-import { SectionBasePay } from 'apps/web/src/components/base-org/root/Redesign/Section/BasePay';
-import { SectionBaseChain } from 'apps/web/src/components/base-org/root/Redesign/Section/BaseChain';
 import { WebGLCanvas } from 'apps/web/src/components/WebGL/WebGLCanvas';
-import { SectionBaseJoin } from 'apps/web/src/components/base-org/root/Redesign/Section/BaseJoin';
-import { SectionBlog } from 'apps/web/src/components/base-org/root/Redesign/Section/Blog';
 import Container from 'apps/web/src/components/base-org/Container';
 import { SectionBaseEcosystem } from 'apps/web/src/components/base-org/root/Redesign/Section/BaseEcosystem';
+import dynamic from 'next/dynamic';
+import RenderOnInView from 'apps/web/src/components/base-org/shared/RenderOnInView';
+
+const SectionBaseBuilders = dynamic(
+  async () =>
+    import('apps/web/src/components/base-org/root/Redesign/Section/BaseBuilders').then(
+      (mod) => mod.SectionBaseBuilders,
+    ),
+  {
+    ssr: true,
+  },
+);
+
+const SectionBaseJoin = dynamic(
+  async () =>
+    import('apps/web/src/components/base-org/root/Redesign/Section/BaseJoin').then(
+      (mod) => mod.SectionBaseJoin,
+    ),
+  {
+    ssr: true,
+  },
+);
+
+const SectionBasePay = dynamic(
+  async () =>
+    import('apps/web/src/components/base-org/root/Redesign/Section/BasePay').then(
+      (mod) => mod.SectionBasePay,
+    ),
+  {
+    ssr: true,
+  },
+);
+
+const SectionBlog = dynamic(
+  async () =>
+    import('apps/web/src/components/base-org/root/Redesign/Section/Blog').then(
+      (mod) => mod.SectionBlog,
+    ),
+  {
+    ssr: true,
+  },
+);
+
+const SectionBaseChain = dynamic(
+  async () =>
+    import('apps/web/src/components/base-org/root/Redesign/Section/BaseChain').then(
+      (mod) => mod.SectionBaseChain,
+    ),
+  {
+    ssr: true,
+  },
+);
 
 export default async function Home() {
   return (
     <ErrorsProvider context="base_landing_page">
-      <div id="webgl-canvas" className="overflow-hidden absolute top-0 left-0 w-full h-full">
-        <div className="w-full h-full -z-1">
+      <div id="webgl-canvas" className="absolute left-0 top-0 h-full w-full overflow-hidden">
+        <div className="-z-1 h-full w-full">
           <WebGLCanvas />
         </div>
       </div>
       <Container className="lg:pt-0">
-        <div className="flex flex-col col-span-full gap-12">
+        <div className="col-span-full flex flex-col gap-12">
           <Hero />
           <SectionBaseEcosystem />
           <SectionBaseApp />
-          <SectionBaseBuilders />
-          <SectionBaseChain />
-          <SectionBasePay />
-          <SectionBaseJoin />
-          <AnalyticsProvider context="blog_carousel">
-            <SectionBlog />
-          </AnalyticsProvider>
+          <RenderOnInView>
+            <SectionBaseBuilders />
+          </RenderOnInView>
+          <RenderOnInView>
+            <SectionBaseChain />
+          </RenderOnInView>
+          <RenderOnInView>
+            <SectionBasePay />
+          </RenderOnInView>
+          <RenderOnInView>
+            <SectionBaseJoin />
+          </RenderOnInView>
+          <RenderOnInView>
+            <AnalyticsProvider context="blog_carousel">
+              <SectionBlog />
+            </AnalyticsProvider>
+          </RenderOnInView>
         </div>
       </Container>
     </ErrorsProvider>

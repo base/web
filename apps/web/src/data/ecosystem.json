@@ -600,6 +600,14 @@
     "imageUrl": "/images/partners/blockai.png"
   },
   {
+    "name": "BlockClock",
+    "description": "BlockClock is a decentralized, community-powered timekeeping network that uses user-verified device timestamps to establish a trustless, on-chain standard of time.",
+    "url": "https://demo.stxn.io/",
+    "imageUrl": "/images/partners/blockclock.svg",
+    "category": "consumer",
+    "subcategory": "real world"
+  },
+  {
     "name": "Blockdaemon",
     "url": "https://blockdaemon.com",
     "description": "The institutional-grade blockchain infrastructure for Web3. Blockdaemon provides an end-to-end suite of blockchain tools, including dedicated nodes, APIs, staking, liquid staking, MPC tech, and more.",
@@ -870,6 +878,14 @@
     "imageUrl": "/images/partners/civic.png",
     "category": "infra",
     "subcategory": "identity"
+  },
+  {
+    "name": "CleanApp",
+    "description": "Global, distributed and verifiable tracing/mapping networks for reporting an issue and finding resolvers",
+    "url": "https://www.cleanapp.io/",
+    "imageUrl": "/images/partners/cleanapp.png",
+    "category": "consumer",
+    "subcategory": "ai"
   },
   {
     "name": "Cobo Argus",
@@ -2560,6 +2576,14 @@
     "subcategory": "ai"
   },
   {
+    "name": "Mt Pelerin",
+    "description": "Buy crypto on your own Base wallet in minutes, swap and bridge funds easily, cash out back on your bank account without a hitch.",
+    "url": "https://www.mtpelerin.com/base",
+    "imageUrl": "/images/partners/mtpelerin.png",
+    "category": "onramp",
+    "subcategory": "fiat on-ramp"
+  },
+  {
     "name": "Multisender.app",
     "description": "Multisender facilitates airdrops and other mass transactions on 20+ networks, including Base. It takes a list of recipients and their respective token amounts and automates everything else.",
     "url": "https://classic.multisender.app/",
@@ -3688,6 +3712,14 @@
     "subcategory": "dex"
   },
   {
+    "name": "STXN",
+    "description": "Build the future of decentralized, hybrid apps with technology that marries web2 and web3.",
+    "url": "https://stxn.io/",
+    "imageUrl": "/images/partners/stxn.svg",
+    "category": "infra",
+    "subcategory": "developer tool"
+  },
+  {
     "name": "SubQuery",
     "url": "https://subquery.network/",
     "description": "SubQuery is a fast, flexible, and reliable open-source data decentralised infrastructure network, providing both RPC and indexed data to consumers around the world. The SubQuery Data Indexer is a open-source data indexer that provides you with custom APIs for your web3 project across all of our supported chains. SubQuery AI Apps framework makes building decentralised AI Applications fast and easy.",
@@ -4528,6 +4560,14 @@
     "subcategory": "payments"
   },
   {  
+    "name": "KOLZ",
+    "description": "A cutting-edge Web3 influencer platform designed to bridge the gap between leading influencers in the cryptocurrency and blockchain space (known as KOLs - Key Opinion Leaders) and their followers.",
+    "url": "https://kolz.chat/",
+    "imageUrl": "/images/partners/kolz.png",
+    "category": "infra",
+    "subcategory": "ai"
+  },
+  {
     "name": "Pinto",
     "description": "Pinto is low volatility, yield generating money: infinitely scalable, trust-minimized and non-custodial. Users can earn additional yield through active participation in protocol maintenance.",
     "url": "https://pinto.money/",
@@ -4544,12 +4584,28 @@
     "imageUrl": "/images/partners/wowmax.png"
   },
   {
+    "name": "Zora MCP Server",
+    "description": "MCP server for natural language trading on Base—buy any token created on Zora Protocol and swap any asset on Base mainnet directly from Claude Desktop or any MCP-enabled client.",
+    "url": "https://www.npmjs.com/package/@6missedcalls-ai/zora-mcp-server",
+    "imageUrl": "/images/partners/zora-mcp-server-logo.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "WLTH",
     "url": "https://wlth.xyz//",
     "description": "WLTH opens the door to tokenised pre-IPO opportunities like xAI and SpaceX, while AI-powered strategies help your assets grow on autopilot. One app. No barriers.",
     "imageUrl": "/images/partners/wlth.webp",
     "category": "Consumer",
     "subcategory": "Real World"
+  },
+  {
+    "name": "DeGov.AI",
+    "url": "https://degov.ai",
+    "description": "DeGov is an open-source DAO governance platform built on OpenZeppelin's Governor contract, integrating an AI agent delegate and voting assistant to facilitate enhanced decision-making in DAOs.",
+    "imageUrl": "/images/partners/degov.png",
+    "category": "consumer",
+    "subcategory": "dao"
   },
   {
     "name": "Levva",
