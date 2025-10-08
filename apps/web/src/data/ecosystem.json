@@ -576,6 +576,14 @@
     "subcategory": "crypto taxes"
   },
   {
+    "name": "BOB Gateway",
+    "description": "BOB is building the Gateway to Bitcoin DeFi, unlocking real utility for Bitcoin. Swap Bitcoin into any asset or deposit directly into DeFi across 11+ chains, powered by BTC intents.",
+    "url": "https://app.gobob.xyz/en/gateway?input-asset=BTC&output-asset=0x0555E30da8f98308EdB960aa94C0Db47230d2B9c&output-chain=8453",
+    "imageUrl": "/images/partners/bob.png",
+    "category": "infra",
+    "subcategory": "bridge"
+  },
+  {
     "name": "Blackbird",
     "url": "https://www.blackbird.xyz/",
     "description": "Blackbird is a loyalty and membership platform built for the world's most exciting restaurants",
