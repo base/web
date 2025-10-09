@@ -2712,6 +2712,14 @@
     "subcategory": "node provider"
   },
   {
+    "name": "Nomis",
+    "url": "https://nomis.cc/base",
+    "description": "Nomis is a multichain reputation protocol that assigns scores to crypto wallet addresses by consuming onchain data and using AI.",
+    "imageUrl": "/images/partners/nomis.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "Nouns Builder",
     "url": "https://nouns.build",
     "description": "Governed by BuilderDAO, Nouns Builder is a tool lets you create Nounish DAOs easily. Build and empower your community with onchain governance and treasury.",
