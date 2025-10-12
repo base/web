@@ -1,7 +1,7 @@
 {
   "name": "Coinbase Wallet",
   "url": "https://www.coinbase.com/wallet",
-  "description": "The easiest and most secure crypto wallet and dapp browser. Your gateway to the decentralized web.",
+  "description": "Coinbase Wallet is a non-custodial crypto wallet and dApp browser that lets users store, send, and receive tokens across multiple blockchains. It supports NFTs, DeFi apps, and secure key management through mobile and browser extensions.",
   "category": "wallet",
   "subcategory": "self-custody",
   "imageUrl": "/images/partners/wallet.webp"
