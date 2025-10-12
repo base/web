@@ -162,25 +162,32 @@ export default function UsernameProfileSectionHeatmap() {
     };
   };
 
+  type EtherscanApiResponse = {
+    status: '1' | '0';
+    message: string;
+    result: unknown;
+  };
+
   const fetchTransactions = useCallback(
     async (apiUrl: string, retryCount = 3): Promise<Transaction[]> => {
       try {
         const response = await fetch(apiUrl);
-        const json = (await response.json()) as {
-          data: { result: Transaction[]; status: '1' | '0'; message: string };
-        };
+        const json = (await response.json()) as { data: EtherscanApiResponse };
+        const data = json.data;
 
-        if (json.data?.status === '1' && Array.isArray(json.data.result)) {
-          return json.data.result;
-        } else if (json.data?.status === '0' && json.data.message === 'No transactions found') {
+        if (data.status === '1' && Array.isArray(data.result)) {
+          return data.result as Transaction[];
+        }
+
+        if (data.status === '0' && data.message === 'No transactions found') {
           return []; // Return an empty array for no transactions
-        } else if (json.data?.status === '0' && json.data.message === 'Exception') {
+        } else if (data.status === '0' && data.message === 'Exception') {
           if (retryCount > 0) {
             console.log(`API returned an exception. Retrying... (${retryCount} attempts left)`);
             await new Promise((resolve) => setTimeout(resolve, 2000));
             return await fetchTransactions(apiUrl, retryCount - 1);
           } else {
-            throw new Error(`API Error: ${json.data.message}`);
+            throw new Error(`API Error: ${data.message}`);
           }
         } else {
           console.error('Unexpected API response structure:', json);
@@ -444,6 +451,7 @@ export default function UsernameProfileSectionHeatmap() {
             style={{ direction: 'rtl' }}
             className="w-full max-w-full overflow-x-auto overflow-y-hidden whitespace-nowrap"
           >
+            {/* @ts-expect-error react-calendar-heatmap has incompatible JSX types in our setup; runtime is fine */}
             <CalendarHeatmap
               startDate={new Date(new Date().setFullYear(new Date().getFullYear() - 1))}
               endDate={new Date()}

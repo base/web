@@ -13,19 +13,19 @@ export default function ResourcesStartBuildingSection() {
         Start Building
       </Title>
       <Title level={TitleLevel.H6Regular} as="h3" className="col-span-full">
-        Learn how to build a project
+        Learn how to build onchain
       </Title>
       <ResourcesGrid items={ITEMS01} accentColor="brown" />
       <Title level={TitleLevel.H6Regular} as="h3" className="col-span-full mt-2 lg:mt-14">
-        Learn how to build a project
+        Tools to help you build
       </Title>
       <ResourcesGrid items={ITEMS02} accentColor="brown" />
       <Title level={TitleLevel.H6Regular} as="h3" className="col-span-full mt-2 lg:mt-14">
-        Learn how to build a project
+        Guidance to help you succeed onchain
       </Title>
       <ResourcesGrid items={ITEMS03} accentColor="brown" />
       <Link
-        href="https://www.coinbase.com/developer-platform/?utm_source=dotorg&utm_medium=builderkit"
+        href="https://www.base.org/build"
         className="group col-span-full mt-2 flex w-fit items-center gap-1.5 lg:mt-14"
       >
         <Text
@@ -59,35 +59,36 @@ const ITEMS01 = [
     href: 'https://docs.base.org/learn/welcome/?utm_source=dotorg&utm_medium=builderkit',
   },
   {
-    title: 'Tutorials',
+    title: 'Grow your app',
     description:
-      'Build now with 1-2-3 quickstarts, then evolve your onchain app with advanced topics.',
-    href: '/build/?utm_source=dotorg&utm_medium=builderkit',
+      'Get featured on the Base app, win builder rewards, and unlock insights to grow faster.',
+    href: 'https://www.base.dev/',
   },
 ];
 const ITEMS02 = [
   {
-    title: 'OnchainKit',
-    description:
-      'Build your apps in minutes with off-the-shelf React components and onchain integrations.',
-    href: 'https://onchainkit.xyz/?utm_source=dotorg&utm_medium=builderkit',
+    title: 'Build on Base',
+    description: 'Everything you need to build, grow, and earn onchain.',
+    href: 'https://www.base.org/build',
   },
   {
-    title: 'Support team',
-    description: `if you're ever in need, please reach out in a dedicated Discord support channel.`,
-    href: 'https://discord.com/invite/buildonbase',
+    title: 'Base Services Hub',
+    description:
+      'Exclusive discounts on software and services that help projects ship faster, scale growth and build on Base.',
+    href: 'https://docs.base.org/get-started/base-services-hub',
   },
 ];
 const ITEMS03 = [
   {
-    title: 'Coinbase smart wallet',
-    description: 'Enable your users to create an account in seconds, without apps or seed phrases.',
-    href: 'https://www.coinbase.com/wallet/smart-wallet/?utm_source=dotorg&utm_medium=builderkit',
+    title: 'Launch on Base',
+    description:
+      'Your guide to launching and growing on Base from pre-launch, launch, to post launch.',
+    href: 'https://www.launchonbase.xyz/',
   },
   {
-    title: 'Gas sponsorship',
+    title: 'Get Mentorship',
     description:
-      'Reduce costs and sponsor gas for your users, with the Coinbase Paymaster and Bundler.',
-    href: 'https://www.coinbase.com/developer-platform/products/paymaster/?utm_source=dotorg&utm_medium=builderkit',
+      'Connect with experienced builders and industry leaders to accelerate your journey on Base.',
+    href: 'https://docs.base.org/get-started/base-mentorship-program',
   },
 ];

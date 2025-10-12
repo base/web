@@ -21,14 +21,15 @@ const ITEMS = [
     href: 'https://discord.com/invite/buildonbase',
   },
   {
-    title: 'Based builders',
-    description: 'Claim a basename and create your based profile to connect with other builders.',
-    href: 'https://x.com/i/lists/1869425408573075694',
+    title: 'Base Country Leads',
+    description:
+      'Country Leads cultivate the local Base community and provide support to builders.',
+    href: 'https://docs.base.org/get-started/country-leads-and-ambassadors#base-country-leads',
   },
   {
-    title: 'Host a meetup',
+    title: 'Host a virtual event',
     description: 'Sign up to host a meetup with other Based builders anywhere in the world.',
-    href: 'https://docs.google.com/forms/d/e/1FAIpQLSf5wnzD_czyYOyHFeOmFK_rjsJj7Utovo3jWwR40JizPqmDZg/viewform',
+    href: 'https://basedvirtualevents.deform.cc/',
   },
   // {
   //   title: 'Use apps on Base',

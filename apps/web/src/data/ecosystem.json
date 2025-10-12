@@ -1,5 +1,13 @@
 [
   {
+  "name": "Coinrule",
+  "description": "Launch fully self-custodial onchain automated trading strategies at lightning speed and with one-click UX. Team is backed by Y Combinator",
+  "url": "https://coinrule.com",
+  "imageUrl": "/images/partners/coinrule.png",
+  "category": "defi",
+  "subcategory": "dex aggregator"
+  },
+  {
     "name": "0x",
     "url": "https://0x.org/",
     "description": "Your one stop shop to build financial products on crypto rails. Enable faster trading, better prices and superior UX in your app.",
@@ -4550,6 +4558,22 @@
     "imageUrl": "/images/partners/zora.webp",
     "category": "consumer",
     "subcategory": "creator"
+  },
+  {
+    "name": "Suby",
+    "description": "Crypto payment layer for paid communities on Telegram & Discord — instant access, recurring subs, multi-chain support.",
+    "url": "https://suby.fi",
+    "imageUrl": "/images/partners/suby.png",
+    "category": "consumer",
+    "subcategory": "payments"
+  },
+  {  
+    "name": "KOLZ",
+    "description": "A cutting-edge Web3 influencer platform designed to bridge the gap between leading influencers in the cryptocurrency and blockchain space (known as KOLs - Key Opinion Leaders) and their followers.",
+    "url": "https://kolz.chat/",
+    "imageUrl": "/images/partners/kolz.png",
+    "category": "infra",
+    "subcategory": "ai"
   },
   {
     "name": "Pinto",

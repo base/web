@@ -284,6 +284,17 @@ module.exports = MillionLint.next({
             basePath: false,
             headers: securityHeaders,
           },
+          {
+            source: '/pay',
+            basePath: false,
+            headers: [
+              ...securityHeaders,
+              {
+                key: 'cross-origin-opener-policy',
+                value: 'unsafe-none',
+              },
+            ],
+          },
         ];
       },
       async rewrites() {

@@ -3,9 +3,9 @@ import { Section } from 'apps/web/src/components/base-org/root/Redesign/Section'
 import { ImageType } from 'apps/web/src/components/base-org/root/Redesign/Section';
 import Link from 'apps/web/src/components/Link';
 
-import Card1 from './card-1.png';
-import Card2 from './card-2.png';
-import Card3 from './card-3.png';
+import Card1 from './card-1.avif';
+import Card2 from './card-2.avif';
+import Card3 from './card-3.avif';
 
 const card1 = Card1 as ImageType;
 const card2 = Card2 as ImageType;
@@ -14,7 +14,7 @@ const card3 = Card3 as ImageType;
 export function SectionBaseJoin() {
   return (
     <Section content={content}>
-      <div className="flex flex-col col-span-full gap-8 md:flex-row">
+      <div className="col-span-full flex flex-col gap-8 md:flex-row">
         {cards.map((card) => (
           <Link key={card.index} href={card.href} className="flex-1 overflow-hidden !rounded-[8px]">
             <InteractiveCard
