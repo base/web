@@ -4072,6 +4072,14 @@
     "subcategory": "gaming"
   },
   {
+    "name": "Topi",
+    "description": "2222 based builders uplifting the Base ecosystem.",
+    "url": "https://www.basetopia.io",
+    "imageUrl": "/images/partners/topi.jpg",
+    "category": "consumer",
+    "subcategory": "nft"
+  },
+  {
     "name": "Toucan",
     "description": "Toucan provides onchain infrastructure and liquid markets for carbon removal credits, making climate action directly accessible to Base's users and decentralized apps.",
     "url": "https://toucan.earth/",
