@@ -5,22 +5,22 @@
 Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the next billion users onchain. It's built on Optimism's open-source [OP Stack](https://stack.optimism.io/).
 
 <!-- Badge row 1 - status -->
-[![GitHub contributors](https://img.shields.io/github/contributors/base/web)](https://github.com/base/web/graphs/contributors)
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/w/base/web)](https://github.com/base/web/graphs/contributors)
-[![GitHub Stars](https://img.shields.io/github/stars/base/web.svg)](https://github.com/base/web/stargazers)
+[![![GitHub contributors](https://img.shields.io/github/contributors/base/web)](https://github.com/base/web/graphs/contributors)
+[![![GitHub commit activity](https://img.shields.io/github/commit-activity/w/base/web)](https://github.com/base/web/graphs/contributors)
+[![![GitHub Stars](https://img.shields.io/github/stars/base/web.svg)](https://github.com/base/web/stargazers)
 ![GitHub repo size](https://img.shields.io/github/repo-size/base/web)
-[![GitHub](https://img.shields.io/github/license/base/web?color=blue)](https://github.com/base/web/blob/master/LICENSE.md)
+[![![GitHub](https://img.shields.io/github/license/base/web?color=blue)](https://github.com/base/web/blob/master/LICENSE.md)
 
 <!-- Badge row 2 - links and profiles -->
-[![Website base.org](https://img.shields.io/website-up-down-green-red/https/base.org.svg)](https://base.org)
-[![Blog](https://img.shields.io/badge/blog-up-green)](https://base.mirror.xyz/)
-[![Docs](https://img.shields.io/badge/docs-up-green)](https://docs.base.org/)
-[![Discord](https://img.shields.io/discord/1067165013397213286?label=discord)](https://base.org/discord)
-[![Twitter Base](https://img.shields.io/twitter/follow/Base?style=social)](https://twitter.com/Base)
+[![![Website base.org](https://img.shields.io/website-up-down-green-red/https/base.org.svg)](https://base.org)
+[![![Blog](https://img.shields.io/badge/blog-up-green)](https://base.mirror.xyz/)
+[![![Docs](https://img.shields.io/badge/docs-up-green)](https://docs.base.org/)
+[![![Discord](https://img.shields.io/discord/1067165013397213286?label=discord)](https://base.org/discord)
+[![![Twitter Base](https://img.shields.io/twitter/follow/Base?style=social)](https://twitter.com/Base)
 
 <!-- Badge row 3 - detailed status -->
-[![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/base/web)](https://github.com/base/web/pulls)
-[![GitHub Issues](https://img.shields.io/github/issues-raw/base/web.svg)](https://github.com/base/web/issues)
+[![![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/base/web)](https://github.com/base/web/pulls)
+[![![GitHub Issues](https://img.shields.io/github/issues-raw/base/web.svg)](https://github.com/base/web/issues)
 
 ## Setup
 
@@ -36,6 +36,24 @@ After cloning the repository begin by installing dependencies at the root.
 ```shell
 yarn
 yarn build
+```
+
+## Quick Start
+
+Once you've completed the setup and installation steps above, you can quickly start a local development server:
+
+```shell
+# Start the web app development server
+yarn workspace @app/web dev
+```
+
+The application will be available at `http://localhost:3000` (or the next available port).
+
+For other projects, use the same pattern:
+
+```shell
+# Replace <project-name> with your target project
+yarn workspace @app/<project-name> dev
 ```
 
 ## Local development
@@ -57,13 +75,3 @@ yarn workspace @app/web dev
 ## Contributing
 
 We welcome contributions to Base! For guidelines on how to contribute please refer to [CONTRIBUTING.md](CONTRIBUTING.md).
-
-### Updating the Base Ecosystem Page
-
-If you're a builder who wants to add or update your project on the [Base Ecosystem](https://base.org/ecosystem) page, follow these steps:
-
-1. Fork this repository.
-2. Create a new branch for your changes.
-3. Update the `ecosystem.json` file in `apps/web/src/data/` with your project's details.
-
-<!-- Contributor activity for Base -->
