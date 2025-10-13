@@ -1,121 +1,120 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import ErrorImg from 'apps/web/public/images/error.png';
-import data from 'apps/web/src/data/ecosystem.json';
-import Image from 'next/image';
+'use client';
+import classNames from 'classnames';
+import { AnimatePresence, motion, cubicBezier } from 'motion/react';
+import EcosystemCard from './Card';
+import { EcosystemApp } from 'apps/web/src/components/Ecosystem/Content';
+import { Dispatch, SetStateAction, useCallback } from 'react';
+import {
+  Button,
+  ButtonSizes,
+  ButtonVariants,
+} from 'apps/web/src/components/Button/Redesign/Button';
+import Container from 'apps/web/src/components/base-org/Container';
+import Title from 'apps/web/src/components/base-org/typography/TitleRedesign';
+import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRedesign/types';
+import { NotFoundScene } from 'apps/web/src/components/Ecosystem/NotFoundScene';
 
-import { Button } from '../Button/Button';
+const easeFn = cubicBezier(0.4, 0, 0.2, 1);
+const transition = { duration: 0.24, ease: easeFn };
 
-import { Card } from './Card';
-import { SearchBar } from './SearchBar';
-import { TagChip } from './TagChip';
-import { useRouter } from 'next/router';
+const cardAnimations = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+};
 
-const TagList = [
-  'all',
-  'bridge',
-  'dao',
-  'defi',
-  'gaming',
-  // note in partnerCsvToEcosystemJson.js we remap infrastructure -> infra so it'll fit in the chip
-  'infra',
-  'nft',
-  'onramp',
-  'security',
-  'social',
-  'wallet',
-  'x-chain',
-];
-
-function orderedDataAsc() {
-  return data.sort((a, b) => {
-    if (a.name.toLowerCase() > b.name.toLowerCase()) {
-      return 1;
-    }
-    if (b.name.toLowerCase() > a.name.toLowerCase()) {
-      return -1;
-    }
-    return 0;
-  });
+function AnimatedEcosystemCard({ app }: { app: EcosystemApp }) {
+  return (
+    <motion.div
+      layout
+      initial={cardAnimations.initial}
+      animate={cardAnimations.animate}
+      exit={cardAnimations.exit}
+      transition={transition}
+      className="col-span-full flex flex-col items-stretch justify-stretch md:col-span-1"
+    >
+      <EcosystemCard {...app} />
+    </motion.div>
+  );
 }
 
-const decoratedData = orderedDataAsc().map((d) => ({
-  ...d,
-  searchName: d.name.toLowerCase(),
-}));
+export function List({
+  selectedCategories,
+  searchText,
+  apps,
+  showCount,
+  setShowCount,
+  onClearSearch,
+}: {
+  selectedCategories: string[];
+  searchText: string;
+  apps: EcosystemApp[];
+  showCount: number;
+  setShowCount: Dispatch<SetStateAction<number>>;
+  onClearSearch: () => void;
+}) {
+  const canShowMore = showCount < apps.length;
+  const showEmptyState = apps.length === 0;
+  const truncatedApps = apps.slice(0, showCount);
 
-export function List() {
-  const [selectedTag, setSelectedTag] = useState('all');
-  const [searchText, setSearchText] = useState('');
-  const [showNum, setShowNum] = useState(16);
-
-  // Read select tag query parameter from URL
-  const router = useRouter();
-  useEffect(() => {
-    if (router.query.tag) {
-      setSelectedTag(router.query.tag as string);
-    }
-  }, [router.query.tag]);
-
-  const selectTag = useCallback((tag: string) => {
-    void router.push({ query: { tag } });
-  }, [router]);
-
-  const filteredApps = useMemo(
-    () =>
-      decoratedData.filter((app) => {
-        const isTagged = selectedTag === 'all' || app.tags.includes(selectedTag);
-
-        const isSearched =
-          searchText === '' || app.name.toLowerCase().match(searchText.toLocaleLowerCase());
-
-        return isTagged && isSearched;
-      }),
-    [selectedTag, searchText],
+  const onClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.preventDefault();
+      setShowCount(showCount + 16);
+    },
+    [setShowCount, showCount],
   );
-  const truncatedApps = useMemo(() => filteredApps.slice(0, showNum), [filteredApps, showNum]);
-  const canShowMore = showNum < filteredApps.length;
-  const showEmptyState = filteredApps.length === 0;
-
-  const showMore = useCallback(() => setShowNum((num) => num + 16), [setShowNum]);
 
   return (
-    <div className="min-h-32 flex w-full max-w-[1440px] flex-col gap-10 px-8 pb-32">
-      <div className="flex flex-col justify-between gap-8 lg:flex-row lg:gap-12">
-        <div className="flex flex-row flex-wrap gap-3">
-          {TagList.map((tag) => (
-            <TagChip
-              tag={tag}
-              isSelected={selectedTag === tag}
-              setSelectedTag={selectTag}
-              key={tag}
-            />
+    <>
+      <Container
+        className={classNames(
+          'grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3',
+          showEmptyState && 'hidden',
+        )}
+      >
+        <AnimatePresence mode="popLayout">
+          {truncatedApps.map((app) => (
+            <AnimatedEcosystemCard key={app.url} app={app} />
           ))}
-        </div>
-        <div className="order-first grow lg:order-last">
-          <SearchBar setSearchText={setSearchText} />
-        </div>
-      </div>
-      <div className="flex flex-col gap-10 lg:grid lg:grid-cols-4">
-        {truncatedApps.map((app) => (
-          <Card {...app} key={app.name} />
-        ))}
-      </div>
+        </AnimatePresence>
+      </Container>
       {showEmptyState && (
-        <div className="flex flex-col items-center gap-12">
-          <Image src={ErrorImg} alt="No search results" />
-          <span className="font-mono text-4xl text-white">
-            NO RESULTS FOR &ldquo;{searchText === '' ? selectedTag : searchText}
+        <div className="grid grid-cols-9 gap-5 pt-[106px]">
+          <Title level={TitleLevel.H4Regular} className="col-span-full">
+            No results found for &ldquo;
+            {searchText === '' ? selectedCategories.join(', ') : searchText}
             &rdquo;
-          </span>
-          <span className="font-sans text-muted">Try searching for another term</span>
-        </div>
-      )}
+          </Title>
+          <div className="col-span-full flex items-center gap-2 max-sm:flex-col max-sm:items-start">
+            <Title level={TitleLevel.H6Regular}>Try searching for another term.</Title>
+            <Button
+              size={ButtonSizes.Small}
+              variant={ButtonVariants.Secondary}
+              className="px-4"
+              onClick={onClearSearch}
+            >
+              Clear search
+            </Button>
+          </div>
 
-      {canShowMore && (
-        <div className="mt-12 flex justify-center">
-          <Button onClick={showMore}>VIEW MORE</Button>
+          <div className="relative col-span-full aspect-square lg:col-span-6">
+            <NotFoundScene />
+          </div>
         </div>
       )}
-    </div>
+      {canShowMore && (
+        <div className="flex justify-center">
+          <Button
+            size={ButtonSizes.Small}
+            variant={ButtonVariants.Secondary}
+            className="px-4"
+            onClick={onClick}
+          >
+            View more
+          </Button>
+        </div>
+      )}
+    </>
   );
 }

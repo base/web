@@ -1,0 +1,8 @@
+{
+  "name": "1rpc",
+  "url": "https://1rpc.io",
+  "description": "1RPC is a private RPC relay that eradicates metadata exposure and leakage, allowing users to gain control of their interactions with the blockchain with a one-click user experience.",
+  "imageUrl": "/images/partners/1rpc.webp",
+  "category": "infra",
+  "subcategory": "node provider"
+}

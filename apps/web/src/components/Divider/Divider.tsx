@@ -2,7 +2,7 @@ type DividerProps = {
   fullWidth?: boolean;
 };
 
-export function Divider({ fullWidth = false }: DividerProps) {
+export async function Divider({ fullWidth = false }: DividerProps) {
   return (
     <div
       className={`flex h-24 w-full flex-row items-center justify-center bg-black${

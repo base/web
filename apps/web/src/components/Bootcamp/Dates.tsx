@@ -1,35 +1,40 @@
-import { Button } from '../Button/Button';
+import Container from 'apps/web/src/components/base-org/Container';
 import Link from 'next/link';
+import Title from 'apps/web/src/components/base-org/typography/Title';
+import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
+import Button from 'apps/web/src/components/base-org/Button';
+import { ButtonSizes, ButtonVariants } from 'apps/web/src/components/base-org/Button/types';
 
-export function Dates() {
+export async function Dates() {
   return (
-    <div className="flex w-full max-w-[1440px] flex-col space-y-20 bg-black px-8 pt-12">
-      <div className="flex w-full flex-col font-display text-3xl text-white md:text-5xl lg:text-6xl">
-        <p>Dates and deadlines</p>
-      </div>
-      <div className="grid grid-cols-2">
-        <div className="text-md font-sans text-white">
-          <p className="pb-2">
-            <span className="font-bold">Cohort 4: Approximately</span> March 18, 2024
-          </p>
-          <p>
-            <span className="font-bold">Application deadline:</span> March 11, 2024
-          </p>
+    <Container>
+      <div className="flex w-full flex-col gap-12 bg-black py-12">
+        <Title level={TitleLevel.Display3}>Dates and deadlines</Title>
 
-          <div className="mt-10 w-[200px]">
-            <Link
-              className="w-full"
-              href="https://forms.gle/iqZqJ6WAqkWaouLn8"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              <Button variant="secondary" className="w-full">
-                Apply now
-              </Button>
-            </Link>
+        <div className="grid grid-cols-2">
+          <div className="text-md font-sans text-white">
+            <p className="pb-2">
+              <span className="font-bold">Cohort 4: Approximately</span> March 18, 2024
+            </p>
+            <p>
+              <span className="font-bold">Application deadline:</span> March 11, 2024
+            </p>
+
+            <div className="mt-10 w-[200px]">
+              <Link
+                className="w-full"
+                href="https://forms.gle/iqZqJ6WAqkWaouLn8"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <Button variant={ButtonVariants.Secondary} size={ButtonSizes.Large} fullWidth>
+                  Apply now
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 }

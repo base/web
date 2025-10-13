@@ -1,4 +1,4 @@
-# Code of Conduct for base-org/web
+# Code of Conduct for base/web
 
 ## 1. Purpose
 

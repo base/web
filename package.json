@@ -2,11 +2,19 @@
   "name": "@base-org/base-web",
   "version": "1.0.0",
   "description": "Base web monorepo",
-  "repository": "git@github.com::base-org/base-web.git",
+  "repository": "git@github.com::base/base-web.git",
   "license": "Apache-2.0",
   "scripts": {
-    "build": "yarn workspaces foreach run build",
-    "lint": "yarn workspaces foreach run lint"
+    "build": "yarn workspaces foreach --exclude @app/bridge run build",
+    "lint": "yarn workspaces foreach --exclude @app/bridge run lint",
+    "test": "yarn workspaces foreach --exclude @app/bridge run test",
+    "test:e2e": "yarn workspace @app/web test:e2e",
+    "test:e2e:ui": "yarn workspace @app/web test:e2e:ui",
+    "test:e2e:debug": "yarn workspace @app/web test:e2e:debug",
+    "test:e2e:headed": "yarn workspace @app/web test:e2e:headed",
+    "postinstall": "sh -c 'if [ command -v ./node_modules/.bin/husky ]; then ./node_modules/.bin/husky install; fi;'",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable"
   },
   "workspaces": [
     "apps/*",
@@ -16,26 +24,29 @@
   ],
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
+    "@coinbase/onchaintestkit": "^1.1.0",
     "@graphql-eslint/eslint-plugin": "^3.10.4",
+    "@playwright/test": "^1.53.1",
     "@swc/core": "^1.2.173",
     "@swc/jest": "0.2.20",
+    "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "14.0.0",
     "@types/jest": "^29.4.0",
     "@types/node": "18.14.2",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.54.1",
-    "@typescript-eslint/parser": "^5.54.1",
-    "@typescript-eslint/type-utils": "^5.54.1",
-    "@typescript-eslint/types": "^5.54.1",
-    "@typescript-eslint/utils": "^5.54.1",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "@typescript-eslint/type-utils": "^7.8.0",
+    "@typescript-eslint/types": "^7.8.0",
+    "@typescript-eslint/utils": "^7.8.0",
     "babel-jest": "^29.4.1",
     "babel-plugin-relay": "^14.1.0",
     "babel-plugin-tsconfig-paths": "^1.0.3",
     "eslint": "^8.27.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
-    "eslint-config-next": "13.1.1",
+    "eslint-config-next": "15.1.6",
     "eslint-config-prettier": "^8.5.0",
     "eslint-formatter-codeframe": "^7.32.1",
     "eslint-import-resolver-typescript": "^3.5.2",
@@ -49,8 +60,12 @@
     "eslint-plugin-react-perf": "^3.3.1",
     "eslint-plugin-relay": "^1.8.3",
     "eslint-plugin-simple-import-sort": "^8.0.0",
+    "file-loader": "^6.2.0",
+    "husky": ">=6",
     "jest": "^29.4.1",
     "jest-environment-jsdom": "^29.4.1",
+    "lint-staged": ">=10",
+    "pinst": ">=2",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-test-renderer": "18.2.0",
@@ -59,23 +74,32 @@
     "typescript": "~4.9.4"
   },
   "resolutions": {
-    "next-transpile-modules": "^10.0.0"
+    "@coinbase/cookie-manager": "1.1.1",
+    "next-transpile-modules": "^10.0.0",
+    "wagmi": "2.14.12"
   },
   "resolutionComments": {
     "next-transpile-modules": "Next compatibility"
   },
   "engines": {
-    "node": "18.14"
+    "node": ">18.20.3"
   },
   "packageManager": "yarn@3.5.0",
   "dependencies": {
+    "@datadog/browser-logs": "^5.23.3",
     "@linaria/babel-preset": "^4.4.3",
+    "@next/bundle-analyzer": "^15.1.6",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-select": "^1.2.1",
+    "@radix-ui/react-tooltip": "^1.1.2",
     "classnames": "^2.3.2",
     "clsx": "^1.2.1",
     "moment": "^2.29.4",
-    "next": "12.2.3",
+    "next": "15.1.6",
     "tslib": "^2.3.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "eslint --cache --fix",
+    "*.{ts,tsx,css,md}": "prettier --write"
   }
 }

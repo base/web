@@ -1,0 +1,8 @@
+{
+  "name": "Arcadia Finance",
+  "description": "Arcadia built an intent-centric application where users can deposit their assets into sophisticated strategies that beat staking APRs and will dynamically suggest rebalancing actions into the highest-yielding opportunities available according to each individual’s preferences and constraints. Arcadia takes advantage of the composability of DeFi to combine different protocols in interesting ways to maximize yields while providing best-in-class execution that streamline the way users interface with underlying protocols.",
+  "url": "https://arcadia.finance/",
+  "imageUrl": "/images/partners/arcadiafinance.png",
+  "category": "defi",
+  "subcategory": "yield vault"
+}

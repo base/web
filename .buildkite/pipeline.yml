@@ -3,7 +3,7 @@ _shared_step: &shared_step
     - tools/ci/setup.sh
   plugins:
     - file:///buildkite/plugins/docker: &docker_plugin
-        image: 652969937640.dkr.ecr.us-east-1.amazonaws.com/containers/node:v16
+        image: 652969937640.dkr.ecr.us-east-1.amazonaws.com/containers/node:current
         always-pull: true
         propagate-environment: true
         propagate-uid-gid: true

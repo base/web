@@ -1,0 +1,8 @@
+{
+  "name": "Mobula",
+  "description": "Mobula provides curated datasets for builders: market data with Octopus, wallets data, metadata with Metacore, alongside with REST, GraphSQL & SQL interfaces to query them.",
+  "url": "https://mobula.io",
+  "imageUrl": "/images/partners/mobula.jpg",
+  "category": "infra",
+  "subcategory": "data"
+}

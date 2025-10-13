@@ -1,0 +1,5 @@
+.vercel
+.env*.local
+
+# Million Lint
+.million/store.json

@@ -1,6 +1,0 @@
-# For static app
-engine: Syn
-# For dynamic app
-# engine: Odin
-continuous: false
-build_name: app-bridge

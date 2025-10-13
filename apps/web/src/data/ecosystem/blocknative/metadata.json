@@ -1,0 +1,8 @@
+{
+  "name": "Blocknative",
+  "url": "https://onboard.blocknative.com",
+  "description": "Blocknative's Web3 Onboard is an open-source library that enables dapps to easily connect 40+ wallets, preview transactions, deliver real-time notifications, and more through a great developer UX.",
+  "imageUrl": "/images/partners/blocknative.webp",
+  "category": "infra",
+  "subcategory": "developer tool"
+}

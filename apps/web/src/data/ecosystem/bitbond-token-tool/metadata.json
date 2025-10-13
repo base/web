@@ -1,0 +1,8 @@
+{
+  "name": "Bitbond Token Tool",
+  "description": "Bitbond Token Tool is a web3 app that enables users to effortlessly create, manage and multisend ERC20 / ERC1400 tokens and NFTs across leading EVM chains. Users can rely on Token Tool’s configurable smart contract templates that have been audited by CertiK instead of having to program their own smart contracts. Token Tool offers a convenient user interface as well as an API in its enterprise version.",
+  "url": "https://tokentool.bitbond.com/",
+  "imageUrl": "/images/partners/tokentool.png",
+  "category": "infra",
+  "subcategory": "developer tool"
+}

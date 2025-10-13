@@ -1,22 +1,33 @@
-import { useCallback, useRef, useState } from 'react';
+'use client';
+import { Dispatch, SetStateAction, useCallback, useRef, useState, useEffect } from 'react';
+import { motion, AnimatePresence, cubicBezier, Variants } from 'motion/react';
 
-type Props = {
-  setSearchText: (val: string) => void;
+const easeFn = cubicBezier(0.4, 0, 0.2, 1);
+const transition = { duration: 0.24, ease: easeFn };
+
+const containerVariants: Variants = {
+  initial: { width: 'auto' },
+  animate: { width: 'auto' },
+};
+
+const inputVariants: Variants = {
+  initial: { width: 0, opacity: 0 },
+  animate: { width: 'auto', opacity: 1 },
+  exit: { width: 0, opacity: 0 },
+};
+
+const buttonVariants: Variants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
 };
 
 function SearchIcon() {
   return (
-    <svg
-      width="16"
-      height="17"
-      viewBox="0 0 16 17"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="m-2"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 15 14" fill="none">
       <path
-        d="M16 14.5597L11.89 10.4497C12.59 9.41971 13 8.16971 13 6.82971C13 3.23971 10.09 0.329712 6.5 0.329712C2.91 0.329712 0 3.23971 0 6.82971C0 10.4197 2.91 13.3297 6.5 13.3297C7.84 13.3297 9.09 12.9197 10.13 12.2197L14.23 16.3297L16 14.5597ZM6.5 10.8297C4.29 10.8297 2.5 9.03971 2.5 6.82971C2.5 4.61971 4.29 2.82971 6.5 2.82971C8.71 2.82971 10.5 4.61971 10.5 6.82971C10.5 9.03971 8.71 10.8297 6.5 10.8297Z"
-        fill="white"
+        d="M10.1991 10.3374C9.23628 11.0641 8.03761 11.4951 6.73828 11.4951C3.56264 11.4951 0.988281 8.92075 0.988281 5.74512C0.988281 2.56948 3.56264 -0.00488281 6.73828 -0.00488281C9.91392 -0.00488281 12.4883 2.56948 12.4883 5.74512C12.4883 7.04445 12.0573 8.24312 11.3305 9.20599L14.9883 12.8637L13.8569 13.9951L10.1991 10.3374ZM10.8883 5.74512C10.8883 3.45314 9.03026 1.59512 6.73828 1.59512C4.4463 1.59512 2.58828 3.45314 2.58828 5.74512C2.58828 8.0371 4.4463 9.89512 6.73828 9.89512C9.03026 9.89512 10.8883 8.0371 10.8883 5.74512Z"
+        fill="#0A0B0D"
       />
     </svg>
   );
@@ -24,66 +35,121 @@ function SearchIcon() {
 
 function XIcon() {
   return (
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="m-2"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
       <path
-        d="M1.76773 1L0.353516 2.41422L6.35352 8.41422L0.353516 14.4142L1.76773 15.8284L7.76773 9.82843L13.7677 15.8284L15.1819 14.4142L9.18194 8.41421L15.1819 2.41422L13.7677 1L7.76773 7L1.76773 1Z"
-        fill="white"
+        d="M6.85346 7.99516L0.988281 2.12998L2.12315 0.995117L7.98832 6.86029L13.8535 0.995117L14.9884 2.12998L9.12319 7.99516L14.9883 13.8602L13.8534 14.9951L7.98832 9.13003L2.12324 14.9951L0.988368 13.8602L6.85346 7.99516Z"
+        fill="#0A0B0D"
       />
     </svg>
   );
 }
 
-const DEBOUNCE_LENGTH_MS = 300;
-
-export function SearchBar({ setSearchText }: Props) {
-  const [text, setText] = useState('');
+export function SearchBar({
+  search,
+  setSearch,
+}: {
+  search: string;
+  setSearch: Dispatch<SetStateAction<string>>;
+}) {
+  const [isExpanded, setIsExpanded] = useState(false);
   const debounced = useRef<number>();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const mobileInputRef = useRef<HTMLInputElement>(null);
 
   const onChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       clearTimeout(debounced.current);
 
-      const val = e.target.value;
-      setText(val);
-
-      debounced.current = window.setTimeout(() => {
-        setSearchText(val);
-      }, DEBOUNCE_LENGTH_MS);
+      const value = e.target.value;
+      setSearch(value);
     },
-    [setText, setSearchText],
+    [setSearch],
   );
 
+  const onBlur = useCallback(() => {
+    setIsExpanded(false);
+  }, []);
+
   const clearInput = useCallback(() => {
-    setText('');
-    setSearchText('');
-  }, [setSearchText]);
+    setSearch('');
+    setIsExpanded(false);
+  }, [setSearch]);
+
+  const handleSearchIconClick = useCallback(() => {
+    setIsExpanded(true);
+  }, []);
+
+  useEffect(() => {
+    if (isExpanded && mobileInputRef.current) {
+      mobileInputRef.current.focus();
+    }
+  }, [isExpanded]);
 
   return (
-    <label
-      className="flex h-10 flex-row items-center gap-2 rounded-[56px] border border-muted p-2 md:w-full lg:w-80"
-      htmlFor="appsSearchBar"
+    <motion.div
+      className="relative flex h-8 max-w-[150px] flex-row items-center gap-2 rounded-[8px] border border-[#DEE1E7] p-2 md:max-w-none"
+      variants={containerVariants}
+      initial="initial"
+      animate="animate"
+      transition={transition}
     >
-      <SearchIcon />
+      <button
+        type="button"
+        onClick={handleSearchIconClick}
+        className="flex-shrink-0 md:pointer-events-none"
+        aria-label="Search"
+      >
+        <SearchIcon />
+      </button>
+
       <input
+        ref={inputRef}
         type="text"
         id="appsSearchBar"
-        value={text}
+        value={search}
         onChange={onChange}
-        className="w-full bg-black font-sans text-base text-white placeholder:text-muted focus:outline-none"
+        className="hidden max-w-[100px] flex-1 font-sans text-base text-black placeholder:text-base-gray-200 focus:outline-none md:block md:max-w-none"
         placeholder="Search"
+        aria-label="Search for apps and integrations in the Base ecosystem"
       />
-      {text && (
-        <button type="button" onClick={clearInput}>
-          <XIcon />
-        </button>
-      )}
-    </label>
+
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.input
+            ref={mobileInputRef}
+            type="text"
+            value={search}
+            onChange={onChange}
+            onBlur={onBlur}
+            className="max-w-[100px] flex-1 font-sans text-base text-black placeholder:text-base-gray-200 focus:outline-none md:hidden md:max-w-none"
+            placeholder="Search"
+            aria-label="Search for apps and integrations in the Base ecosystem"
+            variants={inputVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={transition}
+          />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {search && (
+          <motion.button
+            type="button"
+            onClick={clearInput}
+            aria-label="clear input"
+            className="absolute right-2 flex-shrink-0"
+            variants={buttonVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={transition}
+          >
+            <XIcon />
+          </motion.button>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 }

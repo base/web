@@ -1,3 +1,4 @@
+.env
 # Node stuff
 node_modules
 yarn-debug.log*
@@ -56,8 +57,13 @@ out/
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
-# prevent people from accidentally commiting a package-lock
+# prevent people from accidentally committing a package-lock
 package-lock.json
+
+# E2E
+**/playwright-report
+**/test-results
+apps/web/e2e/.cache
 
 # Env files
 .env.local
@@ -69,3 +75,8 @@ package-lock.json
 schema.graphql
 persisted_queries.json
 **/*.graphql.ts
+
+# eslint
+.eslintcache
+
+.vercel

@@ -1,29 +1,44 @@
-import { Icon } from '../Icon/Icon';
+import Container from 'apps/web/src/components/base-org/Container';
+import GetConnectedButton from './GetConnectedButton';
 
-export function GetConnected() {
+export async function GetConnected() {
   return (
-    <div className="flex min-h-[300px] w-full max-w-[1440px] flex-row flex-wrap items-start justify-between bg-black px-8">
-      <div className=" pb-16 font-display text-2xl uppercase text-white lg:text-3xl">
-        <p className="mb-[12px]">Get Connected</p>
+    <Container>
+      <div className="flex min-h-[300px] w-full  flex-row flex-wrap items-start justify-between bg-black">
+        <div className="pb-16 font-display text-2xl uppercase text-white lg:text-3xl">
+          <h3 className="mb-[12px]">Get Connected</h3>
+        </div>
+        <div className="flex flex-row gap-4 lg:h-full lg:items-center lg:gap-8">
+          <GetConnectedButton
+            iconName="farcaster"
+            href="https://warpcast.com/base"
+            eventName="farcaster"
+            title="Join us on Warpcast"
+            aria-label="Join us on Warpcast"
+          />
+          <GetConnectedButton
+            iconName="discord"
+            href="https://discord.com/invite/buildonbase"
+            eventName="discord"
+            title="Join us on Discord"
+            aria-label="Join us on Discord"
+          />
+          <GetConnectedButton
+            iconName="twitter"
+            href="https://x.com/base"
+            eventName="twitter"
+            title="Join us on X"
+            aria-label="Join us on X"
+          />
+          <GetConnectedButton
+            iconName="github"
+            href="https://github.com/base-org"
+            eventName="github"
+            title="Join us on Github"
+            aria-label="Join us on Github"
+          />
+        </div>
       </div>
-
-      <div className="flex flex-row gap-4 lg:h-full lg:items-center lg:gap-8">
-        <div className="rounded-full border border-white p-5">
-          <a href="https://discord.com/invite/buildonbase" title="Join us on Discord">
-            <Icon name="discord" width="48" height="48" />
-          </a>
-        </div>
-        <div className="rounded-full border border-white p-5">
-          <a href="https://github.com/base-org" title="Join us on Github">
-            <Icon name="github" width="48" height="48" />
-          </a>
-        </div>
-        <div className="rounded-full border border-white p-5">
-          <a href="https://twitter.com/base" title="Join us on Twitter">
-            <Icon name="twitter" width="48" height="48" />
-          </a>
-        </div>
-      </div>
-    </div>
+    </Container>
   );
 }

@@ -13,7 +13,7 @@ const SECONDARY_GRADIENT = {
     'conic-gradient(from 90.001deg at 50% 50%, #0052FF 0deg, #FFFFFF 105deg, #719EFF 241.88deg, #0052FF 360deg)',
 };
 
-export function GradientCircle({ type = 'primary', className }: Props) {
+export async function GradientCircle({ type = 'primary', className }: Props) {
   const classNameHasWidth = className?.includes('w-');
   const classNameHasHeight = className?.includes('h-');
   return (

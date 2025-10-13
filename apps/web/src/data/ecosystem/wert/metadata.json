@@ -1,0 +1,8 @@
+{
+  "name": "Wert",
+  "description": "Fiat Onramp and NFT checkout. Users paying with a card can execute any smart contract function and receive tokens/nfts directly to their wallet in the same transaction. ",
+  "url": "wert.io",
+  "imageUrl": "/images/partners/wert.png",
+  "category": "onramp",
+  "subcategory": "fiat on-ramp"
+}

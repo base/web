@@ -1,119 +1,96 @@
-import { useState, useCallback } from 'react';
-import Link from 'next/link';
-import { CookiePreferencesModal } from '@coinbase/cookie-banner';
-
-import { Icon } from '../../Icon/Icon';
-import { Logo } from '../../Logo/Logo';
-import { bridgeUrl, docsUrl } from 'apps/web/src/constants';
+import AnalyticsProvider from 'apps/web/contexts/Analytics';
+import BaseFooterSVG from 'apps/web/src/components/Layout/Footer/BaseFooterSVG';
+import Link from 'apps/web/src/components/Link';
 
 export function Footer() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleOpenModal = useCallback(() => setIsOpen(true), []);
-
-  const handleCloseModal = useCallback(() => setIsOpen(false), []);
-
   return (
-    <footer className="z-10 mt-auto flex w-full justify-center bg-gray lg:pb-64">
-      <div className="flex w-full max-w-[1440px] flex-col justify-between p-8 lg:flex-row">
-        <div className="flex flex-col font-display text-sm text-white">
-          <div className="bg-blue-300 flex w-32 flex-row items-start justify-start">
-            <Logo color="white" />
-          </div>
-          <div className="flex flex-col space-y-4 pt-20">
-            <p className="font-mono text-xl uppercase text-white">
-              Keep up with the latest from Base
-            </p>
-            <div className="flex flex-col">
-              <p className="text-white">
-                <a href="https://base.mirror.xyz/subscribe" className="underline">
-                  Subscribe to our Mirror blog
-                </a>
-                : Mint the posts as unique NFTs
-              </p>
-              <p className="text-white">commemorating the evolution of Base.</p>
+    <AnalyticsProvider context="footer">
+      <footer className="col-span-full grid grid-cols-1 pt-20 md:pt-32 lg:grid-cols-[13.438rem_1fr]">
+        <div className="lg:col-start-2">
+          <div className="mx-auto flex w-full max-w-[clamp(1024px,calc(1024px+(100vw-1024px)*0.25),1248px)] justify-center px-4 md:px-6 lg:px-8">
+            <div className="relative z-20 grid w-full grid-cols-9 gap-x-[min(2.25vw,_32px)] gap-y-10 py-4 md:gap-y-16 md:py-8 lg:h-[max(42dvw,_665px)] lg:max-h-[800px] lg:gap-y-0">
+              <div className="col-span-full grid grid-cols-2 md:flex md:justify-between lg:col-span-9 [&:has(ul:hover)_div:not(:has(ul:hover))]:opacity-50">
+                {LINK_SECTIONS.map((section) => (
+                  <div
+                    key={section.title}
+                    className="mb-6 transition-opacity duration-200 [&:has(a:hover)_a:not(:hover)]:opacity-50"
+                  >
+                    <h3 className="mb-3 font-sans text-sm leading-[130%] tracking-normal">
+                      {section.title}
+                    </h3>
+                    <ul className="flex flex-col">
+                      {section.links.map((link) => (
+                        <li key={link.label}>
+                          <Link
+                            href={link.href}
+                            target={link.newTab ? '_blank' : '_self'}
+                            rel={link.newTab ? 'noopener noreferrer' : undefined}
+                            className="block py-1 font-mono text-sm font-[350] uppercase text-gray-50 transition-opacity duration-200"
+                          >
+                            {link.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+
+              <BaseFooterSVG className="bottom-6 col-span-full h-auto w-full md:px-0 lg:absolute lg:bottom-8 lg:col-span-9" />
             </div>
-            <div className="flex flex-col">
-              <p className="text-white">
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSdvX-a6LqOIR7Uk5cDPGUjUkpSCetvTor25M1JmW9eqgubS5Q/viewform?usp=sf_link"
-                  className="underline"
-                >
-                  Build on Base
-                </a>
-                : Get in touch with our teams about your project.
-              </p>
-            </div>
-          </div>
-          <p className="pt-20 underline">
-            <a href="https://docs.base.org/terms-of-service">Terms of Service</a>
-            <br />
-            <a href="https://docs.base.org/privacy-policy">Privacy Policy</a>
-            <br />
-            <Link href="/cookie-policy">Cookie Policy</Link>
-            <br />
-            <button type="button" className="appearance-none underline" onClick={handleOpenModal}>
-              Cookie Manager
-            </button>
-          </p>
-        </div>
-        <div className="flex h-full flex-col gap-5 pt-24 lg:flex-row lg:gap-10 lg:pt-0">
-          <div className="flex h-full flex-col gap-4 lg:flex-row lg:gap-10">
-            <Link href="/about">
-              <span className="font-mono text-xl text-white">About</span>
-            </Link>
-            <a
-              href={docsUrl}
-              className="font-mono text-xl text-white"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              Docs
-            </a>
-            <a
-              href={bridgeUrl}
-              className="font-mono text-xl text-white"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              Bridge
-            </a>
-            <a href="https://base.mirror.xyz" className="font-mono text-xl text-white">
-              Blog
-            </a>
-            <Link href="/jobs">
-              <span className="font-mono text-xl text-white">Jobs</span>
-            </Link>
-          </div>
-          <div className="flex flex-row gap-4 pt-1 lg:h-full lg:gap-8">
-            <a
-              href="https://discord.com/invite/buildonbase"
-              target="_blank"
-              rel="noreferrer noopener"
-              title="Join us on Discord"
-            >
-              <Icon name="discord" width="24" height="20" />
-            </a>
-            <a
-              href="https://twitter.com/base"
-              target="_blank"
-              rel="noreferrer noopener"
-              title="Join us on Twitter"
-            >
-              <Icon name="twitter" width="24" height="20" />
-            </a>
-            <a
-              href="https://github.com/base-org"
-              target="_blank"
-              rel="noreferrer noopener"
-              title="Join us on Github"
-            >
-              <Icon name="github" width="24" height="24" />
-            </a>
           </div>
         </div>
-      </div>
-      {isOpen && <CookiePreferencesModal isOpen={isOpen} onClose={handleCloseModal} />}
-    </footer>
+      </footer>
+    </AnalyticsProvider>
   );
 }
+
+const LINK_SECTIONS = [
+  {
+    title: 'Explore',
+    links: [{ label: 'Apps', href: '/ecosystem' }],
+  },
+  {
+    title: 'Builders',
+    links: [
+      { label: 'Tools', href: 'https://www.base.org/build' },
+      { label: 'BaseScan', href: 'https://basescan.org/' },
+      {
+        label: 'Gas credits',
+        href: 'https://docs.base.org/identity/smart-wallet/introduction/base-gasless-campaign',
+        newTab: true,
+      },
+      { label: 'Engineering blog', href: 'https://www.base.dev/blog', newTab: true },
+      { label: 'Support', href: 'https://discord.com/invite/buildonbase' }, // TODO: add discord link
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      { label: 'Brand kit', href: 'https://www.base.org/brand', newTab: true },
+      { label: 'Events', href: 'https://lu.ma/BaseMeetups', newTab: true },
+    ],
+  },
+  {
+    title: 'Socials',
+    links: [
+      { label: 'X', href: 'https://x.com/base', newTab: true },
+      { label: 'Base App', href: 'https://base.app', newTab: true },
+      { label: 'Discord', href: 'https://discord.com/invite/buildonbase', newTab: true },
+      { label: 'Reddit', href: 'https://www.reddit.com/r/BASE/', newTab: true },
+    ],
+  },
+  {
+    title: 'Base',
+    links: [
+      {
+        label: 'Vision',
+        href: '/about/vision',
+      },
+      { label: 'Blog', href: 'https://paragraph.xyz/@base', newTab: true },
+      { label: 'Jobs', href: '/jobs' },
+      { label: 'Terms of service', href: 'https://docs.base.org/terms-of-service', newTab: true }, // TODO: update
+      { label: 'Privacy policy', href: 'https://docs.base.org/privacy-policy', newTab: true },
+    ],
+  },
+];

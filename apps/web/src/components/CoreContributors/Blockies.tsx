@@ -1,3 +1,4 @@
+'use client';
 import ReactBlockies from 'react-blockies';
 
 const styles = {

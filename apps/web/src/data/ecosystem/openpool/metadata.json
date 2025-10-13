@@ -1,0 +1,8 @@
+{
+  "name": "OpenPool",
+  "url": "https://www.openpool.co/",
+  "description": "OpenPool's onchain API processes wallet txs at scale to calculate real-time and historical pricing, cost basis, P&Ls, and realization events so you don't have to.",
+  "imageUrl": "/images/partners/openpool2.webp",
+  "category": "infra",
+  "subcategory": "developer tool"
+}

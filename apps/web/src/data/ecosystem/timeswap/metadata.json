@@ -1,0 +1,8 @@
+{
+  "name": "Timeswap",
+  "url": "https://timeswap.io/",
+  "description": "Timeswap is the first fully decentralized lending & borrowing protocol in DeFi. Timeswap enables the permissionless creation of lending & borrowing markets for any ERC-20 token pair using a 3-variable AMM - (x+y)z=k.",
+  "imageUrl": "/images/partners/timeswap.webp",
+  "category": "defi",
+  "subcategory": "lending/borrowing"
+}

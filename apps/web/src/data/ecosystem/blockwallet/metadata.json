@@ -1,0 +1,8 @@
+{
+  "name": "BlockWallet",
+  "url": "https://blockwallet.io/networks/base-wallet",
+  "description": "BlockWallet is a self-custodial Web3 wallet focused on speed, reliability, and security ensuring users genuinely own their digital assets without technical concerns.",
+  "imageUrl": "/images/partners/blockwallet.webp",
+  "category": "wallet",
+  "subcategory": "self-custody"
+}

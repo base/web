@@ -1,0 +1,23 @@
+.react-calendar-heatmap {
+  min-width: 780px;
+  height: auto;
+  width: 100%;
+}
+
+.react-calendar-heatmap text {
+  font-size: 10px;
+  fill: #aaa;
+}
+
+.react-calendar-heatmap .react-calendar-heatmap-small-text {
+  font-size: 5px;
+}
+
+.react-calendar-heatmap rect:hover {
+  stroke-width: 1;
+  stroke: #fff;
+}
+.react-calendar-heatmap rect {
+  stroke-width: 1;
+  stroke: #fff;
+}

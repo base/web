@@ -1,5 +1,5 @@
 import { GradientCircle } from 'apps/web/src/components/GradientCircle/GradientCircle';
-import Image from 'next/image';
+import ImageAdaptive from 'apps/web/src/components/ImageAdaptive';
 
 type GradientRowProps = {
   /** @default false */
@@ -7,7 +7,7 @@ type GradientRowProps = {
   className?: string;
 };
 
-function GradientRow({ inverted = false, className }: GradientRowProps) {
+async function GradientRow({ inverted = false, className }: GradientRowProps) {
   return (
     <div
       className={`flex flex-row justify-center gap-2 p-2 xl:gap-4 xl:p-4 ${
@@ -25,12 +25,12 @@ function GradientRow({ inverted = false, className }: GradientRowProps) {
   );
 }
 
-export function Hero() {
+export async function Hero() {
   // negative top margin so it underlays the Nav
   return (
-    <div className="mt-[-96px] flex w-full flex-col items-center bg-black pt-28 pb-10 lg:px-16 lg:pt-32 lg:pb-20">
+    <div className="flex w-full flex-col items-center bg-black pb-10 pt-28 lg:pb-20 lg:pt-32">
       <GradientRow className="hidden md:flex" inverted />
-      <Image
+      <ImageAdaptive
         priority
         quality={100}
         src="/images/about-hero.png"

@@ -1,0 +1,8 @@
+{
+  "name": "USDC",
+  "category": "defi",
+  "subcategory": "stablecoin",
+  "description": "USDC is a regulated digital currency you can redeem 1:1 for US dollars.",
+  "url": "https://www.circle.com/usdc",
+  "imageUrl": "/images/partners/usdc.svg"
+}

@@ -1,3 +1,4 @@
+'use client';
 import { ReactNode, useCallback, useState } from 'react';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 
@@ -11,7 +12,7 @@ export function QuestionAccordion({ question, answer }: QuestionAccordionProps) 
   const toggleOpen = useCallback(() => setIsOpen((o) => !o), [setIsOpen]);
 
   return (
-    <div className="flex flex-col gap-6 border-b border-gray pb-6 pt-5">
+    <div className="flex flex-col gap-6 border-b border-gray-90 pb-6 pt-5">
       <button
         type="button"
         className="flex flex-row justify-between py-2 text-base font-medium text-white"

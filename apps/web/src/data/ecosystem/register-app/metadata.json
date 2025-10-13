@@ -1,0 +1,8 @@
+{
+  "name": "Register.app",
+  "url": "https://register.app/#/?chainId=1",
+  "description": "Register enables anyone to mint, redeem, stake and govern asset-backed stablecoins, flatcoins and indexes (“RTokens”) on the Reserve Protocol",
+  "imageUrl": "/images/partners/register.webp",
+  "category": "defi",
+  "subcategory": "lending/borrowing"
+}

@@ -1,17 +1,38 @@
 {
   "extends": "../../tsconfig.projectOptions.json",
   "compilerOptions": {
+    "composite": true,
     "jsx": "preserve",
     "emitDeclarationOnly": false,
     "noEmit": true,
     "outDir": "../../out/apps/web",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "paths": {
+      "base-ui": [
+        "../../libs/base-ui"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true,
+    "types": ["jest", "@testing-library/jest-dom"]
   },
   "include": [
+    "global.d.ts",
     "next-env.d.ts",
     "**/*",
     "**/*.json",
-    "../../types/**/*"
+    "../../types/**/*",
+    ".next/types/**/*.ts"
   ],
   "exclude": [],
-  "references": []
+  "references": [
+    {
+      "path": "../../libs/base-ui"
+    }
+  ]
 }

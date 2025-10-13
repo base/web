@@ -1,3 +1,4 @@
+const { logger } = require('apps/web/src/utils/logger');
 const { Contract } = require('ethers');
 
 const erc721Abi = [
@@ -169,7 +170,7 @@ async function getAvatarUri(address, uri, provider) {
           }
           return `${baseUrl}/${id}`;
         } catch (e) {
-          console.error(e);
+          logger.error('error getting avatar URI', error);
           return null;
         }
       }

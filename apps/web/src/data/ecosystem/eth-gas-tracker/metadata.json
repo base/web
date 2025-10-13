@@ -1,0 +1,8 @@
+{
+  "name": "ETH Gas Tracker",
+  "description": "Monitor and track Ethereum and L2 gas prices to reduce transaction fees, save money and take control of your blockchain experience.",
+  "url": "https://www.ethgastracker.com/network/base",
+  "imageUrl": "/images/partners/ethgastracker.png",
+  "category": "infra",
+  "subcategory": "data"
+}

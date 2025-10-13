@@ -1,0 +1,8 @@
+{
+  "name": "deBridge",
+  "url": "https://debridge.finance/",
+  "description": "deBridge is an infrastructure for high performance interoperability. By removing the bottlenecks and risks of liquidity pools, deBridge enables DeFi applications to scale faster with ultra capital-efficient and deep liquidity transfers across chains.",
+  "imageUrl": "/images/partners/debridge.webp",
+  "category": "infra",
+  "subcategory": "bridge"
+}

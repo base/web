@@ -30,4 +30,4 @@ body:
     id: other
     attributes:
       label: Additional context
-      description: Add any other context or screenshots about the concern can be added here.
+      description: Add any additional context or screenshots about the concern here.

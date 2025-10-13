@@ -23,6 +23,10 @@ export const cookieManagerConfig = {
       expiry: 365,
       trackers: [
         {
+          id: "_dd_s",
+          type: TrackerType.COOKIE
+        },
+        {
           id: 'base_device_id',
           type: TrackerType.COOKIE,
         },

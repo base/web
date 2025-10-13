@@ -1,0 +1,107 @@
+name: File Size Checker
+
+# Add required permissions
+permissions:
+  contents: read
+  pull-requests: write
+  statuses: write
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  check-file-sizes:
+    name: File Size Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check file sizes
+        id: check-sizes
+        run: |
+          # Initialize variables for tracking findings
+          large_files=""
+          huge_files=""
+
+          # Get all files in the PR
+          echo "Files changed in PR:"
+          git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }}
+
+          for file in $(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }}); do
+            if [ -f "$file" ]; then
+              size=$(stat -c%s "$file")
+              size_mb=$(echo "scale=2; $size/1048576" | bc)
+              
+              echo "Checking $file: ${size_mb}MB"
+              
+              # Check for files over 40MB
+              if (( $(echo "$size_mb > 40" | bc -l) )); then
+                huge_files="${huge_files}* ${file} (${size_mb}MB)\n"
+              # Check for files over 10MB
+              elif (( $(echo "$size_mb > 10" | bc -l) )); then
+                large_files="${large_files}* ${file} (${size_mb}MB)\n"
+              fi
+            fi
+          done
+
+          # Print findings for debugging
+          echo "Large files found:"
+          echo -e "$large_files"
+          echo "Huge files found:"
+          echo -e "$huge_files"
+
+          # Set outputs for use in next steps
+          echo "large_files<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$large_files" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+          echo "huge_files<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$huge_files" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+          # Fail if huge files are found
+          if [ ! -z "$huge_files" ]; then
+            echo "❌ Files over 40MB found!"
+            exit 1
+          fi
+
+      - name: Update Status and Comment
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const hugeFiles = `${{ steps.check-sizes.outputs.huge_files }}`;
+            const largeFiles = `${{ steps.check-sizes.outputs.large_files }}`;
+
+            try {
+              // Only comment if issues were found
+              if (hugeFiles || largeFiles) {
+                let comment = '## ⚠️ File Size Check Results\n\n';
+
+                if (hugeFiles) {
+                  comment += '### 🚫 Files over 40MB (Not Allowed):\n' + hugeFiles + '\n';
+                  comment += '**These files must be removed from git history before the PR can be merged.**\n\n';
+                }
+
+                if (largeFiles) {
+                  comment += '### ⚠️ Large Files (Over 10MB):\n' + largeFiles + '\n';
+                  comment += 'Consider reducing the size of these files if possible.\n';
+                }
+
+                await github.rest.issues.createComment({
+                  issue_number: context.payload.pull_request.number,
+                  owner: context.payload.repository.owner.login,
+                  repo: context.payload.repository.name,
+                  body: comment
+                });
+              }
+            } catch (error) {
+              console.error('Error:', error);
+              core.setFailed(error.message);
+            }

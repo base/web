@@ -1,0 +1,106 @@
+export default [
+  {
+    inputs: [
+      { internalType: 'uint256[]', name: 'rentPrices', type: 'uint256[]' },
+      { internalType: 'uint256', name: 'startPremium_', type: 'uint256' },
+      { internalType: 'uint256', name: 'totalDays', type: 'uint256' },
+    ],
+    stateMutability: 'nonpayable',
+    type: 'constructor',
+  },
+  {
+    inputs: [{ internalType: 'uint256', name: 'elapsed', type: 'uint256' }],
+    name: 'decayedPremium',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'endValue',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      { internalType: 'string', name: 'name', type: 'string' },
+      { internalType: 'uint256', name: 'expires', type: 'uint256' },
+      { internalType: 'uint256', name: 'duration', type: 'uint256' },
+    ],
+    name: 'premium',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      { internalType: 'string', name: 'name', type: 'string' },
+      { internalType: 'uint256', name: 'expires', type: 'uint256' },
+      { internalType: 'uint256', name: 'duration', type: 'uint256' },
+    ],
+    name: 'price',
+    outputs: [
+      {
+        components: [
+          { internalType: 'uint256', name: 'base', type: 'uint256' },
+          { internalType: 'uint256', name: 'premium', type: 'uint256' },
+        ],
+        internalType: 'struct IPriceOracle.Price',
+        name: '',
+        type: 'tuple',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'price10Letter',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'price1Letter',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'price2Letter',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'price3Letter',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'price4Letter',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'price5Letter',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'startPremium',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+] as const;

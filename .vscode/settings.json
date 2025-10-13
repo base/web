@@ -1,7 +1,7 @@
 {
   // Prettier
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true, // use ⌘-K S to format without saving
+  "editor.formatOnSave": true, // use ⌘-K S (or Ctrl-K S) to format without saving
 
   // Disable built-in formatters
   "html.format.enable": false,
@@ -15,8 +15,15 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-
-  // ESLint
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "editor.codeActionsOnSave": ["source.fixAll.eslint"],
   "eslint.packageManager": "yarn",
   "eslint.useESLintClass": true,
@@ -25,5 +32,11 @@
     { "pattern": "examples/*" },
     { "pattern": "libs/*" },
     { "pattern": "packages/*" }
-  ]
+  ],
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  }
 }

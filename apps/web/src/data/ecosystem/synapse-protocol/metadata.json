@@ -1,0 +1,8 @@
+{
+  "name": "Synapse Protocol",
+  "url": "https://www.synapseprotocol.com",
+  "description": "Synapse is comprised of a cross-chain messaging framework and an economically secure method to reach consensus on the validity of cross-chain transactions, enabling developers to build truly native cross-chain apps.",
+  "imageUrl": "/images/partners/synapse.webp",
+  "category": "infra",
+  "subcategory": "bridge"
+}

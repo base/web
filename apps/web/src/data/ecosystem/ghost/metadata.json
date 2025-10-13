@@ -1,0 +1,8 @@
+{
+  "name": "Ghost",
+  "description": "Next-gen indexing stack for next-gen blockchains. Built high-performance indexers (subgraphs) in Solidity.",
+  "url": "https://tryghost.xyz",
+  "imageUrl": "/images/partners/ghostLogs.webp",
+  "category": "infra",
+  "subcategory": "data"
+}

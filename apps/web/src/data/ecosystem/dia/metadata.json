@@ -1,0 +1,8 @@
+{
+  "name": "DIA",
+  "url": "https://www.diadata.org/",
+  "description": "DIA redefines oracles on 30+ L1/L2s: Fully customizable, unmet asset coverage 100% transparent. Enabling new primitives for DeFi, NFTfi, and GameFi.\n\nDIA's data feeds are fully customized with regard to the mix of sources and methodologies, resulting in tailor-made, high resilience feeds and thereby setting a new paradigm for oracles.",
+  "imageUrl": "/images/partners/dia.webp",
+  "category": "infra",
+  "subcategory": "data"
+}

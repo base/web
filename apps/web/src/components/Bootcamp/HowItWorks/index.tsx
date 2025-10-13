@@ -1,3 +1,6 @@
+import Container from 'apps/web/src/components/base-org/Container';
+import Title from 'apps/web/src/components/base-org/typography/Title';
+import { TitleLevel } from 'apps/web/src/components/base-org/typography/Title/types';
 import { HowItWorksCard } from 'apps/web/src/components/Bootcamp/HowItWorks/HowItWorksCard';
 
 const featureItems = [
@@ -35,10 +38,10 @@ const featureItems = [
           <a
             className="underline"
             target="_blank"
-            href="https://docs.base.org/base-camp/docs/welcome"
+            href="https://docs.base.org/base-learn/docs/welcome"
             rel="noreferrer"
           >
-            Base Camp
+            Base Learn
           </a>
           , meeting regularly with your mentor. You’ll build your final project during the final two
           weeks - a real-world, onchain app that you’ll demo virtually on Demo Day.
@@ -63,17 +66,19 @@ const featureItems = [
   },
 ];
 
-export function HowItWorks() {
+export async function HowItWorks() {
   return (
-    <div className="flex w-full max-w-[1440px] flex-col space-y-24 bg-black px-8 pt-12">
-      <div className="flex w-full flex-col font-display text-3xl text-white md:text-5xl lg:text-6xl">
-        <p>How it works</p>
+    <Container>
+      <div className="flex w-full flex-col gap-12 bg-black py-12 pt-20">
+        <div className="flex w-full flex-col font-display">
+          <Title level={TitleLevel.Display3}>How it works</Title>
+        </div>
+        <div className=" flex w-full flex-row justify-between gap-6 pb-8 ">
+          {featureItems.map((item) => (
+            <HowItWorksCard key={item.number} featureItem={item} />
+          ))}
+        </div>
       </div>
-      <div className="scrollbar flex w-full flex-row justify-between space-x-6 overflow-x-auto pb-12 2xl:overflow-x-hidden">
-        {featureItems.map((item) => (
-          <HowItWorksCard key={item.number} featureItem={item} />
-        ))}
-      </div>
-    </div>
+    </Container>
   );
 }

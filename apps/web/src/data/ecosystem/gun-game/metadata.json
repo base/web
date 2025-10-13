@@ -1,0 +1,8 @@
+{
+  "name": "Gun Game",
+  "description": "Gun Game is a Russian Roulette game played via Telegram on Base. Games have instant onchain settlement, all gas is abstracted away from users, and more games and features are in development!",
+  "url": "https://gungame.tech/",
+  "imageUrl": "/images/partners/gungame.jpg",
+  "category": "consumer",
+  "subcategory": "gaming"
+}

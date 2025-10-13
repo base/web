@@ -8,6 +8,7 @@ module.exports = {
   tabWidth: 2,
   trailingComma: 'all',
   useTabs: false,
+  embeddedLanguageFormatting: 'off',
   overrides: [
     {
       files: '*.json',

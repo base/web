@@ -1,0 +1,8 @@
+{
+  "name": "Ledger",
+  "url": "https://www.ledger.com/",
+  "description": "Buy, sell, swap, lend, stake and manage more than 6000+ cryptos with your Ledger hardware wallet and the Ledger Live companion app. Achieve financial freedom in a secure, stress-free environment.",
+  "category": "wallet",
+  "subcategory": "self-custody",
+  "imageUrl": "/images/partners/ledger.webp"
+}

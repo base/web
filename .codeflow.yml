@@ -3,26 +3,18 @@ secure:
   required_reviews: 1
   requires_mfa: true
   requires_verified: true
-  upstream_repository: base-org/web
+  upstream_repository: base/web
+  branches:
+    - staging
 
 build:
   engines:
     - BaldurECR:
         name: web
         path: ./apps/web/Dockerfile
-    - BaldurECR:
-        name: docs
-        path: ./apps/base-docs/Dockerfile
-    - BaldurECR:
-        name: bridge
-        path: ./apps/bridge/Dockerfile
-    - BaldurECR:
-        name: goerli-bridge
-        path: ./apps/bridge/Dockerfile
-    - BaldurECR:
-        name: sepolia-bridge
-        path: ./apps/bridge/Dockerfile
+        architecture: arm64
+  multi_arch: true
 
 operate:
   slack_channels:
-    - "#base-codeflow-notifications"
+    - '#base-codeflow-notifications'

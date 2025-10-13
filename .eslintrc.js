@@ -12,12 +12,12 @@ module.exports = {
       ],
       rules: {
         'import/no-extraneous-dependencies': 'off',
+        'import/extensions': 'off',
       },
     },
   ],
   parserOptions: {
-    parser: '@typescript-eslint/parser',
-    project: './tsconfig.json',
+    EXPERIMENTAL_useProjectService: true,
   },
   plugins: ['react-perf', 'relay', '@typescript-eslint', 'import'],
   extends: [
@@ -27,8 +27,10 @@ module.exports = {
     'plugin:relay/strict',
   ],
   rules: {
+    'import/extensions': ['error', 'never'],
     'react/destructuring-assignment': 'off',
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx', '.mdx'] }],
+    'react/react-in-jsx-scope': 'off',
 
     // We utilize prop spreading
     'react/jsx-props-no-spreading': 'off',
@@ -36,7 +38,7 @@ module.exports = {
     // We utilize class properties
     'react/state-in-constructor': 'off',
 
-    // Dont use prop types since were using TypeScript
+    // Don't use prop types since we are using TypeScript
     'react/default-props-match-prop-types': 'off',
     'react/forbid-foreign-prop-types': 'off',
     'react/forbid-prop-types': 'off',
@@ -66,7 +68,7 @@ module.exports = {
 
     'react/jsx-one-expression-per-line': 'off',
 
-    // We dont use flow
+    // We don't use flow
     'relay/generated-flow-types': 'off',
 
     // Shorthand types
@@ -88,8 +90,9 @@ module.exports = {
     // Readability
     '@typescript-eslint/adjacent-overload-signatures': 'error',
     '@typescript-eslint/no-empty-interface': ['error', { allowSingleExtends: false }],
-    '@typescript-eslint/no-parameter-properties': 'error',
+    '@typescript-eslint/parameter-properties': 'error',
     '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
+    '@typescript-eslint/no-use-before-define': 'off',
 
     // Correctness
     '@typescript-eslint/switch-exhaustiveness-check': 'error',
@@ -101,7 +104,7 @@ module.exports = {
     '@typescript-eslint/no-unnecessary-type-constraint': 'error',
     '@typescript-eslint/prefer-for-of': 'error',
     '@typescript-eslint/prefer-literal-enum-member': 'error',
-    '@typescript-eslint/restrict-plus-operands': ['error', { checkCompoundAssignments: true }],
+    '@typescript-eslint/restrict-plus-operands': ['error', { skipCompoundAssignments: false }],
     '@typescript-eslint/unified-signatures': 'error',
 
     // Assertions
@@ -134,7 +137,7 @@ module.exports = {
     '@typescript-eslint/prefer-string-starts-ends-with': 'error',
 
     // Hard to migrate
-    // Errors for all try/catch blocks and any types from third-parties
+    // Errors for all try/catch blocks and any types from third parties
     '@typescript-eslint/no-unsafe-member-access': 'off',
   },
 };
