@@ -1,7 +1,7 @@
 import { formatEther, parseEther } from 'viem';
 
 export function formatWei(wei?: bigint): bigint | '...' {
-  if (wei === undefined) {
+  if (!Boolean(wei)) {
     return '...';
   }
 
