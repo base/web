@@ -1,11 +1,11 @@
 [
   {
-  "name": "Coinrule",
-  "description": "Launch fully self-custodial onchain automated trading strategies at lightning speed and with one-click UX. Team is backed by Y Combinator",
-  "url": "https://coinrule.com",
-  "imageUrl": "/images/partners/coinrule.png",
-  "category": "defi",
-  "subcategory": "dex aggregator"
+    "name": "Coinrule",
+    "description": "Launch fully self-custodial onchain automated trading strategies at lightning speed and with one-click UX. Team is backed by Y Combinator",
+    "url": "https://coinrule.com",
+    "imageUrl": "/images/partners/coinrule.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
   },
   {
     "name": "0x",
@@ -420,6 +420,14 @@
     "description": "Base Colors is the NFT collection for every color on the internet. Own Colors. Name Colors. Base Colors.",
     "url": "https://basecolors.com",
     "imageUrl": "/images/partners/basecolors.png",
+    "category": "consumer",
+    "subcategory": "nft"
+  },
+  {
+    "name": "Base God",
+    "description": "Base God is the culture token of Base.",
+    "url": "https://www.basegod.fun",
+    "imageUrl": "/images/partners/tybg.jpg",
     "category": "consumer",
     "subcategory": "nft"
   },
@@ -4567,7 +4575,7 @@
     "category": "consumer",
     "subcategory": "payments"
   },
-  {  
+  {
     "name": "KOLZ",
     "description": "A cutting-edge Web3 influencer platform designed to bridge the gap between leading influencers in the cryptocurrency and blockchain space (known as KOLs - Key Opinion Leaders) and their followers.",
     "url": "https://kolz.chat/",
