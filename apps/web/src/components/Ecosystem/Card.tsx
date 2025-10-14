@@ -19,7 +19,11 @@ type Props = {
 const MAX_DESCRIPTION_LENGTH = 200;
 
 function getNiceDomainDisplayFromUrl(url: string) {
-  return url.replace('https://', '').replace('http://', '').replace('www.', '').split('/')[0];
+  return url
+    .replace('https://', '')
+    .replace('http://', '')
+    .replace('www.', '')
+    .split('/')[0];
 }
 
 export default function EcosystemCard({
@@ -36,10 +40,8 @@ export default function EcosystemCard({
       : description;
 
   return (
-    <a
+    <ExternalLink
       href={url}
-      rel="noreferrer noopener"
-      target="_blank"
       className="flex flex-col items-stretch w-full h-full justify-stretch"
     >
       <Card
@@ -82,6 +84,6 @@ export default function EcosystemCard({
           )}
         </div>
       </Card>
-    </a>
+    </ExternalLink>
   );
 }
