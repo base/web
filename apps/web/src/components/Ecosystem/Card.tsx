@@ -19,11 +19,7 @@ type Props = {
 const MAX_DESCRIPTION_LENGTH = 200;
 
 function getNiceDomainDisplayFromUrl(url: string) {
-  return url
-    .replace('https://', '')
-    .replace('http://', '')
-    .replace('www.', '')
-    .split('/')[0];
+  return url.replace('https://', '').replace('http://', '').replace('www.', '').split('/')[0];
 }
 
 export default function EcosystemCard({
@@ -39,9 +35,13 @@ export default function EcosystemCard({
       ? description.slice(0, MAX_DESCRIPTION_LENGTH) + '...'
       : description;
 
+  const domain = getNiceDomainDisplayFromUrl(url);
+
   return (
     <ExternalLink
       href={url}
+      aria-label={`Visit ${name} — ${domain}`}
+      title={`Visit ${name}`}
       className="flex flex-col items-stretch w-full h-full justify-stretch"
     >
       <Card
@@ -60,13 +60,15 @@ export default function EcosystemCard({
               imageClassName="rounded-[8px]"
             />
           </div>
+
           <div className="flex flex-col gap-4 h-full">
             <div className="flex flex-col gap-2">
               <Title level={TitleLevel.H6Regular}>{name}</Title>
               <Text variant={TextVariant.BodyMono} className="truncate !text-base-gray-200">
-                {getNiceDomainDisplayFromUrl(url)}
+                {domain}
               </Text>
             </div>
+
             <Text className="opacity-80 group-hover/ecosystem-card:opacity-100">
               {truncatedDescription}
             </Text>
