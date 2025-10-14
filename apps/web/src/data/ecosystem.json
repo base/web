@@ -273,7 +273,7 @@
   },
   {
     "name": "Arcadia Finance",
-    "description": "Arcadia built an intent-centric application where users can deposit their assets into sophisticated strategies that beat staking APRs and will dynamically suggest rebalancing actions into the highest-yielding opportunities available according to each individual’s preferences and constraints. Arcadia takes advantage of the composability of DeFi to combine different protocols in interesting ways to maximize yields while providing best-in-class execution that streamline the way users interface with underlying protocols.",
+    "description": "Intent-centric vault app: deposit assets and get dynamically rebalanced strategies aimed to outperform staking yields. Composable across DeFi protocols with automated execution.",
     "url": "https://arcadia.finance/",
     "imageUrl": "/images/partners/arcadiafinance.png",
     "category": "defi",
@@ -2073,7 +2073,7 @@
   },
   {
     "name": "Interport Finance",
-    "description": "Interport Finance stands out as a comprehensive cross-chain hub, designed to meet all your cross-chain needs in one place. This innovative platform is reshaping the world of DeFi by offering an intuitive and powerful solution that simplifies the complexities of blockchain interoperability.\n\nAs a point for various cross-chain functionalities, Interport Finance provides a seamless experience, making it an essential tool for navigating the dynamic and interconnected blockchain networks. Interport offers a user-centric, secure, and decentralized DeFi platform driven by innovation and community engagement\n\nOur core products are: cross-chain swaps - buy and sell any token on any supported chain, ensuring you have the fastest and cost-effective trade; bridge - effortlessly bridge stable and OFT tokens across multiple chains; gas transfer - efficient transfer of native tokens across an extensive network of 49 chains; earn - earning opportunities through our stablecoin pools and ITP farms.\n\nOur vision is to create a borderless DeFi ecosystem where every blockchain is interconnected. We aim to break down the barriers between chains, making the decentralized finance world more accessible, efficient, and user-friendly. Get ready to launch into DeFi's future with Interport! 🚀",
+    "description": "Cross-chain hub for swaps, bridging and gas transfer. Swap any token across supported chains, bridge stablecoins/OFTs, move native gas, and earn via pools and farms.",
     "url": "https://interport.fi/",
     "imageUrl": "/images/partners/interport.png",
     "category": "infra",
@@ -3074,7 +3074,7 @@
   {
     "name": "Pike",
     "url": "https://pike.finance",
-    "description": "Pike is a Universal Liquidity Protocol, it is designed to unleash utility for native crypto assets by aggregating liquidity across blockchain networks.\n\nPike’s vision is to become a universal liquidity layer that enables frictionless movement and accessibility of native assets across ecosystems. Pike is built on top of Wormhole’s Cross-Chain Data Messaging and Circle’s Cross-Chain Transfer Protocol (CCTP).\n\nOne fundamental primitive of Pike is to enable users to supply native crypto assets on source chains and borrow native crypto assets on destination chains without interacting with cross-chain bridges and handling wrapped assets.",
+    "description": "Universal liquidity protocol on Wormhole+CCTP: supply native assets on source chains and borrow native assets on destination chains without wrapped tokens or direct bridge UX.",
     "imageUrl": "/images/partners/pike.webp",
     "category": "infra",
     "subcategory": "bridge"
