@@ -89,7 +89,7 @@
   },
   {
     "name": "Aerodrome Finance",
-    "url": "http://aerodrome.finance",
+    "url": "https://aerodrome.finance",
     "description": "The central trading and liquidity marketplace on Base.",
     "imageUrl": "/images/partners/aerodrome.webp",
     "category": "defi",
@@ -1162,7 +1162,7 @@
   {
     "name": "Cybro",
     "description": "CYBRO is a multichain earn marketplace that offers easy, secure access to top Web3 investment options, with AI-powered portfolio management, intuitive design, and responsive support",
-    "url": "http://cybro.io/explore?chain=Base",
+    "url": "https://cybro.io/explore?chain=Base",
     "imageUrl": "/images/partners/cybro.png",
     "category": "defi",
     "subcategory": "yield vault"
@@ -1697,7 +1697,7 @@
   },
   {
     "name": "Furrend",
-    "url": "http://furrend.xyz/",
+    "url": "https://furrend.xyz/",
     "description": "Furrend is a web3 pet video-sharing social network that provides the tools, resources, and infrastructure for content creators to monetize their work and engage with their community through digital assets.",
     "imageUrl": "/images/partners/furrend.webp",
     "category": "consumer",
@@ -2753,7 +2753,7 @@
   },
   {
     "name": "Odos",
-    "url": "http://app.odos.xyz",
+    "url": "https://app.odos.xyz",
     "description": "Odos traverses a large universe of possible token swap combinations and non-linear paths delivering greater savings to its users. Swap one or multiple tokens in a single atomic transaction.",
     "imageUrl": "/images/partners/odos.webp",
     "category": "defi",
@@ -3193,7 +3193,7 @@
   },
   {
     "name": "QiDao Protocol",
-    "url": "http://mai.finance/",
+    "url": "https://mai.finance/",
     "description": "QiDao is an overcollateralized stablecoin protocol that allows users to mint stablecoins.",
     "imageUrl": "/images/partners/qidao.webp",
     "category": "defi",
