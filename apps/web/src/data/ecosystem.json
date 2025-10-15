@@ -2624,6 +2624,14 @@
     "subcategory": "dex"
   },
   {
+    "name": "NEUS Network",
+    "description": "NEUS is a privacy-first verification layer that turns any claim into a portable proof you can reuse across apps, chains, and identities.",
+    "url": "https://neus.network",
+    "imageUrl": "/images/partners/neus.png",
+    "category": "infra",
+    "subcategory": "developer tool"
+  },
+  {
     "name": "NewThrone",
     "url": "https://www.newthrone.gg/",
     "description": "Join NewThrone today, a browser-based PVP Game project built on the Base Chain. NewThrone delivers an easy-to-use and profitable experience, as playing engages you in attacking enemies with the end goal of stealing WETH as a reward for battles won.",
