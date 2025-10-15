@@ -584,6 +584,14 @@
     "subcategory": "crypto taxes"
   },
   {
+    "name": "BOB Gateway",
+    "description": "Bring native Bitcoin to Base with BOB Gateway: an intents-based protocol powering frictionless, programmable BTC movement into DeFi for builders and users.",
+    "url": "https://app.gobob.xyz/en/gateway?input-asset=BTC&output-asset=0x0555E30da8f98308EdB960aa94C0Db47230d2B9c&output-chain=8453",
+    "imageUrl": "/images/partners/bob.png",
+    "category": "infra",
+    "subcategory": "bridge"
+  },
+  {
     "name": "Blackbird",
     "url": "https://www.blackbird.xyz/",
     "description": "Blackbird is a loyalty and membership platform built for the world's most exciting restaurants",
