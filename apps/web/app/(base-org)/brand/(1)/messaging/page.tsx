@@ -7,7 +7,7 @@ import { WhatToAvoid } from 'apps/web/app/(base-org)/brand/(1)/messaging/section
 import { WritingGuidelines } from 'apps/web/app/(base-org)/brand/(1)/messaging/sections/6-writing-guidelines';
 import { ToneAndVoice } from 'apps/web/app/(base-org)/brand/(1)/messaging/sections/7-tone-and-voice';
 import { ClarityConcisionFlow } from 'apps/web/app/(base-org)/brand/(1)/messaging/sections/8-clarity-concision-flow';
-import { Naunces } from 'apps/web/app/(base-org)/brand/(1)/messaging/sections/9-naunces';
+import { Nuances } from 'apps/web/app/(base-org)/brand/(1)/messaging/sections/9-naunces';
 import messagingImg from 'apps/web/public/images/backgrounds/messaging.webp';
 import BrandIndex from 'apps/web/src/components/Brand/Index';
 import { BRAND_PAGES_INDEX } from 'apps/web/app/(base-org)/brand/(main)/page';
@@ -47,7 +47,7 @@ export default function Page() {
       <WritingGuidelines />
       <ToneAndVoice />
       <ClarityConcisionFlow />
-      <Naunces />
+      <Nuances />
       <WhatToAvoid />
       <BrandIndex index={FINAL_INDEX} hasHeading />
     </>
