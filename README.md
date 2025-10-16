@@ -134,3 +134,26 @@ By opening a PR to add your project, you authorize and license Coinbase on a non
 ---
 
 If you have any questions, please reach out to us in #developer-chat in the [Base Discord](https://base.org/discord).
+
+---
+
+## Local development quickstart
+
+To run this project locally, make sure you have:
+
+- Node.js **v18+ (LTS)** — we recommend installing via [`nvm`](https://github.com/nvm-sh/nvm)
+- Yarn **1.x** — enable it using `corepack enable` if not installed globally
+
+### Installation
+
+```bash
+# 1. Install dependencies
+yarn install
+
+# 2. Run the local dev server
+yarn dev
+
+# 3. (Optional) Type-check and build
+yarn typecheck
+yarn build
+
