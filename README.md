@@ -29,12 +29,12 @@ Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the ne
 
 1. Ensure that `nvm` is [installed](https://github.com/nvm-sh/nvm#install--update-script).
 2. Clone the repository.
-3. If `nvm` doesn't auto-load the Node.js environment when changing to the repo directory, run `nvm use`.
+3. If `nvm` doesn't automatically load the Node.js version in this repo, run `nvm use`.
 4. Enable Yarn by running `corepack enable`.
 
 ## Getting started
 
-After cloning the repository begin by installing dependencies at the root.
+After cloning the repository, install dependencies at the root.
 
 ```shell
 yarn
@@ -45,7 +45,7 @@ yarn build
 
 To start a development server on localhost, run `yarn workspace @app/<project> dev`.
 
-For example, to start the `web` app locally, you would run `yarn workspace @app/web dev`.
+For example, to start the `web` app locally, run `yarn workspace @app/web dev`.
 
 ## Projects
 
