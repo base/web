@@ -2633,7 +2633,7 @@
   },
   {
     "name": "NEUS Network",
-    "description": "NEUS is a privacy-first verification layer that turns any claim into a portable proof you can reuse across apps, chains, and identities.",
+    "description": "An open verification protocol and platform that turns claims into reusable, privacy-first proofs across apps, chains, and identities. Verify once, reuse anywhere—with a simple API & SDK.",
     "url": "https://neus.network",
     "imageUrl": "/images/partners/neus.png",
     "category": "infra",
