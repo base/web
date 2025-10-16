@@ -1,10 +1,10 @@
 import { formatEther } from 'viem';
 
 export function weiToEth(wei?: bigint): number | '...' {
-  if (wei === undefined) {
+  if (!Boolean(wei)) {
     return '...';
   }
-  const eth = parseFloat(formatEther(wei));
+  const eth: number = parseFloat(formatEther(wei));
   if (eth < 0.001) {
     return parseFloat(eth.toFixed(4));
   } else {
