@@ -7,12 +7,12 @@ declare const window: Window &
 
 export default function logEvent(name: string, event: unknown) {
   if (window.ClientAnalytics) {
-    window.ClientAnalytics?.logEvent(name, event);
+    window.ClientAnalytics.logEvent(name, event);
   }
 }
 
 export function identify(event: unknown) {
   if (window.ClientAnalytics) {
-    window.ClientAnalytics?.logEvent('identify', event);
+    window.ClientAnalytics.logEvent('identify', event);
   }
 }
