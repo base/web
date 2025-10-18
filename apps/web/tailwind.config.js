@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 import defaultTheme from 'tailwindcss/defaultTheme';
 import path from 'node:path';
 import textScalePlugin from 'tailwindcss-text-scale';
@@ -660,9 +661,8 @@ module.exports = {
     require('tailwindcss-animate'),
     function ({ addUtilities }) {
       addUtilities({
-        '.scrollbar-gutter-stable': {
-          'scrollbar-gutter': 'stable',
-        },
+        '.scrollbar-gutter-stable': { 'scrollbar-gutter': 'stable' },
+        '.line-clamp-2': { display: '-webkit-box', '-webkit-line-clamp': '2', '-webkit-box-orient': 'vertical' },
       });
     },
   ],
