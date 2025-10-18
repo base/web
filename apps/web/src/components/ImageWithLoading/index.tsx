@@ -16,6 +16,9 @@ type ImageWithLoadingProps = {
   imageClassName?: string;
   forceIsLoading?: boolean;
   useCloudinary?: boolean;
+  loading?: 'eager' | 'lazy';
+  decoding?: 'async' | 'sync' | 'auto';
+  priority?: boolean;
 };
 
 export default function ImageWithLoading({
@@ -29,6 +32,9 @@ export default function ImageWithLoading({
   imageClassName,
   forceIsLoading = false,
   useCloudinary = true,
+  loading = 'lazy',
+  decoding = 'async',
+  priority = false,
 }: ImageWithLoadingProps) {
   const [imageIsLoading, setImageIsLoading] = useState<boolean>(true);
 
@@ -63,6 +69,9 @@ export default function ImageWithLoading({
         height={height}
         quality={100}
         useCloudinary={useCloudinary}
+        decoding={decoding}
+        priority={priority}
+        {...(priority ? {} : { loading })}
       />
     </figure>
   );
