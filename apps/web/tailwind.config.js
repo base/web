@@ -9,13 +9,10 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx}',
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
-
-    // Or if using `src` directory:
     './src/**/*.{js,ts,jsx,tsx}',
     path.join(path.dirname(require.resolve('@coinbase/onchainkit')), '**/*.js'),
   ],
   theme: {
-    // https://www.figma.com/design/AH4N0fma2EvI30IltjBGPy/%E2%9C%A8-CDS-Styles-(Variables)?node-id=46-168
     colors: {
       white: '#FFFFFF',
       black: '#000000',
@@ -201,7 +198,6 @@ module.exports = {
         90: '#220C00',
         100: '#000000',
       },
-
       elevation: {
         level: {
           1: '#FFFFFF',
@@ -558,7 +554,6 @@ module.exports = {
           '0px 8px 24px 0px rgba(255, 255, 255, 0.5) inset, 0px -8px 24px 0px rgba(0, 0, 0, 0.25) inset, 0px -2px 4px 0px rgba(255, 255, 255, 0.25) inset, 0px 2px 10px 0px rgba(88, 89, 91, 1) inset, 0px 4px 10px 0px rgba(0, 82, 255, 0.32), 0px 4px 24px 0px rgba(155, 216, 217, 0.5) inset, 0px 8px 10px 0px rgba(255, 255, 255, 0.25) inset;',
         'pill-glow': '0px 0px 5px 0px #0052FF;',
       },
-
       keyframes: {
         'slide-left': {
           '0%': { transform: 'translateX(0)' },
@@ -572,12 +567,10 @@ module.exports = {
           from: { transform: 'translateY(0)' },
           to: { transform: 'translateY(calc(-100% - var(--gap)))' },
         },
-
         progress: {
           '0%': { width: '0%' },
           '100%': { width: '100%' },
         },
-
         wiggle: {
           '0%, 100%': { transform: 'rotate(-2deg)' },
           '50%': { transform: 'rotate(2deg)' },
@@ -606,14 +599,6 @@ module.exports = {
           '30%': { transform: 'scale(100%)' },
           '70%': { transform: 'scale(100%)' },
           '100%': { transform: 'scale(95%)' },
-        },
-        marquee: {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(calc(-100% - var(--gap)))' },
-        },
-        'marquee-vertical': {
-          from: { transform: 'translateY(0)' },
-          to: { transform: 'translateY(calc(-100% - var(--gap)))' },
         },
         'accordion-down': {
           from: { height: '0', opacity: '0' },
@@ -662,6 +647,7 @@ module.exports = {
       maxScreen: 1920,
     }),
     require('tailwindcss-animate'),
+    require('@tailwindcss/line-clamp'),
     function ({ addUtilities }) {
       addUtilities({
         '.scrollbar-gutter-stable': {
