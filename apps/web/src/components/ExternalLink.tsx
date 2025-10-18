@@ -5,10 +5,18 @@ type AnchorBase = Omit<React.ComponentPropsWithoutRef<'a'>, 'href'> & {
 };
 
 type Props = AnchorBase & {
+  /** Человекочитаемое имя для aria-label (если не передан aria-label напрямую). */
+  name?: string;
   /** Домены, которые считаем «внутренними» (включая сабдомены). */
   internalDomains?: string[];
-  /** Открывать внешние ссылки в новой вкладке. */
+  /** Внешние ссылки открывать в новой вкладке (если target не задан вручную). */
   openExternalInNewTab?: boolean;
+  /** Показ иконки ↗︎: true | false | "auto" (по умолчанию "auto" = только для внешних). */
+  showIcon?: boolean | 'auto';
+  /** Позиция иконки, если она показывается. */
+  iconPosition?: 'end' | 'start';
+  /** Доп.класс к иконке. */
+  iconClassName?: string;
 };
 
 const ABS_HTTP = /^https?:\/\//i;
@@ -16,18 +24,6 @@ const ABS_HTTP = /^https?:\/\//i;
 /** Протокол-родственная ссылка: //example.com/path */
 function isProtocolRelative(href?: string): boolean {
   return typeof href === 'string' && href.startsWith('//');
-}
-
-/** Явно относительная ссылка: начинается с /, ./, ../, #, ? или пустая */
-function isExplicitRelative(href?: string): boolean {
-  if (!href) return true;
-  return (
-    href.startsWith('/') ||
-    href.startsWith('./') ||
-    href.startsWith('../') ||
-    href.startsWith('#') ||
-    href.startsWith('?')
-  );
 }
 
 /** Абсолютный http(s) URL (включая протокол-родственный) */
@@ -39,7 +35,6 @@ function isAbsoluteHttpUrl(href?: string): boolean {
 /** Безопасно получить hostname из абсолютного URL */
 function getHostname(href: string): string | null {
   try {
-    // поддержим //example.com — допишем https:
     const u = isProtocolRelative(href) ? new URL('https:' + href) : new URL(href);
     return u.hostname.toLowerCase();
   } catch {
@@ -62,31 +57,87 @@ function mergeRel(base: string | undefined, required: string[]) {
   return tokens.size ? Array.from(tokens).join(' ') : undefined;
 }
 
+/** Простой вытягиватель текста из children, если это ровно строка. */
+function getChildrenText(children: React.ReactNode): string | undefined {
+  return typeof children === 'string' ? children : undefined;
+}
+
 export default function ExternalLink({
   href,
   children,
+  className,
+  name,
   internalDomains = ['base.org'],
   openExternalInNewTab = true,
+  showIcon = 'auto',
+  iconPosition = 'end',
+  iconClassName,
   rel: propRel,
   target: propTarget,
+  title,
   ...rest
 }: Props) {
-  // 1) всё, что не абсолютный http(s), считаем внутренним (якоря, относительные, mailto:, tel:, blob:, data:)
+  // 1) Определяем внешняя/внутренняя
   let external = false;
-
   if (isAbsoluteHttpUrl(href)) {
     const host = href ? getHostname(href) : null;
-    if (host) {
-      external = !matchesInternal(host, internalDomains);
-    }
+    if (host) external = !matchesInternal(host, internalDomains);
   }
 
-  const target = external && openExternalInNewTab ? '_blank' : propTarget;
+  // 2) Решаем target (приоритет у явно переданного target)
+  const target = propTarget ?? (external && openExternalInNewTab ? '_blank' : undefined);
+
+  // 3) rel: мёрджим noopener noreferrer если будет новая вкладка
   const rel = target === '_blank' ? mergeRel(propRel, ['noopener', 'noreferrer']) : propRel;
 
+  // 4) aria-label
+  // Если пользователь передал aria-label вручную — используем его, иначе сконструируем.
+  const providedAriaLabel = (rest as any)['aria-label'] as string | undefined;
+  const baseText = name ?? getChildrenText(children) ?? href;
+  const computedAriaLabel =
+    providedAriaLabel ??
+    (baseText
+      ? `Visit ${baseText}${target === '_blank' ? ' (opens in new tab)' : ''}`
+      : undefined);
+
+  // 5) Показывать ли иконку
+  const showIconFinal = showIcon === 'auto' ? external : Boolean(showIcon);
+
+  // 6) Классы: видимая рамка по Tab, аккуратный андерлайн
+  const baseClass =
+    'inline-flex items-center gap-1 underline decoration-transparent hover:decoration-current ' +
+    'outline-none rounded-[6px] ' +
+    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-60';
+  const rootClassName = [baseClass, className].filter(Boolean).join(' ');
+
+  const iconEl = showIconFinal ? (
+    <span
+      aria-hidden="true"
+      className={[
+        'inline-block leading-none text-[0.9em]',
+        iconPosition === 'end' ? 'ml-1 order-last' : 'mr-1 order-first',
+        iconClassName || '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
+      ↗︎
+    </span>
+  ) : null;
+
   return (
-    <a {...rest} href={href} target={target} rel={rel}>
+    <a
+      {...rest}
+      href={href}
+      target={target}
+      rel={rel}
+      title={title}
+      className={rootClassName}
+      aria-label={computedAriaLabel}
+    >
+      {iconPosition === 'start' && iconEl}
       {children}
+      {iconPosition === 'end' && iconEl}
     </a>
   );
 }
