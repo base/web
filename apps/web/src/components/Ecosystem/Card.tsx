@@ -63,7 +63,8 @@ export default function EcosystemCard({
             </div>
 
             <Text
-              className="opacity-80 group-hover/ecosystem-card:opacity-100 line-clamp-2 overflow-hidden break-words"
+              className="opacity-80 group-hover/ecosystem-card:opacity-100 overflow-hidden break-words"
+              style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}
               title={description}
             >
               {description}
