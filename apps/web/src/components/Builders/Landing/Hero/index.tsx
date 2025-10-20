@@ -52,7 +52,7 @@ export function Hero() {
             buttonClassNames="!xs:max-w-[350px] !rounded-full text-xs md:text-sm font-medium tracking-wide bg-white/20 text-white backdrop-blur-sm border-none !px-2.5 !py-1"
             href="https://flashblocks.base.org/"
             eventName="flashblocks-announcement"
-            target="_blank"
+            target="_blank" rel="noopener"
           >
             Base is now 10x faster with 200ms block times
           </ButtonWithLinkAndEventLogging>
@@ -71,7 +71,7 @@ export function Hero() {
                 buttonClassNames="rounded-xl text-sm font-medium"
                 href="https://docs.base.org/builderkits/onchainkit/getting-started"
                 eventName="build-app-in-10-minutes"
-                target="_blank"
+                target="_blank" rel="noopener"
               >
                 Build an app in 10 minutes
               </ButtonWithLinkAndEventLogging>
@@ -81,7 +81,7 @@ export function Hero() {
                 buttonClassNames="rounded-xl text-sm font-medium"
                 eventName="launch-ai-agent"
                 href="https://replit.com/t/coinbase-developer-platform/repls/AgentKitjs-Quickstart-020-EVM-CDP-Wallet/view#README.md"
-                target="_blank"
+                target="_blank" rel="noopener"
               >
                 Launch an AI agent
               </ButtonWithLinkAndEventLogging>
@@ -91,7 +91,7 @@ export function Hero() {
                 buttonClassNames="rounded-xl text-sm font-medium"
                 href="https://docs.base.org/builderkits/onchainkit/checkout/checkout"
                 eventName="accept-crypto-payments"
-                target="_blank"
+                target="_blank" rel="noopener"
               >
                 Accept crypto payments
               </ButtonWithLinkAndEventLogging>

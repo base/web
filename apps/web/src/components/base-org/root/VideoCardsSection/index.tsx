@@ -26,7 +26,7 @@ export default function VideoCardsSection() {
             <Link
               href="https://optimism.io/vision"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               className="hover:underline"
             >
               Optimism Superchain

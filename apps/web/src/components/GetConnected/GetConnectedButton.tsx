@@ -34,7 +34,7 @@ export default function GetConnectedButton({
         title={title}
         aria-label={ariaLabel ?? title}
         target="_blank"
-        rel="noreferrer noopener"
+        rel="noopener"
         onClick={handleClick}
       >
         <Icon name={iconName} width="100%" height="100%" />

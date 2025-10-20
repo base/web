@@ -66,7 +66,7 @@ export default function UsernameProfileCard() {
                   <Link
                     href={formatSocialFieldUrl(textRecordKey, existingTextRecords[textRecordKey])}
                     target="_blank"
-                    className="flex items-center gap-2 text-palette-foregroundMuted hover:text-blue-500"
+                    className="flex items-center gap-2 text-palette-foregroundMuted hover:text-blue-500" rel="noopener"
                   >
                     <span>
                       <Icon

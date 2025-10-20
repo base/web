@@ -171,7 +171,7 @@ export default function RegistrationLearnMoreModal({
               <Link
                 href="http://wallet.coinbase.com/smart-wallet"
                 className="underline"
-                target="_blank"
+                target="_blank" rel="noopener"
               >
                 a smart wallet
               </Link>
@@ -182,7 +182,7 @@ export default function RegistrationLearnMoreModal({
               <Link
                 href="https://www.coinbase.com/onchain-verify"
                 className="underline"
-                target="_blank"
+                target="_blank" rel="noopener"
               >
                 Get a verification
               </Link>

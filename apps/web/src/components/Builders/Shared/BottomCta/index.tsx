@@ -42,7 +42,7 @@ export function BottomCta() {
             buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group"
             target="_blank"
             href="https://docs.base.org"
-            eventName="bottom-cta-documentation"
+            eventName="bottom-cta-documentation" rel="noopener"
           >
             <div className="flex items-center justify-between gap-6">
               <span>Docs</span>
@@ -57,7 +57,7 @@ export function BottomCta() {
             buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group"
             target="_blank"
             href="https://docs.base.org/llms-full.txt"
-            eventName="bottom-cta-ai-docs"
+            eventName="bottom-cta-ai-docs" rel="noopener"
           >
             <div className="flex items-center justify-between gap-6">
               <span>AI docs</span>
