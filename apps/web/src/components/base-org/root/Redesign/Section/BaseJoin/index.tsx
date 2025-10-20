@@ -3,8 +3,8 @@ import { Section } from 'apps/web/src/components/base-org/root/Redesign/Section'
 import { ImageType } from 'apps/web/src/components/base-org/root/Redesign/Section';
 import Link from 'apps/web/src/components/Link';
 
-import Card1 from './card-1.avif';
-import Card2 from './card-2.avif';
+import Card1 from './card-1.png';
+import Card2 from './card-2.png';
 import Card3 from './card-3.avif';
 
 const card1 = Card1 as ImageType;
@@ -43,23 +43,23 @@ type CardProps = React.ComponentProps<typeof InteractiveCard> & { index: number;
 const cards: CardProps[] = [
   {
     index: 1,
-    title: 'A New Day One',
+    title: 'Base Batches',
     description:
-      'A new way to create. A new social network. A global economy for everyone. The next chapter of Base is here.',
+      'Turn your ideas into real products and kickstart your business, with mentorship, community, visibility, and pathways to funding.',
     image: card1.src,
     brightness: 0.8,
     contrast: 2,
-    href: 'https://www.anewdayone.xyz/',
+    href: 'https://www.basebatches.xyz/',
   },
   {
     index: 2,
-    title: 'Onchain Summer',
+    title: 'BaseCamp 2025',
     description:
-      'Ship what you love and be rewarded, all season long. Each week, we’re spotlighting the best apps. What are you building?',
+      'Watch the State of Base livestream from BaseCamp 2025, where we announced that Base is exploring a network token and more.',
     image: card2.src,
     brightness: 1.2,
     contrast: 0.9,
-    href: 'https://onchainsummer.xyz/',
+    href: 'https://www.basecamp2025.xyz/',
   },
   {
     index: 3,
