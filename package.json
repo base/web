@@ -2,19 +2,36 @@
   "name": "@base-org/base-web",
   "version": "1.0.0",
   "description": "Base web monorepo",
-  "repository": "git@github.com::base/base-web.git",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:base/base-web.git"
+  },
   "license": "Apache-2.0",
+  "author": "Base",
+  "private": true,
   "scripts": {
-    "build": "yarn workspaces foreach --exclude @app/bridge run build",
-    "lint": "yarn workspaces foreach --exclude @app/bridge run lint",
-    "test": "yarn workspaces foreach --exclude @app/bridge run test",
+    "build": "yarn workspaces foreach --parallel --topological-dev --exclude @app/bridge run build",
+    "build:production": "NODE_ENV=production yarn build",
+    "build:analyze": "ANALYZE=true yarn build",
+    "lint": "yarn workspaces foreach --parallel --exclude @app/bridge run lint",
+    "lint:fix": "yarn workspaces foreach --parallel --exclude @app/bridge run lint --fix",
+    "type-check": "yarn workspaces foreach --parallel run type-check",
+    "test": "yarn workspaces foreach --parallel --exclude @app/bridge run test",
+    "test:watch": "yarn workspaces foreach --exclude @app/bridge run test --watch",
+    "test:coverage": "yarn workspaces foreach --exclude @app/bridge run test --coverage",
     "test:e2e": "yarn workspace @app/web test:e2e",
     "test:e2e:ui": "yarn workspace @app/web test:e2e:ui",
     "test:e2e:debug": "yarn workspace @app/web test:e2e:debug",
     "test:e2e:headed": "yarn workspace @app/web test:e2e:headed",
-    "postinstall": "sh -c 'if [ command -v ./node_modules/.bin/husky ]; then ./node_modules/.bin/husky install; fi;'",
+    "clean": "yarn workspaces foreach --parallel run clean && rm -rf node_modules/.cache",
+    "clean:all": "yarn clean && rm -rf node_modules && yarn install",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,css}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,css}\"",
+    "validate": "yarn format:check && yarn lint && yarn type-check && yarn test",
+    "postinstall": "husky install || true",
     "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "postpublish": "pinst --enable",
+    "prepare": "husky install || true"
   },
   "workspaces": [
     "apps/*",
@@ -73,18 +90,6 @@
     "ts-node": "^10.9.1",
     "typescript": "~4.9.4"
   },
-  "resolutions": {
-    "@coinbase/cookie-manager": "1.1.1",
-    "next-transpile-modules": "^10.0.0",
-    "wagmi": "2.14.12"
-  },
-  "resolutionComments": {
-    "next-transpile-modules": "Next compatibility"
-  },
-  "engines": {
-    "node": ">18.20.3"
-  },
-  "packageManager": "yarn@3.5.0",
   "dependencies": {
     "@datadog/browser-logs": "^5.23.3",
     "@linaria/babel-preset": "^4.4.3",
@@ -98,8 +103,36 @@
     "next": "15.1.6",
     "tslib": "^2.3.0"
   },
+  "resolutions": {
+    "@coinbase/cookie-manager": "1.1.1",
+    "next-transpile-modules": "^10.0.0",
+    "wagmi": "2.14.12"
+  },
+  "resolutionComments": {
+    "next-transpile-modules": "Next compatibility"
+  },
+  "engines": {
+    "node": ">=18.20.3",
+    "yarn": ">=3.5.0",
+    "npm": "please-use-yarn"
+  },
+  "packageManager": "yarn@3.5.0",
   "lint-staged": {
-    "*.{ts,tsx}": "eslint --cache --fix",
-    "*.{ts,tsx,css,md}": "prettier --write"
+    "*.{ts,tsx}": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ],
+    "*.{js,jsx}": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,css,scss}": [
+      "prettier --write"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
