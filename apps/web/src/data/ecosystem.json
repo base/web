@@ -2728,6 +2728,14 @@
     "subcategory": "node provider"
   },
   {
+    "name": "Noice",
+    "description": "Noice lets you invisibly & immediately send crypto when you like, comment or follow on your Farcaster feed. Content creators have earned over 1200 unique tokens by changing nothing in their day to day.",
+    "url": "https://noice.so",
+    "imageUrl": "/images/partners/noice.jpg",
+    "category": "consumer",
+    "subcategory": "social"
+  },
+  {
     "name": "Nouns Builder",
     "url": "https://nouns.build",
     "description": "Governed by BuilderDAO, Nouns Builder is a tool lets you create Nounish DAOs easily. Build and empower your community with onchain governance and treasury.",
@@ -2742,14 +2750,6 @@
     "imageUrl": "/images/partners/noves.png",
     "category": "infra",
     "subcategory": "data"
-  },
-  {
-    "name": "Noice",
-    "description": "Noice lets you invisibly & immediately send crypto when you like, comment or follow on your Farcaster feed. Content creators have earned over 1200 unique tokens by changing nothing in their day to day.",
-    "url": "https://noice.so",
-    "imageUrl": "/images/partners/noice.png",
-    "category": "consumer",
-    "subcategory": "social"
   },
   {
     "name": "OAK",
