@@ -2744,6 +2744,14 @@
     "subcategory": "data"
   },
   {
+    "name": "Noice",
+    "description": "Noice lets you invisibly & immediately send crypto when you like, comment or follow on your Farcaster feed. Content creators have earned over 1200 unique tokens by changing nothing in their day to day.",
+    "url": "https://noice.so",
+    "imageUrl": "/images/partners/noice.png",
+    "category": "consumer",
+    "subcategory": "social"
+  },
+  {
     "name": "OAK",
     "url": "https://www.oak.community/",
     "description": "OAK is a community currency for the People of Oakland ",
@@ -4078,14 +4086,6 @@
     "imageUrl": "/images/partners/topi.jpg",
     "category": "consumer",
     "subcategory": "nft"
-  },
-  {
-    "name": "Noice",
-    "description": "Noice lets you invisibly & immediately send crypto when you like, comment or follow on your Farcaster feed. Content creators have earned over 1200 unique tokens by changing nothing in their day to day.",
-    "url": "https://noice.so",
-    "imageUrl": "/images/partners/noice.png",
-    "category": "consumer",
-    "subcategory": "social"
   },
   {
     "name": "Toucan",
