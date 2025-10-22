@@ -661,8 +661,7 @@ export async function getBasenameNameExpires(username: Basename) {
 
     return nameExpires;
   } catch (error) {
-    logger.error('Error fetching basename expiration date', {
-      error,
+    logger.error('Error fetching basename expiration date', error, {
       username,
       tokenId,
       chainId: chain.id,
@@ -851,8 +850,7 @@ export async function isBasenameInGracePeriod(username: Basename): Promise<boole
     // Name is in grace period if it's expired but within the grace period duration
     return timeSinceExpiration > 0 && timeSinceExpiration <= GRACE_PERIOD_DURATION_MS;
   } catch (error) {
-    logger.error('Error checking if basename is in grace period', {
-      error,
+    logger.error('Error checking if basename is in grace period', error, {
       username,
     });
     return false;
