@@ -86,14 +86,14 @@ If you're a builder who wants to add or update your project on the [Base Ecosyst
    - description: A brief description of your project, must be less than 200 characters.
    - url: Your project's website URL.
    - imageUrl: Path to your project's logo image.
-   - category: Your project's category, _one_ of: `ai`, `consumer`, `defi`, `infra`, `onramp`, `wallet`
-   - subcategory: Your project's subcategory, with the following options associated with each category
+   - category: Your project's category, _one_ of: `ai`, `consumer`, `defi`, `infra`, `onramp`, `wallet`.
+   - subcategory: Your project's subcategory, with the following options associated with each category.
      - `ai`: Simply add `ai` as the subcategory as well.
-     - `consumer`: _One_ of `creator`, `crypto taxes`, `dao`, `gaming`, `messaging`, `music`, `nft`, `payments`, `real world`, `social`
-     - `defi`: _One_ of `dex`, `dex aggregator`, `insurance`, `lending/borrowing`, `liquidity management`, `portfolio`, `stablecoin`, `yield vault`
-     - `infra`: _One_ of `bridge`, `data`, `depin`, `developer tool`, `identity`, `node provider`, `raas`, `security`
-     - `onramp`: _One_ of `centralized exchange`, `fiat on-ramp`
-     - `wallet`: _One_ of `account abstraction`, `multisig`, `self-custody`
+     - `consumer`: _One_ of `creator`, `crypto taxes`, `dao`, `gaming`, `messaging`, `music`, `nft`, `payments`, `real world`, `social`.
+     - `defi`: _One_ of `dex`, `dex aggregator`, `insurance`, `lending/borrowing`, `liquidity management`, `portfolio`, `stablecoin`, `yield vault`.
+     - `infra`: _One_ of `bridge`, `data`, `depin`, `developer tool`, `identity`, `node provider`, `raas`, `security`.
+     - `onramp`: _One_ of `centralized exchange`, `fiat on-ramp`.
+     - `wallet`: _One_ of `account abstraction`, `multisig`, `self-custody`.
 
 If your app supports multiple networks, ensure the URL provided points to a page
 with Base already selected as the network, for people who will be visiting from
