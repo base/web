@@ -82,13 +82,13 @@ If you're a builder who wants to add or update your project on the [Base Ecosyst
    }
    ```
 
-   - name: Your project's name
-   - description: A brief description of your project, must be less than 200 characters
-   - url: Your project's website URL
-   - imageUrl: Path to your project's logo image
+   - name: Your project's name.
+   - description: A brief description of your project, must be less than 200 characters.
+   - url: Your project's website URL.
+   - imageUrl: Path to your project's logo image.
    - category: Your project's category, _one_ of: `ai`, `consumer`, `defi`, `infra`, `onramp`, `wallet`
    - subcategory: Your project's subcategory, with the following options associated with each category
-     - `ai`: Simply add `ai` as the subcategory as well
+     - `ai`: Simply add `ai` as the subcategory as well.
      - `consumer`: _One_ of `creator`, `crypto taxes`, `dao`, `gaming`, `messaging`, `music`, `nft`, `payments`, `real world`, `social`
      - `defi`: _One_ of `dex`, `dex aggregator`, `insurance`, `lending/borrowing`, `liquidity management`, `portfolio`, `stablecoin`, `yield vault`
      - `infra`: _One_ of `bridge`, `data`, `depin`, `developer tool`, `identity`, `node provider`, `raas`, `security`
@@ -101,9 +101,9 @@ base.org.
 
 4. Add your project's logo:
 
-   - Place a 192x192 pixel PNG/WebP file in `apps/web/public/images/partners/`
-   - Name should match what you specified in imageUrl
-   - Use an App/Play Store style icon (not a full wordmark)
+   - Place a 192x192 pixel PNG/WebP file in `apps/web/public/images/partners/`.
+   - Name should match what you specified in imageUrl.
+   - Use an App/Play Store style icon (not a full wordmark).
 
 5. Check if your project has been listed by running it locally:
 
