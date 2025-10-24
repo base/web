@@ -22,8 +22,8 @@ export const blogPosts: BlogPost[] = [
     title: 'The State of Base at Basecamp 2025',
     subtitle:
       'At BaseCamp 2025 in Stowe, Vermont, we shared an update: Base is beginning to explore a network token. As we begin this exploration, we’re sharing this shift in philosophy early as part of our commitment to building in the open, but we have no definitive plans to share at this time. We also announced a Base-built open-source bridge between Base and Solana that will allow interoperability between the two chains.',
-    previewImage: '/images/blog/carousel/blog-asset-4.avif',
-    href: 'https://blog.base.org/a-new-day-one',
+    previewImage: '/images/blog/carousel/blog-asset-5.avif',
+    href: 'https://blog.base.org/the-state-of-base-at-basecamp-2025',
     brightness: 1.1,
     contrast: 1.2,
   },

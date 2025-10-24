@@ -7,7 +7,6 @@ export default function RenderOnInView({ children }: { children: React.ReactNode
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // test
     if (!ref.current) return;
 
     const observer = new IntersectionObserver(
