@@ -1,18 +1,18 @@
 import Modal from 'apps/web/src/components/Modal';
 import data from 'apps/web/src/data/usernamePriceDecayTable.json';
-import { useBasenamesLaunchTime } from 'apps/web/src/hooks/useBasenamesLaunchTime';
+import { useBasenamesNameExpires } from 'apps/web/src/hooks/useBasenamesNameExpires';
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { formatEther } from 'viem';
 
 type CustomTooltipProps = {
   active?: boolean;
   baseSingleYearEthCost?: bigint;
-  launchTimeSeconds?: bigint;
+  auctionStartTimeSeconds?: bigint;
   payload: [
     {
       dataKey: 'premium';
       name: 'premium';
-      payload: { hours: number; premium: number };
+      payload: { days: number; premium: number };
       value: number;
     },
   ];
@@ -22,13 +22,13 @@ function CustomTooltip({
   active,
   payload,
   baseSingleYearEthCost,
-  launchTimeSeconds,
+  auctionStartTimeSeconds,
 }: CustomTooltipProps) {
-  if (active && payload?.length && launchTimeSeconds && baseSingleYearEthCost) {
+  if (active && payload?.length && auctionStartTimeSeconds && baseSingleYearEthCost) {
     const premium = payload[0].value;
-    const hours = payload[0].payload.hours;
-    const seconds = hours * 60 * 60;
-    const tooltipSeconds = seconds + Number(launchTimeSeconds);
+    const days = payload[0].payload.days;
+    const seconds = days * 24 * 60 * 60; // Convert days to seconds
+    const tooltipSeconds = seconds + Number(auctionStartTimeSeconds);
     const timeOfPremium = new Date(tooltipSeconds * 1000).toLocaleString(undefined, {
       year: 'numeric',
       month: '2-digit',
@@ -65,6 +65,7 @@ type PremiumExplainerModalProps = {
   toggleModal: () => void;
   premiumEthAmount: bigint | undefined;
   baseSingleYearEthCost: bigint;
+  name: string;
 };
 const chartMarginValues = { top: 2, right: 2, left: 2, bottom: 2 };
 export function PremiumExplainerModal({
@@ -72,8 +73,9 @@ export function PremiumExplainerModal({
   toggleModal,
   premiumEthAmount,
   baseSingleYearEthCost,
+  name,
 }: PremiumExplainerModalProps) {
-  const { data: launchTimeSeconds } = useBasenamesLaunchTime();
+  const { data: auctionStartTimeSeconds } = useBasenamesNameExpires(name);
 
   if (!premiumEthAmount || !baseSingleYearEthCost) return null;
   const formattedOneYearCost = Number(formatEther(baseSingleYearEthCost)).toLocaleString(
@@ -94,8 +96,8 @@ export function PremiumExplainerModal({
       <div className="flex max-w-[491px] flex-1 flex-col gap-3">
         <h1 className="w-full text-2xl font-bold">This name has a temporary premium</h1>
         <p className="mb-3 text-illoblack">
-          To ensure fair distribution of Basenames, all names have a temporary premium starting at
-          100 ETH that then decays exponentially to 0 over 36 hours.
+          To ensure fair distribution of recently expired Basenames, all names have a price premium
+          which starts at 100 ETH that then decays exponentially to 0 over 21 days.
         </p>
         <div className="grid  grid-cols-2 grid-rows-4">
           <div className="col-span-2 mb-2 text-sm font-medium uppercase text-gray-60">
@@ -147,7 +149,7 @@ export function PremiumExplainerModal({
                   // @ts-expect-error type wants an unnecessary prop
                   <CustomTooltip
                     baseSingleYearEthCost={baseSingleYearEthCost}
-                    launchTimeSeconds={launchTimeSeconds}
+                    auctionStartTimeSeconds={auctionStartTimeSeconds}
                   />
                 }
               />

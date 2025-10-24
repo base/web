@@ -138,7 +138,7 @@ export default function RegistrationForm() {
   const usdPrice = hasResolvedUSDPrice ? formatUsdPrice(price, ethUsdPrice) : '--.--';
   const nameIsFree = !hasRegisteredWithDiscount && price === 0n;
 
-  const { seconds, timestamp: premiumEndTimestamp } = usePremiumEndDurationRemaining();
+  const { seconds, timestamp: premiumEndTimestamp } = usePremiumEndDurationRemaining(selectedName);
 
   const isPremiumActive = Boolean(premiumPrice && premiumPrice !== 0n && seconds !== 0n);
   const mainRegistrationElementClasses = classNames(
@@ -331,6 +331,7 @@ export default function RegistrationForm() {
           baseSingleYearEthCost={singleYearBasePrice}
           isOpen={premiumExplainerModalOpen}
           toggleModal={togglePremiumExplainerModal}
+          name={selectedName}
         />
       )}
     </>
