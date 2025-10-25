@@ -71,7 +71,7 @@ export default async function Page() {
         </div>
         <AnalyticsProvider context="brand">
           <Button type="button" className="col-span-full mt-8 md:col-span-3" asChild>
-            <Link href="https://brandintheopen.xyz" target="_blank">
+            <Link href="https://brandintheopen.xyz" target="_blank" rel="noopener">
               Explore the campaign
             </Link>
           </Button>

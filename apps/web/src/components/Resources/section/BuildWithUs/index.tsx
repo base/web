@@ -228,7 +228,7 @@ export default function ResourcesBuildWithUs() {
           <Button variant={ButtonVariants.Secondary} className="w-full lg:max-w-60" asChild>
             <Link
               target="_blank"
-              href="https://lu.ma/base-virtualevents/?utm_source=dotorg&medium=builderkit"
+              href="https://lu.ma/base-virtualevents/?utm_source=dotorg&medium=builderkit" rel="noopener"
             >
               Virtual events
             </Link>
@@ -236,7 +236,7 @@ export default function ResourcesBuildWithUs() {
           <Button className="w-full lg:max-w-52">
             <Link
               target="_blank"
-              href="https://docs.base.org/docs/?utm_source=dotorg&utm_medium=builderkit"
+              href="https://docs.base.org/docs/?utm_source=dotorg&utm_medium=builderkit" rel="noopener"
             >
               View our docs
             </Link>
