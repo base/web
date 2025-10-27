@@ -43,7 +43,6 @@ const searchConfig: SearchCategory[] = [
         href: '',
         icon: 'copy',
         onClick: () => {
-          console.log('clicked');
           const copyCreateOnchain = async () => {
             try {
               await navigator.clipboard.writeText('npm create onchain');
