@@ -1,4 +1,4 @@
-import { useBasenamesNameExpires } from 'apps/web/src/hooks/useBasenamesNameExpires';
+import { useBasenamesNameExpiresWithGracePeriod } from 'apps/web/src/hooks/useBasenamesNameExpiresWithGracePeriod';
 import { useState } from 'react';
 import { useInterval } from 'usehooks-ts';
 
@@ -24,7 +24,7 @@ function calculateTimeLeft(differenceInSeconds: number): string {
 
 export function usePremiumEndDurationRemaining(name: string) {
   const [timeLeft, setTimeLeft] = useState<string | null>(null);
-  const { data: auctionStartTimeSeconds } = useBasenamesNameExpires(name);
+  const { data: auctionStartTimeSeconds } = useBasenamesNameExpiresWithGracePeriod(name);
 
   useInterval(() => {
     if (!auctionStartTimeSeconds) return;

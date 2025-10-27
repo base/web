@@ -1,6 +1,6 @@
 import Modal from 'apps/web/src/components/Modal';
 import data from 'apps/web/src/data/usernamePriceDecayTable.json';
-import { useBasenamesNameExpires } from 'apps/web/src/hooks/useBasenamesNameExpires';
+import { useBasenamesNameExpiresWithGracePeriod } from 'apps/web/src/hooks/useBasenamesNameExpiresWithGracePeriod';
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { formatEther } from 'viem';
 
@@ -75,7 +75,7 @@ export function PremiumExplainerModal({
   baseSingleYearEthCost,
   name,
 }: PremiumExplainerModalProps) {
-  const { data: auctionStartTimeSeconds } = useBasenamesNameExpires(name);
+  const { data: auctionStartTimeSeconds } = useBasenamesNameExpiresWithGracePeriod(name);
 
   if (!premiumEthAmount || !baseSingleYearEthCost) return null;
   const formattedOneYearCost = Number(formatEther(baseSingleYearEthCost)).toLocaleString(
