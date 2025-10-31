@@ -4646,5 +4646,12 @@
     "imageUrl": "/images/partners/levva.png",
     "category": "defi",
     "subcategory": "portfolios"
-  }
+  },{
+  "name": "OnChain Clinic",
+  "description": "Comprehensive wallet portfolio analyzer for Base network with health scoring, DeFi tracking, and NFT achievement cards",
+  "url": "https://www.onchainclinic.cc/",
+  "imageUrl": "/images/partners/onchain-clinic-logo.png",
+  "category": "defi",
+  "subcategory": "portfolio"
+}
 ]
