@@ -91,7 +91,10 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
   const isBuilders = buildersRoutes.some((route) => pathname.includes(route));
 
   const handleMenuItemClick = useCallback(
-    (route: { href: string; items?: { label: string; href: string }[] }) => {
+    (route: {
+      href: string;
+      items?: { label: string; href?: string; isSubheader?: boolean; isDivider?: boolean }[];
+    }) => {
       if (route.items && route.items.length > 0) {
         setIsExiting(true);
         // Small delay to allow exit animation to start
@@ -227,31 +230,57 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
 
                 <div className="pt-2">
                   {getCurrentMenuItems().map(
-                    (item: { href: string; label: string; icon?: string; newTab?: boolean }) => (
-                      <motion.div key={item.href} className="relative flex flex-col">
-                        <Link
-                          href={item.href}
-                          target={item.newTab ? '_blank' : '_self'}
-                          rel={item.newTab ? 'noopener noreferrer' : undefined}
-                          className={classNames(
-                            'flex w-full items-center rounded-lg p-2.5 leading-[114%] transition-colors duration-150',
-                            {
-                              'bg-base-gray-30 dark:bg-gray-90': isLinkActive({
-                                pathname,
-                                href: item.href,
-                              }),
-                              'text-black hover:bg-base-gray-30 dark:text-white dark:hover:bg-gray-90':
-                                !isLinkActive({
+                    (
+                      item: {
+                        href?: string;
+                        label: string;
+                        icon?: string;
+                        newTab?: boolean;
+                        isSubheader?: boolean;
+                        isDivider?: boolean;
+                      },
+                      index: number,
+                    ) => (
+                      <motion.div
+                        key={item.href ?? `${item.label}-${index}`}
+                        className="relative flex flex-col"
+                      >
+                        {item.isDivider ? (
+                          <div className="my-2 border-t border-base-gray-50 dark:border-gray-80" />
+                        ) : item.isSubheader ? (
+                          <div className="mb-1 mt-4 px-2.5 first:mt-0">
+                            <Text
+                              variant={TextVariant.CTALabelSm}
+                              className="text-xs font-medium uppercase tracking-wider text-base-gray-200 dark:text-gray-60"
+                            >
+                              {item.label}
+                            </Text>
+                          </div>
+                        ) : item.href ? (
+                          <Link
+                            href={item.href}
+                            target={item.newTab ? '_blank' : '_self'}
+                            rel={item.newTab ? 'noopener noreferrer' : undefined}
+                            className={classNames(
+                              'flex w-full items-center rounded-lg p-2.5 leading-[114%] transition-colors duration-150',
+                              {
+                                'bg-base-gray-30 dark:bg-gray-90': isLinkActive({
                                   pathname,
                                   href: item.href,
-                                }) && !isExiting,
-                              'text-black dark:text-white': isExiting,
-                            },
-                          )}
-                        >
-                          {item.icon && <Icon name={item.icon} className="mr-2 inline-block" />}
-                          <Text variant={TextVariant.CTALabelSm}>{item.label}</Text>
-                        </Link>
+                                }),
+                                'text-black hover:bg-base-gray-30 dark:text-white dark:hover:bg-gray-90':
+                                  !isLinkActive({
+                                    pathname,
+                                    href: item.href,
+                                  }) && !isExiting,
+                                'text-black dark:text-white': isExiting,
+                              },
+                            )}
+                          >
+                            {item.icon && <Icon name={item.icon} className="mr-2 inline-block" />}
+                            <Text variant={TextVariant.CTALabelSm}>{item.label}</Text>
+                          </Link>
+                        ) : null}
                       </motion.div>
                     ),
                   )}
@@ -260,37 +289,47 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
                 {/* appendix if so */}
                 {activeSubMenu &&
                   routes.find((route) => route.href === activeSubMenu)?.appendix && (
-                    <div className="border-t border-base-gray-50 pt-2">
+                    <div className="mt-2 border-t border-base-gray-50 pt-2 dark:border-gray-80">
                       {routes
                         .find((route) => route.href === activeSubMenu)
                         ?.appendix?.map(
-                          (appendixItem: { href: string; label: string; newTab?: boolean }) => (
-                            <motion.div key={appendixItem.href} className="relative flex flex-col">
-                              <Link
-                                href={appendixItem.href}
-                                target={appendixItem.newTab ? '_blank' : '_self'}
-                                rel={appendixItem.newTab ? 'noopener noreferrer' : undefined}
-                                className={classNames(
-                                  'group flex w-full items-center justify-between rounded-lg px-2.5 py-2 leading-[114%] transition-colors duration-150',
-                                  {
-                                    'bg-base-gray-30 dark:bg-gray-90': isLinkActive({
-                                      pathname,
-                                      href: appendixItem.href,
-                                    }),
-                                    'text-black hover:bg-base-gray-30 dark:text-white dark:hover:bg-gray-90':
-                                      !isLinkActive({
+                          (
+                            appendixItem: { href?: string; label: string; newTab?: boolean },
+                            index: number,
+                          ) => (
+                            <motion.div
+                              key={appendixItem.href ?? `appendix-${index}`}
+                              className="relative flex flex-col"
+                            >
+                              {appendixItem.href && (
+                                <Link
+                                  href={appendixItem.href}
+                                  target={appendixItem.newTab ? '_blank' : '_self'}
+                                  rel={appendixItem.newTab ? 'noopener noreferrer' : undefined}
+                                  className={classNames(
+                                    'group flex w-full items-center justify-between rounded-lg px-2.5 py-2 leading-[114%] transition-colors duration-150',
+                                    {
+                                      'bg-base-gray-30 dark:bg-gray-90': isLinkActive({
                                         pathname,
                                         href: appendixItem.href,
-                                      }) && !isExiting,
-                                    'text-black dark:text-white': isExiting,
-                                  },
-                                )}
-                              >
-                                <Text variant={TextVariant.CTALabelSm}>{appendixItem.label}</Text>
-                                <div className="text-[#B1B7C3] group-hover:text-black dark:text-[#1E2025] group-hover:dark:text-white">
-                                  <ExternalLinkIcon />
-                                </div>
-                              </Link>
+                                      }),
+                                      'text-black hover:bg-base-gray-30 dark:text-white dark:hover:bg-gray-90':
+                                        !isLinkActive({
+                                          pathname,
+                                          href: appendixItem.href,
+                                        }) && !isExiting,
+                                      'text-black dark:text-white': isExiting,
+                                    },
+                                  )}
+                                >
+                                  <Text variant={TextVariant.CTALabelSm}>{appendixItem.label}</Text>
+                                  {appendixItem.newTab && (
+                                    <div className="text-[#B1B7C3] group-hover:text-black dark:text-[#1E2025] group-hover:dark:text-white">
+                                      <ExternalLinkIcon />
+                                    </div>
+                                  )}
+                                </Link>
+                              )}
                             </motion.div>
                           ),
                         )}
