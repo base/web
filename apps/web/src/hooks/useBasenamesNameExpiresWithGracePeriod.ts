@@ -8,14 +8,14 @@ import {
   GRACE_PERIOD_DURATION_SECONDS,
 } from 'apps/web/src/utils/usernames';
 import { Basename } from '@coinbase/onchainkit/identity';
-import { logger } from 'apps/web/src/utils/logger';
+import { useMemo } from 'react';
 
 export function useBasenamesNameExpiresWithGracePeriod(name: string) {
   const chain = useBasenameChain().basenameChain.id;
   const fullBasename = name.includes('.') ? (name as Basename) : formatBaseEthDomain(name, chain);
   const tokenId = getTokenIdFromBasename(fullBasename);
 
-  const { data: nameExpiresTimestamp } = useReadContract({
+  const contractResult = useReadContract({
     abi: BaseRegistrarAbi,
     address: USERNAME_BASE_REGISTRAR_ADDRESSES[chain],
     functionName: 'nameExpires',
@@ -23,19 +23,19 @@ export function useBasenamesNameExpiresWithGracePeriod(name: string) {
     chainId: chain,
   });
 
-  if (!nameExpiresTimestamp) {
-    const errorMessage = `Unable to retrieve expiration timestamp for name: ${name}`;
-    logger.error(errorMessage, {
-      name,
-      fullBasename,
-      chain,
-      context: 'useBasenamesNameExpiresWithGracePeriod',
-    });
-    throw new Error(errorMessage);
-  }
-
   // Add 90 days (grace period) to get the auction start time
-  const auctionStartTime = nameExpiresTimestamp + BigInt(GRACE_PERIOD_DURATION_SECONDS);
+  const auctionStartTime = useMemo(() => {
+    if (contractResult.data === undefined || contractResult.data === null) {
+      return undefined;
+    }
+    return contractResult.data + BigInt(GRACE_PERIOD_DURATION_SECONDS);
+  }, [contractResult.data]);
 
-  return { data: auctionStartTime };
+  return {
+    data: auctionStartTime,
+    isLoading: contractResult.isLoading,
+    isError: contractResult.isError,
+    error: contractResult.error,
+    refetch: contractResult.refetch,
+  };
 }

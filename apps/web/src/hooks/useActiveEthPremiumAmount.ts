@@ -1,5 +1,6 @@
 import { useBasenamesNameExpiresWithGracePeriod } from 'apps/web/src/hooks/useBasenamesNameExpiresWithGracePeriod';
-import { useState } from 'react';
+import { useErrors } from 'apps/web/contexts/Errors';
+import { useEffect, useState } from 'react';
 import { useInterval } from 'usehooks-ts';
 
 const SECONDS_IN_A_MINUTE = 60;
@@ -24,10 +25,23 @@ function calculateTimeLeft(differenceInSeconds: number): string {
 
 export function usePremiumEndDurationRemaining(name: string) {
   const [timeLeft, setTimeLeft] = useState<string | null>(null);
-  const { data: auctionStartTimeSeconds } = useBasenamesNameExpiresWithGracePeriod(name);
+  const { logError } = useErrors();
+  const {
+    data: auctionStartTimeSeconds,
+    isLoading,
+    isError,
+    error,
+  } = useBasenamesNameExpiresWithGracePeriod(name);
+
+  useEffect(() => {
+    if (isError && error) {
+      logError(error, `Error fetching name expiration with grace period for: ${name}`);
+    }
+  }, [isError, error, logError, name]);
 
   useInterval(() => {
-    if (!auctionStartTimeSeconds) return;
+    if (isLoading || auctionStartTimeSeconds === undefined || auctionStartTimeSeconds === null)
+      return;
 
     const currentTimeInSeconds = Math.floor(Date.now() / 1000);
     const endTimeInSeconds = Number(auctionStartTimeSeconds) + TWENTY_ONE_DAYS_IN_SECONDS;
@@ -40,5 +54,9 @@ export function usePremiumEndDurationRemaining(name: string) {
     }
   }, 1000);
 
-  return { seconds: auctionStartTimeSeconds, timestamp: timeLeft };
+  return {
+    seconds: auctionStartTimeSeconds,
+    timestamp: timeLeft,
+    isLoading,
+  };
 }

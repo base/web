@@ -1,6 +1,8 @@
 import Modal from 'apps/web/src/components/Modal';
 import data from 'apps/web/src/data/usernamePriceDecayTable.json';
 import { useBasenamesNameExpiresWithGracePeriod } from 'apps/web/src/hooks/useBasenamesNameExpiresWithGracePeriod';
+import { useErrors } from 'apps/web/contexts/Errors';
+import { useEffect } from 'react';
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { formatEther } from 'viem';
 
@@ -24,7 +26,13 @@ function CustomTooltip({
   baseSingleYearEthCost,
   auctionStartTimeSeconds,
 }: CustomTooltipProps) {
-  if (active && payload?.length && auctionStartTimeSeconds && baseSingleYearEthCost) {
+  if (
+    active &&
+    payload?.length &&
+    auctionStartTimeSeconds !== undefined &&
+    auctionStartTimeSeconds !== null &&
+    baseSingleYearEthCost
+  ) {
     const premium = payload[0].value;
     const days = payload[0].payload.days;
     const seconds = days * 24 * 60 * 60; // Convert days to seconds
@@ -75,9 +83,21 @@ export function PremiumExplainerModal({
   baseSingleYearEthCost,
   name,
 }: PremiumExplainerModalProps) {
-  const { data: auctionStartTimeSeconds } = useBasenamesNameExpiresWithGracePeriod(name);
+  const { logError } = useErrors();
+  const {
+    data: auctionStartTimeSeconds,
+    isLoading,
+    isError,
+    error,
+  } = useBasenamesNameExpiresWithGracePeriod(name);
 
-  if (!premiumEthAmount || !baseSingleYearEthCost) return null;
+  useEffect(() => {
+    if (isError && error) {
+      logError(error, `Error fetching name expiration with grace period for: ${name}`);
+    }
+  }, [isError, error, logError, name]);
+
+  if (!premiumEthAmount || !baseSingleYearEthCost || isLoading) return null;
   const formattedOneYearCost = Number(formatEther(baseSingleYearEthCost)).toLocaleString(
     undefined,
     {
