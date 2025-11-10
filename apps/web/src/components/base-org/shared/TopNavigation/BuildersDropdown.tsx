@@ -17,7 +17,6 @@ import chartVolume from 'apps/web/src/components/base-org/shared/TopNavigation/a
 import baseBatches from 'apps/web/src/components/base-org/shared/TopNavigation/assets/developers/baseBatches.svg';
 import Link from 'apps/web/src/components/Link';
 import Card from 'apps/web/src/components/base-org/Card';
-import basenet from 'apps/web/src/components/Builders/Appchains/basenet.svg';
 
 type BuildersDropdownProps = {
   onLinkClick: () => void;
@@ -96,13 +95,6 @@ export function BuildersDropdown({ onLinkClick }: BuildersDropdownProps) {
                 description="Seamless self-custody"
                 icon={baseWallet as StaticImageData}
                 href="/builders/smart-wallet"
-                onLinkClick={onLinkClick}
-              />
-              <ToolMiniCard
-                title="Base Appchains"
-                description="Scale your app"
-                icon={basenet as StaticImageData}
-                href="/builders/base-appchains"
                 onLinkClick={onLinkClick}
               />
               <ToolMiniCard

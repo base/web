@@ -423,11 +423,6 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
         href: '/build/mini-apps',
       },
       {
-        icon: 'layers',
-        label: 'Appchains',
-        href: '/build/appchains',
-      },
-      {
         icon: 'docs',
         label: 'Spindl',
         href: 'https://spindl.xyz/',
