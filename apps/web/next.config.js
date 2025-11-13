@@ -341,7 +341,7 @@ module.exports = MillionLint.next({
           },
           {
             source: '/luma',
-            destination: 'https://luma.com/BaseMeetups',
+            destination: 'https://luma.com/BaseEvents',
             permanent: true,
           },
           {
