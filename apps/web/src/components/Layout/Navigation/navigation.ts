@@ -423,6 +423,11 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
         href: '/build/mini-apps',
       },
       {
+        icon: 'layers',
+        label: 'Appchains',
+        href: '/build/appchains',
+      },
+      {
         icon: 'docs',
         label: 'Spindl',
         href: 'https://spindl.xyz/',
@@ -465,7 +470,7 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
       {
         icon: 'briefcase',
         label: 'Events',
-        href: 'https://luma.com/BaseMeetups',
+        href: 'https://luma.com/BaseEvents',
         newTab: true,
       },
     ],
