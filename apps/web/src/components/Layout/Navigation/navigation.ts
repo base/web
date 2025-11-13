@@ -470,7 +470,7 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
       {
         icon: 'briefcase',
         label: 'Events',
-        href: 'https://lu.ma/base-virtualevents?utm_source=dotorg&utm_medium=nav&period=past',
+        href: 'https://luma.com/BaseMeetups',
         newTab: true,
       },
     ],
