@@ -465,7 +465,7 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
       {
         icon: 'briefcase',
         label: 'Events',
-        href: 'https://luma.com/BaseMeetups',
+        href: 'https://luma.com/BaseEvents',
         newTab: true,
       },
     ],
