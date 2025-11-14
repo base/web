@@ -1,5 +1,13 @@
 [
   {
+  "name": "Analyzer",
+  "description": "Analyzer is a smart, automated technical analysis platform designed to empower cryptocurrency traders by putting their strategy execution on autopilot. ",
+  "url": "https://analyzer.finance",
+  "imageUrl": "/images/partners/Analyzer.png",
+  "category": "defi",
+  "subcategory": "analytics"
+  },
+  {
   "name": "Coinrule",
   "description": "Launch fully self-custodial onchain automated trading strategies at lightning speed and with one-click UX. Team is backed by Y Combinator",
   "url": "https://coinrule.com",
