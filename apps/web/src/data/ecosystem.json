@@ -89,7 +89,7 @@
   },
   {
     "name": "Aerodrome Finance",
-    "url": "http://aerodrome.finance",
+    "url": "https://aerodrome.finance",
     "description": "The central trading and liquidity marketplace on Base.",
     "imageUrl": "/images/partners/aerodrome.webp",
     "category": "defi",
@@ -1178,7 +1178,7 @@
   {
     "name": "Cybro",
     "description": "CYBRO is a multichain earn marketplace that offers easy, secure access to top Web3 investment options, with AI-powered portfolio management, intuitive design, and responsive support",
-    "url": "http://cybro.io/explore?chain=Base",
+    "url": "https://cybro.io/explore?chain=Base",
     "imageUrl": "/images/partners/cybro.png",
     "category": "defi",
     "subcategory": "yield vault"
@@ -1428,7 +1428,7 @@
     "category": "wallet",
     "subcategory": "account abstraction",
     "description": "Dynamic offers a suite of tools for effortless log in, wallet creation and user management. Designed for users. Built for developers.",
-    "url": "www.dynamic.xyz",
+    "url": "https://www.dynamic.xyz",
     "imageUrl": "/images/partners/dynamic.png"
   },
   {
@@ -1713,7 +1713,7 @@
   },
   {
     "name": "Furrend",
-    "url": "http://furrend.xyz/",
+    "url": "https://furrend.xyz/",
     "description": "Furrend is a web3 pet video-sharing social network that provides the tools, resources, and infrastructure for content creators to monetize their work and engage with their community through digital assets.",
     "imageUrl": "/images/partners/furrend.webp",
     "category": "consumer",
@@ -2769,7 +2769,7 @@
   },
   {
     "name": "Odos",
-    "url": "http://app.odos.xyz",
+    "url": "https://app.odos.xyz",
     "description": "Odos traverses a large universe of possible token swap combinations and non-linear paths delivering greater savings to its users. Swap one or multiple tokens in a single atomic transaction.",
     "imageUrl": "/images/partners/odos.webp",
     "category": "defi",
@@ -3209,7 +3209,7 @@
   },
   {
     "name": "QiDao Protocol",
-    "url": "http://mai.finance/",
+    "url": "https://mai.finance/",
     "description": "QiDao is an overcollateralized stablecoin protocol that allows users to mint stablecoins.",
     "imageUrl": "/images/partners/qidao.webp",
     "category": "defi",
@@ -3474,7 +3474,7 @@
   {
     "name": "SafeSwap",
     "description": "SafeSwap is a decentralized atomic swap bridge for native tokens. The Atomic Swap protocol enables builders to transport their native tokens to other EVM-based blockchains, without having to rely on wrapped tokens.",
-    "url": "http://safeswap.io/",
+    "url": "https://safeswap.io/",
     "imageUrl": "/images/partners/safeswap.webp",
     "category": "infra",
     "subcategory": "bridge"
@@ -3721,7 +3721,7 @@
   },
   {
     "name": "Streamm.tv",
-    "description": "http://Streamm.tv - onchain livestreaming lunapark",
+    "description": "Onchain livestreaming lunapark",
     "url": "https://streamm.tv",
     "imageUrl": "/images/partners/streamm-tv.png",
     "category": "consumer",
@@ -4209,7 +4209,7 @@
   },
   {
     "name": "Uniswap",
-    "url": "http://uniswap.com/",
+    "url": "https://uniswap.com/",
     "description": "The Uniswap Protocol is the largest decentralized exchange with over $1.6T in trading volume. Uniswap Labs builds products that let you buy, sell, and use your self custodied digital assets in a safe, simple, and secure way.",
     "imageUrl": "/images/partners/uniswap.webp",
     "category": "defi",
@@ -4217,7 +4217,7 @@
   },
   {
     "name": "UNKJD",
-    "url": "http://unkjd.com/",
+    "url": "https://unkjd.com/",
     "description": "In UNKJD players take on the role of a soccer team owner, collecting athletes and playing in the leagues. It's a fast-paced, strategic, turn-based board game.",
     "imageUrl": "/images/partners/unkjd2.webp",
     "category": "consumer",
@@ -4426,7 +4426,7 @@
   {
     "name": "Wert",
     "description": "Fiat Onramp and NFT checkout. Users paying with a card can execute any smart contract function and receive tokens/nfts directly to their wallet in the same transaction. ",
-    "url": "wert.io",
+    "url": "https://wert.io",
     "imageUrl": "/images/partners/wert.png",
     "category": "onramp",
     "subcategory": "fiat on-ramp"
