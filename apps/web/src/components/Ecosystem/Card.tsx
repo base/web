@@ -5,6 +5,7 @@ import Text from 'apps/web/src/components/base-org/typography/TextRedesign';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
 import Title from 'apps/web/src/components/base-org/typography/TitleRedesign';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRedesign/types';
+import ExternalLink from '../ExternalLink';
 
 type Props = {
   name: string;
@@ -14,8 +15,6 @@ type Props = {
   category: string;
   subcategory: string;
 };
-
-const MAX_DESCRIPTION_LENGTH = 200;
 
 function getNiceDomainDisplayFromUrl(url: string) {
   return url.replace('https://', '').replace('http://', '').replace('www.', '').split('/')[0];
@@ -29,16 +28,13 @@ export default function EcosystemCard({
   category,
   subcategory,
 }: Props) {
-  const truncatedDescription =
-    description.length > MAX_DESCRIPTION_LENGTH
-      ? description.slice(0, MAX_DESCRIPTION_LENGTH) + '...'
-      : description;
+  const domain = getNiceDomainDisplayFromUrl(url);
 
   return (
-    <a
+    <ExternalLink
       href={url}
-      rel="noreferrer noopener"
-      target="_blank"
+      aria-label={`Visit ${name} — ${domain}`}
+      title={`Visit ${name}`}
       className="flex flex-col items-stretch w-full h-full justify-stretch"
     >
       <Card
@@ -57,15 +53,20 @@ export default function EcosystemCard({
               imageClassName="rounded-[8px]"
             />
           </div>
+
           <div className="flex flex-col gap-4 h-full">
             <div className="flex flex-col gap-2">
               <Title level={TitleLevel.H6Regular}>{name}</Title>
               <Text variant={TextVariant.BodyMono} className="truncate !text-base-gray-200">
-                {getNiceDomainDisplayFromUrl(url)}
+                {domain}
               </Text>
             </div>
-            <Text className="opacity-80 group-hover/ecosystem-card:opacity-100">
-              {truncatedDescription}
+
+            <Text
+              className="opacity-80 group-hover/ecosystem-card:opacity-100 line-clamp-2 overflow-hidden break-words"
+              title={description}
+            >
+              {description}
             </Text>
           </div>
         </div>
@@ -81,6 +82,6 @@ export default function EcosystemCard({
           )}
         </div>
       </Card>
-    </a>
+    </ExternalLink>
   );
 }
