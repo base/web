@@ -78,7 +78,7 @@ export default function UsernameProfileSidebar() {
   const reclaimProfile = useCallback(() => {
     if (!reclaimContract) return;
     initiateReclaim(reclaimContract)
-      .then((result) => console.log({ result }))
+      .then(() => {})
       .catch((error) => {
         logError(error, 'Failed to reclaim profile');
       });
