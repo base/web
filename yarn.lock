@@ -121,6 +121,7 @@ __metadata:
     "@lottiefiles/dotlottie-react": ^0.8.10
     "@million/lint": latest
     "@monogrid/gainmap-js": ^3.0.6
+    "@next/third-parties": ^15.0.1
     "@number-flow/react": ^0.5.5
     "@radix-ui/react-accordion": ^1.2.11
     "@radix-ui/react-collapsible": ^1.1.0
@@ -5700,6 +5701,18 @@ __metadata:
   version: 15.3.1
   resolution: "@next/swc-win32-x64-msvc@npm:15.3.1"
   conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@next/third-parties@npm:^15.0.1":
+  version: 15.5.4
+  resolution: "@next/third-parties@npm:15.5.4"
+  dependencies:
+    third-party-capital: 1.0.20
+  peerDependencies:
+    next: ^13.0.0 || ^14.0.0 || ^15.0.0
+    react: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
+  checksum: d83de3fbb4cc260d57afca4e2178e707dadb8db69432cea3855b541683b9faa7255f6ddd009a31c2343be285d904ff021f4fefc90bdf943240e7495f15e87d42
   languageName: node
   linkType: hard
 
@@ -21924,6 +21937,13 @@ __metadata:
   dependencies:
     any-promise: ^1.0.0
   checksum: 84e1b804bfec49f3531215f17b4a6e50fd4397b5f7c1bccc427b9c656e1ecfb13ea79d899930184f78bc2f57285c54d9a50a590c8868f4f0cef5c1d9f898b05e
+  languageName: node
+  linkType: hard
+
+"third-party-capital@npm:1.0.20":
+  version: 1.0.20
+  resolution: "third-party-capital@npm:1.0.20"
+  checksum: ef5eae00bdb82b538b9f628a011fc294cd6f4bafdbb46d88f3d1a72e8c3b9e2cc2a547fdb62bc16bdd847e9da3dac2df676b154c64914f6c90ea15aac6ce0a6a
   languageName: node
   linkType: hard
 
