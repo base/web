@@ -134,3 +134,19 @@ By opening a PR to add your project, you authorize and license Coinbase on a non
 ---
 
 If you have any questions, please reach out to us in #developer-chat in the [Base Discord](https://base.org/discord).
+
+## Docs Link Guard
+
+### What is it?
+Docs Link Guard is a validation tool added to the repository to ensure that documentation links remain accurate and consistent. It scans Markdown and MDX files (and optionally TypeScript files) for outdated Base Learn URLs and common typos related to Cloudflare constants.
+
+### Why was it introduced?
+Recent pull requests have repeatedly fixed broken or outdated links in the documentation, such as old paths pointing to `https://docs.base.org/base-learn/...` instead of the current `https://docs.base.org/learn/...`. These issues can cause CI failures and require unnecessary maintenance. Docs Link Guard automates this check to prevent regressions and improve contributor experience.
+
+### How to use it?
+Before submitting a pull request, run:
+
+
+yarn lint:links:check
+# To automatically fix known patterns:
+yarn lint:links:fix
