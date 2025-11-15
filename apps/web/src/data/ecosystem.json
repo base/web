@@ -2112,6 +2112,14 @@
     "subcategory": "gaming"
   },
   {
+    "name": "Midori Wallet",
+    "url": "https://astian.org/midori-wallet",
+    "description": "Midori Wallet is a self-custodial multicurrency a lightweight, private, reliable, and secure wallet.",
+    "category": "wallet",
+    "subcategory": "self-custody",
+    "imageUrl": "/images/partners/coinwallet.png"
+  },
+  {
     "name": "Jackal Protocol",
     "description": "Onchain hot storage. Jackal keeps your data untouchable. No middlemen. No leaks. No lock-ins. Just pure, verifiable freedom.",
     "url": "https://www.jackalprotocol.com",
