@@ -4646,5 +4646,13 @@
     "imageUrl": "/images/partners/levva.png",
     "category": "defi",
     "subcategory": "portfolios"
+  },
+  {
+    "name": "EduVerse",
+    "description": "A full-stack, AI-powered, decentralized learning platform with blockchain-verified achievements",
+    "url": "https://www.eduverse.network",
+    "imageUrl": "/images/partners/eduverse-logo.png",
+    "category": "ai",
+    "subcategory": "ai"
   }
 ]
