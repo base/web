@@ -4646,5 +4646,13 @@
     "imageUrl": "/images/partners/levva.png",
     "category": "defi",
     "subcategory": "portfolios"
+  },
+  {
+    "name": "Poolrescue",
+    "description": "PoolRescue helps DeFi users find, claim, and withdraw forgotten or migrated liquidity positions (LPs) across EVM chains. The app scans your wallet, identifies LP tokens and gauges, checks for unclaimed rewards, and enables direct withdrawal.",
+    "url": "https://www.poolrescue.xyz",
+    "imageUrl": "/images/partners/poolrescue.jpg",
+    "category": "defi",
+    "subcategory": "liquidity management"
   }
 ]
