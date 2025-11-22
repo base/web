@@ -1,21 +1,85 @@
-*.graphql
-**/persisted_queries.json
-**/__generated__
+# -----------------------------------------------------------------------------
+# Dependencies
+# -----------------------------------------------------------------------------
+# Must ignore node_modules to prevent committing massive dependency trees
+node_modules/
+.pnp
+.pnp.js
 
-# Nx
-.docusaurus
-.next
-.nx
-cjs/
-dts/
-esm/
+# -----------------------------------------------------------------------------
+# Environment & Security
+# -----------------------------------------------------------------------------
+# Never commit local environment variables containing sensitive keys
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# -----------------------------------------------------------------------------
+# Build Outputs & Transpiled Code
+# -----------------------------------------------------------------------------
+# Ignore standard build output directories for JS/TS libs
+dist/
 lib/
-mjs/
 out/
-package.json
-tsconfig.json
-tsconfig.*.json
+build/
 
+# Module formats (CommonJS, ES Modules, etc.)
+cjs/
+mjs/
+esm/
+dts/
+
+# -----------------------------------------------------------------------------
+# Framework & Tooling Caches
+# -----------------------------------------------------------------------------
+# Next.js build output and cache
+.next/
+
+# Nx build cache and workspace data
+.nx/
+
+# Docusaurus build output
+.docusaurus/
+
+# -----------------------------------------------------------------------------
+# GraphQL & Code Generation
+# -----------------------------------------------------------------------------
+# Ignore generated files by Relay or Apollo codegen
+**/__generated__/
+**/persisted_queries.json
+
+# NOTE: Only ignore .graphql files if they are purely auto-generated. 
+# If you write schema files manually, remove the line below.
+*.graphql
+
+# -----------------------------------------------------------------------------
 # React Native
-**/android/app/build
-**/ios/Pods
+# -----------------------------------------------------------------------------
+# Android build outputs
+**/android/app/build/
+**/android/.gradle/
+
+# iOS build outputs and dependencies
+**/ios/Pods/
+**/ios/build/
+
+# Metro bundler cache
+.metro-health
+tmp/
+
+# -----------------------------------------------------------------------------
+# IDE & OS Files
+# -----------------------------------------------------------------------------
+# macOS
+.DS_Store
+
+# VS Code (Optional: some teams prefer to commit settings)
+.vscode/
+*.code-workspace
+
+# Logs
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
