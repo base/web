@@ -68,6 +68,6 @@ const cards: CardProps[] = [
     image: card3.src,
     brightness: 1.9,
     contrast: 0.8,
-    href: 'https://lu.ma/BaseMeetups',
+    href: 'https://lu.ma/BaseEvents',
   },
 ];
