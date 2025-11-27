@@ -138,7 +138,7 @@ export const formatSocialFieldUrl = (key: UsernameTextRecordKeys, handleOrUrl: s
     case UsernameTextRecordKeys.Twitter:
       return `https://x.com/${sanitizeHandle(handleOrUrl)}`;
     case UsernameTextRecordKeys.Farcaster:
-      return `https://warpcast.com/${sanitizeHandle(handleOrUrl)}`;
+      return `https://farcaster.xyz/${sanitizeHandle(handleOrUrl)}`;
     case UsernameTextRecordKeys.Github:
       return `https://github.com/${sanitizeHandle(handleOrUrl)}`;
     case UsernameTextRecordKeys.Url:
@@ -226,7 +226,7 @@ export const textRecordsKeysPlaceholderForDisplay = {
   [UsernameTextRecordKeys.Discord]: 'Username',
   [UsernameTextRecordKeys.Avatar]: 'Avatar',
   [UsernameTextRecordKeys.Frames]: 'Farcaster frame url',
-  [UsernameTextRecordKeys.Casts]: 'https://warpcast.com/...',
+  [UsernameTextRecordKeys.Casts]: 'https://farcaster.xyz/...',
 };
 
 export const textRecordsEngineersKeywords = [
