@@ -27,6 +27,10 @@ export async function GET(
   if (!formattedTokenId) {
     return NextResponse.json({ error: '400: tokenId is missing' }, { status: 400 });
   }
+  
+  if (!/^[0-9]+$/.test(formattedTokenId)) {
+      return NextResponse.json({ error: '400: tokenId must be a positive integer' }, { status: 400 });
+  }
 
   const chainId = getChain(request);
   if (!chainId) {
