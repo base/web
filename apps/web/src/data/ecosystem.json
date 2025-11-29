@@ -1440,6 +1440,14 @@
     "subcategory": "yield vault"
   },
   {
+    "name": "Ease Pay",
+    "description": "Send USDC payments instantly on Base. Sub-cent fees, no account needed. Accept card or wallet payments.",
+    "url": "https://easepay.xyz",
+    "imageUrl": "/images/partners/easepay.png",
+    "category": "consumer",
+    "subcategory": "payments"
+  },
+  {
     "name": "Element Market",
     "url": "https://element.market",
     "description": "Element Market, the first community-driven aggregated marketplace, provides users with high liquidity, lowest transaction fee, powerful trading utilities, and intelligent & instant data services.",
