@@ -4646,5 +4646,13 @@
     "imageUrl": "/images/partners/levva.png",
     "category": "defi",
     "subcategory": "portfolios"
+  },
+  {
+    "name": "Vexy",
+    "url": "https://vexy.fi",
+    "description": "The liquidity hub for veNFTs",
+    "imageUrl": "/images/partners/vexy-logo.png",
+    "category": "defi",
+    "subcategory": "dex"
   }
 ]
