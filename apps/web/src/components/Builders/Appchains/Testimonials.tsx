@@ -13,7 +13,7 @@ export function Testimonials() {
         <Marquee className="[--duration:20s]" pauseOnHover>
           {TWEETS?.map((tweet) => {
             return (
-              <Link key={tweet.username} target="_blank" href={tweet.link}>
+              <Link key={tweet.username} target="_blank" href={tweet.link} rel="noopener">
                 <TweetCard
                   image={tweet.image}
                   name={tweet.name}

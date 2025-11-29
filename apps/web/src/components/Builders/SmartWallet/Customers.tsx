@@ -81,7 +81,7 @@ export function Customers() {
           {customers.map((customer) => {
             return (
               <div className="flex w-[200px] items-center" key={`first-${customer.href}`}>
-                <Link href={customer.href} target="_blank">
+                <Link href={customer.href} target="_blank" rel="noopener">
                   <Image
                     src={customer.logo}
                     alt={String(customer.logo.src)}

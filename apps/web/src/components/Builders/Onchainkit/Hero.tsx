@@ -66,7 +66,7 @@ export function Hero() {
             buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
             href={ONCHAINKIT_DOCS_LINK}
             eventName="onchainkit-documentation-click"
-            target="_blank"
+            target="_blank" rel="noopener"
           >
             <div className="flex items-center justify-between gap-6">
               <span>Docs</span>
@@ -80,7 +80,7 @@ export function Hero() {
             buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
             href={ONCHAINKIT_GITHUB_LINK}
             eventName="onchainkit-github-click"
-            target="_blank"
+            target="_blank" rel="noopener"
           >
             <div className="flex items-center justify-between py-1 px-0.5"> 
               <Icon name="github" width={16} height={16} color="white" />  

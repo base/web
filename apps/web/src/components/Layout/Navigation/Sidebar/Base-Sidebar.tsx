@@ -355,7 +355,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
             variant={ButtonVariants.Secondary}
             size={ButtonSizes.Small}
           >
-            <Link href="https://base.app" className="group" target="_blank">
+            <Link href="https://base.app" className="group" target="_blank" rel="noopener">
               Get Base App
             </Link>
           </Button>
@@ -391,7 +391,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
               <Link
                 href="https://docs.base.org/get-started/base"
                 target="_blank"
-                rel="noreferrer noopener"
+                rel="noopener"
               >
                 See the docs
               </Link>
@@ -402,7 +402,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
               asChild
               className="w-full"
             >
-              <Link href="https://www.base.dev/" target="_blank" rel="noreferrer noopener">
+              <Link href="https://www.base.dev/" target="_blank" rel="noopener">
                 Start building
               </Link>
             </Button>

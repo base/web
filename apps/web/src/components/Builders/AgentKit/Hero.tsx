@@ -64,7 +64,7 @@ export function Hero() {
           target="_blank"
           variant={ButtonVariants.SecondaryOutline}
           buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
-          eventName="agentkit-docs"
+          eventName="agentkit-docs" rel="noopener"
         >
           <div className="flex items-center justify-between gap-6">
             <span>Docs</span>
