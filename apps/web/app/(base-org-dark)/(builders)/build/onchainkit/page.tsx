@@ -45,9 +45,6 @@ const templateCardItems: {
   },
 ];
 
-const CDP_TERMS_OF_SERVICE_LINK =
-  'https://www.coinbase.com/legal/developer-platform/terms-of-service';
-const CDP_PRIVACY_POLICY_LINK = 'https://www.coinbase.com/legal/privacy';
 
 export default function OnchainKit() {
   return (
@@ -64,35 +61,6 @@ export default function OnchainKit() {
           <div className="order-2 max-w-[400px] md:order-1" key="ock-hero-content">
             <div className="text-3xl leading-[1.125] tracking-[-0.96px]">
               Ready-to-use, full-stack components to make building onchain faster and easier.
-            </div>
-            <div className="mt-4 text-xs text-base-gray-200" key="ock-terms-of-service">
-              By continuing, I have read and agree to the{' '}
-              <a
-                href={CDP_TERMS_OF_SERVICE_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white"
-              >
-                Terms&nbsp;of&nbsp;Service
-              </a>{' '}
-              and{' '}
-              <a
-                href={CDP_PRIVACY_POLICY_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white"
-              >
-                Privacy&nbsp;Policy
-              </a>
-              . For users in EU/UK, I confirm I have read and understood the{' '}
-              <a
-                href={CDP_PRIVACY_POLICY_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white"
-              >
-                Privacy&nbsp;Policy
-              </a>
             </div>
           </div>,
           <div className="order-1 md:order-2" key="ock-hero-cta">
