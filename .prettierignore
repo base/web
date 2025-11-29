@@ -19,3 +19,7 @@ tsconfig.*.json
 # React Native
 **/android/app/build
 **/ios/Pods
+
+# Ignore temporary log and cache files
+*.log
+.cache/
