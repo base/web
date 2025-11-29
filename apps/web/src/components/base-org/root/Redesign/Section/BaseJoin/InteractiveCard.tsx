@@ -175,16 +175,13 @@ export const useImageTexture = (imagePath: string) => {
           setImageTexture(loadedTexture);
         },
         (progress) => {
-          console.log('Image texture loading progress:', progress);
         },
         (error) => {
-          console.error('Failed to load image texture:', error);
         },
       );
     };
 
     img.onerror = (error) => {
-      console.error('Failed to load image for dimensions:', error);
       setImageDimensions({ width: 1, height: 1 });
     };
 
