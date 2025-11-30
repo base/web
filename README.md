@@ -40,6 +40,7 @@ After cloning the repository begin by installing dependencies at the root.
 yarn
 yarn build
 ```
+These commands should be run from the repository root so that all workspaces are bootstrapped correctly
 
 ## Local development
 
