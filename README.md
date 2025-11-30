@@ -46,6 +46,7 @@ yarn build
 To start a development server on localhost, run `yarn workspace @app/<project> dev`.
 
 For example, to start the `web` app locally, you would run `yarn workspace @app/web dev`.
+Run all workspace commands from the repository root so that Yarn can correctly resolve the workspaces.
 
 ## Projects
 
