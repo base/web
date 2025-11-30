@@ -117,6 +117,14 @@ yarn workspace @app/web dev
 yarn workspace @app/web build
 ```
 
+#### Before opening a PR
+
+If `yarn workspace @app/web build` fails, common causes are:
+- A `category` and `subcategory` combination that does not match the allowed values listed above.
+- An `imageUrl` that does not point to an existing file under `apps/web/public/images/partners/`.
+
+Fix these issues and re-run the build before creating your pull request.
+
 By opening a PR to add your project, you authorize and license Coinbase on a non-exclusive, worldwide, irrevocable, sublicensable, and royalty-free basis to reproduce, distribute, transmit, make available, perform, display, or otherwise use the submitted Multimedia Assets for any purpose, including any marketing or promotional activities related to Base or Coinbase. Any goodwill associated with use of trademarks submitted in your Multimedia Assets will inure to your benefit. You further acknowledge and represent that you have all IP rights in the Multimedia Assets, that the Multimedia Assets do not infringe the rights of any third party, and that you have the right to grant this license to Coinbase.
 
 **Note:** Submissions do not guarantee inclusion and all submissions are subject to review. Your project must be live on Base to potentially be included. Ensure all information is accurate and up-to-date.
