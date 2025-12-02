@@ -2983,6 +2983,14 @@
     "category": "infra",
     "subcategory": "bridge"
   },
+ {
+    "name": "Ormi Labs",
+    "description": "A next-generation Subgraph indexer built for real-time and historical blockchain data at scale.",
+    "url": "https://ormilabs.com/",
+    "imageUrl": "/images/partners/ormi.png",
+    "category": "infra",
+    "subcategory": "data"
+  },
   {
     "name": "OtterSec",
     "description": "OtterSec is a blockchain security firm focused on identifying and remedying critical vulnerabilities.",
