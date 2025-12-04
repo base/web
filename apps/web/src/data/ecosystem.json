@@ -4662,5 +4662,14 @@
     "imageUrl": "/images/partners/levva.png",
     "category": "defi",
     "subcategory": "portfolios"
+  },
+  {
+    "name": "Neurobro",
+    "url": "https://neurobro.ai",
+    "description": "Neurobro builds the AI intelligence layer for onchain markets. Its flagship app Neurodex unifies multi agent research with real time smart money analytics. Get Alpha. Track Whales. Trade Smarter.",
+    "imageUrl": "/images/partners/neurobro-logo.png",
+    "category": "ai",
+    "subcategory": "ai"
   }
+  
 ]
