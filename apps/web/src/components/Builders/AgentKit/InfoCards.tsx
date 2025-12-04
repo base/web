@@ -23,7 +23,7 @@ const INFO_CARDS: CardProps[] = [
     description: (
       <Title className="pt-2 text-dark-palette-foregroundMuted" level={TitleLevel.Title4}>
         Use our{' '}
-        <Link target="_blank" href={AGENTKIT_DOCS_LINK} className="text-dark-palette-foreground">
+        <Link target="_blank" href={AGENTKIT_DOCS_LINK} className="text-dark-palette-foreground" rel="noopener">
           videos and templates
         </Link>{' '}
         to create an AgentKit agent in less than five minutes. No development experience required.
