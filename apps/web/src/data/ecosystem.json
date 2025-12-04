@@ -4662,5 +4662,13 @@
     "imageUrl": "/images/partners/levva.png",
     "category": "defi",
     "subcategory": "portfolios"
+  },
+  {
+  "name": "BaseTrack",
+  "description": "Analytics and tracking tool for Base ecosystem projects with AI-powered insights.",
+  "url": "https://basetrack.io",
+  "imageUrl": "/images/partners/basetrack.png",
+  "category": "infra",
+  "subcategory": "data"
   }
 ]
