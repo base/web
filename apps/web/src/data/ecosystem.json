@@ -4670,5 +4670,13 @@
     "imageUrl": "/images/partners/levva.png",
     "category": "defi",
     "subcategory": "portfolios"
-  }
+  },
+  {
+  "name": "FlexCard",
+  "description": "FlexCard is a Web3 social application that lets users create beautiful, personalized Farcaster profile cards and mint them as ERC-721 NFTs on Base. Users can customize their cards with their Farcaster handle, stats, colors, and avatar, then mint and share directly on Farcaster. Built with Base for fast, cheap minting and seamless social integration.",
+  "url": "https://base-farcaster.vercel.app",
+  "imageUrl": "/images/flexcard/flexcard.png",
+  "category": "infra",
+  "subcategory": "identity"
+}
 ]
