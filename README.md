@@ -134,3 +134,18 @@ By opening a PR to add your project, you authorize and license Coinbase on a non
 ---
 
 If you have any questions, please reach out to us in #developer-chat in the [Base Discord](https://base.org/discord).
+---
+
+## 🚀 Quickstart
+
+### Requirements
+- Node.js >= 20
+- Yarn >= 1.22
+
+### Installation
+```bash
+git clone https://github.com/damir024/web.git
+cd web
+yarn install
+yarn dev
+
