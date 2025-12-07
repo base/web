@@ -58,7 +58,7 @@ const USERNAME_PROFILE_SECTION_EXPLORE_LINKS: UsernameProfileSectionExploreLink[
           <Link
             href={`https://rounds.wtf/base-builds${utmsWithUsername}`}
             className="text-blue-500"
-            target="_blank"
+            target="_blank" rel="noopener"
           >
             rounds.wtf/base-builds
           </Link>{' '}
@@ -71,7 +71,7 @@ const USERNAME_PROFILE_SECTION_EXPLORE_LINKS: UsernameProfileSectionExploreLink[
         <Link
           href={`https://rounds.wtf/base-builds${utmsWithUsername}`}
           target="_blank"
-          className="mt-6 w-full"
+          className="mt-6 w-full" rel="noopener"
         >
           <Button variant={ButtonVariants.Black} rounded fullWidth>
             Get a Rounds grant
@@ -115,7 +115,7 @@ function ExploreLink(
         href={`${usernameProfileSectionExploreLink.href}${utmsWithUsername}`}
         target="_blank"
         className="group flex w-full flex-col gap-2 hover:text-blue-600"
-        onClick={onClick}
+        onClick={onClick} rel="noopener"
       >
         <ImageWithLoading
           src={usernameProfileSectionExploreLink.image}

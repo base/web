@@ -97,7 +97,7 @@ export default function SearchAddressInput({ onChange }: SearchAddressInputProps
             <Link
               href={explorerLink}
               target="_blank"
-              className="flex items-center gap-2 underline underline-offset-2"
+              className="flex items-center gap-2 underline underline-offset-2" rel="noopener"
             >
               <span>
                 View {showUsername && <strong>{username}</strong>}

@@ -158,10 +158,10 @@ export default function BlogSection() {
             {limitedBlogPosts[currentIndex].title}
           </Title>
           <div className="ml-auto flex items-center gap-4">
-            <Link href={limitedBlogPosts[currentIndex].url} target="_blank">
+            <Link href={limitedBlogPosts[currentIndex].url} target="_blank" rel="noopener">
               <Button variant={ButtonVariants.Secondary}>Read</Button>
             </Link>
-            <Link href="https://base.mirror.xyz/" target="_blank">
+            <Link href="https://base.mirror.xyz/" target="_blank" rel="noopener">
               <Button variant={ButtonVariants.Outlined}>Subscribe</Button>
             </Link>
           </div>

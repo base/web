@@ -11,7 +11,7 @@ import Link from 'next/link';
 async function ReadTheDocsButton() {
   return (
     <div className="w-[200px]">
-      <Link href={docsUrl} target="_blank" rel="noreferrer noopener">
+      <Link href={docsUrl} target="_blank" rel="noopener">
         <Button variant={ButtonVariants.Secondary} size={ButtonSizes.Large}>
           Read the docs
         </Button>

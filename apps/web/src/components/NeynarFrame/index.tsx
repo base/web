@@ -7,7 +7,7 @@ export default function NeynarFrame({ frame }: { hash: string; frame: NeynarFram
   return (
     <div className="overflow-hidden rounded-3xl border border-gray-40/20">
       {frame.frames_url && (
-        <a href={frame.frames_url} target="_blank" rel="noopener noreferrer">
+        <a href={frame.frames_url} target="_blank" rel="noopener">
           <ImageWithLoading src={frame.image} alt={`Frame image for ${frame.frames_url}`} />
         </a>
       )}

@@ -18,22 +18,22 @@ export function OnchainApps() {
       </Title>
       <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
         <Marquee className="[--duration:20s]" pauseOnHover>
-          <Link target="_blank" href="https://www.proof-8.com/" className="flex p-4 px-8">
+          <Link target="_blank" href="https://www.proof-8.com/" className="flex p-4 px-8" rel="noopener">
             <Image src={proof as StaticImageData} alt="proof" />
           </Link>
-          <Link target="_blank" href="https://www.superchamps.com/" className="flex p-4 px-8">
+          <Link target="_blank" href="https://www.superchamps.com/" className="flex p-4 px-8" rel="noopener">
             <Image src={superchamps as StaticImageData} alt="superchamps" />
           </Link>
-          <Link target="_blank" href="https://blocklords.com/" className="flex p-4 px-8">
+          <Link target="_blank" href="https://blocklords.com/" className="flex p-4 px-8" rel="noopener">
             <Image src={blocklords as StaticImageData} alt="blocklords" />
           </Link>
-          <Link target="_blank" href="https://decentralized.pictures/" className="flex p-4 px-8">
+          <Link target="_blank" href="https://decentralized.pictures/" className="flex p-4 px-8" rel="noopener">
             <Image src={dcp as StaticImageData} alt="decentralized pictures" />
           </Link>
-          <Link target="_blank" href="https://www.horizen.io/" className="flex p-4 px-8">
+          <Link target="_blank" href="https://www.horizen.io/" className="flex p-4 px-8" rel="noopener">
             <Image src={horizon as StaticImageData} alt="horizen" />
           </Link>
-          <Link target="_blank" href="https://mvlchain.io/" className="flex p-4 px-8">
+          <Link target="_blank" href="https://mvlchain.io/" className="flex p-4 px-8" rel="noopener">
             <Image src={mvl as StaticImageData} alt="mvl" />
           </Link>
         </Marquee>
