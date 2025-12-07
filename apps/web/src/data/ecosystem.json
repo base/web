@@ -4670,5 +4670,13 @@
     "imageUrl": "/images/partners/levva.png",
     "category": "defi",
     "subcategory": "portfolios"
+  },
+  {
+    "name": "WheelX",
+    "description": "WheelX is an AI-powered bridge & swap aggregator that enables you to trade any token across multi-chains seamlessly.",
+    "url": "https://wheelx.fi/base",
+    "imageUrl": "/images/partners/wheelx.jpeg",
+    "category": "infra",
+    "subcategory": "bridge"
   }
 ]
