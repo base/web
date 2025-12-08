@@ -1,7 +1,14 @@
-firefox esr
-ios>=11
-last 1 safari version
-last 2 chrome versions
-last 2 edge versions
-last 2 firefox versions
-last 2 opera versions
+last 2 Chrome versions
+last 2 Edge versions
+last 2 Firefox versions
+last 2 Opera versions
+last 1 Safari version
+
+# Mobile browsers
+iOS >= 11
+last 2 ChromeAndroid versions
+last 2 Android versions
+last 2 Samsung versions
+
+# Exclude dead/obsolete browsers
+not dead
