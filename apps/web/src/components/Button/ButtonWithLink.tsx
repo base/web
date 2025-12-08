@@ -29,10 +29,10 @@ export function ButtonWithLink({
 
   ...buttonProps
 }: ButtonWithLinkProps) {
-  // If the link opens in a new tab and no rel is specified,
-  // default to "noopener noreferrer" to prevent tab-nabbing.
-  const computedRel =
-    rel ?? (target === '_blank' ? 'noopener noreferrer' : undefined);
+// If the link opens in a new tab and no rel is specified,
+// default to "noopener noreferrer" to prevent tab-nabbing.
+const computedRel =
+  rel ?? (target === '_blank' ? 'noopener noreferrer' : undefined);
 
   return (
     <Link
