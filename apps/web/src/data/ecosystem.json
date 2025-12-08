@@ -4670,5 +4670,13 @@
     "imageUrl": "/images/partners/levva.png",
     "category": "defi",
     "subcategory": "portfolios"
+  },
+  {
+    "name": "Yecho",
+    "description": "Real yield analytics platform to track daily DeFi earnings per token and protocol across multiple chains.",
+    "url": "https://www.yecho.app/",
+    "imageUrl": "/images/partners/yecho.png",
+    "category": "defi",
+    "subcategory": "analytics"
   }
 ]
