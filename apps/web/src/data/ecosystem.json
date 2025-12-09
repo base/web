@@ -4670,5 +4670,13 @@
     "imageUrl": "/images/partners/levva.png",
     "category": "defi",
     "subcategory": "portfolios"
+  },
+  {
+    "name": "Rift",
+    "description": "Next-gen social platform built for traders. Create and trade coins, run on-chain guilds, and earn from your content with aligned incentives and automated revenue sharing. Trade together, win together.",
+    "url": "https://rift.club",
+    "imageUrl": "/images/partners/rift.png",
+    "category": "consumer",
+    "subcategory": "social"
   }
 ]
