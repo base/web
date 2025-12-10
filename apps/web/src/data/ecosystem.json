@@ -4679,6 +4679,7 @@
     "category": "defi",
     "subcategory": "portfolios"
   },
+  {
     "name": "BaseVol",
     "description": "Options layer powered by 0DTE and AI agents. Trade BaseVol or deposit Vaults to maximize your day.",
     "url": "https://basevol.com",
