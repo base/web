@@ -1,11 +1,12 @@
-import { useBasenamesLaunchTime } from 'apps/web/src/hooks/useBasenamesLaunchTime';
-import { useState } from 'react';
+import { useBasenamesNameExpiresWithGracePeriod } from 'apps/web/src/hooks/useBasenamesNameExpiresWithGracePeriod';
+import { useErrors } from 'apps/web/contexts/Errors';
+import { useEffect, useState } from 'react';
 import { useInterval } from 'usehooks-ts';
 
 const SECONDS_IN_A_MINUTE = 60;
 const SECONDS_IN_AN_HOUR = 60 * SECONDS_IN_A_MINUTE;
 const SECONDS_IN_A_DAY = 24 * SECONDS_IN_AN_HOUR;
-const THIRTY_SIX_HOURS_IN_SECONDS = 36 * SECONDS_IN_AN_HOUR;
+const TWENTY_ONE_DAYS_IN_SECONDS = 21 * SECONDS_IN_A_DAY;
 
 function formatTimeUnit(unit: number): string {
   return unit.toString().padStart(2, '0');
@@ -22,15 +23,28 @@ function calculateTimeLeft(differenceInSeconds: number): string {
   )}:${formatTimeUnit(seconds)}`;
 }
 
-export function usePremiumEndDurationRemaining() {
+export function usePremiumEndDurationRemaining(name: string) {
   const [timeLeft, setTimeLeft] = useState<string | null>(null);
-  const { data: launchTimeSeconds } = useBasenamesLaunchTime();
+  const { logError } = useErrors();
+  const {
+    data: auctionStartTimeSeconds,
+    isLoading,
+    isError,
+    error,
+  } = useBasenamesNameExpiresWithGracePeriod(name);
+
+  useEffect(() => {
+    if (isError && error) {
+      logError(error, `Error fetching name expiration with grace period for: ${name}`);
+    }
+  }, [isError, error, logError, name]);
 
   useInterval(() => {
-    if (!launchTimeSeconds) return;
+    if (isLoading || auctionStartTimeSeconds === undefined || auctionStartTimeSeconds === null)
+      return;
 
     const currentTimeInSeconds = Math.floor(Date.now() / 1000);
-    const endTimeInSeconds = Number(launchTimeSeconds) + THIRTY_SIX_HOURS_IN_SECONDS;
+    const endTimeInSeconds = Number(auctionStartTimeSeconds) + TWENTY_ONE_DAYS_IN_SECONDS;
     const timeDifference = endTimeInSeconds - currentTimeInSeconds;
 
     if (timeDifference > 0) {
@@ -40,5 +54,9 @@ export function usePremiumEndDurationRemaining() {
     }
   }, 1000);
 
-  return { seconds: launchTimeSeconds, timestamp: timeLeft };
+  return {
+    seconds: auctionStartTimeSeconds,
+    timestamp: timeLeft,
+    isLoading,
+  };
 }

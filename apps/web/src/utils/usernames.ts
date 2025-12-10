@@ -138,7 +138,7 @@ export const formatSocialFieldUrl = (key: UsernameTextRecordKeys, handleOrUrl: s
     case UsernameTextRecordKeys.Twitter:
       return `https://x.com/${sanitizeHandle(handleOrUrl)}`;
     case UsernameTextRecordKeys.Farcaster:
-      return `https://warpcast.com/${sanitizeHandle(handleOrUrl)}`;
+      return `https://farcaster.xyz/${sanitizeHandle(handleOrUrl)}`;
     case UsernameTextRecordKeys.Github:
       return `https://github.com/${sanitizeHandle(handleOrUrl)}`;
     case UsernameTextRecordKeys.Url:
@@ -226,7 +226,7 @@ export const textRecordsKeysPlaceholderForDisplay = {
   [UsernameTextRecordKeys.Discord]: 'Username',
   [UsernameTextRecordKeys.Avatar]: 'Avatar',
   [UsernameTextRecordKeys.Frames]: 'Farcaster frame url',
-  [UsernameTextRecordKeys.Casts]: 'https://warpcast.com/...',
+  [UsernameTextRecordKeys.Casts]: 'https://farcaster.xyz/...',
 };
 
 export const textRecordsEngineersKeywords = [
@@ -831,8 +831,9 @@ export const REGISTER_CONTRACT_ADDRESSES = UPGRADEABLE_REGISTRAR_CONTROLLER_ADDR
 
 export const isBasenameRenewalsKilled = process.env.NEXT_PUBLIC_KILL_BASENAMES_RENEWALS === 'true';
 
-// Grace period duration in seconds (90 days)
-export const GRACE_PERIOD_DURATION_MS = 90 * 24 * 60 * 60 * 1000;
+// Grace period duration (90 days)
+export const GRACE_PERIOD_DURATION_SECONDS = 90 * 24 * 60 * 60;
+export const GRACE_PERIOD_DURATION_MS = GRACE_PERIOD_DURATION_SECONDS * 1000;
 
 /**
  * Check if a basename is in its grace period (expired but still renewable)

@@ -8,6 +8,22 @@
     "subcategory": "dex aggregator"
   },
   {
+  "name": "growthepie",
+  "description": "The open analytics platform for the Ethereum ecosystem. We empower Base Chain builders with open and actionable metrics on usage, growth, and adoption.",
+  "url": "https://www.growthepie.com/chains/base",
+  "imageUrl": "/images/partners/growthepie.webp",
+  "category": "infra",
+  "subcategory": "data"
+  },
+  {
+  "name": "Coinrule",
+  "description": "Launch fully self-custodial onchain automated trading strategies at lightning speed and with one-click UX. Team is backed by Y Combinator",
+  "url": "https://coinrule.com",
+  "imageUrl": "/images/partners/coinrule.png",
+  "category": "defi",
+  "subcategory": "dex aggregator"
+  },
+  {
     "name": "0x",
     "url": "https://0x.org/",
     "description": "Your one stop shop to build financial products on crypto rails. Enable faster trading, better prices and superior UX in your app.",
@@ -592,6 +608,14 @@
     "subcategory": "crypto taxes"
   },
   {
+    "name": "BOB Gateway",
+    "description": "Bring native Bitcoin to Base with BOB Gateway: an intents-based protocol powering frictionless, programmable BTC movement into DeFi for builders and users.",
+    "url": "https://app.gobob.xyz/en/gateway?input-asset=BTC&output-asset=0x0555E30da8f98308EdB960aa94C0Db47230d2B9c&output-chain=8453",
+    "imageUrl": "/images/partners/bob.png",
+    "category": "infra",
+    "subcategory": "bridge"
+  },
+  {
     "name": "Blackbird",
     "url": "https://www.blackbird.xyz/",
     "description": "Blackbird is a loyalty and membership platform built for the world's most exciting restaurants",
@@ -1070,6 +1094,14 @@
     "imageUrl": "/images/partners/contango.webp",
     "category": "defi",
     "subcategory": "dex"
+  },
+  {
+    "name": "Corgi Studio",
+    "description": "A one-stop shop for all your NFT needs. Swap tokens, Discover NFTs, All on Cronos, with support for Polygon and Base Your NFT experience, simplified.",
+    "url": "https://corgistudio.io",
+    "imageUrl": "/images/partners/corgistudio.png",
+    "category": "consumer",
+    "subcategory": "nft"
   },
   {
     "name": "Cornucopias",
@@ -2072,6 +2104,14 @@
     "subcategory": "dex"
   },
   {
+    "name": "INT",
+    "description": "INT is an onchain lottery you can play or own. Generate tickets with ETH instantly. Or hold IFTs to earn revenue from every ticket. Win prizes, earn rewards, transparently and fully onchain.",
+    "url": "https://theinternettoken.com",
+    "imageUrl": "/images/partners/int.png",
+    "category": "consumer",
+    "subcategory": "gaming"
+  },
+  {
     "name": "Interface",
     "description": "Interface is a mobile companion for your onchain journey ",
     "url": "https://www.interface.social",
@@ -2824,6 +2864,14 @@
     "subcategory": "self-custody"
   },
   {
+    "name": "OneKey",
+    "description": "OneKey is an open-source crypto solution that pairs a secure hardware wallet with our all-in-one app, letting you manage, swap, and explore DeFi & NFTs across 100+ chains.",
+    "url": "https://onekey.so",
+    "imageUrl": "/images/partners/onekey.png",
+    "category": "wallet",
+    "subcategory": "self-custody"
+  },
+  {
     "name": "Omni Network",
     "url": "https://omni.network",
     "description": "The Omni Network is a layer 1 blockchain that empowers developers to build global applications across all rollups. This is achieved securely by restaking $ETH through EigenLayer.",
@@ -2982,6 +3030,14 @@
     "imageUrl": "/images/partners/orderly.png",
     "category": "infra",
     "subcategory": "bridge"
+  },
+ {
+    "name": "Ormi Labs",
+    "description": "A next-generation Subgraph indexer built for real-time and historical blockchain data at scale.",
+    "url": "https://ormilabs.com/",
+    "imageUrl": "/images/partners/ormi.png",
+    "category": "infra",
+    "subcategory": "data"
   },
   {
     "name": "OtterSec",
@@ -3232,12 +3288,12 @@
     "subcategory": "security"
   },
   {
-    "name": "Quicknode",
+    "name": "QuickNode",
     "url": "https://www.quicknode.com/",
-    "description": "As the leading end-to-end web3 developer platform, QuickNode is transforming blockchain infrastructure and tooling by simplifying web3 development and providing high-performance access to 24+ blockchains. Since 2017, QuickNode has empowered hundreds of thousands of top developers and companies to focus on innovation by accelerating dApp build times and offering enterprise-grade solutions to businesses of every size.",
+    "description": "QuickNode is a comprehensive blockchain development platform built for high-performance teams. It delivers 99.99% uptime, low latency, and advanced blockchain data tools on one secure platform.",
     "imageUrl": "/images/partners/quicknode.webp",
     "category": "infra",
-    "subcategory": "node provider"
+    "subcategory": "node provider / developer tool"
   },
   {
     "name": "Quickswap",
@@ -4640,11 +4696,27 @@
     "subcategory": "dao"
   },
   {
+  "name": "Super OETH",
+    "url": "https://www.originprotocol.com/super",
+    "description": "Super OETH is the first Ethereum LST native to the Base network. Hold superOETHb in your wallet and watch as the balance magically grows daily. Designed by Origin Protocol.",
+    "imageUrl": "/images/partners/SuperOETH.png",
+    "category": "defi",
+    "subcategory": "yield vault"
+   },
+  {
     "name": "Levva",
     "url": "https://levva.fi/",
     "description": "DeFi too complicated? You’re missing real yield. LevvAI invests your crypto for you. One click, no stress, passive income from Pendle, Aave and more.",
     "imageUrl": "/images/partners/levva.png",
     "category": "defi",
     "subcategory": "portfolios"
+  },
+  {
+  "name": "BaseVol",
+  "description": "Options layer powered by 0DTE and AI agents. Trade BaseVol or deposit Vaults to maximize your day.",
+  "url": "https://basevol.com",
+  "imageUrl": "/images/partners/basevol.png",
+  "category": "defi",
+  "subcategory": "dex"
   }
 ]

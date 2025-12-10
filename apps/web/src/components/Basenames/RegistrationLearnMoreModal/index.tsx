@@ -11,7 +11,6 @@ import cbidVerification from './images/cbid-verification.svg';
 import BNSOwnership from './images/bns.jpg';
 import BaseNFT from './images/base-nft.svg';
 import DevconPNG from './images/devcon.png';
-import TalentProtocolIcon from './images/TalentProtocol.svg';
 import coinbaseOneVerification from './images/coinbase-one-verification.svg';
 import coinbaseVerification from './images/coinbase-verification.svg';
 import BaseWorldNFT from './images/base-around-the-world-nft.svg';
@@ -58,14 +57,6 @@ const DISCOUNT_ITEMS: DiscountItem[] = [
     alt: 'icon of base buildathon',
     label: 'Base buildathon participant',
     tooltipContent: 'Available for anyone holding a Base Buildathon participant NFT.',
-  },
-  {
-    discount: Discount.TALENT_PROTOCOL,
-    icon: TalentProtocolIcon as StaticImageData,
-    alt: 'icon of talent protocol',
-    label: 'Builder score 50+',
-    tooltipContent:
-      'Available for anyone with a 50+ Builder Score minted onchain. Go to app.talentprotocol.com to get yours.',
   },
   {
     discount: Discount.SUMMER_PASS_LVL_3,

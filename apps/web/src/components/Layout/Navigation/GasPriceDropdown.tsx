@@ -44,12 +44,12 @@ export function GasPriceDropdown() {
 
   return (
     <div className="group relative">
-      <div className="flex cursor-pointer flex-row items-center gap-2 rounded-lg bg-[#FAFAFA] px-3 py-1 transition-all">
+      <div className="flex cursor-pointer flex-row items-center gap-2 rounded-lg bg-[#FAFAFA] px-3 py-1 transition-all dark:bg-dark-palette-backgroundAlternate">
         <span className="animate-pulse text-palette-positive">
           <Icon name="blueCircle" color="currentColor" height="0.5rem" width="0.5rem" />
         </span>
         <div className="flex items-center gap-1">
-          <span className="font-doto font-bold text-black">
+          <span className="font-doto font-bold text-black dark:text-white">
             {baseGasPriceInWei ? convertWeiToMwei(baseGasPriceInWei) : <>&mdash;</>}
           </span>
           <span className="text-sm text-base-gray-200">Mwei</span>
@@ -57,7 +57,7 @@ export function GasPriceDropdown() {
       </div>
       <div className="absolute right-0 top-full hidden pt-2 lg:group-hover:inline-block">
         <Card
-          innerClassName="p-3 border border-base-black bg-white hover:bg-white font-sans text-[0.875rem]"
+          innerClassName="p-3 border border-base-black bg-white hover:bg-white dark:bg-dark-palette-backgroundAlternate hover:dark:bg-dark-palette-backgroundAlternate font-sans text-[0.875rem]"
           radius={9}
         >
           <ul className="flex flex-col gap-2 whitespace-nowrap">
@@ -103,12 +103,12 @@ export function GasPriceDropdownItem() {
   });
 
   return (
-    <div className="flex cursor-pointer flex-row items-center gap-2 rounded-lg bg-[#FAFAFA] px-3 py-2 transition-all">
+    <div className="flex cursor-pointer flex-row items-center gap-2 rounded-lg bg-[#FAFAFA] px-3 py-2 transition-all dark:bg-dark-palette-backgroundAlternate">
       <span className="animate-pulse text-palette-positive">
         <Icon name="blueCircle" color="currentColor" height="0.5rem" width="0.5rem" />
       </span>
       <div className="flex items-center gap-1">
-        <span className="font-doto font-bold text-black">
+        <span className="font-doto font-bold text-black dark:text-white">
           {baseGasPriceInWei ? convertWeiToMwei(baseGasPriceInWei) : <>&mdash;</>}
         </span>
         <span className="text-sm text-base-gray-200">Mwei</span>
