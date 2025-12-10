@@ -1376,6 +1376,14 @@
     "imageUrl": "/images/partners/dodo.webp"
   },
   {
+    "name": "Dopamint AI",
+    "description": "Think of Dopamint AI as the \"Capcut\" for AI NFT creation backed by ERC-721 liquidity curve. Prompt. Monetize. Customise AI NFTs together on liquid bonding curves, empowered by all latest AI models.",
+    "url": "https://dopamint.ai/",
+    "imageUrl": "/images/partners/dopamint.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "Dot",
     "description": "Dot transforms user-generated pixel art into collectible cards playable in unique challenges and onchain games. Create your own cards or open card packs from your favorite artists today.",
     "url": "https://dot.fan",
@@ -4583,7 +4591,7 @@
     "category": "consumer",
     "subcategory": "payments"
   },
-  {  
+  {
     "name": "KOLZ",
     "description": "A cutting-edge Web3 influencer platform designed to bridge the gap between leading influencers in the cryptocurrency and blockchain space (known as KOLs - Key Opinion Leaders) and their followers.",
     "url": "https://kolz.chat/",
@@ -4632,13 +4640,13 @@
     "subcategory": "dao"
   },
   {
-  "name": "Super OETH",
+    "name": "Super OETH",
     "url": "https://www.originprotocol.com/super",
     "description": "Super OETH is the first Ethereum LST native to the Base network. Hold superOETHb in your wallet and watch as the balance magically grows daily. Designed by Origin Protocol.",
     "imageUrl": "/images/partners/SuperOETH.png",
     "category": "defi",
     "subcategory": "yield vault"
-   },
+  },
   {
     "name": "Levva",
     "url": "https://levva.fi/",
