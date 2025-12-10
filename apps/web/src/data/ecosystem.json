@@ -2088,6 +2088,14 @@
     "subcategory": "dex"
   },
   {
+    "name": "INT",
+    "description": "INT is an onchain lottery you can play or own. Generate tickets with ETH instantly. Or hold IFTs to earn revenue from every ticket. Win prizes, earn rewards, transparently and fully onchain.",
+    "url": "https://theinternettoken.com",
+    "imageUrl": "/images/partners/int.png",
+    "category": "consumer",
+    "subcategory": "gaming"
+  },
+  {
     "name": "Interface",
     "description": "Interface is a mobile companion for your onchain journey ",
     "url": "https://www.interface.social",
@@ -4670,6 +4678,13 @@
     "imageUrl": "/images/partners/levva.png",
     "category": "defi",
     "subcategory": "portfolios"
+  },
+    "name": "BaseVol",
+    "description": "Options layer powered by 0DTE and AI agents. Trade BaseVol or deposit Vaults to maximize your day.",
+    "url": "https://basevol.com",
+    "imageUrl": "/images/partners/basevol.png",
+    "category": "defi",
+    "subcategory": "dex"
   },
   {
     "name": "Rift",
