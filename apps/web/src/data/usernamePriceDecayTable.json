@@ -1,1446 +1,846 @@
 [
   {
-    "hours": 0,
-    "premium": 99.99999404
+    "days": 0,
+    "premium": 100
   },
   {
-    "hours": 0.1,
-    "premium": 95.48415443
+    "days": 0.1,
+    "premium": 93.30329915
   },
   {
-    "hours": 0.2,
-    "premium": 91.1722429
+    "days": 0.2,
+    "premium": 87.05505633
   },
   {
-    "hours": 0.3,
-    "premium": 87.05505037
+    "days": 0.3,
+    "premium": 81.22523964
   },
   {
-    "hours": 0.4,
-    "premium": 83.12378365
+    "days": 0.4,
+    "premium": 75.78582833
   },
   {
-    "hours": 0.5,
-    "premium": 79.37004664
+    "days": 0.5,
+    "premium": 70.71067812
   },
   {
-    "hours": 0.6,
-    "premium": 75.78582237
+    "days": 0.6,
+    "premium": 65.97539554
   },
   {
-    "hours": 0.7,
-    "premium": 72.36345591
+    "days": 0.7,
+    "premium": 61.55722067
   },
   {
-    "hours": 0.8,
-    "premium": 69.09563804
+    "days": 0.8,
+    "premium": 57.43491775
   },
   {
-    "hours": 0.9,
-    "premium": 65.97538958
+    "days": 0.9,
+    "premium": 53.58867313
   },
   {
-    "hours": 1,
-    "premium": 62.99604653
+    "days": 1,
+    "premium": 50
   },
   {
-    "hours": 1.1,
-    "premium": 60.15124584
+    "days": 1.1,
+    "premium": 46.65164958
   },
   {
-    "hours": 1.2,
-    "premium": 57.43491179
+    "days": 1.2,
+    "premium": 43.52752816
   },
   {
-    "hours": 1.3,
-    "premium": 54.84124302
+    "days": 1.3,
+    "premium": 40.61261982
   },
   {
-    "hours": 1.4,
-    "premium": 52.36470018
+    "days": 1.4,
+    "premium": 37.89291416
   },
   {
-    "hours": 1.5,
-    "premium": 49.99999404
+    "days": 1.5,
+    "premium": 35.35533906
   },
   {
-    "hours": 1.6,
-    "premium": 47.74207424
+    "days": 1.6,
+    "premium": 32.98769777
   },
   {
-    "hours": 1.7,
-    "premium": 45.58611847
+    "days": 1.7,
+    "premium": 30.77861033
   },
   {
-    "hours": 1.8,
-    "premium": 43.5275222
+    "days": 1.8,
+    "premium": 28.71745887
   },
   {
-    "hours": 1.9,
-    "premium": 41.56188885
+    "days": 1.9,
+    "premium": 26.79433656
   },
   {
-    "hours": 2,
-    "premium": 39.68502034
+    "days": 2,
+    "premium": 25
   },
   {
-    "hours": 2.1,
-    "premium": 37.8929082
+    "days": 2.1,
+    "premium": 23.32582479
   },
   {
-    "hours": 2.2,
-    "premium": 36.18172498
+    "days": 2.2,
+    "premium": 21.76376408
   },
   {
-    "hours": 2.3,
-    "premium": 34.54781604
+    "days": 2.3,
+    "premium": 20.30630991
   },
   {
-    "hours": 2.4,
-    "premium": 32.98769181
+    "days": 2.4,
+    "premium": 18.94645708
   },
   {
-    "hours": 2.5,
-    "premium": 31.49802029
+    "days": 2.5,
+    "premium": 17.67766953
   },
   {
-    "hours": 2.6,
-    "premium": 30.07561994
+    "days": 2.6,
+    "premium": 16.49384888
   },
   {
-    "hours": 2.7,
-    "premium": 28.71745291
+    "days": 2.7,
+    "premium": 15.38930517
   },
   {
-    "hours": 2.8,
-    "premium": 27.42061853
+    "days": 2.8,
+    "premium": 14.35872944
   },
   {
-    "hours": 2.9,
-    "premium": 26.18234711
+    "days": 2.9,
+    "premium": 13.39716828
   },
   {
-    "hours": 3,
-    "premium": 24.99999404
+    "days": 3,
+    "premium": 12.5
   },
   {
-    "hours": 3.1,
-    "premium": 23.87103414
+    "days": 3.1,
+    "premium": 11.66291239
   },
   {
-    "hours": 3.2,
-    "premium": 22.79305625
+    "days": 3.2,
+    "premium": 10.88188204
   },
   {
-    "hours": 3.3,
-    "premium": 21.76375812
+    "days": 3.3,
+    "premium": 10.15315495
   },
   {
-    "hours": 3.4,
-    "premium": 20.78094144
+    "days": 3.4,
+    "premium": 9.47322854
   },
   {
-    "hours": 3.5,
-    "premium": 19.84250719
+    "days": 3.5,
+    "premium": 8.83883476
   },
   {
-    "hours": 3.6,
-    "premium": 18.94645112
+    "days": 3.6,
+    "premium": 8.24692444
   },
   {
-    "hours": 3.7,
-    "premium": 18.09085951
+    "days": 3.7,
+    "premium": 7.69465258
   },
   {
-    "hours": 3.8,
-    "premium": 17.27390504
+    "days": 3.8,
+    "premium": 7.17936472
   },
   {
-    "hours": 3.9,
-    "premium": 16.49384292
+    "days": 3.9,
+    "premium": 6.69858414
   },
   {
-    "hours": 4,
-    "premium": 15.74900716
+    "days": 4,
+    "premium": 6.25
   },
   {
-    "hours": 4.1,
-    "premium": 15.03780699
+    "days": 4.1,
+    "premium": 5.8314562
   },
   {
-    "hours": 4.2,
-    "premium": 14.35872348
+    "days": 4.2,
+    "premium": 5.44094102
   },
   {
-    "hours": 4.3,
-    "premium": 13.71030629
+    "days": 4.3,
+    "premium": 5.07657748
   },
   {
-    "hours": 4.4,
-    "premium": 13.09117057
+    "days": 4.4,
+    "premium": 4.73661427
   },
   {
-    "hours": 4.5,
-    "premium": 12.49999404
+    "days": 4.5,
+    "premium": 4.41941738
   },
   {
-    "hours": 4.6,
-    "premium": 11.93551409
+    "days": 4.6,
+    "premium": 4.12346222
   },
   {
-    "hours": 4.7,
-    "premium": 11.39652515
+    "days": 4.7,
+    "premium": 3.84732629
   },
   {
-    "hours": 4.8,
-    "premium": 10.88187608
+    "days": 4.8,
+    "premium": 3.58968236
   },
   {
-    "hours": 4.9,
-    "premium": 10.39046774
+    "days": 4.9,
+    "premium": 3.34929207
   },
   {
-    "hours": 5,
-    "premium": 9.921250614
+    "days": 5,
+    "premium": 3.125
   },
   {
-    "hours": 5.1,
-    "premium": 9.47322258
+    "days": 5.1,
+    "premium": 2.9157281
   },
   {
-    "hours": 5.2,
-    "premium": 9.045426774
+    "days": 5.2,
+    "premium": 2.72047051
   },
   {
-    "hours": 5.3,
-    "premium": 8.636949539
+    "days": 5.3,
+    "premium": 2.53828874
   },
   {
-    "hours": 5.4,
-    "premium": 8.246918482
+    "days": 5.4,
+    "premium": 2.36830714
   },
   {
-    "hours": 5.5,
-    "premium": 7.874500601
+    "days": 5.5,
+    "premium": 2.20970869
   },
   {
-    "hours": 5.6,
-    "premium": 7.518900515
+    "days": 5.6,
+    "premium": 2.06173111
   },
   {
-    "hours": 5.7,
-    "premium": 7.179358758
+    "days": 5.7,
+    "premium": 1.92366315
   },
   {
-    "hours": 5.8,
-    "premium": 6.855150163
+    "days": 5.8,
+    "premium": 1.79484118
   },
   {
-    "hours": 5.9,
-    "premium": 6.545582307
+    "days": 5.9,
+    "premium": 1.67464604
   },
   {
-    "hours": 6,
-    "premium": 6.24999404
+    "days": 6,
+    "premium": 1.5625
   },
   {
-    "hours": 6.1,
-    "premium": 5.967754064
+    "days": 6.1,
+    "premium": 1.45786405
   },
   {
-    "hours": 6.2,
-    "premium": 5.698259593
+    "days": 6.2,
+    "premium": 1.36023526
   },
   {
-    "hours": 6.3,
-    "premium": 5.44093506
+    "days": 6.3,
+    "premium": 1.26914437
   },
   {
-    "hours": 6.4,
-    "premium": 5.19523089
+    "days": 6.4,
+    "premium": 1.18415357
   },
   {
-    "hours": 6.5,
-    "premium": 4.960622327
+    "days": 6.5,
+    "premium": 1.10485435
   },
   {
-    "hours": 6.6,
-    "premium": 4.73660831
+    "days": 6.6,
+    "premium": 1.03086556
   },
   {
-    "hours": 6.7,
-    "premium": 4.522710407
+    "days": 6.7,
+    "premium": 0.96183157
   },
   {
-    "hours": 6.8,
-    "premium": 4.318471789
+    "days": 6.8,
+    "premium": 0.89742059
   },
   {
-    "hours": 6.9,
-    "premium": 4.123456261
+    "days": 6.9,
+    "premium": 0.83732302
   },
   {
-    "hours": 7,
-    "premium": 3.93724732
+    "days": 7,
+    "premium": 0.78125
   },
   {
-    "hours": 7.1,
-    "premium": 3.759447277
+    "days": 7.1,
+    "premium": 0.72893202
   },
   {
-    "hours": 7.2,
-    "premium": 3.589676399
+    "days": 7.2,
+    "premium": 0.68011763
   },
   {
-    "hours": 7.3,
-    "premium": 3.427572101
+    "days": 7.3,
+    "premium": 0.63457218
   },
   {
-    "hours": 7.4,
-    "premium": 3.272788173
+    "days": 7.4,
+    "premium": 0.59207678
   },
   {
-    "hours": 7.5,
-    "premium": 3.12499404
+    "days": 7.5,
+    "premium": 0.55242717
   },
   {
-    "hours": 7.6,
-    "premium": 2.983874052
+    "days": 7.6,
+    "premium": 0.51543278
   },
   {
-    "hours": 7.7,
-    "premium": 2.849126816
+    "days": 7.7,
+    "premium": 0.48091579
   },
   {
-    "hours": 7.8,
-    "premium": 2.72046455
+    "days": 7.8,
+    "premium": 0.44871029
   },
   {
-    "hours": 7.9,
-    "premium": 2.597612465
+    "days": 7.9,
+    "premium": 0.41866151
   },
   {
-    "hours": 8,
-    "premium": 2.480308183
+    "days": 8,
+    "premium": 0.390625
   },
   {
-    "hours": 8.1,
-    "premium": 2.368301175
+    "days": 8.1,
+    "premium": 0.36446601
   },
   {
-    "hours": 8.2,
-    "premium": 2.261352223
+    "days": 8.2,
+    "premium": 0.34005881
   },
   {
-    "hours": 8.3,
-    "premium": 2.159232914
+    "days": 8.3,
+    "premium": 0.31728609
   },
   {
-    "hours": 8.4,
-    "premium": 2.06172515
+    "days": 8.4,
+    "premium": 0.29603839
   },
   {
-    "hours": 8.5,
-    "premium": 1.96862068
+    "days": 8.5,
+    "premium": 0.27621359
   },
   {
-    "hours": 8.6,
-    "premium": 1.879720658
+    "days": 8.6,
+    "premium": 0.25771639
   },
   {
-    "hours": 8.7,
-    "premium": 1.794835219
+    "days": 8.7,
+    "premium": 0.24045789
   },
   {
-    "hours": 8.8,
-    "premium": 1.71378307
+    "days": 8.8,
+    "premium": 0.22435515
   },
   {
-    "hours": 8.9,
-    "premium": 1.636391106
+    "days": 8.9,
+    "premium": 0.20933075
   },
   {
-    "hours": 9,
-    "premium": 1.56249404
+    "days": 9,
+    "premium": 0.1953125
   },
   {
-    "hours": 9.1,
-    "premium": 1.491934046
+    "days": 9.1,
+    "premium": 0.18223301
   },
   {
-    "hours": 9.2,
-    "premium": 1.424560428
+    "days": 9.2,
+    "premium": 0.17002941
   },
   {
-    "hours": 9.3,
-    "premium": 1.360229295
+    "days": 9.3,
+    "premium": 0.15864305
   },
   {
-    "hours": 9.4,
-    "premium": 1.298803252
+    "days": 9.4,
+    "premium": 0.1480192
   },
   {
-    "hours": 9.5,
-    "premium": 1.240151111
+    "days": 9.5,
+    "premium": 0.13810679
   },
   {
-    "hours": 9.6,
-    "premium": 1.184147607
+    "days": 9.6,
+    "premium": 0.12885819
   },
   {
-    "hours": 9.7,
-    "premium": 1.130673131
+    "days": 9.7,
+    "premium": 0.12022895
   },
   {
-    "hours": 9.8,
-    "premium": 1.079613477
+    "days": 9.8,
+    "premium": 0.11217757
   },
   {
-    "hours": 9.9,
-    "premium": 1.030859595
+    "days": 9.9,
+    "premium": 0.10466538
   },
   {
-    "hours": 10,
-    "premium": 0.9843073598
+    "days": 10,
+    "premium": 0.09765625
   },
   {
-    "hours": 10.1,
-    "premium": 0.939857349
+    "days": 10.1,
+    "premium": 0.0911165
   },
   {
-    "hours": 10.2,
-    "premium": 0.8974146294
+    "days": 10.2,
+    "premium": 0.0850147
   },
   {
-    "hours": 10.3,
-    "premium": 0.8568885549
+    "days": 10.3,
+    "premium": 0.07932152
   },
   {
-    "hours": 10.4,
-    "premium": 0.818192573
+    "days": 10.4,
+    "premium": 0.0740096
   },
   {
-    "hours": 10.5,
-    "premium": 0.7812440395
+    "days": 10.5,
+    "premium": 0.0690534
   },
   {
-    "hours": 10.6,
-    "premium": 0.7459640426
+    "days": 10.6,
+    "premium": 0.0644291
   },
   {
-    "hours": 10.7,
-    "premium": 0.7122772337
+    "days": 10.7,
+    "premium": 0.06011447
   },
   {
-    "hours": 10.8,
-    "premium": 0.6801116671
+    "days": 10.8,
+    "premium": 0.05608879
   },
   {
-    "hours": 10.9,
-    "premium": 0.6493986459
+    "days": 10.9,
+    "premium": 0.05233269
   },
   {
-    "hours": 11,
-    "premium": 0.6200725755
+    "days": 11,
+    "premium": 0.04882812
   },
   {
-    "hours": 11.1,
-    "premium": 0.5920708233
+    "days": 11.1,
+    "premium": 0.04555825
   },
   {
-    "hours": 11.2,
-    "premium": 0.5653335854
+    "days": 11.2,
+    "premium": 0.04250735
   },
   {
-    "hours": 11.3,
-    "premium": 0.5398037583
+    "days": 11.3,
+    "premium": 0.03966076
   },
   {
-    "hours": 11.4,
-    "premium": 0.5154268172
+    "days": 11.4,
+    "premium": 0.0370048
   },
   {
-    "hours": 11.5,
-    "premium": 0.4921506997
+    "days": 11.5,
+    "premium": 0.0345267
   },
   {
-    "hours": 11.6,
-    "premium": 0.4699256943
+    "days": 11.6,
+    "premium": 0.03221455
   },
   {
-    "hours": 11.7,
-    "premium": 0.4487043345
+    "days": 11.7,
+    "premium": 0.03005724
   },
   {
-    "hours": 11.8,
-    "premium": 0.4284412972
+    "days": 11.8,
+    "premium": 0.02804439
   },
   {
-    "hours": 11.9,
-    "premium": 0.4090933063
+    "days": 11.9,
+    "premium": 0.02616634
   },
   {
-    "hours": 12,
-    "premium": 0.3906190395
+    "days": 12,
+    "premium": 0.02441406
   },
   {
-    "hours": 12.1,
-    "premium": 0.3729790411
+    "days": 12.1,
+    "premium": 0.02277913
   },
   {
-    "hours": 12.2,
-    "premium": 0.3561356366
+    "days": 12.2,
+    "premium": 0.02125368
   },
   {
-    "hours": 12.3,
-    "premium": 0.3400528533
+    "days": 12.3,
+    "premium": 0.01983038
   },
   {
-    "hours": 12.4,
-    "premium": 0.3246963427
+    "days": 12.4,
+    "premium": 0.0185024
   },
   {
-    "hours": 12.5,
-    "premium": 0.3100333075
+    "days": 12.5,
+    "premium": 0.01726335
   },
   {
-    "hours": 12.6,
-    "premium": 0.2960324314
+    "days": 12.6,
+    "premium": 0.01610727
   },
   {
-    "hours": 12.7,
-    "premium": 0.2826638125
+    "days": 12.7,
+    "premium": 0.01502862
   },
   {
-    "hours": 12.8,
-    "premium": 0.2698988989
+    "days": 12.8,
+    "premium": 0.0140222
   },
   {
-    "hours": 12.9,
-    "premium": 0.2577104284
+    "days": 12.9,
+    "premium": 0.01308317
   },
   {
-    "hours": 13,
-    "premium": 0.2460723696
+    "days": 13,
+    "premium": 0.01220703
   },
   {
-    "hours": 13.1,
-    "premium": 0.2349598669
+    "days": 13.1,
+    "premium": 0.01138956
   },
   {
-    "hours": 13.2,
-    "premium": 0.224349187
+    "days": 13.2,
+    "premium": 0.01062684
   },
   {
-    "hours": 13.3,
-    "premium": 0.2142176684
+    "days": 13.3,
+    "premium": 0.00991519
   },
   {
-    "hours": 13.4,
-    "premium": 0.2045436729
+    "days": 13.4,
+    "premium": 0.0092512
   },
   {
-    "hours": 13.5,
-    "premium": 0.1953065395
+    "days": 13.5,
+    "premium": 0.00863167
   },
   {
-    "hours": 13.6,
-    "premium": 0.1864865403
+    "days": 13.6,
+    "premium": 0.00805364
   },
   {
-    "hours": 13.7,
-    "premium": 0.1780648381
+    "days": 13.7,
+    "premium": 0.00751431
   },
   {
-    "hours": 13.8,
-    "premium": 0.1700234464
+    "days": 13.8,
+    "premium": 0.0070111
   },
   {
-    "hours": 13.9,
-    "premium": 0.1623451911
+    "days": 13.9,
+    "premium": 0.00654159
   },
   {
-    "hours": 14,
-    "premium": 0.1550136735
+    "days": 14,
+    "premium": 0.00610352
   },
   {
-    "hours": 14.1,
-    "premium": 0.1480132355
+    "days": 14.1,
+    "premium": 0.00569478
   },
   {
-    "hours": 14.2,
-    "premium": 0.141328926
+    "days": 14.2,
+    "premium": 0.00531342
   },
   {
-    "hours": 14.3,
-    "premium": 0.1349464692
+    "days": 14.3,
+    "premium": 0.0049576
   },
   {
-    "hours": 14.4,
-    "premium": 0.1288522339
+    "days": 14.4,
+    "premium": 0.0046256
   },
   {
-    "hours": 14.5,
-    "premium": 0.1230332046
+    "days": 14.5,
+    "premium": 0.00431584
   },
   {
-    "hours": 14.6,
-    "premium": 0.1174769532
+    "days": 14.6,
+    "premium": 0.00402682
   },
   {
-    "hours": 14.7,
-    "premium": 0.1121716133
+    "days": 14.7,
+    "premium": 0.00375715
   },
   {
-    "hours": 14.8,
-    "premium": 0.107105854
+    "days": 14.8,
+    "premium": 0.00350555
   },
   {
-    "hours": 14.9,
-    "premium": 0.1022688562
+    "days": 14.9,
+    "premium": 0.00327079
   },
   {
-    "hours": 15,
-    "premium": 0.09765028954
+    "days": 15,
+    "premium": 0.00305176
   },
   {
-    "hours": 15.1,
-    "premium": 0.09324028992
+    "days": 15.1,
+    "premium": 0.00284739
   },
   {
-    "hours": 15.2,
-    "premium": 0.08902943881
+    "days": 15.2,
+    "premium": 0.00265671
   },
   {
-    "hours": 15.3,
-    "premium": 0.08500874298
+    "days": 15.3,
+    "premium": 0.0024788
   },
   {
-    "hours": 15.4,
-    "premium": 0.08116961533
+    "days": 15.4,
+    "premium": 0.0023128
   },
   {
-    "hours": 15.5,
-    "premium": 0.07750385653
+    "days": 15.5,
+    "premium": 0.00215792
   },
   {
-    "hours": 15.6,
-    "premium": 0.07400363751
+    "days": 15.6,
+    "premium": 0.00201341
   },
   {
-    "hours": 15.7,
-    "premium": 0.07066148277
+    "days": 15.7,
+    "premium": 0.00187858
   },
   {
-    "hours": 15.8,
-    "premium": 0.06747025438
+    "days": 15.8,
+    "premium": 0.00175277
   },
   {
-    "hours": 15.9,
-    "premium": 0.06442313674
+    "days": 15.9,
+    "premium": 0.0016354
   },
   {
-    "hours": 16,
-    "premium": 0.06151362205
+    "days": 16,
+    "premium": 0.00152588
   },
   {
-    "hours": 16.1,
-    "premium": 0.05873549638
+    "days": 16.1,
+    "premium": 0.0014237
   },
   {
-    "hours": 16.2,
-    "premium": 0.0560828264
+    "days": 16.2,
+    "premium": 0.00132835
   },
   {
-    "hours": 16.3,
-    "premium": 0.05354994675
+    "days": 16.3,
+    "premium": 0.0012394
   },
   {
-    "hours": 16.4,
-    "premium": 0.05113144788
+    "days": 16.4,
+    "premium": 0.0011564
   },
   {
-    "hours": 16.5,
-    "premium": 0.04882216454
+    "days": 16.5,
+    "premium": 0.00107896
   },
   {
-    "hours": 16.6,
-    "premium": 0.04661716473
+    "days": 16.6,
+    "premium": 0.0010067
   },
   {
-    "hours": 16.7,
-    "premium": 0.04451173917
+    "days": 16.7,
+    "premium": 0.00093929
   },
   {
-    "hours": 16.8,
-    "premium": 0.04250139126
+    "days": 16.8,
+    "premium": 0.00087639
   },
   {
-    "hours": 16.9,
-    "premium": 0.04058182743
+    "days": 16.9,
+    "premium": 0.0008177
   },
   {
-    "hours": 17,
-    "premium": 0.03874894803
+    "days": 17,
+    "premium": 0.00076294
   },
   {
-    "hours": 17.1,
-    "premium": 0.03699883852
+    "days": 17.1,
+    "premium": 0.00071185
   },
   {
-    "hours": 17.2,
-    "premium": 0.03532776115
+    "days": 17.2,
+    "premium": 0.00066418
   },
   {
-    "hours": 17.3,
-    "premium": 0.03373214696
+    "days": 17.3,
+    "premium": 0.0006197
   },
   {
-    "hours": 17.4,
-    "premium": 0.03220858814
+    "days": 17.4,
+    "premium": 0.0005782
   },
   {
-    "hours": 17.5,
-    "premium": 0.03075383079
+    "days": 17.5,
+    "premium": 0.00053948
   },
   {
-    "hours": 17.6,
-    "premium": 0.02936476796
+    "days": 17.6,
+    "premium": 0.00050335
   },
   {
-    "hours": 17.7,
-    "premium": 0.02803843297
+    "days": 17.7,
+    "premium": 0.00046964
   },
   {
-    "hours": 17.8,
-    "premium": 0.02677199314
+    "days": 17.8,
+    "premium": 0.00043819
   },
   {
-    "hours": 17.9,
-    "premium": 0.02556274371
+    "days": 17.9,
+    "premium": 0.00040885
   },
   {
-    "hours": 18,
-    "premium": 0.02440810204
+    "days": 18,
+    "premium": 0.00038147
   },
   {
-    "hours": 18.1,
-    "premium": 0.02330560213
+    "days": 18.1,
+    "premium": 0.00035592
   },
   {
-    "hours": 18.2,
-    "premium": 0.02225288935
+    "days": 18.2,
+    "premium": 0.00033209
   },
   {
-    "hours": 18.3,
-    "premium": 0.0212477154
+    "days": 18.3,
+    "premium": 0.00030985
   },
   {
-    "hours": 18.4,
-    "premium": 0.02028793348
+    "days": 18.4,
+    "premium": 0.0002891
   },
   {
-    "hours": 18.5,
-    "premium": 0.01937149378
+    "days": 18.5,
+    "premium": 0.00026974
   },
   {
-    "hours": 18.6,
-    "premium": 0.01849643903
+    "days": 18.6,
+    "premium": 0.00025168
   },
   {
-    "hours": 18.7,
-    "premium": 0.01766090034
+    "days": 18.7,
+    "premium": 0.00023482
   },
   {
-    "hours": 18.8,
-    "premium": 0.01686309325
+    "days": 18.8,
+    "premium": 0.0002191
   },
   {
-    "hours": 18.9,
-    "premium": 0.01610131384
+    "days": 18.9,
+    "premium": 0.00020442
   },
   {
-    "hours": 19,
-    "premium": 0.01537393516
+    "days": 19,
+    "premium": 0.00019073
   },
   {
-    "hours": 19.1,
-    "premium": 0.01467940375
+    "days": 19.1,
+    "premium": 0.00017796
   },
   {
-    "hours": 19.2,
-    "premium": 0.01401623625
+    "days": 19.2,
+    "premium": 0.00016604
   },
   {
-    "hours": 19.3,
-    "premium": 0.01338301634
+    "days": 19.3,
+    "premium": 0.00015492
   },
   {
-    "hours": 19.4,
-    "premium": 0.01277839162
+    "days": 19.4,
+    "premium": 0.00014455
   },
   {
-    "hours": 19.5,
-    "premium": 0.01220107079
+    "days": 19.5,
+    "premium": 0.00013487
   },
   {
-    "hours": 19.6,
-    "premium": 0.01164982083
+    "days": 19.6,
+    "premium": 0.00012584
   },
   {
-    "hours": 19.7,
-    "premium": 0.01112346444
+    "days": 19.7,
+    "premium": 0.00011741
   },
   {
-    "hours": 19.8,
-    "premium": 0.01062087747
+    "days": 19.8,
+    "premium": 0.00010955
   },
   {
-    "hours": 19.9,
-    "premium": 0.01014098651
+    "days": 19.9,
+    "premium": 0.00010221
   },
   {
-    "hours": 20,
-    "premium": 0.009682766659
+    "days": 20,
+    "premium": 0.00009537
   },
   {
-    "hours": 20.1,
-    "premium": 0.009245239282
+    "days": 20.1,
+    "premium": 0.00008898
   },
   {
-    "hours": 20.2,
-    "premium": 0.00882746994
+    "days": 20.2,
+    "premium": 0.00008302
   },
   {
-    "hours": 20.3,
-    "premium": 0.008428566391
+    "days": 20.3,
+    "premium": 0.00007746
   },
   {
-    "hours": 20.4,
-    "premium": 0.008047676686
+    "days": 20.4,
+    "premium": 0.00007227
   },
   {
-    "hours": 20.5,
-    "premium": 0.00768398735
+    "days": 20.5,
+    "premium": 0.00006743
   },
   {
-    "hours": 20.6,
-    "premium": 0.007336721641
+    "days": 20.6,
+    "premium": 0.00006292
   },
   {
-    "hours": 20.7,
-    "premium": 0.007005137894
+    "days": 20.7,
+    "premium": 0.00005871
   },
   {
-    "hours": 20.8,
-    "premium": 0.006688527937
+    "days": 20.8,
+    "premium": 0.00005477
   },
   {
-    "hours": 20.9,
-    "premium": 0.006386215578
+    "days": 20.9,
+    "premium": 0.00005111
   },
   {
-    "hours": 21,
-    "premium": 0.006097555161
-  },
-  {
-    "hours": 21.1,
-    "premium": 0.005821930184
-  },
-  {
-    "hours": 21.2,
-    "premium": 0.00555875199
-  },
-  {
-    "hours": 21.3,
-    "premium": 0.005307458501
-  },
-  {
-    "hours": 21.4,
-    "premium": 0.005067513023
-  },
-  {
-    "hours": 21.5,
-    "premium": 0.004838403097
-  },
-  {
-    "hours": 21.6,
-    "premium": 0.004619639409
-  },
-  {
-    "hours": 21.7,
-    "premium": 0.004410754738
-  },
-  {
-    "hours": 21.8,
-    "premium": 0.004211302963
-  },
-  {
-    "hours": 21.9,
-    "premium": 0.004020858111
-  },
-  {
-    "hours": 22,
-    "premium": 0.003839013443
-  },
-  {
-    "hours": 22.1,
-    "premium": 0.003665380588
-  },
-  {
-    "hours": 22.2,
-    "premium": 0.003499588715
-  },
-  {
-    "hours": 22.3,
-    "premium": 0.003341283736
-  },
-  {
-    "hours": 22.4,
-    "premium": 0.003190127557
-  },
-  {
-    "hours": 22.5,
-    "premium": 0.003045797348
-  },
-  {
-    "hours": 22.6,
-    "premium": 0.00290798486
-  },
-  {
-    "hours": 22.7,
-    "premium": 0.002776395763
-  },
-  {
-    "hours": 22.8,
-    "premium": 0.002650749018
-  },
-  {
-    "hours": 22.9,
-    "premium": 0.002530776279
-  },
-  {
-    "hours": 23,
-    "premium": 0.002416221316
-  },
-  {
-    "hours": 23.1,
-    "premium": 0.002306839472
-  },
-  {
-    "hours": 23.2,
-    "premium": 0.002202397137
-  },
-  {
-    "hours": 23.3,
-    "premium": 0.002102671249
-  },
-  {
-    "hours": 23.4,
-    "premium": 0.002007448823
-  },
-  {
-    "hours": 23.5,
-    "premium": 0.001916526489
-  },
-  {
-    "hours": 23.6,
-    "premium": 0.001829710062
-  },
-  {
-    "hours": 23.7,
-    "premium": 0.001746814125
-  },
-  {
-    "hours": 23.8,
-    "premium": 0.001667661636
-  },
-  {
-    "hours": 23.9,
-    "premium": 0.001592083546
-  },
-  {
-    "hours": 24,
-    "premium": 0.001519918442
-  },
-  {
-    "hours": 24.1,
-    "premium": 0.001451012198
-  },
-  {
-    "hours": 24.2,
-    "premium": 0.001385217649
-  },
-  {
-    "hours": 24.3,
-    "premium": 0.001322394277
-  },
-  {
-    "hours": 24.4,
-    "premium": 0.001262407907
-  },
-  {
-    "hours": 24.5,
-    "premium": 0.001205130426
-  },
-  {
-    "hours": 24.6,
-    "premium": 0.001150439504
-  },
-  {
-    "hours": 24.7,
-    "premium": 0.001098218336
-  },
-  {
-    "hours": 24.8,
-    "premium": 0.001048355392
-  },
-  {
-    "hours": 24.9,
-    "premium": 0.001000744179
-  },
-  {
-    "hours": 25,
-    "premium": 0.0009552830123
-  },
-  {
-    "hours": 25.1,
-    "premium": 0.0009118747986
-  },
-  {
-    "hours": 25.2,
-    "premium": 0.0008704268303
-  },
-  {
-    "hours": 25.3,
-    "premium": 0.0008308505857
-  },
-  {
-    "hours": 25.4,
-    "premium": 0.0007930615408
-  },
-  {
-    "hours": 25.5,
-    "premium": 0.0007569789886
-  },
-  {
-    "hours": 25.6,
-    "premium": 0.0007225258666
-  },
-  {
-    "hours": 25.7,
-    "premium": 0.0006896285923
-  },
-  {
-    "hours": 25.8,
-    "premium": 0.0006582169062
-  },
-  {
-    "hours": 25.9,
-    "premium": 0.0006282237214
-  },
-  {
-    "hours": 26,
-    "premium": 0.0005995849808
-  },
-  {
-    "hours": 26.1,
-    "premium": 0.0005722395197
-  },
-  {
-    "hours": 26.2,
-    "premium": 0.0005461289358
-  },
-  {
-    "hours": 26.3,
-    "premium": 0.000521197464
-  },
-  {
-    "hours": 26.4,
-    "premium": 0.0004973918574
-  },
-  {
-    "hours": 26.5,
-    "premium": 0.0004746612739
-  },
-  {
-    "hours": 26.6,
-    "premium": 0.0004529571671
-  },
-  {
-    "hours": 26.7,
-    "premium": 0.0004322331829
-  },
-  {
-    "hours": 26.8,
-    "premium": 0.0004124450606
-  },
-  {
-    "hours": 26.9,
-    "premium": 0.0003935505382
-  },
-  {
-    "hours": 27,
-    "premium": 0.0003755092621
-  },
-  {
-    "hours": 27.1,
-    "premium": 0.0003582827011
-  },
-  {
-    "hours": 27.2,
-    "premium": 0.0003418340639
-  },
-  {
-    "hours": 27.3,
-    "premium": 0.0003261282209
-  },
-  {
-    "hours": 27.4,
-    "premium": 0.0003111316285
-  },
-  {
-    "hours": 27.5,
-    "premium": 0.0002968122581
-  },
-  {
-    "hours": 27.6,
-    "premium": 0.0002831395276
-  },
-  {
-    "hours": 27.7,
-    "premium": 0.0002700842357
-  },
-  {
-    "hours": 27.8,
-    "premium": 0.0002576184997
-  },
-  {
-    "hours": 27.9,
-    "premium": 0.0002457156965
-  },
-  {
-    "hours": 28,
-    "premium": 0.0002343504047
-  },
-  {
-    "hours": 28.1,
-    "premium": 0.0002234983513
-  },
-  {
-    "hours": 28.2,
-    "premium": 0.0002131363592
-  },
-  {
-    "hours": 28.3,
-    "premium": 0.0002032422981
-  },
-  {
-    "hours": 28.4,
-    "premium": 0.0001937950369
-  },
-  {
-    "hours": 28.5,
-    "premium": 0.0001847743988
-  },
-  {
-    "hours": 28.6,
-    "premium": 0.0001761611183
-  },
-  {
-    "hours": 28.7,
-    "premium": 0.0001679367997
-  },
-  {
-    "hours": 28.8,
-    "premium": 0.0001600838782
-  },
-  {
-    "hours": 28.9,
-    "premium": 0.000152585582
-  },
-  {
-    "hours": 29,
-    "premium": 0.0001454258968
-  },
-  {
-    "hours": 29.1,
-    "premium": 0.0001385895316
-  },
-  {
-    "hours": 29.2,
-    "premium": 0.0001320618856
-  },
-  {
-    "hours": 29.3,
-    "premium": 0.0001258290176
-  },
-  {
-    "hours": 29.4,
-    "premium": 0.000119877616
-  },
-  {
-    "hours": 29.5,
-    "premium": 0.0001141949701
-  },
-  {
-    "hours": 29.6,
-    "premium": 0.0001087689434
-  },
-  {
-    "hours": 29.7,
-    "premium": 0.0001035879474
-  },
-  {
-    "hours": 29.8,
-    "premium": 0.00009864091679
-  },
-  {
-    "hours": 29.9,
-    "premium": 0.00009391728619
-  },
-  {
-    "hours": 30,
-    "premium": 0.00008940696716
-  },
-  {
-    "hours": 30.1,
-    "premium": 0.00008510032691
-  },
-  {
-    "hours": 30.2,
-    "premium": 0.00008098816763
-  },
-  {
-    "hours": 30.3,
-    "premium": 0.00007706170686
-  },
-  {
-    "hours": 30.4,
-    "premium": 0.00007331255876
-  },
-  {
-    "hours": 30.5,
-    "premium": 0.00006973271618
-  },
-  {
-    "hours": 30.6,
-    "premium": 0.00006631453354
-  },
-  {
-    "hours": 30.7,
-    "premium": 0.00006305071056
-  },
-  {
-    "hours": 30.8,
-    "premium": 0.00005993427658
-  },
-  {
-    "hours": 30.9,
-    "premium": 0.00005695857576
-  },
-  {
-    "hours": 31,
-    "premium": 0.00005411725282
-  },
-  {
-    "hours": 31.1,
-    "premium": 0.00005140423947
-  },
-  {
-    "hours": 31.2,
-    "premium": 0.00004881374144
-  },
-  {
-    "hours": 31.3,
-    "premium": 0.00004634022616
-  },
-  {
-    "hours": 31.4,
-    "premium": 0.00004397841085
-  },
-  {
-    "hours": 31.5,
-    "premium": 0.00004172325134
-  },
-  {
-    "hours": 31.6,
-    "premium": 0.00003956993122
-  },
-  {
-    "hours": 31.7,
-    "premium": 0.00003751385157
-  },
-  {
-    "hours": 31.8,
-    "premium": 0.00003555062119
-  },
-  {
-    "hours": 31.9,
-    "premium": 0.00003367604714
-  },
-  {
-    "hours": 32,
-    "premium": 0.00003188612585
-  },
-  {
-    "hours": 32.1,
-    "premium": 0.00003017703453
-  },
-  {
-    "hours": 32.2,
-    "premium": 0.00002854512304
-  },
-  {
-    "hours": 32.3,
-    "premium": 0.00002698690605
-  },
-  {
-    "hours": 32.4,
-    "premium": 0.00002549905564
-  },
-  {
-    "hours": 32.5,
-    "premium": 0.00002407839417
-  },
-  {
-    "hours": 32.6,
-    "premium": 0.00002272188749
-  },
-  {
-    "hours": 32.7,
-    "premium": 0.00002142663848
-  },
-  {
-    "hours": 32.8,
-    "premium": 0.00002018988084
-  },
-  {
-    "hours": 32.9,
-    "premium": 0.00001900897319
-  },
-  {
-    "hours": 33,
-    "premium": 0.00001788139343
-  },
-  {
-    "hours": 33.1,
-    "premium": 0.00001680473337
-  },
-  {
-    "hours": 33.2,
-    "premium": 0.00001577669355
-  },
-  {
-    "hours": 33.3,
-    "premium": 0.00001479507836
-  },
-  {
-    "hours": 33.4,
-    "premium": 0.00001385779133
-  },
-  {
-    "hours": 33.5,
-    "premium": 0.00001296283069
-  },
-  {
-    "hours": 33.6,
-    "premium": 0.00001210828503
-  },
-  {
-    "hours": 33.7,
-    "premium": 0.00001129232928
-  },
-  {
-    "hours": 33.8,
-    "premium": 0.00001051322079
-  },
-  {
-    "hours": 33.9,
-    "premium": 0.000009769295582
-  },
-  {
-    "hours": 34,
-    "premium": 0.000009058964847
-  },
-  {
-    "hours": 34.1,
-    "premium": 0.000008380711508
-  },
-  {
-    "hours": 34.2,
-    "premium": 0.000007733087003
-  },
-  {
-    "hours": 34.3,
-    "premium": 0.000007114708181
-  },
-  {
-    "hours": 34.4,
-    "premium": 0.000006524254355
-  },
-  {
-    "hours": 34.5,
-    "premium": 0.000005960464477
-  },
-  {
-    "hours": 34.6,
-    "premium": 0.000005422134446
-  },
-  {
-    "hours": 34.7,
-    "premium": 0.000004908114535
-  },
-  {
-    "hours": 34.8,
-    "premium": 0.000004417306939
-  },
-  {
-    "hours": 34.9,
-    "premium": 0.000003948663427
-  },
-  {
-    "hours": 35,
-    "premium": 0.000003501183104
-  },
-  {
-    "hours": 35.1,
-    "premium": 0.000003073910275
-  },
-  {
-    "hours": 35.2,
-    "premium": 0.000002665932401
-  },
-  {
-    "hours": 35.3,
-    "premium": 0.000002276378154
-  },
-  {
-    "hours": 35.4,
-    "premium": 0.000001904415552
-  },
-  {
-    "hours": 35.5,
-    "premium": 0.000001549250184
-  },
-  {
-    "hours": 35.6,
-    "premium": 0.000001210123515
-  },
-  {
-    "hours": 35.7,
-    "premium": 8.86311262e-7
-  },
-  {
-    "hours": 35.8,
-    "premium": 5.77121852e-7
-  },
-  {
-    "hours": 35.9,
-    "premium": 2.81894939e-7
-  },
-  {
-    "hours": 36,
+    "days": 21,
     "premium": 0
   }
 ]
