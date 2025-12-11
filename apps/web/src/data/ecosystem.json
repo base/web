@@ -4712,6 +4712,14 @@
     "subcategory": "portfolios"
   },
   {
+  "name": "Kasu",
+  "description": "Kasu is an RWA business lending platform enabling DeFi lenders access to institutional-grade yields from profitable real-world businesses across the U.S., Canada, and Australia.",
+  "url": "https://app.kasu.finance/",
+  "imageUrl": "/images/partners/kasu.png",
+  "category": "defi",
+  "subcategory": "lending/borrowing"
+  },
+  {
     "name": "BaseVol",
     "description": "Options layer powered by 0DTE and AI agents. Trade BaseVol or deposit Vaults to maximize your day.",
     "url": "https://basevol.com",
