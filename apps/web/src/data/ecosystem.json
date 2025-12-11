@@ -4712,13 +4712,6 @@
     "subcategory": "portfolios"
   },
   {
-    "name": "Token Forge - PBTC",
-    "description": "Token Forge is the most advanced no-code launchpad on base. Launch in minutes with presales, vesting, staking, LP locks, then scale with merch, crypto checkout, and other post launch tools.",
-    "url": "https://www.pepe-bitcoin.com",
-    "imageUrl": "/images/partners/tokenforge.webp",
-    "category": "infra",
-    "subcategory": "developer tool"
-  },
     "name": "BaseVol",
     "description": "Options layer powered by 0DTE and AI agents. Trade BaseVol or deposit Vaults to maximize your day.",
     "url": "https://basevol.com",
@@ -4733,5 +4726,13 @@
     "imageUrl": "/images/partners/rift.png",
     "category": "consumer",
     "subcategory": "social"
+  },
+  {
+    "name": "Token Forge - PBTC",
+    "description": "Token Forge is the most advanced no-code launchpad on base. Launch in minutes with presales, vesting, staking, LP locks, then scale with merch, crypto checkout, and other post launch tools.",
+    "url": "https://www.pepe-bitcoin.com",
+    "imageUrl": "/images/partners/tokenforge.webp",
+    "category": "infra",
+    "subcategory": "developer tool"
   }
 ]
