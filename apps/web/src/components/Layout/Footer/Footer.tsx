@@ -5,9 +5,9 @@ import Link from 'apps/web/src/components/Link';
 export function Footer() {
   return (
     <AnalyticsProvider context="footer">
-      <footer className="col-span-full grid grid-cols-1 pt-20 md:pt-32 lg:grid-cols-[13.438rem_1fr]">
-        <div className="lg:col-start-2">
-          <div className="mx-auto flex w-full max-w-[clamp(1024px,calc(1024px+(100vw-1024px)*0.25),1248px)] justify-center px-4 md:px-6 lg:px-8">
+      <footer className="col-span-full grid grid-cols-1 pt-20 md:pt-32">
+        <div className="">
+          <div className="mx-auto flex w-full max-w-screen-lg 2xl:max-w-screen-2xl">
             <div className="relative z-20 grid w-full grid-cols-9 gap-x-[min(2.25vw,_32px)] gap-y-10 py-4 md:gap-y-16 md:py-8 lg:h-[max(42dvw,_665px)] lg:max-h-[800px] lg:gap-y-0">
               <div className="col-span-full grid grid-cols-2 md:flex md:justify-between lg:col-span-9 [&:has(ul:hover)_div:not(:has(ul:hover))]:opacity-50">
                 {LINK_SECTIONS.map((section) => (

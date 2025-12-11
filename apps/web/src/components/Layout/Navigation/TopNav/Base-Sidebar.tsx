@@ -69,7 +69,7 @@ export const isLinkActive = ({
 
 export default function BaseSidebar() {
   return (
-    <nav className="sticky top-4 z-10 hidden h-auto w-full flex-col pl-4 lg:flex lg:h-[calc(100dvh-32px)]">
+    <nav className="sticky top-4 z-10 hidden h-auto min-h-[600px] w-full flex-col pl-4 lg:flex lg:h-[calc(100dvh-32px)]">
       <ContextMenu>
         <div className="relative z-20 overflow-clip pl-2 pt-2">
           <SidebarLogo />

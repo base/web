@@ -661,6 +661,7 @@ module.exports = {
       minScreen: 1440,
       maxScreen: 1920,
     }),
+    require('tailwindcss-spring'),
     require('tailwindcss-animate'),
     function ({ addUtilities }) {
       addUtilities({

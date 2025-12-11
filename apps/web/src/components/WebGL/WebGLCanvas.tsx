@@ -57,11 +57,11 @@ export function WebGLCanvas() {
   const updateScroll = useCallback(() => {
     if (!wrapperRef.current) return;
 
-    const { scrollTop, scrollX } = getScrollPosition();
+    const { scrollTop } = getScrollPosition();
 
-    scrollOffset.current.set(scrollX, scrollTop - window.innerHeight * PADDING);
+    scrollOffset.current.set(0, scrollTop - window.innerHeight * PADDING);
 
-    wrapperRef.current.style.transform = `translate3d(${scrollOffset.current.x}px, ${scrollOffset.current.y}px, 0)`;
+    wrapperRef.current.style.transform = `translate3d(0px, ${scrollOffset.current.y}px, 0)`;
   }, [getScrollPosition]);
 
   useLayoutEffect(() => {

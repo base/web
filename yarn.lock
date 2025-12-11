@@ -201,6 +201,7 @@ __metadata:
     tailwind-merge: ^3.3.1
     tailwindcss: ^3.2.4
     tailwindcss-animate: ^1.0.7
+    tailwindcss-spring: ^1.0.1
     tailwindcss-text-scale: ^0.3.1
     three: ^0.168.0
     three-stdlib: ^2.33.0
@@ -21825,6 +21826,15 @@ __metadata:
   peerDependencies:
     tailwindcss: "*"
   checksum: c1760983eb3fec0c8421e95082bf308e6845df43e2f90862386366e82545c801b26b4d189c4cd23d6915252b76d18005c8e5f591f8b119944c7fb8650d0f8bce
+  languageName: node
+  linkType: hard
+
+"tailwindcss-spring@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "tailwindcss-spring@npm:1.0.1"
+  peerDependencies:
+    tailwindcss: "*"
+  checksum: 80a9bc93bdf40ff9cac60f86261e616188b9f58afc541fa06e32bc31288ac9dc4a66b7cd2b63643a2a8a22a46cb467c4ce412abe658f2e8020b47b881a56df32
   languageName: node
   linkType: hard
 

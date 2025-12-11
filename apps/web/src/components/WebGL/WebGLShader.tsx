@@ -37,11 +37,11 @@ varying vec2 v_uv;
 void main() {
 	vec2 pixelXY = u_domXY - u_scrollOffset + u_domWH * 0.5;
 
-	// solves issue when the screen was larger than max content width (1920px in our fcase)
-	if (u_resolution.x > u_maxContentWidth) {
-		float centeringOffset = (u_resolution.x - u_maxContentWidth) * 0.5;
-		pixelXY.x -= centeringOffset;
-	}
+	// Centering offset removed for single-column layout
+	// if (u_resolution.x > u_maxContentWidth) {
+	// 	float centeringOffset = (u_resolution.x - u_maxContentWidth) * 0.5;
+	// 	pixelXY.x -= centeringOffset;
+	// }
 
 	pixelXY.y = u_resolution.y - pixelXY.y;
 
@@ -79,7 +79,7 @@ export function WebGLShader({
 
     const updateRect = () => {
       const domRect = domElement.getBoundingClientRect();
-      const { scrollTop, scrollX } = getScrollPosition();
+      const { scrollTop } = getScrollPosition();
 
       if (
         domRect.width === 0 ||
@@ -95,7 +95,7 @@ export function WebGLShader({
       rect.current = {
         width: domRect.width,
         height: domRect.height,
-        x: domRect.left + scrollX,
+        x: domRect.left,
         y: domRect.top + scrollTop,
       };
 

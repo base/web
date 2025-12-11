@@ -49,8 +49,8 @@ const itemContentVariants: Variants = {
 
 export function Card({ content }: { content: CardContent }) {
   return (
-    <div className="0-h-[426px] 0-lg:h-[584px] relative flex aspect-square w-full flex-col overflow-hidden rounded-lg ">
-      <div className="0-min-h-[245px] 0-lg:min-h-[388px] h-full w-full">
+    <div className="relative flex aspect-square w-full flex-col overflow-hidden rounded-lg ">
+      <div className="h-full w-full">
         <CardScene
           patternTexture={patterns[content?.index ? parseInt(content.index) % patterns.length : 0]}
           gltfSrc={content.gltf?.src}

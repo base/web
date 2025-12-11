@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Sidebar from 'apps/web/src/components/Layout/Navigation/Sidebar';
+import TopNav from 'apps/web/src/components/Layout/Navigation/TopNav';
 import { Footer } from 'apps/web/src/components/Layout/Footer/Footer';
 import MobileNav from 'apps/web/src/components/Layout/Navigation/MobileNav';
 import { DynamicWrappedGasPriceDropdown } from 'apps/web/src/components/Layout/Navigation/GasPriceDropdown';
@@ -30,21 +31,20 @@ export default async function BaseOrgLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="text-black bg-white transition-colors">
-      <div className="min-w-screen relative mx-auto grid min-h-screen w-full max-w-[1920px] grid-cols-1 selection:bg-blue-5 selection:text-base-blue lg:grid-cols-[13.438rem_1fr]">
+    <div className="relative bg-white px-4 text-black transition-colors md:px-6 lg:px-8">
+      <div className="min-w-screen mx-auto grid min-h-screen w-full max-w-screen-lg grid-cols-1 selection:bg-blue-5 selection:text-base-blue 2xl:max-w-screen-xl ">
         <AnalyticsProvider context="sidenav">
-          <Sidebar />
+          {/* <Sidebar /> */}
+          <TopNav />
           <MobileNav />
         </AnalyticsProvider>
-        <main className="mx-auto flex w-full max-w-[clamp(1024px,calc(1024px+(100vw-1024px)*0.25),1248px)] justify-center px-4 md:px-6 lg:col-start-2 lg:px-8">
-          {children}
-        </main>
+        <main className="mx-auto flex w-full justify-center pt-12">{children}</main>
         <Footer />
       </div>
 
       {/* Gas Price Dropdown - Top Right */}
-      <div className="hidden fixed top-4 right-4 z-50 lg:block">
-        <DynamicWrappedGasPriceDropdown />
+      <div className="fixed right-4 top-4 z-50 hidden lg:block">
+        {/* <DynamicWrappedGasPriceDropdown /> */}
       </div>
     </div>
   );

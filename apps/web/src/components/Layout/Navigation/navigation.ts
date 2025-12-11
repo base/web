@@ -388,12 +388,53 @@ export const BRAND_ROUTES: BrandRoute[] = [
 
 export const DEFAULT_ROUTES: DefaultRoute[] = [
   {
-    label: 'Base App',
+    label: 'Chain',
     href: 'https://base.app',
     newTab: true,
+    items: [
+      {
+        icon: 'About',
+        label: 'About',
+        href: '/chain',
+      },
+      {
+        icon: 'Status',
+        label: 'Status',
+        href: 'https://status.base.org',
+        newTab: true,
+      },
+      {
+        label: 'Block Explorer',
+        href: 'https://basescan.org',
+        newTab: true,
+      },
+      {
+        label: 'Bug Bounty',
+        href: 'https://hackerone.com/coinbase',
+        newTab: true,
+      },
+    ],
   },
   {
-    label: 'Base Build',
+    label: 'Products',
+    href: '#',
+    items: [
+      {
+        icon: 'Base',
+        label: 'Base App',
+        href: 'https://join.base.app',
+        newTab: true,
+      },
+      {
+        icon: 'Pay',
+        label: 'Base Pay',
+        href: 'https://base.org/pay',
+        newTab: true,
+      },
+    ],
+  },
+  {
+    label: 'Develop',
     href: '/build',
     items: [
       {
@@ -440,8 +481,52 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
     ],
   },
   {
-    label: 'Base Pay',
-    href: '/pay',
+    label: 'Resources',
+    href: '#',
+    items: [
+      {
+        icon: 'Vision',
+        label: 'Vision',
+        href: '/vision',
+      },
+      {
+        icon: 'blog',
+        label: 'Blog',
+        href: 'https://blog.base.org',
+        newTab: true,
+      },
+      {
+        icon: 'Brand Kit',
+        label: 'Brand Kit',
+        href: 'https://base.org/brand',
+      },
+      {
+        icon: 'support',
+        label: 'Support',
+        href: '/support',
+      },
+      {
+        icon: 'careers',
+        label: 'Careers',
+        href: '/careers',
+      },
+    ],
+  },
+  {
+    label: 'Solutions',
+    href: '#',
+    items: [
+      {
+        icon: 'startups',
+        label: 'Startups',
+        href: '#',
+      },
+      {
+        icon: 'enterprise',
+        label: 'Enterprises',
+        href: '#',
+      },
+    ],
   },
   {
     label: 'Ecosystem',
@@ -467,33 +552,6 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
         label: 'Events',
         href: 'https://luma.com/BaseEvents',
         newTab: true,
-      },
-    ],
-  },
-  {
-    label: 'About',
-    href: '/about',
-    items: [
-      {
-        icon: 'rocket',
-        label: 'Vision',
-        href: '/about/vision',
-      },
-      {
-        icon: 'media',
-        label: 'Brand Kit',
-        href: 'https://base.org/brand',
-      },
-      {
-        icon: 'openBook',
-        label: 'Blog',
-        href: 'https://blog.base.org',
-        newTab: true,
-      },
-      {
-        icon: 'briefcaseAlt',
-        label: 'Jobs',
-        href: '/jobs',
       },
     ],
   },
