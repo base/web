@@ -1,5 +1,13 @@
 [
   {
+  "name": "growthepie",
+  "description": "The open analytics platform for the Ethereum ecosystem. We empower Base Chain builders with open and actionable metrics on usage, growth, and adoption.",
+  "url": "https://www.growthepie.com/chains/base",
+  "imageUrl": "/images/partners/growthepie.webp",
+  "category": "infra",
+  "subcategory": "data"
+  },
+  {
   "name": "Coinrule",
   "description": "Launch fully self-custodial onchain automated trading strategies at lightning speed and with one-click UX. Team is backed by Y Combinator",
   "url": "https://coinrule.com",
@@ -776,6 +784,14 @@
     "subcategory": "bridge"
   },
   {
+    "name": "Bunni",
+    "url": "https://bunni.xyz/?chain=base",
+    "description": "Bunni is the most advanced DEX ever built. Bunni maximizes LP profits in all market conditions using its first-of-its-kind Shapeshifting Liquidity and features like rehypothecation & dynamic swap fee.",
+    "imageUrl": "/images/partners/bunni.png",
+    "category": "defi",
+    "subcategory": "dex"
+  },
+  {
     "name": "Burner",
     "description": "Burner is a low cost hardware wallet designed for gifting crypto. It works entirely through your mobile web browser and NFC, no app needed.",
     "url": "https://burner.pro/",
@@ -1070,6 +1086,14 @@
     "imageUrl": "/images/partners/contango.webp",
     "category": "defi",
     "subcategory": "dex"
+  },
+  {
+    "name": "Corgi Studio",
+    "description": "A one-stop shop for all your NFT needs. Swap tokens, Discover NFTs, All on Cronos, with support for Polygon and Base Your NFT experience, simplified.",
+    "url": "https://corgistudio.io",
+    "imageUrl": "/images/partners/corgistudio.png",
+    "category": "consumer",
+    "subcategory": "nft"
   },
   {
     "name": "Cornucopias",
@@ -2072,6 +2096,14 @@
     "subcategory": "dex"
   },
   {
+    "name": "INT",
+    "description": "INT is an onchain lottery you can play or own. Generate tickets with ETH instantly. Or hold IFTs to earn revenue from every ticket. Win prizes, earn rewards, transparently and fully onchain.",
+    "url": "https://theinternettoken.com",
+    "imageUrl": "/images/partners/int.png",
+    "category": "consumer",
+    "subcategory": "gaming"
+  },
+  {
     "name": "Interface",
     "description": "Interface is a mobile companion for your onchain journey ",
     "url": "https://www.interface.social",
@@ -2816,6 +2848,14 @@
     "subcategory": "self-custody"
   },
   {
+    "name": "OneKey",
+    "description": "OneKey is an open-source crypto solution that pairs a secure hardware wallet with our all-in-one app, letting you manage, swap, and explore DeFi & NFTs across 100+ chains.",
+    "url": "https://onekey.so",
+    "imageUrl": "/images/partners/onekey.png",
+    "category": "wallet",
+    "subcategory": "self-custody"
+  },
+  {
     "name": "Omni Network",
     "url": "https://omni.network",
     "description": "The Omni Network is a layer 1 blockchain that empowers developers to build global applications across all rollups. This is achieved securely by restaking $ETH through EigenLayer.",
@@ -2974,6 +3014,14 @@
     "imageUrl": "/images/partners/orderly.png",
     "category": "infra",
     "subcategory": "bridge"
+  },
+ {
+    "name": "Ormi Labs",
+    "description": "A next-generation Subgraph indexer built for real-time and historical blockchain data at scale.",
+    "url": "https://ormilabs.com/",
+    "imageUrl": "/images/partners/ormi.png",
+    "category": "infra",
+    "subcategory": "data"
   },
   {
     "name": "OtterSec",
@@ -3224,12 +3272,12 @@
     "subcategory": "security"
   },
   {
-    "name": "Quicknode",
+    "name": "QuickNode",
     "url": "https://www.quicknode.com/",
-    "description": "As the leading end-to-end web3 developer platform, QuickNode is transforming blockchain infrastructure and tooling by simplifying web3 development and providing high-performance access to 24+ blockchains. Since 2017, QuickNode has empowered hundreds of thousands of top developers and companies to focus on innovation by accelerating dApp build times and offering enterprise-grade solutions to businesses of every size.",
+    "description": "QuickNode is a comprehensive blockchain development platform built for high-performance teams. It delivers 99.99% uptime, low latency, and advanced blockchain data tools on one secure platform.",
     "imageUrl": "/images/partners/quicknode.webp",
     "category": "infra",
-    "subcategory": "node provider"
+    "subcategory": "node provider / developer tool"
   },
   {
     "name": "Quickswap",
@@ -3470,6 +3518,14 @@
     "imageUrl": "/images/partners/safeswap.webp",
     "category": "infra",
     "subcategory": "bridge"
+  },
+  {
+    "name": "Sapien",
+    "description": "Sapien is a decentralized protocol that turns human insight into verified AI training data. Anyone can contribute, validate, and earn while ensuring data quality at scale.",
+    "url": "https://www.sapien.io/",
+    "imageUrl": "/images/partners/sapien.png",
+    "category": "ai",
+    "subcategory": "ai"
   },
   {
     "name": "Satsuma",
@@ -3828,6 +3884,14 @@
     "url": "https://app.sweepnflip.io/sweep?chainId=8453",
     "description": "NFT DEX built for Liquidity.",
     "imageUrl": "/images/partners/sweep2.webp",
+    "category": "consumer",
+    "subcategory": "nft"
+  },
+  {
+    "name": "Sweep Haus",
+    "description": "Sweep is a community-based Multi-Chain NFT launcher designed to simplify and supercharge NFT drops on all compatible EVM chains.",
+    "url": "https://sweep.haus/explore?chain=Base",
+    "imageUrl": "/images/partners/sweep-haus.png",
     "category": "consumer",
     "subcategory": "nft"
   },
@@ -4208,6 +4272,14 @@
     "subcategory": "dex"
   },
   {
+    "name": "UniVoucher",
+    "description": "The world's first decentralized crypto gift card protocol that lets anyone create, send, and redeem crypto gift cards in the form of a card ID and secret. Non-custodial and permissionless.",
+    "url": "https://univoucher.com",
+    "imageUrl": "/images/partners/univoucher.png",
+    "category": "defi",
+    "subcategory": "payments"
+  },
+  {
     "name": "UNKJD",
     "url": "http://unkjd.com/",
     "description": "In UNKJD players take on the role of a soccer team owner, collecting athletes and playing in the leagues. It's a fast-paced, strategic, turn-based board game.",
@@ -4521,8 +4593,8 @@
   },
   {
     "name": "Zerion",
-    "url": "https://app.zerion.io/",
-    "description": "Manage your DeFi and NFT portfolios, trade across 10+ networks and connect to any decentralized application with one wallet.",
+    "url": "https://zerion.io/base-wallet?utm_source=baseeco",
+    "description": "Zerion is the best self-custodial wallet for everything you own onchain, helping you track and manage tokens, NFTs and DeFi positions across 55+ EVM and non EVM chains - including base.",
     "category": "wallet",
     "subcategory": "self-custody",
     "imageUrl": "/images/partners/zerion.webp"
@@ -4624,6 +4696,14 @@
     "subcategory": "dao"
   },
   {
+  "name": "Super OETH",
+    "url": "https://www.originprotocol.com/super",
+    "description": "Super OETH is the first Ethereum LST native to the Base network. Hold superOETHb in your wallet and watch as the balance magically grows daily. Designed by Origin Protocol.",
+    "imageUrl": "/images/partners/SuperOETH.png",
+    "category": "defi",
+    "subcategory": "yield vault"
+   },
+  {
     "name": "Levva",
     "url": "https://levva.fi/",
     "description": "DeFi too complicated? You’re missing real yield. LevvAI invests your crypto for you. One click, no stress, passive income from Pendle, Aave and more.",
@@ -4638,5 +4718,29 @@
   "imageUrl": "/images/partners/kasu.png",
   "category": "defi",
   "subcategory": "lending/borrowing"
-}
+  },
+  {
+    "name": "BaseVol",
+    "description": "Options layer powered by 0DTE and AI agents. Trade BaseVol or deposit Vaults to maximize your day.",
+    "url": "https://basevol.com",
+    "imageUrl": "/images/partners/basevol.png",
+    "category": "defi",
+    "subcategory": "dex"
+  },
+  {
+    "name": "Rift",
+    "description": "Next-gen social platform built for traders. Create and trade coins, run on-chain guilds, and earn from your content with aligned incentives and automated revenue sharing. Trade together, win together.",
+    "url": "https://rift.club",
+    "imageUrl": "/images/partners/rift.png",
+    "category": "consumer",
+    "subcategory": "social"
+  },
+  {
+    "name": "Neurobro",
+    "url": "https://neurobro.ai",
+    "description": "Neurobro builds the AI intelligence layer for onchain markets. Its flagship app Neurodex unifies multi agent research with real time smart money analytics. Get Alpha. Track Whales. Trade Smarter.",
+    "imageUrl": "/images/partners/neurobro-logo.png",
+    "category": "ai",
+    "subcategory": "ai"
+  }
 ]
