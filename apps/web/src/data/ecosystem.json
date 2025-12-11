@@ -4680,11 +4680,19 @@
     "subcategory": "portfolios"
   },
   {
-  "name": "BaseVol",
-  "description": "Options layer powered by 0DTE and AI agents. Trade BaseVol or deposit Vaults to maximize your day.",
-  "url": "https://basevol.com",
-  "imageUrl": "/images/partners/basevol.png",
-  "category": "defi",
-  "subcategory": "dex"
+    "name": "BaseVol",
+    "description": "Options layer powered by 0DTE and AI agents. Trade BaseVol or deposit Vaults to maximize your day.",
+    "url": "https://basevol.com",
+    "imageUrl": "/images/partners/basevol.png",
+    "category": "defi",
+    "subcategory": "dex"
+  },
+  {
+    "name": "Rift",
+    "description": "Next-gen social platform built for traders. Create and trade coins, run on-chain guilds, and earn from your content with aligned incentives and automated revenue sharing. Trade together, win together.",
+    "url": "https://rift.club",
+    "imageUrl": "/images/partners/rift.png",
+    "category": "consumer",
+    "subcategory": "social"
   }
 ]
