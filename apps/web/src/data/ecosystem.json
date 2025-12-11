@@ -4680,11 +4680,19 @@
     "subcategory": "portfolios"
   },
   {
-  "name": "BaseVol",
-  "description": "Options layer powered by 0DTE and AI agents. Trade BaseVol or deposit Vaults to maximize your day.",
-  "url": "https://basevol.com",
-  "imageUrl": "/images/partners/basevol.png",
-  "category": "defi",
-  "subcategory": "dex"
+    "name": "BaseVol",
+    "description": "Options layer powered by 0DTE and AI agents. Trade BaseVol or deposit Vaults to maximize your day.",
+    "url": "https://basevol.com",
+    "imageUrl": "/images/partners/basevol.png",
+    "category": "defi",
+    "subcategory": "dex"
+  },
+  {
+    "name": "Vexy",
+    "url": "https://vexy.fi",
+    "description": "The liquidity hub for veNFTs",
+    "imageUrl": "/images/partners/vexy-logo.png",
+    "category": "defi",
+    "subcategory": "dex"
   }
 ]
