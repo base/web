@@ -3520,6 +3520,14 @@
     "subcategory": "bridge"
   },
   {
+    "name": "Sapien",
+    "description": "Sapien is a decentralized protocol that turns human insight into verified AI training data. Anyone can contribute, validate, and earn while ensuring data quality at scale.",
+    "url": "https://www.sapien.io/",
+    "imageUrl": "/images/partners/sapien.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "Satsuma",
     "url": "https://www.satsuma.xyz/",
     "description": "Save months of development time with our hosted subgraph indexing. Instead of focusing on backend development and devops, write a subgraph in < 1 hr and get a custom GraphQL API for your dApp.\n\nProjects like Decentraland, Aragon, and Treasure use Satsuma for our 99.9% uptime, up to 5x+ faster indexing, and comprehensive developer tooling.",
