@@ -784,6 +784,14 @@
     "subcategory": "bridge"
   },
   {
+    "name": "Bunni",
+    "url": "https://bunni.xyz/?chain=base",
+    "description": "Bunni is the most advanced DEX ever built. Bunni maximizes LP profits in all market conditions using its first-of-its-kind Shapeshifting Liquidity and features like rehypothecation & dynamic swap fee.",
+    "imageUrl": "/images/partners/bunni.png",
+    "category": "defi",
+    "subcategory": "dex"
+  },
+  {
     "name": "Burner",
     "description": "Burner is a low cost hardware wallet designed for gifting crypto. It works entirely through your mobile web browser and NFC, no app needed.",
     "url": "https://burner.pro/",
@@ -3512,6 +3520,14 @@
     "subcategory": "bridge"
   },
   {
+    "name": "Sapien",
+    "description": "Sapien is a decentralized protocol that turns human insight into verified AI training data. Anyone can contribute, validate, and earn while ensuring data quality at scale.",
+    "url": "https://www.sapien.io/",
+    "imageUrl": "/images/partners/sapien.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "Satsuma",
     "url": "https://www.satsuma.xyz/",
     "description": "Save months of development time with our hosted subgraph indexing. Instead of focusing on backend development and devops, write a subgraph in < 1 hr and get a custom GraphQL API for your dApp.\n\nProjects like Decentraland, Aragon, and Treasure use Satsuma for our 99.9% uptime, up to 5x+ faster indexing, and comprehensive developer tooling.",
@@ -3868,6 +3884,14 @@
     "url": "https://app.sweepnflip.io/sweep?chainId=8453",
     "description": "NFT DEX built for Liquidity.",
     "imageUrl": "/images/partners/sweep2.webp",
+    "category": "consumer",
+    "subcategory": "nft"
+  },
+  {
+    "name": "Sweep Haus",
+    "description": "Sweep is a community-based Multi-Chain NFT launcher designed to simplify and supercharge NFT drops on all compatible EVM chains.",
+    "url": "https://sweep.haus/explore?chain=Base",
+    "imageUrl": "/images/partners/sweep-haus.png",
     "category": "consumer",
     "subcategory": "nft"
   },
@@ -4248,6 +4272,14 @@
     "subcategory": "dex"
   },
   {
+    "name": "UniVoucher",
+    "description": "The world's first decentralized crypto gift card protocol that lets anyone create, send, and redeem crypto gift cards in the form of a card ID and secret. Non-custodial and permissionless.",
+    "url": "https://univoucher.com",
+    "imageUrl": "/images/partners/univoucher.png",
+    "category": "defi",
+    "subcategory": "payments"
+  },
+  {
     "name": "UNKJD",
     "url": "http://unkjd.com/",
     "description": "In UNKJD players take on the role of a soccer team owner, collecting athletes and playing in the leagues. It's a fast-paced, strategic, turn-based board game.",
@@ -4561,8 +4593,8 @@
   },
   {
     "name": "Zerion",
-    "url": "https://app.zerion.io/",
-    "description": "Manage your DeFi and NFT portfolios, trade across 10+ networks and connect to any decentralized application with one wallet.",
+    "url": "https://zerion.io/base-wallet?utm_source=baseeco",
+    "description": "Zerion is the best self-custodial wallet for everything you own onchain, helping you track and manage tokens, NFTs and DeFi positions across 55+ EVM and non EVM chains - including base.",
     "category": "wallet",
     "subcategory": "self-custody",
     "imageUrl": "/images/partners/zerion.webp"
@@ -4700,6 +4732,10 @@
     "description": "Moss is an all-in-one AI agent that decodes noise, catches alpha early, and lets you trade smarter.",
     "url": "https://moss.site/agent",
     "imageUrl": "/images/partners/moss.png",
+    "name": "Neurobro",
+    "url": "https://neurobro.ai",
+    "description": "Neurobro builds the AI intelligence layer for onchain markets. Its flagship app Neurodex unifies multi agent research with real time smart money analytics. Get Alpha. Track Whales. Trade Smarter.",
+    "imageUrl": "/images/partners/neurobro-logo.png",
     "category": "ai",
     "subcategory": "ai"
   }
