@@ -121,19 +121,17 @@ export default async function Enterprises() {
                   />
                 </Split.Text>
                 <Split.Content>
-                  <div className="h-full w-full ">
-                    <Image
-                      src={loyaltyImage}
-                      width={1080}
-                      height={1080}
-                      alt="Loyalty"
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
+                  <Image
+                    src={loyaltyImage}
+                    width={1080}
+                    height={1080}
+                    alt="Loyalty"
+                    className="h-full w-full object-cover"
+                  />
                 </Split.Content>
               </Split>
 
-              <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-2">
+              <div className="grid gap-10 md:grid-cols-1 lg:grid-cols-3">
                 <div className="col-span-full">
                   <div className="flex max-w-md flex-col gap-2">
                     <Title level={TitleLevel.H5Regular}>Case studies</Title>

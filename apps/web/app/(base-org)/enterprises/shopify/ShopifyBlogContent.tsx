@@ -12,7 +12,7 @@ export default function ShopifyBaseUsdcArticle({ className }: Props) {
   return (
     <article
       className={classNames(
-        'prose prose-neutral flex flex-col font-sans prose-headings:font-normal prose-headings:text-black prose-strong:font-medium',
+        'prose prose-neutral mx-auto flex flex-col font-sans prose-headings:font-normal prose-headings:text-black prose-strong:font-medium',
         className,
       )}
     >
