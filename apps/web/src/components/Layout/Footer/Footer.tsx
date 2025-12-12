@@ -68,7 +68,7 @@ const LINK_SECTIONS = [
     title: 'Resources',
     links: [
       { label: 'Brand kit', href: 'https://www.base.org/brand', newTab: true },
-      { label: 'Events', href: 'https://lu.ma/BaseMeetups', newTab: true },
+      { label: 'Events', href: 'https://lu.ma/BaseEvents', newTab: true },
     ],
   },
   {
