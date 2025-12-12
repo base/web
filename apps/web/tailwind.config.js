@@ -661,6 +661,7 @@ module.exports = {
       minScreen: 1440,
       maxScreen: 1920,
     }),
+    require('@tailwindcss/typography'),
     require('tailwindcss-animate'),
     function ({ addUtilities }) {
       addUtilities({

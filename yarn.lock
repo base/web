@@ -134,6 +134,7 @@ __metadata:
     "@react-three/fiber": ^9.0.0-alpha.8
     "@react-three/postprocessing": ^3.0.0-rc.0
     "@react-three/rapier": 1.1.1
+    "@tailwindcss/typography": ^0.5.19
     "@tanstack/react-query": ^5
     "@testing-library/jest-dom": ^6.5.0
     "@testing-library/react": ^16.0.1
@@ -8312,6 +8313,17 @@ __metadata:
   dependencies:
     "@swc/counter": ^0.1.3
   checksum: ece52d90c51cc34da88638fad3062e713290c3b409627e03296fbe0a84dd950b18e3242451920c1dc6a4a60614752edc35a2ab3a63b5afc8ed3c13b029542f8a
+  languageName: node
+  linkType: hard
+
+"@tailwindcss/typography@npm:^0.5.19":
+  version: 0.5.19
+  resolution: "@tailwindcss/typography@npm:0.5.19"
+  dependencies:
+    postcss-selector-parser: 6.0.10
+  peerDependencies:
+    tailwindcss: "*"
+  checksum: 6e5b25a2a24b8f112c9628b29aee4579ed024f368111937a5f3be7a4adc2d768c1aa9d5d5bb2d04972c7b49e526bcaade9f9e785e2e7a0b6be3d392f7ba02e17
   languageName: node
   linkType: hard
 
@@ -19115,6 +19127,16 @@ __metadata:
   peerDependencies:
     postcss: ^8.2.14
   checksum: 2c86ecf2d0ce68f27c87c7e24ae22dc6dd5515a89fcaf372b2627906e11f5c1f36e4a09e4c15c20fd4a23d628b3d945c35839f44496fbee9a25866258006671b
+  languageName: node
+  linkType: hard
+
+"postcss-selector-parser@npm:6.0.10":
+  version: 6.0.10
+  resolution: "postcss-selector-parser@npm:6.0.10"
+  dependencies:
+    cssesc: ^3.0.0
+    util-deprecate: ^1.0.2
+  checksum: 46afaa60e3d1998bd7adf6caa374baf857cc58d3ff944e29459c9a9e4680a7fe41597bd5b755fc81d7c388357e9bf67c0251d047c640a09f148e13606b8a8608
   languageName: node
   linkType: hard
 
