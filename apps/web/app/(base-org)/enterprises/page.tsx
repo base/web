@@ -23,6 +23,13 @@ export const metadata: Metadata = {
   },
 };
 
+import assetImage from './images/asset.png';
+import bankingImage from './images/banking.png';
+import loyaltyImage from './images/loyalty.png';
+import paymentsImage from './images/payments.png';
+
+import Image from 'next/image';
+
 export default async function Enterprises() {
   return (
     <>
@@ -52,7 +59,13 @@ export default async function Enterprises() {
                 </Split.Text>
                 <Split.Content>
                   <div className="h-full w-full ">
-                    <p>FPO</p>
+                    <Image
+                      src={paymentsImage}
+                      width={1080}
+                      height={1080}
+                      alt="Payments"
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                 </Split.Content>
               </Split>
@@ -67,7 +80,13 @@ export default async function Enterprises() {
                 </Split.Text>
                 <Split.Content>
                   <div className="h-full w-full ">
-                    <p>FPO</p>
+                    <Image
+                      src={assetImage}
+                      width={1080}
+                      height={1080}
+                      alt="Asset"
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                 </Split.Content>
               </Split>
@@ -82,7 +101,13 @@ export default async function Enterprises() {
                 </Split.Text>
                 <Split.Content>
                   <div className="h-full w-full ">
-                    <p>FPO</p>
+                    <Image
+                      src={bankingImage}
+                      width={1080}
+                      height={1080}
+                      alt="Banking"
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                 </Split.Content>
               </Split>
@@ -97,7 +122,13 @@ export default async function Enterprises() {
                 </Split.Text>
                 <Split.Content>
                   <div className="h-full w-full ">
-                    <p>FPO</p>
+                    <Image
+                      src={loyaltyImage}
+                      width={1080}
+                      height={1080}
+                      alt="Loyalty"
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                 </Split.Content>
               </Split>
