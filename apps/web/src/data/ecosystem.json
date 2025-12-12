@@ -4711,10 +4711,14 @@
     "category": "defi",
     "subcategory": "portfolios"
   },
-  {"name": "FLock.io",
+  {
+    "name": "FLock.io",
     "url": "https://www.flock.io/",
     "description": "FLock.io is the first decentralised AI training platform, combining Federated Learning and blockchain technology to revolutionise AI model development.",
     "imageUrl": "/images/partners/Flock.io.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
   {
     "name": "BaseVol",
     "description": "Options layer powered by 0DTE and AI agents. Trade BaseVol or deposit Vaults to maximize your day.",
