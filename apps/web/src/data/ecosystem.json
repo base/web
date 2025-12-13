@@ -1,5 +1,13 @@
 [
   {
+  "name": "Prodigy.Fi",
+  "description": "Non-custodial Dual Currency Investment (DCI) vaults that let you set targets and earn guaranteed high yields on crypto and stablecoins, regardless of market volatility.",
+  "url": "https://prodigy.fi/",
+  "imageUrl": "/images/partners/prodigyfi.png",
+  "category": "defi",
+  "subcategory": "yield vault"
+  }
+  {
   "name": "growthepie",
   "description": "The open analytics platform for the Ethereum ecosystem. We empower Base Chain builders with open and actionable metrics on usage, growth, and adoption.",
   "url": "https://www.growthepie.com/chains/base",
