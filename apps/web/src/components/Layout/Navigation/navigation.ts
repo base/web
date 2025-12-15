@@ -511,6 +511,12 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
         label: 'Jobs',
         href: '/jobs',
       },
+      {
+        icon: 'docs',
+        label: 'Base App Help',
+        href: 'https://help.coinbase.com/en/base',
+        newTab: true,
+      },
     ],
   },
 ];
