@@ -1424,9 +1424,9 @@
     "subcategory": "payments"
   },
   {
-    "name": "DRPC",
-    "url": "https://drpc.org",
-    "description": "Reliable, Scalable & Cost-efficient RPC solution for EVM-based networks.",
+    "name": "dRPC NodeCloud",
+    "url": "https://drpc.org/chainlist/base-mainnet-rpc",
+    "description": "Access Base Mainnet and Sepolia Testnet endpoints plus 180+ networks with smart routing, analytics, key control, and front-end protection. Powered by 40 providers. Start free or go unlimited with flat rate pricing from $10.",
     "imageUrl": "/images/partners/drpc.webp",
     "category": "infra",
     "subcategory": "node provider"
