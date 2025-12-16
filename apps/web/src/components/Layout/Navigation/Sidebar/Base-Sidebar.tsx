@@ -262,8 +262,9 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
                             target={item.newTab ? '_blank' : '_self'}
                             rel={item.newTab ? 'noopener noreferrer' : undefined}
                             className={classNames(
-                              'flex w-full items-center rounded-lg p-2.5 leading-[114%] transition-colors duration-150',
+                              'group flex w-full items-center rounded-lg p-2.5 leading-[114%] transition-colors duration-150',
                               {
+                                'justify-between': item.label === 'Job Network',
                                 'bg-base-gray-30 dark:bg-gray-90': isLinkActive({
                                   pathname,
                                   href: item.href,
@@ -277,8 +278,15 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
                               },
                             )}
                           >
-                            {item.icon && <Icon name={item.icon} className="mr-2 inline-block" />}
-                            <Text variant={TextVariant.CTALabelSm}>{item.label}</Text>
+                            <div className="flex items-center">
+                              {item.icon && <Icon name={item.icon} className="mr-2 inline-block" />}
+                              <Text variant={TextVariant.CTALabelSm}>{item.label}</Text>
+                            </div>
+                            {item.label === 'Job Network' && (
+                              <div className="ml-2 text-[#B1B7C3] group-hover:text-black dark:text-[#1E2025] group-hover:dark:text-white">
+                                <ExternalLinkIcon />
+                              </div>
+                            )}
                           </Link>
                         ) : null}
                       </motion.div>

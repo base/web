@@ -446,6 +446,22 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
   {
     label: 'Ecosystem',
     href: '/ecosystem',
+    items: [
+      {
+        icon: 'rocket',
+        label: 'Ecosystem',
+        href: 'https://www.base.org/ecosystem',
+        newTab: true,
+      },
+      {
+        isDivider: true,
+      },
+      {
+        label: 'Job Network',
+        href: 'https://base.hirechain.io/',
+        newTab: true,
+      },
+    ],
   },
   {
     label: 'Community',
@@ -494,6 +510,12 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
         icon: 'briefcaseAlt',
         label: 'Jobs',
         href: '/jobs',
+      },
+      {
+        icon: 'docs',
+        label: 'Base App Help',
+        href: 'https://help.coinbase.com/en/base',
+        newTab: true,
       },
     ],
   },

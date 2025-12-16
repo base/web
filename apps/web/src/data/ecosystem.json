@@ -4728,6 +4728,14 @@
     "subcategory": "social"
   },
   {
+    "name": "Neurobro",
+    "url": "https://neurobro.ai",
+    "description": "Neurobro builds the AI intelligence layer for onchain markets. Its flagship app Neurodex unifies multi agent research with real time smart money analytics. Get Alpha. Track Whales. Trade Smarter.",
+    "imageUrl": "/images/partners/neurobro-logo.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "Token Forge - PBTC",
     "description": "Token Forge is the most advanced no-code launchpad on base. Launch in minutes with presales, vesting, staking, LP locks, then scale with merch, crypto checkout, and other post launch tools.",
     "url": "https://www.pepe-bitcoin.com",
