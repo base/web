@@ -4712,6 +4712,14 @@
     "subcategory": "portfolios"
   },
   {
+    "name": "Kasu",
+    "description": "Kasu is an RWA business lending platform enabling DeFi lenders access to institutional-grade yields from profitable real-world businesses across the U.S., Canada, and Australia.",
+    "url": "https://app.kasu.finance/",
+    "imageUrl": "/images/partners/kasu.png",
+    "category": "defi",
+    "subcategory": "lending/borrowing"
+  },
+  {
     "name": "FLock.io",
     "url": "https://www.flock.io/",
     "description": "FLock.io is the first decentralised AI training platform, combining Federated Learning and blockchain technology to revolutionise AI model development.",
