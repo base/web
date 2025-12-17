@@ -210,48 +210,17 @@ const FAQ_SECTIONS: FAQSection[] = [
         answer: (
           <div className="space-y-3">
             <p>
-              Currently, you cannot import your Externally Owned Account (EOA) wallet into the Base
-              app. However, we are working on adding this functionality in the future.
+              Yes, to import your existing wallet, if you are signed in already, you can tap the
+              profile picture at the top left or go to Settings and then toggle into Base mode, then
+              follow the instructions to upgrade.
             </p>
             <p>
-              For now, if you want to use the Base app, you need to create a new Base account or
-              upgrade your existing wallet. The upgrade allows you to access more features without
-              needing to transfer your funds to a different wallet.
-            </p>
-            <p>
-              Stay tuned for updates on EOA wallet imports, as we're excited to enhance your
-              experience soon! To learn how to upgrade your wallet for Base mode, please visit our{' '}
-              <a
-                href="https://help.coinbase.com/en/base"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-blue-800 text-blue-600 underline"
-              >
-                help center
-              </a>
-              .
+              If you are a new user to Base app, tap &quot;Sign in&quot; then &quot;Sign in with a
+              recovery phrase&quot;, then follow the instructions for &quot;I already have a
+              wallet&quot;. Then you can tap the profile picture at the top left or go to Settings
+              and then toggle into Base mode, then follow the instructions to upgrade.
             </p>
           </div>
-        ),
-      },
-      {
-        question: 'Can I import my EOA wallet to the Base app?',
-        answer: (
-          <p>
-            Currently, importing an EOA wallet is not available to access Base mode directly.
-            However, you can import your EOA wallet to access the legacy wallet experience where
-            you'll be prompted to upgrade your wallet to access Base mode. To learn how to upgrade
-            your wallet for Base mode and other sign in options, please visit our{' '}
-            <a
-              href="https://help.coinbase.com/en/base"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-800 text-blue-600 underline"
-            >
-              help center
-            </a>
-            .
-          </p>
         ),
       },
     ],
@@ -329,9 +298,9 @@ const FAQ_SECTIONS: FAQSection[] = [
         question: 'What are the eligibility requirements for USDC rewards?',
         answer: (
           <p>
-            USDC rewards enrollment is primarily available to U.S. residents. Users outside the U.S.
-            can participate without needing to connect to a Coinbase account. To learn more, please
-            visit our{' '}
+            USDC rewards enrollment is primarily a requirement for U.S. residents. Users outside the
+            U.S. can participate without needing to connect to a Coinbase account. To learn more,
+            please visit our{' '}
             <a
               href="https://help.coinbase.com/en/base"
               target="_blank"
@@ -348,9 +317,9 @@ const FAQ_SECTIONS: FAQSection[] = [
         question: 'What benefits do I get from USDC rewards?',
         answer: (
           <p>
-            Holding USDC allows you to earn APY with no minimums or maximums on your holdings. You
-            must hold a minimum of $1 to receive rewards. To learn more about USDC rewards on Base
-            please visit our{' '}
+            Holding USDC allows you to earn USDC rewards weekly with no minimums or maximums on your
+            holdings, providing passive income opportunities. You must hold a minimum of $1 to
+            receive rewards. To learn more about USDC rewards on Base please visit our{' '}
             <a
               href="https://help.coinbase.com/en/base"
               target="_blank"
@@ -424,7 +393,7 @@ const FAQ_SECTIONS: FAQSection[] = [
     title: 'Trading',
     items: [
       {
-        question: 'How do I initiate a trade/transfer/transaction?',
+        question: 'How do I initiate a trade/transfer/transact?',
         answer: (
           <p>
             For detailed instructions on how to transact within the Base app, please visit our{' '}
