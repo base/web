@@ -57,7 +57,7 @@ const FAQ_SECTIONS: FAQSection[] = [
             </p>
             <ul className="list-disc space-y-2 pl-5">
               <li>
-                <strong>Using a Passkey from a Smart Wallet:</strong> If you've set up a smart
+                <strong>Using a Passkey from a Smart Wallet:</strong> If you&apos;ve set up a smart
                 wallet, you can use a passkey for secure sign-in. This method ensures that you can
                 access your account while maintaining a high level of security.
               </li>
@@ -127,8 +127,8 @@ const FAQ_SECTIONS: FAQSection[] = [
         question: "What should I do if I don't receive the OTP?",
         answer: (
           <p>
-            If you don't receive the OTP, please verify that your email address is correct, check
-            your spam folder, and ensure your internet connection is stable. If you still haven't
+            If you don&apos;t receive the OTP, please verify that your email address is correct, check
+            your spam folder, and ensure your internet connection is stable. If you still haven&apos;t
             received it, try resending the OTP. For more details about Base app sign in options,
             please visit our{' '}
             <a
@@ -362,14 +362,14 @@ const FAQ_SECTIONS: FAQSection[] = [
         answer: (
           <div className="space-y-3">
             <p>
-              If the chat icon on another user's profile is greyed out, it means they have not
+              If the chat icon on another user&apos;s profile is greyed out, it means they have not
               activated the chat functionality, and therefore, they are unable to receive any
               messages. For them to chat, they will need to activate their address during the
               onboarding process within the Base app.
             </p>
             <p>
-              Additionally, if a user appears on the Base app's social feed from another app but has
-              not actually signed up for Base, they won't be able to activate chat functionality at
+              Additionally, if a user appears on the Base app&apos;s social feed from another app but has
+              not actually signed up for Base, they won&apos;t be able to activate chat functionality at
               all. Encourage your friend to activate their account so that you can start chatting.
               If they need assistance, they can refer to the support articles for guidance. If they
               are still running into issues, please have them contact us for support.
@@ -443,12 +443,12 @@ const FAQ_SECTIONS: FAQSection[] = [
               .
             </p>
             <p>
-              However, it's important to note that not all assets supported in the Base App are
+              However, it&apos;s important to note that not all assets supported in the Base App are
               available on Coinbase. To check if a specific asset is supported on Coinbase, simply
               follow these steps:
             </p>
             <ol className="list-decimal space-y-2 pl-5">
-              <li>Tap the "Deposit" button and select "Receive Crypto."</li>
+              <li>Tap the &quot;Deposit&quot; button and select &quot;Receive Crypto.&quot;</li>
               <li>Search for the asset you are interested in.</li>
             </ol>
             <p>
@@ -510,8 +510,8 @@ const FAQ_SECTIONS: FAQSection[] = [
         question: 'What should I do if I cannot log into my account?',
         answer: (
           <p>
-            Please check your email for the OTP if you're using email sign-in. If you're still
-            experiencing issues, make sure your app is up to date, and don't hesitate to reach out
+            Please check your email for the OTP if you&apos;re using email sign-in. If you&apos;re still
+            experiencing issues, make sure your app is up to date, and don&apos;t hesitate to reach out
             to{' '}
             <a
               href="https://help.coinbase.com/en/base"
@@ -547,7 +547,7 @@ const FAQ_SECTIONS: FAQSection[] = [
             <ul className="list-disc space-y-2 pl-5">
               <li>Confirm that your internet connection is stable.</li>
               <li>Make sure you have sufficient funds in your wallet.</li>
-              <li>Verify that the recipient's address is correct.</li>
+              <li>Verify that the recipient&apos;s address is correct.</li>
             </ul>
             <p>
               After checking these points, please try the transaction again. If you continue to
