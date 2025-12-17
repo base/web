@@ -1424,9 +1424,9 @@
     "subcategory": "payments"
   },
   {
-    "name": "DRPC",
-    "url": "https://drpc.org",
-    "description": "Reliable, Scalable & Cost-efficient RPC solution for EVM-based networks.",
+    "name": "dRPC NodeCloud",
+    "url": "https://drpc.org/chainlist/base-mainnet-rpc",
+    "description": "Access Base Mainnet and Sepolia Testnet endpoints plus 180+ networks with smart routing, analytics, key control, and front-end protection. Powered by 40 providers. Start free or go unlimited with flat rate pricing from $10.",
     "imageUrl": "/images/partners/drpc.webp",
     "category": "infra",
     "subcategory": "node provider"
@@ -4710,6 +4710,14 @@
     "imageUrl": "/images/partners/levva.png",
     "category": "defi",
     "subcategory": "portfolios"
+  },
+  {
+    "name": "FLock.io",
+    "url": "https://www.flock.io/",
+    "description": "FLock.io is the first decentralised AI training platform, combining Federated Learning and blockchain technology to revolutionise AI model development.",
+    "imageUrl": "/images/partners/Flock.io.png",
+    "category": "ai",
+    "subcategory": "ai"
   },
   {
     "name": "BaseVol",
