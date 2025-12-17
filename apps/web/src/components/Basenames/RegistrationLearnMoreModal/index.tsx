@@ -5,15 +5,9 @@ import Tooltip from 'apps/web/src/components/Tooltip';
 import { Discount } from 'apps/web/src/utils/usernames';
 import classNames from 'classnames';
 import Link from 'next/link';
-import baseBuildathonParticipant from './images/base-buildathon-participant.svg';
-import summerPassLvl3 from './images/summer-pass-lvl-3.svg';
 import cbidVerification from './images/cbid-verification.svg';
-import BNSOwnership from './images/bns.jpg';
-import BaseNFT from './images/base-nft.svg';
-import DevconPNG from './images/devcon.png';
 import coinbaseOneVerification from './images/coinbase-one-verification.svg';
 import coinbaseVerification from './images/coinbase-verification.svg';
-import BaseWorldNFT from './images/base-around-the-world-nft.svg';
 import { StaticImageData } from 'next/dist/shared/lib/get-img-props';
 import ImageWithLoading from 'apps/web/src/components/ImageWithLoading';
 
@@ -50,49 +44,6 @@ const DISCOUNT_ITEMS: DiscountItem[] = [
     alt: 'icon of CBID',
     label: 'A cb.id username',
     tooltipContent: 'cb.id must have been claimed prior to August 9, 2024.',
-  },
-  {
-    discount: Discount.BASE_BUILDATHON_PARTICIPANT,
-    icon: baseBuildathonParticipant as StaticImageData,
-    alt: 'icon of base buildathon',
-    label: 'Base buildathon participant',
-    tooltipContent: 'Available for anyone holding a Base Buildathon participant NFT.',
-  },
-  {
-    discount: Discount.SUMMER_PASS_LVL_3,
-    icon: summerPassLvl3 as StaticImageData,
-    alt: 'icon of summer pass',
-    label: 'Summer Pass Level 3',
-    tooltipContent:
-      'Available for anyone holding a Summer Pass Level 3 NFT. Go to wallet.coinbase.com/ocs to get your Summer Pass',
-  },
-  {
-    discount: Discount.BNS_NAME,
-    icon: BNSOwnership,
-    alt: 'icon of BNS',
-    label: 'BNS username',
-    tooltipContent: 'BNS (.base) username holders are eligible for a 0.01 ETH discount',
-  },
-  {
-    discount: Discount.BASE_DOT_ETH_NFT,
-    icon: BaseNFT as StaticImageData,
-    alt: 'icon of Base',
-    label: 'Base.eth NFT',
-    tooltipContent: 'Available for anyone holding a base.eth NFT',
-  },
-  {
-    discount: Discount.BASE_WORLD,
-    icon: BaseWorldNFT as StaticImageData,
-    alt: 'icon of Base World',
-    label: 'Base around the world NFT',
-    tooltipContent: 'Available for anyone holding one of the Base around the world NFTs',
-  },
-  {
-    discount: Discount.DEVCON,
-    icon: DevconPNG,
-    alt: 'icon of Devcon',
-    label: 'Devcon attendance NFT',
-    tooltipContent: 'Available for anyone holding one of the Base Devcon NFTs',
   },
 ];
 
