@@ -517,6 +517,11 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
         href: 'https://help.coinbase.com/en/base',
         newTab: true,
       },
+      {
+        icon: 'questionCircle',
+        label: 'Base App FAQs',
+        href: '/about/faqs',
+      },
     ],
   },
 ];
