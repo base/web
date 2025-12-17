@@ -1,7 +1,7 @@
 {
   "name": "DefiLlama",
   "url": "https://defillama.com/",
-  "description": "DefiLlama is the largest TVL aggregator for DeFi (Decentralized Finance). We are fully open-source and our focus is on accurate data and transparent methodology",
+  "description": "DeFiLlama is an open-source analytics platform that tracks total value locked (TVL) across DeFi protocols on multiple blockchains. It provides transparent data, dashboards, and APIs for developers, researchers, and investors.",
   "imageUrl": "/images/partners/defillama.webp",
   "category": "infra",
   "subcategory": "data"
