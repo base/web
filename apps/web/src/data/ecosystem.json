@@ -1392,6 +1392,14 @@
     "imageUrl": "/images/partners/dodo.webp"
   },
   {
+    "name": "Doma",
+    "url": "https://base.doma.xyz",
+    "description": "Doma bridges Web2 domains to Web3 ecosystems, enabling tokenization, global distribution, monetization, and innovation for registrars, investors, and builders.",
+    "category": "consumer",
+    "subcategory": "real world",
+    "imageUrl": "/images/partners/doma.png"
+  },
+  {
     "name": "Dot",
     "description": "Dot transforms user-generated pixel art into collectible cards playable in unique challenges and onchain games. Create your own cards or open card packs from your favorite artists today.",
     "url": "https://dot.fan",
