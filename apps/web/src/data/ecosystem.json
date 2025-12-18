@@ -8,6 +8,22 @@
   "subcategory": "data"
   },
   {
+  "name": "OnChainGM",
+  "description": "Your daily web3 ritual",
+  "url": "https://onchaingm.com",
+  "imageUrl": "/images/partners/Onchaingm.png",
+  "category": "consumer",
+  "subcategory": "social"
+},
+  {
+  "name": "InfinityName",
+  "description": "The future is permanent ownership",
+  "url": "https://infinityname.com",
+  "imageUrl": "/images/partners/InfinityName.png",
+  "category": "consumer",
+  "subcategory": "nft"
+},
+  {
   "name": "Coinrule",
   "description": "Launch fully self-custodial onchain automated trading strategies at lightning speed and with one-click UX. Team is backed by Y Combinator",
   "url": "https://coinrule.com",
