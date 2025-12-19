@@ -66,23 +66,30 @@
       {
         "episode": "Episode 001",
         "name": "Alexander Cutler",
-        "title": "CEO at Dromos Labs"
+        "title": "CEO at Dromos Labs",
+        "image": "/images/startups/BaseLayer_AlexCutler_Thumbnail.png",
+        "url": "#"
       },
       {
         "episode": "Episode 002",
-        "name": "Name",
-        "title": "Title"
+        "name": "Jacob Horne",
+        "title": "Title",
+        "image": "/images/startups/BaseLayer_JacobHorne_Thumbnail.jpg",
+        "url": "#"
       },
       {
         "episode": "Episode 003",
-        "name": "Name",
-        "title": "Title"
+        "name": "Shane Mac",
+        "title": "Title",
+        "image": "/images/startups/BaseLayer_ShaneMac_Thumbnail.jpg",
+        "url": "#"
       },
       {
         "episode": "Episode 004",
-        "name": "Coming soon…",
-        "title": null,
-        "isPlaceholder": true
+        "name": "Tara Faulkner",
+        "title": "Title",
+        "image": "/images/startups/BaseLayer_TaraFaulkner_Thumbnail.jpg",
+        "url": "#"
       }
     ]
   },
