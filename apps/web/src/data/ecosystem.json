@@ -4758,5 +4758,13 @@
     "imageUrl": "/images/partners/neurobro-logo.png",
     "category": "ai",
     "subcategory": "ai"
+  },
+  {
+    "name": "Allbridge Core",
+    "url": "https://core.allbridge.io/",
+    "description": "Allbridge Core enables native stablecoin transfers across blockchains without wrapping — powering frictionless DeFi and seamless multi-chain liquidity.",
+    "imageUrl": "/images/partners/allbridge-core-logo.png",
+    "category": "infra",
+    "subcategory": "bridge"
   }
 ]
