@@ -13,6 +13,7 @@ import { GenericHero } from './GenericHero';
 import { CaseStudyCard } from 'apps/web/app/(base-org)/enterprises/CaseStudyCard';
 import Text from 'apps/web/src/components/base-org/typography/TextRedesign';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
+import { Halftone } from './Halftone';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
@@ -59,13 +60,14 @@ export default async function Enterprises() {
                 </Split.Text>
                 <Split.Content>
                   <div className="h-full w-full ">
-                    <Image
+                    {/* <Image
                       src={paymentsImage}
                       width={1080}
                       height={1080}
                       alt="Payments"
                       className="h-full w-full object-cover"
-                    />
+                    /> */}
+                    <Halftone key={paymentsImage.src} imageUrl={paymentsImage.src} />
                   </div>
                 </Split.Content>
               </Split>
