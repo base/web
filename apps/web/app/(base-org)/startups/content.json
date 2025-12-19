@@ -66,29 +66,29 @@
       {
         "episode": "Episode 001",
         "name": "Alexander Cutler",
-        "title": "CEO at Dromos Labs",
+        "title": "Core-contributor, Aerodrome",
         "image": "/images/startups/BaseLayer_AlexCutler_Thumbnail.png",
         "url": "#"
       },
       {
         "episode": "Episode 002",
-        "name": "Jacob Horne",
-        "title": "Title",
-        "image": "/images/startups/BaseLayer_JacobHorne_Thumbnail.jpg",
+        "name": "Tara Faulkner",
+        "title": "Co-founder, Cat Town",
+        "image": "/images/startups/BaseLayer_TaraFaulkner_Thumbnail.jpg",
         "url": "#"
       },
       {
         "episode": "Episode 003",
         "name": "Shane Mac",
-        "title": "Title",
+        "title": "Co-founder, XMTP",
         "image": "/images/startups/BaseLayer_ShaneMac_Thumbnail.jpg",
         "url": "#"
       },
       {
         "episode": "Episode 004",
-        "name": "Tara Faulkner",
-        "title": "Title",
-        "image": "/images/startups/BaseLayer_TaraFaulkner_Thumbnail.jpg",
+        "name": "Jacob Horne",
+        "title": "Co-founder, Zora",
+        "image": "/images/startups/BaseLayer_JacobHorne_Thumbnail.jpg",
         "url": "#"
       }
     ]
