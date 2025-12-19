@@ -245,33 +245,6 @@ type FluidConfig = {
   interactionUniforms?: InteractionUniforms;
 };
 
-const velocityFBO = new DoubleFBO(128, 128, {
-  minFilter: THREE.NearestFilter,
-  magFilter: THREE.NearestFilter,
-  format: THREE.RGBAFormat,
-  type: THREE.HalfFloatType,
-  stencilBuffer: false,
-  depthBuffer: false,
-});
-
-const densityFBO = new DoubleFBO(512, 512, {
-  minFilter: THREE.LinearFilter,
-  magFilter: THREE.LinearFilter,
-  format: THREE.RGBAFormat,
-  type: THREE.HalfFloatType,
-  stencilBuffer: false,
-  depthBuffer: false,
-});
-
-const pressureFBO = new DoubleFBO(128, 128, {
-  minFilter: THREE.LinearFilter,
-  magFilter: THREE.LinearFilter,
-  format: THREE.RGBAFormat,
-  type: THREE.HalfFloatType,
-  stencilBuffer: false,
-  depthBuffer: false,
-});
-
 export function useFluid(
   config: FluidConfig,
 ): [FluidControls, (state: RootState) => void, FluidResult] {
@@ -283,6 +256,55 @@ export function useFluid(
   const simRes = config.simRes ?? 128;
   const dyeRes = config.dyeRes ?? 512;
   const texelSize = useMemo(() => new THREE.Vector2(1 / simRes, 1 / simRes), [simRes]);
+
+  // Create instance-specific FBOs to avoid conflicts when multiple HeroBackground components are used
+  const velocityFBO = useMemo(
+    () =>
+      new DoubleFBO(128, 128, {
+        minFilter: THREE.NearestFilter,
+        magFilter: THREE.NearestFilter,
+        format: THREE.RGBAFormat,
+        type: THREE.HalfFloatType,
+        stencilBuffer: false,
+        depthBuffer: false,
+      }),
+    [],
+  );
+
+  const densityFBO = useMemo(
+    () =>
+      new DoubleFBO(512, 512, {
+        minFilter: THREE.LinearFilter,
+        magFilter: THREE.LinearFilter,
+        format: THREE.RGBAFormat,
+        type: THREE.HalfFloatType,
+        stencilBuffer: false,
+        depthBuffer: false,
+      }),
+    [],
+  );
+
+  const pressureFBO = useMemo(
+    () =>
+      new DoubleFBO(128, 128, {
+        minFilter: THREE.LinearFilter,
+        magFilter: THREE.LinearFilter,
+        format: THREE.RGBAFormat,
+        type: THREE.HalfFloatType,
+        stencilBuffer: false,
+        depthBuffer: false,
+      }),
+    [],
+  );
+
+  // Cleanup FBOs on unmount
+  useEffect(() => {
+    return () => {
+      velocityFBO.dispose();
+      densityFBO.dispose();
+      pressureFBO.dispose();
+    };
+  }, [velocityFBO, densityFBO, pressureFBO]);
 
   const clearUniforms = useUniforms({
     texelSize: { value: texelSize },
