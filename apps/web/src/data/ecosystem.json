@@ -1392,6 +1392,14 @@
     "imageUrl": "/images/partners/dodo.webp"
   },
   {
+    "name": "Doma",
+    "url": "https://base.doma.xyz",
+    "description": "Doma bridges Web2 domains to Web3 ecosystems, enabling tokenization, global distribution, monetization, and innovation for registrars, investors, and builders.",
+    "category": "consumer",
+    "subcategory": "real world",
+    "imageUrl": "/images/partners/doma.png"
+  },
+  {
     "name": "Dot",
     "description": "Dot transforms user-generated pixel art into collectible cards playable in unique challenges and onchain games. Create your own cards or open card packs from your favorite artists today.",
     "url": "https://dot.fan",
@@ -1424,9 +1432,9 @@
     "subcategory": "payments"
   },
   {
-    "name": "DRPC",
-    "url": "https://drpc.org",
-    "description": "Reliable, Scalable & Cost-efficient RPC solution for EVM-based networks.",
+    "name": "dRPC NodeCloud",
+    "url": "https://drpc.org/chainlist/base-mainnet-rpc",
+    "description": "Access Base Mainnet and Sepolia Testnet endpoints plus 180+ networks with smart routing, analytics, key control, and front-end protection. Powered by 40 providers. Start free or go unlimited with flat rate pricing from $10.",
     "imageUrl": "/images/partners/drpc.webp",
     "category": "infra",
     "subcategory": "node provider"
@@ -4712,6 +4720,22 @@
     "subcategory": "portfolios"
   },
   {
+    "name": "Kasu",
+    "description": "Kasu is an RWA business lending platform enabling DeFi lenders access to institutional-grade yields from profitable real-world businesses across the U.S., Canada, and Australia.",
+    "url": "https://app.kasu.finance/",
+    "imageUrl": "/images/partners/kasu.png",
+    "category": "defi",
+    "subcategory": "lending/borrowing"
+  },
+  {
+    "name": "FLock.io",
+    "url": "https://www.flock.io/",
+    "description": "FLock.io is the first decentralised AI training platform, combining Federated Learning and blockchain technology to revolutionise AI model development.",
+    "imageUrl": "/images/partners/Flock.io.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "BaseVol",
     "description": "Options layer powered by 0DTE and AI agents. Trade BaseVol or deposit Vaults to maximize your day.",
     "url": "https://basevol.com",
@@ -4734,6 +4758,14 @@
     "imageUrl": "/images/partners/neurobro-logo.png",
     "category": "ai",
     "subcategory": "ai"
+  },
+  {
+    "name": "Allbridge Core",
+    "url": "https://core.allbridge.io/",
+    "description": "Allbridge Core enables native stablecoin transfers across blockchains without wrapping — powering frictionless DeFi and seamless multi-chain liquidity.",
+    "imageUrl": "/images/partners/allbridge-core-logo.png",
+    "category": "infra",
+    "subcategory": "bridge"
   },
   {
     "name": "Token Forge - PBTC",
