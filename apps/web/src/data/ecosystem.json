@@ -1,5 +1,13 @@
 [
   {
+    "name": "Coinrule",
+    "description": "Launch fully self-custodial onchain automated trading strategies at lightning speed and with one-click UX. Team is backed by Y Combinator",
+    "url": "https://coinrule.com",
+    "imageUrl": "/images/partners/coinrule.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
+  },
+  {
   "name": "growthepie",
   "description": "The open analytics platform for the Ethereum ecosystem. We empower Base Chain builders with open and actionable metrics on usage, growth, and adoption.",
   "url": "https://www.growthepie.com/chains/base",
@@ -428,6 +436,14 @@
     "description": "Base Colors is the NFT collection for every color on the internet. Own Colors. Name Colors. Base Colors.",
     "url": "https://basecolors.com",
     "imageUrl": "/images/partners/basecolors.png",
+    "category": "consumer",
+    "subcategory": "nft"
+  },
+  {
+    "name": "Base God",
+    "description": "Base God is the culture token of Base.",
+    "url": "https://www.basegod.fun",
+    "imageUrl": "/images/partners/tybg.jpg",
     "category": "consumer",
     "subcategory": "nft"
   },
@@ -2768,6 +2784,14 @@
     "subcategory": "node provider"
   },
   {
+    "name": "Noice",
+    "description": "Noice lets you invisibly & immediately send crypto when you like, comment or follow on your Farcaster feed. Content creators have earned over 1200 unique tokens by changing nothing in their day to day.",
+    "url": "https://noice.so",
+    "imageUrl": "/images/partners/noice.jpg",
+    "category": "consumer",
+    "subcategory": "social"
+  },
+  {
     "name": "Nouns Builder",
     "url": "https://nouns.build",
     "description": "Governed by BuilderDAO, Nouns Builder is a tool lets you create Nounish DAOs easily. Build and empower your community with onchain governance and treasury.",
@@ -4144,6 +4168,14 @@
     "subcategory": "gaming"
   },
   {
+    "name": "Topi",
+    "description": "2222 based builders uplifting the Base ecosystem.",
+    "url": "https://www.basetopia.io",
+    "imageUrl": "/images/partners/topi.jpg",
+    "category": "consumer",
+    "subcategory": "nft"
+  },
+  {
     "name": "Toucan",
     "description": "Toucan provides onchain infrastructure and liquid markets for carbon removal credits, making climate action directly accessible to Base's users and decentralized apps.",
     "url": "https://toucan.earth/",
@@ -4655,7 +4687,7 @@
     "category": "consumer",
     "subcategory": "payments"
   },
-  {  
+  {
     "name": "KOLZ",
     "description": "A cutting-edge Web3 influencer platform designed to bridge the gap between leading influencers in the cryptocurrency and blockchain space (known as KOLs - Key Opinion Leaders) and their followers.",
     "url": "https://kolz.chat/",
