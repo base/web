@@ -214,7 +214,7 @@ export function VisionPreFooter() {
         </Title>
         <div className="pointer-events-auto col-span-full flex w-full items-center gap-2">
           <Button className="w-full" asChild>
-            <Link href="https://base.app" target="_blank">
+            <Link href="https://base.app" target="_blank" rel="noopener">
               Download Base App
             </Link>
           </Button>

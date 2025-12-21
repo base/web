@@ -23,7 +23,7 @@ export async function Hero() {
               className="w-full"
               href="https://forms.gle/iqZqJ6WAqkWaouLn8"
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
             >
               <Button variant={ButtonVariants.Secondary} size={ButtonSizes.Large} fullWidth>
                 Apply now

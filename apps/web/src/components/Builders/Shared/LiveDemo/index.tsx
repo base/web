@@ -302,7 +302,7 @@ function DesktopDemo({
                 mode === 'dark'
                   ? 'border-dark-palette-line/20 hover:bg-white/10'
                   : 'border-dark-palette-line/20 text-dark-palette-backgroundAlternate hover:bg-white/10',
-              )}
+              )} rel="noopener"
             >
               Docs
             </Link>
@@ -314,7 +314,7 @@ function DesktopDemo({
                 mode === 'dark'
                   ? 'border-dark-palette-line/20 hover:bg-white/10'
                   : 'border-dark-palette-line/20 text-dark-palette-backgroundAlternate hover:bg-white/10',
-              )}
+              )} rel="noopener"
             >
               Playground
             </Link>
@@ -548,7 +548,7 @@ function MobileDemo({
                 mode === 'dark'
                   ? 'border-dark-palette-line/20 hover:bg-white/10'
                   : 'border-dark-palette-line/20 text-dark-palette-backgroundAlternate hover:bg-white/10',
-              )}
+              )} rel="noopener"
             >
               Docs
             </Link>
