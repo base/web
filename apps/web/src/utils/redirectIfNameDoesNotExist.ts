@@ -19,8 +19,7 @@ export async function redirectIfNameDoesNotExist(username: Basename) {
       getBasenameOwner(username),
     ]);
   } catch (error) {
-    logger.error('Error fetching basename address, editor, or owner', {
-      error,
+    logger.error('Error fetching basename address, editor, or owner', error, {
       username,
     });
     apiError = true;
