@@ -460,7 +460,7 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
       {
         icon: 'briefcase',
         label: 'Enterprise',
-        href: '/enterprise',
+        href: '/enterprises',
       },
       {
         icon: 'rocket',

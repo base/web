@@ -5,7 +5,7 @@ import Link from 'apps/web/src/components/Link';
 
 import Card1 from './card-1.png';
 import Card2 from './card-2.png';
-import Card3 from './card-3.png';
+import Card3 from './card-3.avif';
 import Card4 from './card-4.png';
 
 const card1 = Card1 as ImageType;

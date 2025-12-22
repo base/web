@@ -42,7 +42,7 @@ export default async function Chain() {
           </div>
         </div>
         <Container className="lg:pt-0">
-          <div className="col-span-full flex flex-col gap-24">
+          <div className="col-span-full flex flex-col">
             {/* Hero Section */}
             <GenericHero
               title={content.hero.header}
@@ -52,41 +52,49 @@ export default async function Chain() {
             />
 
             {/* Value Props Section */}
-            <section className="grid grid-cols-2 gap-16">
-              {content.valueProps.map((prop, index) => {
-                let content = {
-                  title: prop.header,
-                  description: prop.subheader,
-                };
+            <Section
+              content={{
+                title: 'Why Base Chain',
+              }}
+            >
+              <div className="col-span-full grid gap-16 md:grid-cols-2">
+                {content.valueProps.map((prop, index) => {
+                  let content = {
+                    title: prop.header,
+                    description: prop.subheader,
+                  };
 
-                return (
-                  // <Section content={content}>
-                  //   <div className="col-span-full aspect-video w-full overflow-hidden bg-gray-5">
-                  //     <p>TEST</p>
-                  //   </div>
-                  // </Section>
-                  <div
-                    key={prop.id}
-                    className={cn(
-                      'flex flex-col gap-6',
-                      index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse',
-                    )}
-                  >
-                    <ChainValueProp
-                      eyebrow={prop.eyebrow}
-                      pill={prop.pill}
-                      header={prop.header}
-                      subheader={prop.subheader}
-                    />
-                  </div>
-                );
-              })}
-            </section>
+                  return (
+                    // <Section content={content}>
+                    //   <div className="col-span-full aspect-video w-full overflow-hidden bg-gray-5">
+                    //     <p>TEST</p>
+                    //   </div>
+                    // </Section>
+                    <div
+                      key={prop.id}
+                      className={cn(
+                        'flex flex-col gap-6',
+                        index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse',
+                      )}
+                    >
+                      <ChainValueProp
+                        eyebrow={prop.eyebrow}
+                        pill={prop.pill}
+                        header={prop.header}
+                        subheader={prop.subheader}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </Section>
 
             {/* Globe Section */}
-            <section className="w-full">
-              <GlobeWrapper />
-            </section>
+            <Section content={{}}>
+              <section className="col-span-full w-full">
+                <GlobeWrapper />
+              </section>
+            </Section>
 
             {/* Ecosystem Section */}
 
@@ -103,13 +111,34 @@ export default async function Chain() {
               <div className="col-span-full">
                 <Marquee className="[--duration:60s]" pauseOnHover>
                   {content.ecosystem.logos.map((logo) => (
-                    <div key={logo} className="flex min-w-[140px] items-center justify-center px-6">
-                      <Text
+                    <div
+                      key={logo}
+                      className="relative flex aspect-square w-[100px] items-center justify-center overflow-hidden rounded-lg bg-black"
+                    >
+                      {/* <Text
                         variant={TextVariant.BodyLarge}
                         className="whitespace-nowrap !text-base-gray-200"
                       >
                         {logo}
-                      </Text>
+                      </Text> */}
+                      {/* <div className="absolute inset-0">
+                        <Image
+                          className="h-full w-full scale-150 object-cover blur-lg"
+                          src={logo}
+                          alt={logo}
+                          width={140}
+                          height={140}
+                        />
+                      </div> */}
+                      <div className="absolute inset-0 h-full w-full scale-90 overflow-hidden rounded-md">
+                        <Image
+                          className="h-full w-full object-contain"
+                          src={logo}
+                          alt={logo}
+                          width={140}
+                          height={140}
+                        />
+                      </div>
                     </div>
                   ))}
                 </Marquee>
@@ -142,11 +171,21 @@ export default async function Chain() {
             </section> */}
 
             {/* Engineering Blog Section */}
-            <section className="flex flex-col gap-8">
-              <Title level={TitleLevel.H4Regular} as="h2">
-                {content.engineeringBlog.header}
-              </Title>
-              <div className={cn('grid gap-[min(2.25vw,_32px)]', 'grid-cols-1 lg:grid-cols-3')}>
+            <Section
+              content={{
+                title: content.engineeringBlog.header,
+                cta: {
+                  label: content.engineeringBlog.cta.label,
+                  href: content.engineeringBlog.cta.url,
+                },
+              }}
+            >
+              <div
+                className={cn(
+                  'col-span-full grid gap-[min(2.25vw,_32px)]',
+                  'grid-cols-1 lg:grid-cols-3',
+                )}
+              >
                 {content.engineeringBlog.cards
                   .filter((card) => card.title)
                   .map((card, index) => (
@@ -155,10 +194,10 @@ export default async function Chain() {
                       key={card.title || index}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex flex-col overflow-hidden rounded-lg bg-base-gray-25 transition-colors duration-300 hover:bg-base-gray-50"
+                      className="group flex flex-col gap-2  transition-colors duration-300 hover:bg-base-gray-50"
                     >
                       {card.image && (
-                        <div className="relative aspect-video w-full overflow-hidden">
+                        <div className="relative aspect-[2/1] w-full overflow-hidden rounded-lg">
                           <Image
                             src={card.image}
                             alt={card.title}
@@ -167,8 +206,8 @@ export default async function Chain() {
                           />
                         </div>
                       )}
-                      <div className="flex flex-col gap-3 p-6">
-                        <Title level={TitleLevel.H6Regular} as="h4">
+                      <div className="flex flex-col gap-3">
+                        <Title level={TitleLevel.H2Regular} as="h4">
                           {card.title}
                         </Title>
                         <Text
@@ -181,6 +220,12 @@ export default async function Chain() {
                     </Link>
                   ))}
               </div>
+            </Section>
+            {/* <section className="flex flex-col gap-8">
+              <Title level={TitleLevel.H4Regular} as="h2">
+                {content.engineeringBlog.header}
+              </Title>
+
               <Link
                 href={content.engineeringBlog.cta.url}
                 target="_blank"
@@ -188,7 +233,7 @@ export default async function Chain() {
               >
                 <AnimatedButton text={content.engineeringBlog.cta.label} />
               </Link>
-            </section>
+            </section> */}
 
             {/* Final CTA Section */}
             <section className="col-span-full py-12 text-black">

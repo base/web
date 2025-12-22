@@ -15,8 +15,8 @@ export function ChainValueProp({ eyebrow, pill, header, subheader }: ChainValueP
     <div className="flex flex-1 flex-col gap-3">
       <div className="flex items-center gap-3">
         <Text
-          variant={TextVariant.CaptionMono}
-          className="!text-xs uppercase tracking-widest !text-base-blue"
+          variant={TextVariant.Caption}
+          className="!text-xs !font-medium uppercase tracking-widest !text-base-gray-200"
         >
           {eyebrow}
         </Text>

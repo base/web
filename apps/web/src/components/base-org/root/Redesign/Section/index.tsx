@@ -20,7 +20,7 @@ export type ImageType = {
 
 type SectionContent = {
   prefix?: ImageType;
-  title: string;
+  title?: string;
   description?: string;
   cta?: {
     label: string;
@@ -105,9 +105,9 @@ export function Section({ content, children, className, disableWrapperAnimation 
           </Title>
         </motion.div>
 
-        <div className="flex flex-col col-span-full gap-6 lg:col-span-6 lg:mt-0 lg:items-end lg:justify-end">
+        <div className="col-span-full flex flex-col gap-6 lg:col-span-6 lg:mt-0 lg:items-end lg:justify-end">
           {content.cta?.label && (
-            <motion.div {...itemProps} className="block col-span-full sm:col-span-3">
+            <motion.div {...itemProps} className="col-span-full block sm:col-span-3">
               <Link href={content.cta.href}>
                 <AnimatedButton
                   text={content.cta.label}
