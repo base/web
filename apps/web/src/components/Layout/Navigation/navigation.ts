@@ -418,7 +418,6 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
     href: '/products',
     items: [
       {
-        icon: 'rocket',
         label: 'Base App',
         href: 'https://base.app',
         newTab: true,
@@ -434,19 +433,21 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
     href: '/build',
     items: [
       {
-        icon: 'dashboard',
+        label: 'Base Build',
+        href: '/build',
+        newTab: true,
+      },
+      {
         label: 'Dashboard',
         href: 'https://base.dev/',
         newTab: true,
       },
       {
-        icon: 'book',
         label: 'Documentation',
         href: 'https://docs.base.org/',
         newTab: true,
       },
       {
-        icon: 'github',
         label: 'Github',
         href: 'https://github.com/base',
         newTab: true,
@@ -458,12 +459,10 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
     href: '/solutions',
     items: [
       {
-        icon: 'briefcase',
         label: 'Enterprise',
         href: '/enterprises',
       },
       {
-        icon: 'rocket',
         label: 'Startups',
         href: '/startups',
       },
@@ -474,23 +473,19 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
     href: '/resources',
     items: [
       {
-        icon: 'rocket',
         label: 'Vision',
         href: '/about/vision',
       },
       {
-        icon: 'media',
         label: 'Brand Kit',
         href: 'https://base.org/brand',
       },
       {
-        icon: 'openBook',
         label: 'Blog',
         href: 'https://blog.base.org',
         newTab: true,
       },
       {
-        icon: 'briefcaseAlt',
         label: 'Jobs',
         href: '/jobs',
       },
@@ -501,18 +496,15 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
     href: '/community',
     items: [
       {
-        icon: 'book',
         label: 'Resources',
         href: '/resources',
       },
       {
-        icon: 'rocket',
         label: 'Batches',
         href: 'https://www.basebatches.xyz/',
         newTab: true,
       },
       {
-        icon: 'briefcase',
         label: 'Events',
         href: 'https://luma.com/BaseEvents',
         newTab: true,

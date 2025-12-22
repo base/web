@@ -49,6 +49,7 @@ type AsciiPatternUniforms = {
   uAltPatternAtlasColumns: { value: number };
   uDarkMode: { value: boolean };
   uBottomFade: { value: boolean };
+  uBackgroundColor: { value: THREE.Vector3 };
 } & Record<string, THREE.IUniform>;
 
 type UseAsciiPatternOptions = {
@@ -73,6 +74,7 @@ type UseAsciiPatternOptions = {
   bottomFade?: boolean;
   logicalWidth?: number;
   logicalHeight?: number;
+  backgroundColor?: { r: number; g: number; b: number } | null;
 };
 
 export function useAsciiPattern({
@@ -97,6 +99,7 @@ export function useAsciiPattern({
   bottomFade = false,
   logicalWidth,
   logicalHeight,
+  backgroundColor,
 }: UseAsciiPatternOptions) {
   const threeWidth = useThree((state) => Math.round(state.size.width));
   const threeHeight = useThree((state) => Math.round(state.size.height));
@@ -121,6 +124,12 @@ export function useAsciiPattern({
   const exposureMotion = useMotionValue(-4.5);
 
   const postScene = useMemo(() => new Scene(), []);
+
+  // Determine background color: use custom if provided, otherwise use darkMode to choose white/black
+  const defaultBgColor = darkMode ? new THREE.Vector3(0, 0, 0) : new THREE.Vector3(1, 1, 1);
+  const bgColor = backgroundColor
+    ? new THREE.Vector3(backgroundColor.r, backgroundColor.g, backgroundColor.b)
+    : defaultBgColor;
 
   const uniforms = useUniforms<AsciiPatternUniforms>({
     uImage: { value: null },
@@ -154,6 +163,7 @@ export function useAsciiPattern({
     uAltPatternAtlasColumns: { value: 0 },
     uDarkMode: { value: false },
     uBottomFade: { value: true },
+    uBackgroundColor: { value: bgColor },
   });
 
   useEffect(() => {
@@ -192,6 +202,11 @@ export function useAsciiPattern({
   uniforms.uUseOriginalSvgColors.value = useOriginalSvgColors;
   uniforms.uDarkMode.value = darkMode;
   uniforms.uBottomFade.value = bottomFade;
+  if (backgroundColor) {
+    uniforms.uBackgroundColor.value.set(backgroundColor.r, backgroundColor.g, backgroundColor.b);
+  } else {
+    uniforms.uBackgroundColor.value.set(darkMode ? 0 : 1, darkMode ? 0 : 1, darkMode ? 0 : 1);
+  }
 
   const shaderMaterial = useShader(
     {
@@ -232,6 +247,7 @@ export function useAsciiPattern({
         uniform int uAltPatternAtlasColumns;
         uniform float uDarkMode;
         uniform float uBottomFade;
+        uniform vec3 uBackgroundColor;
         varying vec2 vUv;
 
         const float TIME_SPEED = 0.5;
@@ -303,8 +319,9 @@ export function useAsciiPattern({
         }
 
         vec3 getColorForIntensity(int patternIndex, float patternAlpha, bool useOriginalColors, vec3 originalColor, vec4 patternColor) {
+          vec3 backgroundColor = uBackgroundColor;
+          
           if (useOriginalColors) {
-            vec3 backgroundColor = vec3(1.0, 1.0, 1.0);
             // apply color on svg content only
             if (patternAlpha < 0.001) {
               return backgroundColor;
@@ -317,7 +334,6 @@ export function useAsciiPattern({
               return mix(backgroundColor, blendedColor, uAltPatternOpacity);
             }
           } else {
-            vec3 backgroundColor = vec3(1.0, 1.0, 1.0); // #fff
             vec3 svgColor = vec3(0.851, 0.851, 0.851); // #D9D9D9
             vec3 color1 = vec3(1.949, 1.949, 1.949);
             vec3 color2 = vec3(0.91, 0.91, 0.91);
@@ -326,8 +342,6 @@ export function useAsciiPattern({
             vec3 color4 = vec3(0.99, 0.99, 0.99);
 
             if (uDarkMode > 0.5) {
-              backgroundColor = vec3(0.0, 0.0, 0.0);
-
               color1 = vec3(0.33, 0.33, 0.33);
               color2 = vec3(0.33, 0.33, 0.33);
               color2b = vec3(0.33, 0.33, 0.33);
@@ -357,11 +371,7 @@ export function useAsciiPattern({
           vec2 adjustedTileCenter = getCoveredUV(tileCenterUV, uLogicalResolution, uImageDimensions);
 
           if (adjustedTileCenter.x < 0.0 || adjustedTileCenter.x > 1.0 || adjustedTileCenter.y < 0.0 || adjustedTileCenter.y > 1.0) {
-            if (uDarkMode > 0.5) {
-              gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
-            } else {
-              gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-            }
+            gl_FragColor = vec4(uBackgroundColor, 1.0);
             return;
           }
 
@@ -370,25 +380,16 @@ export function useAsciiPattern({
 
           if (length(originalCol) < 0.04) {
             if (uUseWhiteBackground > 0.5) {
-              if (uDarkMode > 0.5) {
-                gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
-              } else {
-                gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-              }
+              gl_FragColor = vec4(uBackgroundColor, 1.0);
               return;
             } else {
               vec2 pixelInTile = mod(pix, uBaseTileSize);
               vec2 patternUV = pixelInTile / uBaseTileSize;
               vec4 patternColor = samplePatternAtlas(uPatternAtlas, uPatternAtlasColumns, 0, patternUV);
 
-              vec3 backgroundColor = vec3(1.0, 1.0, 1.0);
-              if (uDarkMode > 0.5) {
-                backgroundColor = vec3(0.0, 0.0, 0.0);
-              }
-
-              // thin lines on black background
+              // thin lines on background
               if (patternColor.a < 0.001) {
-                gl_FragColor = vec4(backgroundColor, 1.0);
+                gl_FragColor = vec4(uBackgroundColor, 1.0);
               } else {
                 gl_FragColor = vec4(vec3(0.98, 0.98, 0.98), 1.0);
               }
@@ -479,11 +480,7 @@ export function useAsciiPattern({
             }
 
             if (regularFallbackPattern.a < 0.001) {
-              vec3 backgroundColor = vec3(1.0, 1.0, 1.0);
-              if (uDarkMode > 0.5) {
-                backgroundColor = vec3(0.0, 0.0, 0.0);
-              }
-              regularColor = backgroundColor;
+              regularColor = uBackgroundColor;
             } else {
               regularColor = vec3(0.925, 0.925, 0.925);
             }
@@ -496,7 +493,7 @@ export function useAsciiPattern({
             float fadeStart = 0.3;
             float fadeStrength = smoothstep(0.0, fadeStart, vUv.y);
             fadeStrength = fadeStrength * fadeStrength * (3.0 - 2.0 * fadeStrength);
-            finalColor = mix(uDarkMode > 0.5 ? vec3(0.0) : vec3(1.0), finalColor, fadeStrength);
+            finalColor = mix(uBackgroundColor, finalColor, fadeStrength);
           }
 
           gl_FragColor = vec4(finalColor, 1.0);

@@ -9,7 +9,7 @@ import Title from 'apps/web/src/components/base-org/typography/TitleRedesign';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRedesign/types';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
 import { SolutionText } from './SolutionText';
-import { GenericHero } from './GenericHero';
+import { GenericHero } from 'apps/web/src/components/base-org/root/Redesign/Hero/GenericHero';
 import { CaseStudyCard } from 'apps/web/app/(base-org)/enterprises/CaseStudyCard';
 import Text from 'apps/web/src/components/base-org/typography/TextRedesign';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
@@ -218,8 +218,8 @@ export default async function Enterprises() {
             {/* <EcosystemHero /> */}
             <GenericHero
               title="Enterprises"
+              description="The enterprise‑ready blockchain to run stablecoin payments, onchain finance, and tokenized value."
               imageUrl={'/images/backgrounds/partnerships.webp'}
-              buttons={[{ text: 'Build on Base', href: '/enterprises/build' }]}
             />
             <div className="flex flex-col gap-12">
               <Split>
@@ -325,38 +325,40 @@ export default async function Enterprises() {
                 </Split.Content>
               </Split>
 
-              <div className="grid gap-10 md:grid-cols-1 lg:grid-cols-3">
-                <div className="col-span-full">
-                  <div className="flex max-w-md flex-col gap-2">
-                    <Title level={TitleLevel.H5Regular}>Case studies</Title>
-                    <Text variant={TextVariant.BodyLarge}>
-                      Explore how leading enterprises use Base for payments, finance, tokenized
-                      holdings, and loyalty.
-                    </Text>
+              {false && (
+                <div className="grid gap-10 md:grid-cols-1 lg:grid-cols-3">
+                  <div className="col-span-full">
+                    <div className="flex max-w-md flex-col gap-2">
+                      <Title level={TitleLevel.H5Regular}>Case studies</Title>
+                      <Text variant={TextVariant.BodyLarge}>
+                        Explore how leading enterprises use Base for payments, finance, tokenized
+                        holdings, and loyalty.
+                      </Text>
+                    </div>
                   </div>
+                  <CaseStudyCard
+                    name="Shopify"
+                    tag="Payments"
+                    description="Simple, borderless, low-cost payments for merchants, with support for 15+ local stablecoins. Instant settlement on 24/7 payment rails."
+                    slug="/enterprises/shopify"
+                    image="/images/enterprises/shopify.png"
+                  />
+                  <CaseStudyCard
+                    name="JP Morgan"
+                    tag="Onchain Finance"
+                    description="Simple, borderless, low-cost payments for merchants, with support for 15+ local stablecoins. Instant settlement on 24/7 payment rails."
+                    slug="/enterprises/shopify"
+                    image="/images/enterprises/jpmorgan.jpeg"
+                  />
+                  <CaseStudyCard
+                    name="Coinbase"
+                    tag="Tokenization"
+                    description="Keep assets at the bank, while taking advantage of programmable, global, instant onchain rails."
+                    slug="/enterprises/coinbase"
+                    image="/images/enterprises/coinbase.png"
+                  />
                 </div>
-                <CaseStudyCard
-                  name="Shopify"
-                  tag="Payments"
-                  description="Simple, borderless, low-cost payments for merchants, with support for 15+ local stablecoins. Instant settlement on 24/7 payment rails."
-                  slug="/enterprises/shopify"
-                  image="/images/enterprises/shopify.png"
-                />
-                <CaseStudyCard
-                  name="JP Morgan"
-                  tag="Onchain Finance"
-                  description="Simple, borderless, low-cost payments for merchants, with support for 15+ local stablecoins. Instant settlement on 24/7 payment rails."
-                  slug="/enterprises/shopify"
-                  image="/images/enterprises/jpmorgan.jpeg"
-                />
-                <CaseStudyCard
-                  name="Coinbase"
-                  tag="Tokenization"
-                  description="Keep assets at the bank, while taking advantage of programmable, global, instant onchain rails."
-                  slug="/enterprises/coinbase"
-                  image="/images/enterprises/coinbase.png"
-                />
-              </div>
+              )}
             </div>
           </div>
         </Container>

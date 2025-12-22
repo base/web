@@ -8,9 +8,11 @@ import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRed
 import Text from 'apps/web/src/components/base-org/typography/TextRedesign';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
 import { LogoHeroAlt } from 'apps/web/src/components/base-org/root/Redesign/Hero/LogoHeroAlt';
-import { GenericHero } from 'apps/web/src/components/base-org/root/Redesign/Hero/GenericHero';
 import { LogoHeroSlot } from 'apps/web/src/components/base-org/root/Redesign/Hero/LogoHeroSlot';
 import { Halftone } from 'apps/web/app/(base-org)/enterprises/Halftone';
+import { HeroBackgroundConfig } from 'apps/web/src/components/Brand/Hero/Background';
+import AnimatedButton from 'apps/web/src/components/Button/AnimatedButton';
+import Link from 'apps/web/src/components/Link';
 
 import { motion, cubicBezier, Variants, spring } from 'motion/react';
 
@@ -22,42 +24,62 @@ export const motionConfig: any = {
   transition: { type: spring, bounce: 0.3, duration: 0.5, delay: 0.3 },
 };
 
-export function Hero() {
+type GenericHeroProps = {
+  title: string;
+  imageUrl: string;
+  buttons?: ButtonProps[];
+  description: string;
+};
+
+type ButtonProps = {
+  text: string;
+  href: string;
+};
+
+export function GenericHero({ title, description, imageUrl, buttons }: GenericHeroProps) {
+  const heroBackgroundConfig: HeroBackgroundConfig = {
+    imageUrl: imageUrl,
+    altPattern: {
+      url: '/patterns/pat-colorful.png',
+      columns: 6,
+    },
+  };
   return (
-    <Container className="!lg:mb-0 !mb-0 grid-cols-9 gap-y-12">
+    <Container className=" grid-cols-9 gap-y-12">
       <div className="col-span-full flex h-fit flex-col justify-start gap-y-6 md:h-fit md:justify-start">
         <div className="relative col-span-full w-full pb-0">
-          {/* <LogoHeroAlt /> */}
-          {/* <LogoHero /> */}
-          {/* <AnimatedTitle /> */}
-          <LogoHeroSlot>
-            <Halftone imageUrl="/images/backgrounds/default.webp" backgroundColor="#fbfbfb" />
-          </LogoHeroSlot>
+          {/* <LogoHeroSlot> */}
+          <div className="relative h-[400px] w-full overflow-hidden rounded-lg">
+            <Halftone imageUrl={imageUrl} />
+          </div>
+          {/* </LogoHeroSlot> */}
         </div>
         <div className="grid-base col-span-full w-full">
-          {/* <div className="col-span-2 md:col-span-1 md:col-start-3">
-            <div className="w-full">
-              <Title level={TitleLevel.H2Regular}>A full stack for the onchain economy</Title>
-            </div>
-          </div> */}
           <div className="col-span-full md:col-span-2 md:col-start-1">
             <div className="w-full">
-              <AnimatedTitle />
+              <AnimatedTitle titleLines={[title]} />
             </div>
           </div>
           <motion.div
             initial={motionConfig.initial}
             animate={motionConfig.animate}
             transition={motionConfig.transition}
-            className="col-span-full md:col-span-2 md:col-start-3"
+            className="col-span-full flex flex-col gap-4 md:col-span-2 md:col-start-3"
           >
             <div className="w-full">
-              <Text variant={TextVariant.Body} className="!text-base-gray-200">
-                Base is a full stack for the onchain economy — empowering builders, creators, and
-                people everywhere to build apps, grow businesses, create what they love, and earn
-                onchain.
+              <Text variant={TextVariant.BodyLarge} className="!text-base-gray-200">
+                {description}
               </Text>
             </div>
+            {buttons && (
+              <div className="w-full">
+                {buttons.map((button) => (
+                  <Link key={button.text} href={button.href}>
+                    <AnimatedButton key={button.text} text={button.text} />
+                  </Link>
+                ))}
+              </div>
+            )}
           </motion.div>
         </div>
       </div>

@@ -109,66 +109,42 @@ export default async function Chain() {
               }}
             >
               <div className="col-span-full">
-                <Marquee className="[--duration:60s]" pauseOnHover>
-                  {content.ecosystem.logos.map((logo) => (
-                    <div
-                      key={logo}
-                      className="relative flex aspect-square w-[100px] items-center justify-center overflow-hidden rounded-lg bg-black"
-                    >
-                      {/* <Text
-                        variant={TextVariant.BodyLarge}
-                        className="whitespace-nowrap !text-base-gray-200"
+                <div className="relative">
+                  <div
+                    style={{
+                      background:
+                        'linear-gradient(-90deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 1) 100%)',
+                    }}
+                    className="absolute inset-0 z-20 h-full w-[120px] "
+                  ></div>
+                  <div
+                    style={{
+                      background:
+                        'linear-gradient(90deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 1) 100%)',
+                    }}
+                    className="absolute right-0 top-0 z-20 h-full w-[120px] "
+                  ></div>
+                  <Marquee className="[--duration:60s]" pauseOnHover={false}>
+                    {content.ecosystem.logos.map((logo) => (
+                      <div
+                        key={logo}
+                        className="relative flex aspect-square w-[100px] items-center justify-center overflow-hidden rounded-[26px] bg-base-gray-100"
                       >
-                        {logo}
-                      </Text> */}
-                      {/* <div className="absolute inset-0">
-                        <Image
-                          className="h-full w-full scale-150 object-cover blur-lg"
-                          src={logo}
-                          alt={logo}
-                          width={140}
-                          height={140}
-                        />
-                      </div> */}
-                      <div className="absolute inset-0 h-full w-full scale-90 overflow-hidden rounded-md">
-                        <Image
-                          className="h-full w-full object-contain"
-                          src={logo}
-                          alt={logo}
-                          width={140}
-                          height={140}
-                        />
+                        <div className="absolute inset-0 h-full w-full overflow-hidden p-4">
+                          <Image
+                            className="h-full w-full rounded-xl object-contain"
+                            src={logo}
+                            alt={logo}
+                            width={140}
+                            height={140}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </Marquee>
+                    ))}
+                  </Marquee>
+                </div>
               </div>
             </Section>
-            {/* <section className="flex flex-col gap-8">
-              <div className="flex flex-col gap-4">
-                <Title level={TitleLevel.H1Regular} as="h2">
-                  {content.ecosystem.header}
-                </Title>
-                <Text variant={TextVariant.BodyLarge} className="max-w-3xl !text-base-gray-200">
-                  {content.ecosystem.subheader}
-                </Text>
-              </div>
-              <Marquee className="[--duration:60s]" pauseOnHover>
-                {content.ecosystem.logos.map((logo) => (
-                  <div key={logo} className="flex min-w-[140px] items-center justify-center px-6">
-                    <Text
-                      variant={TextVariant.BodyLarge}
-                      className="whitespace-nowrap !text-base-gray-200"
-                    >
-                      {logo}
-                    </Text>
-                  </div>
-                ))}
-              </Marquee>
-              <Link href={content.ecosystem.cta.url} target="_blank" rel="noopener noreferrer">
-                <AnimatedButton text={content.ecosystem.cta.label} />
-              </Link>
-            </section> */}
 
             {/* Engineering Blog Section */}
             <Section
@@ -221,50 +197,6 @@ export default async function Chain() {
                   ))}
               </div>
             </Section>
-            {/* <section className="flex flex-col gap-8">
-              <Title level={TitleLevel.H4Regular} as="h2">
-                {content.engineeringBlog.header}
-              </Title>
-
-              <Link
-                href={content.engineeringBlog.cta.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <AnimatedButton text={content.engineeringBlog.cta.label} />
-              </Link>
-            </section> */}
-
-            {/* Final CTA Section */}
-            <section className="col-span-full py-12 text-black">
-              <div className="grid gap-[min(2.25vw,_32px)] md:grid-cols-2 md:items-center">
-                <div className="max-w-[30ch]">
-                  <Title level={TitleLevel.H1Regular}>{content.finalCta.header}</Title>
-                </div>
-                <div className="flex flex-col gap-8">
-                  <div className="flex flex-wrap gap-4">
-                    <Link
-                      href={content.finalCta.ctas.primary.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button variant={ButtonVariants.Primary} size={ButtonSizes.Small}>
-                        {content.finalCta.ctas.primary.label}
-                      </Button>
-                    </Link>
-                    <Link
-                      href={content.finalCta.ctas.secondary.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button variant={ButtonVariants.SecondaryOutline} size={ButtonSizes.Small}>
-                        {content.finalCta.ctas.secondary.label}
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </section>
           </div>
         </Container>
       </AnalyticsProvider>

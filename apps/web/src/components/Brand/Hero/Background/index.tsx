@@ -2,9 +2,10 @@
 
 import { useMedia } from 'apps/web/src/hooks/useMedia';
 import { CameraProps, Canvas } from '@react-three/fiber';
-import { memo, useRef } from 'react';
+import { memo, useRef, useMemo } from 'react';
 import { Scene } from 'apps/web/src/components/Brand/Hero/Background/scene';
 import defaultImg from 'apps/web/public/images/backgrounds/default.webp';
+import { hexToRgb } from 'apps/web/src/utils/shaderUtils';
 
 type AltPatternAtlas = {
   url: string;
@@ -39,6 +40,7 @@ export type HeroBackgroundConfig = {
   velocityDissipation?: number;
   densityDissipation?: number;
   bottomFade?: boolean;
+  backgroundColor?: string; // Hex color code (e.g., "#ffffff" or "#000000")
 };
 
 const DEFAULT_CONFIG: HeroBackgroundConfig = {
@@ -75,12 +77,29 @@ function HeroBackground({ config = {} }: HeroBackgroundProps) {
     velocityDissipation,
     densityDissipation,
     bottomFade,
+    backgroundColor,
   } = finalConfig;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const isMobile = useMedia('(max-width: 1024px)');
 
   const interactivityEnabled = enableInteractivity && !isMobile;
+
+  // Convert hex color to normalized RGB (0-1 range) for shader
+  const backgroundColorRgb = useMemo(() => {
+    if (!backgroundColor) return null;
+    try {
+      const rgb = hexToRgb(backgroundColor);
+      if (!rgb) return null;
+      return {
+        r: rgb.r / 255,
+        g: rgb.g / 255,
+        b: rgb.b / 255,
+      };
+    } catch {
+      return null;
+    }
+  }, [backgroundColor]);
 
   return (
     <div ref={containerRef} className={className} style={style}>
@@ -100,6 +119,7 @@ function HeroBackground({ config = {} }: HeroBackgroundProps) {
           velocityDissipation={velocityDissipation}
           densityDissipation={densityDissipation}
           bottomFade={bottomFade}
+          backgroundColor={backgroundColorRgb}
         />
       </Canvas>
     </div>

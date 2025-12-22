@@ -19,9 +19,11 @@ const containerVariants: Variants = {
   },
 };
 
-export function AnimatedTitle() {
-  const titleLines = ['A global economy,', 'built by all of us'];
-
+export function AnimatedTitle({
+  titleLines = ['A global economy,', 'built by all of us'],
+}: {
+  titleLines?: string[];
+}) {
   return (
     <motion.div
       variants={containerVariants}

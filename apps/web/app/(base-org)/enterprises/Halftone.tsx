@@ -12,9 +12,10 @@ type ButtonProps = {
 
 type HalftoneProps = {
   imageUrl: string;
+  backgroundColor?: string;
 };
 
-export function Halftone({ imageUrl }: HalftoneProps) {
+export function Halftone({ imageUrl, backgroundColor }: HalftoneProps) {
   const heroBackgroundConfig: HeroBackgroundConfig = {
     imageUrl: imageUrl,
     altPattern: {
@@ -25,7 +26,8 @@ export function Halftone({ imageUrl }: HalftoneProps) {
     enableInteractivity: true,
     velocityDissipation: 0.94,
     radius: 0.1,
-    bottomFade: false,
+    bottomFade: true,
+    backgroundColor: backgroundColor,
   };
   return (
     <div className="relative inset-0 h-full w-full">

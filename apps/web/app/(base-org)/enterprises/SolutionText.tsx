@@ -13,7 +13,9 @@ export function SolutionText({ eyebrow, title, description }: SolutionTextProps)
   return (
     <div className="flex h-full flex-col justify-center space-y-4 p-0 font-sans md:mx-auto md:max-w-sm">
       <Title level={TitleLevel.H1Regular}>{title}</Title>
-      <Text variant={TextVariant.BodyLarge}>{description}</Text>
+      <Text variant={TextVariant.BodyLarge} className="!text-base-gray-200">
+        {description}
+      </Text>
     </div>
   );
 }
