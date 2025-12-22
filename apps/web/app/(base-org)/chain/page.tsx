@@ -56,7 +56,7 @@ export default async function Chain() {
             {/* Value Props Section */}
             <Section
               content={{
-                title: 'Why Base Chain',
+                title: 'An open platform for the global economy',
               }}
             >
               <div className="col-span-full grid gap-16 md:grid-cols-2">

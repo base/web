@@ -1,6 +1,6 @@
 export const content = {
   hero: {
-    header: 'An open platform for the global economy',
+    header: 'Base Chain',
     subheader:
       'Base Chain is a fast, low-cost, decentralized network that delivers sub-second, sub-cent global transactions. The foundation for a new economy where anyone, anywhere can participate.',
     ctas: {
