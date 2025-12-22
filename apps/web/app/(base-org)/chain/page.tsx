@@ -4,12 +4,14 @@ import Container from 'apps/web/src/components/base-org/Container';
 import { WebGLCanvas } from 'apps/web/src/components/WebGL/WebGLCanvas';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
 import { GenericHero } from './GenericHero';
-import content from './content.json';
+import { content } from './content';
 import { Marquee } from 'apps/web/src/components/Builders/Shared/Marquee';
 import Title from 'apps/web/src/components/base-org/typography/TitleRedesign';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRedesign/types';
 import Text from 'apps/web/src/components/base-org/typography/TextRedesign';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
+import { Section } from 'apps/web/src/components/base-org/root/Redesign/Section';
+
 import {
   Button,
   ButtonSizes,
@@ -19,6 +21,7 @@ import Link from 'apps/web/src/components/Link';
 import { cn } from 'apps/web/src/utils/cn';
 import AnimatedButton from 'apps/web/src/components/Button/AnimatedButton';
 import { GlobeWrapper } from './GlobeWrapper';
+import { ChainValueProp } from './ChainValueProp';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
@@ -49,38 +52,35 @@ export default async function Chain() {
             />
 
             {/* Value Props Section */}
-            <section className="flex flex-col gap-16">
-              {content.valueProps.map((prop, index) => (
-                <div
-                  key={prop.id}
-                  className={cn(
-                    'flex flex-col gap-6 rounded-2xl p-8',
-                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse',
-                  )}
-                >
-                  <div className="flex flex-1 flex-col gap-4">
-                    <div className="flex items-center gap-3">
-                      <Text
-                        variant={TextVariant.CTALabel}
-                        className="uppercase tracking-widest !text-base-gray-200"
-                      >
-                        {prop.eyebrow}
-                      </Text>
-                      {prop.pill && (
-                        <span className="rounded-full bg-blue-600 px-3 py-1 text-xs font-medium text-white">
-                          {prop.pill}
-                        </span>
-                      )}
-                    </div>
-                    <Title level={TitleLevel.H4Regular} as="h3">
-                      {prop.header}
-                    </Title>
-                    <Text variant={TextVariant.BodyLarge} className="max-w-2xl !text-base-gray-200">
-                      {prop.subheader}
-                    </Text>
+            <section className="grid grid-cols-2 gap-16">
+              {content.valueProps.map((prop, index) => {
+                let content = {
+                  title: prop.header,
+                  description: prop.subheader,
+                };
+
+                return (
+                  // <Section content={content}>
+                  //   <div className="col-span-full aspect-video w-full overflow-hidden bg-gray-5">
+                  //     <p>TEST</p>
+                  //   </div>
+                  // </Section>
+                  <div
+                    key={prop.id}
+                    className={cn(
+                      'flex flex-col gap-6',
+                      index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse',
+                    )}
+                  >
+                    <ChainValueProp
+                      eyebrow={prop.eyebrow}
+                      pill={prop.pill}
+                      header={prop.header}
+                      subheader={prop.subheader}
+                    />
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </section>
 
             {/* Globe Section */}
@@ -89,9 +89,35 @@ export default async function Chain() {
             </section>
 
             {/* Ecosystem Section */}
-            <section className="flex flex-col gap-8">
+
+            <Section
+              content={{
+                title: content.ecosystem.header,
+                description: content.ecosystem.subheader,
+                cta: {
+                  label: content.ecosystem.cta.label,
+                  href: content.ecosystem.cta.url,
+                },
+              }}
+            >
+              <div className="col-span-full">
+                <Marquee className="[--duration:60s]" pauseOnHover>
+                  {content.ecosystem.logos.map((logo) => (
+                    <div key={logo} className="flex min-w-[140px] items-center justify-center px-6">
+                      <Text
+                        variant={TextVariant.BodyLarge}
+                        className="whitespace-nowrap !text-base-gray-200"
+                      >
+                        {logo}
+                      </Text>
+                    </div>
+                  ))}
+                </Marquee>
+              </div>
+            </Section>
+            {/* <section className="flex flex-col gap-8">
               <div className="flex flex-col gap-4">
-                <Title level={TitleLevel.H4Regular} as="h2">
+                <Title level={TitleLevel.H1Regular} as="h2">
                   {content.ecosystem.header}
                 </Title>
                 <Text variant={TextVariant.BodyLarge} className="max-w-3xl !text-base-gray-200">
@@ -113,7 +139,7 @@ export default async function Chain() {
               <Link href={content.ecosystem.cta.url} target="_blank" rel="noopener noreferrer">
                 <AnimatedButton text={content.ecosystem.cta.label} />
               </Link>
-            </section>
+            </section> */}
 
             {/* Engineering Blog Section */}
             <section className="flex flex-col gap-8">
