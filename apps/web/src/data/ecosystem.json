@@ -1,19 +1,19 @@
 [
   {
-  "name": "growthepie",
-  "description": "The open analytics platform for the Ethereum ecosystem. We empower Base Chain builders with open and actionable metrics on usage, growth, and adoption.",
-  "url": "https://www.growthepie.com/chains/base",
-  "imageUrl": "/images/partners/growthepie.webp",
-  "category": "infra",
-  "subcategory": "data"
+    "name": "growthepie",
+    "description": "The open analytics platform for the Ethereum ecosystem. We empower Base Chain builders with open and actionable metrics on usage, growth, and adoption.",
+    "url": "https://www.growthepie.com/chains/base",
+    "imageUrl": "/images/partners/growthepie.webp",
+    "category": "infra",
+    "subcategory": "data"
   },
   {
-  "name": "Coinrule",
-  "description": "Launch fully self-custodial onchain automated trading strategies at lightning speed and with one-click UX. Team is backed by Y Combinator",
-  "url": "https://coinrule.com",
-  "imageUrl": "/images/partners/coinrule.png",
-  "category": "defi",
-  "subcategory": "dex aggregator"
+    "name": "Coinrule",
+    "description": "Launch fully self-custodial onchain automated trading strategies at lightning speed and with one-click UX. Team is backed by Y Combinator",
+    "url": "https://coinrule.com",
+    "imageUrl": "/images/partners/coinrule.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
   },
   {
     "name": "0x",
@@ -3023,7 +3023,7 @@
     "category": "infra",
     "subcategory": "bridge"
   },
- {
+  {
     "name": "Ormi Labs",
     "description": "A next-generation Subgraph indexer built for real-time and historical blockchain data at scale.",
     "url": "https://ormilabs.com/",
@@ -4655,7 +4655,7 @@
     "category": "consumer",
     "subcategory": "payments"
   },
-  {  
+  {
     "name": "KOLZ",
     "description": "A cutting-edge Web3 influencer platform designed to bridge the gap between leading influencers in the cryptocurrency and blockchain space (known as KOLs - Key Opinion Leaders) and their followers.",
     "url": "https://kolz.chat/",
@@ -4692,8 +4692,8 @@
     "url": "https://wlth.xyz//",
     "description": "WLTH opens the door to tokenised pre-IPO opportunities like xAI and SpaceX, while AI-powered strategies help your assets grow on autopilot. One app. No barriers.",
     "imageUrl": "/images/partners/wlth.webp",
-    "category": "Consumer",
-    "subcategory": "Real World"
+    "category": "consumer",
+    "subcategory": "real world"
   },
   {
     "name": "DeGov.AI",
@@ -4704,13 +4704,13 @@
     "subcategory": "dao"
   },
   {
-  "name": "Super OETH",
+    "name": "Super OETH",
     "url": "https://www.originprotocol.com/super",
     "description": "Super OETH is the first Ethereum LST native to the Base network. Hold superOETHb in your wallet and watch as the balance magically grows daily. Designed by Origin Protocol.",
     "imageUrl": "/images/partners/SuperOETH.png",
     "category": "defi",
     "subcategory": "yield vault"
-   },
+  },
   {
     "name": "Levva",
     "url": "https://levva.fi/",
