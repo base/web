@@ -13,6 +13,7 @@ import Text from 'apps/web/src/components/base-org/typography/TextRedesign';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
 import { Section } from 'apps/web/src/components/base-org/root/Redesign/Section';
 import classNames from 'classnames';
+import { Halftone } from 'apps/web/app/(base-org)/enterprises/Halftone';
 
 import {
   Button,
@@ -54,78 +55,136 @@ export default async function Startups() {
             />
 
             {/* Logo Strip Section */}
-            <section className="flex flex-col gap-8">
-              <Text
-                variant={TextVariant.CTALabel}
-                className="text-center uppercase tracking-widest !text-base-gray-200"
-              >
-                {content.logoStrip.label}
-              </Text>
-              <Marquee className="[--duration:40s]" pauseOnHover>
-                {content.logoStrip.logos.map((logo) => (
-                  <div key={logo} className="flex min-w-[120px] items-center justify-center px-6">
-                    <Text
-                      variant={TextVariant.BodyLarge}
-                      className="whitespace-nowrap !text-base-gray-200"
-                    >
-                      {logo}
-                    </Text>
-                  </div>
-                ))}
-              </Marquee>
-            </section>
+            <Section content={{ title: content.logoStrip.label }}>
+              <div className="col-span-full">
+                <Marquee className="[--duration:40s]" pauseOnHover={false}>
+                  {content.logoStrip.logos.map((logo) => (
+                    <div key={logo} className="flex min-w-[120px] items-center justify-center px-6">
+                      <Text
+                        variant={TextVariant.BodyLarge}
+                        className="whitespace-nowrap !text-base-gray-200"
+                      >
+                        {logo}
+                      </Text>
+                    </div>
+                  ))}
+                </Marquee>
+              </div>
+            </Section>
 
             {/* Value Props Section */}
             <Section content={{ title: 'Why build on Base?' }} className="w-full">
               <div className="col-span-full grid gap-8 md:grid-cols-3">
                 {content.valueProps.map((prop) => (
-                  <div key={prop.id} className="flex flex-col gap-3 rounded-xl">
+                  <div key={prop.id} className="flex flex-col gap-4 rounded-xl">
                     <div className="aspect-square w-full rounded-lg bg-base-gray-200/20">
                       {/* <Image src={prop.image} alt={prop.header} fill className="object-cover" /> */}
                     </div>
-                    <Title level={TitleLevel.H2Regular}>{prop.header}</Title>
-                    <Text variant={TextVariant.BodyLarge} className="!text-base-gray-200">
-                      {prop.subheader}
-                    </Text>
+                    <div className="flex flex-col gap-2">
+                      <Title level={TitleLevel.H2Regular}>{prop.header}</Title>
+                      <Text variant={TextVariant.BodyLarge} className="!text-base-gray-200">
+                        {prop.subheader}
+                      </Text>
+                    </div>
                   </div>
                 ))}
               </div>
             </Section>
 
             {/* Base Batches Section */}
-            <section className="flex flex-col gap-[min(2.25vw,_32px)] rounded-2xl px-6 py-16">
-              <Text
-                variant={TextVariant.CTALabel}
-                className="uppercase tracking-widest !text-base-gray-200"
+            <Section
+              content={{
+                title: content.baseBatches.header,
+                description: content.baseBatches.subheader,
+                cta: { label: content.baseBatches.cta.label, href: content.baseBatches.cta.url },
+              }}
+            >
+              <div className="col-span-full aspect-[3/1] w-full overflow-hidden rounded-lg bg-base-gray-200/20">
+                <Halftone imageUrl="/images/backgrounds/scarab.webp" backgroundColor="#fbfbfb" />
+              </div>
+            </Section>
+
+            {/* Accelerator Programs Section */}
+            <Section
+              content={{
+                title: content.acceleratorPrograms.header,
+                description: content.acceleratorPrograms.subheader,
+              }}
+            >
+              <div
+                className={cn(
+                  'col-span-full grid gap-[min(2.25vw,_32px)]',
+                  'grid-cols-1 lg:grid-cols-2',
+                )}
               >
-                {content.baseBatches.eyebrow}
-              </Text>
-              <Title level={TitleLevel.H4Regular} as="h2">
-                {content.baseBatches.header}
-              </Title>
-              <Text variant={TextVariant.BodyLarge} className="max-w-2xl !text-base-gray-200">
-                {content.baseBatches.subheader}
-              </Text>
-              <Link href={content.baseBatches.cta.url}>
-                <AnimatedButton text={content.baseBatches.cta.label} />
-              </Link>
-            </section>
+                {content.acceleratorPrograms.cards.map((card, index) => (
+                  <Link
+                    href={card.url}
+                    key={card.title}
+                    target={card.url.includes('https://') ? '_blank' : '_self'}
+                    className="group flex h-[308px] flex-col rounded-lg bg-base-gray-25 p-6 transition-colors duration-300 hover:bg-base-gray-50"
+                  >
+                    <div className="flex h-full flex-col justify-between">
+                      <div className="flex items-center justify-between">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect
+                            width="24"
+                            height="24"
+                            rx="2"
+                            fill={['#f37021', '#0847f7'][index % 2]}
+                          />
+                        </svg>
+                        <svg
+                          width="13"
+                          height="14"
+                          viewBox="0 0 13 14"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="transition-transform duration-300 ease-in-out group-hover:rotate-45"
+                        >
+                          <path
+                            d="M2.02127 13.04L0.317273 11.36L8.52527 3.152V2.792L2.38127 2.888V0.8H12.5573V10.952H10.4693L10.5653 4.808H10.2053L2.02127 13.04Z"
+                            fill="black"
+                          />
+                        </svg>
+                      </div>
+                      <div className="mt-auto flex flex-col gap-3">
+                        <Title level={TitleLevel.H6Regular} as="h4">
+                          {card.title}
+                        </Title>
+                        <Text
+                          variant={TextVariant.Body}
+                          className="!text-pretty !text-base-gray-200"
+                        >
+                          {card.subtitle}
+                        </Text>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </Section>
 
             {/* Base Ecosystem Fund Section */}
-            <section className="flex flex-col gap-[min(2.25vw,_32px)] rounded-2xl px-6 py-16">
-              <Title level={TitleLevel.H4Regular} as="h2">
-                {content.baseEcosystemFund.header}
-              </Title>
-              <Text variant={TextVariant.BodyLarge} className="max-w-2xl !text-base-gray-200">
-                {content.baseEcosystemFund.subheader}
-              </Text>
-              <Link href={content.baseEcosystemFund.url} target="_blank" rel="noopener noreferrer">
-                <AnimatedButton text="Apply now" />
-              </Link>
-            </section>
+            <Section
+              content={{
+                title: content.baseEcosystemFund.header,
+                description: content.baseEcosystemFund.subheader,
+                cta: { label: 'Apply now', href: content.baseEcosystemFund.url },
+              }}
+            >
+              <div className="col-span-full aspect-[3/1] w-full overflow-hidden rounded-lg bg-base-gray-200/20">
+                <Halftone imageUrl="/images/backgrounds/ecosystem.webp" backgroundColor="#fbfbfb" />
+              </div>
+            </Section>
 
             {/* Scale Your Business Section */}
-
             <Section
               content={{
                 title: 'Scale Your Business',
