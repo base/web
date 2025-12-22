@@ -388,19 +388,51 @@ export const BRAND_ROUTES: BrandRoute[] = [
 
 export const DEFAULT_ROUTES: DefaultRoute[] = [
   {
-    label: 'Base App',
-    href: 'https://base.app',
-    newTab: true,
-  },
-  {
-    label: 'Base Build',
-    href: '/build',
+    label: 'Chain',
+    href: '/chain',
     items: [
       {
-        icon: 'code',
-        label: 'Base Build',
-        href: '/build',
+        icon: 'chain',
+        label: 'Base Chain',
+        href: '/chain',
       },
+      {
+        label: 'Status',
+        href: 'https://status.base.org',
+        newTab: true,
+      },
+      {
+        label: 'Block Explorer',
+        href: 'https://basescan.org',
+        newTab: true,
+      },
+      {
+        label: 'Big Bounty',
+        href: 'http://hackerone.com/coinbase',
+        newTab: true,
+      },
+    ],
+  },
+  {
+    label: 'Products',
+    href: '/products',
+    items: [
+      {
+        icon: 'rocket',
+        label: 'Base App',
+        href: 'https://base.app',
+        newTab: true,
+      },
+      {
+        label: 'Base Pay',
+        href: '/pay',
+      },
+    ],
+  },
+  {
+    label: 'Developers',
+    href: '/build',
+    items: [
       {
         icon: 'dashboard',
         label: 'Dashboard',
@@ -408,44 +440,61 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
         newTab: true,
       },
       {
-        icon: 'wallet',
-        label: 'Base Account',
-        href: '/build/base-account',
+        icon: 'book',
+        label: 'Documentation',
+        href: 'https://docs.base.org/',
+        newTab: true,
       },
       {
-        icon: 'terminal',
-        label: 'OnchainKit',
-        href: '/build/onchainkit',
-      },
-      {
-        icon: 'rocket',
-        label: 'Mini Apps',
-        href: '/build/mini-apps',
-      },
-      {
-        icon: 'docs',
-        label: 'Spindl',
-        href: 'https://spindl.xyz/',
+        icon: 'github',
+        label: 'Github',
+        href: 'https://github.com/base',
         newTab: true,
       },
     ],
-    appendix: [
-      { label: 'Docs', href: 'https://docs.base.org/', newTab: true },
-      { label: 'Status Page', href: 'https://status.base.org/', newTab: true },
-      { label: 'Block Explorer', href: 'https://basescan.org/', newTab: true },
-      { label: 'GitHub', href: 'https://github.com/base', newTab: true },
-      { label: 'Engineering Blog', href: 'https://www.base.dev/blog', newTab: true },
-      { label: 'Base Stats', href: '/stats', newTab: true },
-      { label: 'Bug Bounty', href: 'https://hackerone.com/coinbase', newTab: true },
+  },
+  {
+    label: 'Solutions',
+    href: '/solutions',
+    items: [
+      {
+        icon: 'briefcase',
+        label: 'Enterprise',
+        href: '/enterprise',
+      },
+      {
+        icon: 'rocket',
+        label: 'Startups',
+        href: '/startups',
+      },
     ],
   },
   {
-    label: 'Base Pay',
-    href: '/pay',
-  },
-  {
-    label: 'Ecosystem',
-    href: '/ecosystem',
+    label: 'Resources',
+    href: '/resources',
+    items: [
+      {
+        icon: 'rocket',
+        label: 'Vision',
+        href: '/about/vision',
+      },
+      {
+        icon: 'media',
+        label: 'Brand Kit',
+        href: 'https://base.org/brand',
+      },
+      {
+        icon: 'openBook',
+        label: 'Blog',
+        href: 'https://blog.base.org',
+        newTab: true,
+      },
+      {
+        icon: 'briefcaseAlt',
+        label: 'Jobs',
+        href: '/jobs',
+      },
+    ],
   },
   {
     label: 'Community',
@@ -471,31 +520,8 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
     ],
   },
   {
-    label: 'About',
-    href: '/about',
-    items: [
-      {
-        icon: 'rocket',
-        label: 'Vision',
-        href: '/about/vision',
-      },
-      {
-        icon: 'media',
-        label: 'Brand Kit',
-        href: 'https://base.org/brand',
-      },
-      {
-        icon: 'openBook',
-        label: 'Blog',
-        href: 'https://blog.base.org',
-        newTab: true,
-      },
-      {
-        icon: 'briefcaseAlt',
-        label: 'Jobs',
-        href: '/jobs',
-      },
-    ],
+    label: 'Ecosystem',
+    href: '/ecosystem',
   },
 ];
 
