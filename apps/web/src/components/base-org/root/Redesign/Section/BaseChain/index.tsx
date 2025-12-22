@@ -9,6 +9,14 @@ import Text from 'apps/web/src/components/base-org/typography/TextRedesign';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
 import { motion } from 'motion/react';
 import classNames from 'classnames';
+import React, { useRef, useCallback } from 'react';
+
+import { GalleryVerticalEndIcon } from 'apps/web/src/components/base-org/root/Redesign/Section/BaseChain/icons/Assets';
+import { ClockIcon } from 'apps/web/src/components/base-org/root/Redesign/Section/BaseChain/icons/ClockIcon';
+import { LayersIcon } from 'apps/web/src/components/base-org/root/Redesign/Section/BaseChain/icons/LayersIcon';
+import { GripIcon } from 'apps/web/src/components/base-org/root/Redesign/Section/BaseChain/icons/GripIcon';
+import { HandCoinsIcon } from 'apps/web/src/components/base-org/root/Redesign/Section/BaseChain/icons/HandCoinsIcon';
+import { SquareStackIcon } from 'apps/web/src/components/base-org/root/Redesign/Section/BaseChain/icons/SquareStackIcon';
 
 const GlobeScene = dynamic(async () => import('apps/web/src/components/WebGL/Scenes/GlobeScene'), {
   ssr: false,
@@ -18,20 +26,17 @@ const prefix = PrefixAsset as ImageType;
 
 export function SectionBaseChain() {
   return (
-    <Section content={content}>
+    <Section disableWrapperAnimation content={content}>
       <div className="col-span-full">
-        <div className="relative aspect-video">
-          <GlobeScene className="flex w-full h-full max-h-full" />
-          <div className="hidden sm:block">
-            <div className="flex absolute inset-0 w-full h-full max-h-full pointer-events-none">
-              <div className="flex relative flex-col justify-center items-center w-full h-full">
-                <MetricsCardsOverlay />
+        <div className="grid-base w-full">
+          <div className="col-span-full row-span-2 md:col-span-2">
+            <div className="rounded-base relative aspect-square h-full w-full">
+              <div className="absolute inset-0 h-full w-full overflow-hidden">
+                <GlobeScene className="h-full w-full" />
               </div>
             </div>
           </div>
-        </div>
-        <div className="block pt-8 sm:hidden">
-          <MetricsCardsMobile />
+          <MetricsCardsOverlay />
         </div>
       </div>
     </Section>
@@ -40,29 +45,44 @@ export function SectionBaseChain() {
 
 function MetricsCardsOverlay() {
   return (
-    <div className="pointer-events-auto absolute left-8 top-1/2 z-10 flex w-[300px] max-w-80 -translate-y-1/2 flex-col gap-4 lg:w-[25%] lg:max-w-96">
-      <MetricCard title="Assets on Platform" icon={Icons.median} value="$12B" />
-      <MetricCard title="Total Transactions" icon={Icons.transactions} value="2.6B+" />
-      <MetricCard title="Block Time" icon={Icons.platform} value="200" unit="MS" />
-      <MetricCard title="Median Fee" icon={Icons.gasFees} value="<$0.01" />
-    </div>
-  );
-}
+    <>
+      <div className="col-span-2 md:col-span-1">
+        <MetricCard
+          title="Assets on Platform"
+          icon={<LayersIcon size={20} className="" />}
+          value="$12B"
+        />
+      </div>
+      <div className="col-span-2 md:col-span-1">
+        <MetricCard
+          title="Total Transactions"
+          icon={<GripIcon size={20} className="" />}
+          value="2.6B+"
+        />
+      </div>
 
-function MetricsCardsMobile() {
-  return (
-    <div className="flex flex-col gap-4 pt-4">
-      <MetricCard title="Assets on Platform" icon={Icons.median} value="$12B" />
-      <MetricCard title="Total Transactions" icon={Icons.transactions} value="2.6B+" />
-      <MetricCard title="Block Time" icon={Icons.platform} value="200" unit="MS" />
-      <MetricCard title="Median Fee" icon={Icons.gasFees} value="<$0.01" />
-    </div>
+      <div className="col-span-2 md:col-span-1 md:col-start-3">
+        <MetricCard
+          title="Block Time"
+          icon={<SquareStackIcon size={20} className="" />}
+          value="200"
+          unit="MS"
+        />
+      </div>
+      <div className="col-span-2 md:col-span-1 md:col-start-4">
+        <MetricCard
+          title="Median Fee"
+          icon={<HandCoinsIcon size={20} className="" />}
+          value="<$0.01"
+        />
+      </div>
+    </>
   );
 }
 
 type MetricCardProps = {
   title: string;
-  icon: React.ReactNode;
+  icon: React.ReactElement;
   value: string;
   unit?: string;
 };
@@ -196,7 +216,7 @@ export function AnimatedText({
         return (
           <div
             key={id}
-            className={classNames('overflow-hidden relative', titleClass)}
+            className={classNames('relative overflow-hidden', titleClass)}
             style={containerStyle}
           >
             <motion.div
@@ -231,15 +251,36 @@ export function AnimatedText({
 }
 
 function MetricCard({ title, icon, value, unit }: MetricCardProps) {
+  const iconRef = useRef<any>(null);
+
+  const handleMouseEnter = useCallback(() => {
+    if (iconRef.current?.startAnimation) {
+      iconRef.current.startAnimation();
+    }
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    if (iconRef.current?.stopAnimation) {
+      iconRef.current.stopAnimation();
+    }
+  }, []);
+
+  // Clone the icon element and add the ref
+  const iconWithRef = React.cloneElement(icon, { ref: iconRef });
+
   return (
-    <div className="pointer-events-none flex w-full flex-col rounded-lg bg-base-gray-25/90 p-4 backdrop-blur-sm md:w-[250px]">
-      <div className="flex justify-between items-start mb-4">
+    <div
+      className="pointer-events-auto flex h-full w-full flex-col justify-between rounded-lg bg-base-gray-25 p-4 transition-colors duration-300 hover:bg-base-gray-50"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className="mb-4 flex items-start justify-between">
         <div className="flex flex-col gap-1">
           <Text variant={TextVariant.Body}>{title}</Text>
         </div>
-        <div className="flex-shrink-0 ml-2 w-6 h-6">{icon}</div>
+        <div className="ml-2 h-6 w-6 flex-shrink-0">{iconWithRef}</div>
       </div>
-      <div className="flex gap-2 items-end">
+      <div className="flex items-end gap-2">
         <AnimatedText
           text={value}
           titleLevel={TitleLevel.H1Regular}

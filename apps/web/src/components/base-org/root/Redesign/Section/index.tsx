@@ -6,7 +6,7 @@ import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRed
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRedesign/types';
 import AnimatedButton from 'apps/web/src/components/Button/AnimatedButton';
 
-import { motion, Variants, cubicBezier } from 'motion/react';
+import { motion, Variants, cubicBezier, spring } from 'motion/react';
 import Link from 'apps/web/src/components/Link';
 import Container from 'apps/web/src/components/base-org/Container';
 import classNames from 'classnames';
@@ -55,7 +55,7 @@ export const contentVariants: Variants = {
 
 export const itemContentVariants: Variants = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.25, ease: easeFn } },
+  visible: { opacity: 1, y: 0, transition: { type: spring, bounce: 0.3, duration: 0.6 } },
 };
 
 export function Section({ content, children, className, disableWrapperAnimation }: SectionProps) {
@@ -105,18 +105,7 @@ export function Section({ content, children, className, disableWrapperAnimation 
           </Title>
         </motion.div>
 
-        <div className="flex flex-col col-span-full gap-6 lg:col-span-6 lg:mt-0">
-          {content.description && (
-            <motion.div {...itemProps} className="col-span-full lg:col-span-6 lg:max-w-[400px]">
-              <Text
-                className="!whitespace-pre-wrap !text-base-gray-200"
-                variant={TextVariant.BodyLarge}
-              >
-                {content.description}
-              </Text>
-            </motion.div>
-          )}
-
+        <div className="flex flex-col col-span-full gap-6 lg:col-span-6 lg:mt-0 lg:items-end lg:justify-end">
           {content.cta?.label && (
             <motion.div {...itemProps} className="block col-span-full sm:col-span-3">
               <Link href={content.cta.href}>
@@ -134,6 +123,17 @@ export function Section({ content, children, className, disableWrapperAnimation 
           <div className="col-span-full grid grid-cols-9 gap-x-[min(2.25vw,_32px)] gap-y-10 pt-2">
             {children}
           </div>
+        )}
+
+        {content.description && (
+          <motion.div {...itemProps} className="col-span-full lg:col-span-6 lg:max-w-[400px]">
+            <Text
+              className="!whitespace-pre-wrap !text-base-gray-200"
+              variant={TextVariant.BodyLarge}
+            >
+              {content.description}
+            </Text>
+          </motion.div>
         )}
       </WrapperComponent>
     </Container>

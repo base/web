@@ -121,7 +121,7 @@ __metadata:
     "@lottiefiles/dotlottie-react": ^0.8.10
     "@million/lint": latest
     "@monogrid/gainmap-js": ^3.0.6
-    "@number-flow/react": ^0.5.5
+    "@number-flow/react": ^0.5.10
     "@radix-ui/react-accordion": ^1.2.11
     "@radix-ui/react-collapsible": ^1.1.0
     "@radix-ui/react-dialog": ^1.1.14
@@ -181,6 +181,7 @@ __metadata:
     motion: ^12.3.1
     next: ^15.5.7
     node-fetch: ^3.3.0
+    ogl: ^1.0.11
     permissionless: ^0.1.41
     pg: ^8.12.0
     pinata: ^0.4.0
@@ -5834,16 +5835,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@number-flow/react@npm:^0.5.5":
-  version: 0.5.5
-  resolution: "@number-flow/react@npm:0.5.5"
+"@number-flow/react@npm:^0.5.10":
+  version: 0.5.10
+  resolution: "@number-flow/react@npm:0.5.10"
   dependencies:
     esm-env: ^1.1.4
-    number-flow: 0.5.3
+    number-flow: 0.5.8
   peerDependencies:
     react: ^18 || ^19
     react-dom: ^18 || ^19
-  checksum: bca52861a6dda9e0b0e19ae3f2b909a1e49ba033347865693b73226092fd071f96aafb88b985ecefbc5021894fe89c91531499de547b670bb7b912d6eddad89c
+  checksum: 01cbacfc6fb61980ff8b1ffdf789c9fcd7dc2f58cfc3824b30d3956acedd9fe54e8b4e353abbf245bcfa13a8dd8239c7ac6ff55619065992c2834e3927ccab2f
   languageName: node
   linkType: hard
 
@@ -18176,12 +18177,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"number-flow@npm:0.5.3":
-  version: 0.5.3
-  resolution: "number-flow@npm:0.5.3"
+"number-flow@npm:0.5.8":
+  version: 0.5.8
+  resolution: "number-flow@npm:0.5.8"
   dependencies:
     esm-env: ^1.1.4
-  checksum: 308cb8cead83531cdff99419d3f03e698ee46e2766c9dc0720647fe65d7e162677587e704911718159bc6f88cd676a64e11ce311da693aeac2ea0e8a0e25bf22
+  checksum: 89e6c0a0d64b32cd2d86734ceccaf8ff078e273a8292cb8e0c3b8477cab444ec1f947f1f3307dff105140562824671a30d5871797b4b14a39c6d2b382de2723e
   languageName: node
   linkType: hard
 
@@ -18336,6 +18337,13 @@ __metadata:
     node-fetch-native: ^1.6.4
     ufo: ^1.5.4
   checksum: 005974d238b7212dc10b67ddb019eda9cf89ba781dfa8c2f31d8eea0782261d626ce7a36ac377deb71ec0f72f05a023e6d3cc31b7384fbbabdb328afbf1bf929
+  languageName: node
+  linkType: hard
+
+"ogl@npm:^1.0.11":
+  version: 1.0.11
+  resolution: "ogl@npm:1.0.11"
+  checksum: 00c596ea6755dfb1236f0b754c4434fff01873c0677230a24b6ffe9f31d5ca27ea3bc6363a140c827510327f7c2e823b0711f40cb52864182b58bea95806db4e
   languageName: node
   linkType: hard
 

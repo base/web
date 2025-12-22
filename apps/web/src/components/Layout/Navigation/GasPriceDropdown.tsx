@@ -44,12 +44,12 @@ export function GasPriceDropdown() {
 
   return (
     <div className="group relative">
-      <div className="flex cursor-pointer flex-row items-center gap-2 rounded-lg bg-[#FAFAFA] px-3 py-1 transition-all dark:bg-dark-palette-backgroundAlternate">
+      <div className="flex cursor-pointer flex-row items-center gap-2 rounded-lg bg-[#FAFAFA] px-3 py-1 transition-all">
         <span className="animate-pulse text-palette-positive">
           <Icon name="blueCircle" color="currentColor" height="0.5rem" width="0.5rem" />
         </span>
         <div className="flex items-center gap-1">
-          <span className="font-doto font-bold text-black dark:text-white">
+          <span className="font-doto font-bold text-black">
             {baseGasPriceInWei ? convertWeiToMwei(baseGasPriceInWei) : <>&mdash;</>}
           </span>
           <span className="text-sm text-base-gray-200">Mwei</span>
@@ -78,6 +78,9 @@ export function GasPriceDropdown() {
                 </span>
                 <span className="text-base-gray-200">Mwei</span>
               </div>
+            </li>
+            <li>
+              <p className="text-sm text-base-gray-200">Information here</p>
             </li>
           </ul>
         </Card>
@@ -108,7 +111,7 @@ export function GasPriceDropdownItem() {
         <Icon name="blueCircle" color="currentColor" height="0.5rem" width="0.5rem" />
       </span>
       <div className="flex items-center gap-1">
-        <span className="font-doto font-bold text-black dark:text-white">
+        <span className="font-doto font-bold text-black">
           {baseGasPriceInWei ? convertWeiToMwei(baseGasPriceInWei) : <>&mdash;</>}
         </span>
         <span className="text-sm text-base-gray-200">Mwei</span>

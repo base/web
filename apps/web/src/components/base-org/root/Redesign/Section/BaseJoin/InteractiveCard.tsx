@@ -258,7 +258,7 @@ export function InteractiveCard({
       style={articleStyle}
     >
       <span
-        className="relative block h-[352px] flex-shrink-0 transform-gpu overflow-hidden rounded-t-[8px]"
+        className="relative block aspect-square w-full flex-shrink-0 transform-gpu overflow-hidden rounded-[8px]"
         style={spanStyle}
       >
         <div className="w-full h-full">
@@ -281,7 +281,7 @@ export function InteractiveCard({
           </div>
         </div>
       </span>
-      <div className="flex min-h-[140px] w-full flex-1 flex-col justify-start gap-2 bg-[#fafafa] p-6">
+      <div className="flex min-h-[140px] w-full flex-1 flex-col justify-start gap-2 py-6">
         <Title level={TitleLevel.H2Regular}>{title}</Title>
         <Text
           variant={TextVariant.Body}

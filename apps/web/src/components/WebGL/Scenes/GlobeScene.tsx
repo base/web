@@ -304,6 +304,10 @@ function GlobeScene({ className }: { className?: string }) {
     height: 0,
   });
 
+  // Track if component is ready to be displayed (has stable dimensions)
+  const [isReady, setIsReady] = useState(false);
+  const [sizeStabilityTimer, setSizeStabilityTimer] = useState<NodeJS.Timeout | null>(null);
+
   const globeRef = useRef<THREE.Mesh>(null);
 
   const camera = useMemo(() => {
@@ -335,16 +339,35 @@ function GlobeScene({ className }: { className?: string }) {
     magFilter: THREE.NearestFilter,
   });
 
-  const handleResize = useCallback((width: number, height: number) => {
-    const roundedWidth = Math.round(width);
-    const roundedHeight = Math.round(height);
-    setContainerSize((prev) => {
-      if (Math.abs(prev.width - roundedWidth) < 1 && Math.abs(prev.height - roundedHeight) < 1) {
-        return prev;
-      }
-      return { width: roundedWidth, height: roundedHeight };
-    });
-  }, []);
+  const handleResize = useCallback(
+    (width: number, height: number) => {
+      const roundedWidth = Math.round(width);
+      const roundedHeight = Math.round(height);
+
+      setContainerSize((prev) => {
+        if (Math.abs(prev.width - roundedWidth) < 1 && Math.abs(prev.height - roundedHeight) < 1) {
+          return prev;
+        }
+
+        // Clear any existing timer
+        if (sizeStabilityTimer) {
+          clearTimeout(sizeStabilityTimer);
+        }
+
+        // Set new timer to mark component as ready after dimensions stabilize
+        const newTimer = setTimeout(() => {
+          if (roundedWidth > 0 && roundedHeight > 0) {
+            setIsReady(true);
+          }
+        }, 100); // Wait 100ms for dimensions to stabilize
+
+        setSizeStabilityTimer(newTimer);
+
+        return { width: roundedWidth, height: roundedHeight };
+      });
+    },
+    [sizeStabilityTimer],
+  );
 
   const globePosition = useMemo(() => {
     return [0, -1, -1] as const;
@@ -435,13 +458,38 @@ function GlobeScene({ className }: { className?: string }) {
     };
   }, [damping, autoRotationSpeed, lerpStrength]);
 
+  // Run handleResize on mount with 100ms delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        handleResize(rect.width, rect.height);
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [handleResize]);
+
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => {
+      if (sizeStabilityTimer) {
+        clearTimeout(sizeStabilityTimer);
+      }
+    };
+  }, [sizeStabilityTimer]);
+
   return (
     <div
       ref={containerRef}
       className={cn(
-        'w-full cursor-grab overflow-hidden active:cursor-grabbing min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[800px] max-h-[809px]',
+        'h-full max-h-[100%] w-full cursor-grab overflow-hidden active:cursor-grabbing md:min-h-[100%] lg:min-h-[100%] xl:min-h-[100%]',
         className,
       )}
+      style={{
+        opacity: isReady ? 1 : 0,
+        transition: 'opacity 0.2s ease-in-out',
+      }}
     >
       <WebGLView
         fragmentShader={fragmentShader}
@@ -449,29 +497,31 @@ function GlobeScene({ className }: { className?: string }) {
         onResize={handleResize}
         borderRadiusCorners={[8, 8, 8, 8] as const}
       />
-      <WebGlTunnelIn>
-        <RenderTexture
-          fbo={fbo}
-          width={elementWidth}
-          height={elementHeight}
-          onMapTexture={setRenderResult}
-          camera={camera}
-          autoResize={false}
-        >
-          <ambientLight intensity={3.5} />
-          <group
-            ref={globeRef}
-            dispose={null}
-            scale={1}
-            position={globePosition}
-            rotation={globeRotation}
+      {isReady && (
+        <WebGlTunnelIn>
+          <RenderTexture
+            fbo={fbo}
+            width={elementWidth}
+            height={elementHeight}
+            onMapTexture={setRenderResult}
+            camera={camera}
+            autoResize={false}
           >
-            <mesh castShadow receiveShadow geometry={geometry} material={earthMaterial} />
-            {/* Render particle system */}
-            <primitive object={particleSystem} />
-          </group>
-        </RenderTexture>
-      </WebGlTunnelIn>
+            <ambientLight intensity={3.5} />
+            <group
+              ref={globeRef}
+              dispose={null}
+              scale={1}
+              position={globePosition}
+              rotation={globeRotation}
+            >
+              <mesh castShadow receiveShadow geometry={geometry} material={earthMaterial} />
+              {/* Render particle system */}
+              <primitive object={particleSystem} />
+            </group>
+          </RenderTexture>
+        </WebGlTunnelIn>
+      )}
     </div>
   );
 }

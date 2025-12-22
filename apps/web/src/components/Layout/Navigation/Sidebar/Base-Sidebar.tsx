@@ -46,7 +46,7 @@ const mobileSubMenuVariants = {
   exit: { opacity: 0, x: 20 },
 };
 
-const transition = { type: 'tween' as const, duration: 0.25, ease: [0.4, 0, 0.2, 1] };
+const transition = { type: 'spring' as const, duration: 0.25, bounce: 0.2 };
 
 export const isLinkActive = ({
   pathname,
@@ -348,17 +348,7 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
             <span className="font-sans text-xs text-base-blue">START HERE</span>
           </div>
 
-          <Button
-            type="button"
-            className="w-full"
-            asChild
-            variant={ButtonVariants.Secondary}
-            size={ButtonSizes.Small}
-          >
-            <Link href="https://base.app" className="group" target="_blank">
-              Get Base App
-            </Link>
-          </Button>
+
           <Button
             type="button"
             className="w-full"
@@ -368,6 +358,17 @@ export function BaseNavigation({ isMobile = false }: { isMobile?: boolean }) {
           >
             <Link href="/build" className="group">
               Build on Base
+            </Link>
+          </Button>
+          <Button
+            type="button"
+            className="w-full"
+            asChild
+            variant={ButtonVariants.Blue}
+            size={ButtonSizes.Small}
+          >
+            <Link href="https://base.app" className="group" target="_blank">
+              Get Base App
             </Link>
           </Button>
         </div>

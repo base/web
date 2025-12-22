@@ -76,7 +76,7 @@ export function BlogCardImage({
   }, []);
 
   return (
-    <div ref={imageRef} className="relative w-full flex-[4] overflow-hidden md:flex-[2]">
+    <div ref={imageRef} className="relative w-full flex-[4] overflow-hidden rounded-xl md:flex-[2]">
       <div className="overflow-hidden relative w-full h-full">
         {shader ? (
           <WebGLView

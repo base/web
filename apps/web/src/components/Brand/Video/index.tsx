@@ -20,9 +20,12 @@ export type VideoGridItemProps = {
   videoSrc: string;
   posterSrc?: string;
   tag?: RichTextContent;
+  loop?: boolean;
+  style?: React.CSSProperties;
+  scrollScrub?: boolean;
 };
 
-export function VideoPlayer({ videoSrc, posterSrc, tag }: VideoGridItemProps) {
+export function VideoPlayer({ videoSrc, posterSrc, tag, loop = true, style, scrollScrub = false }: VideoGridItemProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -31,33 +34,107 @@ export function VideoPlayer({ videoSrc, posterSrc, tag }: VideoGridItemProps) {
       return;
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          if (!video.src) {
-            video.src = videoSrc;
+    // Load video source
+    if (!video.src) {
+      video.src = videoSrc;
+    }
+
+    if (scrollScrub) {
+      // For scroll scrub, we need to load metadata to get duration
+      video.preload = 'metadata';
+      
+      let isVideoInView = false;
+      
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          isVideoInView = entry.isIntersecting;
+          if (!isVideoInView) {
+            // Reset video to start when out of view
+            video.currentTime = 0;
           }
-          video.play().catch(() => {
-            // some browsers might block autoplay, ignore error
-          });
+        },
+        {
+          threshold: 0,
+        },
+      );
+
+      const handleScroll = () => {
+        if (!isVideoInView || video.duration === 0) return;
+
+        const rect = video.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        
+        // Calculate how much of the video is visible
+        // When video starts entering (bottom of video touches viewport top), progress = 0
+        // When video is fully visible (top of video reaches viewport top), progress = 1
+        const videoHeight = rect.height;
+        const videoTop = rect.top;
+        const videoBottom = rect.bottom;
+        
+        let progress = 0;
+        
+        if (videoBottom > 0 && videoTop < viewportHeight) {
+          // Video is at least partially visible
+          if (videoTop <= 0 && videoBottom >= viewportHeight) {
+            // Video is fully covering the viewport or larger
+            progress = Math.min(1, Math.abs(videoTop) / (videoHeight - viewportHeight));
+          } else if (videoTop > 0) {
+            // Video is entering from bottom
+            const visibleHeight = Math.min(videoHeight, viewportHeight - videoTop);
+            progress = visibleHeight / videoHeight;
+          } else {
+            // Video is exiting from top
+            const visibleHeight = Math.min(videoHeight, videoBottom);
+            progress = 1 - ((videoHeight - visibleHeight) / videoHeight);
+          }
         }
-      },
-      {
-        threshold: 0.5,
-      },
-    );
+        
+        // Clamp progress between 0 and 1
+        progress = Math.max(0, Math.min(1, progress));
+        
+        // Set video time based on progress
+        video.currentTime = progress * video.duration;
+      };
 
-    observer.observe(video);
+      observer.observe(video);
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      window.addEventListener('resize', handleScroll, { passive: true });
 
-    return () => {
-      observer.disconnect();
-    };
-  }, [videoSrc]);
+      // Initial calculation
+      handleScroll();
+
+      return () => {
+        observer.disconnect();
+        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('resize', handleScroll);
+      };
+    } else {
+      // Original autoplay behavior
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {
+              // some browsers might block autoplay, ignore error
+            });
+          }
+        },
+        {
+          threshold: 0.5,
+        },
+      );
+
+      observer.observe(video);
+
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, [videoSrc, scrollScrub]);
 
   return (
-    <div className="relative h-full w-full">
+    <div className="relative w-full h-full">
       {tag && (
-        <span className="absolute left-2 top-2 grid h-6 w-fit place-items-center px-2">
+        <span className="grid absolute top-2 left-2 place-items-center px-2 h-6 w-fit">
           <Text variant={TextVariant.CaptionMono} as="span" className="!text-base-gray-200">
             {tag}
           </Text>
@@ -66,11 +143,12 @@ export function VideoPlayer({ videoSrc, posterSrc, tag }: VideoGridItemProps) {
       <video
         ref={videoRef}
         poster={posterSrc}
-        className="h-full w-full rounded-lg bg-transparent object-cover"
-        loop
+        style={style}
+        className="object-cover w-full h-full bg-transparent rounded-lg"
+        loop={loop}
         muted
         playsInline
-        preload="none"
+        preload={scrollScrub ? "metadata" : "none"}
       />
     </div>
   );
@@ -132,7 +210,7 @@ export function VideoComponent({
     return (
       <Container className="border-t border-[#0A0B0D] pt-4 md:pt-5" id={id}>
         <div className="col-span-full mb-4 grid w-full flex-1 grid-cols-12 gap-x-[min(2.25vw,_32px)] md:mb-8 lg:col-span-9 lg:grid-cols-9">
-          <div className="col-span-full flex flex-col items-start gap-2 pb-4 md:col-span-3 md:pb-0">
+          <div className="flex flex-col col-span-full gap-2 items-start pb-4 md:col-span-3 md:pb-0">
             {prefix && (
               <Text variant={TextVariant.Body} as="span" className="text-base-gray-200">
                 {prefix}
@@ -142,7 +220,7 @@ export function VideoComponent({
               {title}
             </Title>
           </div>
-          <div className="col-span-full flex flex-col items-start gap-2 md:col-span-9 lg:col-span-6">
+          <div className="flex flex-col col-span-full gap-2 items-start md:col-span-9 lg:col-span-6">
             {description && (
               <Text variant={TextVariant.Body} as="span">
                 {description}
@@ -150,14 +228,14 @@ export function VideoComponent({
             )}
           </div>
         </div>
-        <div className="col-span-full h-full w-full flex-1 lg:col-span-9">{videoGridContent}</div>
+        <div className="flex-1 col-span-full w-full h-full lg:col-span-9">{videoGridContent}</div>
       </Container>
     );
   }
   return (
     <Container className="border-t border-[#0A0B0D] pt-4 md:pt-5" id={id}>
       <Aside prefix={prefix} title={title} description={description} />
-      <div className="relative col-span-full h-full flex-1 gap-8 md:col-span-9 lg:col-span-6">
+      <div className="relative flex-1 col-span-full gap-8 h-full md:col-span-9 lg:col-span-6">
         {videoGridContent}
       </div>
     </Container>

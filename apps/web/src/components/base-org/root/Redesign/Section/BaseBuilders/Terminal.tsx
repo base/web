@@ -15,7 +15,7 @@ const TERMINAL_CONFIG = {
       type: 'typewriter' as const,
       prompt: '$ ',
       text: 'npm create onchain',
-      className: 'text-[#0000ff]',
+      className: 'text-[#66C800]',
       delay: 50,
       speed: 15,
       nextStepDelay: 120,
@@ -31,7 +31,7 @@ const TERMINAL_CONFIG = {
       type: 'typewriter' as const,
       prompt: 'Project name:',
       text: 'my onchain app',
-      className: 'text-[#0000ff]',
+      className: 'text-[#66C800]',
       delay: 100,
       speed: 12,
       nextStepDelay: 120,
@@ -41,7 +41,7 @@ const TERMINAL_CONFIG = {
       type: 'typewriter' as const,
       prompt: 'Use Coinbase Smart Wallet? (recommended):',
       text: 'yes',
-      className: 'text-[#0000ff]',
+      className: 'text-[#66C800]',
       delay: 160,
       speed: 18,
       nextStepDelay: 140,
@@ -74,7 +74,7 @@ const TERMINAL_STYLES = {
     fontSize: 'clamp(2px, 1vw, 8px)',
     lineHeight: '1.1',
     fontFamily: 'monospace',
-    color: '#0a0b0d',
+    color: '#EEF0F3',
     whiteSpace: 'pre' as const,
     textAlign: 'left' as const,
     margin: 0,
@@ -96,7 +96,7 @@ function BlinkingCursor() {
     <motion.span
       animate={CURSOR_ANIMATION}
       transition={CURSOR_TRANSITION}
-      className="inline-block text-[#5b616e]"
+      className="inline-block text-[#EEF0F3]"
     >
       |
     </motion.span>
@@ -104,7 +104,7 @@ function BlinkingCursor() {
 }
 
 function SolidCursor() {
-  return <span className="inline-block text-[#5b616e]">|</span>;
+  return <span className="inline-block text-[#EEF0F3]">|</span>;
 }
 
 function TypewriterText({
@@ -233,9 +233,9 @@ function TerminalContent({ onComplete }: { onComplete: () => void }) {
             const stepHandler = getHandler();
 
             return (
-              <div key={step.id} className="text-[#5b616e]">
+              <div key={step.id} className="text-[#999ca1]">
                 {step.prompt && (
-                  <span className="text-[#5b616e]">
+                  <span className="text-[#999ca1]">
                     {step.prompt.includes('$') ? step.prompt : `${step.prompt} `}
                   </span>
                 )}
@@ -257,8 +257,8 @@ function TerminalContent({ onComplete }: { onComplete: () => void }) {
 
           if (step.type === 'ascii') {
             return (
-              <div key={step.id} ref={handleAsciiRef} className="w-full overflow-hidden">
-                <pre className="ascii-art w-full" style={TERMINAL_STYLES.asciiArt}>
+              <div key={step.id} ref={handleAsciiRef} className="overflow-hidden w-full">
+                <pre className="w-full ascii-art" style={TERMINAL_STYLES.asciiArt}>
                   {TERMINAL_CONFIG.asciiArt}
                 </pre>
               </div>
@@ -294,11 +294,11 @@ export function Terminal() {
 
   return (
     <motion.div
-      className="h-auto min-h-[180px] w-fit min-w-[300px] max-w-[660px] rounded-lg bg-[#EEF0F3] font-mono md:min-h-[280px]"
+      className="h-auto min-h-[180px] w-fit min-w-[300px] max-w-[660px] rounded-lg bg-[#000000] font-mono md:min-h-[280px]"
       style={TERMINAL_STYLES.container}
       variants={itemContentVariants}
     >
-      <div className="flex items-center justify-between rounded-t-lg bg-[#242e3d] p-2 md:p-3 md:px-4">
+      <div className="flex items-center justify-between rounded-t-lg bg-[#262626] p-2 md:p-3 md:px-4">
         <div className="flex items-center gap-1.5 md:gap-2">
           <IconClose />
 

@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useCallback } from 'react';
 import { motion, AnimatePresence, Variants, cubicBezier } from 'motion/react';
 import { Section } from 'apps/web/src/components/base-org/root/Redesign/Section';
 import {
@@ -11,7 +10,6 @@ import classNames from 'classnames';
 import { levelStyles } from 'apps/web/src/components/base-org/typography/TitleRedesign';
 import { variantStyles } from 'apps/web/src/components/base-org/typography/TextRedesign';
 
-import AnimatedButton from 'apps/web/src/components/Button/AnimatedButton';
 import Text from 'apps/web/src/components/base-org/typography/TextRedesign';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
 import Link from 'apps/web/src/components/Link';
@@ -21,107 +19,39 @@ export function SectionBlog() {
   return (
     <Section content={content}>
       <BlogCarousel />
-
-      <Link href="https://blog.base.org">
-        <AnimatedButton text="Read more" />
-      </Link>
     </Section>
   );
 }
 
 const content = {
   title: 'Read the latest from Base',
+  cta: {
+    label: 'Read more',
+    href: 'https://blog.base.org',
+  },
 };
 
-function BlogCarouselControls({
-  displayedPosts,
-  currentIndex,
-  onDotClick,
-}: {
-  displayedPosts: BlogPost[];
-  currentIndex: number;
-  onDotClick: (index: number) => () => void;
-}) {
-  const handleButtonClick = useCallback(
-    (index: number) => {
-      return (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-        e.stopPropagation();
-        onDotClick(index)();
-      };
-    },
-    [onDotClick],
-  );
-  return (
-    <motion.div className="" variants={controlsVariants} initial="hidden" animate="visible">
-      <div className="flex gap-3">
-        {displayedPosts.map((post, index) => (
-          <motion.button
-            key={post.title}
-            onClick={handleButtonClick(index)}
-            className="relative h-10 w-10 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-          >
-            <motion.div
-              animate={getBackgroundColor(index === currentIndex)}
-              transition={blogCardTransition}
-              className={classNames(
-                'flex h-full w-full items-center justify-center rounded-sm border',
-                {
-                  'border-base-gray-150': index !== currentIndex,
-                  'border-base-blue': index === currentIndex,
-                },
-              )}
-            >
-              <motion.span
-                className={variantStyles['body-mono']}
-                animate={getTextColor(index === currentIndex)}
-                transition={blogCardTransition}
-              >
-                {(index + 1).toString().padStart(2, '0')}
-              </motion.span>
-            </motion.div>
-          </motion.button>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
-
 function BlogCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const displayedPosts = blogPosts.slice(0, 5);
-
-  const handleDotClick = useCallback(
-    (newIndex: number) => () => {
-      setCurrentIndex(newIndex);
-    },
-    [],
-  );
-
-  const currentPost = displayedPosts[currentIndex];
+  const displayedPosts: BlogPost[] = blogPosts.slice(0, 2);
 
   return (
-    <div className="relative col-span-full overflow-hidden rounded-lg">
+    <div className="grid-base relative col-span-full !gap-y-[80px] overflow-hidden">
       {/* blog card container */}
-      <div className="relative col-span-full">
-        <BlogCard
-          title={currentPost.title}
-          subtitle={currentPost.subtitle}
-          href={currentPost.href}
-          backgroundImage={currentPost.previewImage}
-          slideNumber={currentIndex + 1}
-          animationKey={currentIndex}
-          brightness={currentPost.brightness}
-          contrast={currentPost.contrast}
-          carouselControls={
-            <BlogCarouselControls
-              displayedPosts={displayedPosts}
-              currentIndex={currentIndex}
-              onDotClick={handleDotClick}
-            />
-          }
-        />
-      </div>
+      {displayedPosts.map((post, index) => (
+        <div key={post.href} className="relative col-span-full md:col-span-2">
+          <BlogCard
+            key={post.href}
+            title={post.title}
+            subtitle={post.subtitle}
+            href={post.href}
+            backgroundImage={post.previewImage}
+            slideNumber={index + 1}
+            animationKey={index}
+            brightness={post.brightness}
+            contrast={post.contrast}
+          />
+        </div>
+      ))}
     </div>
   );
 }
@@ -154,21 +84,22 @@ function BlogCardContent({
   carouselControls?: React.ReactNode;
 }) {
   return (
-    <div className="relative flex flex-[3] bg-base-gray-25 md:flex-none">
+    <div className="relative flex flex-[3] md:flex-none">
       <BlogCardSlideNumber slideNumber={slideNumber} />
       <AnimatePresence initial={false} mode="wait">
-        <motion.div className="w-full" key={animationKey}>
-          <div className="w-full p-4 pt-8 sm:pt-12 md:px-6 md:py-12 xl:px-12">
-            <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end md:gap-2">
+        <motion.div
+          key={animationKey}
+          className="w-full"
+          variants={textVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={blogCardTransition}
+        >
+          <div className="w-full pb-8 sm:pb-12 md:px-0 md:pb-12 xl:px-0">
+            <div className="flex items-end justify-between">
               {/* text */}
-              <motion.div
-                className="flex flex-1 flex-col gap-4 md:max-w-[380px] lg:max-w-[420px] xl:h-36 xl:max-w-[600px]"
-                variants={textVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={blogCardTransition}
-              >
+              <motion.div className="flex flex-1 flex-col gap-4 md:max-w-[380px] lg:max-w-[420px] xl:h-36 xl:max-w-[600px]">
                 <motion.h5
                   className={classNames(
                     levelStyles['h2-regular'],
@@ -183,7 +114,7 @@ function BlogCardContent({
                 <motion.div
                   className={classNames(
                     variantStyles.body,
-                    'hidden text-pretty !text-base-gray-200 xl:line-clamp-3 xl:block xl:h-auto',
+                    'text-pretty !text-base-gray-200 xl:line-clamp-3 xl:block xl:h-auto',
                   )}
                   initial={textConfig2.initial}
                   animate={textConfig2.animate}
@@ -233,19 +164,18 @@ function BlogCard({
       target={href.startsWith('https') ? '_blank' : '_self'}
       className={classNames('relative flex h-full w-full flex-col overflow-hidden', className)}
     >
+      <BlogCardContent
+        title={title}
+        subtitle={subtitle}
+        slideNumber={slideNumber}
+        animationKey={animationKey}
+      />
       <BlogCardImage
         backgroundImage={backgroundImage}
         title={title}
         brightness={brightness}
         contrast={contrast}
         shader={false}
-      />
-      <BlogCardContent
-        title={title}
-        subtitle={subtitle}
-        slideNumber={slideNumber}
-        animationKey={animationKey}
-        carouselControls={carouselControls}
       />
     </Link>
   );
@@ -288,14 +218,6 @@ const textConfig2 = {
   },
 };
 
-const getBackgroundColor = (isActive: boolean) => ({
-  backgroundColor: isActive ? '#0000ff' : 'transparent',
-});
-
-const getTextColor = (isActive: boolean) => ({
-  color: isActive ? '#ffffff' : '#0a0b0d',
-});
-
 const textVariants: Variants = {
   enter: {
     opacity: 0,
@@ -305,11 +227,5 @@ const textVariants: Variants = {
   },
   exit: {
     opacity: 0,
-  },
-};
-
-const controlsVariants: Variants = {
-  visible: {
-    transition: blogCardTransition,
   },
 };
