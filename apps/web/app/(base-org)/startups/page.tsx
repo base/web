@@ -115,11 +115,18 @@ export default async function Startups() {
             </section>
 
             {/* Scale Your Business Section */}
-            <section className="flex flex-col gap-8">
-              <Title level={TitleLevel.H4Regular} as="h2">
-                Scale Your Business
-              </Title>
-              <div className={cn('grid gap-[min(2.25vw,_32px)]', 'grid-cols-1 lg:grid-cols-2')}>
+
+            <Section
+              content={{
+                title: 'Scale Your Business',
+              }}
+            >
+              <div
+                className={cn(
+                  'col-span-full grid gap-[min(2.25vw,_32px)]',
+                  'grid-cols-1 lg:grid-cols-2',
+                )}
+              >
                 {content.scaleYourBusiness.cards.map((card, index) => (
                   <Link
                     href={card.url}
@@ -172,7 +179,7 @@ export default async function Startups() {
                   </Link>
                 ))}
               </div>
-            </section>
+            </Section>
 
             {/* Base Layer Section */}
             <Section
