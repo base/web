@@ -12,6 +12,8 @@ import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRed
 import Text from 'apps/web/src/components/base-org/typography/TextRedesign';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
 import { Section } from 'apps/web/src/components/base-org/root/Redesign/Section';
+import classNames from 'classnames';
+
 import {
   Button,
   ButtonSizes,
@@ -40,7 +42,7 @@ export default async function Startups() {
           </div>
         </div>
         <Container className="lg:pt-0">
-          <div className="col-span-full flex flex-col gap-24">
+          <div className="col-span-full flex flex-col gap-0">
             {/* Hero Section */}
             <GenericHero
               title={content.hero.header}
@@ -74,16 +76,21 @@ export default async function Startups() {
             </section>
 
             {/* Value Props Section */}
-            <section className="grid grid-cols-1 gap-8 md:grid-cols-3">
-              {content.valueProps.map((prop) => (
-                <div key={prop.id} className="flex flex-col gap-4 rounded-xl p-6">
-                  <Title level={TitleLevel.H5Regular}>{prop.header}</Title>
-                  <Text variant={TextVariant.BodyLarge} className="!text-base-gray-200">
-                    {prop.subheader}
-                  </Text>
-                </div>
-              ))}
-            </section>
+            <Section content={{ title: 'Why build on Base?' }} className="w-full">
+              <div className="col-span-full grid gap-8 md:grid-cols-3">
+                {content.valueProps.map((prop) => (
+                  <div key={prop.id} className="flex flex-col gap-3 rounded-xl">
+                    <div className="aspect-square w-full rounded-lg bg-base-gray-200/20">
+                      {/* <Image src={prop.image} alt={prop.header} fill className="object-cover" /> */}
+                    </div>
+                    <Title level={TitleLevel.H2Regular}>{prop.header}</Title>
+                    <Text variant={TextVariant.BodyLarge} className="!text-base-gray-200">
+                      {prop.subheader}
+                    </Text>
+                  </div>
+                ))}
+              </div>
+            </Section>
 
             {/* Base Batches Section */}
             <section className="flex flex-col gap-[min(2.25vw,_32px)] rounded-2xl px-6 py-16">
@@ -298,11 +305,13 @@ export default async function Startups() {
             </Section>
 
             {/* Resources Section */}
-            <section className="flex flex-col gap-8">
-              <Title level={TitleLevel.H4Regular} as="h2">
-                {content.resources.header}
-              </Title>
-              <div className={cn('grid gap-[min(2.25vw,_32px)]', 'grid-cols-1 lg:grid-cols-3')}>
+            <Section content={{ title: content.resources.header }}>
+              <div
+                className={cn(
+                  'grid gap-[min(2.25vw,_32px)]',
+                  'col-span-full grid-cols-1 lg:grid-cols-3',
+                )}
+              >
                 {content.resources.cards.map((card, index) => (
                   <Link
                     href={card.url}
@@ -355,39 +364,7 @@ export default async function Startups() {
                   </Link>
                 ))}
               </div>
-            </section>
-
-            {/* Final CTA Section */}
-            <section className="col-span-full py-12 text-black">
-              <div className="grid gap-[min(2.25vw,_32px)] md:grid-cols-2 md:items-center">
-                <div className="max-w-[30ch]">
-                  <Title level={TitleLevel.H1Regular}>{content.finalCta.header}</Title>
-                </div>
-                <div className="flex flex-col gap-8">
-                  <Title level={TitleLevel.H2Regular}>{content.finalCta.subheader}</Title>
-                  <div className="flex flex-wrap gap-4">
-                    <Link
-                      href={content.finalCta.ctas.primary.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button variant={ButtonVariants.Primary} size={ButtonSizes.Small}>
-                        {content.finalCta.ctas.primary.label}
-                      </Button>
-                    </Link>
-                    <Link
-                      href={content.finalCta.ctas.secondary.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button variant={ButtonVariants.SecondaryOutline} size={ButtonSizes.Small}>
-                        {content.finalCta.ctas.secondary.label}
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </section>
+            </Section>
           </div>
         </Container>
       </AnalyticsProvider>

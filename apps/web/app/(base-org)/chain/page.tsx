@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Container from 'apps/web/src/components/base-org/Container';
 import { WebGLCanvas } from 'apps/web/src/components/WebGL/WebGLCanvas';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
-import { GenericHero } from './GenericHero';
 import { content } from './content';
 import { Marquee } from 'apps/web/src/components/Builders/Shared/Marquee';
 import Title from 'apps/web/src/components/base-org/typography/TitleRedesign';
@@ -11,6 +10,7 @@ import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRed
 import Text from 'apps/web/src/components/base-org/typography/TextRedesign';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
 import { Section } from 'apps/web/src/components/base-org/root/Redesign/Section';
+import { GenericHero } from 'apps/web/src/components/base-org/root/Redesign/Hero/GenericHero';
 
 import {
   Button,
@@ -46,9 +46,11 @@ export default async function Chain() {
             {/* Hero Section */}
             <GenericHero
               title={content.hero.header}
-              subheader={content.hero.subheader}
+              description={content.hero.subheader}
               imageUrl={'/images/backgrounds/partnerships.webp'}
-              ctas={content.hero.ctas}
+              buttons={[
+                { text: content.hero.ctas.primary.label, href: content.hero.ctas.primary.url },
+              ]}
             />
 
             {/* Value Props Section */}
