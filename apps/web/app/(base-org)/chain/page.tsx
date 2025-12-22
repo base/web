@@ -18,6 +18,7 @@ import {
 import Link from 'apps/web/src/components/Link';
 import { cn } from 'apps/web/src/utils/cn';
 import AnimatedButton from 'apps/web/src/components/Button/AnimatedButton';
+import { GlobeWrapper } from './GlobeWrapper';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
@@ -82,43 +83,9 @@ export default async function Chain() {
               ))}
             </section>
 
-            {/* Stats Section */}
-            <section className="flex flex-col gap-8">
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-5">
-                {/* Live Stats */}
-                {content.stats.live.map((stat) => (
-                  <div key={stat.id} className="flex flex-col gap-2 rounded-xl bg-base-gray-25 p-6">
-                    <Text
-                      variant={TextVariant.CTALabel}
-                      className="uppercase tracking-widest !text-base-gray-200"
-                    >
-                      {stat.label}
-                    </Text>
-                    <Title level={TitleLevel.H4Regular} className="tabular-nums">
-                      {/* Placeholder for live counter */}
-                      <span className="animate-pulse">--</span>
-                    </Title>
-                    <div className="flex items-center gap-1">
-                      <span className="bg-green-500 h-2 w-2 animate-pulse rounded-full" />
-                      <Text variant={TextVariant.Caption} className="!text-green-500">
-                        Live
-                      </Text>
-                    </div>
-                  </div>
-                ))}
-                {/* Static Stats */}
-                {content.stats.static.map((stat) => (
-                  <div key={stat.id} className="flex flex-col gap-2 rounded-xl bg-base-gray-25 p-6">
-                    <Text
-                      variant={TextVariant.CTALabel}
-                      className="uppercase tracking-widest !text-base-gray-200"
-                    >
-                      {stat.label}
-                    </Text>
-                    <Title level={TitleLevel.H5Regular}>{stat.value}</Title>
-                  </div>
-                ))}
-              </div>
+            {/* Globe Section */}
+            <section className="w-full">
+              <GlobeWrapper />
             </section>
 
             {/* Ecosystem Section */}
