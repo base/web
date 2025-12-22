@@ -24,12 +24,184 @@ export const metadata: Metadata = {
   },
 };
 
-import assetImage from './images/asset.png';
-import bankingImage from './images/banking.png';
-import loyaltyImage from './images/loyalty.png';
-import paymentsImage from './images/payments.png';
+import assetImage from 'apps/web/public/images/backgrounds/typography.webp';
+import bankingImage from 'apps/web/public/images/backgrounds/sub-brands.webp';
+import loyaltyImage from './images/loyalty-b&w.png';
+import paymentsImage from 'apps/web/public/images/backgrounds/sub-brands.webp';
 
 import Image from 'next/image';
+
+function GlassPill({ children, className }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div
+      className={`whitespace-nowrap rounded-xl border border-white/30 bg-white/0 px-3.5 py-1.5 text-sm text-base-black backdrop-blur-md ${
+        className ?? ''
+      }`}
+    >
+      {children}
+    </div>
+  );
+}
+
+function CheckTick() {
+  return (
+    <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#6CD731]">
+      <svg
+        className="h-4 w-4 text-white"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={3}
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+  );
+}
+
+const GREEN = '#6CD731';
+const BLUE = '#5B6EE8';
+const ARROW_TRANSLATE_AMOUNT = 1;
+
+type ArrowConfig = {
+  id: string;
+  color: string;
+  line: { x1: number; y1: number; x2: number; y2: number };
+  head: string;
+  gradientStops: [number, number]; // [startOpacity, endOpacity]
+  hoverTranslate: { x: number; y: number }; // translation on hover
+};
+
+const ARROWS: ArrowConfig[] = [
+  // Green arrows (outward - move further out on hover)
+  {
+    id: 'up',
+    color: GREEN,
+    line: { x1: 100, y1: 68, x2: 100, y2: 20 },
+    head: '95,26 100,20 105,26',
+    gradientStops: [0, 1],
+    hoverTranslate: { x: 0, y: -ARROW_TRANSLATE_AMOUNT },
+  },
+  {
+    id: 'down',
+    color: GREEN,
+    line: { x1: 100, y1: 132, x2: 100, y2: 180 },
+    head: '95,174 100,180 105,174',
+    gradientStops: [0, 1],
+    hoverTranslate: { x: 0, y: ARROW_TRANSLATE_AMOUNT },
+  },
+  {
+    id: 'left',
+    color: GREEN,
+    line: { x1: 68, y1: 100, x2: 20, y2: 100 },
+    head: '26,95 20,100 26,105',
+    gradientStops: [0, 1],
+    hoverTranslate: { x: -ARROW_TRANSLATE_AMOUNT, y: 0 },
+  },
+  {
+    id: 'right',
+    color: GREEN,
+    line: { x1: 132, y1: 100, x2: 180, y2: 100 },
+    head: '174,95 180,100 174,105',
+    gradientStops: [0, 1],
+    hoverTranslate: { x: ARROW_TRANSLATE_AMOUNT, y: 0 },
+  },
+  // Blue arrows (inward top - move closer to box on hover)
+  {
+    id: 'topLeft',
+    color: BLUE,
+    line: { x1: 30, y1: 30, x2: 72, y2: 72 },
+    head: '72,64 72,72 64,72',
+    gradientStops: [0, 1],
+    hoverTranslate: { x: ARROW_TRANSLATE_AMOUNT, y: ARROW_TRANSLATE_AMOUNT },
+  },
+  {
+    id: 'topRight',
+    color: BLUE,
+    line: { x1: 170, y1: 30, x2: 128, y2: 72 },
+    head: '128,64 128,72 136,72',
+    gradientStops: [0, 1],
+    hoverTranslate: { x: -ARROW_TRANSLATE_AMOUNT, y: ARROW_TRANSLATE_AMOUNT },
+  },
+  // Blue arrows (outward bottom - move inward toward center on hover)
+  {
+    id: 'bottomLeft',
+    color: BLUE,
+    line: { x1: 72, y1: 128, x2: 30, y2: 170 },
+    head: '72,136 72,128 64,128',
+    gradientStops: [1, 0],
+    hoverTranslate: { x: ARROW_TRANSLATE_AMOUNT, y: -ARROW_TRANSLATE_AMOUNT },
+  },
+  {
+    id: 'bottomRight',
+    color: BLUE,
+    line: { x1: 128, y1: 128, x2: 170, y2: 170 },
+    head: '128,136 128,128 136,128',
+    gradientStops: [1, 0],
+    hoverTranslate: { x: -ARROW_TRANSLATE_AMOUNT, y: -ARROW_TRANSLATE_AMOUNT },
+  },
+];
+
+function ArrowsSvg() {
+  return (
+    <svg
+      className="absolute h-[400px] w-[400px]"
+      viewBox="0 0 200 200"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <style>
+        {ARROWS.map(
+          (arrow) => `
+          #arrow-${arrow.id} {
+            transition: transform 0.9s ease-out;
+          }
+          .group:hover #arrow-${arrow.id} {
+            transform: translate(${arrow.hoverTranslate.x}px, ${arrow.hoverTranslate.y}px);
+          }
+        `,
+        ).join('')}
+      </style>
+      <defs>
+        {ARROWS.map((arrow) => (
+          <linearGradient
+            key={arrow.id}
+            id={`gradient-${arrow.id}`}
+            gradientUnits="userSpaceOnUse"
+            x1={arrow.line.x1}
+            y1={arrow.line.y1}
+            x2={arrow.line.x2}
+            y2={arrow.line.y2}
+          >
+            <stop offset="0%" stopColor={arrow.color} stopOpacity={arrow.gradientStops[0]} />
+            <stop offset="100%" stopColor={arrow.color} stopOpacity={arrow.gradientStops[1]} />
+          </linearGradient>
+        ))}
+      </defs>
+      {ARROWS.map((arrow) => (
+        <g key={arrow.id} id={`arrow-${arrow.id}`}>
+          <line
+            x1={arrow.line.x1}
+            y1={arrow.line.y1}
+            x2={arrow.line.x2}
+            y2={arrow.line.y2}
+            stroke={`url(#gradient-${arrow.id})`}
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+          <polyline
+            points={arrow.head}
+            stroke={arrow.color}
+            strokeWidth="1.5"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </g>
+      ))}
+    </svg>
+  );
+}
 
 export default async function Enterprises() {
   return (
@@ -59,15 +231,12 @@ export default async function Enterprises() {
                   />
                 </Split.Text>
                 <Split.Content>
-                  <div className="h-full w-full ">
-                    {/* <Image
-                      src={paymentsImage}
-                      width={1080}
-                      height={1080}
-                      alt="Payments"
-                      className="h-full w-full object-cover"
-                    /> */}
+                  <div className="group relative h-full w-full">
                     <Halftone key={paymentsImage.src} imageUrl={paymentsImage.src} />
+                    <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap px-14 py-4 text-xl font-medium text-white">
+                      <span className="absolute inset-0 rounded-xl bg-[#5B31F4] transition-transform duration-1000 ease-out group-hover:scale-95" />
+                      <span className="relative z-10">Pay with crypto</span>
+                    </div>
                   </div>
                 </Split.Content>
               </Split>
@@ -81,14 +250,40 @@ export default async function Enterprises() {
                   />
                 </Split.Text>
                 <Split.Content>
-                  <div className="h-full w-full ">
-                    <Image
-                      src={assetImage}
-                      width={1080}
-                      height={1080}
-                      alt="Asset"
-                      className="h-full w-full object-cover"
-                    />
+                  <div className="relative h-full w-full">
+                    <Halftone key={assetImage.src} imageUrl={assetImage.src} />
+                    <div className="pointer-events-none absolute inset-x-0 top-1/2 z-10 -translate-y-1/2 overflow-hidden">
+                      <style>
+                        {`
+                          @keyframes marquee {
+                            0% { transform: translateX(0); }
+                            100% { transform: translateX(-50%); }
+                          }
+                        `}
+                      </style>
+                      <div
+                        className="flex w-max items-center gap-3"
+                        style={{ animation: 'marquee 20s linear infinite' }}
+                      >
+                        <CheckTick />
+                        <GlassPill>lend</GlassPill>
+                        <CheckTick />
+                        <GlassPill>withdraw</GlassPill>
+                        <CheckTick />
+                        <GlassPill>borrow</GlassPill>
+                        <CheckTick />
+                        <GlassPill className="mr-2">see rewards</GlassPill>
+                        {/* duplicated for loop */}
+                        <CheckTick />
+                        <GlassPill>lend</GlassPill>
+                        <CheckTick />
+                        <GlassPill>withdraw</GlassPill>
+                        <CheckTick />
+                        <GlassPill>borrow</GlassPill>
+                        <CheckTick />
+                        <GlassPill className="mr-2">see rewards</GlassPill>
+                      </div>
+                    </div>
                   </div>
                 </Split.Content>
               </Split>
@@ -102,14 +297,15 @@ export default async function Enterprises() {
                   />
                 </Split.Text>
                 <Split.Content>
-                  <div className="h-full w-full ">
-                    <Image
-                      src={bankingImage}
-                      width={1080}
-                      height={1080}
-                      alt="Banking"
-                      className="h-full w-full object-cover"
-                    />
+                  <div className="relative h-full w-full">
+                    <Halftone key={bankingImage.src} imageUrl={bankingImage.src} />
+                    {/* Blue square with 8 arrows */}
+                    <div className="group absolute inset-0 z-10 flex cursor-pointer items-center justify-center">
+                      {/* Blue square */}
+                      <div className="h-20 w-20 rounded-xl bg-[#0052FF] transition-transform duration-1000 ease-out group-hover:scale-[1.03]" />
+                      {/* Arrows SVG overlay */}
+                      <ArrowsSvg />
+                    </div>
                   </div>
                 </Split.Content>
               </Split>
@@ -123,13 +319,9 @@ export default async function Enterprises() {
                   />
                 </Split.Text>
                 <Split.Content>
-                  <Image
-                    src={loyaltyImage}
-                    width={1080}
-                    height={1080}
-                    alt="Loyalty"
-                    className="h-full w-full object-cover"
-                  />
+                  <div className="relative h-full w-full">
+                    <Halftone key={loyaltyImage.src} imageUrl={loyaltyImage.src} />
+                  </div>
                 </Split.Content>
               </Split>
 

@@ -1,15 +1,11 @@
 {
   "hero": {
-    "header": "Build your startup on Base",
-    "subheader": "Base gives startups everything they need to build fast, launch globally, and reach millions of users onchain.",
+    "header": "Build and grow faster on Base",
+    "subheader": "Base gives startups everything they need to ship fast, launch globally, and reach millions of users onchain.",
     "ctas": {
       "primary": {
-        "label": "Start building",
+        "label": "Already live? Register your app",
         "url": "https://www.base.dev/"
-      },
-      "secondary": {
-        "label": "See the docs",
-        "url": "https://docs.base.org/get-started/base"
       }
     }
   },
@@ -22,10 +18,8 @@
       "Virtuals",
       "Morpho",
       "Moonwell",
-      "Polymarket",
       "Kalshi",
       "Fomo",
-      "Slash",
       "Avantis",
       "Seamless",
       "Daylight",
@@ -36,28 +30,63 @@
   "valueProps": [
     {
       "id": 1,
-      "header": "Build on an open, composable stack",
-      "subheader": "Tap into shared standards for money, identity, social, markets, and chat so you can ship faster, build without gatekeepers, and access the global economy."
+      "header": "Go from idea to business",
+      "subheader": "Join our global incubator or apply to a partner accelerator to jumpstart your builder journey to make your vision the next killer app on Base"
     },
     {
       "id": 2,
-      "header": "Unlock distribution on day one",
-      "subheader": "Reach millions through the Base App, powered by an open social graph that enables discovery, growth, and virality."
+      "header": "Launch on the fastest growing onchain economy",
+      "subheader": "Plug into our growing global Base economy"
     },
     {
       "id": 3,
-      "header": "Go from idea to business",
-      "subheader": "Access grants, programs, and tools that help you build, grow, and earn at every stage."
+      "header": "Unlock distribution on day one",
+      "subheader": "Reach millions through the Base App, powered by an open social graph that enables discovery, growth, and virality."
     }
   ],
   "baseBatches": {
     "eyebrow": "Base Batches",
     "header": "Go from idea, to app, to business on Base",
-    "subheader": "Base Batches is a 12-week program for founders to turn their ideas into businesses, with access to expert mentorship, resources, and funding opportunities.",
+    "subheader": "Base Batches is a program designed to support founders looking to take their business to the next stage. Get access to expert mentorship, resources, and funding opportunities via Demo Day",
     "cta": {
       "label": "Apply now",
       "url": "https://batches.base.org"
     }
+  },
+  "acceleratorPrograms": {
+    "header": "Accelerator programs",
+    "subheader": "We collaborate with top accelerators and startup programs worldwide to help scale your venture.",
+    "cards": [
+      {
+        "title": "The R3sidency",
+        "subtitle": "An accelerator for crypto, AI, and frontier tech founders obsessed with building category-defining companies.",
+        "url": "https://r3sidency.xyz/"
+      },
+      {
+        "title": "Chainlink Build",
+        "subtitle": "A program that supports both early-stage and established projects by providing enhanced access to Chainlink's technology, ecosystem, marketing, and technical support.",
+        "url": "https://chain.link/build-program"
+      }
+    ]
+  },
+  "baseEcosystemFund": {
+    "header": "Base Ecosystem Fund",
+    "subheader": "Early stage projects (pre-seed to seed) building on Base can apply for investment.",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSeiSAod4PAbXlvvDGtHWu-GqzGpvHYfaTQR2f77AawD7GYc4Q/viewform"
+  },
+  "scaleYourBusiness": {
+    "cards": [
+      {
+        "header": "Launch Inside Base App",
+        "subheader": "Reach millions of users, apply to get featured, and create a new growth channel for your business",
+        "url": "https://base.app"
+      },
+      {
+        "header": "Understand Your Customers",
+        "subheader": "Head to our dashboard custom built for Base apps. Get analytics, understand your users, and get featured inside Base App",
+        "url": "https://dashboard.base.org"
+      }
+    ]
   },
   "baseLayer": {
     "eyebrow": "BaseLayer",
@@ -93,19 +122,13 @@
       }
     ]
   },
-  "ecosystemPrograms": {
-    "header": "Ecosystem Programs",
-    "subheader": "Base powers a growing ecosystem of programs designed to help you go from idea to business.",
+  "resources": {
+    "header": "Resources",
     "cards": [
       {
-        "title": "Base Builder Rewards",
-        "subtitle": "The Base ecosystem offers multiple funding pathways designed for builders at every stage, from weekend hacks to full-scale businesses.",
-        "url": "https://docs.base.org/get-started/get-funded"
-      },
-      {
-        "title": "Base Ecosystem Fund",
-        "subtitle": "Early stage projects (pre-seed to seed) building on Base can apply for investment.",
-        "url": "https://docs.google.com/forms/d/e/1FAIpQLSeiSAod4PAbXlvvDGtHWu-GqzGpvHYfaTQR2f77AawD7GYc4Q/viewform"
+        "title": "Base Documentations",
+        "subtitle": "We've done the hard part for you. Check out our docs for everything you need to ship your MVP.",
+        "url": "https://docs.base.org/get-started/base"
       },
       {
         "title": "Paymaster Gas Credits",
@@ -116,22 +139,6 @@
         "title": "Base Services Hub",
         "subtitle": "Get exclusive discounts on software and services to help you ship and grow faster.",
         "url": "https://docs.base.org/get-started/base-services-hub"
-      }
-    ]
-  },
-  "acceleratorPrograms": {
-    "header": "Accelerator programs",
-    "subheader": "We collaborate with top accelerators and startup programs worldwide to help scale your venture.",
-    "cards": [
-      {
-        "title": "The R3sidency",
-        "subtitle": "An accelerator for crypto, AI, and frontier tech founders obsessed with building category-defining companies.",
-        "url": "https://r3sidency.xyz/"
-      },
-      {
-        "title": "Chainlink Build",
-        "subtitle": "A program that supports both early-stage and established projects by providing enhanced access to Chainlink’s technology, ecosystem, marketing, and technical support.",
-        "url": "https://chain.link/build-program"
       }
     ]
   },

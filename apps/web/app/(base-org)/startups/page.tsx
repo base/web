@@ -100,6 +100,79 @@ export default async function Startups() {
               </Link>
             </section>
 
+            {/* Base Ecosystem Fund Section */}
+            <section className="flex flex-col gap-[min(2.25vw,_32px)] rounded-2xl px-6 py-16">
+              <Title level={TitleLevel.H4Regular} as="h2">
+                {content.baseEcosystemFund.header}
+              </Title>
+              <Text variant={TextVariant.BodyLarge} className="max-w-2xl !text-base-gray-200">
+                {content.baseEcosystemFund.subheader}
+              </Text>
+              <Link href={content.baseEcosystemFund.url} target="_blank" rel="noopener noreferrer">
+                <AnimatedButton text="Apply now" />
+              </Link>
+            </section>
+
+            {/* Scale Your Business Section */}
+            <section className="flex flex-col gap-8">
+              <Title level={TitleLevel.H4Regular} as="h2">
+                Scale Your Business
+              </Title>
+              <div className={cn('grid gap-[min(2.25vw,_32px)]', 'grid-cols-1 lg:grid-cols-2')}>
+                {content.scaleYourBusiness.cards.map((card, index) => (
+                  <Link
+                    href={card.url}
+                    key={card.header}
+                    target={card.url.includes('https://') ? '_blank' : '_self'}
+                    className="group flex h-[308px] flex-col rounded-lg bg-base-gray-25 p-6 transition-colors duration-300 hover:bg-base-gray-50"
+                  >
+                    <div className="flex h-full flex-col justify-between">
+                      <div className="flex items-center justify-between">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect
+                            width="24"
+                            height="24"
+                            rx="2"
+                            fill={['#0000ff', '#66C800'][index % 2]}
+                          />
+                        </svg>
+                        <svg
+                          width="13"
+                          height="14"
+                          viewBox="0 0 13 14"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="transition-transform duration-300 ease-in-out group-hover:rotate-45"
+                        >
+                          <path
+                            d="M2.02127 13.04L0.317273 11.36L8.52527 3.152V2.792L2.38127 2.888V0.8H12.5573V10.952H10.4693L10.5653 4.808H10.2053L2.02127 13.04Z"
+                            fill="black"
+                          />
+                        </svg>
+                      </div>
+                      <div className="mt-auto flex flex-col gap-3">
+                        <Title level={TitleLevel.H6Regular} as="h4">
+                          {card.header}
+                        </Title>
+                        <Text
+                          variant={TextVariant.Body}
+                          className="!text-pretty !text-base-gray-200"
+                        >
+                          {card.subheader}
+                        </Text>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+
             {/* Base Layer Section */}
             <section className="flex flex-col gap-8">
               <div className="flex flex-col gap-2">
@@ -148,18 +221,18 @@ export default async function Startups() {
               </div>
             </section>
 
-            {/* Ecosystem Programs Section */}
+            {/* Accelerator Programs Section */}
             <section className="flex flex-col gap-8">
               <div className="flex flex-col gap-2">
                 <Title level={TitleLevel.H4Regular} as="h2">
-                  {content.ecosystemPrograms.header}
+                  {content.acceleratorPrograms.header}
                 </Title>
                 <Text variant={TextVariant.BodyLarge} className="max-w-2xl !text-base-gray-200">
-                  {content.ecosystemPrograms.subheader}
+                  {content.acceleratorPrograms.subheader}
                 </Text>
               </div>
               <div className={cn('grid gap-[min(2.25vw,_32px)]', 'grid-cols-1 lg:grid-cols-2')}>
-                {content.ecosystemPrograms.cards.map((card, index) => (
+                {content.acceleratorPrograms.cards.map((card, index) => (
                   <Link
                     href={card.url}
                     key={card.title}
@@ -179,7 +252,7 @@ export default async function Startups() {
                             width="24"
                             height="24"
                             rx="2"
-                            fill={['#0000ff', '#66C800', '#ffd200', '#b8a581'][index % 4]}
+                            fill={['#66C800', '#ffd200'][index % 2]}
                           />
                         </svg>
                         <svg
@@ -213,18 +286,13 @@ export default async function Startups() {
               </div>
             </section>
 
-            {/* Accelerator Programs Section */}
+            {/* Resources Section */}
             <section className="flex flex-col gap-8">
-              <div className="flex flex-col gap-2">
-                <Title level={TitleLevel.H4Regular} as="h2">
-                  {content.acceleratorPrograms.header}
-                </Title>
-                <Text variant={TextVariant.BodyLarge} className="max-w-2xl !text-base-gray-200">
-                  {content.acceleratorPrograms.subheader}
-                </Text>
-              </div>
-              <div className={cn('grid gap-[min(2.25vw,_32px)]', 'grid-cols-1 lg:grid-cols-2')}>
-                {content.acceleratorPrograms.cards.map((card, index) => (
+              <Title level={TitleLevel.H4Regular} as="h2">
+                {content.resources.header}
+              </Title>
+              <div className={cn('grid gap-[min(2.25vw,_32px)]', 'grid-cols-1 lg:grid-cols-3')}>
+                {content.resources.cards.map((card, index) => (
                   <Link
                     href={card.url}
                     key={card.title}
@@ -244,7 +312,7 @@ export default async function Startups() {
                             width="24"
                             height="24"
                             rx="2"
-                            fill={['#66C800', '#ffd200'][index % 2]}
+                            fill={['#0000ff', '#66C800', '#ffd200'][index % 3]}
                           />
                         </svg>
                         <svg
