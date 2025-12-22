@@ -10,6 +10,7 @@ import Title from 'apps/web/src/components/base-org/typography/TitleRedesign';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRedesign/types';
 import Text from 'apps/web/src/components/base-org/typography/TextRedesign';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
+import { Section } from 'apps/web/src/components/base-org/root/Redesign/Section';
 import {
   Button,
   ButtonSizes,
@@ -174,117 +175,117 @@ export default async function Startups() {
             </section>
 
             {/* Base Layer Section */}
-            <section className="flex flex-col gap-8">
-              <div className="flex flex-col gap-2">
-                <Text
-                  variant={TextVariant.CTALabel}
-                  className="uppercase tracking-widest !text-base-gray-200"
-                >
-                  {content.baseLayer.eyebrow}
-                </Text>
-                <Title level={TitleLevel.H4Regular} as="h2">
-                  {content.baseLayer.header}
-                </Title>
-              </div>
-              <div className="grid grid-cols-1 gap-[min(2.25vw,_32px)] sm:grid-cols-2">
-                {content.baseLayer.cards.map((card) => (
-                  <a
-                    key={card.episode}
-                    href={card.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex flex-col"
-                  >
-                    <div className="relative aspect-video w-full overflow-hidden rounded-tl-lg rounded-tr-lg bg-base-gray-200/20">
-                      {card.image && (
-                        <Image
-                          src={card.image}
-                          alt={card.name}
-                          fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                      )}
-                    </div>
-                    <div className="flex flex-col gap-2 rounded-bl-lg rounded-br-lg bg-[#fafafa] p-6">
-                      <Text variant={TextVariant.Caption} className="!text-base-gray-200">
-                        {card.episode}
-                      </Text>
-                      <Title level={TitleLevel.H5Regular}>{card.name}</Title>
-                      {card.title && (
-                        <Text variant={TextVariant.BodyLarge} className="!text-base-gray-200">
-                          {card.title}
+            <Section
+              content={{
+                title: content.baseLayer.eyebrow,
+                description: content.baseLayer.header,
+              }}
+            >
+              <div className="col-span-full">
+                <div className="grid grid-cols-1 gap-[min(2.25vw,_32px)] gap-y-12 sm:grid-cols-2 md:gap-y-20">
+                  {content.baseLayer.cards.map((card) => (
+                    <a
+                      key={card.episode}
+                      href={card.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex flex-col gap-4"
+                    >
+                      <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-base-gray-200/20">
+                        {card.image && (
+                          <Image
+                            src={card.image}
+                            alt={card.name}
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                        )}
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        <Text
+                          variant={TextVariant.CaptionMono}
+                          className="!leading-none !text-base-gray-200"
+                        >
+                          {card.episode}
                         </Text>
-                      )}
-                    </div>
-                  </a>
-                ))}
+                        <Title level={TitleLevel.H2Regular} className="!leading-none">
+                          {card.name}
+                        </Title>
+                        {card.title && (
+                          <Text variant={TextVariant.Body} className="!text-base-gray-200">
+                            {card.title}
+                          </Text>
+                        )}
+                      </div>
+                    </a>
+                  ))}
+                </div>
               </div>
-            </section>
+            </Section>
 
             {/* Accelerator Programs Section */}
-            <section className="flex flex-col gap-8">
-              <div className="flex flex-col gap-2">
-                <Title level={TitleLevel.H4Regular} as="h2">
-                  {content.acceleratorPrograms.header}
-                </Title>
-                <Text variant={TextVariant.BodyLarge} className="max-w-2xl !text-base-gray-200">
-                  {content.acceleratorPrograms.subheader}
-                </Text>
-              </div>
-              <div className={cn('grid gap-[min(2.25vw,_32px)]', 'grid-cols-1 lg:grid-cols-2')}>
-                {content.acceleratorPrograms.cards.map((card, index) => (
-                  <Link
-                    href={card.url}
-                    key={card.title}
-                    target={card.url.includes('https://') ? '_blank' : '_self'}
-                    className="group flex h-[308px] flex-col rounded-lg bg-base-gray-25 p-6 transition-colors duration-300 hover:bg-base-gray-50"
-                  >
-                    <div className="flex h-full flex-col justify-between">
-                      <div className="flex items-center justify-between">
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <rect
+            <Section
+              content={{
+                title: content.acceleratorPrograms.header,
+                description: content.acceleratorPrograms.subheader,
+              }}
+            >
+              <div className="col-span-full">
+                <div className={cn('grid gap-[min(2.25vw,_32px)]', 'grid-cols-1 lg:grid-cols-2')}>
+                  {content.acceleratorPrograms.cards.map((card, index) => (
+                    <Link
+                      href={card.url}
+                      key={card.title}
+                      target={card.url.includes('https://') ? '_blank' : '_self'}
+                      className="group flex h-[308px] flex-col rounded-lg bg-base-gray-25 p-6 transition-colors duration-300 hover:bg-base-gray-50"
+                    >
+                      <div className="flex h-full flex-col justify-between">
+                        <div className="flex items-center justify-between">
+                          <svg
                             width="24"
                             height="24"
-                            rx="2"
-                            fill={['#66C800', '#ffd200'][index % 2]}
-                          />
-                        </svg>
-                        <svg
-                          width="13"
-                          height="14"
-                          viewBox="0 0 13 14"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="transition-transform duration-300 ease-in-out group-hover:rotate-45"
-                        >
-                          <path
-                            d="M2.02127 13.04L0.317273 11.36L8.52527 3.152V2.792L2.38127 2.888V0.8H12.5573V10.952H10.4693L10.5653 4.808H10.2053L2.02127 13.04Z"
-                            fill="black"
-                          />
-                        </svg>
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <rect
+                              width="24"
+                              height="24"
+                              rx="2"
+                              fill={['#66C800', '#ffd200'][index % 2]}
+                            />
+                          </svg>
+                          <svg
+                            width="13"
+                            height="14"
+                            viewBox="0 0 13 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="transition-transform duration-300 ease-in-out group-hover:rotate-45"
+                          >
+                            <path
+                              d="M2.02127 13.04L0.317273 11.36L8.52527 3.152V2.792L2.38127 2.888V0.8H12.5573V10.952H10.4693L10.5653 4.808H10.2053L2.02127 13.04Z"
+                              fill="black"
+                            />
+                          </svg>
+                        </div>
+                        <div className="mt-auto flex flex-col gap-3">
+                          <Title level={TitleLevel.H6Regular} as="h4">
+                            {card.title}
+                          </Title>
+                          <Text
+                            variant={TextVariant.Body}
+                            className="!text-pretty !text-base-gray-200"
+                          >
+                            {card.subtitle}
+                          </Text>
+                        </div>
                       </div>
-                      <div className="mt-auto flex flex-col gap-3">
-                        <Title level={TitleLevel.H6Regular} as="h4">
-                          {card.title}
-                        </Title>
-                        <Text
-                          variant={TextVariant.Body}
-                          className="!text-pretty !text-base-gray-200"
-                        >
-                          {card.subtitle}
-                        </Text>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </section>
+            </Section>
 
             {/* Resources Section */}
             <section className="flex flex-col gap-8">
