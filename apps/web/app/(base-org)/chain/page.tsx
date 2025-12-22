@@ -132,14 +132,25 @@ export default async function Chain() {
                         key={logo}
                         className="relative flex aspect-square w-[100px] items-center justify-center overflow-hidden rounded-[26px] bg-base-gray-100"
                       >
-                        <div className="absolute inset-0 h-full w-full overflow-hidden p-4">
-                          <Image
-                            className="h-full w-full rounded-xl object-contain"
-                            src={logo}
-                            alt={logo}
-                            width={140}
-                            height={140}
-                          />
+                        <div
+                          style={{ filter: 'contrast(1)' }}
+                          className="absolute inset-0 h-full w-full overflow-hidden p-4"
+                        >
+                          <div
+                            style={{ filter: 'grayscale(1) contrast(99) brightness(0.5)' }}
+                            className="h-full w-full"
+                          >
+                            <Image
+                              style={{
+                                filter: 'brightness(0.6) contrast(1.2)',
+                              }}
+                              className="h-full w-full rounded-xl object-contain"
+                              src={logo}
+                              alt={logo}
+                              width={140}
+                              height={140}
+                            />
+                          </div>
                         </div>
                       </div>
                     ))}
