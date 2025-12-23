@@ -42,13 +42,14 @@ export default async function Startups() {
             <WebGLCanvas />
           </div>
         </div>
-        <Container className="lg:pt-0">
+        <Container className="!lg:pt-0 !pt-0">
           <div className="col-span-full flex flex-col gap-0">
             {/* Hero Section */}
             <GenericHero
               title={content.hero.header}
               description={content.hero.subheader}
-              imageUrl={'/images/backgrounds/partnerships.webp'}
+              imageUrl={'/images/backgrounds/vision.webp'}
+              primaryColor="#FF6330"
               buttons={[
                 { text: content.hero.ctas.primary.label, href: content.hero.ctas.primary.url },
               ]}
@@ -79,7 +80,11 @@ export default async function Startups() {
                   <div key={prop.id} className="flex flex-col gap-4 rounded-xl">
                     <div className="aspect-square w-full rounded-lg bg-base-gray-200/20">
                       {/* <Image src={prop.image} alt={prop.header} fill className="object-cover" /> */}
-                      <Halftone imageUrl={prop.image} backgroundColor="#fbfbfb" />
+                      <Halftone
+                        imageUrl={prop.image}
+                        backgroundColor="#fbfbfb"
+                        primaryColor={prop.primaryColor}
+                      />
                     </div>
                     <div className="flex flex-col gap-2">
                       <Title level={TitleLevel.H2Regular}>{prop.header}</Title>
@@ -102,7 +107,11 @@ export default async function Startups() {
               }}
             >
               <div className="col-span-full aspect-[3/1] w-full overflow-hidden rounded-lg bg-base-gray-200/20">
-                <Halftone imageUrl="/images/backgrounds/scarab.webp" backgroundColor="#fbfbfb" />
+                <Halftone
+                  imageUrl="/images/startups/batches.webp"
+                  backgroundColor="#fbfbfb"
+                  primaryColor="#8081FF"
+                />
               </div>
             </Section>
 
@@ -184,7 +193,12 @@ export default async function Startups() {
               }}
             >
               <div className="col-span-full aspect-[3/1] w-full overflow-hidden rounded-lg bg-base-gray-200/20">
-                <Halftone imageUrl="/images/backgrounds/ecosystem.webp" backgroundColor="#fbfbfb" />
+                <Halftone
+                  imageUrl="/images/backgrounds/ecosystem.webp"
+                  backgroundColor="#fbfbfb"
+                  primaryColor="#FFD200"
+                  bottomFade={false}
+                />
               </div>
             </Section>
 
@@ -278,7 +292,7 @@ export default async function Startups() {
                             src={card.image}
                             alt={card.name}
                             fill
-                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            className="object-cover transition-transform duration-300"
                           />
                         )}
                       </div>

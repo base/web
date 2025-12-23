@@ -47,7 +47,8 @@ export default async function Chain() {
             <GenericHero
               title={content.hero.header}
               description={content.hero.subheader}
-              imageUrl={'/images/backgrounds/rocket_bg.webp'}
+              imageUrl={'/images/backgrounds/earth.webp'}
+              primaryColor="#aa04ff"
               buttons={[
                 { text: content.hero.ctas.primary.label, href: content.hero.ctas.primary.url },
               ]}
@@ -133,16 +134,16 @@ export default async function Chain() {
                         className="relative flex aspect-square w-[100px] items-center justify-center overflow-hidden rounded-[26px] bg-base-gray-100"
                       >
                         <div
-                          style={{ filter: 'contrast(1)' }}
+                          style={{ mixBlendMode: 'multiply' }}
                           className="absolute inset-0 h-full w-full overflow-hidden p-4"
                         >
                           <div
-                            style={{ filter: 'grayscale(1) contrast(99) brightness(0.5)' }}
-                            className="h-full w-full"
+                            style={{ filter: 'grayscale(1) contrast(2)' }}
+                            className="h-full w-full opacity-80"
                           >
                             <Image
                               style={{
-                                filter: 'brightness(0.6) contrast(1.2)',
+                                filter: 'invert(1)',
                               }}
                               className="h-full w-full rounded-xl object-contain"
                               src={logo}
@@ -191,7 +192,7 @@ export default async function Chain() {
                             src={card.image}
                             alt={card.title}
                             fill
-                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            className="object-cover transition-transform duration-300"
                           />
                         </div>
                       )}

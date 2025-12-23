@@ -50,6 +50,8 @@ type AsciiPatternUniforms = {
   uDarkMode: { value: boolean };
   uBottomFade: { value: boolean };
   uBackgroundColor: { value: THREE.Vector3 };
+  uPrimaryColor: { value: THREE.Vector3 };
+  uHasPrimaryColor: { value: boolean };
 } & Record<string, THREE.IUniform>;
 
 type UseAsciiPatternOptions = {
@@ -75,6 +77,7 @@ type UseAsciiPatternOptions = {
   logicalWidth?: number;
   logicalHeight?: number;
   backgroundColor?: { r: number; g: number; b: number } | null;
+  primaryColor?: { r: number; g: number; b: number } | null;
 };
 
 export function useAsciiPattern({
@@ -100,6 +103,7 @@ export function useAsciiPattern({
   logicalWidth,
   logicalHeight,
   backgroundColor,
+  primaryColor,
 }: UseAsciiPatternOptions) {
   const threeWidth = useThree((state) => Math.round(state.size.width));
   const threeHeight = useThree((state) => Math.round(state.size.height));
@@ -130,6 +134,12 @@ export function useAsciiPattern({
   const bgColor = backgroundColor
     ? new THREE.Vector3(backgroundColor.r, backgroundColor.g, backgroundColor.b)
     : defaultBgColor;
+
+  // Determine primary color: use custom if provided
+  const hasPrimaryColor = primaryColor !== null && primaryColor !== undefined;
+  const primaryColorVec = primaryColor
+    ? new THREE.Vector3(primaryColor.r, primaryColor.g, primaryColor.b)
+    : new THREE.Vector3(1, 1, 1);
 
   const uniforms = useUniforms<AsciiPatternUniforms>({
     uImage: { value: null },
@@ -164,6 +174,8 @@ export function useAsciiPattern({
     uDarkMode: { value: false },
     uBottomFade: { value: true },
     uBackgroundColor: { value: bgColor },
+    uPrimaryColor: { value: primaryColorVec },
+    uHasPrimaryColor: { value: hasPrimaryColor },
   });
 
   useEffect(() => {
@@ -207,6 +219,10 @@ export function useAsciiPattern({
   } else {
     uniforms.uBackgroundColor.value.set(darkMode ? 0 : 1, darkMode ? 0 : 1, darkMode ? 0 : 1);
   }
+  uniforms.uHasPrimaryColor.value = hasPrimaryColor;
+  if (primaryColor) {
+    uniforms.uPrimaryColor.value.set(primaryColor.r, primaryColor.g, primaryColor.b);
+  }
 
   const shaderMaterial = useShader(
     {
@@ -248,6 +264,8 @@ export function useAsciiPattern({
         uniform float uDarkMode;
         uniform float uBottomFade;
         uniform vec3 uBackgroundColor;
+        uniform vec3 uPrimaryColor;
+        uniform float uHasPrimaryColor;
         varying vec2 vUv;
 
         const float TIME_SPEED = 0.5;
@@ -328,7 +346,16 @@ export function useAsciiPattern({
             }
 
             if (uUseOriginalSvgColors > 0.5) {
-              return mix(backgroundColor, patternColor.rgb, patternAlpha);
+              vec3 baseColor = mix(backgroundColor, patternColor.rgb, patternAlpha);
+              
+              // Apply primary color to specific pattern indices (2, 3, 4) when primary color is set
+              if (uHasPrimaryColor > 0.5 && (patternIndex == 2 || patternIndex == 3 || patternIndex == 4)) {
+                // Mix the pattern color with primary color based on pattern alpha
+                vec3 primaryTint = mix(backgroundColor, uPrimaryColor, patternAlpha * 0.7);
+                return mix(baseColor, primaryTint, 0.5);
+              }
+              
+              return baseColor;
             } else {
               vec3 blendedColor = mix(backgroundColor, originalColor, patternAlpha);
               return mix(backgroundColor, blendedColor, uAltPatternOpacity);
@@ -358,6 +385,15 @@ export function useAsciiPattern({
               else if (patternIndex == 3) baseColor = color2b;
               else if (patternIndex <= 4) baseColor = color3;
               else baseColor = color4;
+              
+              // Apply primary color to specific pattern indices (2, 3, 4) when primary color is set
+              // This makes the primary color visible even without interaction
+              if (uHasPrimaryColor > 0.5 && (patternIndex == 2 || patternIndex == 3 || patternIndex == 4)) {
+                // Mix the grayscale color with primary color
+                vec3 primaryTint = mix(backgroundColor, uPrimaryColor, 0.6);
+                return mix(baseColor, primaryTint, 0.4);
+              }
+              
               return baseColor;
             }
           }

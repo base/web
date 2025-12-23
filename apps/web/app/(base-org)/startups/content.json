@@ -32,19 +32,22 @@
       "id": 1,
       "header": "Go from idea to business",
       "subheader": "Join our global incubator or apply to a partner accelerator to jumpstart your builder journey to make your vision the next killer app on Base",
-      "image": "/images/startups/rabbit_square.webp"
+      "image": "/images/startups/rabbit_square.webp",
+      "primaryColor": "#FFD813"
     },
     {
       "id": 2,
       "header": "Launch on the fastest growing onchain economy",
       "subheader": "Plug into our growing global Base economy",
-      "image": "/images/startups/plant_square.webp"
+      "image": "/images/startups/plant_square.webp",
+      "primaryColor": "#0DFF6E"
     },
     {
       "id": 3,
       "header": "Unlock distribution on day one",
       "subheader": "Reach millions through the Base App, powered by an open social graph that enables discovery, growth, and virality.",
-      "image": "/images/startups/earth_square.webp"
+      "image": "/images/startups/earth_square.webp",
+      "primaryColor": "#0055FF"
     }
   ],
   "baseBatches": {

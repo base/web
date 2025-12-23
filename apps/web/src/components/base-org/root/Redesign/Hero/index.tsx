@@ -31,7 +31,12 @@ export function Hero() {
           {/* <LogoHero /> */}
           {/* <AnimatedTitle /> */}
           <LogoHeroSlot>
-            <Halftone imageUrl="/images/backgrounds/default.webp" backgroundColor="#fbfbfb" />
+            <Halftone
+              bottomFade={false}
+              imageUrl="/images/backgrounds/rocket_bg_contrast.webp"
+              backgroundColor="#fbfbfb"
+              primaryColor="#9F9F9F"
+            />
           </LogoHeroSlot>
         </div>
         <div className="grid-base col-span-full w-full">

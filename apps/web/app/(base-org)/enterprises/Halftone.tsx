@@ -13,19 +13,23 @@ type ButtonProps = {
 type HalftoneProps = {
   imageUrl: string;
   backgroundColor?: string;
+  primaryColor?: string; // Hex color code (e.g., "#ff0000") - applied to some halftone tiles
   altPattern?: {
     url: string;
     columns: number;
   };
+  bottomFade?: boolean;
 };
 
 export function Halftone({
   imageUrl,
   backgroundColor,
+  primaryColor,
   altPattern = {
     url: '/patterns/pat-colorful.png',
     columns: 6,
   },
+  bottomFade = true,
 }: HalftoneProps) {
   const heroBackgroundConfig: HeroBackgroundConfig = {
     imageUrl: imageUrl,
@@ -37,8 +41,9 @@ export function Halftone({
     enableInteractivity: true,
     velocityDissipation: 0.94,
     radius: 0.1,
-    bottomFade: true,
+    bottomFade: bottomFade,
     backgroundColor: backgroundColor,
+    primaryColor: primaryColor,
   };
   return (
     <div className="relative inset-0 h-full w-full">

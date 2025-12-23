@@ -41,6 +41,7 @@ export type HeroBackgroundConfig = {
   densityDissipation?: number;
   bottomFade?: boolean;
   backgroundColor?: string; // Hex color code (e.g., "#ffffff" or "#000000")
+  primaryColor?: string; // Hex color code (e.g., "#ff0000") - applied to some halftone tiles
 };
 
 const DEFAULT_CONFIG: HeroBackgroundConfig = {
@@ -78,6 +79,7 @@ function HeroBackground({ config = {} }: HeroBackgroundProps) {
     densityDissipation,
     bottomFade,
     backgroundColor,
+    primaryColor,
   } = finalConfig;
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -101,6 +103,22 @@ function HeroBackground({ config = {} }: HeroBackgroundProps) {
     }
   }, [backgroundColor]);
 
+  // Convert primary color hex to normalized RGB (0-1 range) for shader
+  const primaryColorRgb = useMemo(() => {
+    if (!primaryColor) return null;
+    try {
+      const rgb = hexToRgb(primaryColor);
+      if (!rgb) return null;
+      return {
+        r: rgb.r / 255,
+        g: rgb.g / 255,
+        b: rgb.b / 255,
+      };
+    } catch {
+      return null;
+    }
+  }, [primaryColor]);
+
   return (
     <div ref={containerRef} className={className} style={style}>
       <Canvas
@@ -120,6 +138,7 @@ function HeroBackground({ config = {} }: HeroBackgroundProps) {
           densityDissipation={densityDissipation}
           bottomFade={bottomFade}
           backgroundColor={backgroundColorRgb}
+          primaryColor={primaryColorRgb}
         />
       </Canvas>
     </div>

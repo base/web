@@ -29,6 +29,7 @@ type GenericHeroProps = {
   imageUrl: string;
   buttons?: ButtonProps[];
   description: string;
+  primaryColor?: string;
 };
 
 type ButtonProps = {
@@ -36,7 +37,13 @@ type ButtonProps = {
   href: string;
 };
 
-export function GenericHero({ title, description, imageUrl, buttons }: GenericHeroProps) {
+export function GenericHero({
+  title,
+  description,
+  imageUrl,
+  buttons,
+  primaryColor,
+}: GenericHeroProps) {
   const heroBackgroundConfig: HeroBackgroundConfig = {
     imageUrl: imageUrl,
     altPattern: {
@@ -45,12 +52,12 @@ export function GenericHero({ title, description, imageUrl, buttons }: GenericHe
     },
   };
   return (
-    <Container className=" grid-cols-9 gap-y-12">
+    <Container className="!lg:pt-0 grid-cols-9 gap-y-12 !pt-0">
       <div className="col-span-full flex h-fit flex-col justify-start gap-y-6 md:h-fit md:justify-start">
         <div className="relative col-span-full w-full pb-0">
           {/* <LogoHeroSlot> */}
           <div className="relative h-[400px] w-full overflow-hidden rounded-lg">
-            <Halftone imageUrl={imageUrl} />
+            <Halftone imageUrl={imageUrl} primaryColor={primaryColor} />
           </div>
           {/* </LogoHeroSlot> */}
         </div>
