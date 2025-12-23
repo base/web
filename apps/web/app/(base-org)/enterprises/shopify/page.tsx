@@ -8,7 +8,7 @@ import { Split } from 'apps/web/app/(base-org)/enterprises/Split';
 import Title from 'apps/web/src/components/base-org/typography/TitleRedesign';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRedesign/types';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
-import { GenericHero } from '../GenericHero';
+import { GenericHero } from 'apps/web/src/components/base-org/root/Redesign/GenericHero';
 import ShopifyBlogContent from './ShopifyBlogContent';
 
 export const metadata: Metadata = {
@@ -36,7 +36,7 @@ export default async function Shopify() {
             <GenericHero
               title="Shopify"
               imageUrl={'/images/backgrounds/partnerships.webp'}
-              buttons={[{ text: 'Build on Base', href: '/enterprises/build' }]}
+              variant="compact"
             />
             <div className="flex flex-col gap-12">
               <ShopifyBlogContent className="font-sans" />

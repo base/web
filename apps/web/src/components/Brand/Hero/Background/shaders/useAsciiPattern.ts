@@ -49,6 +49,7 @@ type AsciiPatternUniforms = {
   uAltPatternAtlasColumns: { value: number };
   uDarkMode: { value: boolean };
   uBottomFade: { value: boolean };
+  uFadeX: { value: boolean };
 } & Record<string, THREE.IUniform>;
 
 type UseAsciiPatternOptions = {
@@ -71,6 +72,7 @@ type UseAsciiPatternOptions = {
   containerHeight?: number;
   darkMode?: boolean;
   bottomFade?: boolean;
+  fadeX?: boolean;
   logicalWidth?: number;
   logicalHeight?: number;
 };
@@ -95,6 +97,7 @@ export function useAsciiPattern({
   containerHeight,
   darkMode = false,
   bottomFade = false,
+  fadeX = false,
   logicalWidth,
   logicalHeight,
 }: UseAsciiPatternOptions) {
@@ -154,6 +157,7 @@ export function useAsciiPattern({
     uAltPatternAtlasColumns: { value: 0 },
     uDarkMode: { value: false },
     uBottomFade: { value: true },
+    uFadeX: { value: false },
   });
 
   useEffect(() => {
@@ -192,6 +196,7 @@ export function useAsciiPattern({
   uniforms.uUseOriginalSvgColors.value = useOriginalSvgColors;
   uniforms.uDarkMode.value = darkMode;
   uniforms.uBottomFade.value = bottomFade;
+  uniforms.uFadeX.value = fadeX;
 
   const shaderMaterial = useShader(
     {
@@ -232,6 +237,7 @@ export function useAsciiPattern({
         uniform int uAltPatternAtlasColumns;
         uniform float uDarkMode;
         uniform float uBottomFade;
+        uniform float uFadeX;
         varying vec2 vUv;
 
         const float TIME_SPEED = 0.5;
@@ -497,6 +503,18 @@ export function useAsciiPattern({
             float fadeStrength = smoothstep(0.0, fadeStart, vUv.y);
             fadeStrength = fadeStrength * fadeStrength * (3.0 - 2.0 * fadeStrength);
             finalColor = mix(uDarkMode > 0.5 ? vec3(0.0) : vec3(1.0), finalColor, fadeStrength);
+          }
+
+          // Apply horizontal fade (left and right edges)
+          if (uFadeX > 0.5) {
+            vec3 bgColor = uDarkMode > 0.5 ? vec3(0.0) : vec3(1.0);
+            // Left fade: 0.0 to 0.1
+            float leftFade = smoothstep(0.0, 0.1, vUv.x);
+            // Right fade: 0.9 to 1.0
+            float rightFade = smoothstep(1.0, 0.9, vUv.x);
+            // Combine both fades
+            float fadeStrengthX = leftFade * rightFade;
+            finalColor = mix(bgColor, finalColor, fadeStrengthX);
           }
 
           gl_FragColor = vec4(finalColor, 1.0);

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Container from 'apps/web/src/components/base-org/Container';
 import { WebGLCanvas } from 'apps/web/src/components/WebGL/WebGLCanvas';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
-import { GenericHero } from './GenericHero';
+import { GenericHero } from 'apps/web/src/components/base-org/root/Redesign/GenericHero';
 import content from './content.json';
 import { Marquee } from 'apps/web/src/components/Builders/Shared/Marquee';
 import Title from 'apps/web/src/components/base-org/typography/TitleRedesign';
@@ -19,6 +19,8 @@ import {
 import Link from 'apps/web/src/components/Link';
 import { cn } from 'apps/web/src/utils/cn';
 import AnimatedButton from 'apps/web/src/components/Button/AnimatedButton';
+import { Split } from 'apps/web/app/(base-org)/enterprises/Split';
+import { Halftone } from 'apps/web/app/(base-org)/enterprises/Halftone';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
@@ -71,48 +73,86 @@ export default async function Startups() {
             </section>
 
             {/* Value Props Section */}
-            <section className="grid grid-cols-1 gap-8 md:grid-cols-3">
-              {content.valueProps.map((prop) => (
-                <div key={prop.id} className="flex flex-col gap-4 rounded-xl p-6">
-                  <Title level={TitleLevel.H5Regular}>{prop.header}</Title>
-                  <Text variant={TextVariant.BodyLarge} className="!text-base-gray-200">
-                    {prop.subheader}
+            <section className="grid grid-cols-1 gap-8 md:grid-cols-2">
+              {/* Sticky left side */}
+              <div className="md:sticky md:top-24 md:self-start">
+                <div className="flex flex-col gap-4">
+                  <Title level={TitleLevel.H5Regular}>Why build your startup on Base</Title>
+                  <Text variant={TextVariant.Body} className="font-bold !text-base-gray-200">
+                    Base is the fastest way to build an onchain startup-plug into shared standards,
+                    reach existing users, and unlock programs that help you grow.
                   </Text>
                 </div>
-              ))}
+              </div>
+
+              {/* Stacked items on the right */}
+              <div className="flex flex-col gap-16">
+                {content.valueProps.map((prop, index) => (
+                  <div key={prop.id} className="flex flex-col gap-4">
+                    <div
+                      className="aspect-[4/2] w-full rounded-lg"
+                      style={{
+                        backgroundColor: ['#F9D1D1', '#D1F9D9', '#D1E3F9'][index % 3],
+                      }}
+                    />
+                    <Title level={TitleLevel.H2Regular}>{prop.header}</Title>
+                    <Text variant={TextVariant.Body} className="!text-base-gray-200">
+                      {prop.subheader}
+                    </Text>
+                  </div>
+                ))}
+              </div>
             </section>
 
             {/* Base Batches Section */}
-            <section className="flex flex-col gap-[min(2.25vw,_32px)] rounded-2xl px-6 py-16">
-              <Text
-                variant={TextVariant.CTALabel}
-                className="uppercase tracking-widest !text-base-gray-200"
-              >
-                {content.baseBatches.eyebrow}
-              </Text>
-              <Title level={TitleLevel.H4Regular} as="h2">
-                {content.baseBatches.header}
-              </Title>
-              <Text variant={TextVariant.BodyLarge} className="max-w-2xl !text-base-gray-200">
-                {content.baseBatches.subheader}
-              </Text>
-              <Link href={content.baseBatches.cta.url}>
-                <AnimatedButton text={content.baseBatches.cta.label} />
-              </Link>
-            </section>
+            <Split reverse>
+              <Split.Text>
+                <div className="flex h-full flex-col justify-center space-y-4 p-0 font-sans md:mx-auto md:max-w-sm">
+                  <Text
+                    variant={TextVariant.CTALabel}
+                    className="uppercase tracking-widest !text-base-gray-200"
+                  >
+                    {content.baseBatches.eyebrow}
+                  </Text>
+                  <Title level={TitleLevel.H1Regular}>{content.baseBatches.header}</Title>
+                  <Text variant={TextVariant.BodyLarge}>{content.baseBatches.subheader}</Text>
+                </div>
+              </Split.Text>
+              <Split.Content>
+                <div className="relative h-full w-full">
+                  <Halftone imageUrl="/images/backgrounds/ecosystem.webp" />
+                  <Link
+                    href={content.baseBatches.cta.url}
+                    className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
+                  >
+                    <AnimatedButton text={content.baseBatches.cta.label} />
+                  </Link>
+                </div>
+              </Split.Content>
+            </Split>
 
             {/* Base Ecosystem Fund Section */}
-            <section className="flex flex-col gap-[min(2.25vw,_32px)] rounded-2xl px-6 py-16">
-              <Title level={TitleLevel.H4Regular} as="h2">
-                {content.baseEcosystemFund.header}
-              </Title>
-              <Text variant={TextVariant.BodyLarge} className="max-w-2xl !text-base-gray-200">
-                {content.baseEcosystemFund.subheader}
-              </Text>
-              <Link href={content.baseEcosystemFund.url} target="_blank" rel="noopener noreferrer">
-                <AnimatedButton text="Apply now" />
-              </Link>
-            </section>
+            <Split>
+              <Split.Text>
+                <div className="flex h-full flex-col justify-center space-y-4 p-0 font-sans md:mx-auto md:max-w-sm">
+                  <Title level={TitleLevel.H1Regular}>{content.baseEcosystemFund.header}</Title>
+                  <Text variant={TextVariant.BodyLarge}>{content.baseEcosystemFund.subheader}</Text>
+                </div>
+              </Split.Text>
+              <Split.Content>
+                <div className="relative h-full w-full">
+                  <Halftone imageUrl="/images/backgrounds/space.webp" />
+                  <Link
+                    href={content.baseEcosystemFund.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
+                  >
+                    <AnimatedButton text="Apply now" />
+                  </Link>
+                </div>
+              </Split.Content>
+            </Split>
 
             {/* Scale Your Business Section */}
 

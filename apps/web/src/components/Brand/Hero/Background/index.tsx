@@ -39,6 +39,7 @@ export type HeroBackgroundConfig = {
   velocityDissipation?: number;
   densityDissipation?: number;
   bottomFade?: boolean;
+  fadeX?: boolean;
 };
 
 const DEFAULT_CONFIG: HeroBackgroundConfig = {
@@ -55,6 +56,7 @@ const DEFAULT_CONFIG: HeroBackgroundConfig = {
   velocityDissipation: 0.94,
   densityDissipation: 0.98,
   bottomFade: false,
+  fadeX: false,
 };
 
 type HeroBackgroundProps = {
@@ -75,6 +77,7 @@ function HeroBackground({ config = {} }: HeroBackgroundProps) {
     velocityDissipation,
     densityDissipation,
     bottomFade,
+    fadeX,
   } = finalConfig;
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -100,6 +103,7 @@ function HeroBackground({ config = {} }: HeroBackgroundProps) {
           velocityDissipation={velocityDissipation}
           densityDissipation={densityDissipation}
           bottomFade={bottomFade}
+          fadeX={fadeX}
         />
       </Canvas>
     </div>

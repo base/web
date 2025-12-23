@@ -9,7 +9,7 @@ import Title from 'apps/web/src/components/base-org/typography/TitleRedesign';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRedesign/types';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
 import { SolutionText } from './SolutionText';
-import { GenericHero } from './GenericHero';
+import { GenericHero } from 'apps/web/src/components/base-org/root/Redesign/GenericHero';
 import { CaseStudyCard } from 'apps/web/app/(base-org)/enterprises/CaseStudyCard';
 import Text from 'apps/web/src/components/base-org/typography/TextRedesign';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
@@ -219,7 +219,7 @@ export default async function Enterprises() {
             <GenericHero
               title="Enterprises"
               imageUrl={'/images/backgrounds/partnerships.webp'}
-              buttons={[{ text: 'Build on Base', href: '/enterprises/build' }]}
+              variant="compact"
             />
             <div className="flex flex-col gap-12">
               <Split>

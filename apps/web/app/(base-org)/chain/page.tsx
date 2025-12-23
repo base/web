@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Container from 'apps/web/src/components/base-org/Container';
 import { WebGLCanvas } from 'apps/web/src/components/WebGL/WebGLCanvas';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
-import { GenericHero } from './GenericHero';
+import { GenericHero } from 'apps/web/src/components/base-org/root/Redesign/GenericHero';
 import { content } from './content';
 import { Marquee } from 'apps/web/src/components/Builders/Shared/Marquee';
 import Title from 'apps/web/src/components/base-org/typography/TitleRedesign';
