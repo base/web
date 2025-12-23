@@ -49,6 +49,7 @@ type AsciiPatternUniforms = {
   uAltPatternAtlasColumns: { value: number };
   uDarkMode: { value: boolean };
   uBottomFade: { value: boolean };
+  uSideFade: { value: boolean };
   uBackgroundColor: { value: THREE.Vector3 };
   uPrimaryColor: { value: THREE.Vector3 };
   uHasPrimaryColor: { value: boolean };
@@ -74,6 +75,7 @@ type UseAsciiPatternOptions = {
   containerHeight?: number;
   darkMode?: boolean;
   bottomFade?: boolean;
+  sideFade?: boolean;
   logicalWidth?: number;
   logicalHeight?: number;
   backgroundColor?: { r: number; g: number; b: number } | null;
@@ -100,6 +102,7 @@ export function useAsciiPattern({
   containerHeight,
   darkMode = false,
   bottomFade = false,
+  sideFade = false,
   logicalWidth,
   logicalHeight,
   backgroundColor,
@@ -173,6 +176,7 @@ export function useAsciiPattern({
     uAltPatternAtlasColumns: { value: 0 },
     uDarkMode: { value: false },
     uBottomFade: { value: true },
+    uSideFade: { value: false },
     uBackgroundColor: { value: bgColor },
     uPrimaryColor: { value: primaryColorVec },
     uHasPrimaryColor: { value: hasPrimaryColor },
@@ -214,6 +218,7 @@ export function useAsciiPattern({
   uniforms.uUseOriginalSvgColors.value = useOriginalSvgColors;
   uniforms.uDarkMode.value = darkMode;
   uniforms.uBottomFade.value = bottomFade;
+  uniforms.uSideFade.value = sideFade;
   if (backgroundColor) {
     uniforms.uBackgroundColor.value.set(backgroundColor.r, backgroundColor.g, backgroundColor.b);
   } else {
@@ -263,6 +268,7 @@ export function useAsciiPattern({
         uniform int uAltPatternAtlasColumns;
         uniform float uDarkMode;
         uniform float uBottomFade;
+        uniform float uSideFade;
         uniform vec3 uBackgroundColor;
         uniform vec3 uPrimaryColor;
         uniform float uHasPrimaryColor;
@@ -528,6 +534,20 @@ export function useAsciiPattern({
           if (uBottomFade > 0.5) {
             float fadeStart = 0.3;
             float fadeStrength = smoothstep(0.0, fadeStart, vUv.y);
+            fadeStrength = fadeStrength * fadeStrength * (3.0 - 2.0 * fadeStrength);
+            finalColor = mix(uBackgroundColor, finalColor, fadeStrength);
+          }
+
+          // Apply side fade to final output (fades from both left and right)
+          if (uSideFade > 0.5) {
+            float fadeStart = 0.3;
+            // Calculate distance from left edge (0.0) and right edge (1.0)
+            float distFromLeft = vUv.x;
+            float distFromRight = 1.0 - vUv.x;
+            // Use the minimum distance (closer edge)
+            float distFromEdge = min(distFromLeft, distFromRight);
+            // Create fade strength similar to bottom fade
+            float fadeStrength = smoothstep(0.0, fadeStart, distFromEdge);
             fadeStrength = fadeStrength * fadeStrength * (3.0 - 2.0 * fadeStrength);
             finalColor = mix(uBackgroundColor, finalColor, fadeStrength);
           }

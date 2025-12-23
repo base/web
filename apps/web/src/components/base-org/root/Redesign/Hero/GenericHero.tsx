@@ -57,7 +57,7 @@ export function GenericHero({
         <div className="relative col-span-full w-full pb-0">
           {/* <LogoHeroSlot> */}
           <div className="relative h-[400px] w-full overflow-hidden rounded-lg">
-            <Halftone imageUrl={imageUrl} primaryColor={primaryColor} />
+            <Halftone imageUrl={imageUrl} primaryColor={primaryColor} sideFade={true} />
           </div>
           {/* </LogoHeroSlot> */}
         </div>

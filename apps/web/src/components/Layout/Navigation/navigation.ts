@@ -435,7 +435,6 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
       {
         label: 'Base Build',
         href: '/build',
-        newTab: true,
       },
       {
         label: 'Dashboard',

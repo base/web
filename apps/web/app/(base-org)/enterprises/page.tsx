@@ -219,7 +219,8 @@ export default async function Enterprises() {
             <GenericHero
               title="Enterprises"
               description="The enterprise‑ready blockchain to run stablecoin payments, onchain finance, and tokenized value."
-              imageUrl={'/images/backgrounds/partnerships.webp'}
+              imageUrl={'/images/backgrounds/sub-brands.webp'}
+              primaryColor="#5B31F4"
             />
             <div className="flex flex-col gap-12">
               <Split reverse>

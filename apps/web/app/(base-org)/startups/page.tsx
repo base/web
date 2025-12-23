@@ -57,16 +57,28 @@ export default async function Startups() {
 
             {/* Logo Strip Section */}
             <Section content={{ title: content.logoStrip.label }}>
-              <div className="col-span-full">
+              <div className="relative col-span-full">
+                <div
+                  style={{ background: 'linear-gradient(to right, white, transparent)' }}
+                  className="absolute left-0 top-0 z-20 h-full w-[10%] bg-base-gray-200/20"
+                ></div>
+                <div
+                  style={{ background: 'linear-gradient(to left, white, transparent)' }}
+                  className="absolute right-0 top-0 z-20 h-full w-[10%] bg-base-gray-200/20"
+                ></div>
+
                 <Marquee className="[--duration:40s]" pauseOnHover={false}>
                   {content.logoStrip.logos.map((logo) => (
-                    <div key={logo} className="flex min-w-[120px] items-center justify-center px-6">
-                      <Text
-                        variant={TextVariant.BodyLarge}
-                        className="whitespace-nowrap !text-base-gray-200"
-                      >
-                        {logo}
-                      </Text>
+                    <div
+                      key={logo}
+                      className="flex min-w-[120px] items-center justify-center px-6 opacity-80 grayscale"
+                    >
+                      <Image
+                        src={`/images/startups/logos/${logo.toLowerCase()}.webp`}
+                        alt={logo}
+                        width={120}
+                        height={60}
+                      />
                     </div>
                   ))}
                 </Marquee>
@@ -313,71 +325,6 @@ export default async function Startups() {
                         )}
                       </div>
                     </a>
-                  ))}
-                </div>
-              </div>
-            </Section>
-
-            {/* Accelerator Programs Section */}
-            <Section
-              textOnTop={true}
-              content={{
-                title: content.acceleratorPrograms.header,
-                description: content.acceleratorPrograms.subheader,
-              }}
-            >
-              <div className="col-span-full">
-                <div className={cn('grid gap-[min(2.25vw,_32px)]', 'grid-cols-1 lg:grid-cols-2')}>
-                  {content.acceleratorPrograms.cards.map((card, index) => (
-                    <Link
-                      href={card.url}
-                      key={card.title}
-                      target={card.url.includes('https://') ? '_blank' : '_self'}
-                      className="group flex h-[308px] flex-col rounded-lg bg-base-gray-25 p-6 transition-colors duration-300 hover:bg-base-gray-50"
-                    >
-                      <div className="flex h-full flex-col justify-between">
-                        <div className="flex items-center justify-between">
-                          <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <rect
-                              width="24"
-                              height="24"
-                              rx="2"
-                              fill={['#66C800', '#ffd200'][index % 2]}
-                            />
-                          </svg>
-                          <svg
-                            width="13"
-                            height="14"
-                            viewBox="0 0 13 14"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="transition-transform duration-300 ease-in-out group-hover:rotate-45"
-                          >
-                            <path
-                              d="M2.02127 13.04L0.317273 11.36L8.52527 3.152V2.792L2.38127 2.888V0.8H12.5573V10.952H10.4693L10.5653 4.808H10.2053L2.02127 13.04Z"
-                              fill="black"
-                            />
-                          </svg>
-                        </div>
-                        <div className="mt-auto flex flex-col gap-3">
-                          <Title level={TitleLevel.H6Regular} as="h4">
-                            {card.title}
-                          </Title>
-                          <Text
-                            variant={TextVariant.Body}
-                            className="!text-pretty !text-base-gray-200"
-                          >
-                            {card.subtitle}
-                          </Text>
-                        </div>
-                      </div>
-                    </Link>
                   ))}
                 </div>
               </div>

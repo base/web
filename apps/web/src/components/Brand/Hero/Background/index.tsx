@@ -40,6 +40,7 @@ export type HeroBackgroundConfig = {
   velocityDissipation?: number;
   densityDissipation?: number;
   bottomFade?: boolean;
+  sideFade?: boolean;
   backgroundColor?: string; // Hex color code (e.g., "#ffffff" or "#000000")
   primaryColor?: string; // Hex color code (e.g., "#ff0000") - applied to some halftone tiles
 };
@@ -58,6 +59,7 @@ const DEFAULT_CONFIG: HeroBackgroundConfig = {
   velocityDissipation: 0.94,
   densityDissipation: 0.98,
   bottomFade: false,
+  sideFade: false,
 };
 
 type HeroBackgroundProps = {
@@ -78,6 +80,7 @@ function HeroBackground({ config = {} }: HeroBackgroundProps) {
     velocityDissipation,
     densityDissipation,
     bottomFade,
+    sideFade,
     backgroundColor,
     primaryColor,
   } = finalConfig;
@@ -137,6 +140,7 @@ function HeroBackground({ config = {} }: HeroBackgroundProps) {
           velocityDissipation={velocityDissipation}
           densityDissipation={densityDissipation}
           bottomFade={bottomFade}
+          sideFade={sideFade}
           backgroundColor={backgroundColorRgb}
           primaryColor={primaryColorRgb}
         />
