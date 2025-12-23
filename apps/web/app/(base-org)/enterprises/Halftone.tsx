@@ -13,14 +13,25 @@ type ButtonProps = {
 type HalftoneProps = {
   imageUrl: string;
   backgroundColor?: string;
+  altPattern?: {
+    url: string;
+    columns: number;
+  };
 };
 
-export function Halftone({ imageUrl, backgroundColor }: HalftoneProps) {
+export function Halftone({
+  imageUrl,
+  backgroundColor,
+  altPattern = {
+    url: '/patterns/pat-colorful.png',
+    columns: 6,
+  },
+}: HalftoneProps) {
   const heroBackgroundConfig: HeroBackgroundConfig = {
     imageUrl: imageUrl,
     altPattern: {
-      url: '/patterns/pat-colorful.png',
-      columns: 6,
+      url: altPattern.url,
+      columns: altPattern.columns,
     },
     className: 'h-full w-full',
     enableInteractivity: true,

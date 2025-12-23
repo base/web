@@ -69,7 +69,7 @@ export default async function Home() {
       <Container className="lg:pt-0">
         <div className="col-span-full flex flex-col gap-12">
           <Hero />
-          {false && <SectionBaseEcosystem />}
+          {true && <SectionBaseEcosystem />}
           <SectionBaseApp />
           <RenderOnInView>
             <SectionBaseBuilders />

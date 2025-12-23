@@ -47,7 +47,7 @@ export default async function Chain() {
             <GenericHero
               title={content.hero.header}
               description={content.hero.subheader}
-              imageUrl={'/images/backgrounds/partnerships.webp'}
+              imageUrl={'/images/backgrounds/rocket_bg.webp'}
               buttons={[
                 { text: content.hero.ctas.primary.label, href: content.hero.ctas.primary.url },
               ]}
@@ -183,7 +183,7 @@ export default async function Chain() {
                       key={card.title || index}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex flex-col gap-2  transition-colors duration-300 hover:bg-base-gray-50"
+                      className="blog-card group -m-2 flex flex-col  gap-2 rounded-2xl border border-transparent p-2 transition-colors duration-300 hover:border-base-gray-200/20"
                     >
                       {card.image && (
                         <div className="relative aspect-[2/1] w-full overflow-hidden rounded-lg">

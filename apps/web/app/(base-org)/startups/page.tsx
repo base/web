@@ -79,6 +79,7 @@ export default async function Startups() {
                   <div key={prop.id} className="flex flex-col gap-4 rounded-xl">
                     <div className="aspect-square w-full rounded-lg bg-base-gray-200/20">
                       {/* <Image src={prop.image} alt={prop.header} fill className="object-cover" /> */}
+                      <Halftone imageUrl={prop.image} backgroundColor="#fbfbfb" />
                     </div>
                     <div className="flex flex-col gap-2">
                       <Title level={TitleLevel.H2Regular}>{prop.header}</Title>
@@ -93,6 +94,7 @@ export default async function Startups() {
 
             {/* Base Batches Section */}
             <Section
+              textOnTop={true}
               content={{
                 title: content.baseBatches.header,
                 description: content.baseBatches.subheader,
@@ -106,6 +108,7 @@ export default async function Startups() {
 
             {/* Accelerator Programs Section */}
             <Section
+              textOnTop={true}
               content={{
                 title: content.acceleratorPrograms.header,
                 description: content.acceleratorPrograms.subheader,
@@ -173,6 +176,7 @@ export default async function Startups() {
 
             {/* Base Ecosystem Fund Section */}
             <Section
+              textOnTop={true}
               content={{
                 title: content.baseEcosystemFund.header,
                 description: content.baseEcosystemFund.subheader,
@@ -252,6 +256,7 @@ export default async function Startups() {
 
             {/* Base Layer Section */}
             <Section
+              textOnTop={true}
               content={{
                 title: content.baseLayer.eyebrow,
                 description: content.baseLayer.header,
@@ -265,7 +270,7 @@ export default async function Startups() {
                       href={card.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex flex-col gap-4"
+                      className="outline-card group flex flex-col gap-4"
                     >
                       <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-base-gray-200/20">
                         {card.image && (
@@ -301,6 +306,7 @@ export default async function Startups() {
 
             {/* Accelerator Programs Section */}
             <Section
+              textOnTop={true}
               content={{
                 title: content.acceleratorPrograms.header,
                 description: content.acceleratorPrograms.subheader,

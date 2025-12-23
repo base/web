@@ -31,6 +31,7 @@ type SectionContent = {
 type SectionProps = {
   content: SectionContent;
   children?: React.ReactNode;
+  textOnTop?: boolean;
   className?: string;
   disableWrapperAnimation?: boolean;
 };
@@ -58,7 +59,13 @@ export const itemContentVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { type: spring, bounce: 0.3, duration: 0.6 } },
 };
 
-export function Section({ content, children, className, disableWrapperAnimation }: SectionProps) {
+export function Section({
+  content,
+  children,
+  className,
+  disableWrapperAnimation,
+  textOnTop = false,
+}: SectionProps) {
   const WrapperComponent = disableWrapperAnimation ? 'div' : motion.div;
 
   const itemProps = {
@@ -103,6 +110,17 @@ export function Section({ content, children, className, disableWrapperAnimation 
           >
             {content.title}
           </Title>
+
+          {content.description && textOnTop && (
+            <motion.div {...itemProps} className="mt-2 lg:max-w-[400px]">
+              <Text
+                className="!whitespace-pre-wrap !text-base-gray-200"
+                variant={TextVariant.BodyLarge}
+              >
+                {content.description}
+              </Text>
+            </motion.div>
+          )}
         </motion.div>
 
         <div className="col-span-full flex flex-col gap-6 lg:col-span-6 lg:mt-0 lg:items-end lg:justify-end">
@@ -125,7 +143,7 @@ export function Section({ content, children, className, disableWrapperAnimation 
           </div>
         )}
 
-        {content.description && (
+        {content.description && !textOnTop && (
           <motion.div {...itemProps} className="col-span-full lg:col-span-6 lg:max-w-[400px]">
             <Text
               className="!whitespace-pre-wrap !text-base-gray-200"

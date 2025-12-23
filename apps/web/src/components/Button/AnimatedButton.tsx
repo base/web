@@ -27,14 +27,20 @@ export default function AnimatedButton({
           halfGhost ? 'opacity-50' : 'opacity-100'
         } transition-opacity duration-200 group-hover:opacity-100`}
       />
-      <div className="flex overflow-visible z-10 justify-end items-center w-0 h-5 opacity-0 transition-all duration-300 md:w-5 md:opacity-100 md:group-hover:w-0 md:group-hover:opacity-0 md:group-hover:blur-sm">
+      <div
+        className="z-10 flex h-5 w-0 items-center justify-end overflow-visible opacity-0 blur-sm
+      transition-all duration-300 md:w-0 md:opacity-0 md:group-hover:w-5 md:group-hover:opacity-100 md:group-hover:blur-none"
+      >
         <div
           style={{ backgroundColor: textColor }}
           className="h-5 w-5 flex-shrink-0 rounded-[2px]"
         />
       </div>
       <div className="z-10 whitespace-nowrap">{text}</div>
-      <div className="flex z-10 justify-start items-center w-5 h-5 opacity-100 blur-none transition-all duration-300 md:w-0 md:opacity-0 md:blur-sm md:group-hover:w-5 md:group-hover:opacity-100 md:group-hover:blur-none">
+      <div
+        className="z-10 flex h-5 w-5 items-center justify-start opacity-100 blur-none 
+      transition-all duration-300 md:w-5 md:opacity-100 md:blur-none md:group-hover:w-0 md:group-hover:opacity-0 md:group-hover:blur-sm"
+      >
         <span className="flex-shrink-0"> → </span>
       </div>
     </button>

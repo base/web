@@ -222,7 +222,7 @@ export default async function Enterprises() {
               imageUrl={'/images/backgrounds/partnerships.webp'}
             />
             <div className="flex flex-col gap-12">
-              <Split>
+              <Split reverse>
                 <Split.Text>
                   <SolutionText
                     eyebrow="Payments"
@@ -235,13 +235,13 @@ export default async function Enterprises() {
                     <Halftone key={paymentsImage.src} imageUrl={paymentsImage.src} />
                     <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap px-14 py-4 text-xl font-medium text-white">
                       <span className="absolute inset-0 rounded-xl bg-[#5B31F4] transition-transform duration-1000 ease-out group-hover:scale-95" />
-                      <span className="relative z-10">Pay with crypto</span>
+                      <span className="relative z-10">Pay with Crypto</span>
                     </div>
                   </div>
                 </Split.Content>
               </Split>
 
-              <Split reverse>
+              <Split>
                 <Split.Text>
                   <SolutionText
                     eyebrow="Onchain Finance"
@@ -266,29 +266,29 @@ export default async function Enterprises() {
                         style={{ animation: 'marquee 20s linear infinite' }}
                       >
                         <CheckTick />
-                        <GlassPill>lend</GlassPill>
+                        <GlassPill>Lend</GlassPill>
                         <CheckTick />
-                        <GlassPill>withdraw</GlassPill>
+                        <GlassPill>Withdraw</GlassPill>
                         <CheckTick />
-                        <GlassPill>borrow</GlassPill>
+                        <GlassPill>Borrow</GlassPill>
                         <CheckTick />
-                        <GlassPill className="mr-2">see rewards</GlassPill>
+                        <GlassPill className="mr-2">See Rewards</GlassPill>
                         {/* duplicated for loop */}
                         <CheckTick />
-                        <GlassPill>lend</GlassPill>
+                        <GlassPill>Lend</GlassPill>
                         <CheckTick />
-                        <GlassPill>withdraw</GlassPill>
+                        <GlassPill>Withdraw</GlassPill>
                         <CheckTick />
-                        <GlassPill>borrow</GlassPill>
+                        <GlassPill>Borrow</GlassPill>
                         <CheckTick />
-                        <GlassPill className="mr-2">see rewards</GlassPill>
+                        <GlassPill className="mr-2">See Rewards</GlassPill>
                       </div>
                     </div>
                   </div>
                 </Split.Content>
               </Split>
 
-              <Split>
+              <Split reverse>
                 <Split.Text>
                   <SolutionText
                     eyebrow="Tokenization"
@@ -310,7 +310,7 @@ export default async function Enterprises() {
                 </Split.Content>
               </Split>
 
-              <Split reverse>
+              <Split>
                 <Split.Text>
                   <SolutionText
                     eyebrow="Loyalty"

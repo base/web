@@ -101,3 +101,27 @@ body {
     row-gap: calc(2.3255vw);
   }
 }
+
+.outline-card {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% + 16px);
+    height: calc(100% + 16px);
+
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0);
+    z-index: -1;
+    margin: -8px;
+    transition: border-color 0.3s ease;
+  }
+
+  &:hover {
+    &:after {
+      border-color: rgba(113, 120, 134, 0.2);
+    }
+  }
+}
