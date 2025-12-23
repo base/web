@@ -54,6 +54,13 @@ export default async function Chain() {
               ]}
             />
 
+            {/* Globe Section */}
+            <Section content={{}} disableWrapperAnimation>
+              <section className="col-span-full w-full">
+                <GlobeWrapper />
+              </section>
+            </Section>
+
             {/* Value Props Section */}
             <Section
               content={{
@@ -90,13 +97,6 @@ export default async function Chain() {
                   );
                 })}
               </div>
-            </Section>
-
-            {/* Globe Section */}
-            <Section content={{}}>
-              <section className="col-span-full w-full">
-                <GlobeWrapper />
-              </section>
             </Section>
 
             {/* Ecosystem Section */}
