@@ -85,7 +85,7 @@ If you're a builder who wants to add or update your project on the [Base Ecosyst
    - name: Your project's name
    - description: A brief description of your project, must be less than 200 characters
    - url: Your project's website URL
-   - imageUrl: Path to your project's logo image
+   - imageUrl: Path to your project's logo image within this repository (for example, `/apps/web/public/images/partners/your-logo.png`)
    - category: Your project's category, _one_ of: `ai`, `consumer`, `defi`, `infra`, `onramp`, `wallet`
    - subcategory: Your project's subcategory, with the following options associated with each category
      - `ai`: Simply add `ai` as the subcategory as well
