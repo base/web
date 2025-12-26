@@ -66,7 +66,7 @@ export async function willSponsor({
         method: 'eth_getStorageAt',
         params: [userOp.sender, ERC_1967_PROXY_IMPLEMENTATION_SLOT, 'latest'],
       });
-      const implementationAddress = decodeAbiParameters([{ type: 'address' }], implementation)[0];
+      const implementationAddress = `0x${implementation.slice(26)}` as Address;
       if (implementationAddress != CB_SW_V1_IMPLEMENTATION_ADDRESS) {
         return false;
       }
