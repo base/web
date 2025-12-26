@@ -1,13 +1,5 @@
 [
   {
-    "name": "growthepie",
-    "description": "The open analytics platform for the Ethereum ecosystem. We empower Base Chain builders with open and actionable metrics on usage, growth, and adoption.",
-    "url": "https://www.growthepie.com/chains/base",
-    "imageUrl": "/images/partners/growthepie.webp",
-    "category": "infra",
-    "subcategory": "data"
-  },
-  {
   "name": "OnChainGM",
   "description": "Your daily web3 ritual",
   "url": "https://onchaingm.com",
@@ -23,6 +15,14 @@
   "category": "consumer",
   "subcategory": "nft"
 },
+  {
+    "name": "growthepie",
+    "description": "The open analytics platform for the Ethereum ecosystem. We empower Base Chain builders with open and actionable metrics on usage, growth, and adoption.",
+    "url": "https://www.growthepie.com/chains/base",
+    "imageUrl": "/images/partners/growthepie.webp",
+    "category": "infra",
+    "subcategory": "data"
+  },
   {
   "name": "Coinrule",
   "description": "Launch fully self-custodial onchain automated trading strategies at lightning speed and with one-click UX. Team is backed by Y Combinator",
