@@ -3952,6 +3952,14 @@
     "subcategory": "dex"
   },
   {
+    "name": "TAL3NT",
+    "description": "TAL3NT is a Web3-native freelancer platform connecting DAOs, DeFi projects, and blockchain startups with specialized talent. Freelancers earn Proof-of-Work NFTs for completed jobs, building verifiable on-chain credentials, while payments are secured through Smart Contract Escrow.",
+    "url": "https://tal3nt.xyz",
+    "imageUrl": "/images/partners/tal3nt.png",
+    "category": "consumer",
+    "subcategory": "social"
+  },
+  {
     "name": "Talent Protocol",
     "description": "Talent Protocol is building the resume for the onchain era of the internet. It unlocks unique reputation data and makes human potential more visible.",
     "url": "https://talentprotocol.com",
