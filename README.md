@@ -95,6 +95,12 @@ If you're a builder who wants to add or update your project on the [Base Ecosyst
      - `onramp`: _One_ of `centralized exchange`, `fiat on-ramp`
      - `wallet`: _One_ of `account abstraction`, `multisig`, `self-custody`
 
+#### Tip: validating your ecosystem.json
+
+Before opening a pull request, you can validate the structure of your `ecosystem.json` entry by running:
+yarn lint:ecosystem
+This helps catch missing required fields, invalid `category` or `subcategory` values, and malformed JSON before running the full web build.
+
 If your app supports multiple networks, ensure the URL provided points to a page
 with Base already selected as the network, for people who will be visiting from
 base.org.
