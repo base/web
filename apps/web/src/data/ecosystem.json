@@ -1,19 +1,19 @@
 [
   {
-  "name": "growthepie",
-  "description": "The open analytics platform for the Ethereum ecosystem. We empower Base Chain builders with open and actionable metrics on usage, growth, and adoption.",
-  "url": "https://www.growthepie.com/chains/base",
-  "imageUrl": "/images/partners/growthepie.webp",
-  "category": "infra",
-  "subcategory": "data"
+    "name": "growthepie",
+    "description": "The open analytics platform for the Ethereum ecosystem. We empower Base Chain builders with open and actionable metrics on usage, growth, and adoption.",
+    "url": "https://www.growthepie.com/chains/base",
+    "imageUrl": "/images/partners/growthepie.webp",
+    "category": "infra",
+    "subcategory": "data"
   },
   {
-  "name": "Coinrule",
-  "description": "Launch fully self-custodial onchain automated trading strategies at lightning speed and with one-click UX. Team is backed by Y Combinator",
-  "url": "https://coinrule.com",
-  "imageUrl": "/images/partners/coinrule.png",
-  "category": "defi",
-  "subcategory": "dex aggregator"
+    "name": "Coinrule",
+    "description": "Launch fully self-custodial onchain automated trading strategies at lightning speed and with one-click UX. Team is backed by Y Combinator",
+    "url": "https://coinrule.com",
+    "imageUrl": "/images/partners/coinrule.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
   },
   {
     "name": "0x",
@@ -1392,6 +1392,14 @@
     "imageUrl": "/images/partners/dodo.webp"
   },
   {
+    "name": "Doma",
+    "url": "https://base.doma.xyz",
+    "description": "Doma bridges Web2 domains to Web3 ecosystems, enabling tokenization, global distribution, monetization, and innovation for registrars, investors, and builders.",
+    "category": "consumer",
+    "subcategory": "real world",
+    "imageUrl": "/images/partners/doma.png"
+  },
+  {
     "name": "Dot",
     "description": "Dot transforms user-generated pixel art into collectible cards playable in unique challenges and onchain games. Create your own cards or open card packs from your favorite artists today.",
     "url": "https://dot.fan",
@@ -1424,9 +1432,9 @@
     "subcategory": "payments"
   },
   {
-    "name": "DRPC",
-    "url": "https://drpc.org",
-    "description": "Reliable, Scalable & Cost-efficient RPC solution for EVM-based networks.",
+    "name": "dRPC NodeCloud",
+    "url": "https://drpc.org/chainlist/base-mainnet-rpc",
+    "description": "Access Base Mainnet and Sepolia Testnet endpoints plus 180+ networks with smart routing, analytics, key control, and front-end protection. Powered by 40 providers. Start free or go unlimited with flat rate pricing from $10.",
     "imageUrl": "/images/partners/drpc.webp",
     "category": "infra",
     "subcategory": "node provider"
@@ -3015,7 +3023,7 @@
     "category": "infra",
     "subcategory": "bridge"
   },
- {
+  {
     "name": "Ormi Labs",
     "description": "A next-generation Subgraph indexer built for real-time and historical blockchain data at scale.",
     "url": "https://ormilabs.com/",
@@ -4647,7 +4655,7 @@
     "category": "consumer",
     "subcategory": "payments"
   },
-  {  
+  {
     "name": "KOLZ",
     "description": "A cutting-edge Web3 influencer platform designed to bridge the gap between leading influencers in the cryptocurrency and blockchain space (known as KOLs - Key Opinion Leaders) and their followers.",
     "url": "https://kolz.chat/",
@@ -4684,8 +4692,8 @@
     "url": "https://wlth.xyz//",
     "description": "WLTH opens the door to tokenised pre-IPO opportunities like xAI and SpaceX, while AI-powered strategies help your assets grow on autopilot. One app. No barriers.",
     "imageUrl": "/images/partners/wlth.webp",
-    "category": "Consumer",
-    "subcategory": "Real World"
+    "category": "consumer",
+    "subcategory": "real world"
   },
   {
     "name": "DeGov.AI",
@@ -4696,13 +4704,13 @@
     "subcategory": "dao"
   },
   {
-  "name": "Super OETH",
+    "name": "Super OETH",
     "url": "https://www.originprotocol.com/super",
     "description": "Super OETH is the first Ethereum LST native to the Base network. Hold superOETHb in your wallet and watch as the balance magically grows daily. Designed by Origin Protocol.",
     "imageUrl": "/images/partners/SuperOETH.png",
     "category": "defi",
     "subcategory": "yield vault"
-   },
+  },
   {
     "name": "Levva",
     "url": "https://levva.fi/",
@@ -4712,10 +4720,18 @@
     "subcategory": "portfolios"
   },
   {
+    "name": "Kasu",
+    "description": "Kasu is an RWA business lending platform enabling DeFi lenders access to institutional-grade yields from profitable real-world businesses across the U.S., Canada, and Australia.",
+    "url": "https://app.kasu.finance/",
+    "imageUrl": "/images/partners/kasu.png",
+    "category": "defi",
+    "subcategory": "lending/borrowing"
+  },
+  {
     "name": "FLock.io",
     "url": "https://www.flock.io/",
     "description": "FLock.io is the first decentralised AI training platform, combining Federated Learning and blockchain technology to revolutionise AI model development.",
-    "imageUrl": "/images/partners/Flock.io.png",
+    "imageUrl": "/images/partners/FLock.io.png",
     "category": "ai",
     "subcategory": "ai"
   },
@@ -4742,5 +4758,13 @@
     "imageUrl": "/images/partners/neurobro-logo.png",
     "category": "ai",
     "subcategory": "ai"
+  },
+  {
+    "name": "Allbridge Core",
+    "url": "https://core.allbridge.io/",
+    "description": "Allbridge Core enables native stablecoin transfers across blockchains without wrapping — powering frictionless DeFi and seamless multi-chain liquidity.",
+    "imageUrl": "/images/partners/allbridge-core-logo.png",
+    "category": "infra",
+    "subcategory": "bridge"
   }
 ]
