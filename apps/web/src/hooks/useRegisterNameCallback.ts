@@ -200,7 +200,7 @@ export function useRegisterNameCallback(
                     abi: L2ReverseRegistrarAbi,
                     address: USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES[basenameChain.id],
                     functionName: 'setName',
-                    args: [normalizedName],
+                    args: [formatBaseEthDomain(name, basenameChain.id)],
                   },
                 ]
               : []),
