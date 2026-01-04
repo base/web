@@ -1,0 +1,42 @@
+{
+  "ci": {
+    "collect": {
+      "numberOfRuns": 1,
+      "startServerCommand": "yarn workspace @app/web start",
+      "url": ["http://localhost:3000"]
+    },
+    "assert": {
+      "preset": "lighthouse:recommended",
+      "assertions": {
+        "categories:performance": ["warn", {"minScore": 0.8}],
+        "categories:accessibility": ["error", {"minScore": 0.9}],
+        "categories:best-practices": ["warn", {"minScore": 0.85}],
+        "categories:seo": ["warn", {"minScore": 0.85}],
+        "color-contrast": "error",
+        "heading-order": "error",
+        "html-has-lang": "error",
+        "image-alt": "error",
+        "label": "error",
+        "link-name": "error",
+        "list": "warn",
+        "listitem": "warn",
+        "meta-viewport": "error",
+        "document-title": "error",
+        "valid-lang": "error",
+        "aria-allowed-attr": "error",
+        "aria-required-attr": "error",
+        "aria-valid-attr-value": "error",
+        "aria-valid-attr": "error",
+        "button-name": "error",
+        "bypass": "error",
+        "duplicate-id-aria": "error",
+        "frame-title": "error",
+        "tabindex": "error",
+        "td-headers-attr": "warn"
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}
