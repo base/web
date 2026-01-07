@@ -2768,6 +2768,14 @@
     "subcategory": "node provider"
   },
   {
+    "name": "NonceArt",
+    "description": "Collaborative pixel art canvas. Own pixels forever onchain with gasless USDC payments via x402 protocol. Think Million Dollar Homepage meets NFTs with marketplace functionality, fully decentralized.",
+    "url": "https://nonce.art",
+    "imageUrl": "/images/partners/nonceart.png",
+    "category": "consumer",
+    "subcategory": "creator"
+  },
+  {
     "name": "Nouns Builder",
     "url": "https://nouns.build",
     "description": "Governed by BuilderDAO, Nouns Builder is a tool lets you create Nounish DAOs easily. Build and empower your community with onchain governance and treasury.",
