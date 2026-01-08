@@ -61,18 +61,18 @@ export function ChainIcons(name: string) {
           {/* start */}
           <g>
             <path
-              className="origin-center transition-all duration-300 ease-in-out group-hover:translate-y-4 group-hover:-rotate-90 group-hover:scale-[2.5]"
+              className="origin-center translate-y-4 -rotate-90 scale-[2.5] transition-all duration-300 ease-in-out group-hover:translate-y-0 group-hover:rotate-0 group-hover:scale-[1]"
               d="M11.7559 10.0547C14.2973 10.0547 16.5581 11.2513 18.0098 13.1104C16.9469 14.4599 16.3115 16.1625 16.3115 18.0137C16.3116 19.8523 16.9393 21.5435 17.9893 22.8887C16.5368 24.7329 14.2855 25.9189 11.7559 25.9189C7.37529 25.9188 3.82422 22.3669 3.82422 17.9863C3.82435 13.6058 7.37537 10.0549 11.7559 10.0547Z"
               fill="#3C8AFF"
             />
             <path
-              className="origin-center transition-all duration-300 ease-in-out group-hover:-translate-y-4 group-hover:-rotate-90 group-hover:scale-[2.5]"
+              className="origin-center -translate-y-4 -rotate-90 scale-[2.5] transition-all duration-300 ease-in-out group-hover:translate-y-0 group-hover:rotate-0 group-hover:scale-[1]"
               d="M24.2432 10.082C28.6237 10.0822 32.1748 13.634 32.1748 18.0146C32.1747 22.3952 28.6237 25.9461 24.2432 25.9463C21.7012 25.9463 19.4399 24.7493 17.9883 22.8896C19.0511 21.5401 19.6875 19.8384 19.6875 17.9873C19.6874 16.1481 19.0593 14.4567 18.0088 13.1113C19.4612 11.2672 21.7136 10.082 24.2432 10.082Z"
               fill="#0058DC"
             />
           </g>
           {/* end */}
-          <g className="origin-center scale-50 opacity-0 blur-sm transition-all duration-300 ease-in-out group-hover:scale-100 group-hover:opacity-100 group-hover:blur-none">
+          <g className="origin-center scale-100 opacity-100 blur-none transition-all duration-300 ease-in-out group-hover:scale-50  group-hover:opacity-0  group-hover:blur-sm">
             <path
               className="origin-center transition-all duration-300 ease-in-out"
               d="M11.7559 10.0547C14.2973 10.0547 16.5581 11.2513 18.0098 13.1104C16.9469 14.4599 16.3115 16.1625 16.3115 18.0137C16.3116 19.8523 16.9393 21.5435 17.9893 22.8887C16.5368 24.7329 14.2855 25.9189 11.7559 25.9189C7.37529 25.9188 3.82422 22.3669 3.82422 17.9863C3.82435 13.6058 7.37537 10.0549 11.7559 10.0547Z"
