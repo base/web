@@ -22,7 +22,7 @@ type MetricCardProps = {
 
 function MetricCard({ title, icon, value, unit }: MetricCardProps) {
   return (
-    <div className="pointer-events-none flex w-full flex-col rounded-lg bg-base-gray-25/90 p-4 backdrop-blur-sm md:w-[250px]">
+    <div className="pointer-events-none flex w-full flex-col rounded-lg bg-base-gray-25/90 p-4 backdrop-blur-sm md:w-[250px] md:bg-white">
       <div className="mb-4 flex items-start justify-between">
         <div className="flex flex-col gap-1">
           <Text variant={TextVariant.Body}>{title}</Text>

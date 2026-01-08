@@ -8,18 +8,22 @@ interface ChainValuePropProps {
   pill?: string;
   header: string;
   subheader: string;
+  icon: React.ReactNode;
 }
 
-export function ChainValueProp({ eyebrow, pill, header, subheader }: ChainValuePropProps) {
+export function ChainValueProp({ eyebrow, pill, header, subheader, icon }: ChainValuePropProps) {
   return (
-    <div className="flex flex-1 flex-col gap-3">
+    <div className="group flex flex-1 flex-col gap-3">
       <div className="flex items-center gap-3">
-        <Text
-          variant={TextVariant.Caption}
-          className="!text-xs !font-medium uppercase tracking-widest !text-base-gray-200"
-        >
-          {eyebrow}
-        </Text>
+        <div className="flex items-center gap-2">
+          <div className="w-8">{icon}</div>
+          <Text
+            variant={TextVariant.Caption}
+            className="!text-xs !font-medium uppercase tracking-widest !text-base-gray-200"
+          >
+            {eyebrow}
+          </Text>
+        </div>
         {pill && (
           <span
             className="rounded-full bg-black/10 px-3 py-1.5 font-mono

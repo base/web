@@ -92,6 +92,7 @@ export default async function Chain() {
                         pill={prop.pill}
                         header={prop.header}
                         subheader={prop.subheader}
+                        icon={prop.icon}
                       />
                     </div>
                   );

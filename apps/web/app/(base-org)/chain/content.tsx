@@ -1,3 +1,5 @@
+import { ChainIcons } from './chainIcons';
+
 export const content = {
   hero: {
     header: 'Base Chain',
@@ -17,6 +19,7 @@ export const content = {
       header: 'Move value at the speed of the internet',
       subheader:
         'An open network for the global economy, enabling anyone, anywhere to transact instantly, 24/7, for fractions of cents.',
+      icon: ChainIcons('instant'),
     },
     {
       id: 2,
@@ -24,6 +27,7 @@ export const content = {
       header: 'An open platform for everyone',
       subheader:
         'Powered by Ethereum and the OP Stack, Base is built on open-source, open standards that anyone can build on. Stage 1 decentralization ensures that Base Chain is open and credibly neutral.',
+      icon: ChainIcons('decentralized'),
     },
     {
       id: 3,
@@ -31,6 +35,7 @@ export const content = {
       header: 'A bridge, not an island',
       subheader:
         'Built on Ethereum, the Superchain, and designed to be interoperable with Layer 1s like Solana. So that builders and users can seamlessly move across the entire global economy and tap into value wherever it exists.',
+      icon: ChainIcons('connected'),
     },
     {
       id: 4,
@@ -38,6 +43,7 @@ export const content = {
       header: 'Secured by Ethereum, with Coinbase best practices',
       subheader:
         'Base Chain is secured by Ethereum, the most mature L1, and built using the same standards and practices that power Coinbase products, trusted by millions worldwide.',
+      icon: ChainIcons('secure'),
     },
     {
       id: 5,
@@ -46,6 +52,7 @@ export const content = {
       header: 'Privacy-first to empower a fair economy',
       subheader:
         'Fast, composable, and compliant private transactions that give people and businesses the safety they need to participate confidently in the global economy.',
+      icon: ChainIcons('privacy'),
     },
   ],
   stats: {
