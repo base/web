@@ -15,7 +15,7 @@ import { BaseAppSend } from './BaseAppSend';
 import { BaseAppSms } from './BaseAppSms';
 import { BaseAppEarn } from './BaseAppEarn';
 
-import ImageAsset from './base-app-phone.png';
+import ImageAsset from './tba.png';
 import { motion, spring } from 'motion/react';
 import { ParallaxScaleWrapper } from './ParallaxScaleWrapper';
 import { useState } from 'react';
@@ -74,6 +74,7 @@ export function SectionBaseApp() {
           </div>
         </motion.div>
 
+        {/* UI Section */}
         <motion.div
           onMouseEnter={() => setSocialIsHovered(true)}
           onMouseLeave={() => setSocialIsHovered(false)}

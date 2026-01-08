@@ -1,9 +1,9 @@
 import { ImageType } from 'apps/web/src/components/base-org/root/Redesign/Section';
 import Image from 'next/image';
 
-import ImageAsset1 from './social-asset-1.png';
-import ImageAssetLike from './social-asset-like.png';
-import ImageAsset2 from './social-asset-2.png';
+import ImageAsset1 from './social-asset-feed-buy.png';
+import ImageAssetLike from './social-asset-quick-buy.png';
+import ImageAsset2 from './social-asset-img.png';
 
 const img1 = ImageAsset1 as ImageType;
 const imgLike = ImageAssetLike as ImageType;
@@ -18,7 +18,7 @@ export function BaseAppSocial() {
           alt="Base App"
           width={img2.width}
           height={img2.height}
-          className="mx-auto w-[50%] translate-x-[40%] rotate-[10deg] transition-all duration-300 group-hover:translate-x-[50%] group-hover:rotate-[12deg]"
+          className="mx-auto w-[50%] translate-x-[30%] rotate-[10deg] transition-all duration-300 group-hover:translate-x-[40%] group-hover:rotate-[12deg]"
           draggable={false}
           sizes="(max-width: 768px) 100vw, 650px"
           quality={99}
@@ -30,7 +30,7 @@ export function BaseAppSocial() {
           alt="Base App"
           width={img1.width}
           height={img1.height}
-          className="mx-auto w-[50%] transition-all duration-300 group-hover:rotate-[-8deg]"
+          className="mx-auto w-[60%] transition-all duration-300 group-hover:rotate-[-8deg]"
           draggable={false}
           sizes="(max-width: 768px) 100vw, 650px"
           quality={99}
@@ -42,7 +42,7 @@ export function BaseAppSocial() {
           alt="Base App"
           width={imgLike.width}
           height={imgLike.height}
-          className="mx-auto w-[20%] origin-center translate-x-[-100%] translate-y-[10%] rotate-[-10deg] transition-all duration-300 group-hover:rotate-[0deg] group-hover:scale-150"
+          className="mx-auto w-[20%] origin-center translate-x-[-150%] translate-y-[10%] rotate-[-10deg] transition-all duration-300 group-hover:rotate-[0deg] group-hover:scale-150"
           draggable={false}
           sizes="(max-width: 768px) 100vw, 450px"
           quality={99}
