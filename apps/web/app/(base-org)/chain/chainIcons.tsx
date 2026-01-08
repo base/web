@@ -52,22 +52,38 @@ export function ChainIcons(name: string) {
         <svg
           width="36"
           height="36"
-          className="h-full w-full"
+          className="h-full w-full overflow-hidden rounded-full"
           viewBox="0 0 36 36"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <rect width="36" height="36" rx="18" fill="#4684FF" fill-opacity="0.2" />
-          <path
-            className="origin-center transition-all duration-300 ease-in-out group-hover:-rotate-90 group-hover:scale-[2.5]"
-            d="M11.7559 10.0547C14.2973 10.0547 16.5581 11.2513 18.0098 13.1104C16.9469 14.4599 16.3115 16.1625 16.3115 18.0137C16.3116 19.8523 16.9393 21.5435 17.9893 22.8887C16.5368 24.7329 14.2855 25.9189 11.7559 25.9189C7.37529 25.9188 3.82422 22.3669 3.82422 17.9863C3.82435 13.6058 7.37537 10.0549 11.7559 10.0547Z"
-            fill="#3C8AFF"
-          />
-          <path
-            className="origin-center transition-all duration-300 ease-in-out group-hover:-rotate-90 group-hover:scale-[2.5]"
-            d="M24.2432 10.082C28.6237 10.0822 32.1748 13.634 32.1748 18.0146C32.1747 22.3952 28.6237 25.9461 24.2432 25.9463C21.7012 25.9463 19.4399 24.7493 17.9883 22.8896C19.0511 21.5401 19.6875 19.8384 19.6875 17.9873C19.6874 16.1481 19.0593 14.4567 18.0088 13.1113C19.4612 11.2672 21.7136 10.082 24.2432 10.082Z"
-            fill="#0058DC"
-          />
+          {/* start */}
+          <g>
+            <path
+              className="origin-center transition-all duration-300 ease-in-out group-hover:translate-y-4 group-hover:-rotate-90 group-hover:scale-[2.5]"
+              d="M11.7559 10.0547C14.2973 10.0547 16.5581 11.2513 18.0098 13.1104C16.9469 14.4599 16.3115 16.1625 16.3115 18.0137C16.3116 19.8523 16.9393 21.5435 17.9893 22.8887C16.5368 24.7329 14.2855 25.9189 11.7559 25.9189C7.37529 25.9188 3.82422 22.3669 3.82422 17.9863C3.82435 13.6058 7.37537 10.0549 11.7559 10.0547Z"
+              fill="#3C8AFF"
+            />
+            <path
+              className="origin-center transition-all duration-300 ease-in-out group-hover:-translate-y-4 group-hover:-rotate-90 group-hover:scale-[2.5]"
+              d="M24.2432 10.082C28.6237 10.0822 32.1748 13.634 32.1748 18.0146C32.1747 22.3952 28.6237 25.9461 24.2432 25.9463C21.7012 25.9463 19.4399 24.7493 17.9883 22.8896C19.0511 21.5401 19.6875 19.8384 19.6875 17.9873C19.6874 16.1481 19.0593 14.4567 18.0088 13.1113C19.4612 11.2672 21.7136 10.082 24.2432 10.082Z"
+              fill="#0058DC"
+            />
+          </g>
+          {/* end */}
+          <g className="origin-center scale-50 opacity-0 blur-sm transition-all duration-300 ease-in-out group-hover:scale-100 group-hover:opacity-100 group-hover:blur-none">
+            <path
+              className="origin-center transition-all duration-300 ease-in-out"
+              d="M11.7559 10.0547C14.2973 10.0547 16.5581 11.2513 18.0098 13.1104C16.9469 14.4599 16.3115 16.1625 16.3115 18.0137C16.3116 19.8523 16.9393 21.5435 17.9893 22.8887C16.5368 24.7329 14.2855 25.9189 11.7559 25.9189C7.37529 25.9188 3.82422 22.3669 3.82422 17.9863C3.82435 13.6058 7.37537 10.0549 11.7559 10.0547Z"
+              fill="#3C8AFF"
+            />
+            <path
+              className="origin-center transition-all duration-300 ease-in-out"
+              d="M24.2432 10.082C28.6237 10.0822 32.1748 13.634 32.1748 18.0146C32.1747 22.3952 28.6237 25.9461 24.2432 25.9463C21.7012 25.9463 19.4399 24.7493 17.9883 22.8896C19.0511 21.5401 19.6875 19.8384 19.6875 17.9873C19.6874 16.1481 19.0593 14.4567 18.0088 13.1113C19.4612 11.2672 21.7136 10.082 24.2432 10.082Z"
+              fill="#0058DC"
+            />
+          </g>
         </svg>
       );
     case 'secure':
@@ -118,7 +134,7 @@ export function ChainIcons(name: string) {
             />
           </g>
           {/* start */}
-          <g className="origin-center transition-all duration-300 ease-in-out group-hover:-translate-y-full group-hover:scale-[0.6]">
+          <g className="origin-center transition-all duration-300 ease-in-out group-hover:-translate-y-full group-hover:scale-[0.6] group-hover:blur-sm">
             <path
               className="origin-center transition-all duration-300 ease-in-out group-hover:translate-y-0.5"
               d="M17.6543 4C20.3653 4 22.5625 6.19724 22.5625 8.9082V16C22.5625 16.5016 22.1559 16.9082 21.6543 16.9082C21.1527 16.9082 20.7461 16.5016 20.7461 16V8.9082C20.7461 7.20089 19.3616 5.81641 17.6543 5.81641C15.947 5.81641 14.5625 7.20089 14.5625 8.9082L14.5625 16C14.5625 16.5016 14.1559 16.9082 13.6543 16.9082C13.1527 16.9082 12.7461 16.5016 12.7461 16L12.7461 8.9082C12.7461 6.19724 14.9433 4 17.6543 4Z"
