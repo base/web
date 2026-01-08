@@ -128,11 +128,11 @@ export default async function Chain() {
                     }}
                     className="absolute right-0 top-0 z-20 h-full w-[120px] "
                   ></div>
-                  <Marquee className="[--duration:60s]" pauseOnHover={false}>
+                  <Marquee className="[--duration:60s] [--gap:0.5rem]" pauseOnHover={false}>
                     {content.ecosystem.logos.map((logo) => (
                       <div
                         key={logo}
-                        className="relative flex aspect-square w-[100px] items-center justify-center overflow-hidden rounded-[26px] bg-base-gray-50"
+                        className="relative flex aspect-square w-[60px] items-center justify-center overflow-hidden rounded-lg bg-base-gray-50 md:w-[100px] md:rounded-[26px]"
                       >
                         <div
                           style={{ mixBlendMode: 'multiply' }}
