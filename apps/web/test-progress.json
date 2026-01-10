@@ -114,7 +114,7 @@
     },
     {
       "file": "app/(basenames)/api/proofs/baseEthHolders/route.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
