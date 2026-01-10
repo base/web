@@ -349,7 +349,7 @@
     },
     {
       "file": "src/components/Basenames/UsernameProfile/index.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
