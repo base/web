@@ -44,7 +44,7 @@
     },
     {
       "file": "app/(basenames)/name/[username]/opengraph-image.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
