@@ -309,7 +309,7 @@
     },
     {
       "file": "src/components/Basenames/ManageNames/NameDisplay.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
