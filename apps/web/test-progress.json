@@ -14,7 +14,7 @@
     },
     {
       "file": "app/(basenames)/names/RegistrationProviders.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
