@@ -204,7 +204,7 @@
     },
     {
       "file": "src/components/Basenames/RegistrationContext.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
