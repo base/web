@@ -39,7 +39,7 @@
     },
     {
       "file": "app/(basenames)/name/[username]/ProfileProviders.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
