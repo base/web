@@ -144,7 +144,7 @@
     },
     {
       "file": "src/hooks/useBasenameExpirationBanner.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
