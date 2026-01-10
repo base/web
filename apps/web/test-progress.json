@@ -69,7 +69,7 @@
     },
     {
       "file": "app/(basenames)/api/basenames/metadata/[tokenId]/route.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
