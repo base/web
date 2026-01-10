@@ -34,7 +34,7 @@
     },
     {
       "file": "app/(basenames)/name/[username]/renew/page.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
