@@ -174,7 +174,7 @@
     },
     {
       "file": "src/components/Basenames/FloatingENSPills.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
