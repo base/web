@@ -124,7 +124,7 @@
     },
     {
       "file": "src/utils/basenames/getChain.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
