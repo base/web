@@ -359,7 +359,7 @@
     },
     {
       "file": "src/components/Basenames/UsernameProfileCasts/index.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
