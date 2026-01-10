@@ -94,7 +94,7 @@
     },
     {
       "file": "app/(basenames)/api/proofs/cb1/route.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
