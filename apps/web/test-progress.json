@@ -184,8 +184,8 @@
     },
     {
       "file": "src/components/Basenames/ProfilePromo/dynamic.tsx",
-      "hasTests": false,
-      "skipReason": null
+      "hasTests": true,
+      "skipReason": "Pure Next.js dynamic import wrapper with ssr: false. Contains no business logic, only re-exports ProfilePromo as a client-only dynamic component. Testing would only verify Next.js framework behavior, not application code."
     },
     {
       "file": "src/components/Basenames/ProfilePromo/index.tsx",
