@@ -304,7 +304,7 @@
     },
     {
       "file": "src/components/Basenames/ManageNames/NamesList.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
