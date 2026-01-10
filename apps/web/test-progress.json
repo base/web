@@ -129,7 +129,7 @@
     },
     {
       "file": "src/utils/basenames/getDomain.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
