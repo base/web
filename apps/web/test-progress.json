@@ -1,0 +1,521 @@
+{
+  "description": "Test progress tracking for basenames directory",
+  "generatedAt": "2026-01-09",
+  "files": [
+    {
+      "file": "app/(basenames)/layout.tsx",
+      "hasTests": true,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/names/page.tsx",
+      "hasTests": true,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/names/RegistrationProviders.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/manage-names/page.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/name/not-found/page.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/name/[username]/page.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/name/[username]/renew/page.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/name/[username]/ProfileProviders.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/name/[username]/opengraph-image.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/api/basenames/[name]/assets/cardImage.svg/route.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/api/basenames/getUsernames/route.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/api/basenames/contract-uri/route.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/api/basenames/contract-uri.json/route.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/api/basenames/metadata/[tokenId]/route.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/api/basenames/talentprotocol/[address]/route.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/api/basenames/avatar/ipfsUpload/route.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/api/proofs/discountCode/route.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/api/proofs/discountCode/consume/route.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/api/proofs/cb1/route.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/api/proofs/cbid/route.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/api/proofs/bns/route.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/api/proofs/coinbase/route.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/api/proofs/baseEthHolders/route.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "app/(basenames)/api/proxy/route.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/utils/basenames/getChain.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/utils/basenames/getDomain.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/utils/frames/basenames.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/hooks/useBasenameChain.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/hooks/useBasenameExpirationBanner.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/hooks/useBasenameResolver.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/hooks/useSetPrimaryBasename.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/hooks/useBasenamesNameExpiresWithGracePeriod.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/BasenameIdentity/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/BasenameAvatar/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/FloatingENSPills.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/PoweredByEns/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/ProfilePromo/dynamic.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/ProfilePromo/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RegistrationBackground/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RegistrationBrand/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RegistrationContext.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RegistrationFaq/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RegistrationFlow.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RegistrationForm/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RegistrationForm/RegistrationButton.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RegistrationLandingExplore/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RegistrationLearnMoreModal/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RegistrationProfileForm/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RegistrationSearchInput/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RegistrationShareOnSocials/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RegistrationStateSwitcher/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RegistrationSuccessMessage/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RegistrationSuccessMessage/USDCClaimModal.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RegistrationValueProp/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RenewalContext.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RenewalFlow.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RenewalForm/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RenewalForm/RenewalButton.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/RenewalSuccessMessage/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/PremiumExplainerModal/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/ManageNames/NamesList.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/ManageNames/NameDisplay.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/ManageNames/hooks.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameAvatarField/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameCastsField/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameDescriptionField/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameKeywordsField/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameLocationField/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernamePill/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfile/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileCard/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileCasts/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileContent/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileContext/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileKeywords/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileNotFound/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileRenewalModal/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSectionBadges/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSectionBadges/BadgeContext.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSectionBadges/Badges/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSectionBadges/hooks/useBaseGrant.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSectionBadges/hooks/useBaseGuild.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSectionBadges/hooks/useBuildathon.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSectionBadges/hooks/useCoinbaseVerifications.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSectionBadges/hooks/useTalentProtocol.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSectionExplore/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSectionHeatmap/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSectionHeatmap/contracts.ts",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSectionTitle/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSettings/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSettingsAvatar/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSettingsContext/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSettingsManageProfile/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSettingsMenu/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSettingsName/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSettingsOwnership/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileSidebar/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileTransferOwnershipModal/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileTransferOwnershipModal/context.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameProfileTransferOwnershipModal/OwnershipTransactionState.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/UsernameTextRecordInlineField/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/YearSelector/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    },
+    {
+      "file": "src/components/Basenames/shared/SuccessMessage/index.tsx",
+      "hasTests": false,
+      "skipReason": null
+    }
+  ]
+}
