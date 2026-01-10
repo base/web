@@ -214,7 +214,7 @@
     },
     {
       "file": "src/components/Basenames/RegistrationFlow.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
