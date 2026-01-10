@@ -409,7 +409,7 @@
     },
     {
       "file": "src/components/Basenames/UsernameProfileSectionBadges/hooks/useBaseGuild.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
