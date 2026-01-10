@@ -244,7 +244,7 @@
     },
     {
       "file": "src/components/Basenames/RegistrationSearchInput/index.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
