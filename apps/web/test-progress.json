@@ -294,7 +294,7 @@
     },
     {
       "file": "src/components/Basenames/RenewalSuccessMessage/index.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
