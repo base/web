@@ -11,6 +11,7 @@ const customJestConfig = {
   moduleNameMapper: {
     '^@/components/(.*)$': '<rootDir>/components/$1',
     '^@/pages/(.*)$': '<rootDir>/pages/$1',
+    '^apps/web/(.*)$': '<rootDir>/$1',
   },
   testPathIgnorePatterns: ['<rootDir>/e2e/'],
 };
