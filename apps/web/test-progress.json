@@ -19,7 +19,7 @@
     },
     {
       "file": "app/(basenames)/manage-names/page.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
