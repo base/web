@@ -464,7 +464,7 @@
     },
     {
       "file": "src/components/Basenames/UsernameProfileSettingsManageProfile/index.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
