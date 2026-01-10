@@ -79,7 +79,7 @@
     },
     {
       "file": "app/(basenames)/api/basenames/avatar/ipfsUpload/route.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
