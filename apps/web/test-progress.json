@@ -24,7 +24,7 @@
     },
     {
       "file": "app/(basenames)/name/not-found/page.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
