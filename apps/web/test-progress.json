@@ -164,7 +164,7 @@
     },
     {
       "file": "src/components/BasenameIdentity/index.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
