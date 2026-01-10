@@ -484,7 +484,7 @@
     },
     {
       "file": "src/components/Basenames/UsernameProfileSidebar/index.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
