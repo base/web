@@ -134,7 +134,7 @@
     },
     {
       "file": "src/utils/frames/basenames.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
