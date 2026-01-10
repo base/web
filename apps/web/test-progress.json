@@ -139,7 +139,7 @@
     },
     {
       "file": "src/hooks/useBasenameChain.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
