@@ -159,7 +159,7 @@
     },
     {
       "file": "src/hooks/useBasenamesNameExpiresWithGracePeriod.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
