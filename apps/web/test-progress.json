@@ -274,7 +274,7 @@
     },
     {
       "file": "src/components/Basenames/RenewalContext.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
