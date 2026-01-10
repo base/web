@@ -284,7 +284,7 @@
     },
     {
       "file": "src/components/Basenames/RenewalForm/index.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
