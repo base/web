@@ -374,7 +374,7 @@
     },
     {
       "file": "src/components/Basenames/UsernameProfileKeywords/index.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
