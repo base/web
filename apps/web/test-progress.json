@@ -499,7 +499,7 @@
     },
     {
       "file": "src/components/Basenames/UsernameProfileTransferOwnershipModal/OwnershipTransactionState.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
