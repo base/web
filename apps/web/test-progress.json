@@ -394,7 +394,7 @@
     },
     {
       "file": "src/components/Basenames/UsernameProfileSectionBadges/BadgeContext.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
