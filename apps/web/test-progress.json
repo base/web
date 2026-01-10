@@ -54,7 +54,7 @@
     },
     {
       "file": "app/(basenames)/api/basenames/getUsernames/route.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
