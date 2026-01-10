@@ -489,7 +489,7 @@
     },
     {
       "file": "src/components/Basenames/UsernameProfileTransferOwnershipModal/index.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
