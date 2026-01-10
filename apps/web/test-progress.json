@@ -64,7 +64,7 @@
     },
     {
       "file": "app/(basenames)/api/basenames/contract-uri.json/route.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
