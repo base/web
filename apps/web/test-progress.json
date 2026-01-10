@@ -234,7 +234,7 @@
     },
     {
       "file": "src/components/Basenames/RegistrationLearnMoreModal/index.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
