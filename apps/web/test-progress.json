@@ -509,7 +509,7 @@
     },
     {
       "file": "src/components/Basenames/YearSelector/index.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
