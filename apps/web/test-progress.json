@@ -224,7 +224,7 @@
     },
     {
       "file": "src/components/Basenames/RegistrationForm/RegistrationButton.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
