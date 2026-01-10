@@ -29,7 +29,7 @@
     },
     {
       "file": "app/(basenames)/name/[username]/page.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
