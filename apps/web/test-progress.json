@@ -414,7 +414,7 @@
     },
     {
       "file": "src/components/Basenames/UsernameProfileSectionBadges/hooks/useBuildathon.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
