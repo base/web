@@ -289,7 +289,7 @@
     },
     {
       "file": "src/components/Basenames/RenewalForm/RenewalButton.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
