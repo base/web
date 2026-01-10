@@ -149,7 +149,7 @@
     },
     {
       "file": "src/hooks/useBasenameResolver.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
