@@ -424,7 +424,7 @@
     },
     {
       "file": "src/components/Basenames/UsernameProfileSectionBadges/hooks/useTalentProtocol.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
