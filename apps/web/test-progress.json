@@ -154,7 +154,7 @@
     },
     {
       "file": "src/hooks/useSetPrimaryBasename.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
