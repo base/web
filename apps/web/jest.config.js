@@ -16,6 +16,7 @@ const customJestConfig = {
     '^base-ui$': '<rootDir>/../../libs/base-ui/index.ts',
     '.*/libs/base-ui$': '<rootDir>/../../libs/base-ui/index.ts',
     '^ox/BlockOverrides$': '<rootDir>/__mocks__/ox/BlockOverrides.js',
+    '^react-dom/test-utils$': '<rootDir>/__mocks__/react-dom/test-utils.js',
   },
   testPathIgnorePatterns: ['<rootDir>/e2e/'],
 };

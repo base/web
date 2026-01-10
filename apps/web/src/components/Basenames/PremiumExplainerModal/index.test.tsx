@@ -54,15 +54,15 @@ jest.mock('recharts', () => ({
     children: React.ReactNode;
     data: { days: number; premium: number }[];
   }) => (
-    <div data-testid="line-chart" data-points={data?.length}>
+    <svg data-testid="line-chart" data-points={data?.length}>
       {children}
-    </div>
+    </svg>
   ),
-  Line: ({ dataKey }: { dataKey: string }) => <div data-testid="line" data-key={dataKey} />,
-  CartesianGrid: () => <div data-testid="cartesian-grid" />,
+  Line: ({ dataKey }: { dataKey: string }) => <g data-testid="line" data-key={dataKey} />,
+  CartesianGrid: () => <g data-testid="cartesian-grid" />,
   Tooltip: ({ content }: { content: React.ReactElement }) => {
     capturedTooltipContent = content;
-    return <div data-testid="tooltip">{content}</div>;
+    return <g data-testid="tooltip">{content}</g>;
   },
 }));
 

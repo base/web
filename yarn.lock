@@ -136,7 +136,7 @@ __metadata:
     "@react-three/rapier": 1.1.1
     "@tanstack/react-query": ^5
     "@testing-library/jest-dom": ^6.5.0
-    "@testing-library/react": ^16.0.1
+    "@testing-library/react": ^16.3.1
     "@types/jest": ^29.5.13
     "@types/jsdom": ^21.1.7
     "@types/jsonwebtoken": ^9.0.6
@@ -8397,9 +8397,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:^16.0.1":
-  version: 16.2.0
-  resolution: "@testing-library/react@npm:16.2.0"
+"@testing-library/react@npm:^16.3.1":
+  version: 16.3.1
+  resolution: "@testing-library/react@npm:16.3.1"
   dependencies:
     "@babel/runtime": ^7.12.5
   peerDependencies:
@@ -8413,7 +8413,7 @@ __metadata:
       optional: true
     "@types/react-dom":
       optional: true
-  checksum: 4a687200e4d5dc7c7bd83c01f847a26e2c78f08acf54e5dbde8132969221401c6c595f624f5bd47e758346edc5f516d0bb07bffaae8a2e149910343eed4ae39f
+  checksum: 33c62acc913045f04276e4db08a8d87f3f247313e9eed89c2a72afc00044804138fed720a41c7397d51cbe34c96e91fe819f0b77ca9b43bad4aae2e6b391248c
   languageName: node
   linkType: hard
 
