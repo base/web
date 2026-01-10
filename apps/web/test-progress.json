@@ -89,7 +89,7 @@
     },
     {
       "file": "app/(basenames)/api/proofs/discountCode/consume/route.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
