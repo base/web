@@ -199,7 +199,7 @@
     },
     {
       "file": "src/components/Basenames/RegistrationBrand/index.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
