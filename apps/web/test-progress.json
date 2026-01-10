@@ -314,7 +314,7 @@
     },
     {
       "file": "src/components/Basenames/ManageNames/hooks.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
