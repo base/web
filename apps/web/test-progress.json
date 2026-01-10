@@ -439,7 +439,7 @@
     },
     {
       "file": "src/components/Basenames/UsernameProfileSectionHeatmap/contracts.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
