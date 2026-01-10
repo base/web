@@ -119,7 +119,7 @@
     },
     {
       "file": "app/(basenames)/api/proxy/route.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
