@@ -324,7 +324,7 @@
     },
     {
       "file": "src/components/Basenames/UsernameCastsField/index.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
