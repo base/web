@@ -339,7 +339,7 @@
     },
     {
       "file": "src/components/Basenames/UsernameLocationField/index.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
