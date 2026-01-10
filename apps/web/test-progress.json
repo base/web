@@ -419,7 +419,7 @@
     },
     {
       "file": "src/components/Basenames/UsernameProfileSectionBadges/hooks/useCoinbaseVerifications.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
