@@ -109,7 +109,7 @@
     },
     {
       "file": "app/(basenames)/api/proofs/coinbase/route.ts",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
