@@ -279,7 +279,7 @@
     },
     {
       "file": "src/components/Basenames/RenewalFlow.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
