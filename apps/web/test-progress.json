@@ -49,7 +49,7 @@
     },
     {
       "file": "app/(basenames)/api/basenames/[name]/assets/cardImage.svg/route.tsx",
-      "hasTests": false,
+      "hasTests": true,
       "skipReason": null
     },
     {
