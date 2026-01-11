@@ -101,9 +101,19 @@ jest.mock('apps/web/src/components/Icon/Icon', () => ({
 }));
 
 // Mock Input component
+type InputProps = {
+  type?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+  className?: string;
+  id?: string;
+  autoCapitalize?: string;
+};
+
 jest.mock('apps/web/src/components/Input', () => ({
   __esModule: true,
-  default: jest.fn().mockImplementation((props) => {
+  default: jest.fn().mockImplementation((props: InputProps) => {
     const { type, value, onChange, placeholder, className, id, autoCapitalize } = props;
     return (
       <input

@@ -5,7 +5,7 @@ import { Basename } from '@coinbase/onchainkit/identity';
 
 // Mock next/og ImageResponse
 jest.mock('next/og', () => ({
-  ImageResponse: jest.fn().mockImplementation((element, options) => ({
+  ImageResponse: jest.fn().mockImplementation((element: unknown, options: unknown) => ({
     element,
     options,
   })),
@@ -23,10 +23,10 @@ const mockGetBasenameImage = jest.fn();
 const mockGetChainForBasename = jest.fn();
 const mockFetchResolverAddress = jest.fn();
 jest.mock('apps/web/src/utils/usernames', () => ({
-  formatBaseEthDomain: (...args: unknown[]) => mockFormatBaseEthDomain(...args),
-  getBasenameImage: (...args: unknown[]) => mockGetBasenameImage(...args),
-  getChainForBasename: (...args: unknown[]) => mockGetChainForBasename(...args),
-  fetchResolverAddress: (...args: unknown[]) => mockFetchResolverAddress(...args),
+  formatBaseEthDomain: (...args: unknown[]) => mockFormatBaseEthDomain(...args) as unknown,
+  getBasenameImage: (...args: unknown[]) => mockGetBasenameImage(...args) as unknown,
+  getChainForBasename: (...args: unknown[]) => mockGetChainForBasename(...args) as unknown,
+  fetchResolverAddress: (...args: unknown[]) => mockFetchResolverAddress(...args) as unknown,
   USERNAME_DOMAINS: {
     8453: 'base.eth',
     84532: 'basetest.eth',
@@ -40,7 +40,7 @@ jest.mock('apps/web/src/utils/usernames', () => ({
 const mockGetEnsText = jest.fn();
 const mockGetBasenamePublicClient = jest.fn();
 jest.mock('apps/web/src/hooks/useBasenameChain', () => ({
-  getBasenamePublicClient: (...args: unknown[]) => mockGetBasenamePublicClient(...args),
+  getBasenamePublicClient: (...args: unknown[]) => mockGetBasenamePublicClient(...args) as unknown,
 }));
 
 // Mock constants
@@ -214,7 +214,8 @@ describe('opengraph-image', () => {
     });
 
     it('should handle custom avatar URL', async () => {
-      const { getCloudinaryMediaUrl } = require('apps/web/src/utils/images');
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const { getCloudinaryMediaUrl } = require('apps/web/src/utils/images') as { getCloudinaryMediaUrl: jest.Mock };
       mockGetEnsText.mockResolvedValue('https://example.com/avatar.png');
 
       const props = {
@@ -232,8 +233,10 @@ describe('opengraph-image', () => {
     });
 
     it('should handle IPFS avatar URL', async () => {
-      const { IsValidIpfsUrl, getIpfsGatewayUrl } = require('apps/web/src/utils/urls');
-      const { getCloudinaryMediaUrl } = require('apps/web/src/utils/images');
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const { IsValidIpfsUrl, getIpfsGatewayUrl } = require('apps/web/src/utils/urls') as { IsValidIpfsUrl: jest.Mock; getIpfsGatewayUrl: jest.Mock };
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const { getCloudinaryMediaUrl } = require('apps/web/src/utils/images') as { getCloudinaryMediaUrl: jest.Mock };
       IsValidIpfsUrl.mockReturnValue(true);
       getIpfsGatewayUrl.mockReturnValue('https://ipfs.io/ipfs/Qm123');
       mockGetEnsText.mockResolvedValue('ipfs://Qm123');
@@ -255,7 +258,8 @@ describe('opengraph-image', () => {
     });
 
     it('should handle errors when fetching avatar gracefully', async () => {
-      const { logger } = require('apps/web/src/utils/logger');
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const { logger } = require('apps/web/src/utils/logger') as { logger: { error: jest.Mock } };
       const error = new Error('Failed to fetch avatar');
       mockGetEnsText.mockRejectedValue(error);
 
@@ -271,7 +275,8 @@ describe('opengraph-image', () => {
     });
 
     it('should return an ImageResponse', async () => {
-      const { ImageResponse } = require('next/og');
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const { ImageResponse } = require('next/og') as { ImageResponse: jest.Mock };
 
       const props = {
         id: 'test',
@@ -285,7 +290,8 @@ describe('opengraph-image', () => {
     });
 
     it('should include username in the image', async () => {
-      const { ImageResponse } = require('next/og');
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const { ImageResponse } = require('next/og') as { ImageResponse: jest.Mock };
 
       const props = {
         id: 'test',
@@ -295,7 +301,7 @@ describe('opengraph-image', () => {
       await OpenGraphImage(props);
 
       // Verify ImageResponse was called with proper dimensions
-      const call = ImageResponse.mock.calls[0];
+      const call = ImageResponse.mock.calls[0] as unknown[];
       expect(call[1]).toMatchObject({
         width: 1200,
         height: 630,
@@ -303,7 +309,8 @@ describe('opengraph-image', () => {
     });
 
     it('should load custom font for the image', async () => {
-      const { ImageResponse } = require('next/og');
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const { ImageResponse } = require('next/og') as { ImageResponse: jest.Mock };
 
       const props = {
         id: 'test',
@@ -312,7 +319,7 @@ describe('opengraph-image', () => {
 
       await OpenGraphImage(props);
 
-      const call = ImageResponse.mock.calls[0];
+      const call = ImageResponse.mock.calls[0] as { fonts: { name: string; style: string }[] }[];
       expect(call[1].fonts).toHaveLength(1);
       expect(call[1].fonts[0]).toMatchObject({
         name: 'CoinbaseDisplay',

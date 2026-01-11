@@ -15,6 +15,17 @@ import { getDomain } from 'apps/web/src/utils/basenames/getDomain';
 const mockGetChain = getChain as jest.MockedFunction<typeof getChain>;
 const mockGetDomain = getDomain as jest.MockedFunction<typeof getDomain>;
 
+type ContractMetadata = {
+  name: string;
+  description: string;
+  image: string;
+  banner_image: string;
+  featured_image: string;
+  external_link: string;
+  collaborators: string[];
+  error?: string;
+};
+
 describe('contract-uri.json route', () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -30,7 +41,7 @@ describe('contract-uri.json route', () => {
       );
 
       const response = await GET(request);
-      const data = await response.json();
+      const data = (await response.json()) as ContractMetadata;
 
       expect(response.status).toBe(400);
       expect(data).toEqual({ error: '400: chainId is missing' });
@@ -45,7 +56,7 @@ describe('contract-uri.json route', () => {
       );
 
       const response = await GET(request);
-      const data = await response.json();
+      const data = (await response.json()) as ContractMetadata;
 
       expect(response.status).toBe(200);
       expect(data).toEqual({
@@ -69,7 +80,7 @@ describe('contract-uri.json route', () => {
       );
 
       const response = await GET(request);
-      const data = await response.json();
+      const data = (await response.json()) as ContractMetadata;
 
       expect(response.status).toBe(200);
       expect(data.name).toBe('Basename (Sepolia testnet)');
@@ -87,7 +98,7 @@ describe('contract-uri.json route', () => {
       );
 
       const response = await GET(request);
-      const data = await response.json();
+      const data = (await response.json()) as ContractMetadata;
 
       expect(response.status).toBe(200);
       expect(data.image).toBe('http://localhost:3000/images/basenames/contract-uri/logo.png');
@@ -135,7 +146,7 @@ describe('contract-uri.json route', () => {
       );
 
       const response = await GET(request);
-      const data = await response.json();
+      const data = (await response.json()) as ContractMetadata;
 
       expect(response.status).toBe(400);
       expect(data).toEqual({ error: '400: chainId is missing' });
@@ -150,7 +161,7 @@ describe('contract-uri.json route', () => {
       );
 
       const response = await GET(request);
-      const data = await response.json();
+      const data = (await response.json()) as ContractMetadata;
 
       expect(data.collaborators).toEqual([]);
     });
@@ -164,7 +175,7 @@ describe('contract-uri.json route', () => {
       );
 
       const response = await GET(request);
-      const data = await response.json();
+      const data = (await response.json()) as ContractMetadata;
 
       expect(response.status).toBe(200);
       // Since chainId !== base.id (8453), it should return testnet name

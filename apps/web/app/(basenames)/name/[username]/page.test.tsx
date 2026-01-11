@@ -15,8 +15,8 @@ jest.mock('next/navigation', () => ({
 const mockFormatDefaultUsername = jest.fn();
 const mockGetBasenameTextRecord = jest.fn();
 jest.mock('apps/web/src/utils/usernames', () => ({
-  formatDefaultUsername: (...args: unknown[]) => mockFormatDefaultUsername(...args),
-  getBasenameTextRecord: (...args: unknown[]) => mockGetBasenameTextRecord(...args),
+  formatDefaultUsername: (...args: unknown[]) => mockFormatDefaultUsername(...args) as unknown,
+  getBasenameTextRecord: (...args: unknown[]) => mockGetBasenameTextRecord(...args) as unknown,
   UsernameTextRecordKeys: {
     Description: 'description',
     Avatar: 'avatar',
@@ -37,7 +37,7 @@ jest.mock('apps/web/src/utils/usernames', () => ({
 // Mock redirectIfNameDoesNotExist
 const mockRedirectIfNameDoesNotExist = jest.fn();
 jest.mock('apps/web/src/utils/redirectIfNameDoesNotExist', () => ({
-  redirectIfNameDoesNotExist: (...args: unknown[]) => mockRedirectIfNameDoesNotExist(...args),
+  redirectIfNameDoesNotExist: (...args: unknown[]) => mockRedirectIfNameDoesNotExist(...args) as unknown,
 }));
 
 // Mock child components
@@ -67,8 +67,8 @@ jest.mock('apps/web/src/components/Basenames/UsernameProfile', () => ({
 describe('Username Profile Page', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockFormatDefaultUsername.mockImplementation((name: string) =>
-      Promise.resolve(name.endsWith('.base.eth') ? name : `${name}.base.eth`)
+    mockFormatDefaultUsername.mockImplementation(async (name: string) =>
+      name.endsWith('.base.eth') ? name : `${name}.base.eth`
     );
     mockRedirectIfNameDoesNotExist.mockResolvedValue(undefined);
     mockGetBasenameTextRecord.mockResolvedValue(null);
@@ -150,7 +150,7 @@ describe('Username Profile Page', () => {
         params: Promise.resolve({ username: 'alice.base.eth' as Basename }),
       };
 
-      const metadata = await generateMetadata(props);
+      await generateMetadata(props);
 
       expect(mockFormatDefaultUsername).toHaveBeenCalledWith('alice.base.eth');
     });

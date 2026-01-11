@@ -19,7 +19,7 @@ jest.mock('next/navigation', () => ({
 const mockFormatDefaultUsername = jest.fn();
 let mockIsBasenameRenewalsKilled = false;
 jest.mock('apps/web/src/utils/usernames', () => ({
-  formatDefaultUsername: (...args: unknown[]) => mockFormatDefaultUsername(...args),
+  formatDefaultUsername: (...args: unknown[]) => mockFormatDefaultUsername(...args) as unknown,
   get isBasenameRenewalsKilled() {
     return mockIsBasenameRenewalsKilled;
   },
@@ -28,7 +28,7 @@ jest.mock('apps/web/src/utils/usernames', () => ({
 // Mock redirectIfNameDoesNotExist
 const mockRedirectIfNameDoesNotExist = jest.fn();
 jest.mock('apps/web/src/utils/redirectIfNameDoesNotExist', () => ({
-  redirectIfNameDoesNotExist: (...args: unknown[]) => mockRedirectIfNameDoesNotExist(...args),
+  redirectIfNameDoesNotExist: (...args: unknown[]) => mockRedirectIfNameDoesNotExist(...args) as unknown,
 }));
 
 // Mock child components
@@ -54,8 +54,8 @@ describe('Renew Page', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockIsBasenameRenewalsKilled = false;
-    mockFormatDefaultUsername.mockImplementation((name: string) =>
-      Promise.resolve(name.endsWith('.base.eth') ? name : `${name}.base.eth`)
+    mockFormatDefaultUsername.mockImplementation(async (name: string) =>
+      name.endsWith('.base.eth') ? name : `${name}.base.eth`
     );
     mockRedirectIfNameDoesNotExist.mockResolvedValue(undefined);
   });

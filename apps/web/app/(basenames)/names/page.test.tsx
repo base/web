@@ -13,14 +13,14 @@ jest.mock('next/navigation', () => ({
 // Mock getBasenameAvailable
 const mockGetBasenameAvailable = jest.fn();
 jest.mock('apps/web/src/utils/usernames', () => ({
-  getBasenameAvailable: (...args: unknown[]) => mockGetBasenameAvailable(...args),
+  getBasenameAvailable: (...args: unknown[]) => mockGetBasenameAvailable(...args) as unknown,
 }));
 
 // Mock the child components
 jest.mock('apps/web/app/(basenames)/names/RegistrationProviders', () => ({
   __esModule: true,
   default: ({ children, code }: { children: React.ReactNode; code?: string }) => (
-    <div data-testid="registration-providers" data-code={code || ''}>
+    <div data-testid="registration-providers" data-code={code ?? ''}>
       {children}
     </div>
   ),

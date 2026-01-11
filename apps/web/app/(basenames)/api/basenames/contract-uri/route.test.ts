@@ -29,7 +29,7 @@ describe('contract-uri route', () => {
       );
 
       const response = await GET(request);
-      const data = await response.json();
+      const data = (await response.json()) as { error: string };
 
       expect(response.status).toBe(400);
       expect(data).toEqual({ error: '400: chainId is missing' });
@@ -118,7 +118,7 @@ describe('contract-uri route', () => {
       );
 
       const response = await GET(request);
-      const data = await response.json();
+      const data = (await response.json()) as { error: string };
 
       expect(response.status).toBe(400);
       expect(data).toEqual({ error: '400: chainId is missing' });

@@ -47,7 +47,7 @@ describe('getUsernames route', () => {
       const request = new NextRequest('https://www.base.org/api/basenames/getUsernames');
 
       const response = await GET(request);
-      const data = await response.json();
+      const data = (await response.json()) as ManagedAddressesResponse | { error: string };
 
       expect(response.status).toBe(400);
       expect(data).toEqual({ error: 'No address provided' });
@@ -59,7 +59,7 @@ describe('getUsernames route', () => {
       );
 
       const response = await GET(request);
-      const data = await response.json();
+      const data = (await response.json()) as ManagedAddressesResponse | { error: string };
 
       expect(response.status).toBe(400);
       expect(data).toEqual({ error: 'Invalid network provided' });
@@ -149,7 +149,7 @@ describe('getUsernames route', () => {
 
       await GET(request);
 
-      const fetchUrl = mockFetch.mock.calls[0][0];
+      const fetchUrl = mockFetch.mock.calls[0][0] as string;
       expect(fetchUrl).not.toContain('&page=');
     });
 
@@ -163,7 +163,7 @@ describe('getUsernames route', () => {
       );
 
       const response = await GET(request);
-      const data = await response.json();
+      const data = (await response.json()) as ManagedAddressesResponse | { error: string };
 
       expect(response.status).toBe(200);
       expect(data).toEqual(mockSuccessResponse);
@@ -185,7 +185,7 @@ describe('getUsernames route', () => {
         expect.objectContaining({
           headers: expect.objectContaining({
             Authorization: 'Bearer test-token',
-          }),
+          }) as unknown,
         })
       );
     });
@@ -206,7 +206,7 @@ describe('getUsernames route', () => {
         expect.objectContaining({
           headers: expect.objectContaining({
             'Content-Type': 'application/json',
-          }),
+          }) as unknown,
         })
       );
     });
@@ -249,7 +249,7 @@ describe('getUsernames route', () => {
       );
 
       const response = await GET(request);
-      const data = await response.json();
+      const data = (await response.json()) as ManagedAddressesResponse | { error: string };
 
       expect(response.status).toBe(200);
       expect(data.data).toHaveLength(2);
@@ -275,7 +275,7 @@ describe('getUsernames route', () => {
       );
 
       const response = await GET(request);
-      const data = await response.json();
+      const data = (await response.json()) as ManagedAddressesResponse | { error: string };
 
       expect(response.status).toBe(200);
       expect(data.data).toHaveLength(0);
@@ -293,7 +293,7 @@ describe('getUsernames route', () => {
 
       await GET(request);
 
-      const fetchUrl = mockFetch.mock.calls[0][0];
+      const fetchUrl = mockFetch.mock.calls[0][0] as string;
       expect(fetchUrl).toContain('limit=50');
     });
   });

@@ -16,7 +16,7 @@ jest.mock('apps/web/src/components/Basenames/RegistrationContext', () => ({
   __esModule: true,
   default: ({ children, code }: { children: React.ReactNode; code?: string }) => {
     mockRegistrationProviderCode(code);
-    return <div data-testid="registration-provider" data-code={code || ''}>{children}</div>;
+    return <div data-testid="registration-provider" data-code={code ?? ''}>{children}</div>;
   },
 }));
 
