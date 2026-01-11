@@ -80,6 +80,17 @@ jest.mock('next/link', () => ({
 // Mock window.open
 const mockWindowOpen = jest.fn();
 
+// Helper to safely check if a URL has a specific hostname
+function hasHostname(href: string | null, hostname: string): boolean {
+  if (!href) return false;
+  try {
+    const url = new URL(href);
+    return url.hostname === hostname;
+  } catch {
+    return false;
+  }
+}
+
 describe('RegistrationShareOnSocials', () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -147,9 +158,9 @@ describe('RegistrationShareOnSocials', () => {
     it('should create Twitter share link with correct URL', () => {
       render(<RegistrationShareOnSocials />);
 
-      // Find the link that contains x.com/intent/tweet
+      // Find the link with x.com hostname
       const links = screen.getAllByRole('link');
-      const twitterLink = links.find((link) => link.getAttribute('href')?.includes('x.com'));
+      const twitterLink = links.find((link) => hasHostname(link.getAttribute('href'), 'x.com'));
 
       expect(twitterLink).toBeDefined();
       expect(twitterLink?.getAttribute('href')).toContain('x.com/intent/tweet');
@@ -161,9 +172,11 @@ describe('RegistrationShareOnSocials', () => {
     it('should create Farcaster share link with correct URL', () => {
       render(<RegistrationShareOnSocials />);
 
-      // Find the link that contains warpcast.com
+      // Find the link with warpcast.com hostname
       const links = screen.getAllByRole('link');
-      const farcasterLink = links.find((link) => link.getAttribute('href')?.includes('warpcast'));
+      const farcasterLink = links.find((link) =>
+        hasHostname(link.getAttribute('href'), 'warpcast.com'),
+      );
 
       expect(farcasterLink).toBeDefined();
       expect(farcasterLink?.getAttribute('href')).toContain('warpcast.com/~/compose');
@@ -201,7 +214,7 @@ describe('RegistrationShareOnSocials', () => {
 
       const links = screen.getAllByRole('link');
       // Twitter link is second in the enabled list (Farcaster, Twitter)
-      const twitterLink = links.find((link) => link.getAttribute('href')?.includes('x.com'));
+      const twitterLink = links.find((link) => hasHostname(link.getAttribute('href'), 'x.com'));
 
       if (twitterLink) {
         fireEvent.click(twitterLink);
@@ -214,7 +227,9 @@ describe('RegistrationShareOnSocials', () => {
 
       const links = screen.getAllByRole('link');
       // Farcaster link is first in the enabled list
-      const farcasterLink = links.find((link) => link.getAttribute('href')?.includes('warpcast'));
+      const farcasterLink = links.find((link) =>
+        hasHostname(link.getAttribute('href'), 'warpcast.com'),
+      );
 
       if (farcasterLink) {
         fireEvent.click(farcasterLink);
@@ -267,7 +282,7 @@ describe('RegistrationShareOnSocials', () => {
       render(<RegistrationShareOnSocials />);
 
       const links = screen.getAllByRole('link');
-      const twitterLink = links.find((link) => link.getAttribute('href')?.includes('x.com'));
+      const twitterLink = links.find((link) => hasHostname(link.getAttribute('href'), 'x.com'));
 
       expect(twitterLink?.getAttribute('href')).toContain(
         encodeURIComponent('I just got my Basename as part of Onchain Summer!'),
@@ -278,7 +293,7 @@ describe('RegistrationShareOnSocials', () => {
       render(<RegistrationShareOnSocials />);
 
       const links = screen.getAllByRole('link');
-      const twitterLink = links.find((link) => link.getAttribute('href')?.includes('x.com'));
+      const twitterLink = links.find((link) => hasHostname(link.getAttribute('href'), 'x.com'));
 
       expect(twitterLink?.getAttribute('href')).toContain(encodeURIComponent('Get yours today.'));
     });
