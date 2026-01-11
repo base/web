@@ -504,7 +504,8 @@ describe('PremiumExplainerModal', () => {
         const { container } = render(TooltipWithProps);
 
         // Should have a date displayed (the exact format depends on locale)
-        expect(container.textContent).toMatch(/2023.*11.*15/);
+        // Match either "2023.*11.*15" (ISO-like) or "11/15/2023" (US format)
+        expect(container.textContent).toMatch(/2023.*11.*15|11\/15\/2023/);
       }
     });
 
