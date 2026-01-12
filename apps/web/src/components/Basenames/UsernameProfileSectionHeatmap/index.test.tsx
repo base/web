@@ -248,16 +248,20 @@ describe('UsernameProfileSectionHeatmap', () => {
   };
 
   describe('loading state', () => {
-    it('should render loading state initially', () => {
+    it('should render loading state initially', async () => {
       mockNoTransactionsResponse();
       render(<UsernameProfileSectionHeatmap />);
 
       expect(screen.getByTestId('section-title')).toBeInTheDocument();
       expect(screen.getByText('Activity')).toBeInTheDocument();
       expect(screen.getByTestId('loading-image')).toBeInTheDocument();
+
+      await act(async () => {
+        await Promise.resolve();
+      });
     });
 
-    it('should show loading gif with correct attributes', () => {
+    it('should show loading gif with correct attributes', async () => {
       mockNoTransactionsResponse();
       render(<UsernameProfileSectionHeatmap />);
 
@@ -265,6 +269,10 @@ describe('UsernameProfileSectionHeatmap', () => {
       expect(loadingImage).toHaveAttribute('src', '/images/base-loading.gif');
       expect(loadingImage).toHaveAttribute('width', '22');
       expect(loadingImage).toHaveAttribute('height', '22');
+
+      await act(async () => {
+        await Promise.resolve();
+      });
     });
   });
 

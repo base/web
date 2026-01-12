@@ -230,43 +230,59 @@ describe('UsernameProfileContext', () => {
   });
 
   describe('UsernameProfileProvider', () => {
-    it('should render children', () => {
+    it('should render children', async () => {
       render(
         <UsernameProfileProvider username="testname.base.eth">
           <div data-testid="child">Child Content</div>
         </UsernameProfileProvider>,
       );
 
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
+
       expect(screen.getByTestId('child')).toBeInTheDocument();
       expect(screen.getByTestId('child')).toHaveTextContent('Child Content');
     });
 
-    it('should provide context values to children', () => {
+    it('should provide context values to children', async () => {
       render(
         <UsernameProfileProvider username="testname.base.eth">
           <TestConsumer />
         </UsernameProfileProvider>,
       );
+
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
 
       expect(screen.getByTestId('profileUsername')).toHaveTextContent('testname.base.eth');
     });
 
-    it('should provide profile address from useEnsAddress', () => {
+    it('should provide profile address from useEnsAddress', async () => {
       render(
         <UsernameProfileProvider username="testname.base.eth">
           <TestConsumer />
         </UsernameProfileProvider>,
       );
+
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
 
       expect(screen.getByTestId('profileAddress')).toHaveTextContent(mockProfileAddress);
     });
 
-    it('should provide profile owner username from useBaseEnsName', () => {
+    it('should provide profile owner username from useBaseEnsName', async () => {
       render(
         <UsernameProfileProvider username="testname.base.eth">
           <TestConsumer />
         </UsernameProfileProvider>,
       );
+
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
 
       expect(screen.getByTestId('profileOwnerUsername')).toHaveTextContent('owner.base.eth');
     });
@@ -279,6 +295,10 @@ describe('UsernameProfileContext', () => {
           <TestConsumer />
         </UsernameProfileProvider>,
       );
+
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
 
       expect(screen.getByTestId('showProfileSettings')).toHaveTextContent('false');
 
@@ -295,6 +315,10 @@ describe('UsernameProfileContext', () => {
           <TestConsumer />
         </UsernameProfileProvider>,
       );
+
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
 
       await act(async () => {
         screen.getByTestId('toggleSettings').click();
@@ -318,6 +342,10 @@ describe('UsernameProfileContext', () => {
         </UsernameProfileProvider>,
       );
 
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
+
       await act(async () => {
         screen.getByTestId('refetchProfile').click();
       });
@@ -329,67 +357,91 @@ describe('UsernameProfileContext', () => {
   });
 
   describe('permission flags', () => {
-    it('should set currentWalletIsProfileEditor to true when connected wallet matches editor', () => {
+    it('should set currentWalletIsProfileEditor to true when connected wallet matches editor', async () => {
       render(
         <UsernameProfileProvider username="testname.base.eth">
           <TestConsumer />
         </UsernameProfileProvider>,
       );
+
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
 
       expect(screen.getByTestId('currentWalletIsProfileEditor')).toHaveTextContent('true');
     });
 
-    it('should set currentWalletIsProfileOwner to true when connected wallet matches owner', () => {
+    it('should set currentWalletIsProfileOwner to true when connected wallet matches owner', async () => {
       render(
         <UsernameProfileProvider username="testname.base.eth">
           <TestConsumer />
         </UsernameProfileProvider>,
       );
+
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
 
       expect(screen.getByTestId('currentWalletIsProfileOwner')).toHaveTextContent('true');
     });
 
-    it('should set currentWalletIsProfileAddress to true when connected wallet matches profile address', () => {
+    it('should set currentWalletIsProfileAddress to true when connected wallet matches profile address', async () => {
       render(
         <UsernameProfileProvider username="testname.base.eth">
           <TestConsumer />
         </UsernameProfileProvider>,
       );
+
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
 
       expect(screen.getByTestId('currentWalletIsProfileAddress')).toHaveTextContent('true');
     });
 
-    it('should set canSetAddr to true when wallet is editor or owner', () => {
+    it('should set canSetAddr to true when wallet is editor or owner', async () => {
       render(
         <UsernameProfileProvider username="testname.base.eth">
           <TestConsumer />
         </UsernameProfileProvider>,
       );
+
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
 
       expect(screen.getByTestId('canSetAddr')).toHaveTextContent('true');
     });
 
-    it('should set canReclaim to true when wallet is owner', () => {
+    it('should set canReclaim to true when wallet is owner', async () => {
       render(
         <UsernameProfileProvider username="testname.base.eth">
           <TestConsumer />
         </UsernameProfileProvider>,
       );
+
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
 
       expect(screen.getByTestId('canReclaim')).toHaveTextContent('true');
     });
 
-    it('should set canSafeTransferFrom to true when wallet is owner', () => {
+    it('should set canSafeTransferFrom to true when wallet is owner', async () => {
       render(
         <UsernameProfileProvider username="testname.base.eth">
           <TestConsumer />
         </UsernameProfileProvider>,
       );
 
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
+
       expect(screen.getByTestId('canSafeTransferFrom')).toHaveTextContent('true');
     });
 
-    it('should set currentWalletIsProfileEditor to false when not connected', () => {
+    it('should set currentWalletIsProfileEditor to false when not connected', async () => {
       mockIsConnected = false;
 
       render(
@@ -398,10 +450,14 @@ describe('UsernameProfileContext', () => {
         </UsernameProfileProvider>,
       );
 
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
+
       expect(screen.getByTestId('currentWalletIsProfileEditor')).toHaveTextContent('false');
     });
 
-    it('should set currentWalletIsProfileEditor to false when still fetching', () => {
+    it('should set currentWalletIsProfileEditor to false when still fetching', async () => {
       mockProfileEditorAddressIsFetching = true;
 
       render(
@@ -409,6 +465,10 @@ describe('UsernameProfileContext', () => {
           <TestConsumer />
         </UsernameProfileProvider>,
       );
+
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
 
       expect(screen.getByTestId('currentWalletIsProfileEditor')).toHaveTextContent('false');
     });
@@ -468,17 +528,21 @@ describe('UsernameProfileContext', () => {
   });
 
   describe('useUsernameProfile hook', () => {
-    it('should return context values when used inside provider', () => {
+    it('should return context values when used inside provider', async () => {
       render(
         <UsernameProfileProvider username="testname.base.eth">
           <TestConsumer />
         </UsernameProfileProvider>,
       );
 
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
+
       expect(screen.getByTestId('profileUsername')).toBeInTheDocument();
     });
 
-    it('should throw error when used outside of provider with undefined context', () => {
+    it('should throw error when used outside of provider with undefined context', async () => {
       // The useUsernameProfile hook checks for undefined context and throws
       // However, since the context has default values, we need to simulate
       // a scenario where context is undefined. This is challenging to test
@@ -491,12 +555,16 @@ describe('UsernameProfileContext', () => {
         </UsernameProfileProvider>,
       );
 
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
+
       expect(screen.getByTestId('profileUsername')).toHaveTextContent('testname.base.eth');
     });
   });
 
   describe('currentWalletNeedsToReclaimProfile', () => {
-    it('should be false when wallet is both editor and owner', () => {
+    it('should be false when wallet is both editor and owner', async () => {
       // When the connected wallet is both the editor and owner,
       // currentWalletNeedsToReclaimProfile should be false
       render(
@@ -504,6 +572,10 @@ describe('UsernameProfileContext', () => {
           <TestConsumer />
         </UsernameProfileProvider>,
       );
+
+      await waitFor(() => {
+        expect(mockGetBasenameNameExpires).toHaveBeenCalled();
+      });
 
       expect(screen.getByTestId('currentWalletNeedsToReclaimProfile')).toHaveTextContent('false');
     });

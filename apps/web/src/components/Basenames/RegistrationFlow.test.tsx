@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen, fireEvent, act, waitFor } from '@testing-library/react';
 import { RegistrationFlow, claimQueryKey } from './RegistrationFlow';
 import { RegistrationSteps } from './RegistrationContext';
 import { FlowBackgroundSteps } from './shared/types';
@@ -209,41 +209,51 @@ describe('RegistrationFlow', () => {
   });
 
   describe('rendering', () => {
-    it('should render RegistrationBackground with correct step for Search', () => {
+    it('should render RegistrationBackground with correct step for Search', async () => {
       render(<RegistrationFlow />);
 
-      const background = screen.getByTestId('registration-background');
-      expect(background).toBeInTheDocument();
-      expect(background).toHaveAttribute('data-step', FlowBackgroundSteps.Search);
+      await waitFor(() => {
+        const background = screen.getByTestId('registration-background');
+        expect(background).toBeInTheDocument();
+        expect(background).toHaveAttribute('data-step', FlowBackgroundSteps.Search);
+      });
     });
 
-    it('should render RegistrationBrand in Search step', () => {
+    it('should render RegistrationBrand in Search step', async () => {
       render(<RegistrationFlow />);
 
-      expect(screen.getByTestId('registration-brand')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-brand')).toBeInTheDocument();
+      });
     });
 
-    it('should render large RegistrationSearchInput in Search step', () => {
+    it('should render large RegistrationSearchInput in Search step', async () => {
       render(<RegistrationFlow />);
 
-      const searchInputs = screen.getAllByTestId('registration-search-input');
-      const largeInput = searchInputs.find(
-        (el) => el.getAttribute('data-variant') === String(RegistrationSearchInputVariant.Large)
-      );
-      expect(largeInput).toBeInTheDocument();
-      expect(largeInput).toHaveAttribute('data-placeholder', 'Search for a name');
+      await waitFor(() => {
+        const searchInputs = screen.getAllByTestId('registration-search-input');
+        const largeInput = searchInputs.find(
+          (el) => el.getAttribute('data-variant') === String(RegistrationSearchInputVariant.Large)
+        );
+        expect(largeInput).toBeInTheDocument();
+        expect(largeInput).toHaveAttribute('data-placeholder', 'Search for a name');
+      });
     });
 
-    it('should render RegistrationLandingExplore in Search step', () => {
+    it('should render RegistrationLandingExplore in Search step', async () => {
       render(<RegistrationFlow />);
 
-      expect(screen.getByTestId('registration-landing-explore')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-landing-explore')).toBeInTheDocument();
+      });
     });
 
-    it('should render RegistrationStateSwitcher in development mode', () => {
+    it('should render RegistrationStateSwitcher in development mode', async () => {
       render(<RegistrationFlow />);
 
-      expect(screen.getByTestId('registration-state-switcher')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-state-switcher')).toBeInTheDocument();
+      });
     });
   });
 
@@ -253,50 +263,64 @@ describe('RegistrationFlow', () => {
       mockSelectedName = 'testname';
     });
 
-    it('should render RegistrationBackground with Form step', () => {
+    it('should render RegistrationBackground with Form step', async () => {
       render(<RegistrationFlow />);
 
-      expect(screen.getByTestId('registration-background')).toHaveAttribute(
-        'data-step',
-        FlowBackgroundSteps.Form
-      );
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-background')).toHaveAttribute(
+          'data-step',
+          FlowBackgroundSteps.Form
+        );
+      });
     });
 
-    it('should render RegistrationForm', () => {
+    it('should render RegistrationForm', async () => {
       render(<RegistrationFlow />);
 
-      expect(screen.getByTestId('registration-form')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-form')).toBeInTheDocument();
+      });
     });
 
-    it('should render UsernamePill with Inline variant', () => {
+    it('should render UsernamePill with Inline variant', async () => {
       render(<RegistrationFlow />);
 
-      const pill = screen.getByTestId('username-pill');
-      expect(pill).toBeInTheDocument();
-      expect(pill).toHaveAttribute('data-variant', UsernamePillVariants.Inline);
-      expect(pill).toHaveAttribute('data-username', 'testname.base.eth');
+      await waitFor(() => {
+        const pill = screen.getByTestId('username-pill');
+        expect(pill).toBeInTheDocument();
+        expect(pill).toHaveAttribute('data-variant', UsernamePillVariants.Inline);
+        expect(pill).toHaveAttribute('data-username', 'testname.base.eth');
+      });
     });
 
-    it('should render small RegistrationSearchInput with "Find another name" placeholder', () => {
+    it('should render small RegistrationSearchInput with "Find another name" placeholder', async () => {
       render(<RegistrationFlow />);
 
-      const searchInputs = screen.getAllByTestId('registration-search-input');
-      const smallInput = searchInputs.find(
-        (el) => el.getAttribute('data-variant') === String(RegistrationSearchInputVariant.Small)
-      );
-      expect(smallInput).toBeInTheDocument();
-      expect(smallInput).toHaveAttribute('data-placeholder', 'Find another name');
+      await waitFor(() => {
+        const searchInputs = screen.getAllByTestId('registration-search-input');
+        const smallInput = searchInputs.find(
+          (el) => el.getAttribute('data-variant') === String(RegistrationSearchInputVariant.Small)
+        );
+        expect(smallInput).toBeInTheDocument();
+        expect(smallInput).toHaveAttribute('data-placeholder', 'Find another name');
+      });
     });
 
-    it('should render back arrow button', () => {
+    it('should render back arrow button', async () => {
       render(<RegistrationFlow />);
 
-      const backButton = screen.getByRole('button', { name: 'Find another name' });
-      expect(backButton).toBeInTheDocument();
+      await waitFor(() => {
+        const backButton = screen.getByRole('button', { name: 'Find another name' });
+        expect(backButton).toBeInTheDocument();
+      });
     });
 
     it('should call setRegistrationStep and setSelectedName when back arrow is clicked', async () => {
       render(<RegistrationFlow />);
+
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: 'Find another name' })).toBeInTheDocument();
+      });
 
       const backButton = screen.getByRole('button', { name: 'Find another name' });
       await act(async () => {
@@ -314,26 +338,32 @@ describe('RegistrationFlow', () => {
       mockSelectedName = 'testname';
     });
 
-    it('should render RegistrationBackground with Pending step', () => {
+    it('should render RegistrationBackground with Pending step', async () => {
       render(<RegistrationFlow />);
 
-      expect(screen.getByTestId('registration-background')).toHaveAttribute(
-        'data-step',
-        FlowBackgroundSteps.Pending
-      );
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-background')).toHaveAttribute(
+          'data-step',
+          FlowBackgroundSteps.Pending
+        );
+      });
     });
 
-    it('should render "Registering..." text', () => {
+    it('should render "Registering..." text', async () => {
       render(<RegistrationFlow />);
 
-      expect(screen.getByText('Registering...')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText('Registering...')).toBeInTheDocument();
+      });
     });
 
-    it('should render UsernamePill with isRegistering=true', () => {
+    it('should render UsernamePill with isRegistering=true', async () => {
       render(<RegistrationFlow />);
 
-      const pill = screen.getByTestId('username-pill');
-      expect(pill).toHaveAttribute('data-is-registering', 'true');
+      await waitFor(() => {
+        const pill = screen.getByTestId('username-pill');
+        expect(pill).toHaveAttribute('data-is-registering', 'true');
+      });
     });
   });
 
@@ -343,33 +373,41 @@ describe('RegistrationFlow', () => {
       mockSelectedName = 'testname';
     });
 
-    it('should render RegistrationBackground with Success step', () => {
+    it('should render RegistrationBackground with Success step', async () => {
       render(<RegistrationFlow />);
 
-      expect(screen.getByTestId('registration-background')).toHaveAttribute(
-        'data-step',
-        FlowBackgroundSteps.Success
-      );
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-background')).toHaveAttribute(
+          'data-step',
+          FlowBackgroundSteps.Success
+        );
+      });
     });
 
-    it('should render RegistrationSuccessMessage', () => {
+    it('should render RegistrationSuccessMessage', async () => {
       render(<RegistrationFlow />);
 
-      expect(screen.getByTestId('registration-success-message')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-success-message')).toBeInTheDocument();
+      });
     });
 
-    it('should render RegistrationShareOnSocials', () => {
+    it('should render RegistrationShareOnSocials', async () => {
       render(<RegistrationFlow />);
 
-      expect(screen.getByTestId('registration-share-on-socials')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-share-on-socials')).toBeInTheDocument();
+      });
     });
 
-    it('should call localStorage setters to hide modals and banners', () => {
+    it('should call localStorage setters to hide modals and banners', async () => {
       render(<RegistrationFlow />);
 
-      expect(mockSetIsModalOpen).toHaveBeenCalledWith(false);
-      expect(mockSetIsBannerVisible).toHaveBeenCalledWith(false);
-      expect(mockSetIsDocsBannerVisible).toHaveBeenCalledWith(false);
+      await waitFor(() => {
+        expect(mockSetIsModalOpen).toHaveBeenCalledWith(false);
+        expect(mockSetIsBannerVisible).toHaveBeenCalledWith(false);
+        expect(mockSetIsDocsBannerVisible).toHaveBeenCalledWith(false);
+      });
     });
   });
 
@@ -379,134 +417,168 @@ describe('RegistrationFlow', () => {
       mockSelectedName = 'testname';
     });
 
-    it('should render RegistrationBackground with Success step', () => {
+    it('should render RegistrationBackground with Success step', async () => {
       render(<RegistrationFlow />);
 
-      expect(screen.getByTestId('registration-background')).toHaveAttribute(
-        'data-step',
-        FlowBackgroundSteps.Success
-      );
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-background')).toHaveAttribute(
+          'data-step',
+          FlowBackgroundSteps.Success
+        );
+      });
     });
 
-    it('should render RegistrationProfileForm', () => {
+    it('should render RegistrationProfileForm', async () => {
       render(<RegistrationFlow />);
 
-      expect(screen.getByTestId('registration-profile-form')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-profile-form')).toBeInTheDocument();
+      });
     });
 
-    it('should render UsernamePill with Card variant', () => {
+    it('should render UsernamePill with Card variant', async () => {
       render(<RegistrationFlow />);
 
-      const pill = screen.getByTestId('username-pill');
-      expect(pill).toHaveAttribute('data-variant', UsernamePillVariants.Card);
+      await waitFor(() => {
+        const pill = screen.getByTestId('username-pill');
+        expect(pill).toHaveAttribute('data-variant', UsernamePillVariants.Card);
+      });
     });
   });
 
   describe('network switching', () => {
-    it('should switch to intended network when on unsupported chain', () => {
+    it('should switch to intended network when on unsupported chain', async () => {
       mockChainId = 1; // Mainnet (unsupported)
 
       render(<RegistrationFlow />);
 
-      expect(mockSwitchChain).toHaveBeenCalledWith({ chainId: 8453 });
+      await waitFor(() => {
+        expect(mockSwitchChain).toHaveBeenCalledWith({ chainId: 8453 });
+      });
     });
 
-    it('should not switch network when already on supported chain', () => {
+    it('should not switch network when already on supported chain', async () => {
       mockChainId = 8453; // Base (supported)
 
       render(<RegistrationFlow />);
 
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-background')).toBeInTheDocument();
+      });
+
       expect(mockSwitchChain).not.toHaveBeenCalled();
     });
 
-    it('should not attempt to switch when chain is undefined', () => {
+    it('should not attempt to switch when chain is undefined', async () => {
       mockChainId = undefined;
 
       render(<RegistrationFlow />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-background')).toBeInTheDocument();
+      });
 
       expect(mockSwitchChain).not.toHaveBeenCalled();
     });
   });
 
   describe('claim query parameter', () => {
-    it('should set selected name from claim query parameter', () => {
+    it('should set selected name from claim query parameter', async () => {
       mockSearchParamsGet.mockReturnValue('claimedname');
 
       render(<RegistrationFlow />);
 
-      expect(mockSetSelectedName).toHaveBeenCalledWith('claimedname');
+      await waitFor(() => {
+        expect(mockSetSelectedName).toHaveBeenCalledWith('claimedname');
+      });
     });
 
-    it('should strip domain suffix from claim query parameter', () => {
+    it('should strip domain suffix from claim query parameter', async () => {
       mockSearchParamsGet.mockReturnValue('claimedname.base.eth');
 
       render(<RegistrationFlow />);
 
-      expect(mockSetSelectedName).toHaveBeenCalledWith('claimedname');
+      await waitFor(() => {
+        expect(mockSetSelectedName).toHaveBeenCalledWith('claimedname');
+      });
     });
 
-    it('should not set selected name when claim query is not present', () => {
+    it('should not set selected name when claim query is not present', async () => {
       mockSearchParamsGet.mockReturnValue(null);
 
       render(<RegistrationFlow />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-background')).toBeInTheDocument();
+      });
 
       expect(mockSetSelectedName).not.toHaveBeenCalled();
     });
   });
 
   describe('background step mapping', () => {
-    it('should map Search step to FlowBackgroundSteps.Search', () => {
+    it('should map Search step to FlowBackgroundSteps.Search', async () => {
       mockRegistrationStep = RegistrationSteps.Search;
       render(<RegistrationFlow />);
 
-      expect(screen.getByTestId('registration-background')).toHaveAttribute(
-        'data-step',
-        FlowBackgroundSteps.Search
-      );
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-background')).toHaveAttribute(
+          'data-step',
+          FlowBackgroundSteps.Search
+        );
+      });
     });
 
-    it('should map Claim step to FlowBackgroundSteps.Form', () => {
+    it('should map Claim step to FlowBackgroundSteps.Form', async () => {
       mockRegistrationStep = RegistrationSteps.Claim;
       mockSelectedName = 'test';
       render(<RegistrationFlow />);
 
-      expect(screen.getByTestId('registration-background')).toHaveAttribute(
-        'data-step',
-        FlowBackgroundSteps.Form
-      );
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-background')).toHaveAttribute(
+          'data-step',
+          FlowBackgroundSteps.Form
+        );
+      });
     });
 
-    it('should map Pending step to FlowBackgroundSteps.Pending', () => {
+    it('should map Pending step to FlowBackgroundSteps.Pending', async () => {
       mockRegistrationStep = RegistrationSteps.Pending;
       mockSelectedName = 'test';
       render(<RegistrationFlow />);
 
-      expect(screen.getByTestId('registration-background')).toHaveAttribute(
-        'data-step',
-        FlowBackgroundSteps.Pending
-      );
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-background')).toHaveAttribute(
+          'data-step',
+          FlowBackgroundSteps.Pending
+        );
+      });
     });
 
-    it('should map Success step to FlowBackgroundSteps.Success', () => {
+    it('should map Success step to FlowBackgroundSteps.Success', async () => {
       mockRegistrationStep = RegistrationSteps.Success;
       mockSelectedName = 'test';
       render(<RegistrationFlow />);
 
-      expect(screen.getByTestId('registration-background')).toHaveAttribute(
-        'data-step',
-        FlowBackgroundSteps.Success
-      );
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-background')).toHaveAttribute(
+          'data-step',
+          FlowBackgroundSteps.Success
+        );
+      });
     });
 
-    it('should map Profile step to FlowBackgroundSteps.Success', () => {
+    it('should map Profile step to FlowBackgroundSteps.Success', async () => {
       mockRegistrationStep = RegistrationSteps.Profile;
       mockSelectedName = 'test';
       render(<RegistrationFlow />);
 
-      expect(screen.getByTestId('registration-background')).toHaveAttribute(
-        'data-step',
-        FlowBackgroundSteps.Success
-      );
+      await waitFor(() => {
+        expect(screen.getByTestId('registration-background')).toHaveAttribute(
+          'data-step',
+          FlowBackgroundSteps.Success
+        );
+      });
     });
   });
 

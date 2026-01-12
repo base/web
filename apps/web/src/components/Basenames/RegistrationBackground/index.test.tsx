@@ -1,9 +1,18 @@
 /**
  * @jest-environment jsdom
  */
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import RegistrationBackground from './index';
 import { FlowBackgroundSteps } from 'apps/web/src/components/Basenames/shared/types';
+
+// Helper to wait for transitions to settle
+async function renderAndWait(ui: React.ReactElement) {
+  const result = render(ui);
+  await waitFor(() => {
+    expect(result.container).toBeInTheDocument();
+  });
+  return result;
+}
 
 // Mock the RegistrationContext
 jest.mock('apps/web/src/components/Basenames/RegistrationContext', () => ({
@@ -32,24 +41,24 @@ jest.mock('./assets/vortex.json', () => ({ mock: 'vortex-data' }));
 
 describe('RegistrationBackground', () => {
   describe('Search step', () => {
-    it('should render FloatingENSPills when backgroundStep is Search', () => {
-      const { getByTestId } = render(
+    it('should render FloatingENSPills when backgroundStep is Search', async () => {
+      const { getByTestId } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Search} />,
       );
 
       expect(getByTestId('floating-ens-pills')).toBeInTheDocument();
     });
 
-    it('should not render LottieAnimation when backgroundStep is Search', () => {
-      const { queryByTestId } = render(
+    it('should not render LottieAnimation when backgroundStep is Search', async () => {
+      const { queryByTestId } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Search} />,
       );
 
       expect(queryByTestId('lottie-animation')).not.toBeInTheDocument();
     });
 
-    it('should not render video elements when backgroundStep is Search', () => {
-      const { container } = render(
+    it('should not render video elements when backgroundStep is Search', async () => {
+      const { container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Search} />,
       );
 
@@ -59,8 +68,8 @@ describe('RegistrationBackground', () => {
   });
 
   describe('Form step', () => {
-    it('should render globe video when backgroundStep is Form', () => {
-      const { container } = render(
+    it('should render globe video when backgroundStep is Form', async () => {
+      const { container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Form} />,
       );
 
@@ -72,8 +81,8 @@ describe('RegistrationBackground', () => {
       expect(source).toHaveAttribute('type', 'video/webm');
     });
 
-    it('should have correct video attributes for globe video', () => {
-      const { container } = render(
+    it('should have correct video attributes for globe video', async () => {
+      const { container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Form} />,
       );
 
@@ -83,16 +92,16 @@ describe('RegistrationBackground', () => {
       expect(video).toHaveProperty('muted', true);
     });
 
-    it('should not render FloatingENSPills when backgroundStep is Form', () => {
-      const { queryByTestId } = render(
+    it('should not render FloatingENSPills when backgroundStep is Form', async () => {
+      const { queryByTestId } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Form} />,
       );
 
       expect(queryByTestId('floating-ens-pills')).not.toBeInTheDocument();
     });
 
-    it('should have gray background for Form step', () => {
-      const { container } = render(
+    it('should have gray background for Form step', async () => {
+      const { container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Form} />,
       );
 
@@ -102,24 +111,24 @@ describe('RegistrationBackground', () => {
   });
 
   describe('Pending step', () => {
-    it('should render LottieAnimation when backgroundStep is Pending', () => {
-      const { getByTestId } = render(
+    it('should render LottieAnimation when backgroundStep is Pending', async () => {
+      const { getByTestId } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Pending} />,
       );
 
       expect(getByTestId('lottie-animation')).toBeInTheDocument();
     });
 
-    it('should not render FloatingENSPills when backgroundStep is Pending', () => {
-      const { queryByTestId } = render(
+    it('should not render FloatingENSPills when backgroundStep is Pending', async () => {
+      const { queryByTestId } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Pending} />,
       );
 
       expect(queryByTestId('floating-ens-pills')).not.toBeInTheDocument();
     });
 
-    it('should have gray background for Pending step', () => {
-      const { container } = render(
+    it('should have gray background for Pending step', async () => {
+      const { container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Pending} />,
       );
 
@@ -127,8 +136,8 @@ describe('RegistrationBackground', () => {
       expect(grayBackground).toBeInTheDocument();
     });
 
-    it('should apply lottie wrapper classes for centered positioning', () => {
-      const { getByTestId } = render(
+    it('should apply lottie wrapper classes for centered positioning', async () => {
+      const { getByTestId } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Pending} />,
       );
 
@@ -140,8 +149,8 @@ describe('RegistrationBackground', () => {
   });
 
   describe('Success step', () => {
-    it('should render fireworks video when backgroundStep is Success', () => {
-      const { container } = render(
+    it('should render fireworks video when backgroundStep is Success', async () => {
+      const { container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Success} />,
       );
 
@@ -153,8 +162,8 @@ describe('RegistrationBackground', () => {
       expect(source).toHaveAttribute('type', 'video/webm');
     });
 
-    it('should have correct video attributes for fireworks video', () => {
-      const { container } = render(
+    it('should have correct video attributes for fireworks video', async () => {
+      const { container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Success} />,
       );
 
@@ -164,16 +173,16 @@ describe('RegistrationBackground', () => {
       expect(video).toHaveProperty('muted', true);
     });
 
-    it('should not render FloatingENSPills when backgroundStep is Success', () => {
-      const { queryByTestId } = render(
+    it('should not render FloatingENSPills when backgroundStep is Success', async () => {
+      const { queryByTestId } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Success} />,
       );
 
       expect(queryByTestId('floating-ens-pills')).not.toBeInTheDocument();
     });
 
-    it('should have blue background for Success step', () => {
-      const { container } = render(
+    it('should have blue background for Success step', async () => {
+      const { container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Success} />,
       );
 
@@ -183,8 +192,8 @@ describe('RegistrationBackground', () => {
   });
 
   describe('Transition components', () => {
-    it('should apply transition duration classes', () => {
-      const { container } = render(
+    it('should apply transition duration classes', async () => {
+      const { container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Search} />,
       );
 
@@ -192,8 +201,8 @@ describe('RegistrationBackground', () => {
       expect(transitionElements.length).toBeGreaterThan(0);
     });
 
-    it('should apply transition-opacity class', () => {
-      const { container } = render(
+    it('should apply transition-opacity class', async () => {
+      const { container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Form} />,
       );
 
@@ -203,8 +212,8 @@ describe('RegistrationBackground', () => {
   });
 
   describe('common styling', () => {
-    it('should apply pointer-events-none to background containers', () => {
-      const { container } = render(
+    it('should apply pointer-events-none to background containers', async () => {
+      const { container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Form} />,
       );
 
@@ -212,8 +221,8 @@ describe('RegistrationBackground', () => {
       expect(pointerEventsNone).toBeInTheDocument();
     });
 
-    it('should apply negative z-index to background containers', () => {
-      const { container } = render(
+    it('should apply negative z-index to background containers', async () => {
+      const { container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Form} />,
       );
 
@@ -221,8 +230,8 @@ describe('RegistrationBackground', () => {
       expect(zIndex).toBeInTheDocument();
     });
 
-    it('should apply motion-reduce:hidden to videos', () => {
-      const { container } = render(
+    it('should apply motion-reduce:hidden to videos', async () => {
+      const { container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Form} />,
       );
 
@@ -230,8 +239,8 @@ describe('RegistrationBackground', () => {
       expect(motionReduce).toBeInTheDocument();
     });
 
-    it('should apply object-cover to videos', () => {
-      const { container } = render(
+    it('should apply object-cover to videos', async () => {
+      const { container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Form} />,
       );
 
@@ -241,8 +250,8 @@ describe('RegistrationBackground', () => {
   });
 
   describe('step transitions', () => {
-    it('should only show one background at a time for Search', () => {
-      const { queryByTestId, container } = render(
+    it('should only show one background at a time for Search', async () => {
+      const { queryByTestId, container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Search} />,
       );
 
@@ -251,8 +260,8 @@ describe('RegistrationBackground', () => {
       expect(container.querySelectorAll('video')).toHaveLength(0);
     });
 
-    it('should only show globe video for Form step', () => {
-      const { queryByTestId, container } = render(
+    it('should only show globe video for Form step', async () => {
+      const { queryByTestId, container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Form} />,
       );
 
@@ -266,8 +275,8 @@ describe('RegistrationBackground', () => {
       expect(source).toHaveAttribute('src', 'mocked-globe.webm');
     });
 
-    it('should only show lottie animation for Pending step', () => {
-      const { queryByTestId, container } = render(
+    it('should only show lottie animation for Pending step', async () => {
+      const { queryByTestId, container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Pending} />,
       );
 
@@ -276,8 +285,8 @@ describe('RegistrationBackground', () => {
       expect(container.querySelectorAll('video')).toHaveLength(0);
     });
 
-    it('should only show fireworks video for Success step', () => {
-      const { queryByTestId, container } = render(
+    it('should only show fireworks video for Success step', async () => {
+      const { queryByTestId, container } = await renderAndWait(
         <RegistrationBackground backgroundStep={FlowBackgroundSteps.Success} />,
       );
 

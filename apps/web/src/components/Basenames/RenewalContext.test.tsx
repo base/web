@@ -193,12 +193,16 @@ describe('RenewalContext', () => {
       consoleError.mockRestore();
     });
 
-    it('should return context values when used inside provider', () => {
+    it('should return context values when used inside provider', async () => {
       render(
         <RenewalProvider name="testname">
           <TestConsumer />
         </RenewalProvider>
       );
+
+      await waitFor(() => {
+        expect(screen.getByTestId('loadingExpirationDate')).toHaveTextContent('false');
+      });
 
       expect(screen.getByTestId('renewalStep')).toBeInTheDocument();
       expect(screen.getByTestId('name')).toHaveTextContent('testname');
@@ -206,30 +210,36 @@ describe('RenewalContext', () => {
   });
 
   describe('RenewalProvider', () => {
-    it('should render children', () => {
+    it('should render children', async () => {
       render(
         <RenewalProvider name="testname">
           <div data-testid="child">Child Content</div>
         </RenewalProvider>
       );
 
-      expect(screen.getByTestId('child')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByTestId('child')).toBeInTheDocument();
+      });
       expect(screen.getByTestId('child')).toHaveTextContent('Child Content');
     });
 
-    it('should provide context values to children', () => {
+    it('should provide context values to children', async () => {
       render(
         <RenewalProvider name="testname">
           <TestConsumer />
         </RenewalProvider>
       );
 
+      await waitFor(() => {
+        expect(screen.getByTestId('loadingExpirationDate')).toHaveTextContent('false');
+      });
+
       expect(screen.getByTestId('name')).toHaveTextContent('testname');
       expect(screen.getByTestId('renewalStep')).toHaveTextContent('form');
       expect(screen.getByTestId('years')).toHaveTextContent('1');
     });
 
-    it('should format name correctly for base mainnet', () => {
+    it('should format name correctly for base mainnet', async () => {
       mockBasenameChainId = 8453;
 
       render(
@@ -238,10 +248,14 @@ describe('RenewalContext', () => {
         </RenewalProvider>
       );
 
+      await waitFor(() => {
+        expect(screen.getByTestId('loadingExpirationDate')).toHaveTextContent('false');
+      });
+
       expect(screen.getByTestId('formattedName')).toHaveTextContent('testname.base.eth');
     });
 
-    it('should format name correctly for testnet', () => {
+    it('should format name correctly for testnet', async () => {
       mockBasenameChainId = 84532;
 
       render(
@@ -249,6 +263,10 @@ describe('RenewalContext', () => {
           <TestConsumer />
         </RenewalProvider>
       );
+
+      await waitFor(() => {
+        expect(screen.getByTestId('loadingExpirationDate')).toHaveTextContent('false');
+      });
 
       expect(screen.getByTestId('formattedName')).toHaveTextContent('testname.basetest.eth');
     });
@@ -261,6 +279,10 @@ describe('RenewalContext', () => {
           <TestConsumer />
         </RenewalProvider>
       );
+
+      await waitFor(() => {
+        expect(screen.getByTestId('loadingExpirationDate')).toHaveTextContent('false');
+      });
 
       expect(screen.getByTestId('years')).toHaveTextContent('1');
 
@@ -277,6 +299,10 @@ describe('RenewalContext', () => {
           <TestConsumer />
         </RenewalProvider>
       );
+
+      await waitFor(() => {
+        expect(screen.getByTestId('loadingExpirationDate')).toHaveTextContent('false');
+      });
 
       expect(screen.getByTestId('renewalStep')).toHaveTextContent('form');
 
@@ -298,6 +324,10 @@ describe('RenewalContext', () => {
         </RenewalProvider>
       );
 
+      await waitFor(() => {
+        expect(screen.getByTestId('loadingExpirationDate')).toHaveTextContent('false');
+      });
+
       await act(async () => {
         screen.getByTestId('redirectToProfile').click();
       });
@@ -313,6 +343,10 @@ describe('RenewalContext', () => {
           <TestConsumer />
         </RenewalProvider>
       );
+
+      await waitFor(() => {
+        expect(screen.getByTestId('loadingExpirationDate')).toHaveTextContent('false');
+      });
 
       await act(async () => {
         screen.getByTestId('redirectToProfile').click();
@@ -330,6 +364,10 @@ describe('RenewalContext', () => {
         </RenewalProvider>
       );
 
+      await waitFor(() => {
+        expect(screen.getByTestId('loadingExpirationDate')).toHaveTextContent('false');
+      });
+
       await act(async () => {
         screen.getByTestId('renewBasename').click();
       });
@@ -337,17 +375,21 @@ describe('RenewalContext', () => {
       expect(mockRenewBasename).toHaveBeenCalled();
     });
 
-    it('should display price from hook', () => {
+    it('should display price from hook', async () => {
       render(
         <RenewalProvider name="testname">
           <TestConsumer />
         </RenewalProvider>
       );
 
+      await waitFor(() => {
+        expect(screen.getByTestId('loadingExpirationDate')).toHaveTextContent('false');
+      });
+
       expect(screen.getByTestId('price')).toHaveTextContent('1000000000000000');
     });
 
-    it('should display isPending state', () => {
+    it('should display isPending state', async () => {
       mockIsPending = true;
 
       render(
@@ -355,6 +397,10 @@ describe('RenewalContext', () => {
           <TestConsumer />
         </RenewalProvider>
       );
+
+      await waitFor(() => {
+        expect(screen.getByTestId('loadingExpirationDate')).toHaveTextContent('false');
+      });
 
       expect(screen.getByTestId('isPending')).toHaveTextContent('true');
     });
@@ -418,6 +464,10 @@ describe('RenewalContext', () => {
           <TestConsumer />
         </RenewalProvider>
       );
+
+      await waitFor(() => {
+        expect(screen.getByTestId('loadingExpirationDate')).toHaveTextContent('false');
+      });
 
       expect(mockLogEventWithContext).toHaveBeenCalledWith('renewal_step_form', 'change');
 
