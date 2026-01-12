@@ -3,6 +3,7 @@
  */
 
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { mockConsoleLog, restoreConsoleLog } from 'apps/web/src/testUtils/console';
 import RegistrationSearchInput from './index';
 import { RegistrationSearchInputVariant } from './types';
 
@@ -138,6 +139,7 @@ jest.mock('@heroicons/react/24/outline', () => ({
 describe('RegistrationSearchInput', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockConsoleLog();
     mockFocused = false;
     mockIsLoading = false;
     mockIsNameAvailable = undefined;
@@ -146,6 +148,10 @@ describe('RegistrationSearchInput', () => {
     // Mock window event listeners
     window.addEventListener = jest.fn();
     window.removeEventListener = jest.fn();
+  });
+
+  afterEach(() => {
+    restoreConsoleLog();
   });
 
   describe('rendering', () => {

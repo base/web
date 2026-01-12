@@ -2,6 +2,7 @@
  * @jest-environment jsdom
  */
 import { render, screen } from '@testing-library/react';
+import { mockConsoleLog, restoreConsoleLog } from 'apps/web/src/testUtils/console';
 import UsernameProfileNotFound from './index';
 
 // Mock next/navigation
@@ -58,6 +59,7 @@ jest.mock('./notFoundIllustration.svg', () => ({
 describe('UsernameProfileNotFound', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockConsoleLog();
     // Default mock values - name exists in params and is available
     mockSearchParamsGet.mockReturnValue('testname.base.eth');
     mockUseIsNameAvailable.mockReturnValue({
@@ -65,6 +67,10 @@ describe('UsernameProfileNotFound', () => {
       data: true,
       isFetching: false,
     });
+  });
+
+  afterEach(() => {
+    restoreConsoleLog();
   });
 
   describe('when no username is provided', () => {

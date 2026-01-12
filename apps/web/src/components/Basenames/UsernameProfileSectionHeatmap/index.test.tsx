@@ -11,6 +11,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { act } from 'react';
 import React from 'react';
+import { mockConsoleLog, restoreConsoleLog } from 'apps/web/src/testUtils/console';
 
 // Mock the UsernameProfileContext
 const mockUseUsernameProfile = jest.fn();
@@ -193,6 +194,7 @@ describe('UsernameProfileSectionHeatmap', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    mockConsoleLog();
     jest.useFakeTimers();
 
     mockUseUsernameProfile.mockReturnValue({
@@ -201,6 +203,7 @@ describe('UsernameProfileSectionHeatmap', () => {
   });
 
   afterEach(() => {
+    restoreConsoleLog();
     jest.useRealTimers();
   });
 

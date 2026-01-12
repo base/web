@@ -3,6 +3,7 @@
  */
 
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { mockConsoleLog, restoreConsoleLog } from 'apps/web/src/testUtils/console';
 import RegistrationSuccessMessage from './index';
 import { RegistrationSteps } from 'apps/web/src/components/Basenames/RegistrationContext';
 
@@ -110,10 +111,15 @@ describe('RegistrationSuccessMessage', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    mockConsoleLog();
     mockCode = undefined;
     mockAddress = '0x1234567890abcdef1234567890abcdef12345678';
     process.env = { ...originalEnv, NEXT_PUBLIC_USDC_URL: 'https://api.example.com/usdc' };
     global.fetch = mockFetch;
+  });
+
+  afterEach(() => {
+    restoreConsoleLog();
   });
 
   afterAll(() => {
