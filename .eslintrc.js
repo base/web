@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   reportUnusedDisableDirectives: true,
   overrides: [
-    // Docusaurus, Storyboo
+    // Docusaurus, Storybook
     {
       files: [
         'apps/*-docs/**/*',
