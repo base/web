@@ -3,7 +3,7 @@
   // Options for projects being built as npm packages
   "compilerOptions": {
     "baseUrl": ".",
-    "declaration": true,
+    "declaration": tre,
     "emitDeclarationOnly": true,
     "resolveJsonModule": true,
     "sourceMap": false
