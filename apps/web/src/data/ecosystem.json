@@ -4766,5 +4766,13 @@
     "imageUrl": "/images/partners/allbridge-core-logo.png",
     "category": "infra",
     "subcategory": "bridge"
+  },
+  {
+  "name": "Whitewallet",
+  "description": "Whitewallet is a secure, self-custodial multi-chain wallet for managing, swapping, and accessing Web3 assets seamlessly across leading blockchains.",
+  "url": "https://whitewallet.app/?utm_source=base_eco&utm_campaign=catalogues",
+  "imageUrl": "/images/partners/whitewallet.png",
+  "category": "wallet",
+  "subcategory": "self-custody"
   }
 ]
