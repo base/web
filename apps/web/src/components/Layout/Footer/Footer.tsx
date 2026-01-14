@@ -15,7 +15,7 @@ export function Footer() {
                     key={section.title}
                     className="mb-6 transition-opacity duration-200 [&:has(a:hover)_a:not(:hover)]:opacity-50"
                   >
-                    <h3 className="mb-3 font-sans text-sm leading-[130%] tracking-normal">
+                    <h3 className="mb-1 font-sans text-sm leading-[130%] tracking-normal">
                       {section.title}
                     </h3>
                     <ul className="flex flex-col">
@@ -25,7 +25,7 @@ export function Footer() {
                             href={link.href}
                             target={link.newTab ? '_blank' : '_self'}
                             rel={link.newTab ? 'noopener noreferrer' : undefined}
-                            className="block py-1 font-mono text-sm font-[350] uppercase text-gray-50 transition-opacity duration-200"
+                            className="font-[350]/ block py-1 font-sans text-sm text-gray-50 transition-opacity duration-200"
                           >
                             {link.label}
                           </Link>
@@ -56,18 +56,18 @@ const LINK_SECTIONS = [
       { label: 'Tools', href: 'https://www.base.org/build' },
       { label: 'BaseScan', href: 'https://basescan.org/' },
       {
-        label: 'Gas credits',
+        label: 'Gas Credits',
         href: 'https://docs.base.org/identity/smart-wallet/introduction/base-gasless-campaign',
         newTab: true,
       },
-      { label: 'Engineering blog', href: 'https://www.base.dev/blog', newTab: true },
+      { label: 'Engineering Blog', href: 'https://www.base.dev/blog', newTab: true },
       { label: 'Support', href: 'https://discord.com/invite/buildonbase' }, // TODO: add discord link
     ],
   },
   {
     title: 'Resources',
     links: [
-      { label: 'Brand kit', href: 'https://www.base.org/brand', newTab: true },
+      { label: 'Brand Kit', href: 'https://www.base.org/brand', newTab: true },
       { label: 'Events', href: 'https://lu.ma/BaseEvents', newTab: true },
     ],
   },
@@ -89,8 +89,8 @@ const LINK_SECTIONS = [
       },
       { label: 'Blog', href: 'https://paragraph.xyz/@base', newTab: true },
       { label: 'Jobs', href: '/jobs' },
-      { label: 'Terms of service', href: 'https://docs.base.org/terms-of-service', newTab: true }, // TODO: update
-      { label: 'Privacy policy', href: 'https://docs.base.org/privacy-policy', newTab: true },
+      { label: 'Terms of Service', href: 'https://docs.base.org/terms-of-service', newTab: true }, // TODO: update
+      { label: 'Privacy Policy', href: 'https://docs.base.org/privacy-policy', newTab: true },
     ],
   },
 ];
