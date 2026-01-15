@@ -936,6 +936,14 @@
     "subcategory": "security"
   },
   {
+    "name": "Codex",
+    "url": "https://www.codex.io",
+    "description": "Codex is a blockchain data API providing real-time, enriched data for 60 million+ tokens across 80+ networks. It powers trading-ready information with sub-second delivery, serving industry leaders including Coinbase, Uniswap, MoonPay, and Magic Eden.",
+    "imageUrl": "/images/partners/codex.png",
+    "category": "infra",
+    "subcategory": "data"
+  },
+  {
     "name": "Coin Wallet",
     "url": "https://coin.space",
     "description": "Coin Wallet is a self-custodial multicurrency wallet for multiple platforms. Easy way to manage your Base assets.",
@@ -1286,6 +1294,14 @@
     "imageUrl": "/images/partners/defillama.webp",
     "category": "infra",
     "subcategory": "data"
+  },
+  {
+    "name": "Defined",
+    "url": "https://www.defined.fi",
+    "description": "Defined is a real-time analytics and trading terminal supporting 48+ blockchains. It offers token charts, wallet tracking, and trading tools with features like limit orders, Telegram alerts, and portfolio management for on-chain traders.",
+    "imageUrl": "/images/partners/defined.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
   },
   {
     "name": "DeForm",
