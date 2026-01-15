@@ -37,7 +37,7 @@ export default function UsingBasePay() {
           <div className="h-[1px] w-full bg-black" />
 
           <div className="flex flex-col gap-2">
-            <Title level={TitleLevel.H2Regular}>Continue earning 4.1% APY</Title>
+            <Title level={TitleLevel.H2Regular}>Continue earning 3.35% APY</Title>
             <Text variant={TextVariant.Body} className="!text-base-gray-200">
               Earn on your remaining USDC balance
             </Text>

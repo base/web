@@ -82,7 +82,7 @@
     "next-transpile-modules": "Next compatibility"
   },
   "engines": {
-    "node": ">18.20.3"
+    "node": "24.x"
   },
   "packageManager": "yarn@3.5.0",
   "dependencies": {
