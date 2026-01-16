@@ -51,7 +51,7 @@ export function CodeSnippet({ code }: { code: string }) {
 
   return (
     <div
-      className="code-snippet h-full overflow-auto rounded-lg transition-colors"
+      className="code-snippet h-full overflow-auto rounded-lg transition-colors ligatures-none"
       // eslint-disable-next-line react/no-danger -- necessary for shiki
       dangerouslySetInnerHTML={htmlContent}
     />

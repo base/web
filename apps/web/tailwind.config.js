@@ -667,6 +667,9 @@ module.exports = {
         '.scrollbar-gutter-stable': {
           'scrollbar-gutter': 'stable',
         },
+        '.ligatures-none': {
+          'font-variant-ligatures': 'none',
+        },
       });
     },
   ],
