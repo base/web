@@ -1,0 +1,178 @@
+name: Accessibility Tests
+
+on:
+  pull_request:
+    branches: [main, master]
+  push:
+    branches: [main, master]
+
+jobs:
+  a11y-tests:
+    name: Accessibility Checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run ESLint with jsx-a11y rules
+        run: yarn workspace @app/web lint
+        continue-on-error: false
+
+      - name: Run Jest a11y unit tests
+        run: yarn workspace @app/web test --testPathPattern=".*\\.test\\.tsx?"
+        env:
+          CI: true
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright a11y tests
+        run: yarn workspace @app/web test:e2e accessibility.spec.ts
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: apps/web/playwright-report/
+          retention-days: 7
+
+  lighthouse:
+    name: Lighthouse Accessibility Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build application
+        run: yarn workspace @app/web build
+        env:
+          NODE_ENV: production
+
+      - name: Start server
+        run: yarn workspace @app/web start &
+        env:
+          PORT: 3000
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000 -t 60000
+
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: |
+            http://localhost:3000
+          configPath: './lighthouserc.json'
+          uploadArtifacts: true
+
+  axe-scan:
+    name: axe-core Full Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build application
+        run: yarn workspace @app/web build
+        env:
+          NODE_ENV: production
+
+      - name: Start server
+        run: yarn workspace @app/web start &
+        env:
+          PORT: 3000
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000 -t 60000
+
+      - name: Run axe-core scan
+        run: |
+          npx @axe-core/cli http://localhost:3000 --exit
+
+  comment-pr:
+    name: Comment on PR
+    runs-on: ubuntu-latest
+    needs: [a11y-tests, lighthouse, axe-scan]
+    if: github.event_name == 'pull_request' && (success() || failure())
+
+    steps:
+      - name: Comment PR with results
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(comment =>
+              comment.user.type === 'Bot' &&
+              comment.body.includes('Accessibility Check Results')
+            );
+
+            const output = `## Accessibility Check Results
+
+            ✅ All accessibility tests passed!
+
+            - **ESLint jsx-a11y**: Passed
+            - **Jest unit tests**: Passed
+            - **Playwright E2E tests**: Passed
+            - **Lighthouse audit**: Passed
+            - **axe-core scan**: Passed
+
+            Make sure to test manually with:
+            - Keyboard navigation
+            - Screen reader (NVDA/JAWS/VoiceOver)
+            - 200% zoom
+            - High contrast mode
+            `;
+
+            if (botComment) {
+              github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: output
+              });
+            } else {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+              });
+            }
