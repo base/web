@@ -2,13 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { v2 as cloudinary } from 'cloudinary';
 import { createHash } from 'crypto';
 import { logger } from 'apps/web/src/utils/logger';
-
-// Configure Cloudinary
-cloudinary.config({
-  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+import { requireEnv } from 'apps/web/src/utils/env';
 
 const folderName = 'base-org-uploads';
 
@@ -86,6 +80,13 @@ async function getCloudinaryMediaUrl({
 
 export async function POST(request: NextRequest) {
   try {
+    // Only validate when this API route is actually invoked.
+    cloudinary.config({
+      cloud_name: requireEnv('NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME', { feature: 'Cloudinary' }),
+      api_key: requireEnv('CLOUDINARY_API_KEY', { feature: 'Cloudinary' }),
+      api_secret: requireEnv('CLOUDINARY_API_SECRET', { feature: 'Cloudinary' }),
+    });
+
     const body = (await request.json()) as CloudinaryMediaUrlRequest;
 
     const { media, width } = body;
@@ -105,6 +106,7 @@ export async function POST(request: NextRequest) {
     }
   } catch (error) {
     logger.error('Error processing Cloudinary URL:', error);
-    return NextResponse.json({ error: 'Failed to process Cloudinary URL' }, { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : 'Failed to process Cloudinary URL';
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }

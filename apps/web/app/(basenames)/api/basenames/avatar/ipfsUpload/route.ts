@@ -1,4 +1,4 @@
-import { pinata } from 'apps/web/src/utils/pinata';
+import { getPinata } from 'apps/web/src/utils/pinata';
 import { isDevelopment } from 'libs/base-ui/constants';
 import { NextResponse, NextRequest } from 'next/server';
 
@@ -50,6 +50,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'File is too large' }, { status: 500 });
 
     // Upload
+    const pinata = getPinata();
     const uploadData = await pinata.upload.file(file, {
       groupId: '765ab5e4-0bc3-47bb-9d6a-35b308291009',
       metadata: {
@@ -58,6 +59,7 @@ export async function POST(request: NextRequest) {
     });
     return NextResponse.json(uploadData, { status: 200 });
   } catch (e) {
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    const errorMessage = e instanceof Error ? e.message : 'Internal Server Error';
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
