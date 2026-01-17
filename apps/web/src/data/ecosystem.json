@@ -4766,5 +4766,17 @@
     "imageUrl": "/images/partners/allbridge-core-logo.png",
     "category": "infra",
     "subcategory": "bridge"
+  },
+ {
+  "name": "RaveCulture",
+  "description": "A cutting-edge community and events platform merging music, crypto, and NFT culture.",
+  "url": "https://raveculture.vercel.app",
+  "imageUrl": "https://raveculture.vercel.app/images/partners/raveculture.png",
+  "category": "consumer",
+  "subcategory": "community",
+  "socials": {
+    "twitter": "https://twitter.com/raveculture",
+    "discord": "https://discord.gg/raveculture",
+    "instagram": "https://instagram.com/raveculture"
   }
 ]
