@@ -137,7 +137,7 @@ const baseAccountFeatures = [
     colorClass: 'text-[#7575FF]',
     title: 'Reduce friction',
     description:
-      'Request user consent to provide details like name, address, or email to streamline onchain UX flows',
+      'Request user consent to provide details like name, address, or email to streamline onchain UX flows.',
   },
   {
     colorClass: 'text-[#B8A581]',
