@@ -67,12 +67,12 @@ export function SupportedPlatforms() {
           logo={
             <Image
               src={warpcastLogo as StaticImageData}
-              alt="Warpcast logo"
+              alt="Farcaster logo"
               width={18}
               height={16}
             />
           }
-          href="https://warpcast.com/"
+          href="https://farcaster.xyz/"
         />
         <SupportedPlatformCard
           description="In Alpha"
