@@ -36,6 +36,8 @@ Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the ne
 
 After cloning the repository begin by installing dependencies at the root.
 
+Enable corepack so that the Yarn version pinned in this repository is used instead of any globally installed version.
+
 ```shell
 yarn
 yarn build
