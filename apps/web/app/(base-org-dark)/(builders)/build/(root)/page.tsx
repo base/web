@@ -75,11 +75,6 @@ const links = [
     description: 'Publish your mini app to the Base app with a few lines of code.',
     url: '/build/mini-apps',
   },
-  {
-    title: 'Base Appchains',
-    description: 'Launch a chain with dedicated blockspace on Base, in minutes.',
-    url: '/build/appchains',
-  },
 ];
 
 const builderCardItems = [
