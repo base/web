@@ -50,12 +50,24 @@ describe('getUsernames route', () => {
       const data = (await response.json()) as ManagedAddressesResponse | { error: string };
 
       expect(response.status).toBe(400);
-      expect(data).toEqual({ error: 'No address provided' });
+      expect(data).toEqual({ error: 'Invalid address provided' });
+    });
+
+    it('should return 400 when an invalid address is provided', async () => {
+      const request = new NextRequest(
+        'https://www.base.org/api/basenames/getUsernames?address=0x123'
+      );
+
+      const response = await GET(request);
+      const data = (await response.json()) as ManagedAddressesResponse | { error: string };
+
+      expect(response.status).toBe(400);
+      expect(data).toEqual({ error: 'Invalid address provided' });
     });
 
     it('should return 400 when an invalid network is provided', async () => {
       const request = new NextRequest(
-        'https://www.base.org/api/basenames/getUsernames?address=0x123&network=invalid-network'
+        'https://www.base.org/api/basenames/getUsernames?address=0x1234567890123456789012345678901234567890&network=invalid-network'
       );
 
       const response = await GET(request);
@@ -67,6 +79,7 @@ describe('getUsernames route', () => {
 
     it('should default to base-mainnet when no network is provided', async () => {
       mockFetch.mockResolvedValueOnce({
+        ok: true,
         json: jest.fn().mockResolvedValue(mockSuccessResponse),
       });
 
@@ -89,6 +102,7 @@ describe('getUsernames route', () => {
 
     it('should use base-mainnet when explicitly provided', async () => {
       mockFetch.mockResolvedValueOnce({
+        ok: true,
         json: jest.fn().mockResolvedValue(mockSuccessResponse),
       });
 
@@ -106,6 +120,7 @@ describe('getUsernames route', () => {
 
     it('should use base-sepolia when explicitly provided', async () => {
       mockFetch.mockResolvedValueOnce({
+        ok: true,
         json: jest.fn().mockResolvedValue(mockSuccessResponse),
       });
 
@@ -123,6 +138,7 @@ describe('getUsernames route', () => {
 
     it('should include page parameter in URL when provided', async () => {
       mockFetch.mockResolvedValueOnce({
+        ok: true,
         json: jest.fn().mockResolvedValue(mockSuccessResponse),
       });
 
@@ -140,6 +156,7 @@ describe('getUsernames route', () => {
 
     it('should not include page parameter when not provided', async () => {
       mockFetch.mockResolvedValueOnce({
+        ok: true,
         json: jest.fn().mockResolvedValue(mockSuccessResponse),
       });
 
@@ -155,6 +172,7 @@ describe('getUsernames route', () => {
 
     it('should return the data from the CDP API with status 200', async () => {
       mockFetch.mockResolvedValueOnce({
+        ok: true,
         json: jest.fn().mockResolvedValue(mockSuccessResponse),
       });
 
@@ -171,6 +189,7 @@ describe('getUsernames route', () => {
 
     it('should include authorization header with bearer token', async () => {
       mockFetch.mockResolvedValueOnce({
+        ok: true,
         json: jest.fn().mockResolvedValue(mockSuccessResponse),
       });
 
@@ -192,6 +211,7 @@ describe('getUsernames route', () => {
 
     it('should include Content-Type header as application/json', async () => {
       mockFetch.mockResolvedValueOnce({
+        ok: true,
         json: jest.fn().mockResolvedValue(mockSuccessResponse),
       });
 
@@ -241,6 +261,7 @@ describe('getUsernames route', () => {
       };
 
       mockFetch.mockResolvedValueOnce({
+        ok: true,
         json: jest.fn().mockResolvedValue(multipleItemsResponse),
       });
 
@@ -267,6 +288,7 @@ describe('getUsernames route', () => {
       };
 
       mockFetch.mockResolvedValueOnce({
+        ok: true,
         json: jest.fn().mockResolvedValue(emptyResponse),
       });
 
@@ -284,6 +306,7 @@ describe('getUsernames route', () => {
 
     it('should construct URL with limit parameter', async () => {
       mockFetch.mockResolvedValueOnce({
+        ok: true,
         json: jest.fn().mockResolvedValue(mockSuccessResponse),
       });
 
