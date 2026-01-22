@@ -101,14 +101,14 @@ export const textRecordsSocialFieldsEnabled = [
 ];
 
 export const textRecordsSocialFieldsEnabledIcons: Partial<Record<UsernameTextRecordKeys, string>> =
-  {
-    [UsernameTextRecordKeys.Twitter]: 'twitter',
-    [UsernameTextRecordKeys.Farcaster]: 'farcaster',
-    [UsernameTextRecordKeys.Github]: 'github',
-    [UsernameTextRecordKeys.Url]: 'website',
-    [UsernameTextRecordKeys.Url2]: 'website',
-    [UsernameTextRecordKeys.Url3]: 'website',
-  };
+{
+  [UsernameTextRecordKeys.Twitter]: 'twitter',
+  [UsernameTextRecordKeys.Farcaster]: 'farcaster',
+  [UsernameTextRecordKeys.Github]: 'github',
+  [UsernameTextRecordKeys.Url]: 'website',
+  [UsernameTextRecordKeys.Url2]: 'website',
+  [UsernameTextRecordKeys.Url3]: 'website',
+};
 
 // Users might add their handle as @myProfile, which breaks on some website
 // TODO: Ideally we'd sanitize these before writing them as TextRecord
@@ -510,7 +510,7 @@ export const getBasenameAvatarUrl = (source: string) => {
   }
 };
 
-export function validateBasenameAvatarFile(file: File): ValidationResult {
+export async function validateBasenameAvatarFile(file: File): Promise<ValidationResult> {
   if (!ALLOWED_IMAGE_TYPE.includes(file.type)) {
     return {
       valid: false,
@@ -527,7 +527,22 @@ export function validateBasenameAvatarFile(file: File): ValidationResult {
     };
   }
 
-  // TODO: Validate a square-ish image, with a width/height ratio of minimum 0.8
+  // Validate a square-ish image, with a width/height ratio of minimum 0.8
+  try {
+    const bitmap = await createImageBitmap(file);
+    const ratio = bitmap.width / bitmap.height;
+    if (ratio < 0.8 || ratio > 1.25) {
+      return {
+        valid: false,
+        message: 'Image must be square-ish (ratio 0.8 - 1.25)',
+      };
+    }
+  } catch (error) {
+    // If we can't load the bitmap (e.g. SVG or corrupted), we skip this check
+    // or we could fail if strict validation is needed. For now, let's allow it
+    // but log if needed, or just proceed.
+  }
+
   return {
     valid: true,
     message: 'Valid avatar file',
@@ -594,7 +609,7 @@ export async function getBasenameAddress(username: Basename) {
       universalResolverAddress: resolverAddress,
     });
     return ensAddress;
-  } catch (error) {}
+  } catch (error) { }
 }
 
 /*
@@ -618,7 +633,7 @@ export async function getBasenameEditor(username: Basename) {
     const owner = await client.readContract(buildBasenameEditorContract(username));
 
     return owner;
-  } catch (error) {}
+  } catch (error) { }
 }
 
 /*
@@ -644,7 +659,7 @@ export async function getBasenameOwner(username: Basename) {
     const owner = await client.readContract(buildBasenameOwnerContract(username));
 
     return owner;
-  } catch (error) {}
+  } catch (error) { }
 }
 
 export async function getBasenameNameExpires(username: Basename) {
@@ -718,7 +733,7 @@ export async function getBasenameTextRecord(username: Basename, key: UsernameTex
       buildBasenameTextRecordContract(username, key, resolverAddress),
     );
     return textRecord;
-  } catch (error) {}
+  } catch (error) { }
 }
 
 // Get a all TextRecords
@@ -733,7 +748,7 @@ export async function getBasenameTextRecords(username: Basename) {
     const textRecords = await client.multicall({ contracts: readContracts });
 
     return textRecords;
-  } catch (error) {}
+  } catch (error) { }
 }
 
 // Resolver helpers
