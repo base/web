@@ -1,1 +1,35 @@
-*
+*command: check
+//
+disable;
+//
+command: restart
+//
+disable;
+//
+command shutdown
+//
+disable;
+//
+command: edit policy right
+//
+disable
+//
+command: set default configuration
+//
+enable
+//
+rem command: boot
+//
+enable
+//
+[{Auth="true"}]
+//
+Start File
+//
+command: dialog window=active
+//
+[{Auth="0"}]
+//
+//
+End File
+//
