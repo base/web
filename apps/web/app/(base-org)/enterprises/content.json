@@ -1,0 +1,57 @@
+{
+  "hero": {
+    "header": "Build and grow faster on Base",
+    "subheader": "Base gives startups everything they need to ship fast, launch globally, and reach millions of users onchain.",
+    "ctas": {
+      "primary": {
+        "label": "Register your app",
+        "url": "https://www.base.dev/"
+      }
+    }
+  },
+  "logoStrip": {
+    "label": "Trusted by leaders in payments & finance",
+    "context": "Enterprises Page Logos",
+    "logos": [
+      "Amex",
+      "Coinbase",
+      "JPMorgan",
+      "Shopify",
+      "Stripe",
+      "Templeton"
+    ]
+  },
+  "payments": {
+    "eyebrow": "Instant global payments",
+    "header": "Instant global payments",
+    "subheader": "Simple, borderless, low-cost payments for merchants, with support for 15+ local stablecoins. Instant settlement on 24/7 payment rails.",
+    "cta": {
+      "label": "Learn More",
+      "url": "https://batches.base.org"
+    }
+  },
+  "onchainFinance": {
+    "header": "Solutions for enterprise",
+    "subheader": "Base is the enterprise‑ready blockchain to run stablecoin payments, onchain finance, and tokenized value.",
+    "solutions": [
+      {
+        "header": "Asset Flexibility & Freedom",
+        "subheader": "Borrow, lend, and earn at competitive rates through decentralized protocols running on Base. Offer savings accounts and collateralized loans powered by audited, compliant smart contracts.",
+        "image": "/images/backgrounds/enterprises/enterprise-asset-flex.webp",
+        "primaryColor": "#1EE87D"
+      },
+      {
+        "header": "24/7 Banking without Borders",
+        "subheader": "Keep assets at the bank, while taking advantage of programmable, global, instant onchain rails.",
+        "image": "/images/backgrounds/enterprises/enterprise-banking.webp",
+        "primaryColor": "#0091E6"
+      },
+      {
+        "header": "Loyalty programs",
+        "subheader": "Brand-first rewards that feel seamless to customers. Use blockchain under the hood, not in their face.",
+        "image": "/images/backgrounds/enterprises/enterprise-loyalty.webp",
+        "primaryColor": "#FF550C"
+      }
+    ]
+  }
+}

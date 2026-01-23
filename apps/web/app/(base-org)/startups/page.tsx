@@ -206,9 +206,9 @@ export default async function Startups() {
             >
               <div className="col-span-full aspect-[3/1] w-full overflow-hidden rounded-lg bg-base-gray-200/20">
                 <Halftone
-                  imageUrl="/images/backgrounds/ecosystem.webp"
+                  imageUrl="/images/backgrounds/space.webp"
                   backgroundColor="#fbfbfb"
-                  primaryColor="#FFD200"
+                  primaryColor="#4B4B4B"
                   bottomFade={false}
                 />
               </div>

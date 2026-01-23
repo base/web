@@ -15,7 +15,10 @@ import { BaseAppSend } from './BaseAppSend';
 import { BaseAppSms } from './BaseAppSms';
 import { BaseAppEarn } from './BaseAppEarn';
 
-import ImageAsset from './tba.png';
+// import ImageAsset from './tba.png';
+// import ImageAsset from './base-app-phone.png';
+import ImageAsset from './phone-mock-bg.png';
+import BackgroundAsset from './sky-bg.png';
 import { motion, spring } from 'motion/react';
 import { ParallaxScaleWrapper } from './ParallaxScaleWrapper';
 import { useState } from 'react';
@@ -43,28 +46,28 @@ export function SectionBaseApp() {
               phoneIsHovered ? { backgroundColor: '#F6F6F6' } : { backgroundColor: '#FAFAFA' }
             }
             transition={{ type: spring, bounce: 0.3, duration: 0.3 }}
-            className="group relative aspect-square h-full w-full items-center justify-center overflow-hidden rounded-lg bg-base-gray-25 md:aspect-auto"
+            className="group relative aspect-[9/16] h-full w-full items-center justify-center overflow-hidden rounded-lg bg-base-gray-25 md:aspect-auto"
           >
-            <ParallaxScaleWrapper
+            {/* <ParallaxScaleWrapper
               parallaxMultiplier={1.1}
               maxScale={1.1}
               disableScale
               startingScale={0.7}
               scrollRange={{ start: 1, end: -1.0 }}
-            >
-              <div className="absolute inset-0 h-full w-full">
-                <Image
-                  src={img.src}
-                  alt="Base App"
-                  width={img.width}
-                  height={img.height}
-                  className="mx-auto w-[90%] translate-y-[10%]"
-                  draggable={false}
-                  sizes="(max-width: 768px) 100vw, 450px"
-                  quality={99}
-                />
-              </div>
-            </ParallaxScaleWrapper>
+            > */}
+            <div className="absolute inset-0 h-full w-full">
+              <Image
+                src={img.src}
+                alt="Base App"
+                width={img.width}
+                height={img.height}
+                className="mx-auto h-full w-full object-cover"
+                draggable={false}
+                sizes="(max-width: 768px) 100vw, 450px"
+                quality={99}
+              />
+            </div>
+            {/* </ParallaxScaleWrapper> */}
           </motion.div>
           <div className="left-0 top-full block h-fit max-w-[95%] py-3 md:absolute lg:py-4">
             <Text variant={TextVariant.Body} className="!text-base-gray-200">
@@ -88,6 +91,18 @@ export function SectionBaseApp() {
             className="relative aspect-square w-full overflow-hidden rounded-lg bg-base-gray-25"
           >
             <div className="absolute inset-0 h-full w-full">
+              <Image
+                src={BackgroundAsset.src}
+                alt="Base App"
+                width={BackgroundAsset.width}
+                height={BackgroundAsset.height}
+                className="h-full w-full origin-top scale-[2.5] object-cover"
+                draggable={false}
+                sizes="(max-width: 768px) 100vw, 450px"
+                quality={99}
+              />
+            </div>
+            <div className="absolute inset-0 h-full w-full">
               <BaseAppSocial />
             </div>
           </motion.div>
@@ -109,6 +124,18 @@ export function SectionBaseApp() {
             className="relative aspect-square w-full overflow-hidden rounded-lg bg-base-gray-25"
           >
             <div className="absolute inset-0 h-full w-full">
+              <Image
+                src={BackgroundAsset.src}
+                alt="Base App"
+                width={BackgroundAsset.width}
+                height={BackgroundAsset.height}
+                className="h-full w-full origin-top-right scale-[2.5] object-cover"
+                draggable={false}
+                sizes="(max-width: 768px) 100vw, 450px"
+                quality={99}
+              />
+            </div>
+            <div className="absolute inset-0 h-full w-full">
               {/* <BaseAppSms /> */}
               <BaseAppEarn />
             </div>
@@ -125,6 +152,18 @@ export function SectionBaseApp() {
           className="relative col-span-full md:col-span-2 md:col-start-3"
         >
           <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-base-gray-25">
+            <div className="absolute inset-0 h-full w-full">
+              <Image
+                src={BackgroundAsset.src}
+                alt="Base App"
+                width={BackgroundAsset.width}
+                height={BackgroundAsset.height}
+                className="h-full w-full origin-bottom-left scale-[1.5] object-cover"
+                draggable={false}
+                sizes="(max-width: 768px) 100vw, 450px"
+                quality={99}
+              />
+            </div>
             <div className="absolute inset-0 h-full w-full">
               <BaseAppSend />
             </div>

@@ -14,6 +14,9 @@ import { CaseStudyCard } from 'apps/web/app/(base-org)/enterprises/CaseStudyCard
 import Text from 'apps/web/src/components/base-org/typography/TextRedesign';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
 import { Halftone } from './Halftone';
+import { Section } from 'apps/web/src/components/base-org/root/Redesign/Section';
+import { Marquee } from 'apps/web/src/components/Builders/Shared/Marquee';
+import content from './content.json';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
@@ -27,7 +30,7 @@ export const metadata: Metadata = {
 import assetImage from 'apps/web/public/images/backgrounds/typography.webp';
 import bankingImage from 'apps/web/public/images/backgrounds/sub-brands.webp';
 import loyaltyImage from './images/loyalty-b&w.png';
-import paymentsImage from 'apps/web/public/images/backgrounds/sub-brands.webp';
+import paymentsImage from 'apps/web/public/images/backgrounds/enterprises/enterprise-global-payments.webp';
 
 import Image from 'next/image';
 
@@ -219,113 +222,91 @@ export default async function Enterprises() {
             <GenericHero
               title="Enterprises"
               description="The enterprise‑ready blockchain to run stablecoin payments, onchain finance, and tokenized value."
-              imageUrl={'/images/backgrounds/sub-brands.webp'}
+              imageUrl={'/images/backgrounds/enterprises/enterprise-header.webp'}
               primaryColor="#5B31F4"
             />
-            <div className="flex flex-col gap-12">
-              <Split reverse>
-                <Split.Text>
-                  <SolutionText
-                    eyebrow="Payments"
-                    title="Instant global payments"
-                    description="Simple, borderless, low-cost payments for merchants, with support for 15+ local stablecoins. Instant settlement on 24/7 payment rails."
-                  />
-                </Split.Text>
-                <Split.Content>
-                  <div className="group relative h-full w-full">
-                    <Halftone key={paymentsImage.src} imageUrl={paymentsImage.src} />
-                    <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap px-14 py-4 text-xl font-medium text-white">
-                      <span className="absolute inset-0 rounded-xl bg-[#5B31F4] transition-transform duration-1000 ease-out group-hover:scale-95" />
-                      <span className="relative z-10">Pay with Crypto</span>
-                    </div>
-                  </div>
-                </Split.Content>
-              </Split>
 
-              <Split>
-                <Split.Text>
-                  <SolutionText
-                    eyebrow="Onchain Finance"
-                    title="Asset Flexibility & Freedom"
-                    description="Borrow, lend, and earn at competitive rates through decentralized protocols running on Base. Offer savings accounts and collateralized loans powered by audited, compliant smart contracts."
-                  />
-                </Split.Text>
-                <Split.Content>
-                  <div className="relative h-full w-full">
-                    <Halftone key={assetImage.src} imageUrl={assetImage.src} />
-                    <div className="pointer-events-none absolute inset-x-0 top-1/2 z-10 -translate-y-1/2 overflow-hidden">
-                      <style>
-                        {`
-                          @keyframes marquee {
-                            0% { transform: translateX(0); }
-                            100% { transform: translateX(-50%); }
-                          }
-                        `}
-                      </style>
-                      <div
-                        className="flex w-max items-center gap-3"
-                        style={{ animation: 'marquee 20s linear infinite' }}
-                      >
-                        <CheckTick />
-                        <GlassPill>Lend</GlassPill>
-                        <CheckTick />
-                        <GlassPill>Withdraw</GlassPill>
-                        <CheckTick />
-                        <GlassPill>Borrow</GlassPill>
-                        <CheckTick />
-                        <GlassPill className="mr-2">See Rewards</GlassPill>
-                        {/* duplicated for loop */}
-                        <CheckTick />
-                        <GlassPill>Lend</GlassPill>
-                        <CheckTick />
-                        <GlassPill>Withdraw</GlassPill>
-                        <CheckTick />
-                        <GlassPill>Borrow</GlassPill>
-                        <CheckTick />
-                        <GlassPill className="mr-2">See Rewards</GlassPill>
+            {/* Logo Strip Section */}
+            <Section content={{ title: content.logoStrip.label }}>
+              <div className="relative col-span-full">
+                <div
+                  style={{ background: 'linear-gradient(to right, white, transparent)' }}
+                  className="absolute left-0 top-0 z-20 h-full w-[10%] bg-base-gray-200/20"
+                ></div>
+                <div
+                  style={{ background: 'linear-gradient(to left, white, transparent)' }}
+                  className="absolute right-0 top-0 z-20 h-full w-[10%] bg-base-gray-200/20"
+                ></div>
+
+                <Marquee className="[--duration:40s]" pauseOnHover={false}>
+                  {content.logoStrip.logos.map((logo) => (
+                    <div
+                      key={logo}
+                      style={{ mixBlendMode: 'multiply', filter: 'grayscale(1) contrast(6)' }}
+                      className="flex min-w-[120px] items-center justify-center px-6 opacity-30 grayscale transition-all hover:opacity-100"
+                    >
+                      <div className="h-full max-h-12 w-full">
+                        <Image
+                          className="h-full w-full object-contain"
+                          src={`/images/startups/logos/${logo.toLowerCase()}.webp`}
+                          alt={logo}
+                          width={120}
+                          height={60}
+                        />
                       </div>
                     </div>
-                  </div>
-                </Split.Content>
-              </Split>
+                  ))}
+                </Marquee>
+              </div>
+            </Section>
 
-              <Split reverse>
-                <Split.Text>
-                  <SolutionText
-                    eyebrow="Tokenization"
-                    title="24/7 Banking without Borders"
-                    description="Keep assets at the bank, while taking advantage of programmable, global, instant onchain rails."
-                  />
-                </Split.Text>
-                <Split.Content>
-                  <div className="relative h-full w-full">
-                    <Halftone key={bankingImage.src} imageUrl={bankingImage.src} />
-                    {/* Blue square with 8 arrows */}
-                    <div className="group absolute inset-0 z-10 flex cursor-pointer items-center justify-center">
-                      {/* Blue square */}
-                      <div className="h-20 w-20 rounded-xl bg-[#0052FF] transition-transform duration-1000 ease-out group-hover:scale-[1.03]" />
-                      {/* Arrows SVG overlay */}
-                      <ArrowsSvg />
-                    </div>
-                  </div>
-                </Split.Content>
-              </Split>
+            {/*  Payments Section */}
+            <Section
+              textOnTop={true}
+              content={{
+                title: content.payments.header,
+                description: content.payments.subheader,
+                cta: { label: content.payments.cta.label, href: content.payments.cta.url },
+              }}
+            >
+              <div className="col-span-full aspect-[3/1] w-full overflow-hidden rounded-lg bg-base-gray-200/20">
+                <Halftone
+                  imageUrl={paymentsImage.src}
+                  bottomFade={true}
+                  sideFade={true}
+                  topFade={true}
+                  primaryColor="#8081FF"
+                />
+              </div>
+            </Section>
 
-              <Split>
-                <Split.Text>
-                  <SolutionText
-                    eyebrow="Loyalty"
-                    title="Loyalty programs"
-                    description=" Brand-first rewards that feel seamless to customers. Use blockchain under the hood, not in their face."
-                  />
-                </Split.Text>
-                <Split.Content>
-                  <div className="relative h-full w-full">
-                    <Halftone key={loyaltyImage.src} imageUrl={loyaltyImage.src} />
+            <Section
+              textOnTop={true}
+              content={{
+                title: content.onchainFinance.header,
+                description: content.onchainFinance.subheader,
+              }}
+            >
+              {content.onchainFinance.solutions.map((solution) => (
+                <div key={solution.header} className="col-span-3 flex flex-col gap-6">
+                  <div className="aspect-square w-full overflow-hidden rounded-lg">
+                    <Halftone
+                      imageUrl={solution.image}
+                      backgroundColor="#fbfbfb"
+                      primaryColor={solution.primaryColor}
+                    />
                   </div>
-                </Split.Content>
-              </Split>
+                  <div className="flex flex-col gap-4">
+                    <Title level={TitleLevel.H2Regular}>{solution.header}</Title>
+                    <Text className="!text-base-gray-200" variant={TextVariant.BodyLarge}>
+                      {solution.subheader}
+                    </Text>
+                  </div>
+                </div>
+              ))}
+            </Section>
 
+            <div className="flex flex-col gap-12">
               {false && (
                 <div className="grid gap-10 md:grid-cols-1 lg:grid-cols-3">
                   <div className="col-span-full">

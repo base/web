@@ -85,7 +85,7 @@ function BlogCardContent({
 }) {
   return (
     <div className="relative flex flex-[3] md:flex-none">
-      <BlogCardSlideNumber slideNumber={slideNumber} />
+      {/* <BlogCardSlideNumber slideNumber={slideNumber} /> */}
       <AnimatePresence initial={false} mode="wait">
         <motion.div
           key={animationKey}
@@ -162,20 +162,23 @@ function BlogCard({
     <Link
       href={href}
       target={href.startsWith('https') ? '_blank' : '_self'}
-      className={classNames('relative flex h-full w-full flex-col overflow-hidden', className)}
+      className={classNames(
+        'relative flex h-full w-full flex-col gap-6 overflow-hidden',
+        className,
+      )}
     >
-      <BlogCardContent
-        title={title}
-        subtitle={subtitle}
-        slideNumber={slideNumber}
-        animationKey={animationKey}
-      />
       <BlogCardImage
         backgroundImage={backgroundImage}
         title={title}
         brightness={brightness}
         contrast={contrast}
         shader={false}
+      />
+      <BlogCardContent
+        title={title}
+        subtitle={subtitle}
+        slideNumber={slideNumber}
+        animationKey={animationKey}
       />
     </Link>
   );

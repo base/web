@@ -19,15 +19,15 @@ export function ChainValueProp({ eyebrow, pill, header, subheader, icon }: Chain
           <div className="w-8">{icon}</div>
           <Text
             variant={TextVariant.Caption}
-            className="!text-xs !font-medium uppercase tracking-widest !text-base-gray-200"
+            className="!text-xs !font-medium uppercase tracking-wide !text-base-gray-200"
           >
             {eyebrow}
           </Text>
         </div>
         {pill && (
           <span
-            className="rounded-full bg-black/10 px-3 py-1.5 font-mono
-           text-xs uppercase leading-none tracking-widest text-black "
+            className="rounded-full bg-black/5 px-3 py-1.5 font-sans
+           text-xs font-medium uppercase leading-none tracking-wide text-base-gray-200"
           >
             {pill}
           </span>

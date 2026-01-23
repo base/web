@@ -33,6 +33,7 @@ type SceneProps = {
   containerHeight?: number;
   interactionUniforms?: InteractionUniforms;
   bottomFade?: boolean;
+  topFade?: boolean;
   sideFade?: boolean;
   backgroundColor?: { r: number; g: number; b: number } | null;
   primaryColor?: { r: number; g: number; b: number } | null;
@@ -111,6 +112,7 @@ export function Scene({
   containerHeight,
   interactionUniforms,
   bottomFade = true,
+  topFade = false,
   sideFade = false,
   backgroundColor,
   primaryColor,
@@ -172,6 +174,7 @@ export function Scene({
     logicalHeight: height,
     useWhiteBackground: !!externalFBO,
     bottomFade,
+    topFade,
     sideFade,
     backgroundColor,
     primaryColor,

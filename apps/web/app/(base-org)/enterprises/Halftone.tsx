@@ -19,6 +19,7 @@ type HalftoneProps = {
     columns: number;
   };
   bottomFade?: boolean;
+  topFade?: boolean;
   sideFade?: boolean;
 };
 
@@ -31,6 +32,7 @@ export function Halftone({
     columns: 6,
   },
   bottomFade = true,
+  topFade = false,
   sideFade = false,
 }: HalftoneProps) {
   const heroBackgroundConfig: HeroBackgroundConfig = {
@@ -44,6 +46,7 @@ export function Halftone({
     velocityDissipation: 0.94,
     radius: 0.1,
     bottomFade: bottomFade,
+    topFade: topFade,
     sideFade: sideFade,
     backgroundColor: backgroundColor,
     primaryColor: primaryColor,

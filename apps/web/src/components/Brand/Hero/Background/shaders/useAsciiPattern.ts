@@ -49,6 +49,7 @@ type AsciiPatternUniforms = {
   uAltPatternAtlasColumns: { value: number };
   uDarkMode: { value: boolean };
   uBottomFade: { value: boolean };
+  uTopFade: { value: boolean };
   uSideFade: { value: boolean };
   uBackgroundColor: { value: THREE.Vector3 };
   uPrimaryColor: { value: THREE.Vector3 };
@@ -75,6 +76,7 @@ type UseAsciiPatternOptions = {
   containerHeight?: number;
   darkMode?: boolean;
   bottomFade?: boolean;
+  topFade?: boolean;
   sideFade?: boolean;
   logicalWidth?: number;
   logicalHeight?: number;
@@ -102,6 +104,7 @@ export function useAsciiPattern({
   containerHeight,
   darkMode = false,
   bottomFade = false,
+  topFade = false,
   sideFade = false,
   logicalWidth,
   logicalHeight,
@@ -176,6 +179,7 @@ export function useAsciiPattern({
     uAltPatternAtlasColumns: { value: 0 },
     uDarkMode: { value: false },
     uBottomFade: { value: true },
+    uTopFade: { value: false },
     uSideFade: { value: false },
     uBackgroundColor: { value: bgColor },
     uPrimaryColor: { value: primaryColorVec },
@@ -218,6 +222,7 @@ export function useAsciiPattern({
   uniforms.uUseOriginalSvgColors.value = useOriginalSvgColors;
   uniforms.uDarkMode.value = darkMode;
   uniforms.uBottomFade.value = bottomFade;
+  uniforms.uTopFade.value = topFade;
   uniforms.uSideFade.value = sideFade;
   if (backgroundColor) {
     uniforms.uBackgroundColor.value.set(backgroundColor.r, backgroundColor.g, backgroundColor.b);
@@ -268,6 +273,7 @@ export function useAsciiPattern({
         uniform int uAltPatternAtlasColumns;
         uniform float uDarkMode;
         uniform float uBottomFade;
+        uniform float uTopFade;
         uniform float uSideFade;
         uniform vec3 uBackgroundColor;
         uniform vec3 uPrimaryColor;
@@ -534,6 +540,14 @@ export function useAsciiPattern({
           if (uBottomFade > 0.5) {
             float fadeStart = 0.3;
             float fadeStrength = smoothstep(0.0, fadeStart, vUv.y);
+            fadeStrength = fadeStrength * fadeStrength * (3.0 - 2.0 * fadeStrength);
+            finalColor = mix(uBackgroundColor, finalColor, fadeStrength);
+          }
+
+          // Apply top fade to final output
+          if (uTopFade > 0.5) {
+            float fadeStart = 0.3;
+            float fadeStrength = smoothstep(0.0, fadeStart, 1.0 - vUv.y);
             fadeStrength = fadeStrength * fadeStrength * (3.0 - 2.0 * fadeStrength);
             finalColor = mix(uBackgroundColor, finalColor, fadeStrength);
           }

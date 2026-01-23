@@ -75,11 +75,6 @@ export default async function Chain() {
                   };
 
                   return (
-                    // <Section content={content}>
-                    //   <div className="col-span-full aspect-video w-full overflow-hidden bg-gray-5">
-                    //     <p>TEST</p>
-                    //   </div>
-                    // </Section>
                     <div
                       key={prop.id}
                       className={cn(
