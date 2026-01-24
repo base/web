@@ -3,12 +3,23 @@ import { Pool } from 'pg';
 import { isDevelopment } from 'apps/web/src/constants';
 import { Database } from './types';
 import { logger } from 'apps/web/src/utils/logger';
+import { requireEnv } from 'apps/web/src/utils/env';
 
 function createDefaultPostgresManager() {
-  const user = isDevelopment ? process.env.POSTGRES_USER_DEVELOPMENT : process.env.POSTGRES_USER;
-  const password = isDevelopment ? process.env.POSTGRES_PASSWORD_DEVELOPMENT : process.env.POSTGRES_PASSWORD;
-  const host = isDevelopment ? process.env.POSTGRES_HOST_DEVELOPMENT : process.env.POSTGRES_HOST;
-  const dbName = isDevelopment ? process.env.POSTGRES_DB_NAME_DEVELOPMENT : process.env.POSTGRES_DB_NAME;
+  // Only validate when DB is actually used (getDb()).
+  const feature = 'Postgres';
+  const user = isDevelopment
+    ? requireEnv('POSTGRES_USER_DEVELOPMENT', { feature })
+    : requireEnv('POSTGRES_USER', { feature });
+  const password = isDevelopment
+    ? requireEnv('POSTGRES_PASSWORD_DEVELOPMENT', { feature })
+    : requireEnv('POSTGRES_PASSWORD', { feature });
+  const host = isDevelopment
+    ? requireEnv('POSTGRES_HOST_DEVELOPMENT', { feature })
+    : requireEnv('POSTGRES_HOST', { feature });
+  const dbName = isDevelopment
+    ? requireEnv('POSTGRES_DB_NAME_DEVELOPMENT', { feature })
+    : requireEnv('POSTGRES_DB_NAME', { feature });
   const connectionString = `postgresql://${user}:${password}@${host}:5432/${dbName}`;
   const poolConfig = isDevelopment
     ? {

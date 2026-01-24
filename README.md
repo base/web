@@ -54,6 +54,7 @@ There are three projects which can be run individually.
 ### Web
 
 ```
+cp apps/web/.env.local.example apps/web/.env.local
 yarn workspace @app/web dev
 ```
 
