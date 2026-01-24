@@ -1,4 +1,5 @@
 'use client';
+
 import React, {
   createContext,
   useContext,
@@ -7,94 +8,114 @@ import React, {
   ReactNode,
   useMemo,
   useCallback,
+  useRef,
 } from 'react';
 import { Experiment, ExperimentClient } from '@amplitude/experiment-js-client';
 
 import { ampDeploymentKey } from '../constants';
 import logEvent, { ActionType, AnalyticsEventImportance, ComponentType } from '../utils/logEvent';
 
-declare const window: WindowWithAnalytics;
-
-const ExperimentsContext = createContext<ExperimentsContextProps>({
-  experimentClient: null,
-  isReady: false,
-  getUserVariant: () => '',
-});
+/**
+ * Context definition with strict types
+ */
+const ExperimentsContext = createContext<ExperimentsContextProps | null>(null);
 
 export default function ExperimentsProvider({ children }: ExperimentsProviderProps) {
   const [isReady, setIsReady] = useState(false);
-  const [experimentClient, setExperimentClient] = useState<ExperimentClient>();
+  const clientRef = useRef<ExperimentClient | null>(null);
+
+  /**
+   * Defensive identity extraction to prevent runtime crashes
+   */
+  const getIdentity = useCallback(() => {
+    const identity = typeof window !== 'undefined' ? window.ClientAnalytics?.identity : null;
+    return {
+      user_id: identity?.userId || undefined,
+      device_id: identity?.deviceId || undefined,
+      os: identity?.device_os || undefined,
+      language: identity?.languageCode || undefined,
+      country: identity?.countryCode || undefined,
+    };
+  }, []);
 
   useEffect(() => {
-    const client = Experiment.initialize(ampDeploymentKey, {
-      exposureTrackingProvider: {
-        track: (exposure) => {
-          logEvent(
-            `exposure__${exposure.flag_key}`,
-            {
-              action: ActionType.view,
-              componentType: ComponentType.page,
-              variant: exposure.variant,
-              flag_key: exposure.flag_key,
-              experiment_key: exposure.experiment_key,
-            },
-            AnalyticsEventImportance.high,
-          );
+    let isMounted = true;
+
+    // Initialize only if not already initialized (Singleton)
+    if (!clientRef.current) {
+      clientRef.current = Experiment.initialize(ampDeploymentKey, {
+        exposureTrackingProvider: {
+          track: (exposure) => {
+            logEvent(
+              `exposure__${exposure.flag_key}`,
+              {
+                action: ActionType.view,
+                componentType: ComponentType.page,
+                variant: exposure.variant,
+                flag_key: exposure.flag_key,
+                experiment_key: exposure.experiment_key,
+              },
+              AnalyticsEventImportance.high,
+            );
+          },
         },
-      },
-      userProvider: {
-        getUser: () => ({
-          user_id: window.ClientAnalytics.identity.userId,
-          device_id: window.ClientAnalytics.identity.deviceId,
-          os: window.ClientAnalytics.identity.device_os,
-          language: window.ClientAnalytics.identity.languageCode,
-          country: window.ClientAnalytics.identity.countryCode,
-        }),
-      },
-    });
-
-    setExperimentClient(client);
-  }, [ampDeploymentKey]);
-
-  const startExperiment = useCallback(async () => {
-    if (experimentClient) await experimentClient.start();
-  }, [experimentClient]);
-
-  useEffect(() => {
-    startExperiment()
-      .then(() => {
-        setIsReady(true);
-      })
-      .catch((error) => {
-        console.log(`Error starting experiments for ${ampDeploymentKey}:`, error);
+        userProvider: {
+          getUser: getIdentity,
+        },
       });
-  }, [experimentClient, startExperiment]);
+    }
 
+    // Start the experiment client and handle async lifecycle
+    const startClient = async () => {
+      try {
+        if (clientRef.current) {
+          await clientRef.current.start();
+          if (isMounted) setIsReady(true);
+        }
+      } catch (error) {
+        console.error(`[Experiments] Initialization failed for ${ampDeploymentKey}:`, error);
+      }
+    };
+
+    startClient();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [getIdentity]);
+
+  /**
+   * Secure variant retrieval with ready-state check
+   */
   const getUserVariant = useCallback(
     (flagKey: string): string | undefined => {
-      if (!isReady) {
+      if (!isReady || !clientRef.current) {
         return undefined;
       }
-      if (!experimentClient) {
-        console.error('No experiment clients found');
-        return undefined;
-      }
-      const variant = experimentClient.variant(flagKey);
-      return variant.value;
+      return clientRef.current.variant(flagKey)?.value;
     },
-    [isReady, experimentClient],
+    [isReady],
   );
 
-  const values = useMemo(() => {
-    return { experimentClient, isReady, getUserVariant };
-  }, [isReady, getUserVariant]);
+  const values = useMemo(() => ({
+    experimentClient: clientRef.current,
+    isReady,
+    getUserVariant
+  }), [isReady, getUserVariant]);
 
-  return <ExperimentsContext.Provider value={values}>{children}</ExperimentsContext.Provider>;
+  return (
+    <ExperimentsContext.Provider value={values}>
+      {children}
+    </ExperimentsContext.Provider>
+  );
 }
 
+/**
+ * Optimized hooks for consuming experiments
+ */
 const useExperiments = () => {
   const context = useContext(ExperimentsContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useExperiments must be used within an ExperimentsProvider');
   }
   return context;
@@ -102,6 +123,8 @@ const useExperiments = () => {
 
 const useExperiment = (flagKey: string): UseExperimentReturnValue => {
   const { isReady, getUserVariant } = useExperiments();
+  
+  // Memoize variant to prevent unnecessary re-renders in consuming components
   const userVariant = useMemo(() => getUserVariant(flagKey), [getUserVariant, flagKey]);
 
   return { isReady, userVariant };
@@ -109,18 +132,19 @@ const useExperiment = (flagKey: string): UseExperimentReturnValue => {
 
 export { useExperiments, useExperiment };
 
-type WindowWithAnalytics = Window &
-  typeof globalThis & {
-    ClientAnalytics: {
-      identity: {
-        userId: string;
-        deviceId: string;
-        device_os: string;
-        languageCode: string;
-        countryCode: string;
-      };
+// --- Types ---
+
+type WindowWithAnalytics = Window & typeof globalThis & {
+  ClientAnalytics: {
+    identity: {
+      userId: string;
+      deviceId: string;
+      device_os: string;
+      languageCode: string;
+      countryCode: string;
     };
   };
+};
 
 type ExperimentsContextProps = {
   experimentClient: ExperimentClient | null;
