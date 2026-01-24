@@ -4,6 +4,8 @@
 
 Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the next billion users onchain. It's built on Optimism's open-source [OP Stack](https://stack.optimism.io/).
 
+![Node.js CI](https://github.com/AdekunleBamz/web/actions/workflows/node.js.yml/badge.svg)
+
 <!-- Badge row 1 - status -->
 
 [![GitHub contributors](https://img.shields.io/github/contributors/base/web)](https://github.com/base/web/graphs/contributors)
