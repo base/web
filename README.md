@@ -47,6 +47,41 @@ To start a development server on localhost, run `yarn workspace @app/<project> d
 
 For example, to start the `web` app locally, you would run `yarn workspace @app/web dev`.
 
+## Troubleshooting
+
+### Setup (Node.js / Yarn)
+
+- **Symptom:** `yarn` fails or behaves inconsistently
+  **Likely cause:** Node.js environment or Yarn shim not configured in the current shell
+  **What to try:** Ensure `nvm` is set up for your shell, run `nvm use` in the repo, and enable Yarn with `corepack enable`.
+- **Symptom:** commands work in one terminal but not another
+  **Likely cause:** the new shell session didn't load `nvm`/the repo's Node.js version
+  **What to try:** open a fresh shell session and re-run `nvm use` in the repo directory.
+
+### Installing dependencies / building
+
+- **Symptom:** `yarn build` fails right after cloning
+  **Likely cause:** dependencies weren't installed successfully from the monorepo root
+  **What to try:** run `yarn` at the repo root and then re-run `yarn build`.
+- **Symptom:** a workspace command fails with missing packages/modules
+  **Likely cause:** dependencies were installed from a subdirectory instead of the repo root
+  **What to try:** run `yarn` from the repo root so workspaces resolve correctly.
+
+### Running locally
+
+- **Symptom:** `yarn workspace @app/<project> dev` fails with configuration-related errors
+  **Likely cause:** the app you're running expects local configuration (often via environment variables)
+  **What to try:** confirm you're running the intended workspace (e.g., `@app/web`) and that your local environment is configured for that app.
+- **Symptom:** the dev server starts, but you see an unexpected app/site
+  **Likely cause:** the wrong workspace was started
+  **What to try:** double-check the `@app/<project>` name in the command you're running.
+
+### Still stuck?
+
+- **Symptom:** you're blocked and not sure what to try next
+  **Likely cause:** the issue is specific to your environment or project configuration
+  **What to try:** search existing GitHub issues for similar errors, and reach out in `#developer-chat` in the Base Discord.
+
 ## Projects
 
 There are three projects which can be run individually.
