@@ -1,63 +1,126 @@
+// src/contexts/ErrorsProvider.tsx
+
 'use client';
 
 import { datadogRum } from '@datadog/browser-rum';
 import { isDevelopment } from 'apps/web/src/constants';
 import { logger } from 'apps/web/src/utils/logger';
-import { ReactNode, createContext, useCallback, useContext, useMemo } from 'react';
+import {
+  ReactNode,
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+} from 'react';
 
+// --- Types & Interfaces ---
+
+/**
+ * Defines the shape of the object provided by the ErrorsContext.
+ */
 export type ErrorsContextProps = {
-  logError: (error: unknown, message: string) => void;
+  /** Function to log an error to the console and external monitoring services (Datadog). */
+  logError: (error: unknown, message: string, extraContext?: Record<string, unknown>) => void;
+  /** The full, concatenated context string inherited from all parent ErrorsProviders. */
   fullContext: string;
 };
 
-export const ErrorsContext = createContext<ErrorsContextProps>({
-  logError: function () {
-    return undefined;
-  },
-  fullContext: '',
-});
+/**
+ * Defines the props for the ErrorsProvider component.
+ */
+type ErrorsProviderProps = {
+  children?: ReactNode;
+  /** A specific context string for the current component/boundary (e.g., 'PaymentForm', 'SideNav'). */
+  context: string;
+};
 
-export function useErrors() {
+
+// --- Context Initialization ---
+
+// Define the default context values for when the context is accessed outside a Provider.
+// It uses a simple no-op function and an empty context string.
+const DEFAULT_CONTEXT_VALUE: ErrorsContextProps = {
+  logError: () => { /* No operation */ },
+  fullContext: '',
+};
+
+export const ErrorsContext = createContext<ErrorsContextProps>(DEFAULT_CONTEXT_VALUE);
+
+
+// --- Custom Hook ---
+
+/**
+ * Hook to access the error logging functions and the current execution context.
+ * Must be used within an ErrorsProvider component.
+ */
+export function useErrors(): ErrorsContextProps {
   const context = useContext(ErrorsContext);
-  if (context === undefined) {
-    throw new Error('useErrors must be used within a ErrorsProvider');
+
+  // Throw an error if the context is accessed outside the provider (except when using the default value).
+  // This check is standard for hooks accessing required context.
+  if (context === DEFAULT_CONTEXT_VALUE) {
+    throw new Error('useErrors must be used within an ErrorsProvider.');
   }
   return context;
 }
 
-type ErrorsProviderProps = {
-  children?: ReactNode;
-  context: string;
-};
 
+// --- Errors Provider Component ---
+
+/**
+ * Provides an error boundary context that automatically nests and concatenates
+ * context strings for better error tracing in external monitoring tools.
+ */
 export default function ErrorsProvider({ children, context }: ErrorsProviderProps) {
-  const { fullContext: previousContext } = useErrors();
+  // Use the context directly to get the parent's context without relying on useErrors(),
+  // which prevents the crash when this component is the root provider.
+  const parentContext = useContext(ErrorsContext);
 
-  const fullContext = [previousContext, context].filter((c) => !!c).join('_');
+  // 1. Calculate the full, nested context string.
+  // Filters out empty strings and joins the parent's full context with the current context.
+  const fullContext = [parentContext.fullContext, context]
+    .filter((c) => !!c)
+    .join('_');
 
+  // 2. Define the core error logging function using useCallback for stability.
   const logError = useCallback(
-    (error: unknown, message: string) => {
+    (error: unknown, message: string, extraContext: Record<string, unknown> = {}) => {
+      // Merge global and local context for external services
+      const finalContext = { fullContext, message, ...extraContext };
+      
       if (isDevelopment) {
-        console.log('\n--------------------------------------');
-        console.info(`Error caught with message: "${message}"`);
-        console.error(error);
-        console.info(`Context: "${fullContext}"`);
-        console.log('--------------------------------------\n');
+        // Log verbose details in development mode for easier debugging
+        console.log('\n------------------- DEVELOPMENT ERROR CAUGHT -------------------');
+        console.info(`Message: "${message}"`);
+        console.info(`Full Context: "${fullContext}"`);
+        console.error('Error Object:', error);
+        console.info('--------------------------------------------------------------\n');
         return;
-      } else {
-        logger.error(`Error caught with message: "${message}"`, error, {
-          context: fullContext,
-          message: message,
-        });
       }
-      datadogRum.addError(error, { context: fullContext, message: message });
+
+      // Production Logging: External services (Datadog RUM, Custom Logger)
+      
+      // Logger (e.g., for server-side logging if logger is configured for transport)
+      logger.error(`Error caught: ${message}`, error, finalContext);
+
+      // Datadog RUM logging
+      datadogRum.addError(error, finalContext);
     },
-    [fullContext],
+    [fullContext], // Dependency array ensures logError updates only when the context string changes
   );
 
-  const values = useMemo(() => {
-    return { logError, context, fullContext };
-  }, [context, fullContext, logError]);
+  // 3. Define the values provided by this context provider.
+  // The useMemo ensures the 'value' object reference remains stable unless dependencies change,
+  // preventing unnecessary re-renders of consuming components.
+  const providerValue = useMemo(() => ({
+    logError,
+    fullContext,
+    // Note: The partial 'context' string is not necessary to expose, as 'fullContext' is sufficient.
+  }), [logError, fullContext]);
 
-  return <ErrorsContext.Provider value={values}>{children}</ErrorsContext.Provider>;
+  return (
+    <ErrorsContext.Provider value={providerValue}>
+      {children}
+    </ErrorsContext.Provider>
+  );
 }
