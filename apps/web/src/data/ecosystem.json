@@ -1,4 +1,13 @@
 [
+    {
+    "name": "ChainPlay",
+    "description": "Provably-fair casino on Base with instant payouts, on-chain jackpots, and VIP rakeback. Play Crash, Dice, Coinflip, Hi-Lo, Plinko, Mines, Keno and more.",
+    "url": "https://chainplay.bet/",
+    "imageUrl": "/images/partners/chainplay.png",
+    "category": "consumer",
+    "subcategory": "gaming"
+  }
+
   {
     "name": "growthepie",
     "description": "The open analytics platform for the Ethereum ecosystem. We empower Base Chain builders with open and actionable metrics on usage, growth, and adoption.",
