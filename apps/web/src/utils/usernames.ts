@@ -350,7 +350,8 @@ export const USERNAME_DOMAINS: Record<number, string> = {
 };
 
 export const formatBaseEthDomain = (name: string, chainId: number): Basename => {
-  return `${name}.${USERNAME_DOMAINS[chainId] ?? '.base.eth'}`.toLocaleLowerCase() as Basename;
+  const domain = USERNAME_DOMAINS[chainId] ?? 'base.eth';
+  return `${name}.${domain}`.toLocaleLowerCase() as Basename;
 };
 
 export const convertChainIdToCoinType = (chainId: number): string => {
