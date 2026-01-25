@@ -1,43 +1,58 @@
-_shared_step: &shared_step
+# --- Shared Configuration Template (YAML Anchor) ---
+_shared_config: &shared_config
+  # The initial setup script runs once per step.
   commands:
     - tools/ci/setup.sh
+  
   plugins:
+    # 1. Docker Plugin Configuration
     - file:///buildkite/plugins/docker: &docker_plugin
         image: 652969937640.dkr.ecr.us-east-1.amazonaws.com/containers/node:current
         always-pull: true
         propagate-environment: true
         propagate-uid-gid: true
         volumes:
-          # Allow git operations to work
+          # Allow Git operations (ssh/git config) inside the container
           - ${HOME}/.ssh:/root/.ssh
           - ${HOME}/.git:/root/.git
         environment:
           - 'BUILDKITE_API_TOKEN'
+          
+    # 2. Cache Plugin Configuration (Optimized for Yarn PnP/Cache)
     - file:///buildkite/plugins/cache: &cache_plugin
         key: yarn-node-modules-{{ checksum "yarn.lock" }}-v1
         paths:
           - ./.yarn/cache
           - ./.yarn/install-state.gz
+          
   agents:
     queue: docker
     resource_class: large
+    
   retry:
+    # Allow 1 automatic retry on failure
     automatic:
       limit: 1
+      
   env:
+    # Increased memory limit for Node/TS heavy operations
     NODE_OPTIONS: --max-old-space-size=8192
 
+# --- Pipeline Steps ---
+
 steps:
-  - label: Build
-    <<: *shared_step
-    parallelism: 1
+  - label: Build 🏗️
+    # Alias the shared configuration
+    <<: *shared_config
+    
+    # Overwrite 'commands' to include the main task. 
+    # NOTE: The setup script is defined in shared_config and runs first.
     commands:
-      - tools/ci/setup.sh
       - yarn build
 
-  - label: Lint
-    <<: *shared_step
-    parallelism: 1
+  - label: Lint 🧹
+    # Alias the shared configuration
+    <<: *shared_config
+    
     commands:
-      - tools/ci/setup.sh
       - yarn lint
