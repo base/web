@@ -5,13 +5,13 @@ declare const window: Window &
     };
   };
 
-export default function logEvent(name: string, event: unknown) {
+export default function logEvent(name: string, event: unknown): void {
   if (window.ClientAnalytics) {
     window.ClientAnalytics?.logEvent(name, event);
   }
 }
 
-export function identify(event: unknown) {
+export function identify(event: unknown): void {
   if (window.ClientAnalytics) {
     window.ClientAnalytics?.logEvent('identify', event);
   }
