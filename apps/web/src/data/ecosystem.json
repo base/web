@@ -2928,6 +2928,14 @@
     "imageUrl": "/images/partners/ontowallet.webp"
   },
   {
+    "name": "OnlySwaps",
+    "description": "DEX aggregator for the best swap rates across Base. Compare prices from multiple DEXs and get optimal execution for your trades.",
+    "url": "https://onlyswaps.xyz?chain=base",
+    "imageUrl": "/images/partners/onlyswaps.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
+  },
+  {
     "name": "OpenBlock Wallet",
     "category": "wallet",
     "subcategory": "self-custody",
