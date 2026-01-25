@@ -221,7 +221,7 @@ export function BadgeModal() {
         <span className="text-l mb-8 font-bold uppercase">
           status: {selectedClaim.claimed ? 'claimed' : 'unclaimed'}
         </span>
-        <Link href={BADGE_INFO[badge].ctaLink} target="_blank" className="w-full">
+        <Link href={BADGE_INFO[badge].ctaLink} target="_blank" className="w-full" rel="noopener">
           <Button variant={ButtonVariants.Black} rounded fullWidth>
             {BADGE_INFO[badge].cta}
           </Button>

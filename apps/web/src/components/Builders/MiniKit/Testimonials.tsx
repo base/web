@@ -18,7 +18,7 @@ const TESTIMONIALS = [
         href="https://login.coinbase.com/signin"
         target="_blank"
         eventName="minikit-get-started"
-        linkClassNames="w-full"
+        linkClassNames="w-full" rel="noopener"
       >
         Go to Warpcast
       </ButtonWithLinkAndEventLogging>
@@ -38,7 +38,7 @@ const TESTIMONIALS = [
         href="https://login.coinbase.com/signin"
         target="_blank"
         eventName="minikit-get-started"
-        linkClassNames="w-full"
+        linkClassNames="w-full" rel="noopener"
       >
         Go to Warpcast
       </ButtonWithLinkAndEventLogging>
@@ -58,7 +58,7 @@ const TESTIMONIALS = [
         href="https://login.coinbase.com/signin"
         target="_blank"
         eventName="minikit-get-started"
-        linkClassNames="w-full"
+        linkClassNames="w-full" rel="noopener"
       >
         Go to Warpcast
       </ButtonWithLinkAndEventLogging>

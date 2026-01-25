@@ -107,7 +107,7 @@ export function FAQ() {
               target="_blank"
               variant={ButtonVariants.SecondaryOutline}
               buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
-              eventName="appchains-see-all-faqs"
+              eventName="appchains-see-all-faqs" rel="noopener"
             >
               <div className="flex items-center gap-4">
                 <span>All FAQs</span>
@@ -127,7 +127,7 @@ export function FAQ() {
             target="_blank"
             variant={ButtonVariants.SecondaryOutline}
             buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
-            eventName="appchains-see-all-faqs"
+            eventName="appchains-see-all-faqs" rel="noopener"
           >
             <div className="flex items-center gap-4">
               <span>All FAQs</span>
