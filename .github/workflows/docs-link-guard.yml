@@ -1,0 +1,31 @@
+name: Docs Link Guard
+
+on:
+  pull_request:
+    branches: [ "master" ]
+    paths:
+      - "apps/base-docs/**"
+      - "apps/web/**"
+      - "tools/ci/**"
+      - "package.json"
+
+jobs:
+  link-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node + Corepack (Yarn)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install deps (Yarn)
+        run: yarn install --immutable
+
+      - name: Check docs links
+        run: yarn lint:links:check
