@@ -4176,6 +4176,14 @@
     "subcategory": "bridge"
   },
   {
+    "name": "Transient",
+    "url": "https://transient.xyz/?chain=8453",
+    "description": "Transient powers the next generation of creators with best-in-class tools. Create, launch, sell, and discover what’s next in digital art.",
+    "imageUrl": "/images/partners/transient.png",
+    "category": "consumer",
+    "subcategory": "creator"
+  },
+  {
     "name": "Tribally",
     "description": "Tribally is a growth and activation platform for gaming, and the world’s first provider of onchain growth mechanics for offchain games. Battle against other gamers, complete quests and earn rewards!",
     "url": "https://tribally.games",
