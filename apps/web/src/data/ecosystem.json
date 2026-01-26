@@ -3688,6 +3688,14 @@
     "subcategory": "social"
   },
   {
+    "name": "Softstack",
+    "description": "Softstack provides infrastructure security audits and smart contract audits on Base, ensuring secure, compliant, and reliable blockchain deployments.",
+    "url": "https://softstack.io",
+    "imageUrl": "/images/partners/softstack-logo.webp",
+    "category": "infra",
+    "subcategory": "security"
+  },
+  {
     "name": "Songbirdz",
     "description": "An onchain bird watching game. Identify new species of birds, earn points, and build your birding life list.",
     "url": "https://songbirdz.cc/",
