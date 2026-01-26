@@ -18,12 +18,14 @@ import { BaseAppEarn } from './BaseAppEarn';
 // import ImageAsset from './tba.png';
 // import ImageAsset from './base-app-phone.png';
 import ImageAsset from './phone-mock-bg.png';
+import HandImage from './hand.png';
 import BackgroundAsset from './sky-bg.png';
 import { motion, spring } from 'motion/react';
 import { ParallaxScaleWrapper } from './ParallaxScaleWrapper';
 import { useState } from 'react';
 
 const img = ImageAsset as ImageType;
+const hand = HandImage as ImageType;
 const prefix = PrefixAsset as ImageType;
 
 export function SectionBaseApp() {
@@ -55,12 +57,25 @@ export function SectionBaseApp() {
               startingScale={0.7}
               scrollRange={{ start: 1, end: -1.0 }}
             > */}
+
+            <div className="absolute inset-0 hidden h-full w-full">
+              <Image
+                src={BackgroundAsset.src}
+                alt="Base App"
+                width={BackgroundAsset.width}
+                height={BackgroundAsset.height}
+                className="h-full w-full origin-left scale-[1.2] object-cover"
+                draggable={false}
+                sizes="(max-width: 768px) 100vw, 450px"
+                quality={99}
+              />
+            </div>
             <div className="absolute inset-0 h-full w-full">
               <Image
-                src={img.src}
+                src={hand.src}
                 alt="Base App"
-                width={img.width}
-                height={img.height}
+                width={hand.width}
+                height={hand.height}
                 className="mx-auto h-full w-full object-cover"
                 draggable={false}
                 sizes="(max-width: 768px) 100vw, 450px"
@@ -90,7 +105,7 @@ export function SectionBaseApp() {
             transition={{ type: spring, bounce: 0.3, duration: 0.3 }}
             className="relative aspect-square w-full overflow-hidden rounded-lg bg-base-gray-25"
           >
-            <div className="absolute inset-0 h-full w-full">
+            <div className="absolute inset-0 hidden h-full w-full">
               <Image
                 src={BackgroundAsset.src}
                 alt="Base App"
@@ -123,7 +138,7 @@ export function SectionBaseApp() {
             transition={{ type: spring, bounce: 0.3, duration: 0.3 }}
             className="relative aspect-square w-full overflow-hidden rounded-lg bg-base-gray-25"
           >
-            <div className="absolute inset-0 h-full w-full">
+            <div className="absolute inset-0 hidden h-full w-full">
               <Image
                 src={BackgroundAsset.src}
                 alt="Base App"
@@ -152,7 +167,7 @@ export function SectionBaseApp() {
           className="relative col-span-full md:col-span-2 md:col-start-3"
         >
           <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-base-gray-25">
-            <div className="absolute inset-0 h-full w-full">
+            <div className="absolute inset-0 hidden h-full w-full">
               <Image
                 src={BackgroundAsset.src}
                 alt="Base App"

@@ -38,7 +38,7 @@ export function Hero() {
               primaryColor="#9F9F9F"
             /> */}
             <video
-              src="/videos/hero-v11.webm"
+              src="/videos/EDIT_V12.webm"
               className="h-full w-full object-cover"
               autoPlay
               muted
