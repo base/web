@@ -4,6 +4,7 @@ import { Footer } from 'apps/web/src/components/Layout/Footer/Footer';
 import MobileNav from 'apps/web/src/components/Layout/Navigation/MobileNav';
 import { DynamicWrappedGasPriceDropdown } from 'apps/web/src/components/Layout/Navigation/GasPriceDropdown';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
+import GoogleTranslate from 'apps/web/src/components/Layout/GoogleTranslate';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
@@ -31,6 +32,7 @@ export default async function BaseOrgLayout({
 }) {
   return (
     <div className="text-black bg-white transition-colors">
+      <GoogleTranslate />
       <div className="min-w-screen relative mx-auto grid min-h-screen w-full max-w-[1920px] grid-cols-1 selection:bg-blue-5 selection:text-base-blue lg:grid-cols-[13.438rem_1fr]">
         <AnalyticsProvider context="sidenav">
           <Sidebar />
