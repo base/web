@@ -460,7 +460,7 @@ function Logo() {
       <div className="square flex aspect-square h-full items-center justify-center rounded-md bg-base-blue opacity-0 transition-colors dark:bg-white" />
 
       {/* mono */}
-      <div className="pointer-events-none absolute bottom-[18%] left-0 flex h-full w-full items-center gap-0.5 font-doto text-[115px] leading-[70%] tracking-tight text-base-blue transition-colors dark:text-white">
+      <div className="pointer-events-none absolute bottom-[18%] left-0 flex h-full w-full items-center gap-0.5 font-doto text-7xl leading-[70%] tracking-tight text-base-blue transition-colors sm:text-8xl md:text-9xl lg:text-[115px] dark:text-white">
         {'base'.split('').map((char, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <span key={index} className="charmono relative block select-none font-bold opacity-0">
@@ -473,7 +473,7 @@ function Logo() {
       </div>
 
       {/* normal */}
-      <div className="pointer-events-none absolute bottom-3 left-0 flex h-full w-full select-none items-center font-sans text-[110px] font-medium leading-[70%] tracking-[-0.01em] text-base-blue transition-colors duration-150 dark:text-white">
+      <div className="pointer-events-none absolute bottom-3 left-0 flex h-full w-full select-none items-center font-sans text-7xl font-medium leading-[70%] tracking-[-0.01em] text-base-blue transition-colors duration-150 sm:text-8xl md:text-9xl lg:text-[110px] dark:text-white">
         <span className="char block opacity-0">b</span>
         <span className="char block opacity-0">a</span>
         <span className="char block opacity-0">s</span>

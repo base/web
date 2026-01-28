@@ -32,7 +32,7 @@ export default function ColorList({ id, prefix, title, description, colors }: Co
             <div
               key={color.name}
               className={classNames(
-                'relative flex h-full w-full flex-1 flex-col font-mono text-[10px] uppercase leading-[140%] tracking-[0.08em] md:min-h-[130px] md:text-[12px]',
+                'relative flex h-full w-full flex-1 flex-col font-mono text-[11px] uppercase leading-[140%] tracking-[0.08em] sm:text-xs md:min-h-[130px] md:text-sm',
                 colors.length > 1 && 'gap-2.5 p-2',
                 colors.length === 1 && 'gap-4 p-4',
               )}

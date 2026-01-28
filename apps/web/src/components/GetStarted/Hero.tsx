@@ -8,7 +8,7 @@ export default async function Hero() {
       <Container>
         <div className="flex w-full flex-col items-center justify-between gap-20 sm:flex-row">
           <div className="max-w-full lg:max-w-[450px]">
-            <h1 className="mb-6 font-display text-4xl leading-tight sm:text-5xl lg:mb-10 lg:text-[80px] lg:leading-none">
+            <h1 className="mb-6 font-display text-4xl leading-tight sm:text-5xl lg:mb-10 lg:text-7xl lg:leading-none">
               Resources for Builders
             </h1>
             <span className="text-lg sm:text-xl lg:text-2xl">
