@@ -38,18 +38,38 @@ export function HeaderAnimation() {
       <div className="flex size-full flex-row items-stretch justify-between gap-10">
         <div className="flex flex-col justify-center">
           <Circle ref={div6Ref} className="size-16">
-            <Image src={minikit2 as StaticImageData} alt="minikit2" width={32} height={32} />
+            <Image
+              src={minikit2 as StaticImageData}
+              alt="MiniKit SDK integration"
+              width={32}
+              height={32}
+            />
           </Circle>
         </div>
         <div className="flex flex-col justify-center gap-20">
           <Circle ref={div1Ref}>
-            <Image src={walletLogo as StaticImageData} alt="walletLogo" width={32} height={32} />
+            <Image
+              src={walletLogo as StaticImageData}
+              alt="Wallet connection"
+              width={32}
+              height={32}
+            />
           </Circle>
           <Circle ref={div2Ref}>
-            <Image src={farcaster as StaticImageData} alt="farcaster" width={32} height={32} />
+            <Image
+              src={farcaster as StaticImageData}
+              alt="Farcaster social integration"
+              width={32}
+              height={32}
+            />
           </Circle>
           <Circle ref={div3Ref}>
-            <Image src={plus as StaticImageData} alt="plus" width={32} height={32} />
+            <Image
+              src={plus as StaticImageData}
+              alt="Additional integrations"
+              width={32}
+              height={32}
+            />
           </Circle>
         </div>
       </div>
