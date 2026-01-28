@@ -13,8 +13,6 @@ jest.mock('apps/web/src/utils/usernames', () => ({
     COINBASE_VERIFIED_ACCOUNT: 'COINBASE_VERIFIED_ACCOUNT',
     BASE_BUILDATHON_PARTICIPANT: 'BASE_BUILDATHON_PARTICIPANT',
     SUMMER_PASS_LVL_3: 'SUMMER_PASS_LVL_3',
-    BNS_NAME: 'BNS_NAME',
-    BASE_DOT_ETH_NFT: 'BASE_DOT_ETH_NFT',
     DISCOUNT_CODE: 'DISCOUNT_CODE',
     TALENT_PROTOCOL: 'TALENT_PROTOCOL',
     BASE_WORLD: 'BASE_WORLD',
@@ -29,8 +27,6 @@ const Discount = {
   COINBASE_VERIFIED_ACCOUNT: 'COINBASE_VERIFIED_ACCOUNT',
   BASE_BUILDATHON_PARTICIPANT: 'BASE_BUILDATHON_PARTICIPANT',
   SUMMER_PASS_LVL_3: 'SUMMER_PASS_LVL_3',
-  BNS_NAME: 'BNS_NAME',
-  BASE_DOT_ETH_NFT: 'BASE_DOT_ETH_NFT',
   DISCOUNT_CODE: 'DISCOUNT_CODE',
   TALENT_PROTOCOL: 'TALENT_PROTOCOL',
   BASE_WORLD: 'BASE_WORLD',
@@ -134,8 +130,6 @@ jest.mock('next/link', () => {
 jest.mock('./images/base-buildathon-participant.svg', () => 'base-buildathon-participant.svg');
 jest.mock('./images/summer-pass-lvl-3.svg', () => 'summer-pass-lvl-3.svg');
 jest.mock('./images/cbid-verification.svg', () => 'cbid-verification.svg');
-jest.mock('./images/bns.jpg', () => 'bns.jpg');
-jest.mock('./images/base-nft.svg', () => 'base-nft.svg');
 jest.mock('./images/devcon.png', () => 'devcon.png');
 jest.mock('./images/coinbase-one-verification.svg', () => 'coinbase-one-verification.svg');
 jest.mock('./images/coinbase-verification.svg', () => 'coinbase-verification.svg');
@@ -275,24 +269,22 @@ describe('RegistrationLearnMoreModal', () => {
       expect(screen.getByText('A cb.id username')).toBeInTheDocument();
       expect(screen.getByText('Base buildathon participant')).toBeInTheDocument();
       expect(screen.getByText('Summer Pass Level 3')).toBeInTheDocument();
-      expect(screen.getByText('BNS username')).toBeInTheDocument();
-      expect(screen.getByText('Base.eth NFT')).toBeInTheDocument();
       expect(screen.getByText('Base around the world NFT')).toBeInTheDocument();
       expect(screen.getByText('Devcon attendance NFT')).toBeInTheDocument();
     });
 
-    it('should render 9 discount icons', () => {
+    it('should render 7 discount icons', () => {
       render(<RegistrationLearnMoreModal isOpen toggleModal={mockToggleModal} />);
 
       const icons = screen.getAllByTestId('discount-icon');
-      expect(icons).toHaveLength(9);
+      expect(icons).toHaveLength(7);
     });
 
-    it('should render 9 tooltips for discount items', () => {
+    it('should render 7 tooltips for discount items', () => {
       render(<RegistrationLearnMoreModal isOpen toggleModal={mockToggleModal} />);
 
       const tooltips = screen.getAllByTestId('tooltip');
-      expect(tooltips).toHaveLength(9);
+      expect(tooltips).toHaveLength(7);
     });
 
     it('should display correct tooltip content for Coinbase verification', () => {
@@ -332,7 +324,7 @@ describe('RegistrationLearnMoreModal', () => {
       // Some icons should have opacity-40 class (non-qualified ones)
       const opacityIcons = icons.filter((icon) => icon.className.includes('opacity-40'));
       // All but one should have opacity (since only CB1 is active)
-      expect(opacityIcons.length).toBe(8);
+      expect(opacityIcons.length).toBe(6);
     });
 
     it('should not apply opacity class to qualified discount items', () => {
@@ -350,7 +342,6 @@ describe('RegistrationLearnMoreModal', () => {
       mockAllActiveDiscounts = new Set<DiscountType>([
         Discount.COINBASE_VERIFIED_ACCOUNT,
         Discount.CB1,
-        Discount.BNS_NAME,
       ]);
     });
 
@@ -358,7 +349,7 @@ describe('RegistrationLearnMoreModal', () => {
       render(<RegistrationLearnMoreModal isOpen toggleModal={mockToggleModal} />);
 
       const qualifiedBadges = screen.getAllByText('Qualified');
-      expect(qualifiedBadges).toHaveLength(3);
+      expect(qualifiedBadges).toHaveLength(2);
     });
 
     it('should apply opacity to non-qualified discounts when user has multiple discounts', () => {
@@ -366,8 +357,8 @@ describe('RegistrationLearnMoreModal', () => {
 
       const icons = screen.getAllByTestId('discount-icon');
       const opacityIcons = icons.filter((icon) => icon.className.includes('opacity-40'));
-      // 9 total - 3 active = 6 with opacity
-      expect(opacityIcons.length).toBe(6);
+      // 7 total - 2 active = 5 with opacity
+      expect(opacityIcons.length).toBe(5);
     });
   });
 });
