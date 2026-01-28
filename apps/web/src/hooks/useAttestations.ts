@@ -3,13 +3,11 @@ import { CoinbaseProofResponse } from 'apps/web/app/(basenames)/api/proofs/coinb
 import { DiscountCodeResponse } from 'apps/web/app/(basenames)/api/proofs/discountCode/route';
 import AttestationValidatorABI from 'apps/web/src/abis/AttestationValidator';
 import CBIDValidatorABI from 'apps/web/src/abis/CBIdDiscountValidator';
-import EarlyAccessValidatorABI from 'apps/web/src/abis/EarlyAccessValidator';
 import ERC1155DiscountValidator from 'apps/web/src/abis/ERC1155DiscountValidator';
 import ERC1155DiscountValidatorV2 from 'apps/web/src/abis/ERC1155DiscountValidatorV2';
 import ERC721ValidatorABI from 'apps/web/src/abis/ERC721DiscountValidator';
 import TalentProtocolDiscountValidatorABI from 'apps/web/src/abis/TalentProtocolDiscountValidator';
 import {
-  BASE_DOT_ETH_ERC721_DISCOUNT_VALIDATOR,
   BASE_WORLD_DISCOUNT_VALIDATORS,
   BUILDATHON_ERC721_DISCOUNT_VALIDATOR,
   DEVCON_DISCOUNT_VALIDATORS,
@@ -299,140 +297,6 @@ export function useBuildathonAttestations() {
   return { data: null, loading: isLoading, error };
 }
 
-// mainnet erc721 validator -- uses merkle tree
-export function useBaseDotEthAttestations() {
-  const { address } = useAccount();
-  const [APICallLoading, setAPICallLoading] = useState(false);
-  const { basenameChain } = useBasenameChain();
-  const [baseDotEthProofResponse, setBaseDotEthProofResponse] =
-    useState<MerkleTreeProofResponse | null>(null);
-  const { logError } = useErrors();
-
-  const discountValidatorAddress = BASE_DOT_ETH_ERC721_DISCOUNT_VALIDATOR[basenameChain.id];
-
-  useEffect(() => {
-    async function checkBaseDotEthAttestations(a: string) {
-      try {
-        setAPICallLoading(true);
-        const params = new URLSearchParams();
-        params.append('address', a);
-        params.append('chain', basenameChain.id.toString());
-        const response = await fetch(`/api/proofs/baseEthHolders?${params}`);
-        if (response.ok) {
-          const result = (await response.json()) as MerkleTreeProofResponse;
-          setBaseDotEthProofResponse(result);
-        }
-      } catch (error) {
-        logError(error, 'Error checking BaseDotEth attestation');
-      } finally {
-        setAPICallLoading(false);
-      }
-    }
-
-    if (address) {
-      checkBaseDotEthAttestations(address).catch((error) => {
-        logError(error, 'Error checking BaseDotEth attestation');
-      });
-    }
-  }, [address, basenameChain.id, logError]);
-
-  const encodedProof = useMemo(
-    () =>
-      baseDotEthProofResponse?.proofs
-        ? encodeAbiParameters([{ type: 'bytes32[]' }], [baseDotEthProofResponse?.proofs])
-        : '0x0',
-    [baseDotEthProofResponse?.proofs],
-  );
-
-  const readContractArgs = useMemo(() => {
-    if (!address) {
-      return {};
-    }
-    return {
-      address: discountValidatorAddress,
-      abi: CBIDValidatorABI,
-      functionName: 'isValidDiscountRegistration',
-      args: [address, encodedProof],
-    };
-  }, [address, discountValidatorAddress, encodedProof]);
-
-  const { data: isValid, isLoading, error } = useReadContract(readContractArgs);
-
-  if (isValid && address && baseDotEthProofResponse) {
-    return {
-      data: {
-        discountValidatorAddress: discountValidatorAddress,
-        discount: Discount.BASE_DOT_ETH_NFT,
-        validationData: encodedProof,
-      },
-      loading: false,
-      error: null,
-    };
-  }
-  return { data: null, loading: APICallLoading || isLoading, error };
-}
-
-// merkle tree discount calls api endpoint
-export function useBNSAttestations() {
-  const { address } = useAccount();
-  const [proofResponse, setProofResponse] = useState<MerkleTreeProofResponse | null>(null);
-  const { basenameChain } = useBasenameChain();
-  const { logError } = useErrors();
-
-  useEffect(() => {
-    async function checkBNS(a: string) {
-      const params = new URLSearchParams();
-      params.append('address', a);
-      params.append('chain', basenameChain.id.toString());
-      const response = await fetch(`/api/proofs/bns?${params}`);
-      if (response.ok) {
-        const result = (await response.json()) as MerkleTreeProofResponse;
-        setProofResponse(result);
-      }
-    }
-
-    if (address) {
-      checkBNS(address).catch((error) => {
-        logError(error, 'Error checking BNS discount availability');
-      });
-    }
-  }, [address, basenameChain.id, logError]);
-
-  const encodedProof = useMemo(
-    () =>
-      proofResponse?.proofs
-        ? encodeAbiParameters([{ type: 'bytes32[]' }], [proofResponse?.proofs])
-        : '0x0',
-    [proofResponse?.proofs],
-  );
-
-  const readContractArgs = useMemo(() => {
-    if (!proofResponse?.proofs || !address) {
-      return {};
-    }
-    return {
-      address: proofResponse?.discountValidatorAddress,
-      abi: EarlyAccessValidatorABI,
-      functionName: 'isValidDiscountRegistration',
-      args: [address, encodedProof],
-    };
-  }, [address, proofResponse?.discountValidatorAddress, proofResponse?.proofs, encodedProof]);
-
-  const { data: isValid, isLoading, error } = useReadContract(readContractArgs);
-
-  if (isValid && proofResponse && address) {
-    return {
-      data: {
-        discountValidatorAddress: proofResponse.discountValidatorAddress,
-        discount: Discount.BNS_NAME,
-        validationData: encodedProof,
-      },
-      loading: false,
-      error: null,
-    };
-  }
-  return { data: null, loading: isLoading, error };
-}
 
 // returns info about Discount Codes attestations
 export function useDiscountCodeAttestations(code?: string) {
