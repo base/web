@@ -1,9 +1,26 @@
 {
   "recommendations": [
+    // Core code quality and formatting
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "stylelint.vscode-stylelint",
+
+    // Language specific support
     "graphql.vscode-graphql",
-    "nrwl.angular-console"
+    "ms-vscode.vscode-typescript-next",
+
+    // Workspace and Monorepo management (Updated Nx Console)
+    "nrwl.angular-console",
+
+    // Developer Experience (DX) and Productivity
+    "usernamehw.errorlens",
+    "eamodio.gitlens",
+    "christian-kohler.path-intellisense",
+    "ionutvmi.path-autocomplete",
+
+    // Code safety and dependency management
+    "pflannery.vscode-versionlens",
+    "formulahendry.auto-rename-tag",
+    "ms-azuretools.vscode-docker"
   ]
 }
