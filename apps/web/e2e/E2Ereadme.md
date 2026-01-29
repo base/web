@@ -12,7 +12,11 @@ This folder contains Playwright tests for the Base Web project against a local N
 
 ## Prerequisites
 
-run yarn add -D @playwright/test @coinbase/onchaintestkit
+Run:
+
+```bash
+yarn add -D @playwright/test @coinbase/onchaintestkit
+```
 
 > The scripts have been tested on macOS and Linux. Windows users should run the commands inside WSL 2.
 
