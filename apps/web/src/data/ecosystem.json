@@ -3496,6 +3496,15 @@
     "subcategory": "data"
   },
   {
+   "name":"Re Protocol",
+   "description":"Onchain reinsurance protocol enabling transparent,capital-efficient insurance on Base and other EVM chains.",
+   "url":"https://re.xyz/",
+   "imageUrl":"/images/partners/re-protocol.png",
+   "category":"defi",
+   "subcategory":"insurance"
+
+  },
+  {
     "name": "Sablier",
     "description": "Infrastructure for money streaming and token distribution. DAOs and businesses use Sablier for vesting, payroll, airdrops, and more.",
     "url": "https://sablier.com",
