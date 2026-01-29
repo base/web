@@ -123,7 +123,7 @@ export function SectionBaseApp() {
           </motion.div>
           <div className="block h-fit max-w-[95%] py-3 lg:py-4">
             <Text variant={TextVariant.Body} className="!text-base-gray-200">
-              Your social network, onchain
+              Buy any asset onchain
             </Text>
           </div>
         </motion.div>
@@ -157,7 +157,7 @@ export function SectionBaseApp() {
           </motion.div>
           <div className="block h-fit max-w-[95%] py-3 lg:py-4">
             <Text variant={TextVariant.Body} className="!text-base-gray-200">
-              Create and earn
+              See what your friends are trading
             </Text>
           </div>
         </motion.div>

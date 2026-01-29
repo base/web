@@ -1,0 +1,107 @@
+/* Full-size wrapper that clips its contents to the card's rounded bounds */
+.sticker-clip-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 1rem; /* matches parent rounded-2xl */
+  pointer-events: none;
+}
+
+.sticker {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: center center;
+  width: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.5) skew(15deg, 15deg);
+  opacity: 0;
+
+  will-change: transform, opacity;
+}
+
+.sticker.active[data-sticker-index='0'] {
+  /* ball */
+  transition-delay: var(--delay);
+  transform: translate(-50%, -50%) translate3d(-96%, -50%, 0) rotate(10deg) scale(0.9);
+}
+.sticker.active[data-sticker-index='1'] {
+  /* bike */
+  transition-delay: var(--delay);
+  transform: translate(-50%, -50%) translate3d(80%, -34%, 0) rotate(6deg);
+}
+.sticker.active[data-sticker-index='2'] {
+  /* chair */
+  transition-delay: var(--delay);
+  transform: translate(-50%, -50%) translate3d(-80%, 30%, 0) rotate(-6deg);
+}
+.sticker.active[data-sticker-index='3'] {
+  /* desk */
+  transition-delay: var(--delay);
+  transform: translate(-50%, -50%) translate3d(100%, 50%, 0) rotate(-6deg) scale(0.9);
+}
+.sticker.active[data-sticker-index='4'] {
+  /* guitar */
+  opacity: 0;
+  transition-delay: var(--delay);
+  transform: translate(-50%, -50%) translate3d(-70%, -10%, 0) rotate(-6deg);
+}
+.sticker.active[data-sticker-index='5'] {
+  /* hammer */
+  transition-delay: var(--delay);
+  transform: translate(-50%, -50%) translate3d(55%, 4%, 0) rotate(6deg);
+}
+.sticker.active[data-sticker-index='6'] {
+  /* headphones */
+  transition-delay: var(--delay);
+  transform: translate(-50%, -50%) translate3d(-10%, 56%, 0) rotate(-6deg);
+}
+.sticker.active[data-sticker-index='7'] {
+  /* lamp */
+  transition-delay: var(--delay);
+  transform: translate(-50%, -50%) translate3d(0%, -30%, 0) rotate(6deg);
+}
+.sticker.active[data-sticker-index='8'] {
+  /* perfume */
+  transition-delay: var(--delay);
+  transform: translate(-50%, -50%) translate3d(-70%, -14%, 0) rotate(6deg);
+}
+.sticker.active[data-sticker-index='9'] {
+  /* shoe */
+  transition-delay: var(--delay);
+  transform: translate(-50%, -50%) translate3d(90%, 0%, 0) scale(0.8) rotate(-6deg);
+}
+.sticker.active[data-sticker-index='10'] {
+  /* soap */
+  transition-delay: var(--delay);
+  transform: translate(-50%, -50%) translate3d(-60%, 60%, 0) rotate(-12deg);
+}
+.sticker.active[data-sticker-index='11'] {
+  /* speaker */
+  transform: translate(-50%, -50%) translate3d(50%, 52%, 0) scale(0.9) rotate(6deg);
+}
+.sticker.active[data-sticker-index='12'] {
+  /* tv */
+  transform: translate(-50%, -50%) translate3d(-40%, -58%, 0) rotate(-6deg) scale(1.1);
+}
+.sticker.active[data-sticker-index='13'] {
+  /* watch */
+  display: none;
+  transform: translate(-50%, -50%) translate3d(50%, -50%, 0);
+}
+
+.sticker.active {
+  opacity: 1;
+}
+
+@keyframes move-slightly {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

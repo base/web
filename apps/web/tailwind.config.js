@@ -663,6 +663,7 @@ module.exports = {
     }),
     require('@tailwindcss/typography'),
     require('tailwindcss-animate'),
+    require('tailwindcss-spring'),
     function ({ addUtilities }) {
       addUtilities({
         '.scrollbar-gutter-stable': {
