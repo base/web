@@ -2928,6 +2928,14 @@
     "imageUrl": "/images/partners/ontowallet.webp"
   },
   {
+    "name": "OnlySwaps",
+    "description": "DEX meta-aggregator comparing 15+ sources for the best swap rates on Base. Swap tokens instantly without KYC. Available as Base Miniapp.",
+    "url": "https://www.onlyswaps.fyi/8453",
+    "imageUrl": "/images/partners/onlyswaps.png",
+    "category": "defi",
+    "subcategory": "dex aggregator"
+  },
+  {
     "name": "OpenBlock Wallet",
     "category": "wallet",
     "subcategory": "self-custody",
