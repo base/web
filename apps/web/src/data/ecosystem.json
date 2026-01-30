@@ -4768,3 +4768,11 @@
     "subcategory": "bridge"
   }
 ]
+  {
+    "name": "temhem.base.eth",
+    "description": "Base Smart Contract Developer and Web3 Enthusiast.",
+    "url": "https://github.com/temhemc/my-base-journey",
+    "imageUrl": "/images/partners/base.png",
+    "category": "Social",
+    "networks": ["base"]
+  }
