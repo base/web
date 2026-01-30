@@ -4769,8 +4769,8 @@
   },
   {
   "name": "Melvin",
-  "description": "Melvin's ERC-8004 based agents scans prediction markets 24/7 and automatically hedges your positions so you profit regardless of outcome.",
   "url": "https://melvin.wtf",
+  "description": "Melvin's ERC-8004 based agents scans prediction markets 24/7 and automatically hedges your positions so you profit regardless of outcome.",
   "imageUrl": "/images/partners/melvin25.png",
   "category": "ai",
   "subcategory": "ai"
