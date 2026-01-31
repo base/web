@@ -4766,5 +4766,14 @@
     "imageUrl": "/images/partners/allbridge-core-logo.png",
     "category": "infra",
     "subcategory": "bridge"
-  }
+  },
+  {
+    {
+  "name": "ChainGrid",
+  "description": "ChainGrid is a blockchain-themed daily word puzzle game built with Next.js + React + TypeScript. Every day, players discover 5 hidden crypto words inside a 9x9 grid — themed around Web3, trading, and blockchain culture.",
+  "url": "https://chaingrid-kohl.vercel.app/",
+  "imageUrl": "/images/partners/chaingrid.png",
+  "category": "games",
+  "subcategory": "games"
+}
 ]
