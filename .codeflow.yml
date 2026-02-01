@@ -5,7 +5,7 @@ secure:
   requires_verified: true
   upstream_repository: base/web
   branches:
-    - staging
+    - stagings
 
 build:
   engines:
