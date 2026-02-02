@@ -4,7 +4,7 @@
   "category": "DeFi Tools",
   "tags": ["x402", "API", "Trading", "Sentiment", "AI Agents"],
   "logo": "https://raw.githubusercontent.com/lobsterbar2027-boop/crypto-sentiment-api/main/assets/logo.png",
-  "website": "https://crypto-sentiment-api-production.up.railway.app",
+  "website": "api.genvox.io",
   "twitter": "https://x.com/BreakTheCubicle",
   "github": "https://github.com/lobsterbar2027-boop/crypto-sentiment-api"
 }
