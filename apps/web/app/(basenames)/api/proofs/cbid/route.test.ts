@@ -31,8 +31,6 @@ jest.mock('apps/web/src/utils/proofs', () => {
     getWalletProofs: jest.fn(),
     ProofTableNamespace: {
       CBIDDiscount: 'basenames_cbid_discount',
-      BNSDiscount: 'basenames_bns_discount',
-      BaseEthHolders: 'basenames_base_eth_holders_discount',
     },
     ProofsException: MockProofsException,
   };

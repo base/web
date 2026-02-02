@@ -8,8 +8,6 @@ import Link from 'next/link';
 import baseBuildathonParticipant from './images/base-buildathon-participant.svg';
 import summerPassLvl3 from './images/summer-pass-lvl-3.svg';
 import cbidVerification from './images/cbid-verification.svg';
-import BNSOwnership from './images/bns.jpg';
-import BaseNFT from './images/base-nft.svg';
 import DevconPNG from './images/devcon.png';
 import coinbaseOneVerification from './images/coinbase-one-verification.svg';
 import coinbaseVerification from './images/coinbase-verification.svg';
@@ -65,20 +63,6 @@ const DISCOUNT_ITEMS: DiscountItem[] = [
     label: 'Summer Pass Level 3',
     tooltipContent:
       'Available for anyone holding a Summer Pass Level 3 NFT. Go to wallet.coinbase.com/ocs to get your Summer Pass',
-  },
-  {
-    discount: Discount.BNS_NAME,
-    icon: BNSOwnership,
-    alt: 'icon of BNS',
-    label: 'BNS username',
-    tooltipContent: 'BNS (.base) username holders are eligible for a 0.01 ETH discount',
-  },
-  {
-    discount: Discount.BASE_DOT_ETH_NFT,
-    icon: BaseNFT as StaticImageData,
-    alt: 'icon of Base',
-    label: 'Base.eth NFT',
-    tooltipContent: 'Available for anyone holding a base.eth NFT',
   },
   {
     discount: Discount.BASE_WORLD,
