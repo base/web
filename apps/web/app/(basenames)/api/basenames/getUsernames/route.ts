@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { isAddress } from 'viem';
 
 import type { ManagedAddressesResponse } from 'apps/web/src/types/ManagedAddresses';
 import { cdpBaseUri } from 'apps/web/src/cdp/constants';
 
 export async function GET(request: NextRequest) {
   const address = request.nextUrl.searchParams.get('address');
-  if (!address) {
-    return NextResponse.json({ error: 'No address provided' }, { status: 400 });
+  if (!address || !isAddress(address)) {
+    return NextResponse.json({ error: 'Invalid address provided' }, { status: 400 });
   }
 
   const network = request.nextUrl.searchParams.get('network') ?? 'base-mainnet';
@@ -28,6 +29,10 @@ export async function GET(request: NextRequest) {
       'Content-Type': 'application/json',
     },
   });
+
+  if (!response.ok) {
+    return NextResponse.json({ error: 'Failed to fetch usernames' }, { status: response.status });
+  }
 
   const data = (await response.json()) as ManagedAddressesResponse;
 
