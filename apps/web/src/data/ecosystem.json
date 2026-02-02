@@ -240,6 +240,14 @@
     "subcategory": "music"
   },
   {
+    "name": "anyBOUND",
+    "description": "anyBOUND is an RWA marketplace for rare real-world assets—from bespoke travel experiences to physical items. Each can be purchased with crypto and is issued as an NFT on Base.",
+    "url": "https://anybound.jp/",
+    "imageUrl": "/images/partners/anyBOUND.webp",
+    "category": "consumer",
+    "subcategory": "real world"
+  },
+  {
     "name": "AnyCampus",
     "description": "AnyCampus is a Web3 “learn-to-earn” platform that enables you to earn tokens while you learn.",
     "url": "https://anycampus.io/",
