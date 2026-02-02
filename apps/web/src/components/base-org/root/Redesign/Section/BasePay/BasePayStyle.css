@@ -13,11 +13,20 @@
   top: 50%;
   transform-origin: center center;
   width: 50%;
+  max-width: 500px;
   pointer-events: none;
   transform: translate(-50%, -50%) scale(0.5) skew(15deg, 15deg);
   opacity: 0;
+  user-select: none;
 
   will-change: transform, opacity;
+}
+
+.sticker img {
+  animation: hoverPulse 5s ease-in-out infinite;
+  animation-delay: var(--animation-delay, 0ms);
+  transform-origin: center center;
+  will-change: transform;
 }
 
 .sticker.active[data-sticker-index='0'] {
@@ -74,7 +83,7 @@
 .sticker.active[data-sticker-index='10'] {
   /* soap */
   transition-delay: var(--delay);
-  transform: translate(-50%, -50%) translate3d(-60%, 60%, 0) rotate(-12deg);
+  transform: translate(-50%, -50%) translate3d(-60%, 60%, 0) rotate(-12deg) scale(0.8);
 }
 .sticker.active[data-sticker-index='11'] {
   /* speaker */
@@ -94,14 +103,14 @@
   opacity: 1;
 }
 
-@keyframes move-slightly {
+@keyframes hoverPulse {
   0% {
-    transform: scale(1);
+    transform: rotate(-0.5deg) translateY(0) scale(1);
   }
   50% {
-    transform: scale(0.9);
+    transform: rotate(0.5deg) translateY(-4px) scale(1.01);
   }
   100% {
-    transform: scale(1);
+    transform: rotate(-0.5deg) translateY(0) scale(1);
   }
 }

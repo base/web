@@ -16,8 +16,8 @@ function clamp(value: number, min: number, max: number): number {
 }
 
 export default function SlideButton({
-  text = 'Button',
-  revealText = 'Button',
+  text = 'Slide to Buy',
+  revealText = 'Release to Buy',
   finalText = 'Done',
   className,
 }: SlideButtonProps) {
@@ -133,7 +133,7 @@ export default function SlideButton({
       onMouseMove={handleMouseMove}
       onMouseLeave={endDrag}
       className={clsx(
-        'group relative flex h-[2.5rem] w-full select-none items-center gap-2 overflow-hidden rounded-md bg-base-gray-50 p-0 text-white',
+        'group relative flex h-fit w-full select-none items-center gap-2 overflow-hidden rounded-full bg-base-gray-50 text-white',
         className,
         animatedProgress >= 0.9 ? 'pointer-events-none' : '',
       )}
@@ -153,57 +153,15 @@ export default function SlideButton({
         >
           {/* Reveal text layer */}
           <span
-            className="pointer-events-none absolute inset-0 flex items-center justify-center gap-2 whitespace-nowrap transition-all duration-200 ease-out"
+            className="pointer-events-none absolute inset-0 flex items-center justify-center gap-2 whitespace-nowrap"
             style={{
-              opacity: isFinished ? 0 : revealTextOpacity,
-              filter: isFinished ? 'blur(6px)' : `blur(${(1 - revealTextOpacity) * 8}px)`,
+              opacity: isFinished ? 0 : revealTextOpacity * 1.2,
+              filter: isFinished ? 'blur(0px)' : `blur(${(1 - revealTextOpacity * 1.2) * 8}px)`,
               transform: isFinished
                 ? 'scale(0.9)'
                 : `translateX(${(1 - revealTextOpacity) * 100}px) scale(1)`,
             }}
           >
-            {!isFinished && (
-              <span className="loader flex items-center justify-center">
-                <svg
-                  width="14px"
-                  height="14px"
-                  strokeWidth="2.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  color="#ffffff"
-                >
-                  <path
-                    d="M21.1679 8C19.6247 4.46819 16.1006 2 11.9999 2C6.81459 2 2.55104 5.94668 2.04932 11"
-                    stroke="#ffffff"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M17 8H21.4C21.7314 8 22 7.73137 22 7.4V3"
-                    stroke="#ffffff"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M2.88146 16C4.42458 19.5318 7.94874 22 12.0494 22C17.2347 22 21.4983 18.0533 22 13"
-                    stroke="#ffffff"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M7.04932 16H2.64932C2.31795 16 2.04932 16.2686 2.04932 16.6V21"
-                    stroke="#ffffff"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            )}
             {revealText}
           </span>
 
@@ -220,36 +178,47 @@ export default function SlideButton({
             {finalText}
           </span>
         </div>
-        <div
-          style={{ width: `${revealBarWidth}px` }}
-          className="z-30 flex h-full w-full gap-0 overflow-hidden"
-        >
-          <div className={clsx('h-full w-full bg-[#3C8AFF]')} />
-          <div className="h-full w-full bg-[#77EA23]" />
-          <div className="h-full w-full bg-[#FFD12F]" />
-          <div className="h-full w-full bg-[#FFA306]" />
-          <div className="h-full w-full bg-[#FC401F]" />
-        </div>
       </div>
 
       {/* Handle */}
       <div
         ref={handleRef}
         style={{ transform: `translateX(${handleTranslateX}px)` }}
-        className="z-20 flex origin-center items-center justify-center overflow-hidden"
+        className="z-20 flex h-[52px] origin-center items-center justify-center overflow-hidden rounded-r-full"
       >
-        <div className="flex h-[40px] w-[40px] items-center justify-center rounded-[6px] bg-black">
-          →
+        <div className="flex h-[52px] w-[71px] items-center justify-center rounded-[6px] bg-base-blue">
+          <svg
+            width="20"
+            height="17"
+            viewBox="0 0 20 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.5 1.5L8.5 8.25862L1.5 15.0172"
+              stroke="white"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.5 1.98276L18.5 8.74138L11.5 15.5"
+              stroke="white"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
         </div>
       </div>
 
       {/* Default button text */}
-      <div className="z-0 flex-1 bg-base-gray-50 pr-4 text-center">
+      <div className="z-0 flex-1 bg-base-gray-50 pr-4 text-center font-sans">
         <div
           style={{
             opacity: 1 - animatedProgress,
             filter: `blur(${animatedProgress * 8}px)`,
-            transform: `translateX(${animatedProgress * 50}px)`,
+            transform: `translateX(${animatedProgress * 50 - 20}px)`,
           }}
           className="text-base-black"
         >

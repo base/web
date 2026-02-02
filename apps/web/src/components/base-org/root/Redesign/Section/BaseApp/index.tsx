@@ -18,7 +18,7 @@ import { BaseAppEarn } from './BaseAppEarn';
 // import ImageAsset from './tba.png';
 // import ImageAsset from './base-app-phone.png';
 import ImageAsset from './phone-mock-bg.png';
-import HandImage from './hand.png';
+import HandImage from './hand.webp';
 import BackgroundAsset from './sky-bg.png';
 import { motion, spring } from 'motion/react';
 import { ParallaxScaleWrapper } from './ParallaxScaleWrapper';
@@ -78,7 +78,7 @@ export function SectionBaseApp() {
                 height={hand.height}
                 className="mx-auto h-full w-full object-cover"
                 draggable={false}
-                sizes="(max-width: 768px) 100vw, 450px"
+                sizes="(max-width: 768px) 100vw, 750px"
                 quality={99}
               />
             </div>
@@ -163,10 +163,18 @@ export function SectionBaseApp() {
         </motion.div>
 
         <motion.div
+          onMouseEnter={() => setSendIsHovered(true)}
+          onMouseLeave={() => setSendIsHovered(false)}
           variants={itemContentVariants}
           className="relative col-span-full md:col-span-2 md:col-start-3"
         >
-          <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-base-gray-25">
+          <motion.div
+            animate={
+              sendIsHovered ? { backgroundColor: '#F6F6F6' } : { backgroundColor: '#FAFAFA' }
+            }
+            transition={{ type: spring, bounce: 0.3, duration: 0.3 }}
+            className="relative aspect-square w-full overflow-hidden rounded-lg bg-base-gray-25"
+          >
             <div className="absolute inset-0 hidden h-full w-full">
               <Image
                 src={BackgroundAsset.src}
@@ -182,7 +190,7 @@ export function SectionBaseApp() {
             <div className="absolute inset-0 h-full w-full">
               <BaseAppSend />
             </div>
-          </div>
+          </motion.div>
           <div className="left-0 top-full block h-fit max-w-[95%] py-3 md:absolute lg:py-4">
             <Text variant={TextVariant.Body} className="!text-base-gray-200">
               Send money globally for free
