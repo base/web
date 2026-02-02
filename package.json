@@ -77,6 +77,7 @@
   "resolutions": {
     "@coinbase/cookie-manager": "1.1.1",
     "next-transpile-modules": "^10.0.0",
+    "tar": "^7.5.7",
     "wagmi": "2.14.12"
   },
   "resolutionComments": {
