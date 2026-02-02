@@ -1,43 +1,57 @@
+# Define a shared set of properties (anchor) to be reused across multiple steps.
 _shared_step: &shared_step
+  # These commands will run FIRST for any step that uses this anchor.
   commands:
     - tools/ci/setup.sh
+
   plugins:
+    # Docker plugin configuration for standard CI container environment.
     - file:///buildkite/plugins/docker: &docker_plugin
+        # Use a specific ECR Node image for consistent builds.
         image: 652969937640.dkr.ecr.us-east-1.amazonaws.com/containers/node:current
         always-pull: true
         propagate-environment: true
         propagate-uid-gid: true
         volumes:
-          # Allow git operations to work
+          # Mount SSH keys for private repository access (if needed).
           - ${HOME}/.ssh:/root/.ssh
-          - ${HOME}/.git:/root/.git
         environment:
+          # Expose the API token for pipeline step manipulation or internal API calls.
           - 'BUILDKITE_API_TOKEN'
+
+    # Cache plugin configuration to speed up subsequent builds by caching yarn modules.
     - file:///buildkite/plugins/cache: &cache_plugin
         key: yarn-node-modules-{{ checksum "yarn.lock" }}-v1
         paths:
           - ./.yarn/cache
           - ./.yarn/install-state.gz
+
+  # Agent configuration to ensure the steps run on the designated queue and machine size.
   agents:
     queue: docker
     resource_class: large
+
+  # Retry the step automatically once upon failure.
   retry:
     automatic:
       limit: 1
+
+  # Increase Node's old space size to prevent OOM (Out-of-Memory) errors during heavy build tasks.
   env:
     NODE_OPTIONS: --max-old-space-size=8192
 
 steps:
-  - label: Build
+  # --- Build Step ---
+  # Extends the shared configuration. Only the `yarn build` command is explicitly added, 
+  # as `tools/ci/setup.sh` is already included in `_shared_step`.
+  - label: ":hammer: Build"
     <<: *shared_step
-    parallelism: 1
     commands:
-      - tools/ci/setup.sh
       - yarn build
 
-  - label: Lint
+  # --- Lint Step ---
+  # Extends the shared configuration. Only the `yarn lint` command is explicitly added.
+  - label: ":mag: Lint"
     <<: *shared_step
-    parallelism: 1
     commands:
-      - tools/ci/setup.sh
       - yarn lint
