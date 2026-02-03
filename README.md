@@ -2,7 +2,7 @@
 
 # Base Web
 
-Base is a secure, low-cost, developer-friendly Ethereum L2 built to bring the next billion users onchain. It's built on Optimism's open-source [OP Stack](https://stack.optimism.io/).
+Base is a secure, low-cost, developer-friendly Ethereum L2 designed to onboard the next billion users onchain. It's built on Optimism's open-source [OP Stack](https://stack.optimism.io/).
 
 <!-- Badge row 1 - status -->
 
@@ -49,7 +49,7 @@ For example, to start the `web` app locally, you would run `yarn workspace @app/
 
 ## Projects
 
-There are three projects which can be run individually.
+There are three projects that can be run individually.
 
 ### Web
 
@@ -111,7 +111,7 @@ base.org.
 yarn workspace @app/web dev
 ```
 
-6. Make sure the build works properly before creating the PR:
+6. Verify the build works properly before creating the PR:
 
 ```
 yarn workspace @app/web build
@@ -119,17 +119,17 @@ yarn workspace @app/web build
 
 By opening a PR to add your project, you authorize and license Coinbase on a non-exclusive, worldwide, irrevocable, sublicensable, and royalty-free basis to reproduce, distribute, transmit, make available, perform, display, or otherwise use the submitted Multimedia Assets for any purpose, including any marketing or promotional activities related to Base or Coinbase. Any goodwill associated with use of trademarks submitted in your Multimedia Assets will inure to your benefit. You further acknowledge and represent that you have all IP rights in the Multimedia Assets, that the Multimedia Assets do not infringe the rights of any third party, and that you have the right to grant this license to Coinbase.
 
-**Note:** Submissions do not guarantee inclusion and all submissions are subject to review. Your project must be live on Base to potentially be included. Ensure all information is accurate and up-to-date.
+**Note:** Submissions do not guarantee inclusion. All submissions are subject to review. Your project must be live on Base to be considered. Ensure all information is accurate and up-to-date.
 
 #### Submission requirements
 
 - App content adheres to the [Base Editorial Style Guide](https://github.com/base/brand-kit/blob/main/guides/editorial-style-guide.md)
 - App has been live on Base for at least 30 days
-- App has a Terms of Service and Privacy Policy
-- App supports HTTPS and 301 redirects HTTP requests
+- App includes a Terms of Service and Privacy Policy
+- App supports HTTPS and redirects HTTP requests with a 301
 - App is not a TGE (Token Generation Event), ICO (Initial Coin Offering), airdrop, claim, or similar
-- Landing page is a Base-specific page for users who will be coming from base.org
-- Active development and community engagement can be observed without issue
+- Landing page is Base-specific for users visiting from base.org
+- Active development and community engagement are visible without issue
 
 ---
 
