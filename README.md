@@ -57,6 +57,21 @@ There are three projects which can be run individually.
 yarn workspace @app/web dev
 ```
 
+## Troubleshooting
+
+Common issues and their solutions:
+
+| Issue | Solution |
+|-------|----------|
+| `yarn` command not found | Enable Corepack: `corepack enable` |
+| Node version mismatch | Run `nvm use` to load the correct Node.js version |
+| Build fails with memory error | Increase Node memory: `export NODE_OPTIONS="--max_old_space_size=4096"` |
+| Port already in use | Kill the process: `lsof -i :3000` then `kill -9 <PID>`, or use a different port |
+| Dependencies not resolving | Clear cache: `yarn cache clean` and reinstall: `yarn install --force` |
+| TypeScript errors after pull | Run `yarn build` to regenerate type definitions |
+
+For additional help, join the [Base Discord](https://base.org/discord) and ask in #developer-chat.
+
 ## Contributing
 
 We welcome contributions to Base! For guidelines on how to contribute please refer to [CONTRIBUTING.md](CONTRIBUTING.md).
