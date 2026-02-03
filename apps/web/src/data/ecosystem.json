@@ -3248,6 +3248,14 @@
     "subcategory": "portfolio"
   },
   {
+    "name": "PulseSwap",
+    "url": "https://pulseswap.io/?chain=base",
+    "description": "Aggregator of aggregators on Base. Scans 12+ DEX aggregators and 50+ exchanges in real-time across 18 chains to deliver optimal swap pricing and eliminate hidden fees.",
+    "imageUrl": "/images/partners/pulseswap.webp",
+    "category": "defi",
+    "subcategory": "dex aggregator"
+  },
+  {
     "name": "Pyth Network",
     "url": "https://pyth.network/",
     "description": "Pyth delivers real-time market data feeds to 20+ blockchains by sourcing from exchanges, market makers, and trading firms. 150+ DeFi apps trust and rely on Pyth to stay competitive.\n\nOnly Pyth provides the speed, market coverage, and robustness needed to onboard millions of users.",
