@@ -424,6 +424,14 @@
     "imageUrl": "/images/partners/bario.png"
   },
   {
+    "name": "Base Endorsement",
+    "description": "Give on-chain attestations to builders on Base. Endorse Shippers, Designers, and Big Brains with verifiable reputation.",
+    "url": "https://oreemo.xyz",
+    "imageUrl": "/images/partners/base-endorsements.png",
+    "category": "consumer",
+    "subcategory": "social"
+  },
+  {
     "name": "Base Colors",
     "description": "Base Colors is the NFT collection for every color on the internet. Own Colors. Name Colors. Base Colors.",
     "url": "https://basecolors.com",
