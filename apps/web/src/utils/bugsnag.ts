@@ -1,4 +1,3 @@
-// import React from 'react';
 import type { BugsnagPluginReactResult } from '@bugsnag/plugin-react';
 import type { OnErrorCallback } from '@bugsnag/core/types/common';
 
