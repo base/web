@@ -32,7 +32,7 @@ export function PolicyBanner() {
               href="https://docs.base.org/privacy-policy-2025"
               target="_blank"
               className="whitespace-nowrap underline"
-              rel="noreferrer"
+              rel="noopener"
             >
               Base Privacy Policy
             </a>

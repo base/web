@@ -43,7 +43,7 @@ export function CtaBanner() {
             target="_blank"
             variant={ButtonVariants.SecondaryOutline}
             buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
-            eventName="onchainkit-docs"
+            eventName="onchainkit-docs" rel="noopener"
           >
             <div className="flex items-center justify-between gap-6">
               <span>Docs</span>
@@ -57,7 +57,7 @@ export function CtaBanner() {
             target="_blank"
             variant={ButtonVariants.SecondaryOutline}
             buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
-            eventName="onchainkit-ai-docs"
+            eventName="onchainkit-ai-docs" rel="noopener"
           >
             <div className="flex items-center justify-between gap-6">
               <span>AI docs</span>

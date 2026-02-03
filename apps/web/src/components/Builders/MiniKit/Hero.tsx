@@ -68,7 +68,7 @@ export function Hero() {
             buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
             href={GET_STARTED_URL}
             eventName="minikit-get-started"
-            target="_blank"
+            target="_blank" rel="noopener"
           >
             <div className="flex items-center gap-4">
               <span>Get started</span>

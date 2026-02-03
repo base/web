@@ -87,7 +87,7 @@ export function ContextMenu({ children }: { children: React.ReactNode }) {
             prefetch={false}
             href="https://www.figma.com/community/file/1529530736583775083/base-brand-guidelines-community-kit"
             className="flex gap-2 items-center"
-            onClick={handleClick}
+            onClick={handleClick} rel="noopener"
           >
             <FolderIcon />
             <Text

@@ -34,7 +34,7 @@ const searchConfig: SearchCategory[] = [
               href="https://docs.base.org/builderkits/onchainkit/getting-started"
               color="white"
               className="pl-1 text-xs tracking-wide text-white"
-              target="_blank"
+              target="_blank" rel="noopener"
             >
               OnchainKit quickstart template
             </Link>

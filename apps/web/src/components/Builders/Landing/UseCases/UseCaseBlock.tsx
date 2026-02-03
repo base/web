@@ -20,7 +20,7 @@ export function UseCaseBlock({
 }) {
   return (
     <div className="flex flex-col gap-6">
-      <Link href={href} target="_blank">
+      <Link href={href} target="_blank" rel="noopener">
         <div className="flex h-[320px] w-full flex-col items-center rounded-2xl bg-dark-palette-backgroundAlternate">
           {children}
         </div>
@@ -39,7 +39,7 @@ export function UseCaseBlock({
         buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
         href={href}
         target="_blank"
-        eventName={`developers_build-scale-monetize_${title.replace(/\s+/g, '-').toLowerCase()}`}
+        eventName={`developers_build-scale-monetize_${title.replace(/\s+/g, '-').toLowerCase()}`} rel="noopener"
       >
         <div className="flex items-center gap-4">
           <span>Get started</span>

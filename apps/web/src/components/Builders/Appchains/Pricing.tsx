@@ -24,7 +24,7 @@ export function Pricing() {
           <Link
             href="https://app.deform.cc/form/4705840f-d6ae-4a31-b52d-906f89a8e206/?page_number=0"
             target="_blank"
-            className="text-palette-primary"
+            className="text-palette-primary" rel="noopener"
           >
             Contact us
           </Link>

@@ -41,7 +41,7 @@ export function Job({ job }: JobProps) {
   return (
     <Link
       href={href}
-      rel="noreferrer"
+      rel="noopener"
       target="_blank"
       className="inline-block w-full border-t border-base-black bg-white/0 px-2 py-4 transition-all hover:bg-white/20"
     >
