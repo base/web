@@ -47,14 +47,36 @@ To start a development server on localhost, run `yarn workspace @app/<project> d
 
 For example, to start the `web` app locally, you would run `yarn workspace @app/web dev`.
 
+## Project Structure
+
+```
+.
+├── apps/
+│   ├── bridge/           # Base Bridge application
+│   └── web/              # Main base.org website
+├── libs/
+│   └── base-ui/          # Shared UI component library
+└── tools/                # Build and development tools
+```
+
 ## Projects
 
-There are three projects which can be run individually.
+There are two applications and a shared library in this monorepo.
 
 ### Web
 
+The main base.org website.
+
 ```
 yarn workspace @app/web dev
+```
+
+### Bridge
+
+The Base Bridge application.
+
+```
+yarn workspace @app/bridge dev
 ```
 
 ## Contributing
