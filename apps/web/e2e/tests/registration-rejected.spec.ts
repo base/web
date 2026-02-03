@@ -5,6 +5,7 @@ import { initiateRegistration } from '../basenameHelpers';
 import { ActionApprovalType } from '@coinbase/onchaintestkit';
 
 test.describe('Basename Registration', () => {
+
   test.skip('should fail registration when transaction is rejected', async ({ page, metamask }) => {
     // Validate prerequisites
     if (!metamask) {
@@ -13,6 +14,7 @@ test.describe('Basename Registration', () => {
 
     // Common preparation steps
     const { mainPage } = await prepareBasenameFlow(page, metamask);
+
 
     await mainPage.waitForTimeout(2000);
 

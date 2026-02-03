@@ -1,0 +1,68 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.5.3/schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "noAutofocus": "off",
+        "useButtonType": "off"
+      },
+      "complexity": {
+        "noForEach": "off"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "off",
+        "noEmptyPattern": "off",
+        "noUnusedVariables": "warn"
+      },
+      "style": {
+        "noNegationElse": "warn",
+        "useFragmentSyntax": "off"
+      },
+      "suspicious": {
+        "noExplicitAny": "warn",
+        "noArrayIndexKey": "warn"
+      }
+    },
+    "ignore": ["**/.next/**"]
+  },
+  "javascript": {
+    "formatter": {
+      "enabled": true,
+      "semicolons": "asNeeded",
+      "quoteStyle": "double",
+      "bracketSpacing": true,
+      "jsxQuoteStyle": "double",
+      "arrowParentheses": "asNeeded",
+      "indentWidth": 2
+    }
+  },
+  "json": {
+    "formatter": {
+      "enabled": false
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "indentWidth": 2,
+    "indentStyle": "space",
+    "ignore": ["**/.next/**"]
+  },
+  "files": {
+    "ignore": [
+      "node_modules",
+      "dist",
+      ".cache",
+      "**/.cache/**",
+      "src/.cache/**",
+      "**/*.min.js",
+      "coverage",
+      "build",
+      "**/.next/**"
+    ]
+  }
+}
