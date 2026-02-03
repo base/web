@@ -11,7 +11,6 @@ import { Swap } from '@coinbase/onchainkit/swap';
 import { Transaction } from '@coinbase/onchainkit/transaction';
 import {
   ConnectWallet,
-  ConnectWalletText,
   Wallet,
   WalletAdvancedAddressDetails,
   WalletAdvancedTokenHoldings,
@@ -90,34 +89,54 @@ export function LiveDemo({
     switch (activeTab) {
       case 'SmartWallet':
         return (
-          <Wallet className="base-dark">
-            <ConnectWallet
-              className={classNames(
-                'group rounded-lg px-10 py-4 font-sans',
-                mode === 'dark'
-                  ? 'bg-white hover:border-[#FFFFFF] hover:bg-[#F5F5F5] active:border-[#FFFFFF] active:bg-[#EEEEEE]'
-                  : 'bg-black hover:border-[#1A1A1A] hover:bg-[#2A2A2A] active:border-[#2A2A2A] active:bg-[#3A3A3A]',
-              )}
-            >
-              <ConnectWalletText
+          // TODO: upgrade to onchainkit v1 and remove this hacky solution
+          <>
+            <style>{`
+              .ock-text-foreground {
+                color: ${mode === 'dark' ? 'black' : 'white'};
+              } 
+
+              [data-testid="ockAvatar_ImageContainer"] {
+                display: none;
+              }
+          }
+      `}</style>
+            <Wallet className="base-dark">
+              <ConnectWallet
                 className={classNames(
-                  'font-sans font-[500]',
-                  mode === 'dark' ? 'text-black hover:text-black' : 'text-white hover:text-white',
+                  'group rounded-lg px-10 py-4 font-sans',
+                  mode === 'dark'
+                    ? 'bg-white hover:border-[#FFFFFF] hover:bg-[#F5F5F5] active:border-[#FFFFFF] active:bg-[#EEEEEE]'
+                    : 'bg-black hover:border-[#1A1A1A] hover:bg-[#2A2A2A] active:border-[#2A2A2A] active:bg-[#3A3A3A]',
                 )}
+                disconnectedLabel={
+                  <div
+                    className={classNames(
+                      'font-sans font-[500]',
+                      mode === 'dark'
+                        ? 'text-black hover:text-black'
+                        : 'text-white hover:text-white',
+                    )}
+                  >
+                    <div className="flex items-center gap-2">
+                      {mode === 'dark' ? <BaseLogo fill="blue" /> : <BaseLogo fill="white" />}
+                      Sign in with Base
+                    </div>
+                  </div>
+                }
+              />
+              <WalletDropdown
+                classNames={{
+                  container: mode === 'dark' ? 'text-black' : 'text-white',
+                }}
               >
-                <div className="flex items-center gap-2">
-                  {mode === 'dark' ? <BaseLogo fill="blue" /> : <BaseLogo fill="white" />}
-                  Sign in with Base
-                </div>
-              </ConnectWalletText>
-            </ConnectWallet>
-            <WalletDropdown>
-              <WalletAdvancedWalletActions />
-              <WalletAdvancedAddressDetails classNames={walletAdvancedAddressDetailsClasses} />
-              <WalletAdvancedTransactionActions />
-              <WalletAdvancedTokenHoldings />
-            </WalletDropdown>
-          </Wallet>
+                <WalletAdvancedWalletActions />
+                <WalletAdvancedAddressDetails />
+                <WalletAdvancedTransactionActions />
+                <WalletAdvancedTokenHoldings />
+              </WalletDropdown>
+            </Wallet>
+          </>
         );
       case 'Wallet':
         return (
