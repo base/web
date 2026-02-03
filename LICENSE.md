@@ -14,12 +14,13 @@ distribution as defined by Sections 1 through 9 of this document.
 “Licensor” shall mean the copyright owner or entity authorized by the copyright
 owner that is granting the License.
 
-“Legal Entity” shall mean the union of the acting entity and all other entities
-that control, are controlled by, or are under common control with that entity.
-For the purposes of this definition, “control” means **(i)** the power, direct or
-indirect, to cause the direction or management of such entity, whether by
-contract or otherwise, or **(ii)** ownership of fifty percent (50%) or more of the
-outstanding shares, or **(iii)** beneficial ownership of such entity.
+“Legal Entity” means:
+- Any entity that controls, is controlled by, or shares control with the acting entity.
+
+“Control”, for the purpose of definition, includes:
+- Direct or indirect power to manage or direct an entity (by contract or otherwise) 
+- Ownership of 50% or more of outstanding shares
+- Beneficial ownership
 
 “You” (or “Your”) shall mean an individual or Legal Entity exercising
 permissions granted by this License.
@@ -89,15 +90,13 @@ You may reproduce and distribute copies of the Work or Derivative Works thereof
 in any medium, with or without modifications, and in Source or Object form,
 provided that You meet the following conditions:
 
-* **(a)** You must give any other recipients of the Work or Derivative Works a copy of
-this License; and
-* **(b)** You must cause any modified files to carry prominent notices stating that You
-changed the files; and
-* **(c)** You must retain, in the Source form of any Derivative Works that You distribute,
-all copyright, patent, trademark, and attribution notices from the Source form
-of the Work, excluding those notices that do not pertain to any part of the
-Derivative Works; and
-* **(d)** If the Work includes a “NOTICE” text file as part of its distribution, then any
+- Include a copy of this License with every recipient.
+  
+- Add a prominent notice in any modified files indicating your changes.
+
+- Retain all original copyright, patent, trademark, and attribution notices in the Source form of your Derivatives.
+
+- If the Work includes a “NOTICE” text file as part of its distribution, then any
 Derivative Works that You distribute must include a readable copy of the
 attribution notices contained within such NOTICE file, excluding those notices
 that do not pertain to any part of the Derivative Works, in at least one of the
