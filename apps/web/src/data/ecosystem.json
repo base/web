@@ -4775,4 +4775,12 @@
   "category": "ai",
   "subcategory": "ai"
   }
+  {
+  "name": "Assemble AI",
+  "description": "Assemble AI(NS3) is the first AI-powered crypto news super app, covering 98% of global crypto news and delivering real-time breaking news and reliable crypto and macro insights in 16 languages.",
+  "url": "https://about.ns3.ai",
+  "imageUrl": "/images/partners/assemble.png",
+  "category": "ai",
+  "subcategory": "consumer"
+}
 ]
