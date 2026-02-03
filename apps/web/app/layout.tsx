@@ -5,16 +5,7 @@ import AppProviders from 'apps/web/app/AppProviders';
 import localFont from 'next/font/local';
 import DatadogInit from 'apps/web/app/datadog';
 import { Inter, Inter_Tight, Roboto_Mono } from 'next/font/google';
-
-const GOOGLE_ANALYTICS_ID = 'G-D1QGEV3B07';
-const googleAnalyticsInitScriptContent = {
-  __html: `
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '${GOOGLE_ANALYTICS_ID}');
-  `,
-};
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const coinbaseDisplay = localFont({
   src: [
@@ -220,16 +211,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           name="google-site-verification"
           content="lqwNRCxYlFLIcX9EiKAvE4k4ZT8JGpdWgehEIPA7y1Y"
         />
-        <script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
-          async
-          defer
-        />
-        <script
-          id="gtag-init"
-          // eslint-disable-next-line react/no-danger -- necessary for google analytics
-          dangerouslySetInnerHTML={googleAnalyticsInitScriptContent}
-        />
       </head>
 
       <body className="flex flex-col min-h-screen antialiased">
@@ -237,6 +218,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <DatadogInit />
           {children}
         </AppProviders>
+        <GoogleAnalytics gaId="G-D1QGEV3B07" />
       </body>
     </html>
   );
