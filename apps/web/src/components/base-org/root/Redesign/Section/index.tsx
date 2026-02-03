@@ -81,31 +81,33 @@ export function Section({ content, children, className, disableWrapperAnimation 
           viewport: viewport,
         })}
       >
-        {content.prefix && (
-          <motion.div {...itemProps} className="col-span-full">
+        <div className="col-span-full lg:col-span-6">
+          {content.prefix && (
+            <motion.div {...itemProps} className="col-span-full">
+              <Title
+                level={TitleLevel.H1Regular}
+                className="!text-3xl !leading-[1.125] !tracking-[-0.96px]"
+                as="h2"
+              >
+                {content?.prefix?.alt}
+              </Title>
+            </motion.div>
+          )}
+
+          <motion.div {...itemProps} className="col-span-full lg:col-span-6 lg:max-w-[400px]">
             <Title
               level={TitleLevel.H1Regular}
-              className="-mb-6 !text-3xl !leading-[1.125] !tracking-[-0.96px] lg:-mb-8"
+              className={classNames('!text-3xl !leading-[1.125] !tracking-[-0.96px]', {
+                '!text-base-gray-200': content.prefix?.alt,
+              })}
               as="h2"
             >
-              {content?.prefix?.alt}
+              {content.title}
             </Title>
           </motion.div>
-        )}
+        </div>
 
-        <motion.div {...itemProps} className="col-span-full lg:col-span-6 lg:max-w-[400px]">
-          <Title
-            level={TitleLevel.H1Regular}
-            className={classNames('!text-3xl !leading-[1.125] !tracking-[-0.96px]', {
-              '!text-base-gray-200': content.prefix?.alt,
-            })}
-            as="h2"
-          >
-            {content.title}
-          </Title>
-        </motion.div>
-
-        <div className="flex flex-col col-span-full gap-6 lg:col-span-6 lg:mt-0">
+        <div className="flex flex-col col-span-full gap-4 lg:col-span-6 lg:mt-0">
           {content.description && (
             <motion.div {...itemProps} className="col-span-full lg:col-span-6 lg:max-w-[400px]">
               <Text
