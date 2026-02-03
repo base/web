@@ -5,6 +5,7 @@ import { PartnershipsLockup } from 'apps/web/app/(base-org)/brand/(7)/partnershi
 import { PartnershipsConstruction } from 'apps/web/app/(base-org)/brand/(7)/partnerships/sections/2-construction';
 import { PartnershipsLockupSystem } from 'apps/web/app/(base-org)/brand/(7)/partnerships/sections/3-lockup-system';
 import { PartnershipsLockupExamples } from 'apps/web/app/(base-org)/brand/(7)/partnerships/sections/4-lockup-examples';
+import { InvertedPartnerLockup } from 'apps/web/app/(base-org)/brand/(7)/partnerships/sections/inverted-partner-lockup';
 import BrandIndex from 'apps/web/src/components/Brand/Index';
 import { BRAND_PAGES_INDEX } from 'apps/web/app/(base-org)/brand/(main)/page';
 
@@ -28,6 +29,7 @@ export default function Page() {
       <PartnershipsConstruction />
       <PartnershipsLockupSystem />
       <PartnershipsLockupExamples />
+      <InvertedPartnerLockup />
 
       <BrandIndex index={FINAL_INDEX} hasHeading />
     </>
