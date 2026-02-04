@@ -1,11 +1,27 @@
 {
   "extends": "./tsconfig.base.json",
-  // Options for projects being built as npm packages
   "compilerOptions": {
+    /* Base directory to resolve non-relative module names. */
     "baseUrl": ".",
+    
+    /* Generates corresponding '.d.ts' file for npm package consumers. */
     "declaration": true,
+    
+    /* Only emit .d.ts files, not JavaScript files. Useful for type-checking library consumers. */
     "emitDeclarationOnly": true,
+    
+    /* Enables importing .json files, a common requirement for config-heavy blockchain projects. */
     "resolveJsonModule": true,
-    "sourceMap": false
+    
+    /* SECURITY & DEBUGGING: Enable source maps to allow consumers to trace errors back to the source code. 
+       Note: Set to true unless you have a specific reason to obfuscate code locations. 
+    */
+    "sourceMap": true,
+
+    /* Ensure that 'strict' mode is inherited or explicitly enabled for type safety. */
+    "strict": true,
+
+    /* Disallow inconsistently-cased references to the same file. */
+    "forceConsistentCasingInFileNames": true
   }
 }
