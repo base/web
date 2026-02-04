@@ -57,6 +57,36 @@ There are three projects which can be run individually.
 yarn workspace @app/web dev
 ```
 
+## Build and Deploy Flow
+
+This section explains how changes flow from development to production.
+
+### Build Process
+
+1. **Development**: Run `yarn workspace @app/web dev` to start a local dev server with hot reloading
+2. **Build**: Run `yarn workspace @app/web build` to create an optimized production build
+3. **Type Check**: TypeScript compilation happens during the build step
+
+### Configuration
+
+- Environment variables: Create a `.env.local` file for local development
+- Build config: See `apps/web/next.config.js` for Next.js configuration
+- TypeScript: Base config in `tsconfig.base.json`, app-specific in `apps/web/tsconfig.json`
+
+### Deployment
+
+Deployments are handled automatically via CI/CD:
+
+1. **Pull Request**: Creates a preview deployment for testing
+2. **Merge to master**: Triggers automatic deployment to production
+3. **Build checks**: All builds must pass before merge is allowed
+
+For local production testing, run:
+```shell
+yarn workspace @app/web build
+yarn workspace @app/web start
+```
+
 ## Contributing
 
 We welcome contributions to Base! For guidelines on how to contribute please refer to [CONTRIBUTING.md](CONTRIBUTING.md).
