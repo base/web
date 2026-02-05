@@ -14,7 +14,7 @@ export function middleware(req: NextRequest) {
   if (url.pathname.startsWith('/flashblocks')) {
     const subPath = url.pathname.replace('/flashblocks', '');
     url.host = 'flashblocks.base.org';
-    url.pathname = `/${subPath}`;
+    url.pathname = subPath.startsWith('/') ? subPath : `/${subPath}`;
     url.port = '443';
 
     return NextResponse.redirect(url);
