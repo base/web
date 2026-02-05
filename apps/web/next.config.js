@@ -82,6 +82,8 @@ const contentSecurityPolicy = {
     'https://fonts.gstatic.com/', // OCK styles loads google fonts via CSS
     'https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com',
     'https://jsv3.recruitics.com/0778138b-cc59-11ef-a514-fd1759833eec.js', // recruitics job analytics
+    'https://translate.google.com', // Google Translate widget
+    'https://translate.googleapis.com', // Google Translate API
   ],
   'worker-src': ["'self'", 'blob:'],
   'connect-src': [
@@ -133,7 +135,7 @@ const contentSecurityPolicy = {
     'wss://metamask-sdk.api.cx.metamask.io', // MetaMask SDK websocket
     'https://metamask-sdk.api.cx.metamask.io', // MetaMask SDK API
   ],
-  'frame-src': ['https://p.datadoghq.com', walletconnectDomains],
+  'frame-src': ['https://p.datadoghq.com', walletconnectDomains, 'https://translate.google.com'],
   'frame-ancestors': ["'self'", baseXYZDomains],
   'form-action': ["'self'", baseXYZDomains],
   'img-src': [
@@ -151,6 +153,8 @@ const contentSecurityPolicy = {
     `https://${process.env.NEXT_PUBLIC_PINATA_GATEWAY_URL}`,
     'https://img.reservoir.tools', // reservoir
     'https://d3r81g40ycuhqg.cloudfront.net/', // OCK Earn component
+    'https://translate.google.com', // Google Translate widget assets
+    'https://www.google.com', // Google Translate widget assets
   ],
 };
 
