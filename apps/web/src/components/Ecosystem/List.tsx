@@ -1,8 +1,16 @@
 'use client';
+
+/**
+ * Ecosystem List Component
+ *
+ * Renders a grid of ecosystem app cards with animation support.
+ * Handles empty states and "load more" pagination.
+ */
+
 import classNames from 'classnames';
 import { AnimatePresence, motion, cubicBezier } from 'motion/react';
 import EcosystemCard from './Card';
-import { EcosystemApp } from 'apps/web/src/components/Ecosystem/Content';
+import type { DecoratedEcosystemApp } from 'apps/web/src/types/ecosystem';
 import { Dispatch, SetStateAction, useCallback } from 'react';
 import {
   Button,
@@ -23,7 +31,10 @@ const cardAnimations = {
   exit: { opacity: 0 },
 };
 
-function AnimatedEcosystemCard({ app }: { app: EcosystemApp }) {
+/**
+ * Animated wrapper for ecosystem cards with enter/exit transitions.
+ */
+function AnimatedEcosystemCard({ app }: { app: DecoratedEcosystemApp }) {
   return (
     <motion.div
       layout
@@ -38,6 +49,33 @@ function AnimatedEcosystemCard({ app }: { app: EcosystemApp }) {
   );
 }
 
+/**
+ * Props for the List component
+ */
+interface ListProps {
+  /** Currently selected category filters */
+  selectedCategories: string[];
+  /** Current search query text */
+  searchText: string;
+  /** Filtered array of ecosystem apps to display */
+  apps: DecoratedEcosystemApp[];
+  /** Number of apps currently shown (for pagination) */
+  showCount: number;
+  /** Callback to update the show count */
+  setShowCount: Dispatch<SetStateAction<number>>;
+  /** Callback to clear the search query */
+  onClearSearch: () => void;
+}
+
+/**
+ * List component displays a paginated grid of ecosystem app cards.
+ *
+ * Features:
+ * - Animated card grid with staggered transitions
+ * - Empty state with helpful messaging
+ * - "View more" pagination button
+ * - Responsive grid layout (1-3 columns)
+ */
 export function List({
   selectedCategories,
   searchText,
@@ -45,14 +83,7 @@ export function List({
   showCount,
   setShowCount,
   onClearSearch,
-}: {
-  selectedCategories: string[];
-  searchText: string;
-  apps: EcosystemApp[];
-  showCount: number;
-  setShowCount: Dispatch<SetStateAction<number>>;
-  onClearSearch: () => void;
-}) {
+}: ListProps) {
   const canShowMore = showCount < apps.length;
   const showEmptyState = apps.length === 0;
   const truncatedApps = apps.slice(0, showCount);

@@ -1,26 +1,48 @@
 'use client';
+
+/**
+ * Ecosystem Card Component
+ *
+ * Displays an individual ecosystem project/app in a card format.
+ * Includes project logo, name, description, and category tags.
+ */
+
 import ImageWithLoading from 'apps/web/src/components/ImageWithLoading';
 import Card from 'apps/web/src/components/base-org/Card';
 import Text from 'apps/web/src/components/base-org/typography/TextRedesign';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
 import Title from 'apps/web/src/components/base-org/typography/TitleRedesign';
 import { TitleLevel } from 'apps/web/src/components/base-org/typography/TitleRedesign/types';
+import type { EcosystemApp } from 'apps/web/src/types/ecosystem';
 
-type Props = {
-  name: string;
-  url: string;
-  description: string;
-  imageUrl: string;
-  category: string;
-  subcategory: string;
-};
+type Props = EcosystemApp;
 
 const MAX_DESCRIPTION_LENGTH = 200;
 
-function getNiceDomainDisplayFromUrl(url: string) {
+/**
+ * Extracts a clean domain name from a URL for display purposes.
+ * Removes protocol and www prefix, and strips path segments.
+ *
+ * @param url - The full URL to extract the domain from
+ * @returns The cleaned domain name (e.g., "example.com")
+ *
+ * @example
+ * getNiceDomainDisplayFromUrl("https://www.example.com/path") // returns "example.com"
+ */
+function getNiceDomainDisplayFromUrl(url: string): string {
   return url.replace('https://', '').replace('http://', '').replace('www.', '').split('/')[0];
 }
 
+/**
+ * EcosystemCard displays a single ecosystem project in a clickable card format.
+ *
+ * Features:
+ * - Project logo with loading state
+ * - Project name and domain
+ * - Truncated description (max 200 characters)
+ * - Category and subcategory tags
+ * - Opens project URL in a new tab
+ */
 export default function EcosystemCard({
   name,
   url,
@@ -39,7 +61,8 @@ export default function EcosystemCard({
       href={url}
       rel="noreferrer noopener"
       target="_blank"
-      className="flex flex-col items-stretch w-full h-full justify-stretch"
+      aria-label={`Visit ${name} - ${category} project. ${truncatedDescription}`}
+      className="flex flex-col items-stretch w-full h-full justify-stretch focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-lg"
     >
       <Card
         wrapperClassName="w-full h-full"
