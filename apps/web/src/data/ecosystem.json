@@ -1,5 +1,13 @@
 [
   {
+    "name": "Lighthouse Storage",
+    "description": "Permanent, encrypted storage for NFTs, dApps, and AI apps, with agent-ready uploads and payments via x402. Verifiable storage and instant retrieval at scale.",
+    "url": "https://lighthouse.storage/",
+    "imageUrl": "/images/partners/lighthouse.png",
+    "category": "infra",
+    "subcategory": "data"
+  },
+  {
     "name": "growthepie",
     "description": "The open analytics platform for the Ethereum ecosystem. We empower Base Chain builders with open and actionable metrics on usage, growth, and adoption.",
     "url": "https://www.growthepie.com/chains/base",
