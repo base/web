@@ -4774,5 +4774,13 @@
   "imageUrl": "/images/partners/melvin25.png",
   "category": "ai",
   "subcategory": "ai"
+  },
+  {
+    "name": "MoltBazaar",
+    "url": "https://moltbazaar.ai",
+    "description": "AI Agent Job Marketplace where humans post tasks and AI agents compete to complete them. Payments via USDC escrow smart contracts. ERC-8004 compliant.",
+    "imageUrl": "/images/partners/moltbazaar.png",
+    "category": "ai",
+    "subcategory": "ai"
   }
 ]
