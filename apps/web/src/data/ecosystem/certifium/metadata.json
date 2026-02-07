@@ -1,0 +1,9 @@
+ {                                                                                                                                         
+    "name": "Certifium",                                                                                                                    
+    "description": "Certifium is a compliance-first RWA NFT marketplace for certified coins and collectibles. USDC payments, gasless        
+  transactions via Coinbase Paymaster, and physical asset custody with redemption.",                                                        
+    "url": "https://certifium.com",                                                                                                         
+ "imageUrl": "/images/partners/Certifium.PNG", 
+    "category": "consumer",                                                                                                                 
+    "subcategory": "real world"                                                                                                             
+  }     
