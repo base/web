@@ -62,6 +62,7 @@ export function Button({
 }: ButtonProps) {
   const buttonClasses = classNames(
     'font-display text-center flex gap-2 items-center whitespace-nowrap cursor-pointer',
+    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue',
     variantStyles[variant],
     sizeStyles[size],
     { 'rounded-full': rounded },
@@ -71,10 +72,17 @@ export function Button({
   );
 
   return (
-    <button {...props} type="button" className={buttonClasses} disabled={disabled}>
+    <button
+      {...props}
+      type="button"
+      className={buttonClasses}
+      disabled={disabled}
+      aria-disabled={disabled || isLoading}
+      aria-busy={isLoading}
+    >
       {isLoading ? (
-        <span className="flex justify-center">
-          <Icon name="spinner" color="currentColor" />
+        <span className="flex justify-center" role="status" aria-label="Loading">
+          <Icon name="spinner" color="currentColor" aria-hidden="true" />
         </span>
       ) : (
         children
