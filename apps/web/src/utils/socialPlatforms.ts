@@ -52,7 +52,7 @@ export const socialPlatformShareLinkFunction: SocialPlatformShareLinkFunction = 
       text: text,
     };
 
-    return urlWithQueryParams('https://warpcast.com/~/compose', shareParams);
+    return urlWithQueryParams('https://farcaster.xyz/~/compose', shareParams);
   },
 };
 
