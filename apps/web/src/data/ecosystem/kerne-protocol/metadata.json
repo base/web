@@ -1,0 +1,8 @@
+{
+  "name": "Kerne Protocol",
+  "url": "https://kerne.ai",
+  "description": "Delta-neutral yield infrastructure. Deposit ETH into ERC-4626 vaults, earn stable yield from funding rates and staking with zero directional risk.",
+  "imageUrl": "/images/partners/kerne-protocol.png",
+  "category": "defi",
+  "subcategory": "yield vault"
+}
