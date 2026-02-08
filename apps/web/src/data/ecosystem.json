@@ -3816,6 +3816,14 @@
     "subcategory": "data"
   },
   {
+    "name": "Suite",
+    "description": "Suite is an AI-powered Customer Success engine that helps Web3 projects understand and engage users through onchain insights. Alumni of Base Batch #001.",
+    "url": "https://getsuite.io/",
+    "imageUrl": "/images/partners/suite.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "Superbridge",
     "url": "https://superbridge.app",
     "description": "Native token bridging interface for OP Stack chains.",
