@@ -2912,6 +2912,14 @@
     "subcategory": "fiat on-ramp"
   },
   {
+    "name": "OnChainWin",
+    "url": "https://onchainwin.com",
+    "description": "OnChainWin is a Web3 technology provider that delivers outsourceable, verifiably fair raffle infrastructure and creating raffles on EVM-compatible networks.",
+    "imageUrl": "/images/partners/onchainwin.png",
+    "category": "consumer",
+    "subcategory": "creator real world gaming"
+  },
+  {
     "name": "Onramp Money",
     "url": "https://onramp.money/",
     "description": "Onramp.money is a convenient & secure way to convert your FIAT to Web3 money in <60s! We allow your users to buy & sell digital assets with lowest processing fees. Onramp.money can be easily integrated with your global decentralized application (dApp) to smoothly onboard users to purchase multiple digital assets across chains.",
