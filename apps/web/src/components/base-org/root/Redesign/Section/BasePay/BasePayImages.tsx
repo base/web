@@ -59,7 +59,7 @@ const stickers = [
 export function BasePayImages() {
   const [hoverActive, setHoverActive] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { amount: 0.25, once: false });
+  const isInView = useInView(ref, { amount: 0.25, once: true });
   const stickersActive = isInView;
 
   return (
