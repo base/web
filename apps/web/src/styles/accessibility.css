@@ -1,0 +1,135 @@
+/**
+ * Accessibility Styles
+ * Global CSS for improved keyboard navigation and screen reader support
+ */
+
+/* Skip Links - WCAG 2.4.1 Bypass Blocks */
+.skip-links {
+  position: relative;
+  z-index: 9999;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #0052FF;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0 0 4px 0;
+  transition: top 0.2s;
+  z-index: 9999;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid white;
+  outline-offset: -4px;
+}
+
+/* Enhanced Focus Indicators - WCAG 2.4.7 Focus Visible */
+*:focus-visible {
+  outline: 2px solid #0052FF;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  *:focus-visible {
+    outline-width: 3px;
+    outline-color: currentColor;
+  }
+
+  .skip-link {
+    outline: 3px solid white;
+  }
+}
+
+/* Reduced Motion Preferences - WCAG 2.3.3 Animation from Interactions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Screen Reader Only (Utility Class) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Force Visible (for debugging a11y) */
+.sr-only-debug {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 4px 8px !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+  background: yellow !important;
+  color: black !important;
+  border: 2px solid red !important;
+}
+
+/* Focus Visible Polyfill for older browsers */
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}
+
+/* Enhanced Button Focus States */
+button:focus-visible,
+[role="button"]:focus-visible,
+a:focus-visible {
+  outline: 2px solid #0052FF;
+  outline-offset: 2px;
+}
+
+/* Ensure Interactive Elements Meet Minimum Touch Target Size - WCAG 2.5.8 */
+button,
+[role="button"],
+a[href],
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Exception for inline text links */
+p a,
+li a,
+span a {
+  min-height: unset;
+  min-width: unset;
+}
+
+/* High Contrast Border for Focus */
+@media (forced-colors: active) {
+  *:focus-visible {
+    outline: 3px solid;
+  }
+}
+
+/* Print Styles - Show Skip Links */
+@media print {
+  .skip-link {
+    display: none;
+  }
+}
