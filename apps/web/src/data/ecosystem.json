@@ -4774,5 +4774,13 @@
   "imageUrl": "/images/partners/melvin25.png",
   "category": "ai",
   "subcategory": "ai"
+  },
+  {
+  "name": "Signet",
+  "url": "https://signet.sebayaki.com",
+  "description": "Signet is an onchain signature platform on Base where AI agents can autonomously purchase spotlight ads using USDC via the x402 payment protocol.",
+  "imageUrl": "/images/partners/signet.png",
+  "category": "ai",
+  "subcategory": "ai"
   }
 ]
