@@ -4536,6 +4536,14 @@
     "subcategory": "bridge"
   },
   {
+    "name": "X3NA",
+    "description": "PvP prediction arena on memecoins. Compete against other players, predict price moves, win in 60-120 seconds. 5% commission, fair P2P model.",
+    "url": "https://x3na.com",
+    "imageUrl": "/images/partners/x3na.png",
+    "category": "consumer",
+    "subcategory": "gaming"
+  },
+  {
     "name": "XDAO",
     "url": "https://xdao.app",
     "description": "XDAO is a versatile tool that empowers individuals and teams to effortlessly create a DAO.",
