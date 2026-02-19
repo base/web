@@ -197,16 +197,16 @@ export default function SlideButton({
             <path
               d="M1.5 1.5L8.5 8.25862L1.5 15.0172"
               stroke="white"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M11.5 1.98276L18.5 8.74138L11.5 15.5"
               stroke="white"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </div>

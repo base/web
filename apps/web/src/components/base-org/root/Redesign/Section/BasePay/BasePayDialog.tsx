@@ -79,7 +79,7 @@ export function BasePayDialog() {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g clip-path="url(#clip0_1275_1238)">
+          <g clipPath="url(#clip0_1275_1238)">
             <path
               d="M119 96C145.51 96 167 74.5097 167 48C167 21.4903 145.51 0 119 0C92.4903 0 71 21.4903 71 48C71 74.5097 92.4903 96 119 96Z"
               fill="#0B53BF"
@@ -239,9 +239,9 @@ export function BasePayDialog() {
                   <path
                     d="M1.5 1.5L8.5 8.25862L1.5 15.0172M11.5 1.98276L18.5 8.74138L11.5 15.5"
                     stroke="white"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </div>
