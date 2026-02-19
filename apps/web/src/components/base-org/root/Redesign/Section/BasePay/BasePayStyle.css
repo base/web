@@ -47,6 +47,7 @@
 .sticker.active[data-sticker-index='3'] {
   /* desk */
   transition-delay: var(--delay);
+  display: none;
   transform: translate(-50%, -50%) translate3d(100%, 50%, 0) rotate(-6deg) scale(0.9);
 }
 .sticker.active[data-sticker-index='4'] {
@@ -58,12 +59,12 @@
 .sticker.active[data-sticker-index='5'] {
   /* hammer */
   transition-delay: var(--delay);
-  transform: translate(-50%, -50%) translate3d(55%, 4%, 0) rotate(6deg);
+  transform: translate(-50%, -50%) translate3d(42%, 34%, 0) scale(0.8) rotate(6deg);
 }
 .sticker.active[data-sticker-index='6'] {
   /* headphones */
   transition-delay: var(--delay);
-  transform: translate(-50%, -50%) translate3d(-10%, 56%, 0) rotate(-6deg);
+  transform: translate(-50%, -50%) translate3d(-10%, 50%, 0) scale(0.8) rotate(-6deg);
 }
 .sticker.active[data-sticker-index='7'] {
   /* lamp */
@@ -78,7 +79,7 @@
 .sticker.active[data-sticker-index='9'] {
   /* shoe */
   transition-delay: var(--delay);
-  transform: translate(-50%, -50%) translate3d(90%, 0%, 0) scale(0.8) rotate(-6deg);
+  transform: translate(-50%, -50%) translate3d(90%, 30%, 0) scale(0.8) rotate(-6deg);
 }
 .sticker.active[data-sticker-index='10'] {
   /* soap */
@@ -87,7 +88,7 @@
 }
 .sticker.active[data-sticker-index='11'] {
   /* speaker */
-  transform: translate(-50%, -50%) translate3d(50%, 52%, 0) scale(0.9) rotate(6deg);
+  transform: translate(-50%, -50%) translate3d(-54%, -12%, 0) scale(0.6) rotate(6deg);
 }
 .sticker.active[data-sticker-index='12'] {
   /* tv */

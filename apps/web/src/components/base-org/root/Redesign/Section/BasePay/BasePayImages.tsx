@@ -6,17 +6,17 @@ import './BasePayStyle.css';
 import classNames from 'classnames';
 
 import BallImage from './images/ball.webp';
-import BikeImage from './images/bike.webp';
+import BikeImage from './images/bike2.webp';
 import ChairImage from './images/chair.webp';
 import DeskImage from './images/desk.webp';
 import GuitarImage from './images/guitar.webp';
-import HammerImage from './images/hammer.webp';
-import HeadphonesImage from './images/headphones.webp';
+import HammerImage from './images/tennis.webp';
+import HeadphonesImage from './images/headphones2.webp';
 import LampImage from './images/lamp.webp';
 import PerfumeImage from './images/perfume.webp';
 import ShoeImage from './images/shoe-l.webp';
-import SoapImage from './images/soap.webp';
-import SpeakerImage from './images/speaker.webp';
+import SoapImage from './images/soap2.webp';
+import SpeakerImage from './images/speaker2.webp';
 import TvImage from './images/tv.webp';
 import WatchImage from './images/watch.webp';
 import { SlideSVG } from './SlideSVG';
@@ -48,12 +48,12 @@ const stickers = [
   { image: HammerImage.src, alt: 'Hammer', clip: false },
   { image: HeadphonesImage.src, alt: 'Headphones', clip: false },
   { image: LampImage.src, alt: 'Lamp', clip: false },
-  { image: PerfumeImage.src, alt: 'Perfume', clip: false },
+  { image: PerfumeImage.src, alt: 'Perfume', clip: false, hidden: true },
   { image: ShoeImage.src, alt: 'Shoe', clip: false },
-  { image: SoapImage.src, alt: 'Soap', clip: false },
+  { image: SoapImage.src, alt: 'Soap', clip: false, hidden: true },
   { image: SpeakerImage.src, alt: 'Speaker', clip: false },
-  { image: TvImage.src, alt: 'TV', clip: false },
-  { image: WatchImage.src, alt: 'Watch', clip: false },
+  { image: TvImage.src, alt: 'TV', clip: false, hidden: true },
+  { image: WatchImage.src, alt: 'Watch', clip: false, hidden: true },
 ];
 
 export function BasePayImages() {
@@ -77,7 +77,10 @@ export function BasePayImages() {
         <div className="bg-neutral-200/0 absolute bottom-0 left-0 right-0 top-0 z-10 flex h-full w-full items-center justify-center rounded-2xl p-6">
           {stickers.map((sticker, i) =>
             sticker.clip ? (
-              <div key={i} className="sticker-clip-wrapper">
+              <div
+                key={i}
+                className={classNames('sticker-clip-wrapper', sticker.hidden ? 'hidden' : '')}
+              >
                 <div
                   data-sticker-index={i}
                   style={
@@ -108,7 +111,7 @@ export function BasePayImages() {
                 style={{ ['--delay' as string]: `${i * 5}ms` }}
                 className={`sticker spring-bounce-20 spring-duration-300 ${
                   stickersActive ? 'active' : ''
-                }`}
+                } ${sticker.hidden ? 'hidden' : ''}`}
               >
                 <img
                   src={sticker.image}

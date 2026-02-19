@@ -71,9 +71,10 @@ export default async function Startups() {
                   {content.logoStrip.logos.map((logo) => (
                     <div
                       key={logo}
-                      className="flex min-w-[120px] items-center justify-center px-6 opacity-80 grayscale"
+                      className="flex aspect-video min-w-[120px] items-center justify-center rounded-lg bg-base-gray-50 px-6"
                     >
                       <Image
+                        className="opacity-90 grayscale"
                         src={`/images/startups/logos/${logo.toLowerCase()}.webp`}
                         alt={logo}
                         width={120}

@@ -16,10 +16,10 @@ export function ChainValueProp({ eyebrow, pill, header, subheader, icon }: Chain
     <div className="group flex flex-1 flex-col gap-3">
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2">
-          <div className="w-8">{icon}</div>
+          <div className="opacity-80">{icon}</div>
           <Text
             variant={TextVariant.Caption}
-            className="!text-xs !font-medium uppercase tracking-wide !text-base-gray-200"
+            className="font-sans !text-sm tracking-wide !text-base-gray-200"
           >
             {eyebrow}
           </Text>

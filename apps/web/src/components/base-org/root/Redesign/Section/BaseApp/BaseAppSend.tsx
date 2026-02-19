@@ -109,7 +109,7 @@ export function BaseAppSend() {
     <div className="group flex h-full w-full items-center justify-center">
       <svg
         style={{ willChange: 'transform' }}
-        className="scale-95 spring-bounce-20 spring-duration-300 group-hover:rotate-0 group-hover:scale-100"
+        className="scale-95 spring-bounce-20 spring-duration-300 group-hover:rotate-0 group-hover:scale-95"
         width="399"
         height="516"
         viewBox="0 0 399 516"
@@ -124,8 +124,8 @@ export function BaseAppSend() {
           <rect width="303" height="56" transform="translate(48 28)" fill="white" />
           <path
             className="hidden"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M52.3687 41.9997L58.9343 35.4341L60.0657 36.5654L54.6314 41.9997L60.0657 47.4341L58.9343 48.5654L52.3687 41.9997Z"
             fill="#CED2DB"
           />
@@ -838,8 +838,8 @@ export function BaseAppSend() {
             y2="452"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#627EEA" />
-            <stop offset="1" stop-color="#B82EA4" />
+            <stop stopColor="#627EEA" />
+            <stop offset="1" stopColor="#B82EA4" />
           </linearGradient>
         </defs>
       </svg>
