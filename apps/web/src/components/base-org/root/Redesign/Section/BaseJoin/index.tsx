@@ -16,13 +16,13 @@ const card4 = Card4 as ImageType;
 export function SectionBaseJoin() {
   return (
     <Section content={content}>
-      <div className="grid-base col-span-full w-full">
+      <div className="col-span-full grid w-full grid-cols-3 gap-[2.3%]">
         {cards.map((card) => (
           <Link
             key={card.index}
             href={card.href}
             target="_blank"
-            className="col-span-2 w-full flex-1 overflow-hidden !rounded-[8px] md:col-span-1"
+            className="col-span-full w-full flex-1 overflow-hidden !rounded-[8px] md:col-span-1"
           >
             <InteractiveCard
               shader={false}
@@ -77,13 +77,13 @@ const cards: CardProps[] = [
     contrast: 0.8,
     href: 'https://lu.ma/BaseEvents',
   },
-  {
-    index: 4,
-    title: 'Basecamp 2025',
-    description: 'Our annual builder summit. Join us in Stowe, VT.',
-    image: card4.src,
-    brightness: 1.9,
-    contrast: 0.8,
-    href: 'https://basecamp2025.xyz/',
-  },
+  // {
+  //   index: 4,
+  //   title: 'Basecamp 2025',
+  //   description: 'Our annual builder summit. Join us in Stowe, VT.',
+  //   image: card4.src,
+  //   brightness: 1.9,
+  //   contrast: 0.8,
+  //   href: 'https://basecamp2025.xyz/',
+  // },
 ];
