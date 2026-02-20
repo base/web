@@ -242,15 +242,18 @@ export default async function Enterprises() {
                   {content.logoStrip.logos.map((logo) => (
                     <div
                       key={logo}
-                      className="flex min-w-[120px] items-center justify-center rounded-lg bg-base-gray-50 px-6
-                       transition-all "
+                      className="flex items-center justify-center rounded-lg bg-base-gray-50/0 px-0 transition-all
+                       md:w-[200px] "
                     >
-                      <div style={{ mixBlendMode: 'multiply' }} className="h-full w-full">
+                      <div
+                        style={{ mixBlendMode: 'multiply' }}
+                        className="aspect-[5/3] h-full w-full overflow-visible"
+                      >
                         <Image
-                          className="h-full w-full object-contain opacity-90"
+                          className="h-full w-full object-cover"
                           src={`/images/enterprises/${logo.toLowerCase()}.webp`}
                           alt={logo}
-                          width={120}
+                          width={220}
                           height={60}
                         />
                       </div>

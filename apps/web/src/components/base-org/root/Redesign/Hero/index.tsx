@@ -31,19 +31,19 @@ export function Hero() {
           {/* <LogoHero /> */}
           {/* <AnimatedTitle /> */}
           <LogoHeroSlot>
-            {/* <Halftone
+            <Halftone
               bottomFade={false}
               imageUrl="/images/backgrounds/rocket_bg_contrast.webp"
               backgroundColor="#fbfbfb"
               primaryColor="#9F9F9F"
-            /> */}
-            <video
+            />
+            {/* <video
               src="/videos/EDIT_V12.webm"
               className="h-full w-full object-cover"
               autoPlay
               muted
               loop
-            />
+            /> */}
           </LogoHeroSlot>
         </div>
         <div className="grid-base col-span-full w-full">

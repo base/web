@@ -17,7 +17,8 @@ import { BaseAppEarn } from './BaseAppEarn';
 
 // import ImageAsset from './tba.png';
 // import ImageAsset from './base-app-phone.png';
-import ImageAsset from './phone-mock-bg.png';
+// import ImageAsset from './phone-mock-bg.png';
+import ImageAsset from './phone.webp';
 import HandImage from './hand.webp';
 import BackgroundAsset from './sky-bg.png';
 import { motion, spring } from 'motion/react';
@@ -70,13 +71,13 @@ export function SectionBaseApp() {
                 quality={99}
               />
             </div>
-            <div className="absolute inset-0 h-full w-full">
+            <div className="absolute inset-0 h-full w-full py-12">
               <Image
-                src={hand.src}
+                src={img.src}
                 alt="Base App"
-                width={hand.width}
-                height={hand.height}
-                className="mx-auto h-full w-full object-cover"
+                width={img.width}
+                height={img.height}
+                className="mx-auto h-full w-full object-contain"
                 draggable={false}
                 sizes="(max-width: 768px) 100vw, 750px"
                 quality={99}

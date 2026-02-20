@@ -71,7 +71,7 @@ export default async function Startups() {
                   {content.logoStrip.logos.map((logo) => (
                     <div
                       key={logo}
-                      className="flex aspect-video min-w-[120px] items-center justify-center rounded-lg bg-base-gray-25 px-6"
+                      className="flex aspect-video min-w-[120px] items-center justify-center rounded-lg bg-base-gray-25/0 px-6"
                     >
                       <Image
                         className="opacity-90 grayscale"

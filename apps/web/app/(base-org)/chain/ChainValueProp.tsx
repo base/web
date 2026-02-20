@@ -16,18 +16,15 @@ export function ChainValueProp({ eyebrow, pill, header, subheader, icon }: Chain
     <div className="group flex flex-1 flex-col gap-3">
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2">
-          <div className="opacity-80">{icon}</div>
-          <Text
-            variant={TextVariant.Caption}
-            className="font-sans !text-sm tracking-wide !text-base-gray-200"
-          >
+          {/* <div className="opacity-80">{icon}</div> */}
+          <Text variant={TextVariant.BodyLarge} className="font-sans tracking-wide ">
             {eyebrow}
           </Text>
         </div>
         {pill && (
           <span
             className="rounded-full bg-black/5 px-3 py-1.5 font-sans
-           text-xs font-medium uppercase leading-none tracking-wide text-base-gray-200"
+           text-xs font-normal uppercase leading-none tracking-wide text-base-gray-200"
           >
             {pill}
           </span>
@@ -37,7 +34,7 @@ export function ChainValueProp({ eyebrow, pill, header, subheader, icon }: Chain
         {header}
       </Title> */}
       <Text variant={TextVariant.BodyLarge} className="max-w-2xl !text-base-gray-200">
-        <span className="whitespace-pre-wrap !text-black">{header}. </span> {subheader}
+        <span className="whitespace-pre-wrap ">{header}. </span> {subheader}
       </Text>
     </div>
   );
