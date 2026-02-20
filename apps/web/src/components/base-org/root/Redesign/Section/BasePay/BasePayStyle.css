@@ -58,13 +58,14 @@
 }
 .sticker.active[data-sticker-index='5'] {
   /* hammer */
+  /* raquet */
   transition-delay: var(--delay);
-  transform: translate(-50%, -50%) translate3d(42%, 34%, 0) scale(0.8) rotate(6deg);
+  transform: translate(-50%, -50%) translate3d(53%, 25%, 0) scale(0.8) rotate(6deg);
 }
 .sticker.active[data-sticker-index='6'] {
   /* headphones */
   transition-delay: var(--delay);
-  transform: translate(-50%, -50%) translate3d(-10%, 50%, 0) scale(0.8) rotate(-6deg);
+  transform: translate(-50%, -50%) translate3d(90%, 45%, 0) scale(0.6) rotate(-6deg);
 }
 .sticker.active[data-sticker-index='7'] {
   /* lamp */
@@ -79,7 +80,7 @@
 .sticker.active[data-sticker-index='9'] {
   /* shoe */
   transition-delay: var(--delay);
-  transform: translate(-50%, -50%) translate3d(90%, 30%, 0) scale(0.8) rotate(-6deg);
+  transform: translate(-50%, -50%) translate3d(0%, 50%, 0) scale(0.8) rotate(-6deg);
 }
 .sticker.active[data-sticker-index='10'] {
   /* soap */
@@ -88,7 +89,7 @@
 }
 .sticker.active[data-sticker-index='11'] {
   /* speaker */
-  transform: translate(-50%, -50%) translate3d(-54%, -12%, 0) scale(0.6) rotate(6deg);
+  transform: translate(-50%, -50%) translate3d(-60%, -23%, 0) scale(0.5) rotate(-12deg);
 }
 .sticker.active[data-sticker-index='12'] {
   /* tv */

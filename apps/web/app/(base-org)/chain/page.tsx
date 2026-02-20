@@ -127,7 +127,7 @@ export default async function Chain() {
                     {content.ecosystem.logos.map((logo) => (
                       <div
                         key={logo}
-                        className="relative flex aspect-square w-[60px] items-center justify-center overflow-hidden rounded-lg bg-base-gray-50 md:w-[100px] md:rounded-[26px]"
+                        className="relative flex aspect-square w-[60px] items-center justify-center overflow-hidden rounded-lg bg-base-gray-50/0 md:w-[100px] md:rounded-[26px]"
                       >
                         <div
                           style={{ mixBlendMode: 'multiply' }}
