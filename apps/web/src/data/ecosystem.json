@@ -4774,5 +4774,13 @@
   "imageUrl": "/images/partners/melvin25.png",
   "category": "ai",
   "subcategory": "ai"
+  },
+  {
+  "name": "Aarna AI",
+  "url": "https://www.aarna.ai/",
+  "description": "aarna is the Agentic Onchain Treasury (AOT), an AI-driven, fully onchain system that autonomously allocates and manages DeFi portfolios. Access fixed yields, token portfolios, and indices through âtv vaults",
+  "imageUrl": "/images/partners/aarna.png",
+  "category": "defi",
+  "subcategory": "yield vault"
   }
 ]
