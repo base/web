@@ -4774,5 +4774,13 @@
   "imageUrl": "/images/partners/melvin25.png",
   "category": "ai",
   "subcategory": "ai"
+  },
+  {
+    "name": "Swipr",
+    "description": "Social prediction markets with AI oracle, DeFi trading, voice rooms, games, and many ways to earn.",
+    "url": "https://swipr.xyz",
+    "imageUrl": "/images/partners/swipr.png",
+    "category": "defi",
+    "subcategory": "dex"
   }
 ]
