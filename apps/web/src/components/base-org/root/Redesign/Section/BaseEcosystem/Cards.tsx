@@ -13,27 +13,6 @@ export function Cards() {
 const cardsContent = [
   {
     index: '01',
-    title: 'Base App',
-    description:
-      'An everything app where you can create, earn, trade, discover apps, and chat with friends all in one place.',
-    gltf: {
-      src: '/models/upd/base-app-2.glb',
-      useRgbTexture: true,
-    },
-  },
-  {
-    index: '02',
-    title: 'Base Build',
-    description:
-      'Everything builders need to build, grow, and earn from their apps, at every stage.',
-    gltf: {
-      src: '/models/upd/open-source.glb',
-      useRgbTexture: true,
-      stretchZ: 3,
-    },
-  },
-  {
-    index: '03',
     title: 'Base Chain',
     description:
       'An open network to power the global economy. Fast, open, and built to scale. Built on Ethereum, built on the Superchain.',
@@ -43,6 +22,28 @@ const cardsContent = [
       modelRotation: [-0.7, 0.2, 0] as [number, number, number],
     },
   },
+  {
+    index: '02',
+    title: 'Base App',
+    description:
+      'An everything app where you can create, earn, trade, discover apps, and chat with friends all in one place.',
+    gltf: {
+      src: '/models/upd/base-app-2.glb',
+      useRgbTexture: true,
+    },
+  },
+  {
+    index: '03',
+    title: 'Base Build',
+    description:
+      'Everything builders need to build, grow, and earn from their apps, at every stage.',
+    gltf: {
+      src: '/models/upd/open-source.glb',
+      useRgbTexture: true,
+      stretchZ: 3,
+    },
+  },
+
   {
     index: '04',
     title: 'Base Pay',

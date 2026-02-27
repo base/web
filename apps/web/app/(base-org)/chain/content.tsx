@@ -26,7 +26,7 @@ export const content = {
       eyebrow: 'Decentralized',
       header: 'An open platform for everyone',
       subheader:
-        'Powered by Ethereum and the OP Stack, Base is built on open-source, open standards that anyone can build on. Stage 1 decentralization ensures that Base Chain is open and credibly neutral.',
+        'Powered by Ethereum and a unified stack.  Base is built on open-source, open standards that anyone can build on. Stage 1 decentralization ensures that Base Chain is open and credibly neutral.',
       icon: ChainIcons('decentralized'),
     },
     {
@@ -34,7 +34,7 @@ export const content = {
       eyebrow: 'Connected, Markets/Bridge',
       header: 'A bridge, not an island',
       subheader:
-        'Built on Ethereum, the Superchain, and designed to be interoperable with Layer 1s like Solana. So that builders and users can seamlessly move across the entire global economy and tap into value wherever it exists.',
+        'Built on Ethereum and designed to be interoperable with Layer 1s like Solana. So that builders and users can seamlessly move across the entire global economy and tap into value wherever it exists.',
       icon: ChainIcons('connected'),
     },
     {
@@ -50,8 +50,7 @@ export const content = {
       eyebrow: 'Privacy-preserving, privacy-first',
       pill: 'Coming soon',
       header: 'Privacy-first to empower a fair economy',
-      subheader:
-        'Fast, composable, and compliant private transactions that give people and businesses the safety they need to participate confidently in the global economy.',
+      subheader: '',
       icon: ChainIcons('privacy'),
     },
   ],

@@ -70,12 +70,12 @@ export default async function Home() {
         <div className="col-span-full flex flex-col gap-12">
           <Hero />
           {true && <SectionBaseEcosystem />}
+          <RenderOnInView>
+            <SectionBaseChain />
+          </RenderOnInView>
           <SectionBaseApp />
           <RenderOnInView>
             <SectionBaseBuilders />
-          </RenderOnInView>
-          <RenderOnInView>
-            <SectionBaseChain />
           </RenderOnInView>
           <RenderOnInView>
             <SectionBasePay />
