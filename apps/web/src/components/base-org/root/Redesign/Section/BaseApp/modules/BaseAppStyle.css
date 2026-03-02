@@ -1,0 +1,32 @@
+.base-app-trade {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  max-width: 334px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.card-wrapper {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+.card-wrapper[data-hidden='true'] {
+  display: none;
+}
+
+.card {
+  /* Framer Motion now controls transform/opacity; keep this minimal */
+  transform-origin: center;
+  pointer-events: auto;
+}

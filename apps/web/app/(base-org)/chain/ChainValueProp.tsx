@@ -14,7 +14,7 @@ interface ChainValuePropProps {
 export function ChainValueProp({ eyebrow, pill, header, subheader, icon }: ChainValuePropProps) {
   return (
     <div className="group flex flex-1 flex-col gap-3">
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2">
         <div className="flex items-center gap-2">
           {/* <div className="opacity-80">{icon}</div> */}
           <Text variant={TextVariant.BodyLarge} className="font-sans tracking-wide ">

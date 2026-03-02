@@ -1,0 +1,35 @@
+.reset {
+  transform-box: fill-box;
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.scale {
+  animation: scaleDown 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(-1px) rotate(3deg);
+  }
+  50% {
+    transform: translateY(-1px) rotate(-3deg);
+  }
+  100% {
+    transform: translateY(-1px) rotate(3deg);
+  }
+}
+
+@keyframes scaleDown {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
