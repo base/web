@@ -119,7 +119,7 @@ function CheckIcon() {
           <path
             d="M20.9798 3.40527L19.216 5.16909L15.6883 8.69673L8.63307 15.752L5.64576 12.765L4.1521 11.2715L3.40527 10.5247"
             stroke="white"
-            stroke-width="6.8106"
+            strokeWidth="6.8106"
             stroke-linecap="round"
             stroke-linejoin="round"
           />

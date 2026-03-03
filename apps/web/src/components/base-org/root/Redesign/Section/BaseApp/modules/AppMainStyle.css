@@ -10,6 +10,29 @@
   animation: scaleDown 3s ease-in-out infinite;
 }
 
+.rotate {
+  animation: rotate 22s linear infinite;
+}
+
+.rotate-reverse {
+  animation: rotateReverse 16s linear infinite;
+}
+
+.rotate-reverse-2 {
+  animation: rotateReverse 16s linear infinite;
+}
+
+.rotate-reverse-3 {
+  animation: rotateReverse 20s linear infinite;
+}
+
+.scaled {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: scaleLoop 10s ease-in-out infinite;
+  /* transform: scale(.85); */
+}
+
 @keyframes float {
   0% {
     transform: translateY(-1px) rotate(3deg);
@@ -31,5 +54,68 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@keyframes scaleLoop {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(0.8);
+  }
+  30% {
+    transform: scale(0.8);
+  }
+  40% {
+    transform: scale(0.6);
+  }
+  50% {
+    transform: scale(0.6);
+  }
+  60% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(0.6);
+  }
+  90% {
+    transform: scale(0.6);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateReverse {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes rotateReverse {
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(-180deg);
   }
 }
