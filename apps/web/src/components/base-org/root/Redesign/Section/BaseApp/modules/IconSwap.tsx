@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'motion/react';
-import type { ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 
 type IconSwapProps = {
   success: boolean;
@@ -13,12 +13,67 @@ export function IconSwap({
   icon = <EthereumIcon />,
 }: IconSwapProps) {
   const successColor = '#27AD75';
+
+  function hexToHsl(hex: string) {
+    const clean = hex.replace('#', '');
+    const r = parseInt(clean.slice(0, 2), 16) / 255;
+    const g = parseInt(clean.slice(2, 4), 16) / 255;
+    const b = parseInt(clean.slice(4, 6), 16) / 255;
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    let h = 0;
+    let s = 0;
+    const l = (max + min) / 2;
+    const d = max - min;
+
+    if (d !== 0) {
+      s = d / (1 - Math.abs(2 * l - 1));
+      if (max === r) {
+        h = (g - b) / d + (g < b ? 6 : 0);
+      } else if (max === g) {
+        h = (b - r) / d + 2;
+      } else {
+        h = (r - g) / d + 4;
+      }
+      h *= 60;
+    }
+
+    return {
+      h, // 0-360
+      s: s * 100, // 0-100
+      l: l * 100, // 0-100
+    };
+  }
+
+  const baseHex = success ? successColor : backgroundColor;
+  const hsl = hexToHsl(baseHex);
+  const hslLightString = `hsl(${hsl.h}, ${Math.min(hsl.s + 10, 100)}%, ${Math.min(
+    hsl.l + 30,
+    100,
+  )}%)`;
+  const hslDarkString = `hsl(${hsl.h}, ${hsl.s}%, ${Math.max(hsl.l - 5, 0)}%)`;
+
+  const [checkEnterDelay, setCheckEnterDelay] = useState(0);
+
+  useEffect(() => {
+    if (success) {
+      console.log('success');
+      setCheckEnterDelay(0);
+      console.log('checkEnterDelay', checkEnterDelay);
+    } else {
+      setCheckEnterDelay(0.4);
+    }
+  }, [success]);
+
   return (
     <motion.div
       initial={false}
       animate={{ backgroundColor: success ? successColor : backgroundColor }}
-      transition={{ type: 'spring', bounce: 0.3, duration: 0.6 }}
+      transition={{ type: 'spring', bounce: 0.3, duration: 0.6, delay: checkEnterDelay }}
       className="aspect-square w-full rounded-full"
+      //   style={{
+      //     boxShadow: `inset 0 2px 8px -2px ${hslLightString}, inset 0 -2px 8px 1px ${hslDarkString}`,
+      //   }}
     >
       <AnimatePresence initial={false} mode="popLayout">
         {success ? (
@@ -28,7 +83,7 @@ export function IconSwap({
             initial={{ opacity: 0, y: 0, scale: 0.5, filter: 'blur(3px)' }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
             exit={{ opacity: 0, y: 0, scale: 0.9, filter: 'blur(3px)' }}
-            transition={{ type: 'spring', bounce: 0.3, duration: 0.6, delay: 0 }}
+            transition={{ type: 'spring', bounce: 0.3, duration: 0.6, delay: checkEnterDelay }}
           >
             <CheckIcon />
           </motion.div>
@@ -39,7 +94,7 @@ export function IconSwap({
             initial={{ opacity: 0, y: 0, scale: 0.9, filter: 'blur(3px)' }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
             exit={{ opacity: 0, y: 0, scale: 0.9, filter: 'blur(3px)' }}
-            transition={{ type: 'spring', bounce: 0.3, duration: 0.6, delay: 0 }}
+            transition={{ type: 'spring', bounce: 0.3, duration: 0.6, delay: checkEnterDelay }}
           >
             {icon}
           </motion.div>

@@ -57,6 +57,7 @@
     "base-ui": "0.1.1",
     "classnames": "^2.5.1",
     "cloudinary": "^2.5.1",
+    "cobe": "^0.6.5",
     "date-fns": "^4.1.0",
     "dd-trace": "^5.21.0",
     "ethers": "5.7.2",

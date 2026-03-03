@@ -18,6 +18,7 @@ import { BaseAppEarn } from './BaseAppEarn';
 import { BaseAppTrade } from './modules/BaseAppTrade';
 import { BaseAppMain } from './modules/BaseAppMain';
 import { BaseAppBuy } from './modules/BaseAppBuy';
+import { BaseAppSendGlobe } from './modules/BaseAppSendGlobe';
 
 // import ImageAsset from './tba.png';
 // import ImageAsset from './base-app-phone.png';
@@ -113,7 +114,9 @@ export function SectionBaseApp() {
             transition={{ type: spring, bounce: 0.3, duration: 0.3 }}
             className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-base-gray-25"
           >
-            <div className="absolute inset-0 h-full w-full">SEND</div>
+            <div className="absolute inset-0 h-full w-full">
+              <BaseAppSendGlobe />
+            </div>
           </motion.div>
           <div className="block h-fit max-w-[95%] py-3 lg:py-4">
             <Text variant={TextVariant.Body} className="!text-base-gray-200">

@@ -161,6 +161,7 @@ __metadata:
     base-ui: 0.1.1
     classnames: ^2.5.1
     cloudinary: ^2.5.1
+    cobe: ^0.6.5
     cross-env: ^7.0.3
     csv-parser: ^3.0.0
     date-fns: ^4.1.0
@@ -11413,6 +11414,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cobe@npm:^0.6.5":
+  version: 0.6.5
+  resolution: "cobe@npm:0.6.5"
+  dependencies:
+    phenomenon: ^1.6.0
+  checksum: ba4e4aab053bc04edc0e0c025c8c9714f75b403497ad9da30d65493b18c6e8de570fa70308edc8ee7a1342342f42ff4a9829e8a26cf7dced2865fda1e1dbf0fc
+  languageName: node
+  linkType: hard
+
 "collect-v8-coverage@npm:^1.0.0":
   version: 1.0.2
   resolution: "collect-v8-coverage@npm:1.0.2"
@@ -18878,6 +18888,13 @@ __metadata:
   dependencies:
     split2: ^4.1.0
   checksum: 947ac096c031eebdf08d989de2e9f6f156b8133d6858c7c2c06c041e1e71dda6f5f3bad3c0ec1e96a09497bbc6ef89e762eefe703b5ef9cb2804392ec52ec400
+  languageName: node
+  linkType: hard
+
+"phenomenon@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "phenomenon@npm:1.6.0"
+  checksum: e05ca8223a9df42c5cee02c082103ef96a349424fec18a8478d2171060a63095e21bef394529263c64d8082aff43204a0fa1355211fd7ac2a338c2839fffbca3
   languageName: node
   linkType: hard
 

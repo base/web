@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 
 import { IconSwap } from './IconSwap';
 
-const SLIDE_INTERVAL_MS = 2500;
+const SLIDE_INTERVAL_MS = 3500;
 
 const tokensList = [
   {
