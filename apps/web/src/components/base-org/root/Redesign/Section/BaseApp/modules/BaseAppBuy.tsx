@@ -143,23 +143,23 @@ function EthereumIcon() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M19.9978 5V15.6277L28.7443 19.6416L19.9978 5Z" fill="white" fill-opacity="0.602" />
+      <path d="M19.9978 5V15.6277L28.7443 19.6416L19.9978 5Z" fill="white" fillOpacity="0.602" />
       <path d="M19.9977 5L11.25 19.6416L19.9977 15.6277V5Z" fill="white" />
       <path
         d="M19.9978 26.5289V33.7502L28.7501 21.3145L19.9978 26.5289Z"
         fill="white"
-        fill-opacity="0.602"
+        fillOpacity="0.602"
       />
       <path d="M19.9977 33.7502V26.5277L11.25 21.3145L19.9977 33.7502Z" fill="white" />
       <path
         d="M19.9978 24.857L28.7443 19.6413L19.9978 15.6299V24.857Z"
         fill="white"
-        fill-opacity="0.2"
+        fillOpacity="0.2"
       />
       <path
         d="M11.25 19.6413L19.9977 24.857V15.6299L11.25 19.6413Z"
         fill="white"
-        fill-opacity="0.602"
+        fillOpacity="0.602"
       />
     </svg>
   );

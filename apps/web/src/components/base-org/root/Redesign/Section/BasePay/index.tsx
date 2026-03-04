@@ -11,6 +11,7 @@ import Image from 'next/image';
 import ImageSequenceCanvas from './ImageSequenceCanvas';
 import SlideButton from './SlideButton';
 import { BasePayImages } from './BasePayImages';
+import { BasePayImagesCircle } from './BasePayImagesCircle';
 
 const prefix = PrefixAsset as ImageType;
 
@@ -18,11 +19,10 @@ export function SectionBasePay() {
   return (
     <Section content={content}>
       <motion.div
-        className="relative col-span-full aspect-[16/12] h-full w-full rounded-lg bg-base-gray-25/0 md:aspect-[16/10]"
+        className="relative col-span-full aspect-[16/12] h-full w-full rounded-lg bg-base-gray-25 md:aspect-[16/10]"
         variants={itemContentVariants}
       >
-        {/* TODO: Add content here */}
-        <BasePayImages />
+        <BasePayImagesCircle />
       </motion.div>
     </Section>
   );

@@ -67,39 +67,47 @@ export function IconSwap({
 
   return (
     <motion.div
-      initial={false}
-      animate={{ backgroundColor: success ? successColor : backgroundColor }}
-      transition={{ type: 'spring', bounce: 0.3, duration: 0.6, delay: checkEnterDelay }}
-      className="aspect-square w-full rounded-full"
-      //   style={{
-      //     boxShadow: `inset 0 2px 8px -2px ${hslLightString}, inset 0 -2px 8px 1px ${hslDarkString}`,
-      //   }}
+      id="icon-swap-wrapper"
+      initial={{ scale: 1 }}
+      animate={success ? { scale: [1, 0.9, 1] } : { scale: 1 }}
+      exit={{ scale: 1 }}
+      transition={{ type: 'ease', bounce: 0.35, duration: 0.4, delay: checkEnterDelay }}
     >
-      <AnimatePresence initial={false} mode="popLayout">
-        {success ? (
-          <motion.div
-            key="check"
-            className="flex h-full w-full items-center justify-center"
-            initial={{ opacity: 0, y: 0, scale: 0.5, filter: 'blur(3px)' }}
-            animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: 0, scale: 0.9, filter: 'blur(3px)' }}
-            transition={{ type: 'spring', bounce: 0.3, duration: 0.6, delay: checkEnterDelay }}
-          >
-            <CheckIcon />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="eth"
-            className="flex h-full w-full items-center justify-center"
-            initial={{ opacity: 0, y: 0, scale: 0.9, filter: 'blur(3px)' }}
-            animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: 0, scale: 0.9, filter: 'blur(3px)' }}
-            transition={{ type: 'spring', bounce: 0.3, duration: 0.6, delay: checkEnterDelay }}
-          >
-            {icon}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <motion.div
+        initial={false}
+        animate={{ backgroundColor: success ? successColor : backgroundColor }}
+        transition={{ type: 'spring', bounce: 0.3, duration: 0.6, delay: checkEnterDelay }}
+        className="aspect-square w-full rounded-full"
+        style={{
+          boxShadow: `inset 0 2px 8px -2px ${hslLightString}, inset 0 -2px 8px 1px ${hslDarkString}`,
+        }}
+      >
+        <AnimatePresence initial={false} mode="popLayout">
+          {success ? (
+            <motion.div
+              key="check"
+              className="flex h-full w-full items-center justify-center"
+              initial={{ opacity: 0, y: 0, scale: 0.5, filter: 'blur(3px)' }}
+              animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, y: 0, scale: 0.9, filter: 'blur(3px)' }}
+              transition={{ type: 'spring', bounce: 0.3, duration: 0.6, delay: checkEnterDelay }}
+            >
+              <CheckIcon />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="eth"
+              className="flex h-full w-full items-center justify-center"
+              initial={{ opacity: 0, y: 0, scale: 0.9, filter: 'blur(3px)' }}
+              animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, y: 0, scale: 0.9, filter: 'blur(3px)' }}
+              transition={{ type: 'spring', bounce: 0.3, duration: 0.6, delay: checkEnterDelay }}
+            >
+              {icon}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </motion.div>
   );
 }
@@ -120,8 +128,8 @@ function CheckIcon() {
             d="M20.9798 3.40527L19.216 5.16909L15.6883 8.69673L8.63307 15.752L5.64576 12.765L4.1521 11.2715L3.40527 10.5247"
             stroke="white"
             strokeWidth="6.8106"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </g>
         <defs>
@@ -132,7 +140,7 @@ function CheckIcon() {
             width="24.385"
             height="20.4545"
             filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
+            colorInterpolationFilters="sRGB"
           >
             <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
@@ -167,23 +175,23 @@ function EthereumIcon() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M19.9978 5V15.6277L28.7443 19.6416L19.9978 5Z" fill="white" fill-opacity="0.602" />
+      <path d="M19.9978 5V15.6277L28.7443 19.6416L19.9978 5Z" fill="white" fillOpacity="0.602" />
       <path d="M19.9977 5L11.25 19.6416L19.9977 15.6277V5Z" fill="white" />
       <path
         d="M19.9978 26.5289V33.7502L28.7501 21.3145L19.9978 26.5289Z"
         fill="white"
-        fill-opacity="0.602"
+        fillOpacity="0.602"
       />
       <path d="M19.9977 33.7502V26.5277L11.25 21.3145L19.9977 33.7502Z" fill="white" />
       <path
         d="M19.9978 24.857L28.7443 19.6413L19.9978 15.6299V24.857Z"
         fill="white"
-        fill-opacity="0.2"
+        fillOpacity="0.2"
       />
       <path
         d="M11.25 19.6413L19.9977 24.857V15.6299L11.25 19.6413Z"
         fill="white"
-        fill-opacity="0.602"
+        fillOpacity="0.602"
       />
     </svg>
   );

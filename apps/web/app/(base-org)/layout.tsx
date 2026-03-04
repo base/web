@@ -30,20 +30,20 @@ export default async function BaseOrgLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="text-black bg-white transition-colors">
+    <div className="bg-white text-black transition-colors">
       <div className="min-w-screen relative mx-auto grid min-h-screen w-full max-w-[1920px] grid-cols-1 selection:bg-blue-5 selection:text-base-blue lg:grid-cols-[13.438rem_1fr]">
         <AnalyticsProvider context="sidenav">
           <Sidebar />
           <MobileNav />
         </AnalyticsProvider>
-        <main className="mx-auto flex w-full max-w-[clamp(1024px,calc(1024px+(100vw-1024px)*0.25),1248px)] justify-center px-4 md:px-6 lg:col-start-2 lg:px-8">
-          {children}
-        </main>
-        <Footer />
+        <div className="mx-auto w-full max-w-[clamp(1024px,calc(1024px+(100vw-1024px)*0.25),1248px)]">
+          <main className="justify-center px-4 md:px-6 lg:col-start-2 lg:px-8">{children}</main>
+          <Footer />
+        </div>
       </div>
 
       {/* Gas Price Dropdown - Top Right */}
-      <div className="hidden fixed top-4 right-4 z-50 lg:block">
+      <div className="fixed right-4 top-4 z-50 hidden lg:block">
         <DynamicWrappedGasPriceDropdown />
       </div>
     </div>
