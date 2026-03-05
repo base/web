@@ -4782,5 +4782,13 @@
     "imageUrl": "/images/partners/aarna.png",
     "category": "defi",
     "subcategory": "yield vault"
+  },
+  {
+    "name": "City Protocol",
+    "description": "City Protocol is the first attention and capital infrastructure for onchain assets. The protocol connects users and projects through reward distribution, defining the next chapter of Neofinance.",
+    "url": "https://cityprotocol.co/",
+    "imageUrl": "/images/partners/city_protocol.png",
+    "category": "consumer",
+    "subcategory": "real world"
   }
 ]
