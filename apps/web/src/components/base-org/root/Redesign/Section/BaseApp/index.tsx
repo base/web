@@ -19,6 +19,7 @@ import { BaseAppTrade } from './modules/BaseAppTrade';
 import { BaseAppMain } from './modules/BaseAppMain';
 import { BaseAppBuy } from './modules/BaseAppBuy';
 import { BaseAppSendGlobe } from './modules/BaseAppSendGlobe';
+import { BaseAppMain2 } from './modules/BaseAppMain2';
 
 // import ImageAsset from './tba.png';
 // import ImageAsset from './base-app-phone.png';
@@ -42,7 +43,7 @@ export function SectionBaseApp() {
 
   return (
     <Section content={content}>
-      <div className="grid-base mb-base col-span-full min-h-[300px] select-none md:mb-20">
+      <div className="grid-base col-span-full min-h-[300px] select-none ">
         <motion.div
           variants={itemContentVariants}
           onMouseEnter={() => setPhoneIsHovered(true)}
@@ -53,7 +54,7 @@ export function SectionBaseApp() {
             transition={{ type: spring, bounce: 0.3, duration: 0.3 }}
             className="group relative aspect-[16/9] h-full w-full flex-1 items-center justify-center overflow-hidden rounded-lg bg-base-gray-25"
           >
-            <BaseAppMain />
+            <BaseAppMain2 />
           </motion.div>
           <div className="left-0 top-full block h-fit max-w-[95%] py-3 lg:py-4">
             <Text variant={TextVariant.Body} className="!text-base-gray-200">

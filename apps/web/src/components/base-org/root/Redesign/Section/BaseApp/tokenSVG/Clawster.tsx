@@ -1,4 +1,14 @@
+import ClawsterImage from './svg/one.svg';
+
 export function Clawster() {
+  return (
+    <div className="w-full">
+      <img src={ClawsterImage.src} alt="Clawster" className="h-auto w-full" />
+    </div>
+  );
+}
+
+export function ClawsterOld() {
   return (
     <svg
       width="334"

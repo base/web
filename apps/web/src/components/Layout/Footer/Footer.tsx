@@ -5,7 +5,7 @@ import Link from 'apps/web/src/components/Link';
 export function Footer() {
   return (
     <AnalyticsProvider context="footer">
-      <footer className="col-span-full grid grid-cols-1 pt-20 md:pt-32 lg:grid-cols-[13.438rem_1fr]">
+      <footer className="col-span-full grid grid-cols-1 lg:grid-cols-[13.438rem_1fr]">
         <div className="col-span-full">
           <div className="mx-auto flex w-full max-w-[clamp(1024px,calc(1024px+(100vw-1024px)*0.25),1248px)] justify-center px-4 md:px-6 lg:px-8">
             <div

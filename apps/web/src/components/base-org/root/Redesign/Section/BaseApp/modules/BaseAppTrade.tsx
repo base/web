@@ -28,11 +28,15 @@ const TOKENS: Token[] = [
   },
   {
     id: 4,
-    component: <Clawster />,
+    component: <Snek />,
   },
   {
     id: 5,
     component: <Clawster />,
+  },
+  {
+    id: 6,
+    component: <Virtual />,
   },
 ];
 

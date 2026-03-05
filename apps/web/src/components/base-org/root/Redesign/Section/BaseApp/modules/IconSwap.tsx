@@ -78,9 +78,9 @@ export function IconSwap({
         animate={{ backgroundColor: success ? successColor : backgroundColor }}
         transition={{ type: 'spring', bounce: 0.3, duration: 0.6, delay: checkEnterDelay }}
         className="aspect-square w-full rounded-full"
-        style={{
-          boxShadow: `inset 0 2px 8px -2px ${hslLightString}, inset 0 -2px 8px 1px ${hslDarkString}`,
-        }}
+        // style={{
+        //   boxShadow: `inset 0 2px 8px -2px ${hslLightString}, inset 0 -2px 8px 1px ${hslDarkString}`,
+        // }}
       >
         <AnimatePresence initial={false} mode="popLayout">
           {success ? (

@@ -1,4 +1,10 @@
+import SnekImage from './svg/two.svg';
+
 export function Snek() {
+  return <img src={SnekImage.src} alt="Snek" className="h-auto w-full" />;
+}
+
+export function SnekOld() {
   return (
     <svg
       width="334"

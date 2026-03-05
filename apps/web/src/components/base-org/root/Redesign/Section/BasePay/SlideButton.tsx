@@ -106,7 +106,7 @@ export default function SlideButton({
         // trigger finish state when released at the end
         setTimeout(() => {
           runFinish();
-        }, 2000);
+        }, 200);
       }
       return atEnd ? 1 : 0;
     });

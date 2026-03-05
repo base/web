@@ -95,6 +95,7 @@
     "tailwindcss-spring": "^1.0.1",
     "three": "^0.168.0",
     "three-stdlib": "^2.33.0",
+    "torph": "^0.0.5",
     "tunnel-rat": "^0.1.2",
     "twemoji": "^14.0.2",
     "typed.js": "^2.1.0",

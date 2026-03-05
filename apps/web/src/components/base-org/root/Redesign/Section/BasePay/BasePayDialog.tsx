@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useMotionValueEvent, useSpring } from 'framer-motion';
 import SlideButton from './SlideButton';
+import { BuyButton } from './BuyButton';
 
 const MIN_WIDTH_PX = 71;
 
@@ -168,13 +169,14 @@ export function BasePayDialog() {
             Pay with USDC
           </p>
           <p className="font-sans text-sm font-normal !leading-none text-base-gray-200">
-            To Outdoor Sports
+            To Acme Inc.
           </p>
         </div>
       </div>
       <div ref={windowRef} className="relative aspect-square w-full rounded-xl" />
       <div className="relative w-full rounded-full bg-[#EEF0F3] p-1">
-        <SlideButton />
+        {/* <SlideButton revealText="" finalText="Done" /> */}
+        <BuyButton />
       </div>
       <div className="relative hidden w-full">
         <div className="pointer-events-none absolute inset-0 flex h-full w-full items-center justify-center font-sans">
@@ -194,9 +196,6 @@ export function BasePayDialog() {
               aria-valuenow={Math.round(progress * 100)}
               tabIndex={0}
             >
-              {/* <div className="absolute inset-0 flex h-full w-full items-center justify-center font-sans">
-                <p>Release to Buy</p>
-              </div> */}
               <div className="flex h-[52px] w-[71px] items-center justify-center">
                 <svg
                   width="20"

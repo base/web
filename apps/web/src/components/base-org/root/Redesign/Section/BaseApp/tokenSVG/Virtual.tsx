@@ -1,4 +1,14 @@
+import VirtualImage from './svg/three.svg';
+
 export function Virtual() {
+  return (
+    <div className="w-full">
+      <img src={VirtualImage.src} alt="Virtual" className="h-auto w-full" />
+    </div>
+  );
+}
+
+export function VirtualOld() {
   return (
     <svg
       width="334"
