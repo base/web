@@ -1,7 +1,14 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { animate, motion, motionValue, useInView, useMotionValue } from 'motion/react';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import {
+  animate,
+  motion,
+  useInView,
+  useMotionValue,
+  useSpring,
+  type MotionValue,
+} from 'motion/react';
 import './BasePayStyle.css';
 import classNames from 'classnames';
 
@@ -41,6 +48,86 @@ const stickers: { image: string; alt: string; color: string; hidden?: boolean }[
 // Computed once at module level so it's available for hook initialization.
 const visibleStickers = stickers.filter((s) => !s.hidden);
 
+type StickerItemProps = {
+  sticker: { image: string; alt: string; color: string };
+  angle: number;
+  orbitRadius: number;
+  stickerSize: number;
+  rotationMV: MotionValue<number>;
+  isActive: boolean;
+  tickIntervalMs: number;
+  /** Fraction of tickIntervalMs to stay frozen before preemptively returning. Default 0.6 */
+  freezeFraction?: number;
+};
+
+function StickerItem({
+  sticker,
+  angle,
+  orbitRadius,
+  stickerSize,
+  rotationMV,
+  isActive,
+  tickIntervalMs,
+  freezeFraction = 0.7,
+}: StickerItemProps) {
+  const toX = useCallback(
+    (deg: number) =>
+      orbitRadius + orbitRadius * Math.cos(angle + (deg * Math.PI) / 180) - stickerSize / 2,
+    [angle, orbitRadius, stickerSize],
+  );
+  const toY = useCallback(
+    (deg: number) =>
+      orbitRadius + orbitRadius * Math.sin(angle + (deg * Math.PI) / 180) - stickerSize / 2,
+    [angle, orbitRadius, stickerSize],
+  );
+
+  // Orbit target — only updated when not frozen
+  const orbitX = useMotionValue(toX(rotationMV.get()));
+  const orbitY = useMotionValue(toY(rotationMV.get()));
+
+  // Spring chases the orbit target, giving a smooth sweep-back when unfreezing
+  const x = useSpring(orbitX, { stiffness: 80, damping: 38 });
+  const y = useSpring(orbitY, { stiffness: 80, damping: 38 });
+
+  // Local freeze flag — decoupled from isActive so we can unfreeze early
+  const [frozen, setFrozen] = useState(false);
+
+  useEffect(() => {
+    if (!isActive) return;
+    setFrozen(true);
+    const timer = setTimeout(() => setFrozen(false), tickIntervalMs * freezeFraction);
+    return () => clearTimeout(timer);
+  }, [isActive, tickIntervalMs, freezeFraction]);
+
+  useEffect(() => {
+    return rotationMV.on('change', (deg) => {
+      if (!frozen) {
+        orbitX.set(toX(deg));
+        orbitY.set(toY(deg));
+      }
+    });
+  }, [frozen, rotationMV, orbitX, orbitY, toX, toY]);
+
+  return (
+    <motion.div
+      className="absolute"
+      animate={{
+        opacity: isActive ? 1 : 0.75,
+        scale: isActive ? 1 : 0.9,
+      }}
+      transition={{ duration: 0.3, type: 'spring', bounce: 0.3 }}
+      style={{ x, y, width: stickerSize, height: stickerSize }}
+    >
+      <img
+        src={sticker.image}
+        alt={sticker.alt}
+        className="h-full w-full object-contain drop-shadow-md"
+        draggable={false}
+      />
+    </motion.div>
+  );
+}
+
 type Props = {
   /** Milliseconds between each tick (one sticker advancing to the top). Default: 3000 */
   tickIntervalMs?: number;
@@ -72,12 +159,6 @@ export function BasePayImagesCircle({
   const rotationMV = useMotionValue(0);
   const bgColorMV = useMotionValue(visibleStickers[0]?.color ?? '#000');
 
-  // Per-sticker x/y motion values — updated directly from rotationMV so no
-  // parent transform is needed and each sticker is always upright.
-  const stickerMVsRef = useRef(
-    visibleStickers.map(() => ({ x: motionValue(0), y: motionValue(0) })),
-  );
-
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -87,27 +168,6 @@ export function BasePayImagesCircle({
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
-
-  // Recompute every sticker's absolute (x, y) whenever rotationMV or orbitRadius changes.
-  // x = r·cos(θᵢ + rot),  y = r·(1 + sin(θᵢ + rot))
-  // The "1 +" offsets by orbitRadius so the flex container's 50%/50% origin maps to the
-  // top of the orbit (matching the old ring-div layout where marginTop was 0).
-  useEffect(() => {
-    if (orbitRadius === 0) return;
-    const N = visibleStickers.length;
-
-    function updatePositions(rotDeg: number) {
-      const rotRad = (rotDeg * Math.PI) / 180;
-      stickerMVsRef.current.forEach(({ x, y }, i) => {
-        const angle = (i / N) * 2 * Math.PI - Math.PI / 2 + rotRad;
-        x.set(orbitRadius * Math.cos(angle));
-        y.set(orbitRadius * (1 + Math.sin(angle)));
-      });
-    }
-
-    updatePositions(rotationMV.get());
-    return rotationMV.on('change', updatePositions);
-  }, [orbitRadius, rotationMV]);
 
   // Continuous rotation: top item lags slowly, then jumps ahead to the next position.
   useEffect(() => {
@@ -130,12 +190,12 @@ export function BasePayImagesCircle({
       // End of lag phase: ring has crept forward only lagCoverage of a step.
       keyframes.push(-(i * stepDeg + stepDeg * lagCoverage));
       times.push(lagEndTime);
-      eases.push('linear'); // constant slow drift — ring always moving
+      eases.push('easeIn'); // gradually accelerates into the jump
 
       // End of jump phase: snap forward to the full next step position.
       keyframes.push(-((i + 1) * stepDeg));
       times.push(jumpEndTime);
-      eases.push('easeOut'); // fast lurch that decelerates into the next position
+      eases.push('easeOut'); // gradually decelerates back to the slow drift
     }
 
     const controls = animate(rotationMV, keyframes, {
@@ -173,45 +233,54 @@ export function BasePayImagesCircle({
       onMouseLeave={() => setHoverActive(false)}
       role="presentation"
     >
-      <div className="bg-red-200 absolute inset-0 flex h-full w-full items-center justify-center">
+      <div className="absolute inset-0 z-20 flex h-full w-full items-end justify-end">
+        <div
+          style={{
+            background:
+              'linear-gradient(to bottom, rgba(250, 250, 250, 0), rgba(250, 250, 250, 1))',
+          }}
+          className=" h-[20%] w-full items-center justify-center "
+        ></div>
+      </div>
+      <div className="absolute inset-0 flex h-full w-full items-center justify-center">
         <motion.div
           className="z-0 aspect-square w-[300px] rounded-md"
           style={{ backgroundColor: bgColorMV }}
         />
       </div>
       <div className="relative flex h-full items-center justify-center">
-        {/* Stickers — each positioned independently via sin/cos, always upright */}
-        {visibleStickers.map((sticker, i) => {
-          const isActive = i === topItemCount % visibleStickers.length;
-          const { x, y } = stickerMVsRef.current[i];
-          return (
-            <motion.div
-              key={sticker.alt}
-              className="pointer-events-none absolute"
-              animate={{
-                opacity: stickersActive && orbitRadius > 0 ? (isActive ? 1 : 0.5) : 0,
-              }}
-              transition={{ duration: 0.8 }}
-              style={{
-                width: stickerSize,
-                height: stickerSize,
-                left: '50%',
-                top: '50%',
-                marginLeft: -stickerSize / 2,
-                marginTop: -stickerSize / 2,
-                x,
-                y,
-              }}
-            >
-              <img
-                src={sticker.image}
-                alt={sticker.alt}
-                className="h-full w-full object-contain drop-shadow-md"
-                draggable={false}
-              />
-            </motion.div>
-          );
-        })}
+        {/* Orbit ring — motion.div driven by a ticking spring instead of CSS animation */}
+        <motion.div
+          className="pointer-events-none absolute"
+          style={{
+            width: orbitRadius * 2,
+            height: orbitRadius * 2,
+            left: '50%',
+            top: '50%',
+            marginLeft: -orbitRadius,
+            marginTop: 0,
+          }}
+          animate={{ opacity: stickersActive && orbitRadius > 0 ? 1 : 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          {orbitRadius > 0 &&
+            visibleStickers.map((sticker, i) => {
+              const angle = (i / visibleStickers.length) * 2 * Math.PI - Math.PI / 2;
+              const isActive = i === topItemCount % visibleStickers.length;
+              return (
+                <StickerItem
+                  key={sticker.alt}
+                  sticker={sticker}
+                  angle={angle}
+                  orbitRadius={orbitRadius}
+                  stickerSize={stickerSize}
+                  rotationMV={rotationMV}
+                  isActive={isActive}
+                  tickIntervalMs={tickIntervalMs}
+                />
+              );
+            })}
+        </motion.div>
 
         {/* Central card */}
         <div className="relative z-20 spring-bounce-20 spring-duration-300">

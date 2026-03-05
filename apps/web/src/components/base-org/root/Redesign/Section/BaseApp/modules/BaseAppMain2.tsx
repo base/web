@@ -53,7 +53,7 @@ export function BaseAppMain2() {
             strokeWidth="3"
           />
         </g>
-        <g clip-path="url(#clip0_1_68)">
+        <g clipPath="url(#clip0_1_68)">
           <rect
             x="88.6602"
             y="88.6602"
@@ -101,9 +101,9 @@ export function BaseAppMain2() {
             width="101.584"
             height="101.584"
             filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
+            colorInterpolationFilters="sRGB"
           >
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feColorMatrix
               in="SourceAlpha"
               type="matrix"
@@ -133,9 +133,9 @@ export function BaseAppMain2() {
             gradientUnits="userSpaceOnUse"
             gradientTransform="translate(128.66 57.4261) rotate(90) scale(111.234)"
           >
-            <stop stop-color="#5EE8FF" />
-            <stop offset="0.650646" stop-color="#0052FF" />
-            <stop offset="1" stop-color="#000CF7" />
+            <stop stopColor="#5EE8FF" />
+            <stop offset="0.650646" stopColor="#0052FF" />
+            <stop offset="1" stopColor="#000CF7" />
           </radialGradient>
           <radialGradient
             id="paint1_radial_1_68"
@@ -145,8 +145,8 @@ export function BaseAppMain2() {
             gradientUnits="userSpaceOnUse"
             gradientTransform="translate(129.429 119.714) rotate(90) scale(46.7143)"
           >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0.6" />
+            <stop stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0.6" />
           </radialGradient>
           <radialGradient
             id="paint2_radial_1_68"
@@ -156,8 +156,8 @@ export function BaseAppMain2() {
             gradientUnits="userSpaceOnUse"
             gradientTransform="translate(128.66 157.547) rotate(90) scale(100.725)"
           >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0.6" />
+            <stop stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0.6" />
           </radialGradient>
           <clipPath id="clip0_1_68">
             <rect x="88.6602" y="88.6602" width="80" height="80" rx="40" fill="white" />

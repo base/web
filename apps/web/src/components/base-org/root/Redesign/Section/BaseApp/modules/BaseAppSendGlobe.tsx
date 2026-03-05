@@ -64,8 +64,8 @@ export function BaseAppSendGlobe() {
                   y2="20.7841"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#45C7FF" />
-                  <stop offset="1" stop-color="#30CE1F" />
+                  <stop stopColor="#45C7FF" />
+                  <stop offset="1" stopColor="#30CE1F" />
                 </linearGradient>
               </defs>
             </svg>
@@ -308,8 +308,8 @@ export function BaseAppSendGlobe() {
                   gradientUnits="userSpaceOnUse"
                   gradientTransform="translate(180 80.7402) rotate(90) scale(279.26)"
                 >
-                  <stop stop-color="#C3E1FF" />
-                  <stop offset="1" stop-color="#0E9AFF" />
+                  <stop stopColor="#C3E1FF" />
+                  <stop offset="1" stopColor="#0E9AFF" />
                 </radialGradient>
                 <linearGradient
                   id="paint1_linear_1625_1406"
@@ -319,8 +319,8 @@ export function BaseAppSendGlobe() {
                   y2="213.338"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="white" stop-opacity="0.99" />
-                  <stop offset="1" stop-color="#F5FAFF" />
+                  <stop stopColor="white" stop-opacity="0.99" />
+                  <stop offset="1" stopColor="#F5FAFF" />
                 </linearGradient>
                 <radialGradient
                   id="paint2_radial_1625_1406"
@@ -330,8 +330,8 @@ export function BaseAppSendGlobe() {
                   gradientUnits="userSpaceOnUse"
                   gradientTransform="translate(180 98.7863) rotate(90) scale(201.573)"
                 >
-                  <stop stop-color="white" stop-opacity="0.25" />
-                  <stop offset="1" stop-color="white" stop-opacity="0" />
+                  <stop stopColor="white" stop-opacity="0.25" />
+                  <stop offset="1" stopColor="white" stop-opacity="0" />
                 </radialGradient>
                 <linearGradient
                   id="paint3_linear_1625_1406"
@@ -341,8 +341,8 @@ export function BaseAppSendGlobe() {
                   y2="300.359"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="white" />
-                  <stop offset="1" stop-color="white" stop-opacity="0.25" />
+                  <stop stopColor="white" />
+                  <stop offset="1" stopColor="white" stop-opacity="0.25" />
                 </linearGradient>
                 <radialGradient
                   id="paint4_radial_1625_1406"
@@ -352,8 +352,8 @@ export function BaseAppSendGlobe() {
                   gradientUnits="userSpaceOnUse"
                   gradientTransform="translate(179.996 116.327) rotate(90) scale(158.036)"
                 >
-                  <stop stop-color="white" stop-opacity="0.25" />
-                  <stop offset="1" stop-color="white" stop-opacity="0" />
+                  <stop stopColor="white" stop-opacity="0.25" />
+                  <stop offset="1" stopColor="white" stop-opacity="0" />
                 </radialGradient>
                 <linearGradient
                   id="paint5_linear_1625_1406"
@@ -363,8 +363,8 @@ export function BaseAppSendGlobe() {
                   y2="274.363"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="white" />
-                  <stop offset="1" stop-color="white" stop-opacity="0.25" />
+                  <stop stopColor="white" />
+                  <stop offset="1" stopColor="white" stop-opacity="0.25" />
                 </linearGradient>
                 <radialGradient
                   id="paint6_radial_1625_1406"
@@ -374,8 +374,8 @@ export function BaseAppSendGlobe() {
                   gradientUnits="userSpaceOnUse"
                   gradientTransform="translate(179.998 127.251) rotate(90) scale(130.922)"
                 >
-                  <stop stop-color="white" stop-opacity="0.25" />
-                  <stop offset="1" stop-color="white" stop-opacity="0" />
+                  <stop stopColor="white" stop-opacity="0.25" />
+                  <stop offset="1" stopColor="white" stop-opacity="0" />
                 </radialGradient>
                 <linearGradient
                   id="paint7_linear_1625_1406"
@@ -385,8 +385,8 @@ export function BaseAppSendGlobe() {
                   y2="258.173"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="white" />
-                  <stop offset="1" stop-color="white" stop-opacity="0.25" />
+                  <stop stopColor="white" />
+                  <stop offset="1" stopColor="white" stop-opacity="0.25" />
                 </linearGradient>
                 <radialGradient
                   id="paint8_radial_1625_1406"
@@ -396,8 +396,8 @@ export function BaseAppSendGlobe() {
                   gradientUnits="userSpaceOnUse"
                   gradientTransform="translate(179.996 137.208) rotate(90) scale(106.209)"
                 >
-                  <stop stop-color="white" stop-opacity="0.25" />
-                  <stop offset="1" stop-color="white" stop-opacity="0" />
+                  <stop stopColor="white" stop-opacity="0.25" />
+                  <stop offset="1" stopColor="white" stop-opacity="0" />
                 </radialGradient>
                 <linearGradient
                   id="paint9_linear_1625_1406"
@@ -407,8 +407,8 @@ export function BaseAppSendGlobe() {
                   y2="243.417"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="white" />
-                  <stop offset="1" stop-color="white" stop-opacity="0.25" />
+                  <stop stopColor="white" />
+                  <stop offset="1" stopColor="white" stop-opacity="0.25" />
                 </linearGradient>
                 <linearGradient
                   id="paint10_linear_1625_1406"
@@ -418,8 +418,8 @@ export function BaseAppSendGlobe() {
                   y2="329.089"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="white" />
-                  <stop offset="1" stop-color="#BADDFF" />
+                  <stop stopColor="white" />
+                  <stop offset="1" stopColor="#BADDFF" />
                 </linearGradient>
                 <linearGradient
                   id="paint11_linear_1625_1406"
@@ -429,8 +429,8 @@ export function BaseAppSendGlobe() {
                   y2="337.489"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop offset="0.285212" stop-color="white" />
-                  <stop offset="0.839841" stop-color="#139CFF" />
+                  <stop offset="0.285212" stopColor="white" />
+                  <stop offset="0.839841" stopColor="#139CFF" />
                 </linearGradient>
                 <radialGradient
                   id="paint12_radial_1625_1406"
@@ -440,10 +440,10 @@ export function BaseAppSendGlobe() {
                   gradientUnits="userSpaceOnUse"
                   gradientTransform="translate(180 49.1439) rotate(90) scale(310.856)"
                 >
-                  <stop offset="0.266852" stop-color="#C3E1FF" stop-opacity="0" />
-                  <stop offset="0.583014" stop-color="#9BD1FF" stop-opacity="0.221554" />
-                  <stop offset="0.696136" stop-color="#7FC6FF" stop-opacity="0.378586" />
-                  <stop offset="1" stop-color="#0E9AFF" />
+                  <stop offset="0.266852" stopColor="#C3E1FF" stop-opacity="0" />
+                  <stop offset="0.583014" stopColor="#9BD1FF" stop-opacity="0.221554" />
+                  <stop offset="0.696136" stopColor="#7FC6FF" stop-opacity="0.378586" />
+                  <stop offset="1" stopColor="#0E9AFF" />
                 </radialGradient>
                 <linearGradient
                   id="paint13_linear_1625_1406"
@@ -453,9 +453,9 @@ export function BaseAppSendGlobe() {
                   y2="199.574"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="white" stop-opacity="0" />
-                  <stop offset="0.480835" stop-color="white" />
-                  <stop offset="1" stop-color="white" stop-opacity="0" />
+                  <stop stopColor="white" stop-opacity="0" />
+                  <stop offset="0.480835" stopColor="white" />
+                  <stop offset="1" stopColor="white" stop-opacity="0" />
                 </linearGradient>
               </defs>
             </svg>
