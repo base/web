@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { animate, motion, useInView, useMotionValue, useTransform } from 'motion/react';
+import { animate, motion, motionValue, useInView, useMotionValue } from 'motion/react';
 import './BasePayStyle.css';
 import classNames from 'classnames';
 
@@ -70,8 +70,13 @@ export function BasePayImagesCircle({
 
   const tickCount = useRef(0);
   const rotationMV = useMotionValue(0);
-  const counterRotateMV = useTransform(rotationMV, (v) => -v);
   const bgColorMV = useMotionValue(visibleStickers[0]?.color ?? '#000');
+
+  // Per-sticker x/y motion values — updated directly from rotationMV so no
+  // parent transform is needed and each sticker is always upright.
+  const stickerMVsRef = useRef(
+    visibleStickers.map(() => ({ x: motionValue(0), y: motionValue(0) })),
+  );
 
   useEffect(() => {
     const el = ref.current;
@@ -82,6 +87,27 @@ export function BasePayImagesCircle({
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  // Recompute every sticker's absolute (x, y) whenever rotationMV or orbitRadius changes.
+  // x = r·cos(θᵢ + rot),  y = r·(1 + sin(θᵢ + rot))
+  // The "1 +" offsets by orbitRadius so the flex container's 50%/50% origin maps to the
+  // top of the orbit (matching the old ring-div layout where marginTop was 0).
+  useEffect(() => {
+    if (orbitRadius === 0) return;
+    const N = visibleStickers.length;
+
+    function updatePositions(rotDeg: number) {
+      const rotRad = (rotDeg * Math.PI) / 180;
+      stickerMVsRef.current.forEach(({ x, y }, i) => {
+        const angle = (i / N) * 2 * Math.PI - Math.PI / 2 + rotRad;
+        x.set(orbitRadius * Math.cos(angle));
+        y.set(orbitRadius * (1 + Math.sin(angle)));
+      });
+    }
+
+    updatePositions(rotationMV.get());
+    return rotationMV.on('change', updatePositions);
+  }, [orbitRadius, rotationMV]);
 
   // Continuous rotation: top item lags slowly, then jumps ahead to the next position.
   useEffect(() => {
@@ -154,52 +180,38 @@ export function BasePayImagesCircle({
         />
       </div>
       <div className="relative flex h-full items-center justify-center">
-        {/* Orbit ring — motion.div driven by a ticking spring instead of CSS animation */}
-        <motion.div
-          className="pointer-events-none absolute"
-          style={{
-            width: orbitRadius * 2,
-            height: orbitRadius * 2,
-            left: '50%',
-            top: '50%',
-            marginLeft: -orbitRadius,
-            marginTop: 0,
-            rotate: rotationMV,
-          }}
-          animate={{ opacity: stickersActive && orbitRadius > 0 ? 1 : 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          {visibleStickers.map((sticker, i) => {
-            // start from top (-π/2) and go clockwise
-            const angle = (i / visibleStickers.length) * 2 * Math.PI - Math.PI / 2;
-            const x = orbitRadius + orbitRadius * Math.cos(angle) - stickerSize / 2;
-            const y = orbitRadius + orbitRadius * Math.sin(angle) - stickerSize / 2;
-            const isActive = i === topItemCount % visibleStickers.length;
-
-            return (
-              <motion.div
-                key={sticker.alt}
-                className="absolute bg-base-gray-50/0"
-                animate={{ opacity: isActive ? 1 : 0.75, scale: isActive ? 1 : 0.9 }}
-                transition={{ duration: 0.3, type: 'spring', bounce: 0.3 }}
-                style={{
-                  left: x,
-                  top: y,
-                  width: stickerSize,
-                  height: stickerSize,
-                  rotate: counterRotateMV,
-                }}
-              >
-                <img
-                  src={sticker.image}
-                  alt={sticker.alt}
-                  className="h-full w-full object-contain drop-shadow-md"
-                  draggable={false}
-                />
-              </motion.div>
-            );
-          })}
-        </motion.div>
+        {/* Stickers — each positioned independently via sin/cos, always upright */}
+        {visibleStickers.map((sticker, i) => {
+          const isActive = i === topItemCount % visibleStickers.length;
+          const { x, y } = stickerMVsRef.current[i];
+          return (
+            <motion.div
+              key={sticker.alt}
+              className="pointer-events-none absolute"
+              animate={{
+                opacity: stickersActive && orbitRadius > 0 ? (isActive ? 1 : 0.5) : 0,
+              }}
+              transition={{ duration: 0.8 }}
+              style={{
+                width: stickerSize,
+                height: stickerSize,
+                left: '50%',
+                top: '50%',
+                marginLeft: -stickerSize / 2,
+                marginTop: -stickerSize / 2,
+                x,
+                y,
+              }}
+            >
+              <img
+                src={sticker.image}
+                alt={sticker.alt}
+                className="h-full w-full object-contain drop-shadow-md"
+                draggable={false}
+              />
+            </motion.div>
+          );
+        })}
 
         {/* Central card */}
         <div className="relative z-20 spring-bounce-20 spring-duration-300">
