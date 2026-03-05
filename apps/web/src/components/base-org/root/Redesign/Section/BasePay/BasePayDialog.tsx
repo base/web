@@ -11,7 +11,11 @@ function clamp(value: number, min: number, max: number): number {
   return Math.max(min, Math.min(value, max));
 }
 
-export function BasePayDialog() {
+type Props = {
+  triggerCount?: number;
+};
+
+export function BasePayDialog({ triggerCount }: Props) {
   const cardRef = useRef<HTMLDivElement>(null);
   const windowRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -174,10 +178,10 @@ export function BasePayDialog() {
         </div>
       </div>
       <div ref={windowRef} className="relative aspect-square w-full rounded-xl" />
-      <div className="relative w-full rounded-full bg-[#EEF0F3] p-1">
-        {/* <SlideButton revealText="" finalText="Done" /> */}
-        <BuyButton />
-      </div>
+
+      {/* <SlideButton revealText="" finalText="Done" /> */}
+      <BuyButton triggerCount={triggerCount} />
+
       <div className="relative hidden w-full">
         <div className="pointer-events-none absolute inset-0 flex h-full w-full items-center justify-center font-sans">
           <p>Slide to Buy</p>

@@ -12,7 +12,7 @@ export function IconSwap({
   backgroundColor = '#0052FF',
   icon = <EthereumIcon />,
 }: IconSwapProps) {
-  const successColor = '#0BC613';
+  const successColor = '#00DA00';
 
   function hexToHsl(hex: string) {
     const clean = hex.replace('#', '');

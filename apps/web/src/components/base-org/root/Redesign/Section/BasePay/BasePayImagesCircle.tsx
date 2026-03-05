@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { animate, motion, useInView, useMotionValue } from 'motion/react';
+import { animate, motion, useInView, useMotionValue, useTransform } from 'motion/react';
 import './BasePayStyle.css';
 import classNames from 'classnames';
 
@@ -42,24 +42,25 @@ const stickers: { image: string; alt: string; color: string; hidden?: boolean }[
 const visibleStickers = stickers.filter((s) => !s.hidden);
 
 type Props = {
-  /** Seconds for one full rotation. Higher = slower. */
-  spinSpeed?: number;
-  /** Steps per full rotation — controls how many ticks there are. Default: 10 (one per sticker). */
+  /** Milliseconds between each tick (one sticker advancing to the top). Default: 3000 */
+  tickIntervalMs?: number;
+  /** Steps per full rotation — controls how many degrees each tick advances. Default: 10 */
   ticksPerRotation?: number;
-  /** Orbit radius as a fraction of the container's width (0–1). Default: 0.35 */
+  /** Orbit radius as a fraction of the container's width (0–1). Default: 0.5 */
   orbitRadiusFraction?: number;
-  /** Sticker size as a fraction of the container's width (0–1). Default: 0.12 */
+  /** Sticker size as a fraction of the container's width (0–1). Default: 0.3 */
   stickerSizeFraction?: number;
 };
 
 export function BasePayImagesCircle({
-  spinSpeed = 30,
+  tickIntervalMs = 5000,
   ticksPerRotation = 10,
   orbitRadiusFraction = 0.5,
   stickerSizeFraction = 0.3,
 }: Props) {
   const [hoverActive, setHoverActive] = useState(false);
   const [containerWidth, setContainerWidth] = useState(0);
+  const [topItemCount, setTopItemCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { amount: 0.25, once: true });
   const stickersActive = isInView;
@@ -71,6 +72,7 @@ export function BasePayImagesCircle({
   const accumulatedDeg = useRef(0);
   const tickCount = useRef(0);
   const rotationMV = useMotionValue(0);
+  const counterRotateMV = useTransform(rotationMV, (v) => -v);
   const bgColorMV = useMotionValue(visibleStickers[0]?.color ?? '#000');
 
   useEffect(() => {
@@ -86,10 +88,10 @@ export function BasePayImagesCircle({
   useEffect(() => {
     if (!stickersActive || orbitRadius === 0) return;
     const stepDeg = 360 / ticksPerRotation;
-    const intervalMs = (spinSpeed * 1000) / ticksPerRotation;
     const id = setInterval(() => {
       accumulatedDeg.current -= stepDeg;
       tickCount.current += 1;
+      setTopItemCount((c) => c + 1);
 
       animate(rotationMV, accumulatedDeg.current, {
         type: 'spring',
@@ -103,9 +105,9 @@ export function BasePayImagesCircle({
         duration: 0.5,
         ease: 'easeOut',
       });
-    }, intervalMs);
+    }, tickIntervalMs);
     return () => clearInterval(id);
-  }, [stickersActive, orbitRadius, spinSpeed, ticksPerRotation, rotationMV, bgColorMV]);
+  }, [stickersActive, orbitRadius, tickIntervalMs, ticksPerRotation, rotationMV, bgColorMV]);
 
   return (
     <motion.div
@@ -146,22 +148,20 @@ export function BasePayImagesCircle({
             const angle = (i / visibleStickers.length) * 2 * Math.PI - Math.PI / 2;
             const x = orbitRadius + orbitRadius * Math.cos(angle) - stickerSize / 2;
             const y = orbitRadius + orbitRadius * Math.sin(angle) - stickerSize / 2;
-
-            // Rotate each sticker so its top points away from the circle's center.
-            // This is a fixed offset in the ring's local frame — no counter-animation needed.
-            const facingDeg = angle * (180 / Math.PI) + 90;
-            // const facingDeg = 0;
+            const isActive = i === topItemCount % visibleStickers.length;
 
             return (
-              <div
+              <motion.div
                 key={sticker.alt}
                 className="absolute bg-base-gray-50/0"
+                animate={{ opacity: isActive ? 1 : 0.75, scale: isActive ? 1 : 0.9 }}
+                transition={{ duration: 0.3, type: 'spring', bounce: 0.3 }}
                 style={{
                   left: x,
                   top: y,
                   width: stickerSize,
                   height: stickerSize,
-                  transform: `rotate(${facingDeg}deg)`,
+                  rotate: counterRotateMV,
                 }}
               >
                 <img
@@ -170,7 +170,7 @@ export function BasePayImagesCircle({
                   className="h-full w-full object-contain drop-shadow-md"
                   draggable={false}
                 />
-              </div>
+              </motion.div>
             );
           })}
         </motion.div>
@@ -178,7 +178,7 @@ export function BasePayImagesCircle({
         {/* Central card */}
         <div className="relative z-20 spring-bounce-20 spring-duration-300">
           <div className="z-10 w-[350px] translate-y-[0%] scale-[0.9]">
-            <BasePayDialog />
+            <BasePayDialog triggerCount={topItemCount} />
           </div>
         </div>
       </div>
