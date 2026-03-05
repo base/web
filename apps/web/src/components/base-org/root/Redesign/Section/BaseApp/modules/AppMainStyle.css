@@ -161,7 +161,48 @@
     infinite;
 }
 
-@keyframes lookAround {
+.torso {
+  animation: torso 8s
+    linear(
+      0,
+      0.0017,
+      0.0068 1.15%,
+      0.0152 1.75%,
+      0.027 2.36%,
+      0.0421 3%,
+      0.0612 3.68%,
+      0.1108 5.13%,
+      0.159 6.35%,
+      0.22 7.74%,
+      0.4775 13.2%,
+      0.5912 15.75%,
+      0.6473 17.11%,
+      0.6982 18.42%,
+      0.7446 19.71%,
+      0.7866 20.99%,
+      0.8255,
+      0.8606 23.57%,
+      0.8924,
+      0.9206 26.2%,
+      0.9458 27.56%,
+      0.9678 28.93%,
+      0.987 30.35%,
+      1.0032 31.81%,
+      1.0224 34.11%,
+      1.0359 36.59%,
+      1.0436 39.28%,
+      1.046 42.3%,
+      1.0446 44.66%,
+      1.0407 47.44%,
+      1.0118 61.83%,
+      1.0026 69.55%,
+      0.9981 80.52%,
+      0.9991 99.99%
+    )
+    infinite;
+}
+
+@keyframes lookAround2 {
   0% {
     transform: translate3d(0, 0, 0);
   }
@@ -179,5 +220,68 @@
   }
   100% {
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes lookAround {
+  0% {
+    transform: translate3d(0%, 0, 0);
+  }
+  20% {
+    transform: translate3d(30%, 10%, 0) scale(0.9);
+  }
+  22% {
+    transform: translate3d(30%, 10%, 0) scale(0.9);
+  }
+  50% {
+    transform: translate3d(-30%, 0, 0) scale(1.1);
+  }
+  52% {
+    transform: translate3d(-30%, 0, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes torso2 {
+  0% {
+    transform: translate3d(0%, 0, 0);
+  }
+  20% {
+    transform: translate3d(30%, -5%, 0) scale(0.9);
+  }
+  22% {
+    transform: translate3d(30%, -5%, 0) scale(0.9);
+  }
+  50% {
+    transform: translate3d(-30%, -5%, 0) scale(1.2);
+  }
+  52% {
+    transform: translate3d(-30%, -5%, 0) scale(1.2);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes torso {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.9) rotate(10deg);
+  }
+  22% {
+    transform: scale(1.9) rotate(10deg);
+  }
+  50% {
+    transform: scale(1.9) rotate(-10deg);
+  }
+  52% {
+    transform: scale(1.9) rotate(-10deg);
+  }
+  100% {
+    transform: scale(1);
   }
 }

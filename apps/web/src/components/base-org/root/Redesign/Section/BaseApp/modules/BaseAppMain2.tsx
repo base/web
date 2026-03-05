@@ -72,7 +72,7 @@ export function BaseAppMain2() {
             fill="url(#paint1_radial_1_68)"
             fillOpacity="0.9"
           />
-          <g filter="url(#filter0_d_1_68)">
+          <g className="torso reset origin-top" filter="url(#filter0_d_1_68)">
             <circle
               cx="128.66"
               cy="182.641"
