@@ -57,8 +57,11 @@ export function SectionBaseApp() {
             <BaseAppMain2 />
           </motion.div>
           <div className="left-0 top-full block h-fit max-w-[95%] py-3 lg:py-4">
-            <Text variant={TextVariant.Body} className="!text-base-gray-200">
+            {/* <Text variant={TextVariant.Body} className="!text-base-gray-200">
               An everything app that brings together a social network, apps, payments, and finance.
+              One place to earn, trade, and chat with everyone, everywhere.
+            </Text> */}
+            <Text variant={TextVariant.Body} className="!text-base-gray-200">
               One place to earn, trade, and chat with everyone, everywhere.
             </Text>
           </div>

@@ -20,7 +20,7 @@ export function BuyButton() {
       className="w-full rounded-full bg-base-gray-50 px-2 py-4 text-white"
     >
       <button className="w-full font-sans text-base">
-        <TextMorph>{buttonText}</TextMorph>
+        <TextMorph duration={600}>{buttonText}</TextMorph>
       </button>
     </div>
   );

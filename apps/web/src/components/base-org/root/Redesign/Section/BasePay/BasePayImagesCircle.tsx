@@ -150,6 +150,7 @@ export function BasePayImagesCircle({
             // Rotate each sticker so its top points away from the circle's center.
             // This is a fixed offset in the ring's local frame — no counter-animation needed.
             const facingDeg = angle * (180 / Math.PI) + 90;
+            // const facingDeg = 0;
 
             return (
               <div

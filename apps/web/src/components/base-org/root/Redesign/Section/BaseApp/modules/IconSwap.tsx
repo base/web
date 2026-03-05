@@ -12,7 +12,7 @@ export function IconSwap({
   backgroundColor = '#0052FF',
   icon = <EthereumIcon />,
 }: IconSwapProps) {
-  const successColor = '#27AD75';
+  const successColor = '#0BC613';
 
   function hexToHsl(hex: string) {
     const clean = hex.replace('#', '');
@@ -71,7 +71,7 @@ export function IconSwap({
       initial={{ scale: 1 }}
       animate={success ? { scale: [1, 0.9, 1] } : { scale: 1 }}
       exit={{ scale: 1 }}
-      transition={{ type: 'ease', bounce: 0.35, duration: 0.4, delay: checkEnterDelay }}
+      transition={{ type: 'ease', bounce: 0.35, duration: 0.4, delay: checkEnterDelay - 0.2 }}
     >
       <motion.div
         initial={false}
