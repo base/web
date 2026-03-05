@@ -68,8 +68,6 @@ export function BasePayImagesCircle({
   const orbitRadius = containerWidth * orbitRadiusFraction;
   const stickerSize = containerWidth * stickerSizeFraction;
 
-  // Accumulated rotation kept in a ref so the setInterval closure never goes stale.
-  const accumulatedDeg = useRef(0);
   const tickCount = useRef(0);
   const rotationMV = useMotionValue(0);
   const counterRotateMV = useTransform(rotationMV, (v) => -v);
@@ -85,29 +83,57 @@ export function BasePayImagesCircle({
     return () => observer.disconnect();
   }, []);
 
+  // Continuous rotation: top item lags slowly, then jumps ahead to the next position.
   useEffect(() => {
     if (!stickersActive || orbitRadius === 0) return;
+
+    const totalDuration = (tickIntervalMs * ticksPerRotation) / 1000;
     const stepDeg = 360 / ticksPerRotation;
+    // During the lag phase the ring covers only this fraction of stepDeg (always moving, just slowly).
+    const lagFraction = 0.65; // portion of each tick spent lagging
+    const lagCoverage = 0.08; // fraction of stepDeg covered during the lag phase
+
+    const keyframes: number[] = [0];
+    const times: number[] = [0];
+    const eases: string[] = [];
+
+    for (let i = 0; i < ticksPerRotation; i++) {
+      const lagEndTime = (i + lagFraction) / ticksPerRotation;
+      const jumpEndTime = (i + 1) / ticksPerRotation;
+
+      // End of lag phase: ring has crept forward only lagCoverage of a step.
+      keyframes.push(-(i * stepDeg + stepDeg * lagCoverage));
+      times.push(lagEndTime);
+      eases.push('linear'); // constant slow drift — ring always moving
+
+      // End of jump phase: snap forward to the full next step position.
+      keyframes.push(-((i + 1) * stepDeg));
+      times.push(jumpEndTime);
+      eases.push('easeOut'); // fast lurch that decelerates into the next position
+    }
+
+    const controls = animate(rotationMV, keyframes, {
+      duration: totalDuration,
+      times,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ease: eases as any,
+      repeat: Infinity,
+    });
+
+    return () => controls.stop();
+  }, [stickersActive, orbitRadius, tickIntervalMs, ticksPerRotation, rotationMV]);
+
+  // Side effects: update active sticker and bg color on each tick.
+  useEffect(() => {
+    if (!stickersActive) return;
     const id = setInterval(() => {
-      accumulatedDeg.current -= stepDeg;
       tickCount.current += 1;
-      setTopItemCount((c) => c + 1);
-
-      animate(rotationMV, accumulatedDeg.current, {
-        type: 'spring',
-        duration: 0.9,
-        bounce: 0.15,
-      });
-
-      // After each CCW tick, the next sticker (index k % n) arrives at the top.
       const topIdx = tickCount.current % visibleStickers.length;
-      animate(bgColorMV, visibleStickers[topIdx].color, {
-        duration: 0.5,
-        ease: 'easeOut',
-      });
+      animate(bgColorMV, visibleStickers[topIdx].color, { duration: 0.5, ease: 'easeOut' });
+      setTopItemCount((c) => c + 1);
     }, tickIntervalMs);
     return () => clearInterval(id);
-  }, [stickersActive, orbitRadius, tickIntervalMs, ticksPerRotation, rotationMV, bgColorMV]);
+  }, [stickersActive, tickIntervalMs, bgColorMV]);
 
   return (
     <motion.div
