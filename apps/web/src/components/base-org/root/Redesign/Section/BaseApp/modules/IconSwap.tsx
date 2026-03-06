@@ -53,25 +53,30 @@ export function IconSwap({
   )}%)`;
   const hslDarkString = `hsl(${hsl.h}, ${hsl.s}%, ${Math.max(hsl.l - 5, 0)}%)`;
 
+  const [scaleDelay, setScaleDelay] = useState(0);
   const [checkEnterDelay, setCheckEnterDelay] = useState(0);
+  const [buttonScale, setButtonScale] = useState(1);
 
   useEffect(() => {
     if (success) {
-      console.log('success');
       setCheckEnterDelay(0);
-      console.log('checkEnterDelay', checkEnterDelay);
+      const pressStart = setTimeout(() => setButtonScale(0.9), 1200);
+      const pressEnd = setTimeout(() => setButtonScale(1), 1400);
+      return () => {
+        clearTimeout(pressStart);
+        clearTimeout(pressEnd);
+      };
     } else {
-      setCheckEnterDelay(0.4);
+      setButtonScale(1);
+      setCheckEnterDelay(1.4);
     }
   }, [success]);
 
   return (
     <motion.div
       id="icon-swap-wrapper"
-      initial={{ scale: 1 }}
-      animate={success ? { scale: [1, 0.9, 1] } : { scale: 1 }}
-      exit={{ scale: 1 }}
-      transition={{ type: 'ease', bounce: 0.35, duration: 0.4, delay: checkEnterDelay - 0.2 }}
+      style={{ scale: buttonScale }}
+      className="spring-bounce-30 spring-duration-500"
     >
       <motion.div
         initial={false}
@@ -90,9 +95,14 @@ export function IconSwap({
               initial={{ opacity: 0, y: 0, scale: 0.5, filter: 'blur(3px)' }}
               animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
               exit={{ opacity: 0, y: 0, scale: 0.9, filter: 'blur(3px)' }}
-              transition={{ type: 'spring', bounce: 0.3, duration: 0.6, delay: checkEnterDelay }}
+              transition={{
+                type: 'spring',
+                bounce: 0.3,
+                duration: 0.6,
+                delay: checkEnterDelay,
+              }}
             >
-              <CheckIcon />
+              <CheckIcon delay={checkEnterDelay} />
             </motion.div>
           ) : (
             <motion.div
@@ -101,7 +111,12 @@ export function IconSwap({
               initial={{ opacity: 0, y: 0, scale: 0.9, filter: 'blur(3px)' }}
               animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
               exit={{ opacity: 0, y: 0, scale: 0.9, filter: 'blur(3px)' }}
-              transition={{ type: 'spring', bounce: 0.3, duration: 0.6, delay: checkEnterDelay }}
+              transition={{
+                type: 'spring',
+                bounce: 0.3,
+                duration: 0.6,
+                delay: checkEnterDelay,
+              }}
             >
               {icon}
             </motion.div>
@@ -112,54 +127,28 @@ export function IconSwap({
   );
 }
 
-function CheckIcon() {
+function CheckIcon({ delay = 0 }: { delay?: number }) {
   return (
     <div className="flex size-full items-center justify-center p-5">
       <svg
         width="25"
         height="20"
-        className="h-full w-full"
+        className="size-full"
         viewBox="0 0 25 20"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g filter="url(#filter0_i_1606_1241)">
-          <path
-            d="M20.9798 3.40527L19.216 5.16909L15.6883 8.69673L8.63307 15.752L5.64576 12.765L4.1521 11.2715L3.40527 10.5247"
-            stroke="white"
-            strokeWidth="6.8106"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </g>
-        <defs>
-          <filter
-            id="filter0_i_1606_1241"
-            x="0"
-            y="-1.29726"
-            width="24.385"
-            height="20.4545"
-            filterUnits="userSpaceOnUse"
-            colorInterpolationFilters="sRGB"
-          >
-            <feFlood floodOpacity="0" result="BackgroundImageFix" />
-            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-            <feColorMatrix
-              in="SourceAlpha"
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-              result="hardAlpha"
-            />
-            <feOffset dy="-1.29726" />
-            <feGaussianBlur stdDeviation="1.88102" />
-            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 0.168627 0 0 0 0 0.635294 0 0 0 0 0.984314 0 0 0 0.25 0"
-            />
-            <feBlend mode="normal" in2="shape" result="effect1_innerShadow_1606_1241" />
-          </filter>
-        </defs>
+        <motion.path
+          pathLength={1}
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ type: 'spring', bounce: 0.3, duration: 0.6, delay: delay }}
+          d="M3.40527 10.5247L8.63307 15.752L20.9798 3.40527"
+          stroke="white"
+          strokeWidth="6.8106"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     </div>
   );

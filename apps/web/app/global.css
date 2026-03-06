@@ -1,9 +1,9 @@
+@import '@rainbow-me/rainbowkit/styles.css';
+@import '@coinbase/onchainkit/styles.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import '@rainbow-me/rainbowkit/styles.css';
-@import '@coinbase/onchainkit/styles.css';
 
 @layer components {
   .title-h0 {
