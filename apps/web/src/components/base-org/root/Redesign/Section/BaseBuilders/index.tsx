@@ -17,7 +17,7 @@ export function SectionBaseBuilders() {
           <Terminal />
         </div>
         <div className="absolute inset-0 h-full w-full">
-          <FaultyTerminal
+          {/* <FaultyTerminal
             className="h-full w-full"
             scale={3}
             noiseAmp={1}
@@ -25,15 +25,16 @@ export function SectionBaseBuilders() {
             brightness={1.2}
             scanlineIntensity={0.0}
             tint="#8F8FFF"
-          />
+          /> */}
           {/* <ParallaxScaleWrapper
-              className="w-full h-full"
-              disableParallax
-              maxScale={1.1}
-              startingScale={1.0}
-              scrollRange={{ start: 0.99, end: 0.0 }}>
-            <VideoPlayer loop={false} videoSrc="/videos/bg-terminal.mp4" />
-          </ParallaxScaleWrapper> */}
+            className="h-full w-full"
+            disableParallax
+            maxScale={1.1}
+            startingScale={1.0}
+            scrollRange={{ start: 0.99, end: 0.0 }}
+          > */}
+          <VideoPlayer loop={true} videoSrc="/videos/bg-terminal.mp4" />
+          {/* </ParallaxScaleWrapper> */}
         </div>
       </div>
     </Section>

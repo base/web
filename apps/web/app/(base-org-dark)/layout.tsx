@@ -1,9 +1,6 @@
 import type { Metadata } from 'next';
-import Sidebar from 'apps/web/src/components/Layout/Navigation/Sidebar';
-import { Footer } from 'apps/web/src/components/Layout/Footer/Footer';
-import MobileNav from 'apps/web/src/components/Layout/Navigation/MobileNav';
-import { DynamicWrappedGasPriceDropdown } from 'apps/web/src/components/Layout/Navigation/GasPriceDropdown';
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
+import LayoutSwitcher from 'apps/web/src/components/Layout/LayoutSwitcher';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://base.org'),
@@ -30,22 +27,10 @@ export default function BaseOrgLayoutDark({
   children: React.ReactNode;
 }) {
   return (
-    <div className="dark bg-black text-white transition-colors">
-      <div className="min-w-screen relative mx-auto grid min-h-screen w-full max-w-[1920px] grid-cols-1 selection:bg-blue-5 selection:text-base-blue lg:grid-cols-[13.438rem_1fr]">
-        <AnalyticsProvider context="sidenav">
-          <Sidebar />
-          <MobileNav />
-        </AnalyticsProvider>
-        <main className="mx-auto flex w-full max-w-[clamp(1024px,calc(1024px+(100vw-1024px)*0.25),1248px)] justify-center px-4 md:px-6 lg:col-start-2 lg:px-8">
-          {children}
-        </main>
-        <Footer />
-      </div>
-
-      {/* Gas Price Dropdown - Top Right */}
-      <div className="fixed right-4 top-4 z-50 hidden lg:block">
-        <DynamicWrappedGasPriceDropdown />
-      </div>
-    </div>
+    <AnalyticsProvider context="topnav">
+      <LayoutSwitcher wrapperClassName="dark bg-black text-white transition-colors">
+        {children}
+      </LayoutSwitcher>
+    </AnalyticsProvider>
   );
 }
