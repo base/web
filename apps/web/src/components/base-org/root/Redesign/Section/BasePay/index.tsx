@@ -17,10 +17,10 @@ const prefix = PrefixAsset as ImageType;
 
 export function SectionBasePay() {
   return (
-    <Section content={content}>
+    <Section disableWrapperAnimation content={content}>
       <motion.div
         className="relative col-span-full aspect-[16/12] h-full w-full rounded-lg bg-base-gray-25 md:aspect-[16/10]"
-        variants={itemContentVariants}
+        // variants={itemContentVariants}
       >
         <BasePayImagesCircle />
       </motion.div>

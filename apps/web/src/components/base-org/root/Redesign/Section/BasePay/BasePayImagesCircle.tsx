@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   animate,
   motion,
   useInView,
   useMotionValue,
-  useSpring,
+  useTransform,
   type MotionValue,
 } from 'motion/react';
 import './BasePayStyle.css';
@@ -28,86 +28,51 @@ import TvImage from './images/tv.webp';
 import WatchImage from './images/watch.webp';
 import { BasePayDialog } from './BasePayDialog';
 
-const stickers: { image: string; alt: string; color: string; hidden?: boolean }[] = [
-  { image: BallImage.src, alt: 'Ball', color: '#FFDCC3' },
-  { image: BikeImage.src, alt: 'Bike', color: '#C0C4FF' },
-  { image: ChairImage.src, alt: 'Chair', color: '#D4FFA5' },
-  { image: DeskImage.src, alt: 'Desk', color: '#F7FBFF' },
-  { image: GuitarImage.src, alt: 'Guitar', color: '#FFD5C7' },
-  { image: HammerImage.src, alt: 'Hammer', color: '#BEF1DF' },
-  { image: HeadphonesImage.src, alt: 'Headphones', color: '#FFBCBC' },
-  { image: LampImage.src, alt: 'Lamp', color: '#FFB485' },
-  { image: PerfumeImage.src, alt: 'Perfume', hidden: true, color: '#CC99FF' },
-  { image: ShoeImage.src, alt: 'Shoe', color: '#94C3FF' },
-  { image: SoapImage.src, alt: 'Soap', hidden: true, color: '#000fff' },
-  { image: SpeakerImage.src, alt: 'Speaker', color: '#BBDAFF' },
-  { image: TvImage.src, alt: 'TV', hidden: true, color: '#000fff' },
-  { image: WatchImage.src, alt: 'Watch', hidden: true, color: '#000fff' },
-];
+const stickers: { image: string; alt: string; color: string; hidden?: boolean; company: string }[] =
+  [
+    { image: BallImage.src, alt: 'Ball', color: '#FFDCC3', company: 'Arial Inc.' },
+    { image: BikeImage.src, alt: 'Bike', color: '#C0C4FF', company: 'Acme Inc.' },
+    { image: ChairImage.src, alt: 'Chair', color: '#D4FFA5', company: 'Chakra Co.' },
+    { image: DeskImage.src, alt: 'Desk', color: '#F7FBFF', company: 'October Inc.' },
+    { image: GuitarImage.src, alt: 'Guitar', color: '#FFD5C7', company: 'Geneva Inc.' },
+    { image: HammerImage.src, alt: 'Hammer', color: '#BEF1DF', company: 'Helvetica LLC' },
+    { image: HeadphonesImage.src, alt: 'Headphones', color: '#FFBCBC', company: 'Texas Inc.' },
+    { image: LampImage.src, alt: 'Lamp', color: '#FFB485', company: 'Cooper LLC' },
+    {
+      image: PerfumeImage.src,
+      alt: 'Perfume',
+      hidden: true,
+      color: '#CC99FF',
+      company: 'Acme Inc.',
+    },
+    { image: ShoeImage.src, alt: 'Shoe', color: '#94C3FF', company: 'Northwest LLC' },
+    { image: SoapImage.src, alt: 'Soap', hidden: true, color: '#000fff', company: 'Charcoal Inc.' },
+    { image: SpeakerImage.src, alt: 'Speaker', color: '#BBDAFF', company: 'Southwest LLC' },
+    { image: TvImage.src, alt: 'TV', hidden: true, color: '#000fff', company: 'Eastwest LLC' },
+    {
+      image: WatchImage.src,
+      alt: 'Watch',
+      hidden: true,
+      color: '#000fff',
+      company: 'Westwest LLC',
+    },
+  ];
 
-// Computed once at module level so it's available for hook initialization.
 const visibleStickers = stickers.filter((s) => !s.hidden);
+
+const ROTATE_DURATION_MS = 850;
 
 type StickerItemProps = {
   sticker: { image: string; alt: string; color: string };
-  angle: number;
-  orbitRadius: number;
+  left: number;
+  top: number;
   stickerSize: number;
-  rotationMV: MotionValue<number>;
   isActive: boolean;
-  tickIntervalMs: number;
-  /** Fraction of tickIntervalMs to stay frozen before preemptively returning. Default 0.6 */
-  freezeFraction?: number;
+  rotationMV: MotionValue<number>;
 };
 
-function StickerItem({
-  sticker,
-  angle,
-  orbitRadius,
-  stickerSize,
-  rotationMV,
-  isActive,
-  tickIntervalMs,
-  freezeFraction = 0.7,
-}: StickerItemProps) {
-  const toX = useCallback(
-    (deg: number) =>
-      orbitRadius + orbitRadius * Math.cos(angle + (deg * Math.PI) / 180) - stickerSize / 2,
-    [angle, orbitRadius, stickerSize],
-  );
-  const toY = useCallback(
-    (deg: number) =>
-      orbitRadius + orbitRadius * Math.sin(angle + (deg * Math.PI) / 180) - stickerSize / 2,
-    [angle, orbitRadius, stickerSize],
-  );
-
-  // Orbit target — only updated when not frozen
-  const orbitX = useMotionValue(toX(rotationMV.get()));
-  const orbitY = useMotionValue(toY(rotationMV.get()));
-
-  // Spring chases the orbit target, giving a smooth sweep-back when unfreezing
-  const x = useSpring(orbitX, { stiffness: 80, damping: 38 });
-  const y = useSpring(orbitY, { stiffness: 80, damping: 38 });
-
-  // Local freeze flag — decoupled from isActive so we can unfreeze early
-  const [frozen, setFrozen] = useState(false);
-
-  useEffect(() => {
-    if (!isActive) return;
-    setFrozen(true);
-    const timer = setTimeout(() => setFrozen(false), tickIntervalMs * freezeFraction);
-    return () => clearTimeout(timer);
-  }, [isActive, tickIntervalMs, freezeFraction]);
-
-  useEffect(() => {
-    return rotationMV.on('change', (deg) => {
-      if (!frozen) {
-        orbitX.set(toX(deg));
-        orbitY.set(toY(deg));
-      }
-    });
-  }, [frozen, rotationMV, orbitX, orbitY, toX, toY]);
-
+function StickerItem({ sticker, left, top, stickerSize, isActive, rotationMV }: StickerItemProps) {
+  const counterRotate = useTransform(rotationMV, (v) => -v);
   return (
     <motion.div
       className="absolute"
@@ -115,13 +80,22 @@ function StickerItem({
         opacity: isActive ? 1 : 0.75,
         scale: isActive ? 1 : 0.9,
       }}
-      transition={{ duration: 0.3, type: 'spring', bounce: 0.3 }}
-      style={{ x, y, width: stickerSize, height: stickerSize }}
+      transition={{ duration: 0.6, type: 'spring', bounce: 0.4 }}
+      style={{
+        left,
+        top,
+        width: stickerSize,
+        height: stickerSize,
+        rotate: counterRotate,
+      }}
     >
       <img
         src={sticker.image}
         alt={sticker.alt}
-        className="h-full w-full object-contain drop-shadow-md"
+        className={classNames(
+          'sticker-image h-full w-full object-contain drop-shadow-md spring-bounce-20 spring-duration-300',
+          isActive && 'sticker-pulse',
+        )}
         draggable={false}
       />
     </motion.div>
@@ -129,10 +103,8 @@ function StickerItem({
 }
 
 type Props = {
-  /** Milliseconds between each tick (one sticker advancing to the top). Default: 3000 */
+  /** Milliseconds between each tick (one sticker advancing to the top). Default: 5000 */
   tickIntervalMs?: number;
-  /** Steps per full rotation — controls how many degrees each tick advances. Default: 10 */
-  ticksPerRotation?: number;
   /** Orbit radius as a fraction of the container's width (0–1). Default: 0.5 */
   orbitRadiusFraction?: number;
   /** Sticker size as a fraction of the container's width (0–1). Default: 0.3 */
@@ -141,13 +113,11 @@ type Props = {
 
 export function BasePayImagesCircle({
   tickIntervalMs = 5000,
-  ticksPerRotation = 10,
   orbitRadiusFraction = 0.5,
   stickerSizeFraction = 0.3,
 }: Props) {
-  const [hoverActive, setHoverActive] = useState(false);
   const [containerWidth, setContainerWidth] = useState(0);
-  const [topItemCount, setTopItemCount] = useState(0);
+  const [topIndex, setTopIndex] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { amount: 0.25, once: true });
   const stickersActive = isInView;
@@ -155,9 +125,13 @@ export function BasePayImagesCircle({
   const orbitRadius = containerWidth * orbitRadiusFraction;
   const stickerSize = containerWidth * stickerSizeFraction;
 
-  const tickCount = useRef(0);
   const rotationMV = useMotionValue(0);
   const bgColorMV = useMotionValue(visibleStickers[0]?.color ?? '#000');
+  const tickTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const animationControlsRef = useRef<ReturnType<typeof animate> | null>(null);
+  const cancelledRef = useRef(false);
+  const topIndexRef = useRef(0);
+  topIndexRef.current = topIndex;
 
   useEffect(() => {
     const el = ref.current;
@@ -169,68 +143,54 @@ export function BasePayImagesCircle({
     return () => observer.disconnect();
   }, []);
 
-  // Continuous rotation: top item lags slowly, then jumps ahead to the next position.
+  // Tick-based loop: rotate one step, pause, then repeat. Single source of truth for topIndex.
   useEffect(() => {
-    if (!stickersActive || orbitRadius === 0) return;
+    if (!stickersActive || orbitRadius === 0 || visibleStickers.length === 0) return;
 
-    const totalDuration = (tickIntervalMs * ticksPerRotation) / 1000;
-    const stepDeg = 360 / ticksPerRotation;
-    // During the lag phase the ring covers only this fraction of stepDeg (always moving, just slowly).
-    const lagFraction = 0.65; // portion of each tick spent lagging
-    const lagCoverage = 0.08; // fraction of stepDeg covered during the lag phase
+    const stepDeg = 360 / visibleStickers.length;
+    const rotateDurationSec = ROTATE_DURATION_MS / 1000;
 
-    const keyframes: number[] = [0];
-    const times: number[] = [0];
-    const eases: string[] = [];
-
-    for (let i = 0; i < ticksPerRotation; i++) {
-      const lagEndTime = (i + lagFraction) / ticksPerRotation;
-      const jumpEndTime = (i + 1) / ticksPerRotation;
-
-      // End of lag phase: ring has crept forward only lagCoverage of a step.
-      keyframes.push(-(i * stepDeg + stepDeg * lagCoverage));
-      times.push(lagEndTime);
-      eases.push('easeIn'); // gradually accelerates into the jump
-
-      // End of jump phase: snap forward to the full next step position.
-      keyframes.push(-((i + 1) * stepDeg));
-      times.push(jumpEndTime);
-      eases.push('easeOut'); // gradually decelerates back to the slow drift
+    cancelledRef.current = false;
+    function runTick() {
+      if (cancelledRef.current) return;
+      const next = (topIndexRef.current + 1) % visibleStickers.length;
+      topIndexRef.current = next;
+      setTopIndex(next);
+      animate(bgColorMV, visibleStickers[next].color, {
+        duration: 0.5,
+        ease: 'easeOut',
+      });
+      const current = rotationMV.get();
+      const nextRotation = current - stepDeg;
+      const controls = animate(rotationMV, nextRotation, {
+        duration: rotateDurationSec,
+        ease: [0.33, 0, 0.2, 1],
+      });
+      animationControlsRef.current = controls;
+      controls.then(() => {
+        if (cancelledRef.current) return;
+        const pauseMs = Math.max(0, tickIntervalMs - ROTATE_DURATION_MS);
+        tickTimeoutRef.current = setTimeout(runTick, pauseMs);
+      });
     }
 
-    const controls = animate(rotationMV, keyframes, {
-      duration: totalDuration,
-      times,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ease: eases as any,
-      repeat: Infinity,
-    });
-
-    return () => controls.stop();
-  }, [stickersActive, orbitRadius, tickIntervalMs, ticksPerRotation, rotationMV]);
-
-  // Side effects: update active sticker and bg color on each tick.
-  useEffect(() => {
-    if (!stickersActive) return;
-    const id = setInterval(() => {
-      tickCount.current += 1;
-      const topIdx = tickCount.current % visibleStickers.length;
-      animate(bgColorMV, visibleStickers[topIdx].color, { duration: 0.5, ease: 'easeOut' });
-      setTopItemCount((c) => c + 1);
-    }, tickIntervalMs);
-    return () => clearInterval(id);
-  }, [stickersActive, tickIntervalMs, bgColorMV]);
+    runTick();
+    return () => {
+      cancelledRef.current = true;
+      if (tickTimeoutRef.current) clearTimeout(tickTimeoutRef.current);
+      tickTimeoutRef.current = null;
+      animationControlsRef.current?.stop();
+      animationControlsRef.current = null;
+    };
+  }, [stickersActive, orbitRadius, tickIntervalMs, rotationMV, bgColorMV]);
 
   return (
     <motion.div
       ref={ref}
-      // style={{ backgroundColor: bgColorMV }}
       className={classNames(
         'group relative h-full w-full overflow-hidden rounded-2xl p-6 transition-all duration-300',
-        stickersActive ? 'bg-base-gray-25/0' : 'bg-base-gray-25/0',
+        'bg-base-gray-25/0',
       )}
-      onMouseEnter={() => setHoverActive(true)}
-      onMouseLeave={() => setHoverActive(false)}
       role="presentation"
     >
       <div className="absolute inset-0 z-20 flex h-full w-full items-end justify-end">
@@ -249,7 +209,7 @@ export function BasePayImagesCircle({
         />
       </div>
       <div className="relative flex h-full items-center justify-center">
-        {/* Orbit ring — motion.div driven by a ticking spring instead of CSS animation */}
+        {/* Single orbit container: one rotating wrapper, stickers at fixed angles */}
         <motion.div
           className="pointer-events-none absolute"
           style={{
@@ -259,24 +219,26 @@ export function BasePayImagesCircle({
             top: '50%',
             marginLeft: -orbitRadius,
             marginTop: 0,
+            rotate: rotationMV,
           }}
           animate={{ opacity: stickersActive && orbitRadius > 0 ? 1 : 0 }}
           transition={{ duration: 0.8 }}
         >
           {orbitRadius > 0 &&
             visibleStickers.map((sticker, i) => {
-              const angle = (i / visibleStickers.length) * 2 * Math.PI - Math.PI / 2;
-              const isActive = i === topItemCount % visibleStickers.length;
+              const angleRad = (i / visibleStickers.length) * 2 * Math.PI - Math.PI / 2;
+              const left = orbitRadius + orbitRadius * Math.cos(angleRad) - stickerSize / 2;
+              const top = orbitRadius + orbitRadius * Math.sin(angleRad) - stickerSize / 2;
+              const isActive = i === topIndex;
               return (
                 <StickerItem
                   key={sticker.alt}
                   sticker={sticker}
-                  angle={angle}
-                  orbitRadius={orbitRadius}
+                  left={left}
+                  top={top}
                   stickerSize={stickerSize}
-                  rotationMV={rotationMV}
                   isActive={isActive}
-                  tickIntervalMs={tickIntervalMs}
+                  rotationMV={rotationMV}
                 />
               );
             })}
@@ -284,8 +246,8 @@ export function BasePayImagesCircle({
 
         {/* Central card */}
         <div className="relative z-20 spring-bounce-20 spring-duration-300">
-          <div className="z-10 w-[350px] translate-y-[0%] scale-[0.9]">
-            <BasePayDialog triggerCount={topItemCount} />
+          <div className="z-10 w-[350px] translate-y-[2%] scale-[0.9]">
+            <BasePayDialog triggerCount={topIndex} company={visibleStickers[topIndex].company} />
           </div>
         </div>
       </div>

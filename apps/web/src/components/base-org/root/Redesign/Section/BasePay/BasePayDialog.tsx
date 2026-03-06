@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useMotionValueEvent, useSpring } from 'framer-motion';
+import { AnimatePresence, motion, useMotionValueEvent, useSpring } from 'framer-motion';
 import SlideButton from './SlideButton';
 import { BuyButton } from './BuyButton';
 
@@ -12,10 +12,13 @@ function clamp(value: number, min: number, max: number): number {
 }
 
 type Props = {
+  /** Current sticker index at top; drives slide animations and BuyButton when it changes. */
   triggerCount?: number;
+  /** Company name to display in the dialog. */
+  company?: string;
 };
 
-export function BasePayDialog({ triggerCount }: Props) {
+export function BasePayDialog({ triggerCount, company }: Props) {
   const cardRef = useRef<HTMLDivElement>(null);
   const windowRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -92,41 +95,10 @@ export function BasePayDialog({ triggerCount }: Props) {
     return () => ro.disconnect();
   }, []);
 
-  const blueWidth =
-    trackWidth <= 0
-      ? MIN_WIDTH_PX
-      : clamp(
-          MIN_WIDTH_PX + springProgress * (trackWidth - MIN_WIDTH_PX),
-          MIN_WIDTH_PX,
-          trackWidth,
-        );
-
-  const handlePointerDown = useCallback((e: React.PointerEvent) => {
-    e.preventDefault();
-    setIsDragging(true);
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-  }, []);
-
-  const handlePointerMove = useCallback((e: React.PointerEvent) => {
-    if (e.buttons !== 1) return;
-    const track = trackRef.current;
-    if (!track) return;
-    const { left, width } = track.getBoundingClientRect();
-    const p = (e.clientX - left) / width;
-    setProgress(clamp(p, 0, 1));
-  }, []);
-
-  const handlePointerUp = useCallback((e: React.PointerEvent) => {
-    (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
-    setIsDragging(false);
-    setProgress((p) => (p >= 0.5 ? 1 : 0));
-  }, []);
-
   return (
     <div
       ref={cardRef}
-      className="relative flex aspect-square w-full flex-col items-center justify-between gap-4 rounded-[46px] p-[24px] pt-[34px]"
-      style={{ filter: 'drop-shadow(0 8px 12px rgba(91, 97, 110, 0.22))' }}
+      className="relative flex aspect-square w-full flex-col items-center justify-between gap-4 overflow-clip rounded-[46px] p-6 shadow-lg"
     >
       {/* White background layer — mask punches out the window area */}
       <div
@@ -172,54 +144,37 @@ export function BasePayDialog({ triggerCount }: Props) {
           <p className="font-sans text-lg font-medium !leading-none text-base-black">
             Pay with USDC
           </p>
-          <p className="font-sans text-sm font-normal !leading-none text-base-gray-200">
-            To Acme Inc.
-          </p>
+          <div className="overflow-clip">
+            <AnimatePresence initial={false} mode="popLayout">
+              <motion.p
+                key={company}
+                initial={{ y: 10, opacity: 0, scale: 0.9 }}
+                animate={{ y: 0, opacity: 1, scale: 1 }}
+                exit={{ y: -10, opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.9, ease: 'easeInOut' }}
+                className="origin-left font-sans text-sm font-normal !leading-none text-base-gray-200"
+              >
+                To {company}
+              </motion.p>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
       <div ref={windowRef} className="relative aspect-square w-full rounded-xl" />
 
-      {/* <SlideButton revealText="" finalText="Done" /> */}
-      <BuyButton triggerCount={triggerCount} />
-
-      <div className="relative hidden w-full">
-        <div className="pointer-events-none absolute inset-0 flex h-full w-full items-center justify-center font-sans">
-          <p>Slide to Buy</p>
-        </div>
-        <div className="h-fit w-full rounded-full bg-[#EEF0F3] p-1">
-          <div ref={trackRef} className="relative h-[52px] w-full bg-black/0">
-            <div
-              style={{ width: blueWidth }}
-              className="relative flex h-[52px] min-w-[71px] cursor-grab items-end justify-end overflow-hidden rounded-full bg-base-blue active:cursor-grabbing"
-              onPointerDown={handlePointerDown}
-              onPointerMove={handlePointerMove}
-              onPointerUp={handlePointerUp}
-              role="slider"
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-valuenow={Math.round(progress * 100)}
-              tabIndex={0}
-            >
-              <div className="flex h-[52px] w-[71px] items-center justify-center">
-                <svg
-                  width="20"
-                  height="17"
-                  viewBox="0 0 20 17"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1.5 1.5L8.5 8.25862L1.5 15.0172M11.5 1.98276L18.5 8.74138L11.5 15.5"
-                    stroke="white"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="w-full">
+        <AnimatePresence initial={false} mode="popLayout">
+          <motion.div
+            key={triggerCount}
+            initial={{ x: 100, opacity: 0, scale: 0.9, originX: 0, filter: 'blur(10px)' }}
+            animate={{ x: 0, opacity: 1, scale: 1, originX: 0, filter: 'blur(0px)' }}
+            exit={{ x: -100, opacity: 0, scale: 0.9, originX: 0, filter: 'blur(10px)' }}
+            transition={{ duration: 1.2, type: 'spring', bounce: 0.3 }}
+            className="relative w-full origin-center"
+          >
+            <BuyButton triggerCount={triggerCount} />
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );

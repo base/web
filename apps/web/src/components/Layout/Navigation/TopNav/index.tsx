@@ -27,7 +27,7 @@ export default function TopNav() {
       <div className={`flex h-14 items-center gap-6 ${CONTENT_WIDTH_CLASS}`}>
         <Link
           href="/"
-          className="relative z-20 flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-base-blue dark:bg-base-blueDark"
+          className="relative z-20 flex h-6 w-6 shrink-0 items-center justify-center rounded-sm bg-base-blue dark:bg-base-blueDark"
           aria-label="Go to home"
         >
           <span className="sr-only">Base</span>
