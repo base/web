@@ -4782,5 +4782,13 @@
     "imageUrl": "/images/partners/city_protocol.png",
     "category": "consumer",
     "subcategory": "real world"
+  },
+  {
+    "name": "Callput",
+    "description": "Onchain options trading platform for crypto and real-world assets (equity, commodity).",
+    "url": "https://callput.app",
+    "imageUrl": "/images/partners/callput.png",
+    "category": "defi",
+    "subcategory": "dex"
   }
 ]
