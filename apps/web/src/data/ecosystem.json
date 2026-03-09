@@ -4360,6 +4360,14 @@
     "subcategory": "stablecoin"
   },
   {
+    "name": "Verse8",
+    "description": "Turn your ideas into games in minutes. AI-powered game maker to build, publish, and monetize games — no coding needed.",
+    "url": "https://verse8.io",
+    "imageUrl": "/images/partners/verse8.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "VEUR",
     "description": "VNX Euro (VEUR) is a multichain token referencing Euro from a European licensed token generator.",
     "url": "https://vnx.li/veur/",
