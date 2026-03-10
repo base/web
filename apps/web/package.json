@@ -8,8 +8,6 @@
     "test": "jest",
     "analyze": "ANALYZE=true next build",
     "dev": "node --require ./tracer/initialize.js ./node_modules/.bin/next dev",
-    "dev:fast": "next dev --turbo",
-    "dev:turbo": "node --require ./tracer/initialize.js ./node_modules/.bin/next dev --turbo",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:debug": "playwright test --debug",

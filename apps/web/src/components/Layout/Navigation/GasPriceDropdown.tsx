@@ -1,7 +1,7 @@
 'use client';
 
 import Card from 'apps/web/src/components/base-org/Card';
-import { Icon } from 'apps/web/src/components/Icon';
+import { Icon } from 'apps/web/src/components/Icon/Icon';
 import { base, mainnet } from 'viem/chains';
 import { useGasPrice } from 'wagmi';
 import dynamic from 'next/dynamic';

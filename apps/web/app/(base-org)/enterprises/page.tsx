@@ -220,8 +220,8 @@ export default async function Enterprises() {
             {/* <Hero /> */}
             {/* <EcosystemHero /> */}
             <GenericHero
-              title="Institutional grade Finance. Built on Base."
-              description="Sub-cent transactions, instant settlement globally, and institutional-grade rails. Backed by the most trusted institution in crypto."
+              title="Enterprises"
+              description="The enterprise‑ready blockchain to run stablecoin payments, onchain finance, and tokenized value."
               imageUrl={'/images/backgrounds/enterprises/enterprise-header.webp'}
               primaryColor="#5B31F4"
             />

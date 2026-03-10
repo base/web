@@ -1,4 +1,4 @@
-import { Icon } from 'apps/web/src/components/Icon';
+import { Icon } from 'apps/web/src/components/Icon/Icon';
 import { TextVariant } from 'apps/web/src/components/base-org/typography/TextRedesign/types';
 import { variantStyles as textVariantStyles } from 'apps/web/src/components/base-org/typography/TextRedesign';
 import classNames from 'classnames';
@@ -24,7 +24,8 @@ const variantStyles = {
     'text-black bg-base-gray-50 dark:bg-white dark:text-black hover:dark:text-white hover:bg-state-bA-hovered hover:dark:bg-base-blueDark active:bg-state-bA-pressed active:dark:bg-base-blueDark border-none border-base-black dark:border-base-blackInvert hover:border-base-blue hover:dark:border-base-blueDark active:border-base-blue active:dark:border-base-blueDark',
   [ButtonVariants.SecondaryOutline]:
     'bg-white text-black border border-[#e5e5e5] hover:bg-[#f7f7f7] hover:border-[#dcdcdc] dark:bg-black dark:text-white hover:dark:text-black dark:border-base-gray-90 hover:dark:bg-base-gray-90 hover:dark:border-base-gray-90',
-  [ButtonVariants.Blue]: 'text-white bg-base-blue hover:bg-black active:bg-black',
+  [ButtonVariants.Blue]:
+    'text-white bg-base-blue hover:bg-black active:bg-black',
 };
 
 const sizeStyles = {
