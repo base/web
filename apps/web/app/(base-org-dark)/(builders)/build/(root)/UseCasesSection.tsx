@@ -3,7 +3,7 @@
 import { StaticSiwbCodeblock } from 'apps/web/app/(base-org-dark)/(builders)/build/(root)/StaticSiwbCodeblock';
 import { UseCaseCard } from 'apps/web/app/(base-org-dark)/(builders)/build/(root)/UseCaseCard';
 import { AnimatedBaseAgent } from 'apps/web/src/components/Builders/Shared/assets/UseCases/BaseAgent';
-import { Icon } from 'apps/web/src/components/Icon/Icon';
+import { Icon } from 'apps/web/src/components/Icon';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { AnimatedGrowthChart } from 'apps/web/app/(base-org-dark)/(builders)/build/(root)/AnimatedGrowthChart';

@@ -27,28 +27,28 @@
     "subheader": "Simple, borderless, low-cost payments for merchants, with support for 15+ local stablecoins. Instant settlement on 24/7 payment rails.",
     "cta": {
       "label": "Learn More",
-      "url": "https://batches.base.org"
+      "url": "https://www.coinbase.com/developer-platform/developer-interest"
     }
   },
   "onchainFinance": {
-    "header": "Solutions for enterprise",
+    "header": "Solutions for businesses",
     "subheader": "Base is the enterprise‑ready blockchain to run stablecoin payments, onchain finance, and tokenized value.",
     "solutions": [
       {
-        "header": "Asset Flexibility & Freedom",
+        "header": "DeFi made simple",
         "subheader": "Borrow, lend, and earn at competitive rates through decentralized protocols running on Base. Offer savings accounts and collateralized loans powered by audited, compliant smart contracts.",
         "image": "/images/backgrounds/enterprises/enterprise-asset-flex.webp",
         "primaryColor": "#1EE87D"
       },
       {
-        "header": "24/7 Banking without Borders",
+        "header": "Tokenize value",
         "subheader": "Keep assets at the bank, while taking advantage of programmable, global, instant onchain rails.",
         "image": "/images/backgrounds/enterprises/enterprise-banking.webp",
         "primaryColor": "#0091E6"
       },
       {
-        "header": "Loyalty programs",
-        "subheader": "Brand-first rewards that feel seamless to customers. Use blockchain under the hood, not in their face.",
+        "header": "Customer loyalty",
+        "subheader": "Brand-first rewards that feel seamless to customers that drive revenue instead of eating costs. Use blockchain under the hood, not in their face.",
         "image": "/images/backgrounds/enterprises/enterprise-loyalty.webp",
         "primaryColor": "#FF550C"
       }

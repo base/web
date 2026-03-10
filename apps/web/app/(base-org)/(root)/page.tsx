@@ -1,12 +1,20 @@
 import AnalyticsProvider from 'apps/web/contexts/Analytics';
 import ErrorsProvider from 'apps/web/contexts/Errors';
 import { Hero } from 'apps/web/src/components/base-org/root/Redesign/Hero';
-import { SectionBaseApp } from 'apps/web/src/components/base-org/root/Redesign/Section/BaseApp';
-import { WebGLCanvas } from 'apps/web/src/components/WebGL/WebGLCanvas';
 import Container from 'apps/web/src/components/base-org/Container';
 import { SectionBaseEcosystem } from 'apps/web/src/components/base-org/root/Redesign/Section/BaseEcosystem';
 import dynamic from 'next/dynamic';
 import RenderOnInView from 'apps/web/src/components/base-org/shared/RenderOnInView';
+import { WebGLCanvasClient } from './WebGLCanvasClient';
+
+// Heavy section (cobe, motion, many images) — separate chunk for faster incremental compiles
+const SectionBaseApp = dynamic(
+  () =>
+    import('apps/web/src/components/base-org/root/Redesign/Section/BaseApp').then(
+      (mod) => mod.SectionBaseApp,
+    ),
+  { ssr: true },
+);
 
 const SectionBaseBuilders = dynamic(
   async () =>
@@ -63,7 +71,7 @@ export default async function Home() {
     <ErrorsProvider context="base_landing_page">
       <div id="webgl-canvas" className="absolute left-0 top-0 h-full w-full overflow-hidden">
         <div className="-z-1 h-full w-full">
-          <WebGLCanvas />
+          <WebGLCanvasClient />
         </div>
       </div>
       <Container className="lg:pt-0">
