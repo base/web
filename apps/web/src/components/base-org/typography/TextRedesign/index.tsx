@@ -17,8 +17,7 @@ export const variantStyles: Record<TextVariant, string> = {
   [TextVariant.Body]: 'font-sans-text text-[1rem] leading-[130%]',
   [TextVariant.BodyMono]: 'font-mono font-[350] text-[1rem] tracking-[0.0175rem] leading-[100%]',
   [TextVariant.CTALabel]: 'font-sans text-[0.9375rem] font-medium leading-[114%]',
-  [TextVariant.CTALabelSm]:
-    'font-sans text-[0.875rem] font-regular leading-[114%] tracking-[0.01em]',
+  [TextVariant.CTALabelSm]: 'font-sans text-[0.875rem] font-regular leading-[114%]',
   [TextVariant.Caption]: 'font-sans text-[0.75rem] leading-[130%]',
   [TextVariant.CaptionMono]:
     'font-mono text-[0.6875rem] leading-[140%] uppercase tracking-[0.055rem]',

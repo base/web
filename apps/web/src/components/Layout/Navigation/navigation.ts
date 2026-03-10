@@ -21,6 +21,7 @@ type DefaultRouteItem = {
   label: string;
   href?: string;
   newTab?: boolean;
+  description?: string;
   isSubheader?: boolean;
   isDivider?: boolean;
 };
@@ -394,20 +395,24 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
       {
         icon: 'chain',
         label: 'Base Chain',
+        description: 'An open platform for the global economy.',
         href: '/chain',
       },
       {
         label: 'Status',
+        description: 'Live network status updates.',
         href: 'https://status.base.org',
         newTab: true,
       },
       {
         label: 'Block Explorer',
+        description: 'Explore Base network activity.',
         href: 'https://basescan.org',
         newTab: true,
       },
       {
         label: 'Big Bounty',
+        description: 'Get rewarded if you find a bug.',
         href: 'http://hackerone.com/coinbase',
         newTab: true,
       },
