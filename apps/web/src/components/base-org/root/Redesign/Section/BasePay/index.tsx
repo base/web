@@ -19,7 +19,7 @@ export function SectionBasePay() {
   return (
     <Section disableWrapperAnimation content={content}>
       <motion.div
-        className="relative col-span-full aspect-[16/12] h-full w-full rounded-lg bg-base-gray-25 md:aspect-[16/10]"
+        className="relative col-span-full aspect-[12/16] h-full w-full rounded-lg bg-base-gray-25 md:aspect-[16/8]"
         // variants={itemContentVariants}
       >
         <BasePayImagesCircle />

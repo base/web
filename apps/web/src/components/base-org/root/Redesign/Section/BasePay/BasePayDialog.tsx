@@ -26,6 +26,7 @@ export function BasePayDialog({ triggerCount, company }: Props) {
   const [progress, setProgress] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [bgMask, setBgMask] = useState<React.CSSProperties>({});
+  const [windowWidth, setWindowWidth] = useState(0);
 
   const progressSpring = useSpring(0, { stiffness: 650, damping: 48 });
   const [springProgress, setSpringProgress] = useState(0);
@@ -44,6 +45,15 @@ export function BasePayDialog({ triggerCount, company }: Props) {
     const ro = new ResizeObserver(() => setTrackWidth(el.clientWidth));
     ro.observe(el);
     setTrackWidth(el.clientWidth);
+    return () => ro.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = windowRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setWindowWidth(el.offsetWidth));
+    ro.observe(el);
+    setWindowWidth(el.offsetWidth);
     return () => ro.disconnect();
   }, []);
 
@@ -98,7 +108,7 @@ export function BasePayDialog({ triggerCount, company }: Props) {
   return (
     <div
       ref={cardRef}
-      className="relative flex aspect-square w-full flex-col items-center justify-between gap-4 overflow-clip rounded-[46px] p-6 shadow-lg"
+      className="relative flex w-full flex-col items-center justify-between gap-4 overflow-hidden rounded-[46px] p-6 shadow-lg"
     >
       {/* White background layer — mask punches out the window area */}
       <div
@@ -160,7 +170,11 @@ export function BasePayDialog({ triggerCount, company }: Props) {
           </div>
         </div>
       </div>
-      <div ref={windowRef} className="relative aspect-square w-full rounded-xl" />
+      <div
+        ref={windowRef}
+        style={windowWidth > 0 ? { height: windowWidth } : undefined}
+        className="relative w-full rounded-xl"
+      />
 
       <div className="w-full">
         <AnimatePresence initial={false} mode="popLayout">

@@ -57,20 +57,24 @@ const SLIDE_DURATION_MS = 850;
 const COPIES = 4;
 const GAP = 24;
 
+const ADJACENT_OFFSET = 16;
+
 type StickerItemProps = {
   sticker: { image: string; alt: string; color: string };
   stickerSize: number;
   isCenter: boolean;
-  isAdjacent: boolean;
+  position: 'left' | 'right' | null;
 };
 
-function StickerItem({ sticker, stickerSize, isCenter, isAdjacent }: StickerItemProps) {
+function StickerItem({ sticker, stickerSize, isCenter, position }: StickerItemProps) {
+  const isAdjacent = position !== null;
   return (
     <motion.div
       className="flex shrink-0 items-center justify-center"
       animate={{
         opacity: isCenter ? 1 : isAdjacent ? 0.85 : 0.6,
         scale: isCenter ? 1.2 : isAdjacent ? 0.9 : 0.75,
+        x: position === 'left' ? -ADJACENT_OFFSET : position === 'right' ? ADJACENT_OFFSET : 0,
       }}
       transition={{ duration: 0.5, type: 'spring', bounce: 0.4 }}
       style={{ width: stickerSize, height: stickerSize }}
@@ -91,19 +95,17 @@ function StickerItem({ sticker, stickerSize, isCenter, isAdjacent }: StickerItem
 type Props = {
   /** Milliseconds between each tick (one sticker advancing to center). Default: 5000 */
   tickIntervalMs?: number;
-  /** Sticker size as a fraction of the container's width (0–1). Default: 0.2 */
-  stickerSizeFraction?: number;
+  /** Fixed sticker size in pixels. Default: 120 */
+  stickerSize?: number;
 };
 
-export function BasePayImagesCircle({ tickIntervalMs = 5000, stickerSizeFraction = 0.2 }: Props) {
+export function BasePayImagesCircle({ tickIntervalMs = 5000, stickerSize = 220 }: Props) {
   const [containerWidth, setContainerWidth] = useState(0);
   const [shiftIndex, setShiftIndex] = useState(visibleStickers.length);
   const ref = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { amount: 0.25, once: true });
   const stickersActive = isInView;
-
-  const stickerSize = containerWidth * stickerSizeFraction;
   const totalStickers = visibleStickers.length * COPIES;
   const startIndex = visibleStickers.length;
   const endIndex = visibleStickers.length * 2 - 1;
@@ -194,7 +196,7 @@ export function BasePayImagesCircle({ tickIntervalMs = 5000, stickerSizeFraction
     <motion.div
       ref={ref}
       className={classNames(
-        'group relative h-full w-full overflow-hidden rounded-2xl p-6 transition-all duration-300',
+        'group relative h-full w-full overflow-hidden rounded-2xl p-0 transition-all duration-300',
         'bg-base-gray-25/0',
       )}
       role="presentation"
@@ -224,14 +226,15 @@ export function BasePayImagesCircle({ tickIntervalMs = 5000, stickerSizeFraction
           >
             {duplicatedStickers.map((sticker, index) => {
               const isCenter = index === shiftIndex;
-              const isAdjacent = index === shiftIndex - 1 || index === shiftIndex + 1;
+              const position =
+                index === shiftIndex - 1 ? 'left' : index === shiftIndex + 1 ? 'right' : null;
               return (
                 <StickerItem
                   key={`${sticker.alt}-${index}`}
                   sticker={sticker}
                   stickerSize={stickerSize}
                   isCenter={isCenter}
-                  isAdjacent={isAdjacent}
+                  position={position}
                 />
               );
             })}
@@ -240,7 +243,7 @@ export function BasePayImagesCircle({ tickIntervalMs = 5000, stickerSizeFraction
 
         {/* Central card */}
         <div className="relative z-20 spring-bounce-20 spring-duration-300">
-          <div className="z-10 w-[350px] translate-y-[2%] scale-[0.9]">
+          <div className="z-10 w-[350px] scale-[0.8]  md:scale-[0.9]">
             <BasePayDialog
               triggerCount={centerStickerIndex}
               company={visibleStickers[centerStickerIndex].company}
