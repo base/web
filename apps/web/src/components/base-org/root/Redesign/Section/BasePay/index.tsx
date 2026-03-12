@@ -12,6 +12,8 @@ import ImageSequenceCanvas from './ImageSequenceCanvas';
 import SlideButton from './SlideButton';
 import { BasePayImages } from './BasePayImages';
 import { BasePayImagesCircle } from './BasePayImagesCircle';
+import { useEffect, useState } from 'react';
+import { RollingTextUpdate } from 'apps/web/src/components/base-org/RollingText/RollingTextUpdate';
 
 const prefix = PrefixAsset as ImageType;
 

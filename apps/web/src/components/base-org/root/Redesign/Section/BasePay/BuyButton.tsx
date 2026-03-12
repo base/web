@@ -64,10 +64,12 @@ export function BuyButton({ triggerCount = 0 }: Props) {
               </motion.div>
             )}
           </AnimatePresence>
-          {/* <RollingText from="Buy" to="Buying" active={isFinished} /> for 50 USDC */}
           <span>
-            <RollingTextUpdate text={buttonText} /> for 50 USDC
+            <RollingText from="Buy" to="Buying" active={isFinished} /> for 50 USDC
           </span>
+          {/* <span>
+            <RollingTextUpdate text={buttonText} /> for 50 USDC
+          </span> */}
         </button>
       </motion.div>
     </motion.div>

@@ -180,10 +180,10 @@ export function BasePayDialog({ triggerCount, company }: Props) {
         <AnimatePresence initial={false} mode="popLayout">
           <motion.div
             key={triggerCount}
-            initial={{ x: 100, opacity: 0, scale: 0.9, originX: 0, filter: 'blur(10px)' }}
+            initial={{ x: 200, opacity: 0, scale: 0.6, originX: 0, filter: 'blur(10px)' }}
             animate={{ x: 0, opacity: 1, scale: 1, originX: 0, filter: 'blur(0px)' }}
-            exit={{ x: -100, opacity: 0, scale: 0.9, originX: 0, filter: 'blur(10px)' }}
-            transition={{ duration: 1.2, type: 'spring', bounce: 0.3 }}
+            exit={{ x: -200, opacity: 0, scale: 0.6, originX: 0, filter: 'blur(10px)' }}
+            transition={{ duration: 1.2, type: 'spring', bounce: 0.2 }}
             className="relative w-full origin-center"
           >
             <BuyButton triggerCount={triggerCount} />

@@ -57,7 +57,7 @@ const SLIDE_DURATION_MS = 850;
 const COPIES = 4;
 const GAP = 24;
 
-const ADJACENT_OFFSET = 16;
+const ADJACENT_OFFSET = 20;
 
 type StickerItemProps = {
   sticker: { image: string; alt: string; color: string };
@@ -73,10 +73,10 @@ function StickerItem({ sticker, stickerSize, isCenter, position }: StickerItemPr
       className="flex shrink-0 items-center justify-center"
       animate={{
         opacity: isCenter ? 1 : isAdjacent ? 0.85 : 0.6,
-        scale: isCenter ? 1.2 : isAdjacent ? 0.9 : 0.75,
+        scale: isCenter ? 1.3 : isAdjacent ? 0.9 : 0.75,
         x: position === 'left' ? -ADJACENT_OFFSET : position === 'right' ? ADJACENT_OFFSET : 0,
       }}
-      transition={{ duration: 0.5, type: 'spring', bounce: 0.4 }}
+      transition={{ duration: 0.9, type: 'spring', bounce: 0.2 }}
       style={{ width: stickerSize, height: stickerSize }}
     >
       <img

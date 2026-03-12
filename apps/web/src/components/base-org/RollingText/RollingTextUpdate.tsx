@@ -104,31 +104,35 @@ function renderChar(char: string): string {
 interface AnimatedLetterProps {
   char: string;
   index: number;
-  isVisible: boolean;
+  entering: boolean;
   config: Required<RollingTextAnimationConfig>;
   totalLetters: number;
 }
 
-function AnimatedLetter({ char, index, isVisible, config, totalLetters }: AnimatedLetterProps) {
+function AnimatedLetter({ char, index, entering, config, totalLetters }: AnimatedLetterProps) {
   const shouldReduceMotion = useReducedMotion();
   const offset = config.direction === 'up' ? -ROLL_OFFSET_PX : ROLL_OFFSET_PX;
 
-  const delay = isVisible
-    ? config.baseDelay + index * config.staggerDelay
-    : config.baseDelay + (totalLetters - 1 - index) * config.staggerDelay;
+  const delay = config.baseDelay + index * config.staggerDelay;
 
   if (shouldReduceMotion) {
-    return <span style={{ opacity: isVisible ? 1 : 0 }}>{renderChar(char)}</span>;
+    return <span style={{ opacity: entering ? 1 : 0 }}>{renderChar(char)}</span>;
   }
+
+  const blurValue = config.blur ? `blur(${config.blurAmount}px)` : 'blur(0px)';
 
   return (
     <motion.span
-      initial={false}
-      animate={{
-        y: isVisible ? 0 : offset,
-        opacity: isVisible ? 1 : 0,
-        filter: config.blur && !isVisible ? `blur(${config.blurAmount}px)` : 'blur(0px)',
-      }}
+      initial={
+        entering
+          ? { y: -offset, opacity: 0, filter: blurValue }
+          : { y: 0, opacity: 1, filter: 'blur(0px)' }
+      }
+      animate={
+        entering
+          ? { y: 0, opacity: 1, filter: 'blur(0px)' }
+          : { y: offset, opacity: 0, filter: blurValue }
+      }
       transition={{ duration: config.duration, delay, ease: config.ease }}
       style={{ display: 'inline-block' }}
     >
@@ -165,23 +169,22 @@ function MeasureSpan({ letters, measureRef }: MeasureSpanProps) {
 
 interface LetterGroupProps {
   letters: string[];
-  isVisible: boolean;
+  entering: boolean;
   config: Required<RollingTextAnimationConfig>;
-  keyPrefix: string;
 }
 
-function LetterGroup({ letters, isVisible, config, keyPrefix }: LetterGroupProps) {
+function LetterGroup({ letters, entering, config }: LetterGroupProps) {
   return (
     <span
       style={{ position: 'absolute', left: 0, top: 0, display: 'inline-flex' }}
-      aria-hidden={!isVisible}
+      aria-hidden={!entering}
     >
       {letters.map((char, i) => (
         <AnimatedLetter
-          key={`${keyPrefix}-${i}`}
+          key={i}
           char={char}
           index={i}
-          isVisible={isVisible}
+          entering={entering}
           config={config}
           totalLetters={letters.length}
         />
@@ -216,31 +219,11 @@ export function RollingTextUpdate({
 }: RollingTextProps) {
   const config = useMemo(() => ({ ...DEFAULT_CONFIG, ...animation }), [animation]);
 
-  const prevTextRef = useRef<string | undefined>(undefined);
-  const from = prevTextRef.current ?? text;
+  const [committedText, setCommittedText] = useState(text);
+
+  const from = committedText;
   const to = text;
-  const isActive = from !== to;
-
-  // Delay visibility by one frame so letters mount in hidden state, then receive
-  // isVisible change and run the staggered animation (same as original RollingText).
-  const [showFromLetters, setShowFromLetters] = useState(true);
-  const [showTargetLetters, setShowTargetLetters] = useState(false);
-
-  useLayoutEffect(() => {
-    if (prevTextRef.current === undefined) {
-      prevTextRef.current = text;
-    }
-  }, [text]);
-
-  useLayoutEffect(() => {
-    if (isActive) {
-      setShowTargetLetters(true);
-      setShowFromLetters(false);
-    } else {
-      setShowTargetLetters(false);
-      setShowFromLetters(true);
-    }
-  }, [isActive]);
+  const isAnimating = from !== to;
 
   const { prefix, fromMiddle, toMiddle, suffix } = useMemo(
     () => computeTextDiff(from, to),
@@ -250,22 +233,21 @@ export function RollingTextUpdate({
   const fromLetters = useMemo(() => fromMiddle.split(''), [fromMiddle]);
   const toLetters = useMemo(() => toMiddle.split(''), [toMiddle]);
 
-  // Commit after the full staggered letter animation (not when width finishes).
-  // Last "to" letter finishes at: baseDelay + (n-1)*staggerDelay + duration
   useEffect(() => {
-    if (!isActive || from === to) return;
-    const lastLetterIndex = Math.max(0, Math.max(fromLetters.length, toLetters.length) - 1);
-    const totalDurationMs =
-      (config.baseDelay + lastLetterIndex * config.staggerDelay + config.duration) * 1000;
-    const timer = setTimeout(() => {
-      prevTextRef.current = text;
-    }, totalDurationMs);
-    return () => clearTimeout(timer);
+    if (!isAnimating) return;
+
+    const maxLetters = Math.max(fromLetters.length, toLetters.length);
+    const lastIndex = Math.max(0, maxLetters - 1);
+    const totalMs = (config.baseDelay + lastIndex * config.staggerDelay + config.duration) * 1000;
+
+    const rollingTextTimer = setTimeout(() => {
+      setCommittedText(to);
+    }, totalMs + 50);
+
+    return () => clearTimeout(rollingTextTimer);
   }, [
-    isActive,
-    from,
+    isAnimating,
     to,
-    text,
     fromLetters.length,
     toLetters.length,
     config.baseDelay,
@@ -273,25 +255,27 @@ export function RollingTextUpdate({
     config.duration,
   ]);
 
-  // Width measurement
+  // Width: snap to `from` width immediately, then animate to `to` width after paint
   const fromRef = useRef<HTMLSpanElement>(null);
   const toRef = useRef<HTMLSpanElement>(null);
-  const [widths, setWidths] = useState<{ from: number; to: number } | null>(null);
-  const hasAnimatedRef = useRef(false);
+  const [widthAnim, setWidthAnim] = useState({ width: 0, animate: false });
 
   useLayoutEffect(() => {
     const fromWidth = fromRef.current?.offsetWidth ?? 0;
     const toWidth = toRef.current?.offsetWidth ?? 0;
-    setWidths({ from: fromWidth, to: toWidth });
+    setWidthAnim({ width: fromWidth, animate: false });
 
-    requestAnimationFrame(() => {
-      hasAnimatedRef.current = true;
+    const frame = requestAnimationFrame(() => {
+      setWidthAnim({ width: toWidth, animate: true });
     });
+    return () => cancelAnimationFrame(frame);
   }, [fromMiddle, toMiddle]);
 
   const shouldReduceMotion = useReducedMotion();
-  const currentWidth = widths ? (isActive ? widths.to : widths.from) : 'auto';
-  const shouldAnimate = !shouldReduceMotion && hasAnimatedRef.current;
+  const currentWidth = widthAnim.width;
+  const shouldAnimate = !shouldReduceMotion && widthAnim.animate;
+
+  const transitionKey = `${from}\u2192${to}`;
 
   return (
     <span
@@ -315,25 +299,29 @@ export function RollingTextUpdate({
           position: 'relative',
           display: 'inline-block',
           height: CONTAINER_HEIGHT,
-          overflow: 'hidden',
+          overflow: 'visible',
           verticalAlign: 'text-bottom',
         }}
       >
         <MeasureSpan letters={fromLetters} measureRef={fromRef} />
         <MeasureSpan letters={toLetters} measureRef={toRef} />
 
-        <LetterGroup
-          letters={fromLetters}
-          isVisible={showFromLetters}
-          config={config}
-          keyPrefix="from"
-        />
-        <LetterGroup
-          letters={toLetters}
-          isVisible={showTargetLetters}
-          config={config}
-          keyPrefix="to"
-        />
+        {isAnimating && (
+          <>
+            <LetterGroup
+              key={`from-${transitionKey}`}
+              letters={fromLetters}
+              entering={false}
+              config={config}
+            />
+            <LetterGroup
+              key={`to-${transitionKey}`}
+              letters={toLetters}
+              entering={true}
+              config={config}
+            />
+          </>
+        )}
       </motion.span>
 
       {suffix && <span data-testid={`${testId}-suffix`}>{suffix}</span>}
