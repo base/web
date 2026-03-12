@@ -31,7 +31,7 @@ export function BuyButton({ triggerCount = 0 }: Props) {
     setTimeout(() => scaleMV.set(1), 200);
   }
 
-  const buttonText = isFinished ? 'Bought for 50 USDC ryan' : 'Buy for 50 USDC';
+  const buttonText = isFinished ? 'Bought for 50 USDC' : 'Buy for 50 USDC';
 
   return (
     <motion.div
