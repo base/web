@@ -151,7 +151,7 @@ export function BasePayDialog({ triggerCount, company }: Props) {
                 initial={{ y: 10, opacity: 0, scale: 0.9 }}
                 animate={{ y: 0, opacity: 1, scale: 1 }}
                 exit={{ y: -10, opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.9, ease: 'easeInOut' }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
                 className="origin-left font-sans text-sm font-normal !leading-none text-base-gray-200"
               >
                 To {company}

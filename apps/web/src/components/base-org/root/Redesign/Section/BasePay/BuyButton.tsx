@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { animate, useMotionValue, useTransform, motion } from 'motion/react';
 import { TextMorph } from 'torph/react';
 import { RollingText } from 'apps/web/src/components/base-org/RollingText/RollingText';
+import { RollingTextUpdate } from 'apps/web/src/components/base-org/RollingText/RollingTextUpdate';
 
 type Props = {
   triggerCount?: number;
@@ -30,7 +31,7 @@ export function BuyButton({ triggerCount = 0 }: Props) {
     setTimeout(() => scaleMV.set(1), 200);
   }
 
-  const buttonText = isFinished ? 'Bought for 50 USDC' : 'Buy for 50 USDC';
+  const buttonText = isFinished ? 'Bought for 50 USDC ryan' : 'Buy for 50 USDC';
 
   return (
     <motion.div
@@ -42,7 +43,8 @@ export function BuyButton({ triggerCount = 0 }: Props) {
         className="w-full rounded-full bg-base-gray-50 px-2 py-4 text-white"
       >
         <button className="w-full font-sans text-base">
-          <RollingText from="Buy" to="Buying" active={isFinished} /> for 50 USDC
+          {/* <RollingText from="Buy" to="Buying" active={isFinished} /> for 50 USDC */}
+          <RollingTextUpdate text={isFinished ? 'Buying' : 'Buy'} /> for 50 USDC
         </button>
       </motion.div>
     </motion.div>

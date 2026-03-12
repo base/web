@@ -1,14 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import {
-  animate,
-  motion,
-  useInView,
-  useMotionValue,
-  useTransform,
-  type MotionValue,
-} from 'motion/react';
+import { animate, motion, useInView, useMotionValue } from 'motion/react';
 import './BasePayStyle.css';
 import classNames from 'classnames';
 
@@ -60,41 +53,34 @@ const stickers: { image: string; alt: string; color: string; hidden?: boolean; c
 
 const visibleStickers = stickers.filter((s) => !s.hidden);
 
-const ROTATE_DURATION_MS = 850;
+const SLIDE_DURATION_MS = 850;
+const COPIES = 4;
+const GAP = 24;
 
 type StickerItemProps = {
   sticker: { image: string; alt: string; color: string };
-  left: number;
-  top: number;
   stickerSize: number;
-  isActive: boolean;
-  rotationMV: MotionValue<number>;
+  isCenter: boolean;
+  isAdjacent: boolean;
 };
 
-function StickerItem({ sticker, left, top, stickerSize, isActive, rotationMV }: StickerItemProps) {
-  const counterRotate = useTransform(rotationMV, (v) => -v);
+function StickerItem({ sticker, stickerSize, isCenter, isAdjacent }: StickerItemProps) {
   return (
     <motion.div
-      className="absolute"
+      className="flex shrink-0 items-center justify-center"
       animate={{
-        opacity: isActive ? 1 : 0.75,
-        scale: isActive ? 1 : 0.9,
+        opacity: isCenter ? 1 : isAdjacent ? 0.85 : 0.6,
+        scale: isCenter ? 1.2 : isAdjacent ? 0.9 : 0.75,
       }}
-      transition={{ duration: 0.6, type: 'spring', bounce: 0.4 }}
-      style={{
-        left,
-        top,
-        width: stickerSize,
-        height: stickerSize,
-        rotate: counterRotate,
-      }}
+      transition={{ duration: 0.5, type: 'spring', bounce: 0.4 }}
+      style={{ width: stickerSize, height: stickerSize }}
     >
       <img
         src={sticker.image}
         alt={sticker.alt}
         className={classNames(
           'sticker-image h-full w-full object-contain drop-shadow-md spring-bounce-20 spring-duration-300',
-          isActive && 'sticker-pulse',
+          isCenter && 'sticker-pulse',
         )}
         draggable={false}
       />
@@ -103,35 +89,33 @@ function StickerItem({ sticker, left, top, stickerSize, isActive, rotationMV }: 
 }
 
 type Props = {
-  /** Milliseconds between each tick (one sticker advancing to the top). Default: 5000 */
+  /** Milliseconds between each tick (one sticker advancing to center). Default: 5000 */
   tickIntervalMs?: number;
-  /** Orbit radius as a fraction of the container's width (0–1). Default: 0.5 */
-  orbitRadiusFraction?: number;
-  /** Sticker size as a fraction of the container's width (0–1). Default: 0.3 */
+  /** Sticker size as a fraction of the container's width (0–1). Default: 0.2 */
   stickerSizeFraction?: number;
 };
 
-export function BasePayImagesCircle({
-  tickIntervalMs = 5000,
-  orbitRadiusFraction = 0.5,
-  stickerSizeFraction = 0.3,
-}: Props) {
+export function BasePayImagesCircle({ tickIntervalMs = 5000, stickerSizeFraction = 0.2 }: Props) {
   const [containerWidth, setContainerWidth] = useState(0);
-  const [topIndex, setTopIndex] = useState(0);
+  const [shiftIndex, setShiftIndex] = useState(visibleStickers.length);
   const ref = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { amount: 0.25, once: true });
   const stickersActive = isInView;
 
-  const orbitRadius = containerWidth * orbitRadiusFraction;
   const stickerSize = containerWidth * stickerSizeFraction;
+  const totalStickers = visibleStickers.length * COPIES;
+  const startIndex = visibleStickers.length;
+  const endIndex = visibleStickers.length * 2 - 1;
+  const centerStickerIndex = shiftIndex % visibleStickers.length;
 
-  const rotationMV = useMotionValue(0);
+  const translateXMV = useMotionValue(0);
   const bgColorMV = useMotionValue(visibleStickers[0]?.color ?? '#000');
   const tickTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const animationControlsRef = useRef<ReturnType<typeof animate> | null>(null);
   const cancelledRef = useRef(false);
-  const topIndexRef = useRef(0);
-  topIndexRef.current = topIndex;
+  const shiftIndexRef = useRef(shiftIndex);
+  shiftIndexRef.current = shiftIndex;
 
   useEffect(() => {
     const el = ref.current;
@@ -143,33 +127,53 @@ export function BasePayImagesCircle({
     return () => observer.disconnect();
   }, []);
 
-  // Tick-based loop: rotate one step, pause, then repeat. Single source of truth for topIndex.
+  // Update track position when shiftIndex or container size changes
   useEffect(() => {
-    if (!stickersActive || orbitRadius === 0 || visibleStickers.length === 0) return;
+    if (containerWidth === 0 || visibleStickers.length === 0) return;
+    const halfWidth = containerWidth / 2;
+    const shiftAmount = shiftIndex * (stickerSize + GAP);
+    const x = halfWidth - stickerSize / 2 - shiftAmount;
+    translateXMV.set(x);
+  }, [containerWidth, shiftIndex, stickerSize, translateXMV]);
 
-    const stepDeg = 360 / visibleStickers.length;
-    const rotateDurationSec = ROTATE_DURATION_MS / 1000;
+  // Tick-based loop: advance one step, animate slide, then schedule next tick (same rate as before)
+  useEffect(() => {
+    if (!stickersActive || containerWidth === 0 || visibleStickers.length === 0) return;
+
+    const slideDurationSec = SLIDE_DURATION_MS / 1000;
+    const halfWidth = containerWidth / 2;
+    const stepPx = stickerSize + GAP;
 
     cancelledRef.current = false;
     function runTick() {
       if (cancelledRef.current) return;
-      const next = (topIndexRef.current + 1) % visibleStickers.length;
-      topIndexRef.current = next;
-      setTopIndex(next);
-      animate(bgColorMV, visibleStickers[next].color, {
+      const current = shiftIndexRef.current;
+      const next = current + 1;
+
+      const isReset = next > endIndex;
+      const targetIndex = isReset ? endIndex + 1 : next;
+      const targetX = halfWidth - stickerSize / 2 - targetIndex * stepPx;
+
+      setShiftIndex(next);
+      const nextStickerIndex = next % visibleStickers.length;
+      animate(bgColorMV, visibleStickers[nextStickerIndex].color, {
         duration: 0.5,
         ease: 'easeOut',
       });
-      const current = rotationMV.get();
-      const nextRotation = current - stepDeg;
-      const controls = animate(rotationMV, nextRotation, {
-        duration: rotateDurationSec,
+
+      const controls = animate(translateXMV, targetX, {
+        duration: slideDurationSec,
         ease: [0.33, 0, 0.2, 1],
       });
       animationControlsRef.current = controls;
       controls.then(() => {
         if (cancelledRef.current) return;
-        const pauseMs = Math.max(0, tickIntervalMs - ROTATE_DURATION_MS);
+        if (isReset) {
+          const resetX = halfWidth - stickerSize / 2 - startIndex * stepPx;
+          translateXMV.set(resetX);
+          setShiftIndex(startIndex);
+        }
+        const pauseMs = Math.max(0, tickIntervalMs - SLIDE_DURATION_MS);
         tickTimeoutRef.current = setTimeout(runTick, pauseMs);
       });
     }
@@ -182,7 +186,9 @@ export function BasePayImagesCircle({
       animationControlsRef.current?.stop();
       animationControlsRef.current = null;
     };
-  }, [stickersActive, orbitRadius, tickIntervalMs, rotationMV, bgColorMV]);
+  }, [stickersActive, containerWidth, tickIntervalMs, stickerSize, translateXMV, bgColorMV]);
+
+  const duplicatedStickers = Array.from({ length: COPIES }).flatMap(() => visibleStickers);
 
   return (
     <motion.div
@@ -199,55 +205,46 @@ export function BasePayImagesCircle({
             background:
               'linear-gradient(to bottom, rgba(250, 250, 250, 0), rgba(250, 250, 250, 1))',
           }}
-          className=" h-[20%] w-full items-center justify-center "
-        ></div>
-      </div>
-      <div className="absolute inset-0 flex h-full w-full items-center justify-center">
-        <motion.div
-          className="z-0 aspect-square w-[300px] rounded-md"
-          style={{ backgroundColor: bgColorMV }}
+          className="h-[20%] w-full items-center justify-center"
         />
       </div>
-      <div className="relative flex h-full items-center justify-center">
-        {/* Single orbit container: one rotating wrapper, stickers at fixed angles */}
-        <motion.div
-          className="pointer-events-none absolute"
-          style={{
-            width: orbitRadius * 2,
-            height: orbitRadius * 2,
-            left: '50%',
-            top: '50%',
-            marginLeft: -orbitRadius,
-            marginTop: 0,
-            rotate: rotationMV,
-          }}
-          animate={{ opacity: stickersActive && orbitRadius > 0 ? 1 : 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          {orbitRadius > 0 &&
-            visibleStickers.map((sticker, i) => {
-              const angleRad = (i / visibleStickers.length) * 2 * Math.PI - Math.PI / 2;
-              const left = orbitRadius + orbitRadius * Math.cos(angleRad) - stickerSize / 2;
-              const top = orbitRadius + orbitRadius * Math.sin(angleRad) - stickerSize / 2;
-              const isActive = i === topIndex;
+      <div className="relative flex h-full w-full flex-col items-center justify-center">
+        {/* Horizontal carousel track: one item centered, same tick rate */}
+        <div className="absolute h-full w-full overflow-hidden">
+          <motion.div
+            ref={trackRef}
+            className="absolute left-0 top-1/2 flex  items-center"
+            style={{
+              x: translateXMV,
+              gap: GAP,
+              y: '-50%',
+            }}
+            animate={{ opacity: stickersActive && containerWidth > 0 ? 1 : 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            {duplicatedStickers.map((sticker, index) => {
+              const isCenter = index === shiftIndex;
+              const isAdjacent = index === shiftIndex - 1 || index === shiftIndex + 1;
               return (
                 <StickerItem
-                  key={sticker.alt}
+                  key={`${sticker.alt}-${index}`}
                   sticker={sticker}
-                  left={left}
-                  top={top}
                   stickerSize={stickerSize}
-                  isActive={isActive}
-                  rotationMV={rotationMV}
+                  isCenter={isCenter}
+                  isAdjacent={isAdjacent}
                 />
               );
             })}
-        </motion.div>
+          </motion.div>
+        </div>
 
         {/* Central card */}
         <div className="relative z-20 spring-bounce-20 spring-duration-300">
           <div className="z-10 w-[350px] translate-y-[2%] scale-[0.9]">
-            <BasePayDialog triggerCount={topIndex} company={visibleStickers[topIndex].company} />
+            <BasePayDialog
+              triggerCount={centerStickerIndex}
+              company={visibleStickers[centerStickerIndex].company}
+            />
           </div>
         </div>
       </div>
