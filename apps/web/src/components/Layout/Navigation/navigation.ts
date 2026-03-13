@@ -458,7 +458,7 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
     href: '/solutions',
     items: [
       {
-        label: 'Enterprise',
+        label: 'Enterprises',
         href: '/enterprises',
       },
       {
