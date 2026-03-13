@@ -1,0 +1,161 @@
+{
+  "hero": {
+    "header": "Build and grow faster on Base",
+    "subheader": "Base gives startups everything they need to ship fast, launch globally, and reach millions of users onchain.",
+    "ctas": {
+      "primary": {
+        "label": "Register your app",
+        "url": "https://www.base.dev/"
+      }
+    }
+  },
+  "logoStrip": {
+    "label": "Trusted by leading startups and apps",
+    "context": "Startups Page Logos",
+    "logos": [
+      "Aerodrome",
+      "Avantis",
+      "Blackbird",
+      "Fomo",
+      "Kalshi",
+      "Morpho",
+      "Polymarket",
+      "Remix"
+    ]
+  },
+  "valueProps": [
+    {
+      "id": 1,
+      "header": "Go from idea to business",
+      "subheader": "Join our global incubator or apply to a partner accelerator to jumpstart your builder journey to make your vision the next killer app on Base",
+      "image": "/images/startups/rabbit_square.webp",
+      "primaryColor": "#FFD813"
+    },
+    {
+      "id": 2,
+      "header": "Launch on the fastest growing onchain economy",
+      "subheader": "Plug into our growing global Base economy",
+      "image": "/images/startups/plant_square.webp",
+      "primaryColor": "#0DFF6E"
+    },
+    {
+      "id": 3,
+      "header": "Unlock distribution on day one",
+      "subheader": "Reach millions through the Base App, powered by an open social graph that enables discovery, growth, and virality.",
+      "image": "/images/startups/earth_square.webp",
+      "primaryColor": "#0055FF"
+    }
+  ],
+  "baseBatches": {
+    "eyebrow": "Base Batches",
+    "header": "Base Batches",
+    "subheader": "Designed to support founders looking to take their business to the next stage. Get access to expert mentorship, resources, and funding opportunities via Demo Day",
+    "cta": {
+      "label": "Apply now",
+      "url": "https://batches.base.org"
+    }
+  },
+  "acceleratorPrograms": {
+    "header": "Accelerator programs",
+    "subheader": "We collaborate with top accelerators and startup programs worldwide to help scale your venture.",
+    "cards": [
+      {
+        "title": "The R3sidency",
+        "subtitle": "An accelerator for crypto, AI, and frontier tech founders obsessed with building category-defining companies.",
+        "url": "https://r3sidency.xyz/"
+      },
+      {
+        "title": "Chainlink Build",
+        "subtitle": "A program that supports both early-stage and established projects by providing enhanced access to Chainlink's technology, ecosystem, marketing, and technical support.",
+        "url": "https://chain.link/build-program"
+      }
+    ]
+  },
+  "baseEcosystemFund": {
+    "header": "Base Ecosystem Fund",
+    "subheader": "Early stage projects (pre-seed to seed) building on Base can apply for investment.",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSeiSAod4PAbXlvvDGtHWu-GqzGpvHYfaTQR2f77AawD7GYc4Q/viewform"
+  },
+  "scaleYourBusiness": {
+    "cards": [
+      {
+        "header": "Launch Inside Base App",
+        "subheader": "Reach millions of users, apply to get featured, and create a new growth channel for your business",
+        "url": "https://base.app"
+      },
+      {
+        "header": "Understand Your Customers",
+        "subheader": "Head to our dashboard custom built for Base apps. Get analytics, understand your users, and get featured inside Base App",
+        "url": "https://base.dev"
+      }
+    ]
+  },
+  "baseLayer": {
+    "eyebrow": "BaseLayer",
+    "header": "Meet the builders shaping the global economy",
+    "cards": [
+      {
+        "episode": "Episode 001",
+        "name": "Alexander Cutler",
+        "title": "Core-contributor, Aerodrome",
+        "image": "/images/startups/BaseLayer_AlexCutler_Thumbnail.png",
+        "url": "https://www.youtube.com/watch?v=0uPIDELtFCg"
+      },
+      {
+        "episode": "Episode 002",
+        "name": "Tara Faulkner",
+        "title": "Co-founder, Cat Town",
+        "image": "/images/startups/BaseLayer_TaraFaulkner_Thumbnail.jpg",
+        "url": "https://www.youtube.com/watch?v=E9amHsArj88"
+      },
+      {
+        "episode": "Episode 003",
+        "name": "Shane Mac",
+        "title": "Co-founder, XMTP",
+        "image": "/images/startups/BaseLayer_ShaneMac_Thumbnail.jpg",
+        "url": "https://www.youtube.com/watch?v=-H_KBLYI-p4"
+      },
+      {
+        "episode": "Episode 004",
+        "name": "Jacob Horne",
+        "title": "Co-founder, Zora",
+        "image": "/images/startups/BaseLayer_JacobHorne_Thumbnail.jpg",
+        "url": "https://www.youtube.com/watch?v=YKESt8vvCcc"
+      }
+    ]
+  },
+  "resources": {
+    "header": "Resources",
+    "cards": [
+      {
+        "title": "Base Documentations",
+        "subtitle": "We've done the hard part for you. Check out our docs for everything you need to ship your MVP.",
+        "url": "https://docs.base.org/get-started/base"
+      },
+      {
+        "title": "Paymaster Gas Credits",
+        "subtitle": "Get up to $600 in free Paymaster credits to build gasless onchain apps that make it easy for your users to onboard.",
+        "url": "https://www.coinbase.com/developer-platform/products/paymaster"
+      },
+      {
+        "title": "Base Services Hub",
+        "subtitle": "Get exclusive discounts on software and services to help you ship and grow faster.",
+        "url": "https://docs.base.org/get-started/base-services-hub"
+      }
+    ]
+  },
+  "finalCta": {
+    "header": "Build your startup on Base",
+    "subheader": "Ship fast, launch globally, and reach millions of users on Base.",
+    "ctas": {
+      "primary": {
+        "label": "Start building",
+        "url": "https://dashboard.base.org"
+      },
+      "secondary": {
+        "label": "View docs",
+        "url": "https://base.org/docs"
+      }
+    }
+  }
+}
