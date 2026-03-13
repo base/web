@@ -33,6 +33,10 @@ type SceneProps = {
   containerHeight?: number;
   interactionUniforms?: InteractionUniforms;
   bottomFade?: boolean;
+  topFade?: boolean;
+  sideFade?: boolean;
+  backgroundColor?: { r: number; g: number; b: number } | null;
+  primaryColor?: { r: number; g: number; b: number } | null;
 };
 
 // Simple fullscreen renderer for displaying the pattern texture
@@ -108,6 +112,10 @@ export function Scene({
   containerHeight,
   interactionUniforms,
   bottomFade = true,
+  topFade = false,
+  sideFade = false,
+  backgroundColor,
+  primaryColor,
 }: SceneProps) {
   const threeWidth = useThree((state) => Math.round(state.size.width));
   const threeHeight = useThree((state) => Math.round(state.size.height));
@@ -166,6 +174,10 @@ export function Scene({
     logicalHeight: height,
     useWhiteBackground: !!externalFBO,
     bottomFade,
+    topFade,
+    sideFade,
+    backgroundColor,
+    primaryColor,
   });
 
   const renderFrame = useCallback(
