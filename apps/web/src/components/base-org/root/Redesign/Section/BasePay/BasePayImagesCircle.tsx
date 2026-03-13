@@ -67,25 +67,44 @@ type StickerItemProps = {
 };
 
 function StickerItem({ sticker, stickerSize, isCenter, position }: StickerItemProps) {
+  const [pressed, setPressed] = useState(false);
+
+  const pulse = () => {
+    setPressed(true);
+    setTimeout(() => setPressed(false), 200);
+  };
+
+  useEffect(() => {
+    if (isCenter) {
+      setTimeout(() => {
+        pulse();
+      }, 1500);
+    }
+  }, [isCenter]);
+
   const isAdjacent = position !== null;
   return (
     <motion.div
       className="flex shrink-0 items-center justify-center"
       animate={{
         opacity: isCenter ? 1 : isAdjacent ? 0.85 : 0.6,
-        scale: isCenter ? 1.3 : isAdjacent ? 0.9 : 0.75,
+        scale: isCenter ? 1.4 : isAdjacent ? 0.9 : 0.75,
         x: position === 'left' ? -ADJACENT_OFFSET : position === 'right' ? ADJACENT_OFFSET : 0,
       }}
       transition={{ duration: 0.9, type: 'spring', bounce: 0.2 }}
       style={{ width: stickerSize, height: stickerSize }}
     >
-      <img
+      <motion.img
+        animate={{ scale: pressed ? 0.94 : 1 }}
+        transition={{
+          type: 'spring',
+          stiffness: 200,
+          damping: 22,
+          mass: 0.6,
+        }}
         src={sticker.image}
         alt={sticker.alt}
-        className={classNames(
-          'sticker-image h-full w-full object-contain drop-shadow-md spring-bounce-20 spring-duration-300',
-          isCenter && 'sticker-pulse',
-        )}
+        className={classNames('absolute inset-0 h-full w-full object-contain')}
         draggable={false}
       />
     </motion.div>
