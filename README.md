@@ -72,6 +72,11 @@ If you're a builder who wants to add or update your project on the [Base Ecosyst
 3. Update the `ecosystem.json` file in `apps/web/src/data/` with your project's details :
 
    ```json
+
+   > **Important:** Please ensure your JSON is valid before committing!
+> A single missing comma or trailing comma will fail the build.
+> We recommend running `yarn lint` locally or checking your syntax with a tool like [JSONLint](https://jsonlint.com/).
+
    {
      "name": "Your Project Name",
      "description": "A brief description (less than 200 characters)",
