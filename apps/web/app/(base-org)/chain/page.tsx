@@ -55,7 +55,7 @@ export default async function Chain() {
             />
 
             {/* Globe Section */}
-            <Section content={{}} disableWrapperAnimation>
+            <Section content={{ title: '' }} disableWrapperAnimation>
               <section className="pointer-events-none col-span-full w-full">
                 <GlobeWrapper />
               </section>
