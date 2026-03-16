@@ -109,6 +109,14 @@ base.org.
 
 ```
 yarn workspace @app/web dev
+
+### Quick checklist before opening a PR
+
+- `yarn` at the repo root has completed successfully.
+- `yarn workspace @app/web dev` shows your project on the Ecosystem page.
+- `yarn workspace @app/web build` succeeds without errors.
+- The `ecosystem.json` entry points to a Base-specific URL and uses a 192x192 logo from `apps/web/public/images/partners/`.
+
 ```
 
 6. Make sure the build works properly before creating the PR:
