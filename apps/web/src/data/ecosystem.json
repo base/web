@@ -2856,6 +2856,14 @@
     "subcategory": "self-custody"
   },
   {
+    "name": "Olive Branch Network",
+    "description": "Stake OBN tokens on Base to earn yield while automatically funding verified nonprofits and charities.",
+    "url": "https://dapp.olivebranch.network",
+    "imageUrl": "/images/partners/olive-branch-network.png",
+    "category": "defi",
+    "subcategory": "yield vault"
+  },
+  {
     "name": "OneKey",
     "description": "OneKey is an open-source crypto solution that pairs a secure hardware wallet with our all-in-one app, letting you manage, swap, and explore DeFi & NFTs across 100+ chains.",
     "url": "https://onekey.so",
@@ -4768,12 +4776,12 @@
     "subcategory": "bridge"
   },
   {
-  "name": "Melvin",
-  "url": "https://melvin.wtf",
-  "description": "Melvin's ERC-8004 based agents scans prediction markets 24/7 and automatically hedges your positions so you profit regardless of outcome.",
-  "imageUrl": "/images/partners/melvin25.png",
-  "category": "ai",
-  "subcategory": "ai"
+    "name": "Melvin",
+    "url": "https://melvin.wtf",
+    "description": "Melvin's ERC-8004 based agents scans prediction markets 24/7 and automatically hedges your positions so you profit regardless of outcome.",
+    "imageUrl": "/images/partners/melvin25.png",
+    "category": "ai",
+    "subcategory": "ai"
   },
   {
     "name": "City Protocol",
