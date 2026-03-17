@@ -49,7 +49,7 @@ For example, to start the `web` app locally, you would run `yarn workspace @app/
 
 ## Projects
 
-There are three projects which can be run individually.
+There are three projects that can be run individually.
 
 ### Web
 
@@ -69,7 +69,7 @@ If you're a builder who wants to add or update your project on the [Base Ecosyst
 
 2. Create a new branch for your changes.
 
-3. Update the `ecosystem.json` file in `apps/web/src/data/` with your project's details :
+3. Update `apps/web/src/data/ecosystem.json` with your project's details:
 
    ```json
    {
@@ -102,7 +102,7 @@ base.org.
 4. Add your project's logo:
 
    - Place a 192x192 pixel PNG/WebP file in `apps/web/public/images/partners/`
-   - Name should match what you specified in imageUrl
+   - The file name should match the imageUrl value.
    - Use an App/Play Store style icon (not a full wordmark)
 
 5. Check if your project has been listed by running it locally:
