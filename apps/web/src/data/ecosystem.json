@@ -4136,6 +4136,14 @@
     "subcategory": "data"
   },
   {
+    "name": "tokenforge",
+    "description": "Regulated tokenization infrastructure for real-world assets. Modular platform for onboarding, issuance, distribution, and lifecycle management of digital securities under MiCAR, MiFID II, and eWpG.",
+    "url": "https://www.tokenforge.io",
+    "imageUrl": "/images/partners/tokenforge.png",
+    "category": "infra",
+    "subcategory": "developer tool"
+  },
+  {
     "name": "Tokiemon",
     "description": "Mint and battle (de)generative AI monsters.",
     "url": "https://tokiemon.io",
