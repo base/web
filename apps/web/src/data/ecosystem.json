@@ -80,6 +80,14 @@
     "subcategory": "lending/borrowing"
   },
   {
+    "name": "ActionGate",
+    "description": "Pre-execution safety layer for autonomous agent wallets. Risk scoring, simulation, and policy enforcement — with pay-per-call pricing via x402 on Base.",
+    "url": "https://api.actiongate.xyz",
+    "imageUrl": "/images/partners/actiongate.png",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "Across Protocol",
     "url": "https://across.to/",
     "description": "Across Protocol is a leading cross-chain token bridge that is secured by UMA's optimistic oracle. It is optimized for capital efficiency with a single liquidity pool, a competitive relayer landscape, and a no-slippage fee model. You can expect secure, fast and affordable cross-chain token transfers with Across.",
