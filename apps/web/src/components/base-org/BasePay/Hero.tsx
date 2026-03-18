@@ -13,7 +13,7 @@ import Link from 'apps/web/src/components/Link';
 export default function Hero() {
   return (
     <section className="col-span-full">
-      <div className="relative mb-52 h-[412px] w-full lg:mb-12 lg:h-[670px] xl:h-[870px]">
+      <div className="relative mb-52 h-[412px] w-full lg:mb-12 lg:h-[670px] xl:h-[670px]">
         {/* AsciiFluidScene Background */}
         <div className="absolute inset-0">
           <div className="w-full h-full">

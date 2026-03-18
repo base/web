@@ -1,6 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+import { useState, useEffect } from 'react';
 
 import { cubicBezier, motion } from 'motion/react';
 
@@ -16,11 +17,25 @@ const sidebarVariants = {
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   const isBrand = pathname.includes('/brand');
 
+  // Mark as animated after initial mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setHasAnimated(true);
+    }, 800); // Match the animation duration
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <motion.div variants={sidebarVariants} initial="hidden" animate="visible" className="relative">
+    <motion.div
+      variants={sidebarVariants}
+      initial="hidden"
+      animate={hasAnimated ? false : 'visible'}
+      className="relative"
+    >
       {isBrand ? <BrandSidebar /> : <BaseSidebar />}
     </motion.div>
   );
