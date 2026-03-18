@@ -49,7 +49,7 @@ float isInsideRoundedRect(vec2 uv, vec2 resolution, vec4 radii) {
   vec2 pos = (uv - 0.5) * resolution;
   vec2 halfSize = resolution * 0.5;
   
-  // supports differnt radius for each corner
+  // supports different radius for each corner
   vec4 r = radii;
   if (pos.x > 0.0 && pos.y > 0.0) r = vec4(radii.y, radii.y, radii.y, radii.y); // top-right
   else if (pos.x < 0.0 && pos.y > 0.0) r = vec4(radii.x, radii.x, radii.x, radii.x); // top-left
