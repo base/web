@@ -616,6 +616,14 @@
     "subcategory": "developer tool"
   },
   {
+    "name": "BlindOracle",
+    "url": "https://craigmbrown.com/blindoracle/",
+    "imageUrl": "/images/partners/blindoracle.png",
+    "description": "AI-powered prediction market intelligence with 25 agents and Chainlink Data Streams",
+    "category": "ai",
+    "subcategory": "ai"
+  },
+  {
     "name": "BlockAI",
     "category": "ai",
     "subcategory": "ai",
