@@ -27,8 +27,8 @@ module.exports = {
       currentColor: 'currentColor',
       base: {
         white: 'rgba(255, 255, 255, 1)',
-        black: 'rgb(50, 50, 50, 1)',
-        blackInvert: 'rgb(205, 205, 205, 1)',
+        black: 'rgba(50, 50, 50, 1)',
+        blackInvert: 'rgba(205, 205, 205, 1)',
         gray: {
           10: 'rgb(238, 240, 243)',
           25: 'rgba(250, 250, 250, 1)',
