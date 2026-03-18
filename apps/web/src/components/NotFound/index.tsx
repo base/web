@@ -5,6 +5,7 @@ import Image, { StaticImageData } from 'next/image';
 import useMousePosition from 'apps/web/src/hooks/useMousePos';
 import { useRef, useState, useEffect, useMemo, memo, useCallback } from 'react';
 import { useMedia } from 'apps/web/src/hooks/useMedia';
+import Link from 'apps/web/src/components/Link';
 
 const notFoundImg = notFoundSvg as StaticImageData;
 
@@ -119,10 +120,12 @@ export function Windows() {
   const trail = useMouseTrail(containerRef);
 
   return (
-    <div ref={containerRef} className="absolute inset-0 h-full w-full">
+    <div ref={containerRef} className="absolute inset-0 w-full h-full">
       <AnimatePresence>
         {trail.map((window) => (
-          <NotFoundSvg key={window.id} windowPos={window} />
+          <Link href="/" key={window.id}>
+            <NotFoundSvg key={window.id} windowPos={window} />
+          </Link>
         ))}
       </AnimatePresence>
     </div>
@@ -135,7 +138,7 @@ const NotFoundSvg = memo(function NotFoundSvg({ windowPos }: { windowPos: Window
 
   return (
     <motion.div
-      className="pointer-events-none absolute left-0 top-0"
+      className="absolute top-0 left-0 pointer-events-auto"
       // eslint-disable-next-line react-perf/jsx-no-new-object-as-prop
       initial={{
         x: windowPos.x,
