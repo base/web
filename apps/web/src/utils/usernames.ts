@@ -111,9 +111,15 @@ export const textRecordsSocialFieldsEnabledIcons: Partial<Record<UsernameTextRec
   };
 
 // Users might add their handle as @myProfile, which breaks on some website
-// TODO: Ideally we'd sanitize these before writing them as TextRecord
 export const sanitizeHandle = (handle: string) => {
-  let handleSanitized = handle;
+  // Validate input and limit length to prevent potential DoS attacks
+  if (!handle || typeof handle !== 'string') {
+    return '';
+  }
+  
+  // Limit handle length to reasonable size (most social platforms use 15-30 chars)
+  const MAX_HANDLE_LENGTH = 50;
+  let handleSanitized = handle.substring(0, MAX_HANDLE_LENGTH);
 
   // User Somehow entered a full URLs instead of a handle
   try {
@@ -129,6 +135,9 @@ export const sanitizeHandle = (handle: string) => {
   if (handleSanitized.startsWith('@')) {
     handleSanitized = handleSanitized.substring(1);
   }
+
+  // Additional sanitization: remove any remaining special characters that could cause issues
+  handleSanitized = handleSanitized.replace(/[^\w\-_.]/g, '');
 
   return handleSanitized;
 };
