@@ -95,6 +95,16 @@ export function Hero() {
               >
                 Accept crypto payments
               </ButtonWithLinkAndEventLogging>
+              <ButtonWithLinkAndEventLogging
+                variant={ButtonVariants.SecondaryOutline}
+                iconName="ai"
+                buttonClassNames="rounded-xl text-sm font-medium"
+                href="https://docs.base.org/llms.txt"
+                eventName="accept-crypto-payments"
+                target="_blank"
+              >
+                Start with AI docs
+              </ButtonWithLinkAndEventLogging>
             </div>
 
             <div className="relative w-full max-sm:hidden">
