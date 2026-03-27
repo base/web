@@ -1888,6 +1888,14 @@
     "subcategory": "ai"
   },
   {
+    "name": "GRAM Ecosystem",
+    "description": "The GRAM Ecosystem is a game-first Web3 ecosystem built by GRAMPUS, focused on creating sustainable, consumer-friendly onchain game economies on Base.",
+    "url": "https://gram.voyage",
+    "imageUrl": "/images/partners/gram_ecosystem.png",
+    "category": "consumer",
+    "subcategory": "gaming "
+  },
+  {
     "name": "gTrade",
     "description": "Access 290+ perpetual futures markets across crypto, stocks, forex, and commodities with self-custody, efficient execution, and zero slippage on major pairs.",
     "url": "https://gains.trade/trading",
@@ -2182,6 +2190,14 @@
     "imageUrl": "/images/partners/jumper_exchange.webp",
     "category": "infra",
     "subcategory": "bridge"
+  },
+  {
+    "name": "Juicy Adventure",
+    "url": "https://gram.voyage",
+    "description": "Juicy Adventure is a casual 5v5 shooter designed for accessible, fun gameplay with Web2-native mechanics and onchain engagement on Base. Powered by GRAM Ecosystem",
+    "imageUrl": "/images/partners/juicyadventure.png",
+    "category": "consumer",
+    "subcategory": "gaming"
   },
   {
     "name": "Karum",
@@ -3470,6 +3486,14 @@
     "imageUrl": "/images/partners/rockx.png",
     "category": "infra",
     "subcategory": "node provider"
+  },
+  {
+    "name": "Rolling Burger",
+    "description": "Rolling Burger is a hybrid casual game built for fast, repeatable sessions, where players roll dice, collect ingredients, and assemble burgers through simple, intuitive mechanics. Powered by GRAM Ecosystem",
+    "url": "https://gram.voyage",
+    "imageUrl": "/images/partners/RollingBurger.png",
+    "category": "consumer",
+    "subcategory": "gaming"
   },
   {
     "name": "RSS3",
