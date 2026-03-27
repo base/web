@@ -24,10 +24,10 @@ export function Hero() {
       <div className="flex items-center gap-2 pb-6 text-[#E66020]">
         <Image
           src={agentkit as StaticImageData}
-          alt="agentkit"
+          alt="AgentKit SDK icon"
           width={32}
           height={32}
-          className="w-5 h-5"
+          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
         />
         <Title level={TitleLevel.Title3} className="font-bold">
           AgentKit
@@ -44,10 +44,10 @@ export function Hero() {
         and allow them to transact onchain.
       </Title>
 
-      <div className="flex gap-4 pt-4 pb-24 bg-black max-sm:flex-col md:pt-5">
+      <div className="flex gap-4 pt-4 pb-8 sm:pb-12 md:pb-16 lg:pb-24 bg-black max-sm:flex-col md:pt-5">
         <button
           type="button"
-          className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-lg bg-white px-4 pb-3 pt-3 font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90 max-sm:mr-auto"
+          className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-lg bg-white px-4 py-3 min-h-[44px] font-medium text-dark-palette-primaryForeground transition-colors hover:bg-white/90 w-full sm:w-auto"
           onClick={handleCopy}
         >
           npx create-agentkit-app
@@ -63,7 +63,7 @@ export function Hero() {
           href={AGENTKIT_DOCS_LINK}
           target="_blank"
           variant={ButtonVariants.SecondaryOutline}
-          buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
+          buttonClassNames="flex items-center justify-between px-4 py-3 min-h-[44px] group font-medium w-full sm:w-auto"
           eventName="agentkit-docs"
         >
           <div className="flex items-center justify-between gap-6">
