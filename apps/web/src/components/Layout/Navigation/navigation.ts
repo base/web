@@ -388,78 +388,105 @@ export const BRAND_ROUTES: BrandRoute[] = [
 
 export const DEFAULT_ROUTES: DefaultRoute[] = [
   {
-    label: 'Base App',
-    href: 'https://base.app',
-    newTab: true,
+    label: 'Chain',
+    href: '/chain',
+    items: [
+      {
+        icon: 'chain',
+        label: 'Base Chain',
+        href: '/chain',
+      },
+      {
+        label: 'Status',
+        href: 'https://status.base.org',
+        newTab: true,
+      },
+      {
+        label: 'Block Explorer',
+        href: 'https://basescan.org',
+        newTab: true,
+      },
+      {
+        label: 'Big Bounty',
+        href: 'http://hackerone.com/coinbase',
+        newTab: true,
+      },
+    ],
   },
   {
-    label: 'Base Build',
+    label: 'Products',
+    href: '/products',
+    items: [
+      {
+        label: 'Base App',
+        href: 'https://base.app',
+        newTab: true,
+      },
+      {
+        label: 'Base Pay',
+        href: '/pay',
+      },
+    ],
+  },
+  {
+    label: 'Developers',
     href: '/build',
     items: [
       {
-        icon: 'code',
         label: 'Base Build',
         href: '/build',
       },
       {
-        icon: 'dashboard',
         label: 'Dashboard',
         href: 'https://base.dev/',
         newTab: true,
       },
       {
-        icon: 'wallet',
-        label: 'Base Account',
-        href: '/build/base-account',
+        label: 'Documentation',
+        href: 'https://docs.base.org/',
+        newTab: true,
       },
       {
-        icon: 'terminal',
-        label: 'OnchainKit',
-        href: '/build/onchainkit',
-      },
-      {
-        icon: 'rocket',
-        label: 'Mini Apps',
-        href: '/build/mini-apps',
-      },
-      {
-        icon: 'docs',
-        label: 'Spindl',
-        href: 'https://spindl.xyz/',
+        label: 'Github',
+        href: 'https://github.com/base',
         newTab: true,
       },
     ],
-    appendix: [
-      { label: 'Docs', href: 'https://docs.base.org/', newTab: true },
-      { label: 'Status Page', href: 'https://status.base.org/', newTab: true },
-      { label: 'Block Explorer', href: 'https://basescan.org/', newTab: true },
-      { label: 'GitHub', href: 'https://github.com/base', newTab: true },
-      { label: 'Engineering Blog', href: 'https://www.base.dev/blog', newTab: true },
-      { label: 'Base Stats', href: '/stats', newTab: true },
-      { label: 'Bug Bounty', href: 'https://hackerone.com/coinbase', newTab: true },
-    ],
   },
   {
-    label: 'Base Pay',
-    href: '/pay',
-  },
-  {
-    label: 'Ecosystem',
-    href: '/ecosystem',
+    label: 'Solutions',
+    href: '/solutions',
     items: [
       {
-        icon: 'rocket',
-        label: 'Ecosystem',
-        href: 'https://www.base.org/ecosystem',
+        label: 'Enterprises',
+        href: '/enterprises',
+      },
+      {
+        label: 'Startups',
+        href: '/startups',
+      },
+    ],
+  },
+  {
+    label: 'Resources',
+    href: '/resources',
+    items: [
+      {
+        label: 'Vision',
+        href: '/about/vision',
+      },
+      {
+        label: 'Brand Kit',
+        href: 'https://base.org/brand',
+      },
+      {
+        label: 'Blog',
+        href: 'https://blog.base.org',
         newTab: true,
       },
       {
-        isDivider: true,
-      },
-      {
-        label: 'Job Network',
-        href: 'https://base.hirechain.io/',
-        newTab: true,
+        label: 'Jobs',
+        href: '/jobs',
       },
     ],
   },
@@ -468,18 +495,15 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
     href: '/community',
     items: [
       {
-        icon: 'book',
         label: 'Resources',
         href: '/resources',
       },
       {
-        icon: 'rocket',
         label: 'Batches',
         href: 'https://www.basebatches.xyz/',
         newTab: true,
       },
       {
-        icon: 'briefcase',
         label: 'Events',
         href: 'https://luma.com/BaseEvents',
         newTab: true,
@@ -487,42 +511,8 @@ export const DEFAULT_ROUTES: DefaultRoute[] = [
     ],
   },
   {
-    label: 'About',
-    href: '/about',
-    items: [
-      {
-        icon: 'rocket',
-        label: 'Vision',
-        href: '/about/vision',
-      },
-      {
-        icon: 'media',
-        label: 'Brand Kit',
-        href: 'https://base.org/brand',
-      },
-      {
-        icon: 'openBook',
-        label: 'Blog',
-        href: 'https://blog.base.org',
-        newTab: true,
-      },
-      {
-        icon: 'briefcaseAlt',
-        label: 'Jobs',
-        href: '/jobs',
-      },
-      {
-        icon: 'docs',
-        label: 'Base App Help',
-        href: 'https://help.coinbase.com/en/base',
-        newTab: true,
-      },
-      {
-        icon: 'questionCircle',
-        label: 'Base App FAQs',
-        href: '/about/faqs',
-      },
-    ],
+    label: 'Ecosystem',
+    href: '/ecosystem',
   },
 ];
 
