@@ -2008,6 +2008,14 @@
     "subcategory": "identity"
   },
   {
+    "name": "Hydrex",
+    "description": "A Frictionless Liquidity Hub & DEX built on Base for Base.",
+    "url": "https://hydrex.fi",
+    "imageUrl": "/images/partners/hydrex.png",
+    "category": "defi",
+    "subcategory": "dex"
+  },
+  {
     "name": "Hypersub",
     "description": "Discover creators. Subscribe for access, perks and benefits. Earn rewards.",
     "url": "https://hypersub.xyz",
