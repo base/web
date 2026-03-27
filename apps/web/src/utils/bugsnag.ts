@@ -41,7 +41,7 @@ async function inititializeBugsnag() {
 
 export async function bugsnagNotify(error: Error | string, onError?: OnErrorCallback) {
   if (!BugsnagClient) {
-    await inititializeBugsnag();
+    await initializeBugsnag();
   }
 
   if (!BugsnagClient) {
