@@ -2,8 +2,6 @@ import { getDb } from 'apps/web/src/utils/datastores/postgres';
 import { Address } from 'viem';
 
 export enum ProofTableNamespace {
-  BNSDiscount = 'basenames_bns_discount',
-  BaseEthHolders = 'basenames_base_eth_holders_discount',
   CBIDDiscount = 'basenames_cbid_discount',
 }
 

@@ -150,28 +150,14 @@ export default function RegistrationFAQ() {
                       Buildathon participant NFT
                     </a>
                   </li>
-                  <li>
-                    <a
-                      href="https://opensea.io/collection/base-org-base-eth"
-                      className="text-blue-600 hover:underline"
-                    >
-                      base.eth NFT holder
-                    </a>
-                  </li>
                   <li>cb.id username (acquired prior to Fri Aug 9, 2024)</li>
-                  <li>
-                    <a href="http://basename.app" className="text-blue-600 hover:underline">
-                      BNS name owner - free 4+ letter name (basename.app)
-                    </a>
-                  </li>
                 </ul>
 
                 <p className="mb-4">
                   An equivalent-value discount of 0.001 ETH will be applied if registering a shorter
-                  name, or registering for more than 1 year, with the exception of the BNS name
-                  owner discount (valued at 0.01 ETH per unique address). You will need to pay the
-                  standard registration fees if you wish to keep your Basename after your initial
-                  discount has been fully applied.
+                  name, or registering for more than 1 year. You will need to pay the standard
+                  registration fees if you wish to keep your Basename after your initial discount
+                  has been fully applied.
                 </p>
 
                 <p className="mb-4">

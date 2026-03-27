@@ -1,7 +1,5 @@
 import {
   AttestationData,
-  useBNSAttestations,
-  useBaseDotEthAttestations,
   useBaseWorldAttestations,
   useBuildathonAttestations,
   useCheckCB1Attestations,
@@ -25,8 +23,7 @@ export function findFirstValidDiscount(
 ): DiscountData | undefined {
   const priorityOrder: Partial<Record<Discount, number>> & { default: 3 } = {
     [Discount.DISCOUNT_CODE]: 0,
-    [Discount.BNS_NAME]: 1,
-    [Discount.CB1]: 2,
+    [Discount.CB1]: 1,
     default: 3,
   };
 
@@ -48,8 +45,6 @@ export function useAggregatedDiscountValidators(code?: string) {
     useCheckCoinbaseAttestations();
   const { data: SummerPassData, loading: loadingSummerPass } = useSummerPassAttestations();
   const { data: BuildathonData, loading: loadingBuildathon } = useBuildathonAttestations();
-  const { data: BaseDotEthData, loading: loadingBaseDotEth } = useBaseDotEthAttestations();
-  const { data: BNSData, loading: loadingBNS } = useBNSAttestations();
   const { data: DiscountCodeData, loading: loadingDiscountCode } =
     useDiscountCodeAttestations(code);
   const { data: TalentProtocolData, loading: loadingTalentProtocolAttestations } =
@@ -64,8 +59,6 @@ export function useAggregatedDiscountValidators(code?: string) {
     loadingActiveDiscounts ||
     loadingBuildathon ||
     loadingSummerPass ||
-    loadingBaseDotEth ||
-    loadingBNS ||
     loadingDiscountCode ||
     loadingTalentProtocolAttestations ||
     loadingBaseWorld ||
@@ -108,18 +101,6 @@ export function useAggregatedDiscountValidators(code?: string) {
           ...SummerPassData,
           discountKey: validator.key,
         };
-      }
-      if (
-        BaseDotEthData &&
-        validator.discountValidator === BaseDotEthData.discountValidatorAddress
-      ) {
-        discountMapping[Discount.BASE_DOT_ETH_NFT] = {
-          ...BaseDotEthData,
-          discountKey: validator.key,
-        };
-      }
-      if (BNSData && validator.discountValidator === BNSData.discountValidatorAddress) {
-        discountMapping[Discount.BNS_NAME] = { ...BNSData, discountKey: validator.key };
       }
 
       if (
@@ -165,8 +146,6 @@ export function useAggregatedDiscountValidators(code?: string) {
     coinbaseData,
     BuildathonData,
     SummerPassData,
-    BaseDotEthData,
-    BNSData,
     DiscountCodeData,
     TalentProtocolData,
     BaseWorldData,
