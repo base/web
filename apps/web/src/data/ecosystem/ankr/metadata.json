@@ -1,7 +1,7 @@
 {
   "name": "Ankr",
   "url": "https://www.ankr.com/",
-  "description": "Build on Web3 with a fast, reliable and distributed network of blockchain nodes",
+  "description": "Ankr provides decentralized infrastructure for Web3 developers, including RPC endpoints, staking solutions, and multi-chain node hosting. Its distributed network helps apps connect to blockchains quickly and reliably.",
   "imageUrl": "/images/partners/ankr.webp",
   "category": "infra",
   "subcategory": "node provider"
