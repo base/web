@@ -4744,6 +4744,14 @@
     "subcategory": "dex"
   },
   {
+    "name": "Vexy",
+    "url": "https://vexy.fi",
+    "description": "The liquidity hub for veNFTs",
+    "imageUrl": "/images/partners/vexy-logo.png",
+    "category": "defi",
+    "subcategory": "dex"
+  },
+  {
     "name": "Rift",
     "description": "Next-gen social platform built for traders. Create and trade coins, run on-chain guilds, and earn from your content with aligned incentives and automated revenue sharing. Trade together, win together.",
     "url": "https://rift.club",
