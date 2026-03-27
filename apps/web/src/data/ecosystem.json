@@ -2528,6 +2528,14 @@
     "subcategory": "nft"
   },
   {
+    "name": "Mining Hash",
+    "description": "Mine $HASH tokens using specialized NFT inventory in this innovative Web3 mining simulator. Collect, upgrade, and optimize your digital mining equipment.",
+    "url": "https://hashcoin.farm/",
+    "imageUrl": "/images/partners/hashcoin.png",
+    "category": "consumer", 
+    "subcategory": "gaming"
+  },
+  {
     "name": "Mirror",
     "url": "https://www.mirror.xyz",
     "description": "Built on web3 for web3, Mirror's robust publishing platform pushes the boundaries of writing online—whether it's the next big white paper or a weekly community update.",
