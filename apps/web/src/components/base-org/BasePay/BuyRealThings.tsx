@@ -57,8 +57,8 @@ export default function BuyRealThings() {
 
           {/* Left Carousel - Moving Up */}
           <motion.div className="flex flex-col gap-3 items-center" style={{ y: y1 }}>
-            {[...leftCarouselItems, ...leftCarouselItems].map((item) => (
-              <div key={crypto.randomUUID()} className="overflow-hidden flex-shrink-0 rounded-3xl">
+            {leftCarouselItems.concat(leftCarouselItems).map((item, index) => (
+              <div key={`left-${index}`} className="overflow-hidden flex-shrink-0 rounded-3xl">
                 <ImageWithLoading src={item.src} alt={item.alt} width={245} height={343} />
               </div>
             ))}
@@ -66,8 +66,8 @@ export default function BuyRealThings() {
 
           {/* Right Carousel - Moving Down */}
           <motion.div className="flex flex-col gap-3 items-center" style={{ y: y2 }}>
-            {[...rightCarouselItems, ...rightCarouselItems].map((item) => (
-              <div key={crypto.randomUUID()} className="overflow-hidden flex-shrink-0 rounded-3xl">
+            {rightCarouselItems.concat(rightCarouselItems).map((item, index) => (
+              <div key={`right-${index}`} className="overflow-hidden flex-shrink-0 rounded-3xl">
                 <ImageWithLoading src={item.src} alt={item.alt} width={245} height={343} />
               </div>
             ))}
