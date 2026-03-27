@@ -1,20 +1,47 @@
----
+# --- Configuration for the CI/CD Pipeline (e.g., Deployments/Merge restrictions) ---
+
+# SECURITY: Defines required checks and restrictions for merging/deployment.
 secure:
-  required_reviews: 1
-  requires_mfa: true
-  requires_verified: true
-  upstream_repository: base/web
+  # Required conditions for merging Pull Requests or initiating deployments to the specified branches.
+  required_reviews: 1                # Minimum number of required code reviews.
+  requires_mfa: true                 # Requires Multi-Factor Authentication (MFA) for the merging user.
+  requires_verified: true            # Requires the merging commit to be signed and verified.
+
+  # BRANCH RESTRICTIONS: Specifies which branches these security rules apply to.
+  # Using a map (key-value pairs) allows for future expansion of branch-specific rules.
   branches:
-    - staging
-
+    staging:
+      # Optional: Add specific deployment protections here if needed.
+      protection_enabled: true
+    # Example:
+    # production:
+    #   required_reviews: 3
+      
+# BUILD: Defines the container images and build process configurations.
 build:
-  engines:
-    - BaldurECR:
-        name: web
-        path: ./apps/web/Dockerfile
-        architecture: arm64
+  # ARCHITECTURE: Setting multi_arch at the top level assumes all engines support it.
   multi_arch: true
+  
+  # ENGINES: List of container images/services to be built.
+  engines:
+    - name: web
+      # The specific builder/registry implementation (e.g., Baldur system using ECR).
+      provider: BaldurECR 
+      # Path to the application's Dockerfile relative to the repository root.
+      path: ./apps/web/Dockerfile
+      # Target processor architecture for the container image.
+      architecture: arm64
+      # Optional: Specify build context if different from Dockerfile location.
+      # context: ./apps/web
 
+# OPERATE: Defines external operational notifications and integrations.
 operate:
-  slack_channels:
-    - '#base-codeflow-notifications'
+  # NOTIFICATIONS: Defines where pipeline event notifications are sent.
+  notifications:
+    slack:
+      # List of Slack channels to receive notifications for critical events 
+      # (e.g., failed builds, deployment success/failure).
+      channels:
+        - '#base-codeflow-notifications'
+      # Optional: Define the severity of notifications to send (e.g., 'failure', 'success').
+      # events: ['deployment_failure', 'build_failure']
