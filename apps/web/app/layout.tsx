@@ -1,6 +1,8 @@
 import './global.css';
+import '../src/styles/accessibility.css';
 
 import AppProviders from 'apps/web/app/AppProviders';
+import { SkipLinks } from 'apps/web/src/components/SkipLinks/SkipLinks';
 
 import localFont from 'next/font/local';
 import DatadogInit from 'apps/web/app/datadog';
@@ -233,6 +235,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
 
       <body className="flex flex-col min-h-screen antialiased">
+        <SkipLinks />
         <AppProviders>
           <DatadogInit />
           {children}

@@ -10,6 +10,7 @@ import { useConnectModal } from '@rainbow-me/rainbowkit';
 import { Button, ButtonSizes, ButtonVariants } from 'apps/web/src/components/Button/Button';
 import { UserAvatar } from 'apps/web/src/components/ConnectWalletButton/UserAvatar';
 import { Icon } from 'apps/web/src/components/Icon/Icon';
+import { LiveRegion } from 'apps/web/src/components/VisuallyHidden/VisuallyHidden';
 import useBasenameChain, { supportedChainIds } from 'apps/web/src/hooks/useBasenameChain';
 import logEvent, {
   ActionType,
@@ -65,7 +66,13 @@ export function ConnectWalletButton({
   const chainSupported = !!chain && supportedChainIds.includes(chain.id);
   const { basenameChain } = useBasenameChain();
   const [, copy] = useCopyToClipboard();
-  const copyAddress = useCallback(() => void copy(address ?? ''), [address, copy]);
+  const [copySuccess, setCopySuccess] = useState(false);
+
+  const copyAddress = useCallback(async () => {
+    await copy(address ?? '');
+    setCopySuccess(true);
+    setTimeout(() => setCopySuccess(false), 2000);
+  }, [address, copy]);
 
   const buttonClasses = classNames(
     address
@@ -111,12 +118,21 @@ export function ConnectWalletButton({
   const isDesktop = useMediaQuery('(min-width: 768px)');
 
   if (isConnecting || isReconnecting || !isMounted) {
-    return <Icon name="spinner" color="currentColor" />;
+    return (
+      <div role="status" aria-label="Connecting to wallet">
+        <Icon name="spinner" color="currentColor" aria-hidden="true" />
+      </div>
+    );
   }
 
   if (!isConnected) {
     return (
-      <button type="button" onClick={clickConnect} className={buttonClasses}>
+      <button
+        type="button"
+        onClick={clickConnect}
+        className={buttonClasses}
+        aria-label="Sign in with wallet"
+      >
         Sign In
       </button>
     );
@@ -147,14 +163,18 @@ export function ConnectWalletButton({
       <WalletDropdown className="z-50 rounded-xl bg-white font-sans shadow-md">
         <Identity className="px-4 pb-2 pt-3 font-display">
           <UserAvatar />
-          <Name
+          <button
             onClick={copyAddress}
-            chain={basenameChain}
-            className="cursor-pointer font-display transition-all hover:opacity-65"
-          />
+            className="cursor-pointer font-display transition-all hover:opacity-65 bg-transparent border-none p-0 text-left w-full"
+            aria-label="Copy wallet address to clipboard"
+            type="button"
+          >
+            <Name chain={basenameChain} />
+          </button>
           <EthBalance className="font-display" />
         </Identity>
         <WalletDropdownDisconnect className="font-display hover:bg-gray-40/20" />
+        <LiveRegion>{copySuccess && 'Address copied to clipboard'}</LiveRegion>
       </WalletDropdown>
     </Wallet>
   );
