@@ -15,6 +15,7 @@ import ClientAnalyticsScript from 'apps/web/src/components/ClientAnalyticsScript
 import dynamic from 'next/dynamic';
 import ErrorsProvider from 'apps/web/contexts/Errors';
 import { logger } from 'apps/web/src/utils/logger';
+import RouteChangeProgress from 'apps/web/src/components/RouteChangeProgress';
 
 const DynamicCookieBannerWrapper = dynamic(
   async () => import('apps/web/src/components/CookieBannerWrapper'),
@@ -85,6 +86,7 @@ export default function AppProviders({ children }: AppProvidersProps) {
         <TooltipProvider>
           <ExperimentsProvider>
             <>
+              <RouteChangeProgress />
               {children}
               <DynamicCookieBannerWrapper />
             </>
