@@ -66,7 +66,7 @@ export default function MenuDesktop({ links }: MenuDesktopProps) {
               target={link.href.startsWith('https://') ? '_blank' : undefined}
               onMouseEnter={onMouseEnterNavLink}
               onClick={onLinkClick}
-              className={`h-full rounded-md bg-opacity-0 px-6 py-2 text-sm transition-all duration-300 hover:bg-[#32353D] ${
+              className={`h-full rounded-md bg-opacity-0 px-6 py-3 min-h-[44px] flex items-center text-sm transition-all duration-300 hover:bg-[#32353D] ${
                 hoverIndex === index ? ' bg-[#32353D]' : ''
               }`}
             >
@@ -79,7 +79,7 @@ export default function MenuDesktop({ links }: MenuDesktopProps) {
       {/* Sub Menu */}
       <div
         ref={subItemsRef}
-        className="absolute left-1/2 top-full w-[718px] min-w-full p-1 duration-300 ease-in-out"
+        className="absolute left-1/2 top-full w-[95vw] max-w-[718px] p-1 duration-300 ease-in-out"
         style={{
           height: `${subItemsHeight}px`,
           opacity: subActive ? 1 : 0,
