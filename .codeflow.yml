@@ -1,20 +1,42 @@
----
+# Configuration file for a CI/CD or Codeflow management system.
+
 secure:
-  required_reviews: 1
-  requires_mfa: true
-  requires_verified: true
+  # Configuration for protecting critical branches.
+  required_reviews: 2             # Require two peer reviews before merging, enhancing code quality.
+  requires_mfa: true              # Multi-Factor Authentication must be enabled for contributors.
+  requires_verified: true         # Commits must be signed/verified by a known user.
+  
+  # Specify the upstream repository name as configured in the system.
   upstream_repository: base/web
+  
+  # Security restrictions apply to these critical deployment branches.
   branches:
+    - main                        # Added 'main' branch for highest security coverage.
     - staging
 
+---
 build:
+  # Define the different deployment targets and build configurations.
   engines:
+    # 1. ARM64 Architecture Build
     - BaldurECR:
-        name: web
+        name: web-arm64            # Explicitly name the image with its architecture.
         path: ./apps/web/Dockerfile
         architecture: arm64
+    
+    # 2. AMD64 Architecture Build (Explicitly defined for clarity)
+    - BaldurECR:
+        name: web-amd64
+        path: ./apps/web/Dockerfile
+        architecture: amd64
+        
+  # Setting this to true ensures the system attempts to build for all defined architectures 
+  # and potentially creates a manifest list.
   multi_arch: true
 
+---
 operate:
+  # Configuration for operational notifications (e.g., deployments, failures).
   slack_channels:
-    - '#base-codeflow-notifications'
+    - '#base-codeflow-notifications'  # General notifications (e.g., successful deploys).
+    # - '#base-codeflow-critical-alerts' # Optional: Add a separate channel for high-priority errors.
