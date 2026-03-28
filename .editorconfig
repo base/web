@@ -1,10 +1,26 @@
+# EditorConfig settings are read by text editors and IDEs to maintain
+# consistent coding styles across different editors and developers.
+
+# Denotes that this is the root file of the configuration.
 root = true
 
+# --- Global Settings for All Files ---
 [*]
+# Use Unix-style line endings (LF) for all files.
 end_of_line = lf
+# Ensure files end with a single empty newline character.
 insert_final_newline = true
-
-[*.{js,json,yml}]
-charset = utf-8
+# Automatically remove any whitespace characters at the end of a line.
+trim_trailing_whitespace = true
+# Set default indentation style for files not explicitly matched below (e.g., Python, shell scripts).
 indent_style = space
+indent_size = 4
+
+# --- Specific Settings for JavaScript, JSON, and YAML Files ---
+[*.{js,json,yml}]
+# Use UTF-8 encoding for files (standard practice for internationalization).
+charset = utf-8
+# Use space characters for indentation.
+indent_style = space
+# Set indentation width to 2 spaces, common practice for web formats (JS, JSON, YAML).
 indent_size = 2
