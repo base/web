@@ -83,16 +83,22 @@ export default function UsernameAvatarField({
   // Validate avatar file
   useEffect(() => {
     if (!avatarFile) return;
-    const validationResult = validateBasenameAvatarFile(avatarFile);
 
-    if (!validationResult.valid) {
-      onChangeFile(undefined);
-      setError(validationResult.message);
-      return;
-    } else {
-      onChangeFile(avatarFile);
-      return setError('');
-    }
+    let isMounted = true;
+    validateBasenameAvatarFile(avatarFile).then((validationResult) => {
+      if (!isMounted) return;
+      if (!validationResult.valid) {
+        onChangeFile(undefined);
+        setError(validationResult.message);
+      } else {
+        onChangeFile(avatarFile);
+        setError('');
+      }
+    });
+
+    return () => {
+      isMounted = false;
+    };
   }, [avatarFile, onChangeFile]);
 
   // Validate avatar url

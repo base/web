@@ -61,7 +61,7 @@ const LINK_SECTIONS = [
         newTab: true,
       },
       { label: 'Engineering blog', href: 'https://www.base.dev/blog', newTab: true },
-      { label: 'Support', href: 'https://discord.com/invite/buildonbase' }, // TODO: add discord link
+      { label: 'Support', href: 'https://discord.com/invite/buildonbase' },
     ],
   },
   {
