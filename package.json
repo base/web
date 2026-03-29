@@ -14,7 +14,9 @@
     "test:e2e:headed": "yarn workspace @app/web test:e2e:headed",
     "postinstall": "sh -c 'if [ command -v ./node_modules/.bin/husky ]; then ./node_modules/.bin/husky install; fi;'",
     "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "postpublish": "pinst --enable",
+    "lint:links:check": "node tools/ci/guard-docs-links.mjs --check",
+    "lint:links:fix": "node tools/ci/guard-docs-links.mjs --fix"
   },
   "workspaces": [
     "apps/*",
