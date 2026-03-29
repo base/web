@@ -12,6 +12,7 @@
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:debug": "playwright test --debug",
     "test:e2e:headed": "playwright test --headed",
+
     "e2e:metamask:prepare": "node ../../node_modules/@coinbase/onchaintestkit/src/cli/prepare-metamask.mjs",
     "dev:million": "cross-env MILLION_LINT=true node --require ./tracer/initialize.js ./node_modules/.bin/next dev",
     "lint": "next lint",

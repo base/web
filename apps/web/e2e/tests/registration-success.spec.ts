@@ -5,6 +5,7 @@ import { initiateRegistration, SELECTORS } from '../basenameHelpers';
 
 // Main test
 test.describe('Basename Registration', () => {
+
   test.skip('should successfully register a basename', async ({ page, metamask }) => {
     // Validate prerequisites
     if (!metamask) {
@@ -13,6 +14,7 @@ test.describe('Basename Registration', () => {
 
     // Common preparation steps (connect wallet, switch network, navigate & select basename)
     const { mainPage } = await prepareBasenameFlow(page, metamask);
+
 
     await mainPage.waitForTimeout(2000);
 

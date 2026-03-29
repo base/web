@@ -1,5 +1,6 @@
 import { base } from 'viem/chains';
 import { configure } from '@coinbase/onchaintestkit';
+
 // eslint-disable-next-line import/no-extraneous-dependencies
 import dotenv from 'dotenv';
 dotenv.config({ path: ['.env', '.env.local'] });

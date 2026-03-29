@@ -1,0 +1,27 @@
+# Development files
+src/**/*.spec.ts
+src/**/*.test.ts
+tests/
+.cache/
+.github/
+.vscode/
+coverage/
+
+# Documentation and examples
+docs/
+examples/
+intern.md
+tdd.md
+
+# Configuration files
+.eslintrc.js
+.prettierrc
+jest.config.js
+tsconfig.json
+playwright.config.ts
+
+# Other files
+*.log
+.DS_Store
+.env*
+*.tgz 

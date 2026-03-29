@@ -2029,7 +2029,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@coinbase/onchainkit@npm:0.38.6":
+"@coinbase/onchainkit@npm:^0.36.4":
+  version: 0.36.11
+  resolution: "@coinbase/onchainkit@npm:0.36.11"
+  dependencies:
+    "@tanstack/react-query": ^5
+    clsx: ^2.1.1
+    graphql: ^14 || ^15 || ^16
+    graphql-request: ^6.1.0
+    qrcode: ^1.5.4
+    tailwind-merge: ^2.3.0
+    tailwindcss-animate: ^1.0.7
+    viem: ^2.23.0
+    wagmi: ^2.14.11
+  peerDependencies:
+    "@types/react": ^18 || ^19
+    react: ^18 || ^19
+    react-dom: ^18 || ^19
+  checksum: 2a412968e6b2a4173db212992586f0972e228b32eda8186a7c0b47496bc352230230247539291e759a494d18d038acc03d72e42e8604ace4271e15366997c9e1
+  languageName: node
+  linkType: hard
+
+"@coinbase/onchainkit@npm:^0.38.6":
+
   version: 0.38.6
   resolution: "@coinbase/onchainkit@npm:0.38.6"
   dependencies:
@@ -2052,26 +2074,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@coinbase/onchainkit@npm:^0.36.4":
-  version: 0.36.11
-  resolution: "@coinbase/onchainkit@npm:0.36.11"
-  dependencies:
-    "@tanstack/react-query": ^5
-    clsx: ^2.1.1
-    graphql: ^14 || ^15 || ^16
-    graphql-request: ^6.1.0
-    qrcode: ^1.5.4
-    tailwind-merge: ^2.3.0
-    tailwindcss-animate: ^1.0.7
-    viem: ^2.23.0
-    wagmi: ^2.14.11
-  peerDependencies:
-    "@types/react": ^18 || ^19
-    react: ^18 || ^19
-    react-dom: ^18 || ^19
-  checksum: 2a412968e6b2a4173db212992586f0972e228b32eda8186a7c0b47496bc352230230247539291e759a494d18d038acc03d72e42e8604ace4271e15366997c9e1
-  languageName: node
-  linkType: hard
 
 "@coinbase/onchaintestkit@npm:^1.1.0":
   version: 1.1.0
@@ -3399,6 +3401,7 @@ __metadata:
   checksum: ba24300927a3c9cb85ae8ace84a6be73f3c43aac6eab7a3abe58a7dfd3b168caf3f01a4528efa8193e269dd3d5efe9d4533bdf3b29d5c55743edcb2e864d25d9
   languageName: node
   linkType: hard
+
 
 "@faker-js/faker@npm:^7.6.0":
   version: 7.6.0
@@ -5630,6 +5633,7 @@ __metadata:
   languageName: node
   linkType: hard
 
+
 "@noble/ciphers@npm:^1.3.0":
   version: 1.3.0
   resolution: "@noble/ciphers@npm:1.3.0"
@@ -5700,6 +5704,7 @@ __metadata:
   checksum: 4f1b56428a10323feef17e4f437c9093556cb18db06f94d254043fadb69c3da8475f96eb3f8322d41e8670117d7486475a8875e68265c2839f60fd03edd6a616
   languageName: node
   linkType: hard
+
 
 "@noble/hashes@npm:1.8.0, @noble/hashes@npm:^1.3.0, @noble/hashes@npm:^1.7.1, @noble/hashes@npm:^1.8.0, @noble/hashes@npm:~1.8.0":
   version: 1.8.0
@@ -5866,6 +5871,7 @@ __metadata:
   checksum: 9d7c09d27c6e24740e1be6aa1ed98cc0257a5a1d9b2d44f94f7f12c5f9804a58ac2855b7a0e8330551527c94b9d4d46bb122c4bb362d1bc6cd72c75beb5e6a84
   languageName: node
   linkType: hard
+
 
 "@pnpm/config.env-replace@npm:^1.1.0":
   version: 1.1.0
@@ -7712,6 +7718,7 @@ __metadata:
   languageName: node
   linkType: hard
 
+
 "@scure/base@npm:~1.2.5":
   version: 1.2.6
   resolution: "@scure/base@npm:1.2.6"
@@ -7751,6 +7758,7 @@ __metadata:
   checksum: e7586619f8a669e522267ce71a90b2d00c3a91da658f1f50e54072cf9f432ba26d2bb4d3d91a5d06932ab96612b8bd038bc31d885bbc048cebfb6509c4a790fc
   languageName: node
   linkType: hard
+
 
 "@scure/bip32@npm:1.7.0, @scure/bip32@npm:^1.7.0":
   version: 1.7.0
@@ -9853,6 +9861,7 @@ __metadata:
   checksum: d7d887f29d6821e3f7a400de9620511b80ead3f85c5c87308aaec97965d3493e6687ed816e88722b4f512249bd66dee9e69231b49af0e1db8f69400a62c87cf6
   languageName: node
   linkType: hard
+
 
 "abitype@npm:1.0.8, abitype@npm:^1.0.6, abitype@npm:^1.0.8":
   version: 1.0.8
@@ -13888,6 +13897,7 @@ __metadata:
   languageName: node
   linkType: hard
 
+
 "fast-check@npm:^3.23.1":
   version: 3.23.2
   resolution: "fast-check@npm:3.23.2"
@@ -14264,6 +14274,7 @@ __metadata:
   checksum: 2199796f84bc3a04bd2ddfde5b05b21548c42f2d971609fe625397246294a45ca26fcf3114d0fac5370ee0b8acd8ac6de028f91afac0fcf864c8b661cad07655
   languageName: node
   linkType: hard
+
 
 "frames.js@npm:^0.22.0":
   version: 0.22.0
@@ -18544,6 +18555,7 @@ __metadata:
   languageName: node
   linkType: hard
 
+
 "pathe@npm:^1.1.2":
   version: 1.1.2
   resolution: "pathe@npm:1.1.2"
@@ -18815,6 +18827,7 @@ __metadata:
   languageName: node
   linkType: hard
 
+
 "playwright-core@npm:1.54.1":
   version: 1.54.1
   resolution: "playwright-core@npm:1.54.1"
@@ -18838,6 +18851,7 @@ __metadata:
   checksum: 6d9b0ae3f4abe794528b213bb0b492be0d93ee611efca3122aca81a8127b0a13206a91c97f5b22449b1b97d5d65979dd70e1286b015c93c45143e722293d3b95
   languageName: node
   linkType: hard
+
 
 "playwright@npm:^1.49.0":
   version: 1.54.1
@@ -22942,6 +22956,7 @@ __metadata:
   checksum: c351fdea2d53d2d781ac73c964348b3b9fc5dd46f9eb53903e867705fc9e30a893cb9f2c8d7a00acdcdeca27d14eeebf976eed9f948c28c47018dc9211369117
   languageName: node
   linkType: hard
+
 
 "viem@npm:^2.17.4, viem@npm:^2.7.8":
   version: 2.31.7

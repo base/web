@@ -1,0 +1,38 @@
+{
+  "name": "example-frontend",
+  "version": "0.1.1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "e2e:metamask:prepare": "prepare-metamask",
+    "prepare-coinbase": "prepare-coinbase",
+    "test:e2e": "npx dotenv-cli -- yarn playwright test",
+    "test:e2e:ui": "npx dotenv-cli -- yarn playwright test --ui"
+  },
+  "dependencies": {
+    "@coinbase/onchainkit": "^0.36.4",
+    "@coinbase/onchaintestkit": "workspace:*",
+    "@tanstack/react-query": "^5",
+    "dotenv": "^16.4.7",
+    "next": "^14.2.30",
+    "react": "^18",
+    "react-dom": "^18",
+    "viem": "^2.17.4",
+    "wagmi": "^2.11.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "dotenv-cli": "^8.0.0",
+    "eslint": "^8",
+    "eslint-config-next": "^14.2.30",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}
