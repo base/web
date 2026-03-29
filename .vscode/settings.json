@@ -1,42 +1,68 @@
 {
-  // Prettier
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true, // use ⌘-K S (or Ctrl-K S) to format without saving
+	// ===================================
+	// 1. Prettier/General Formatting
+	// ===================================
+	// Set Prettier as the default formatter for all supported file types.
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	// Enable automatic formatting on save action.
+	"editor.formatOnSave": true,
 
-  // Disable built-in formatters
-  "html.format.enable": false,
-  "json.format.enable": false,
+	// Disable built-in VS Code formatters to prevent conflicts with Prettier.
+	"html.format.enable": false,
+	"json.format.enable": false,
 
-  // TypeScript
-  "javascript.validate.enable": false,
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.preferences.importModuleSpecifier": "non-relative",
-  "typescript.preferences.quoteStyle": "single",
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "editor.codeActionsOnSave": ["source.fixAll.eslint"],
-  "eslint.packageManager": "yarn",
-  "eslint.useESLintClass": true,
-  "eslint.workingDirectories": [
-    { "pattern": "apps/*" },
-    { "pattern": "examples/*" },
-    { "pattern": "libs/*" },
-    { "pattern": "packages/*" }
-  ],
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[svg]": {
-    "editor.defaultFormatter": "jock.svg"
-  }
+	// ===================================
+	// 2. TypeScript/JavaScript/React Setup
+	// ===================================
+	// Explicitly define the TypeScript version to use from the project's node_modules.
+	// This is crucial for monorepos or projects using custom TS versions.
+	"typescript.tsdk": "node_modules/typescript/lib",
+
+	// Disable VS Code's built-in JavaScript validation, deferring to ESLint/TypeScript.
+	"javascript.validate.enable": false,
+
+	// Configure preferences for imports (non-relative imports, single quotes).
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+	"typescript.preferences.quoteStyle": "single",
+
+	// Enforce Prettier as the formatter for JS/TS/React file types.
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+
+	// ===================================
+	// 3. ESLint & Monorepo Configuration
+	// ===================================
+	// Run ESLint fixers on save (e.g., auto-fixable rules).
+	"editor.codeActionsOnSave": [
+		"source.fixAll.eslint"
+	],
+	// Specify yarn as the package manager for ESLint (common in monorepos).
+	"eslint.packageManager": "yarn",
+	// Define working directories for ESLint to correctly locate configs in a monorepo structure (e.g., Turborepo, Nx).
+	"eslint.workingDirectories": [
+		{ "pattern": "apps/*" },
+		{ "pattern": "examples/*" },
+		{ "pattern": "libs/*" },
+		{ "pattern": "packages/*" }
+	],
+
+	// ===================================
+	// 4. Other File Types Formatting
+	// ===================================
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[svg]": {
+		"editor.defaultFormatter": "jock.svg"
+	}
 }
