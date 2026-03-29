@@ -126,7 +126,7 @@
     "prettier-plugin-tailwindcss": "^0.2.5",
     "tailwindcss": "^3.2.4",
     "tailwindcss-text-scale": "^0.3.1",
-    "ts-jest": "^29.2.5",
+    "ts-jest": "^29.4.5",
     "typescript": "5.0.4"
   }
 }
