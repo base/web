@@ -66,10 +66,10 @@ const sectionContent: ListGridContent = {
           ),
         },
         {
-          title: 'Naunces',
+          title: 'Nuances',
           content: (
             <p className="text-base-gray-200">
-              Naunces are short, punchy phrases that are used to grab attention and make a
+              Nuances are short, punchy phrases that are used to grab attention and make a
               statement. For example: &quot;Base is for creators, builders, traders, and more.&quot;
             </p>
           ),

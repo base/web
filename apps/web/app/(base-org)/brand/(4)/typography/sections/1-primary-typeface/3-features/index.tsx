@@ -63,7 +63,7 @@ export function Features() {
       id="primary-typeface-features"
       prefix="Primary Typeface"
       title="Features"
-      description="Base Sans is based on Modern Gothic, and includes unique customizations and alternative glyphs that makes it more ownable to Base, and more legible. Several letters were given a more geometric structure, to have better flow, consistency and appropriateness to the brand. In addition, there is a set of unique alternate shapes for the b, h, m, n, r, u and the symbols that are decisively geometric and are means for occasional display purposes, especially in developers setting. "
+      description="Base Sans is based on Modern Gothic, and includes unique customizations and alternative glyphs that make it more ownable to Base, and more legible. Several letters were given a more geometric structure, to have better flow, consistency and appropriateness to the brand. In addition, there is a set of unique alternate shapes for the b, h, m, n, r, u and the symbols that are decisively geometric and are meant for occasional display purposes, especially in developer settings."
       content={content}
     />
   );

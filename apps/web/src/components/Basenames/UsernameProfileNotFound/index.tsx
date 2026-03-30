@@ -37,7 +37,7 @@ export default function UsernameProfileNotFound() {
     redirect(`/names`);
   }
 
-  const title = `${username ?? 'Name'} is not found`;
+  const title = `${username ?? 'Name'} was not found`;
   const description = username
     ? "There's no profile associated with this name, but it could be yours!"
     : "This profile doesn't exist";

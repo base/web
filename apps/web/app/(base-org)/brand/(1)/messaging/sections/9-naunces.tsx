@@ -1,6 +1,6 @@
 import { ListGrid, ListGridContent } from 'apps/web/src/components/Brand/ListGridMasonry';
 
-export function Naunces() {
+export function Nuances() {
   return <ListGrid content={sectionContent} />;
 }
 
