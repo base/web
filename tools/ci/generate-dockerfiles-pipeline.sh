@@ -1,83 +1,122 @@
 #!/bin/bash
+# Exit immediately if a command exits with a non-zero status.
 set -eo pipefail
 
-# Bump this to trigger all docker builds
-bump=2
+# Variable to manually force all Docker builds to run if changed.
+FORCE_BUILD_BUMP=2
 
 echo "--- Updating git branch"
 
-base_branch="${BUILDKITE_PULL_REQUEST_BASE_BRANCH:-$BUILDKITE_BRANCH}"
+# Determine the base branch for comparison (defaults to the current branch if not a PR).
+BASE_BRANCH="${BUILDKITE_PULL_REQUEST_BASE_BRANCH:-$BUILDKITE_BRANCH}"
 
-git fetch -f --no-tags origin $base_branch:$base_branch
+# Fetch the base branch content for accurate diffing.
+git fetch -f --no-tags origin "$BASE_BRANCH:$BASE_BRANCH"
 
-merge_base=$(git merge-base "$base_branch" HEAD)
+# Find the common ancestor commit to determine what has truly changed.
+MERGE_BASE=$(git merge-base "$BASE_BRANCH" HEAD)
 
-echo "Base branch: $base_branch"
-echo "Merge base: $merge_base"
+echo "Base branch: $BASE_BRANCH"
+echo "Merge base: $MERGE_BASE"
 
-# Get a list of changed files
+# Get a list of all files changed between the merge base and HEAD.
 echo "--- Loading changed files"
 
-changed_files=$(git --no-pager diff --name-only --relative "$merge_base" HEAD)
+# The --relative flag ensures paths are relative to the repository root.
+CHANGED_FILES=$(git --no-pager diff --name-only --relative "$MERGE_BASE" HEAD)
 
-echo "$changed_files"
+echo "$CHANGED_FILES"
 
-# Extract Dockerfiles from the codeflow config
-echo "--- Extracting builds from Codeflow config"
+# Extract Dockerfile information from the Codeflow config (.codeflow.yml).
+echo "--- Extracting auto-build Docker images from Codeflow config"
 
-names=()
-files=()
+# Use a single yq command to extract both name and path separated by a delimiter (e.g., ';').
+# Filtering: selects 'engines' that have BaldurECR/BaldurNode and 'autobuild' is not false.
+BUILD_DATA=$(yq '.build.engines.[] | select(has("BaldurECR") or has("BaldurNode")) | to_entries | select(.[].value.autobuild != false) | .[].value.name + ";" + .[].value.path' .codeflow.yml)
 
-# When parsing with yq, the SteveJobs "None" needs to be filtered out
-for name in $(yq '.build.engines.[] | select(has("BaldurECR") or has("BaldurNode")) | to_entries | select(.[].value.autobuild != false) | .[].value.name' .codeflow.yml); do
-    names+=("$name")
+# Check if any build data was extracted
+if [ -z "$BUILD_DATA" ]; then
+    echo "No auto-build configurations found. Exiting."
+    exit 0
+fi
+
+# Initialize arrays for build names and Dockerfile paths.
+NAMES=()
+FILES=()
+
+# Parse the single combined string into two arrays.
+IFS=$'\n' # Set internal field separator to newline
+for line in $BUILD_DATA; do
+    # Read the line separated by ';' into two variables
+    NAME=$(echo "$line" | cut -d ';' -f 1)
+    FILE=$(echo "$line" | cut -d ';' -f 2)
+    NAMES+=("$NAME")
+    FILES+=("$FILE")
 done
+unset IFS # Restore default IFS
 
-for file in $(yq '.build.engines.[] | select(has("BaldurECR") or has("BaldurNode")) | to_entries | select(.[].value.autobuild != false) | .[].value.path' .codeflow.yml); do
-    files+=("$file")
-done
-
-echo "Builds: ${#files[@]}"
+echo "Found ${#FILES[@]} auto-build configurations."
 
 # Generate a Buildkite pipeline for each Docker build
-echo "--- Generating build pipelines"
+echo "--- Generating dynamic build pipelines"
 
-for i in "${!files[@]}"; do
-    build_name="${names[i]}"
-    dockerfile_path="${files[i]}"
-    project_root=$(dirname "${dockerfile_path:2}")
+# Standard file paths that, if changed, trigger a rebuild of all affected projects.
+CORE_BUILD_FILES="yarn.lock|tools/ci/generate-dockerfiles-pipeline.sh|tools/ci/build-dockerfile.sh"
 
-    echo "$build_name -> $project_root"
+for i in "${!FILES[@]}"; do
+    BUILD_NAME="${NAMES[i]}"
+    DOCKERFILE_PATH="${FILES[i]}"
+    # Remove the starting './' prefix often found in YAML paths and get the directory.
+    PROJECT_ROOT=$(dirname "${DOCKERFILE_PATH:2}")
 
-    if [[ ! "$project_root" =~ ^apps ]]; then
-        echo "    Not an application, skipping"
-    elif [[
-        # Only run if a file was changed in the project
-        "$changed_files" == *"$project_root"* ||
-        # Or dependencies have changed
-        "$changed_files" == *"yarn.lock"* ||
-        # Or these build scripts have changed
-        "$changed_files" == *"tools/ci/generate-dockerfiles-pipeline.sh"* ||
-        "$changed_files" == *"tools/ci/build-dockerfile.sh"*
-    ]]; then
+    echo "Processing: $BUILD_NAME -> $PROJECT_ROOT"
+
+    # Only process files that are located within the 'apps' directory.
+    if [[ ! "$PROJECT_ROOT" =~ ^apps ]]; then
+        echo "  [SKIP] Not an application directory."
+        continue
+    fi
+    
+    # 1. Check if files within the project directory were changed
+    IS_PROJECT_AFFECTED=false
+    if grep -q "$PROJECT_ROOT" <<< "$CHANGED_FILES"; then
+        IS_PROJECT_AFFECTED=true
+    fi
+
+    # 2. Check if core build files (dependencies/scripts) were changed
+    IS_CORE_AFFECTED=false
+    if grep -qE "$CORE_BUILD_FILES" <<< "$CHANGED_FILES"; then
+        IS_CORE_AFFECTED=true
+    fi
+
+    # Condition to trigger the build:
+    # 1. If project-specific files changed OR
+    # 2. If core build files (dependencies/scripts) changed
+    if $IS_PROJECT_AFFECTED || $IS_CORE_AFFECTED; then
+        
+        # Ensure we are running within a CI environment before uploading.
         if [[ -z "$CI" ]]; then
-            echo "    Not in CI, skipping"
+            echo "  [SKIP] Not running in CI environment (CI variable is not set)."
         else
-            export BUILD_NAME="$build_name"
-            export DOCKERFILE_PATH="${dockerfile_path}"
-            # enable tagging with the github commit SHA while in our build environment
+            echo "  [BUILD] Project affected or core dependencies changed."
+
+            # Export variables for use in the YAML template later uploaded.
+            export BUILD_NAME="$BUILD_NAME"
+            export DOCKERFILE_PATH="${DOCKERFILE_PATH}"
+            # Enable tagging the image with the GitHub commit SHA.
             export CODEFLOW_COMMIT_TAG="commit-$BUILDKITE_COMMIT"
 
-            # Some builds have cpu/memory issues, and k8s is less forgiving
-            if [[ $build_name == "app-frontend-docs" || $build_name == "app-two-factor-verify-intl-prod" ]]; then
-                # Uses `queue: docker` `resource_class: large` for now
+            # Conditional pipeline upload based on build name (resource class optimization).
+            # Apps requiring more resources use the 'large' queue/resource_class.
+            if [[ "$BUILD_NAME" == "app-frontend-docs" || "$BUILD_NAME" == "app-two-factor-verify-intl-prod" ]]; then
                 buildkite-agent pipeline upload .buildkite/docker.template.yml
             else
+                # Default template for standard builds (likely smaller/faster resource class).
                 buildkite-agent pipeline upload .buildkite/docker-k8s.template.yml
             fi
         fi
     else
-        echo "    Project not affected, skipping"
+        echo "  [SKIP] Project not affected by changes."
     fi
 
     echo ""
