@@ -1,7 +1,28 @@
+# -----------------------------------------------------------------------------
+# Safety Filters
+# -----------------------------------------------------------------------------
+# Exclude browsers with negligible market share or no official support.
+not dead
+# Exclude Opera Mini (extremely limited support for modern JS/CSS).
+not op_mini all
+
+# -----------------------------------------------------------------------------
+# Desktop Browsers
+# -----------------------------------------------------------------------------
+# Instead of listing Chrome, Edge, Firefox, Opera individually, 
+# we target the last 2 versions of all major browsers.
+last 2 versions
+
+# Keep Firefox ESR (Enterprise) support as it's crucial for corporate environments.
 firefox esr
-ios>=11
-last 1 safari version
-last 2 chrome versions
-last 2 edge versions
-last 2 firefox versions
-last 2 opera versions
+
+# -----------------------------------------------------------------------------
+# Mobile / Specific Adjustments
+# -----------------------------------------------------------------------------
+# iOS 11 is obsolete (2017). Targeting iOS 15+ drastically reduces polyfill size.
+# If you strictly need older support, use 'ios >= 12', but >= 15 is recommended for 2025.
+ios >= 15
+
+# Safari updates are tied to macOS upgrades. 
+# 'last 2' covers users who haven't upgraded to the absolute latest macOS yet.
+last 2 safari versions
