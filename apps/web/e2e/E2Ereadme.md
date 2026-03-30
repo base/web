@@ -1,48 +1,101 @@
 # End-to-End Tests for `apps/web`
 
-This folder contains Playwright tests for the Base Web project against a local Next.js dev server...
+This folder contains comprehensive Playwright tests for the Base Web project, including wallet integration, user registration flows, and blockchain interactions using the On-chain Test Kit.
 
-## Contents
+## 📁 Contents
 
-- [`testFixture.ts`](./testFixture.ts) – extends Playwright's fixture system with the On-chain Test Kit wallets.
-- [`appSession.ts`](./appSession.ts) – helper functions for the common onboarding & registration steps.
-- [`tests/*.spec.ts`](./tests) – individual test cases (successful registration, rejection flow, …).
+- [`testFixture.ts`](./testFixture.ts) – Extends Playwright's fixture system with On-chain Test Kit wallets and blockchain simulation
+- [`appSession.ts`](./appSession.ts) – Helper functions for common onboarding & registration steps
+- [`basenameHelpers.ts`](./basenameHelpers.ts) – Utility functions for basename operations
+- [`tests/*.spec.ts`](./tests) – Individual test cases covering registration flows, wallet connections, and error scenarios
+- [`walletConfig/`](./walletConfig) – Configuration files for MetaMask and Coinbase Wallet testing
+
+## 🎯 Test Coverage
+
+### Current Test Scenarios
+- ✅ **Successful Registration Flow** - Complete user onboarding with wallet connection
+- ✅ **Registration Rejection** - Handling user rejection of registration
+- ✅ **Registration Failure** - Error handling for failed registration attempts
+- ✅ **Wallet Connection** - MetaMask and Coinbase Wallet integration
+- ✅ **Basename Validation** - Input validation and error messaging
+
+### Test Architecture
+- **Playwright** for browser automation and testing
+- **On-chain Test Kit** for blockchain simulation and wallet testing
+- **Anvil** for local Ethereum node simulation
+- **MetaMask** for wallet interaction testing
 
 ---
 
-## Prerequisites
+## 🚀 Prerequisites
 
-run yarn add -D @playwright/test @coinbase/onchaintestkit
+### Required Dependencies
+```bash
+# Install Playwright and On-chain Test Kit
+yarn add -D @playwright/test @coinbase/onchaintestkit
 
-> The scripts have been tested on macOS and Linux. Windows users should run the commands inside WSL 2.
-
----
-
-## Environment variables
-
-Create a file called **`.env`** in `apps/web/` (it is listed in `.gitignore`).
-
-```dotenv
-# E2E .env example  ───────────────────────────────────────────
-
-# the basename that the test will try to register
-TEST_BASENAME=mytestname123
-
-# 12-word mnemonic that gets imported into MetaMask; **DO NOT USE A REAL WALLET**
-E2E_TEST_SEED_PHRASE="test test test test test test test test test test test junk"
-
-# RPC endpoint that Anvil will fork from (Base mainnet in this example)
-E2E_TEST_FORK_URL=https://mainnet.base.org
-
-# The block number to fork at. Omitting gives you the latest block.
-E2E_TEST_FORK_BLOCK_NUMBER=31397553
-
-NEXT_PUBLIC_CDP_BASE_RPC_ENDPOINT="http://localhost:8545/"
-E2E_TEST="true"
+# Install Playwright browsers
+yarn playwright install --with-deps
 ```
 
-- **`TEST_BASENAME`** must be at least 3 alphanumeric lower-case characters.
-- Any ETH the flow spends comes from Anvil's default funded developer accounts, so there is **no cost**.
+### System Requirements
+- **Node.js 20+**
+- **Yarn 1.22+**
+- **Git** for cloning the repository
+
+> **Note:** Scripts have been tested on macOS and Linux. Windows users should run commands inside WSL 2 for best compatibility.
+
+---
+
+## ⚙️ Environment Configuration
+
+### Required Environment Variables
+
+Create a file called **`.env`** in `apps/web/` (it is listed in `.gitignore`):
+
+```dotenv
+# E2E Test Configuration ────────────────────────────────────────
+
+# Test basename for registration (must be unique and available)
+TEST_BASENAME=mytestname123
+
+# Test wallet mnemonic - NEVER USE A REAL WALLET!
+E2E_TEST_SEED_PHRASE="test test test test test test test test test test test junk"
+
+# RPC endpoint that Anvil will fork from (Base mainnet)
+E2E_TEST_FORK_URL=https://mainnet.base.org
+
+# Specific block number to fork at (optional - latest if omitted)
+E2E_TEST_FORK_BLOCK_NUMBER=31397553
+
+# Local Anvil RPC endpoint
+NEXT_PUBLIC_CDP_BASE_RPC_ENDPOINT="http://localhost:8545/"
+
+# Enable E2E test mode
+E2E_TEST="true"
+
+# Additional test configuration
+E2E_TEST_TIMEOUT=30000
+E2E_TEST_RETRIES=3
+```
+
+### Environment Variable Details
+
+| Variable | Description | Required | Example |
+|----------|-------------|----------|---------|
+| `TEST_BASENAME` | Unique basename for test registration | ✅ | `mytestname123` |
+| `E2E_TEST_SEED_PHRASE` | 12-word mnemonic for test wallet | ✅ | `"test test test..."` |
+| `E2E_TEST_FORK_URL` | Base network RPC URL for forking | ✅ | `https://mainnet.base.org` |
+| `E2E_TEST_FORK_BLOCK_NUMBER` | Specific block to fork from | ❌ | `31397553` |
+| `NEXT_PUBLIC_CDP_BASE_RPC_ENDPOINT` | Local Anvil RPC endpoint | ✅ | `http://localhost:8545/` |
+| `E2E_TEST` | Enable E2E test mode | ✅ | `true` |
+
+### Important Notes
+
+- **`TEST_BASENAME`** must be at least 3 alphanumeric lower-case characters and unique
+- **Test wallet mnemonic** should NEVER be used for real funds - it's for testing only
+- **No real ETH required** - tests use Anvil's default funded developer accounts
+- **Block forking** allows testing against real blockchain state without costs
 
 ---
 
