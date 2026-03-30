@@ -1,7 +1,7 @@
 {
   "name": "DODO",
   "url": "https://dodoex.io/en",
-  "description": "DODO is a decentralized trading platform that uses the innovative Proactive Market Maker (PMM) algorithm to provide efficient onchain liquidity for Web3 assets, making it easy for everyone to issue and trade these assets.",
+  "description": "DODO is a decentralized exchange that uses the Proactive Market Maker (PMM) algorithm to offer low-slippage token swaps and efficient liquidity for Web3 assets. It also supports custom token issuance and liquidity pool creation.",
   "category": "defi",
   "subcategory": "dex",
   "imageUrl": "/images/partners/dodo.webp"
