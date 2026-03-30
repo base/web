@@ -37,7 +37,7 @@ export default function EcosystemCard({
   return (
     <a
       href={url}
-      rel="noreferrer noopener"
+      rel="noopener"
       target="_blank"
       className="flex flex-col items-stretch w-full h-full justify-stretch"
     >

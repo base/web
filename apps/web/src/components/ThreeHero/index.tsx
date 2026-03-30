@@ -193,7 +193,7 @@ export function Scene(): JSX.Element {
           <Link
             href={mintLink}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             className="hover:text-blue"
           >
             Mint This

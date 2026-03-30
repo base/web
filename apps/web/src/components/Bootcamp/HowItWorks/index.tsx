@@ -39,7 +39,7 @@ const featureItems = [
             className="underline"
             target="_blank"
             href="https://docs.base.org/base-learn/docs/welcome"
-            rel="noreferrer"
+            rel="noopener"
           >
             Base Learn
           </a>
@@ -55,7 +55,7 @@ const featureItems = [
             className="underline"
             href="https://opensea.io/collection/base-bootcamp-grad"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener"
           >
             Base Bootcamp Grad NFT
           </a>

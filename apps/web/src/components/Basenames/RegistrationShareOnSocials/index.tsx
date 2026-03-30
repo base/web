@@ -49,7 +49,7 @@ function SocialPlatformButton({ socialPlatform }: { socialPlatform: SocialPlatfo
   if (!shareLink) return null;
 
   return (
-    <Link onClick={onClick} href={shareLink} target="_blank">
+    <Link onClick={onClick} href={shareLink} target="_blank" rel="noopener">
       <Icon
         name={socialPlatformIconName[socialPlatform]}
         color="currentColor"

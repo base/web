@@ -133,7 +133,7 @@ export function Apps() {
       <Marquee className="[--duration:60s]" childrenClassName="mr-24 !gap-24">
         {customers.map((customer) => (
           <div className="flex w-[200px] items-center" key={`first-${customer.href}`}>
-            <Link href={customer.href} target="_blank">
+            <Link href={customer.href} target="_blank" rel="noopener">
               <Image
                 src={customer.logo}
                 alt={String(customer.logo.src)}

@@ -15,7 +15,7 @@ export default function TransactionLink({ chainId, transactionHash }: Transactio
   const explorerName = explorerNamesByChainId[chainId];
 
   return (
-    <Link href={transactionUrl} target="_blank" className="underline underline-offset-2">
+    <Link href={transactionUrl} target="_blank" className="underline underline-offset-2" rel="noopener">
       {explorerName}
     </Link>
   );

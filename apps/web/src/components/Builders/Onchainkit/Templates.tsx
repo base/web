@@ -40,7 +40,7 @@ export function Templates() {
               href={template.href}
               key={template.title}
               className="relative flex h-[220px] flex-col justify-between overflow-hidden rounded-xl bg-[purple] p-6"
-              target="_blank"
+              target="_blank" rel="noopener"
             >
               <Image
                 src={template.background}
@@ -66,7 +66,7 @@ export function Templates() {
           iconName="github"
           target="_blank"
           eventName="onchainkit-feature-template"
-          buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium"
+          buttonClassNames="flex items-center justify-between px-4 pb-3 pt-3 group font-medium" rel="noopener"
         >
           Feature your template
         </ButtonWithLinkAndEventLogging>

@@ -31,7 +31,7 @@ function SupportedPlatformCard({
     <Link
       href={href}
       target="_blank"
-      className="relative flex min-h-[212px] flex-col justify-between gap-10 overflow-hidden rounded-lg p-6"
+      className="relative flex min-h-[212px] flex-col justify-between gap-10 overflow-hidden rounded-lg p-6" rel="noopener"
     >
       <Image src={image} alt="Template background" layout="fill" objectFit="cover" />
       <div className="z-10 flex items-center gap-2 text-white">

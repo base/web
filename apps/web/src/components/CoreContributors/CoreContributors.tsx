@@ -26,7 +26,7 @@ export default async function CoreContributors() {
                 href={`https://etherscan.io/address/${owner.address}`}
                 title={owner.ensName ?? owner.address}
                 target="_blank"
-                rel="nofollow noopener noreferrer"
+                rel="noopener"
               >
                 {filename ? (
                   <ImageAdaptive

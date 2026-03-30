@@ -37,7 +37,7 @@ export default async function BuildWithUsFooter() {
             href="https://lu.ma/base-virtualevents/?utm_source=dotorg&medium=builderkit"
             eventName="start_building_with_us_contact_us"
             target="_blank"
-            rel="noreferrer noopener"
+            rel="noopener"
             variant={ButtonVariants.Secondary}
             size={ButtonSizes.Large}
             buttonClassNames={`${linkTextClasses} rounded-[3px]`}
@@ -48,7 +48,7 @@ export default async function BuildWithUsFooter() {
             href="https://docs.base.org/docs/?utm_source=dotorg&utm_medium=builderkit"
             eventName="start_building_with_us_view_docs"
             target="_blank"
-            rel="noreferrer noopener"
+            rel="noopener"
             variant={ButtonVariants.Outlined}
             size={ButtonSizes.Large}
             buttonClassNames={`${linkTextClasses} rounded-[3px]`}

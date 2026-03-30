@@ -50,7 +50,7 @@ export default function Hero() {
               <Link
                 href="https://docs.base.org/base-account/guides/accept-payments"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
               >
                 Accept Base Pay
               </Link>
@@ -64,7 +64,7 @@ export default function Hero() {
               <Link
                 href="https://coinbaseshop.com/cart/49933861617970:1?discount=BASE10"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
               >
                 Shop with Base Pay
               </Link>

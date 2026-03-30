@@ -15,7 +15,7 @@ export default async function BuildingBase() {
             From the beginning,{' '}
             <a
               href="https://www.coinbase.com/blog/the-coinbase-secret-master-plan"
-              rel="noreferrer noopener"
+              rel="noopener"
               target="_blank"
               className="underline"
             >
@@ -39,7 +39,7 @@ export default async function BuildingBase() {
             <a
               href="https://cdixon.org/2010/06/12/designing-products-for-single-and-multiplayer-modes"
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
               className="underline"
             >
               single-player mode
@@ -48,7 +48,7 @@ export default async function BuildingBase() {
             <a
               href="https://medium.com/the-coinbase-blog/building-the-bridge-why-compliance-is-key-to-digital-currencys-success-7bfdd88a084c#.e39dojmef"
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
               className="underline"
             >
               bridge
@@ -87,7 +87,7 @@ export default async function BuildingBase() {
             <a
               href="https://www.coinbase.com/blog/supporting-eip-4844-reducing-fees-for-ethereum-layer-2-rollups"
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
               className="underline"
             >
               EIP4844
@@ -107,7 +107,7 @@ export default async function BuildingBase() {
             <a
               href="https://etherscan.io/address/0xd1633593373974e94b2dd7ebd3c6452328ffe079"
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
               className="underline"
             >
               Base Contributors

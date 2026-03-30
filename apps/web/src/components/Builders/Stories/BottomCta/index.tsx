@@ -16,7 +16,7 @@ export function BottomCta() {
             buttonClassNames="flex items-center justify-between px-4 py-3 group"
             target="_blank"
             href="https://docs.base.org/quickstart"
-            eventName="bottom-cta-get-started"
+            eventName="bottom-cta-get-started" rel="noopener"
           >
             <div className="flex w-40 items-center justify-between">
               <span>Get Started</span>
@@ -31,7 +31,7 @@ export function BottomCta() {
             buttonClassNames="flex items-center justify-between px-4 py-3 group"
             target="_blank"
             href="https://docs.base.org"
-            eventName="bottom-cta-documentation"
+            eventName="bottom-cta-documentation" rel="noopener"
           >
             <div className="flex w-40 items-center justify-between">
               <span>Explore Use Cases</span>

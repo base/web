@@ -87,7 +87,7 @@ export function Demo() {
         <Link
           href={FORK_TEMPLATE_LINK}
           target="_blank"
-          className="flex gap-2 text-[#E66020] transition-all duration-200 ease-in-out hover:scale-[103%]"
+          className="flex gap-2 text-[#E66020] transition-all duration-200 ease-in-out hover:scale-[103%]" rel="noopener"
         >
           <Title level={TitleLevel.Headline}>Fork the template</Title>
           <Icon name="fork" color="currentColor" />

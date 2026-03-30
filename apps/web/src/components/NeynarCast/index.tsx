@@ -84,7 +84,7 @@ function ParagraphWithLinks({ text }: { text: string }) {
       const matchedUrl = match[0].trim();
       const url = generateUrl(matchedUrl);
       results.push(
-        <Link key={matchIndex} href={url} target="_blank" className="break-words text-blue-500">
+        <Link key={matchIndex} href={url} target="_blank" className="break-words text-blue-500" rel="noopener">
           {matchedUrl}
         </Link>,
       );
@@ -158,7 +158,7 @@ export default function NeynarCast({
   return (
     <button className={castWrapperClasses} onClick={onClickCast} type="button">
       {author && (
-        <Link href={parentUrl} target="_blank">
+        <Link href={parentUrl} target="_blank" rel="noopener">
           <header className="flex items-center gap-4">
             {author.pfp_url && (
               <ImageWithLoading

@@ -20,7 +20,7 @@ export default function AcceptBasePay() {
           <Link
             href="https://docs.base.org/base-account/guides/accept-payments"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
           >
             <AnimatedButton text="Accept Base Pay" />
           </Link>
