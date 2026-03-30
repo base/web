@@ -1912,6 +1912,14 @@
     "subcategory": "gaming"
   },
   {
+    "name": "Haiku",
+    "url": "https://haiku.trade/",
+    "description": "Haiku's Universal Outcome Engine for DeFi turns any on-chain goal into a single, optimized, atomic transaction. Rebalance your portfolio in one click & focus on your strategic objectives, rather than the mechanics of execution",
+    "imageUrl": "/images/partners/haiku.png",
+    "category": "defi",
+    "subcategory": "liquidity management"
+  },
+  {
     "name": "Halliday",
     "url": "https://www.halliday.xyz/",
     "description": "Halliday enables game developers to build their next breakout hit on the blockchain. Our programmable ERC-4337 Smart Accounts are fully non-custodial, built to scale, and most importantly, designed specifically for games! With seamless onboarding, easy monetization and next-gen growth tooling, developers can fully immerse players in the world they have created, all while leveraging the full potential of the blockchain and offering their game’s own UI.",
