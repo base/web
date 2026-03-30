@@ -33,6 +33,7 @@
     "@lottiefiles/dotlottie-react": "^0.8.10",
     "@million/lint": "latest",
     "@monogrid/gainmap-js": "^3.0.6",
+    "@next/third-parties": "^15.0.1",
     "@number-flow/react": "^0.5.5",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-collapsible": "^1.1.0",
