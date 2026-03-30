@@ -6,6 +6,21 @@ _&lt;<http://www.apache.org/licenses/>&gt;_
 
 ### Terms and Conditions for use, reproduction, and distribution
 
+#### Summary
+
+This project is licensed under the **Apache License 2.0**.  
+Here’s what that means for you:
+
+✅ You can use the code freely, including for commercial purposes.  
+✅ You can modify the code and distribute your changes.  
+✅ You can include this code in larger projects under different licenses.  
+✅ Contributors grant you patent rights for their contributions.  
+
+⚠️ You must include a copy of this license in any distribution.  
+⚠️ You must state if you’ve made changes to the code.  
+⚠️ You cannot use the project’s trademarks without permission.  
+⚠️ The code is provided “as is,” without warranties.  
+
 #### 1. Definitions
 
 “License” shall mean the terms and conditions for use, reproduction, and
