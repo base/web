@@ -72,3 +72,18 @@ We welcome contributions to Base! For guidelines on how to contribute please ref
 ---
 
 If you have any questions, please reach out to us in #developer-chat in the [Base Discord](https://base.org/discord).
+---
+
+## 🚀 Quickstart
+
+### Requirements
+- Node.js >= 20
+- Yarn >= 1.22
+
+### Installation
+```bash
+git clone https://github.com/damir024/web.git
+cd web
+yarn install
+yarn dev
+
