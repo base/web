@@ -1,5 +1,12 @@
 'use client';
 
+/**
+ * Ecosystem Content Component
+ *
+ * Main content component for the Base Ecosystem page.
+ * Handles filtering, searching, and displaying ecosystem apps.
+ */
+
 import ecosystemApps from 'apps/web/src/data/ecosystem.json';
 import { SearchBar } from 'apps/web/src/components/Ecosystem/SearchBar';
 import { useMemo, useState, useEffect, useCallback } from 'react';
@@ -7,17 +14,15 @@ import { List } from 'apps/web/src/components/Ecosystem/List';
 import { useSearchParams } from 'next/navigation';
 import { EcosystemFilters } from 'apps/web/src/components/Ecosystem/EcosystemFilters';
 import EcosystemFiltersMobile from 'apps/web/src/components/Ecosystem/EcosystemFiltersMobile';
+import type { DecoratedEcosystemApp, EcosystemCategoryConfig } from 'apps/web/src/types/ecosystem';
 
-export type EcosystemApp = {
-  searchName: string;
-  name: string;
-  category: string;
-  subcategory: string;
-  url: string;
-  description: string;
-  imageUrl: string;
-};
+// Re-export for backward compatibility with existing imports
+export type EcosystemApp = DecoratedEcosystemApp;
 
+/**
+ * Category configuration mapping each category to its valid subcategories.
+ * Used for filtering ecosystem apps by category and subcategory.
+ */
 const config: Record<string, string[]> = {
   ai: ['ai'],
   wallet: ['account abstraction', 'multisig', 'self-custody'],

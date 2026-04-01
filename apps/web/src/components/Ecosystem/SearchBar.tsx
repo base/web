@@ -1,4 +1,12 @@
 'use client';
+
+/**
+ * Ecosystem SearchBar Component
+ *
+ * An animated, accessible search input for filtering ecosystem apps.
+ * Features expandable mobile design and keyboard accessibility.
+ */
+
 import { Dispatch, SetStateAction, useCallback, useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence, cubicBezier, Variants } from 'motion/react';
 
@@ -22,6 +30,9 @@ const buttonVariants: Variants = {
   exit: { opacity: 0 },
 };
 
+/**
+ * Search icon SVG component
+ */
 function SearchIcon() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 15 14" fill="none">
@@ -33,6 +44,9 @@ function SearchIcon() {
   );
 }
 
+/**
+ * Close/clear icon SVG component
+ */
 function XIcon() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -44,13 +58,33 @@ function XIcon() {
   );
 }
 
-export function SearchBar({
-  search,
-  setSearch,
-}: {
+/**
+ * Props for the SearchBar component
+ */
+interface SearchBarProps {
+  /** Current search query value */
   search: string;
+  /** Callback to update the search query */
   setSearch: Dispatch<SetStateAction<string>>;
-}) {
+}
+
+/**
+ * SearchBar provides an animated, accessible search input for the ecosystem page.
+ *
+ * Features:
+ * - Expandable design on mobile devices
+ * - Animated transitions for expand/collapse
+ * - Clear button when search has content
+ * - Keyboard accessible with proper focus management
+ * - ARIA labels for screen reader support
+ *
+ * @example
+ * ```tsx
+ * const [search, setSearch] = useState('');
+ * <SearchBar search={search} setSearch={setSearch} />
+ * ```
+ */
+export function SearchBar({ search, setSearch }: SearchBarProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const debounced = useRef<number>();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -138,8 +172,8 @@ export function SearchBar({
           <motion.button
             type="button"
             onClick={clearInput}
-            aria-label="clear input"
-            className="absolute right-2 flex-shrink-0"
+            aria-label="Clear search input"
+            className="absolute right-2 flex-shrink-0 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             variants={buttonVariants}
             initial="initial"
             animate="animate"
