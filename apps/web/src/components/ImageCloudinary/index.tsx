@@ -5,6 +5,7 @@ import { getImageAbsoluteSource, getCloudinaryMediaUrl } from 'apps/web/src/util
 import { isDataUrl } from 'apps/web/src/utils/urls';
 import { StaticImageData } from 'next/image';
 import { CSSProperties, useEffect, useState } from 'react';
+import { logger } from 'apps/web/src/utils/logger';
 
 type ImageCloudinaryProps = {
   src: string | StaticImageData;
@@ -74,13 +75,13 @@ export default function ImageCloudinary({
             setCloudinaryUploadUrl(url);
           }
         } catch (error) {
-          console.error('Error getting Cloudinary URL:', error);
+          logger.error('Error getting Cloudinary URL', error);
         }
       }
 
       handleGetCloudinaryUrl()
         .then()
-        .catch((error) => console.log(error));
+        .catch((error) => logger.error('Error handling Cloudinary URL', error));
     }
   }, [absoluteSrc, shouldUploadToCloudinary, width]);
 

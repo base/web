@@ -146,23 +146,41 @@ export default function ProfileTransferOwnershipProvider({
   const safeTransferFromContract = useMemo(() => {
     if (!tokenId || !isValidRecipientAddress || !address) return;
 
+    const contractAddress = USERNAME_BASE_REGISTRAR_ADDRESSES[basenameChain.id];
+    if (!contractAddress) {
+      logError(
+        new Error(`Missing base registrar address for chain ${basenameChain.id}`),
+        'safeTransferFromContract address lookup failed',
+      );
+      return;
+    }
+
     return {
       abi: BaseRegistrarAbi,
-      address: USERNAME_BASE_REGISTRAR_ADDRESSES[basenameChain.id],
+      address: contractAddress,
       args: [address, recipientAddress, tokenId],
       functionName: 'safeTransferFrom',
     } as ContractFunctionParameters;
-  }, [address, basenameChain.id, isValidRecipientAddress, recipientAddress, tokenId]);
+  }, [address, basenameChain.id, isValidRecipientAddress, recipientAddress, tokenId, logError]);
 
   // Step 4, set the reverse resolution record
   const setNameContract = useMemo(() => {
+    const contractAddress = USERNAME_REVERSE_REGISTRAR_ADDRESSES[basenameChain.id];
+    if (!contractAddress) {
+      logError(
+        new Error(`Missing reverse registrar address for chain ${basenameChain.id}`),
+        'setNameContract address lookup failed',
+      );
+      return;
+    }
+
     return {
       abi: ReverseRegistrarAbi,
-      address: USERNAME_REVERSE_REGISTRAR_ADDRESSES[basenameChain.id],
+      address: contractAddress,
       args: [''],
       functionName: 'setName',
     } as ContractFunctionParameters;
-  }, [basenameChain.id]);
+  }, [basenameChain.id, logError]);
 
   // Bundled transaction - Experimental
   const {

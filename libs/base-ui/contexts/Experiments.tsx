@@ -10,7 +10,7 @@ import React, {
 } from 'react';
 import { Experiment, ExperimentClient } from '@amplitude/experiment-js-client';
 
-import { ampDeploymentKey } from '../constants';
+import { ampDeploymentKey, isDevelopment } from '../constants';
 import logEvent, { ActionType, AnalyticsEventImportance, ComponentType } from '../utils/logEvent';
 
 declare const window: WindowWithAnalytics;
@@ -76,7 +76,10 @@ export default function ExperimentsProvider({ children }: ExperimentsProviderPro
         return undefined;
       }
       if (!experimentClient) {
-        console.error('No experiment clients found');
+        if (isDevelopment) {
+          // eslint-disable-next-line no-console
+          console.error('No experiment clients found');
+        }
         return undefined;
       }
       const variant = experimentClient.variant(flagKey);

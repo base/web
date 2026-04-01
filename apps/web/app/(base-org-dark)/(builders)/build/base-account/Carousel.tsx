@@ -178,7 +178,7 @@ export function BaseAccountCarousel({
       setCurrentIndex((prevIndex) => (prevIndex + 1) % features.length);
       setAnimationKey((prev) => prev + 1);
     }, ANIMATION_INTERVAL);
-  }, [clearTimer]);
+  }, [clearTimer, features.length]);
 
   const handleFeatureClick = useCallback(
     (index: number) => () => {

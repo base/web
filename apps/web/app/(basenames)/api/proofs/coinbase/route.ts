@@ -1,14 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { withTimeout } from 'apps/web/app/api/decorators';
-import { trustedSignerPKey } from 'apps/web/src/constants';
-import { logger } from 'apps/web/src/utils/logger';
-import {
-  DiscountType,
-  ProofsException,
-  proofValidation,
-  VerifiedAccount,
-} from 'apps/web/src/utils/proofs';
-import { sybilResistantUsernameSigning } from 'apps/web/src/utils/proofs/sybil_resistance';
+import { DiscountType, VerifiedAccount } from 'apps/web/src/utils/proofs';
+import { createSybilResistantHandler } from '../proofHandlers';
 import { Address } from 'viem';
 
 // Coinbase verified account *and* CB1 structure
@@ -40,35 +33,11 @@ export type CoinbaseProofResponse = {
  * @returns
  */
 async function handler(req: NextRequest) {
-  if (req.method !== 'GET') {
-    return NextResponse.json({ error: 'method not allowed' }, { status: 405 });
-  }
-  const address = req.nextUrl.searchParams.get('address');
-  const chain = req.nextUrl.searchParams.get('chain');
-  const validationErr = proofValidation(address ?? '', chain ?? '');
-  if (validationErr) {
-    return NextResponse.json({ error: validationErr.error }, { status: validationErr.status });
-  }
-  if (!trustedSignerPKey) {
-    return NextResponse.json({ error: 'currently unable to sign' }, { status: 500 });
-  }
-
-  try {
-    const result = await sybilResistantUsernameSigning(
-      address as `0x${string}`,
-      DiscountType.CB,
-      parseInt(chain as string),
-    );
-    return NextResponse.json(result);
-  } catch (error) {
-    if (error instanceof ProofsException) {
-      return NextResponse.json({ error: error.message }, { status: error.statusCode });
-    }
-    logger.error('error getting proofs for cb1 discount', error);
-  }
-
-  // If error is not an instance of Error, return a generic error message
-  return NextResponse.json({ error: 'An unexpected error occurred' }, { status: 500 });
+  return createSybilResistantHandler(
+    req,
+    DiscountType.CB,
+    'error getting proofs for cb1 discount',
+  );
 }
 
 export const GET = withTimeout(handler);

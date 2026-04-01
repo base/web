@@ -1,0 +1,12 @@
+# GitHub Linguist configuration
+# This file tells GitHub which files to exclude from language statistics
+
+# Lock files - exclude from language statistics
+yarn.lock linguist-generated=true
+package-lock.json linguist-generated=true
+
+# Data files - these are large JSON data files that shouldn't affect language statistics
+apps/web/src/data/**/*.json linguist-generated=true
+
+# Generated mapping files
+apps/web/app/**/premintsMapping.ts linguist-generated=true

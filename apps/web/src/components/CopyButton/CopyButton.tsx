@@ -2,6 +2,7 @@
 
 import classNames from 'classnames';
 import { SVGProps, useCallback, useEffect, useRef, useState } from 'react';
+import { logger } from 'apps/web/src/utils/logger';
 
 const handleCopy = async (
   text: string,
@@ -22,7 +23,7 @@ const handleCopy = async (
       setCopied(false);
     }, 2000);
   } catch (err) {
-    console.error('Failed to copy text:', err);
+    logger.error('Failed to copy text', err);
   }
 };
 

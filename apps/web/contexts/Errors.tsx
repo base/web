@@ -40,6 +40,7 @@ export default function ErrorsProvider({ children, context }: ErrorsProviderProp
       if (isDevelopment) {
         console.log('\n--------------------------------------');
         console.info(`Error caught with message: "${message}"`);
+        // eslint-disable-next-line no-console
         console.error(error);
         console.info(`Context: "${fullContext}"`);
         console.log('--------------------------------------\n');

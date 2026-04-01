@@ -43,6 +43,18 @@ yarn
 yarn build
 ```
 
+Alternatively, you can use the new Makefile for parallel builds:
+
+```shell
+make setup   # Install dependencies
+make build   # Build all workspaces in parallel
+make lint    # Run linting
+make test    # Run tests
+make ci      # Run full CI pipeline locally
+```
+
+See [BUILD_SYSTEM.md](BUILD_SYSTEM.md) for more details on the build system.
+
 ## Local development
 
 To start a development server on localhost, run `yarn workspace @app/<project> dev`.
@@ -59,9 +71,49 @@ There are three projects which can be run individually.
 yarn workspace @app/web dev
 ```
 
+## Smart Contract Deployment
+
+This repository includes MyContract.sol with Merkle proof-based claim functionality.
+
+### Quick Start
+
+```shell
+# Get deployment help
+npm run deploy -- --help
+
+# Get network-specific deployment instructions
+npm run deploy -- --network base-sepolia
+
+# Verify deployed contract
+npm run verify -- --address <CONTRACT_ADDRESS> --source ./contracts/MyContract.sol --name MyContract --compiler v0.8.20+commit.a1b79de6 --network base-sepolia --optimization 1 --runs 200
+```
+
+### Documentation
+
+- [Deployment Quick Start](DEPLOYMENT_QUICKSTART.md) - Quick reference for deploying
+- [Complete Deployment Guide](CONTRACT_DEPLOYMENT_GUIDE.md) - Step-by-step deployment instructions
+- [Deployment Summary](DEPLOYMENT_SUMMARY.md) - Overview and checklist
+- [Contract Verification](CONTRACT_VERIFICATION.md) - How to verify deployed contracts
+- [Implementation Details](IMPLEMENTATION_MERKLE_CLAIM.md) - Technical implementation details
+- [Contract Tests](contracts/MyContract.test.md) - Testing guide and examples
+
+### Contract Features
+
+- ✅ Merkle proof-based claim verification
+- ✅ Duplicate claim prevention
+- ✅ Reentrancy protection
+- ✅ Gas-optimized operations
+- ✅ Owner: `0x0540e1dA908D032D2F74D50C06397cB5f2cbfDdB` (kushmanmb.eth / yaketh.eth)
+
 ## Contributing
 
 We welcome contributions to Base! For guidelines on how to contribute please refer to [CONTRIBUTING.md](CONTRIBUTING.md).
+
+### Repository Policies
+
+This repository follows strict branch protection rules and development workflows. Please review:
+- [POLICY.md](POLICY.md) - Repository policies, branch protection rules, and development workflow
+- [Branch Protection Rulesets](.github/rulesets/README.md) - Technical implementation of protection rules
 
 ### Updating the Base Ecosystem Page
 

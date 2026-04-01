@@ -15,7 +15,6 @@
     "e2e:metamask:prepare": "node ../../node_modules/@coinbase/onchaintestkit/src/cli/prepare-metamask.mjs",
     "dev:million": "cross-env MILLION_LINT=true node --require ./tracer/initialize.js ./node_modules/.bin/next dev",
     "lint": "next lint",
-    "update-contributors": "node ./scripts/updateContributors.js && npx prettier ./src/components/CoreContributors/CoreContributors.json -w",
     "fetch-mirror-blog": "node ./scripts/pullLatestBlogPosts.js"
   },
   "dependencies": {
@@ -56,7 +55,7 @@
     "@vercel/postgres-kysely": "^0.8.0",
     "base-ui": "0.1.1",
     "classnames": "^2.5.1",
-    "cloudinary": "^2.5.1",
+    "cloudinary": "^2.7.0",
     "date-fns": "^4.1.0",
     "dd-trace": "^5.21.0",
     "ethers": "5.7.2",
@@ -70,8 +69,7 @@
     "jsonwebtoken": "^9.0.2",
     "kysely": "^0.27.6",
     "motion": "^12.3.1",
-    "next": "^15.5.7",
-    "node-fetch": "^3.3.0",
+    "next": "^15.5.10",
     "permissionless": "^0.1.41",
     "pg": "^8.12.0",
     "pinata": "^0.4.0",

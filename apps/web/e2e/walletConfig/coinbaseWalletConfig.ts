@@ -10,7 +10,7 @@ const baseConfig = configure()
     chainId: base.id,
     forkUrl: process.env.E2E_TEST_FORK_URL,
     forkBlockNumber: BigInt(process.env.E2E_TEST_FORK_BLOCK_NUMBER ?? '0'),
-    hardfork: 'cancun',
+    hardfork: 'prague',
   })
   .withCoinbase()
   .withSeedPhrase({

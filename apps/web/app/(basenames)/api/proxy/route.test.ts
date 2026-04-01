@@ -217,6 +217,210 @@ describe('api/proxy route', () => {
     });
   });
 
+  describe('GET - etherscan-sourcecode apiType', () => {
+    it('should call etherscan API with correct URL for etherscan-sourcecode type', async () => {
+      const mockData = {
+        status: '1',
+        message: 'OK',
+        result: [
+          {
+            SourceCode: 'pragma solidity ^0.8.0; contract Test {}',
+            ABI: '[{"type":"constructor"}]',
+            ContractName: 'Test',
+            CompilerVersion: 'v0.8.0+commit.c7dfd78e',
+            CompilerType: 'solc',
+            OptimizationUsed: '1',
+            Runs: '200',
+            ConstructorArguments: '',
+            EVMVersion: 'Default',
+            Library: '',
+            ContractFileName: '',
+            LicenseType: 'MIT',
+            Proxy: '0',
+            Implementation: '',
+            SwarmSource: '',
+          },
+        ],
+      };
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        headers: new Headers({ 'content-type': 'application/json' }),
+        json: jest.fn().mockResolvedValueOnce(mockData),
+      });
+
+      const address = '0x1234567890123456789012345678901234567890';
+      const request = new NextRequest(
+        `https://www.base.org/api/proxy?address=${address}&apiType=etherscan-sourcecode`
+      );
+
+      await GET(request);
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        expect.stringContaining(
+          `https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${address}`
+        ),
+        expect.objectContaining({
+          method: 'GET',
+        })
+      );
+    });
+
+    it('should return contract source code data on successful etherscan-sourcecode response', async () => {
+      const mockData = {
+        status: '1',
+        message: 'OK',
+        result: [
+          {
+            SourceCode: 'pragma solidity ^0.8.0; contract Test {}',
+            ABI: '[{"type":"constructor"}]',
+            ContractName: 'Test',
+            CompilerVersion: 'v0.8.0+commit.c7dfd78e',
+            CompilerType: 'solc',
+            OptimizationUsed: '1',
+            Runs: '200',
+            ConstructorArguments: '',
+            EVMVersion: 'Default',
+            Library: '',
+            ContractFileName: '',
+            LicenseType: 'MIT',
+            Proxy: '0',
+            Implementation: '',
+            SwarmSource: '',
+          },
+        ],
+      };
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        headers: new Headers({ 'content-type': 'application/json' }),
+        json: jest.fn().mockResolvedValueOnce(mockData),
+      });
+
+      const address = '0x1234567890123456789012345678901234567890';
+      const request = new NextRequest(
+        `https://www.base.org/api/proxy?address=${address}&apiType=etherscan-sourcecode`
+      );
+
+      const response = await GET(request);
+      const data = (await response.json()) as ProxyResponse;
+
+      expect(response.status).toBe(200);
+      expect(data).toEqual({ data: mockData });
+    });
+  });
+
+  describe('GET - basescan-sourcecode apiType', () => {
+    it('should call basescan API with correct URL for basescan-sourcecode type', async () => {
+      const mockData = {
+        status: '1',
+        message: 'OK',
+        result: [
+          {
+            SourceCode: 'pragma solidity ^0.8.0; contract BaseTest {}',
+            ABI: '[{"type":"constructor"}]',
+            ContractName: 'BaseTest',
+            CompilerVersion: 'v0.8.0+commit.c7dfd78e',
+            OptimizationUsed: '1',
+            Runs: '200',
+            ConstructorArguments: '',
+            EVMVersion: 'Default',
+            Library: '',
+            LicenseType: 'MIT',
+            Proxy: '0',
+            Implementation: '',
+            SwarmSource: '',
+          },
+        ],
+      };
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        headers: new Headers({ 'content-type': 'application/json' }),
+        json: jest.fn().mockResolvedValueOnce(mockData),
+      });
+
+      const address = '0x1234567890123456789012345678901234567890';
+      const request = new NextRequest(
+        `https://www.base.org/api/proxy?address=${address}&apiType=basescan-sourcecode`
+      );
+
+      await GET(request);
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        expect.stringContaining(
+          `https://api.basescan.org/api?module=contract&action=getsourcecode&address=${address}`
+        ),
+        expect.objectContaining({
+          method: 'GET',
+        })
+      );
+    });
+
+    it('should return contract source code data on successful basescan-sourcecode response', async () => {
+      const mockData = {
+        status: '1',
+        message: 'OK',
+        result: [
+          {
+            SourceCode: 'pragma solidity ^0.8.0; contract BaseTest {}',
+            ABI: '[{"type":"constructor"}]',
+            ContractName: 'BaseTest',
+            CompilerVersion: 'v0.8.0+commit.c7dfd78e',
+            CompilerType: 'solc',
+            OptimizationUsed: '1',
+            Runs: '200',
+            ConstructorArguments: '',
+            EVMVersion: 'Default',
+            Library: '',
+            ContractFileName: '',
+            LicenseType: 'MIT',
+            Proxy: '0',
+            Implementation: '',
+            SwarmSource: '',
+          },
+        ],
+      };
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        headers: new Headers({ 'content-type': 'application/json' }),
+        json: jest.fn().mockResolvedValueOnce(mockData),
+      });
+
+      const address = '0x1234567890123456789012345678901234567890';
+      const request = new NextRequest(
+        `https://www.base.org/api/proxy?address=${address}&apiType=basescan-sourcecode`
+      );
+
+      const response = await GET(request);
+      const data = (await response.json()) as ProxyResponse;
+
+      expect(response.status).toBe(200);
+      expect(data).toEqual({ data: mockData });
+    });
+
+    it('should handle contract not verified response', async () => {
+      const mockData = {
+        status: '0',
+        message: 'NOTOK',
+        result: 'Contract source code not verified',
+      };
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        headers: new Headers({ 'content-type': 'application/json' }),
+        json: jest.fn().mockResolvedValueOnce(mockData),
+      });
+
+      const address = '0x1234567890123456789012345678901234567890';
+      const request = new NextRequest(
+        `https://www.base.org/api/proxy?address=${address}&apiType=basescan-sourcecode`
+      );
+
+      const response = await GET(request);
+      const data = (await response.json()) as ProxyResponse;
+
+      expect(response.status).toBe(200);
+      expect(data).toEqual({ data: mockData });
+    });
+  });
+
   describe('GET - response handling', () => {
     it('should handle text response when content-type is not JSON', async () => {
       const mockTextData = 'Some text response';

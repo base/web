@@ -11,7 +11,7 @@ import {
   ATTESTATION_VERIFIED_ACCOUNT_SCHEMA_IDS,
   ATTESTATION_VERIFIED_CB1_ACCOUNT_SCHEMA_IDS,
   trustedSignerAddress,
-  trustedSignerPKey,
+  getTrustedSignerPrivateKey,
 } from 'apps/web/src/constants';
 import { getBasenamePublicClient } from 'apps/web/src/hooks/useBasenameChain';
 import { logger } from 'apps/web/src/utils/logger';
@@ -85,6 +85,9 @@ export async function hasRegisteredWithDiscount(
 async function getMessageSignature(message: `0x${string}`) {
   // hash the message
   const msgHash = keccak256(message);
+
+  // Get private key securely from environment with validation
+  const trustedSignerPKey = getTrustedSignerPrivateKey();
 
   // sign the hashed message
   const { r, s, v } = await sign({

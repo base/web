@@ -135,6 +135,7 @@ describe('bns route', () => {
         validAddress,
         base.id,
         'bns_discount',
+        false,
       );
     });
 
@@ -160,6 +161,7 @@ describe('bns route', () => {
         validAddress,
         baseSepolia.id,
         'bns_discount',
+        false,
       );
     });
 
@@ -305,6 +307,7 @@ describe('bns route', () => {
         mixedCaseAddress,
         base.id,
         'bns_discount',
+        false,
       );
     });
 
@@ -327,6 +330,7 @@ describe('bns route', () => {
         expect.any(String),
         expect.any(Number),
         'bns_discount',
+        false,
       );
     });
   });

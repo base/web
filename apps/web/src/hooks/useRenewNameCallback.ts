@@ -105,7 +105,6 @@ export function useRenewNameCallback({
     initiateBatchCalls,
     initiateRenewName,
     logError,
-    name,
     normalizedName,
     paymasterServiceEnabled,
     value,

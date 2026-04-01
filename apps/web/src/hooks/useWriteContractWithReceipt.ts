@@ -77,7 +77,11 @@ export default function useWriteContractWithReceipt({
 
   const initiateTransaction = useCallback(
     async (contractParameters: ContractFunctionParameters) => {
-      if (!connectedChain) return;
+      if (!connectedChain) {
+        const error = new Error('Wallet not connected');
+        logError(error, `${eventName}_transaction_no_wallet`);
+        throw error;
+      }
       if (connectedChain.id !== chain.id) {
         await switchChainAsync({ chainId: chain.id });
       }

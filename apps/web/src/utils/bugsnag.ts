@@ -1,4 +1,5 @@
 // import React from 'react';
+/* eslint-disable no-console */
 import type { BugsnagPluginReactResult } from '@bugsnag/plugin-react';
 import type { OnErrorCallback } from '@bugsnag/core/types/common';
 

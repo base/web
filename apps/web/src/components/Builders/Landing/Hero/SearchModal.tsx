@@ -6,6 +6,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Input from 'apps/web/src/components/Input';
 import { createPortal } from 'react-dom';
 import Link from 'apps/web/src/components/Link';
+import { logger } from 'apps/web/src/utils/logger';
 
 type SearchCategory = {
   category: string;
@@ -43,12 +44,11 @@ const searchConfig: SearchCategory[] = [
         href: '',
         icon: 'copy',
         onClick: () => {
-          console.log('clicked');
           const copyCreateOnchain = async () => {
             try {
               await navigator.clipboard.writeText('npm create onchain');
             } catch (error) {
-              console.error('Failed to copy to clipboard', error);
+              logger.error('Failed to copy to clipboard', error);
             }
           };
           void copyCreateOnchain();

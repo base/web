@@ -1,82 +1,244 @@
+# Environment and configuration files
 .env
-# Node stuff
-node_modules
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+.env.*.local
+.envrc
+.envrc.local
+
+# Private keys and certificates
+*.pem
+*.key
+*.p8
+*.p12
+*.pfx
+*.id_rsa
+*.id_ed25519
+*.id_ecdsa
+*.ppk
+*.der
+*.crt
+*.cer
+*.csr
+privatekey*
+private-key*
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+id_ecdsa
+id_ecdsa.pub
+**/.ssh/id_*
+service-account*.json
+gcp-key*.json
+*.keystore
+keystore.json
+*.jks
+*.truststore
+truststore.json
+*.gpg
+*.asc
+*.sig
+known_hosts.local
+
+# Blockchain/Crypto specific
+**/mnemonic.*
+**/seed-phrase.*
+wallet-keys*.json
+wallet-private*.json
+*.wallet.json
+*.wallet.dat
+**/keystore/
+**/keystores/
+.secret
+hardhat.config.local.js
+hardhat.config.local.ts
+truffle-config.local.js
+foundry.toml.local
+.brownie/
+brownie-config.local.yaml
+ape-config.local.yaml
+**/contracts/.env
+**/scripts/.env
+*.wallet
+account-keys*.json
+private-account*.json
+**/accounts.json
+**/wallets.json
+**/.secret-*
+**/.secrets/
+deployment-keys*.json
+signer-keys*.json
+
+# Credentials and secrets
+credentials.json
+secrets.json
+secret.json
+*.secret
+*.secrets
+*.credentials
+.aws/credentials
+.aws/config.local
+.gcp/credentials
+**/.gcloud/
+.azure/credentials
+.azure/config
+auth.json
+auth.config.json
+oauth-credentials*.json
+*-token.json
+*-tokens.json
+access-token*.json
+api-keys.json
+api-secrets.json
+.npmrc.local
+.yarnrc.local
+.netrc
+.git-credentials
+**/config/secrets.yml
+**/config/credentials.yml
+**/config/master.key
+jwt-secret*.txt
+session-secret*.txt
+passwords.txt
+my-password*.txt
+password-list*.txt
+**/passwords/
+
+# Database files and backups
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+*.dump
+*.bak
+*.backup
+*.old
+*.orig
+*.bak.gz
+**/db/backups/
+**/database/backups/
+*.db-journal
+*.db-wal
+*.db-shm
+pgdata/
+postgres-data/
+
+# Data files
+*.dat
+*.data
+data/
+*.csv
+*.tsv
+*.json.gz
+*.tar.gz
+**/private-data/
+**/sensitive-data/
+**/user-data/
+**/private/
+**/confidential/
+**/exports/
+**/backups/
+
+# Docker secrets
+docker-compose.override.yml
+docker-compose.local.yml
+.dockerignore.local
+**/secrets/
+
+# Terraform/Infrastructure
+*.tfvars
+*.tfvars.json
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
+*.tfstate.*
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Kubernetes secrets
+*-secret.yaml
+*-secret.yml
+secrets.yaml
+secrets.yml
+!example-secret.yaml
+!example-secret.yml
+!template-secret.yaml
+!template-secret.yml
+!*-secret.example.yaml
+!*-secret.example.yml
+
+# CI/CD and Deployment
+.circleci/local.yml
+.travis.local.yml
+gitlab-ci.local.yml
+**/.deploy-keys/
+deploy-key*.pem
+deploy-key*.key
+deploy-key*.json
+deployment-config.local.*
+ansible-vault-password*.txt
+vault-password*.txt
+**/ansible/vault-pass
+**/.ansible-vault
+
+# IDE and editor files
+.vscode/
+.vscode/settings.local.json
+.idea/
+.idea/workspace.xml.local
+*.swp
+*.swo
+*~
+
+# Dependencies and build artifacts
+node_modules/
+dist/
+build/
+.next/
+out/
+.yarn/cache/
+.yarn/install-state.gz
+
+# Logs and temporary files
+logs/
+*.log
+npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+tmp/
+temp/
 
-# OS ignores
+# OS files
 .DS_Store
+.DS_Store/
+Thumbs.db
 
-# Xcode
-**/ios/build/
-**/ios/derived_data/
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata
-*.xccheckout
-*.moved-aside
-DerivedData
-*.hmap
-*.ipa
-*.xcuserstate
-*.xcworkspace
-Pods/
+# Test coverage
+**/coverage/
+.nyc_output/
 
-# Android/IntelliJ
-**/android/build/
-**/android/app/build/
-.idea
-.gradle
-local.properties
-*.iml
-*.hprof
+# Test data and mocks (that might contain sensitive data)
+**/test-data/private/
+**/test-data/secrets/
+**/fixtures/private/
+**/mocks/secrets/
+test-keys*.json
+test-credentials*.json
+mock-private-keys*.json
+# But allow safe test fixtures
+!**/test-data/**/*.example.*
+!**/fixtures/**/*.example.*
+# CodeQL/Bearer security scan results
+results.sarif
+*.sarif
 
-# Nx/Builds
-.docusaurus
-.next
-.nx
-cjs/
-dts/
-esm/
-lib/
-mjs/
-out/
-*.tsbuildinfo
+# Makefile artifacts
+.make/
 
-# Yarn
-.yarn/*
-!.yarn/patches
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-.pnp.*
-# prevent people from accidentally committing a package-lock
-package-lock.json
-
-# E2E
-**/playwright-report
-**/test-results
-apps/web/e2e/.cache
-
-# Env files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# GraphQL
-schema.graphql
-persisted_queries.json
-**/*.graphql.ts
-
-# eslint
-.eslintcache
-
-.vercel
+# E2E test cache files
+apps/web/e2e/.cache/

@@ -6,6 +6,7 @@ import JobsList from 'apps/web/src/components/Jobs/JobsList';
 import { Hero } from 'apps/web/src/components/Jobs/Redesign/Hero';
 import { WebGLCanvas } from 'apps/web/src/components/WebGL/WebGLCanvas';
 import { greenhouseApiUrl } from 'apps/web/src/constants';
+import { logger } from 'apps/web/src/utils/logger';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -25,7 +26,7 @@ async function getJobs() {
     const { jobs } = (await res.json()) as { jobs: JobType[] };
     return jobs;
   } catch (_error) {
-    console.error(_error);
+    logger.error('Error fetching jobs', _error);
   }
   return [];
 }

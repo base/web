@@ -49,9 +49,7 @@ export type UseWriteContractsWithLogsProps = {
 };
 
 export type UseWriteContractsWithLogsReturn = {
-  initiateBatchCalls: (
-    writeContractParameters: WriteContractsParameters,
-  ) => Promise<string | undefined>;
+  initiateBatchCalls: (writeContractParameters: WriteContractsParameters) => Promise<void>;
   batchCallTransactionReceiptHash: string | undefined;
   batchCallsStatus: BatchCallsStatus;
   transactionReceipt: TransactionReceipt | undefined;
@@ -121,9 +119,17 @@ export default function useWriteContractsWithLogs({
 
   const initiateBatchCalls = useCallback(
     async (writeContractParameters: WriteContractsParameters) => {
-      if (!atomicBatchEnabled) return Promise.resolve("Wallet doesn't support sendCalls");
+      if (!atomicBatchEnabled) {
+        const error = new Error("Wallet doesn't support sendCalls");
+        logError(error, `${eventName}_batch_calls_not_supported`);
+        throw error;
+      }
 
-      if (!connectedChain) return;
+      if (!connectedChain) {
+        const error = new Error('Wallet not connected');
+        logError(error, `${eventName}_transaction_no_wallet`);
+        throw error;
+      }
       if (connectedChain.id !== chain.id) {
         await switchChainAsync({ chainId: chain.id });
       }

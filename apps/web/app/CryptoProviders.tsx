@@ -86,7 +86,7 @@ export default function CryptoProviders({
             }),
       },
     }),
-    [mode, theme],
+    [mode, theme, smartWalletOnly],
   );
 
   return (

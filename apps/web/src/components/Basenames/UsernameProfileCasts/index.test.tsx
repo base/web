@@ -2,9 +2,9 @@
  * @jest-environment jsdom
  */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
+ 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable react/function-component-definition */
+ 
 
 import { render, screen } from '@testing-library/react';
 import UsernameProfileCasts from './index';

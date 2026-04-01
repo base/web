@@ -32,6 +32,14 @@ module.exports = {
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx', '.mdx'] }],
     'react/react-in-jsx-scope': 'off',
 
+    // Disallow console statements except in specific files
+    'no-console': [
+      'error',
+      {
+        allow: ['warn', 'info'],
+      },
+    ],
+
     // We utilize prop spreading
     'react/jsx-props-no-spreading': 'off',
 

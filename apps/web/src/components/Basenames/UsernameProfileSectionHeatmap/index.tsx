@@ -12,6 +12,7 @@ import { Address } from 'viem';
 import './cal.css';
 import Tooltip from 'apps/web/src/components/Tooltip';
 import UsernameProfileSectionTitle from 'apps/web/src/components/Basenames/UsernameProfileSectionTitle';
+import { logger } from 'apps/web/src/utils/logger';
 
 // Routers
 const UNISWAP_ROUTER = '0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad'; // Uniswap router - base
@@ -45,27 +46,51 @@ type Transaction = {
 };
 
 export default function UsernameProfileSectionHeatmap() {
-  // The ref/effect here are a kinda jank approach to reaching into the heatmap library's rendered dom and modifying individual rect attributes.
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Optimized: Use MutationObserver instead of polling for better performance
   useEffect(() => {
-    const pollForRects = () => {
-      const containerElement = containerRef.current;
-      if (!containerElement) return;
+    const containerElement = containerRef.current;
+    if (!containerElement) return;
+
+    const updateRects = () => {
       const rects = containerElement.querySelectorAll('rect');
       if (rects.length > 0) {
         rects.forEach((rect) => {
           rect.setAttribute('rx', '2');
           rect.setAttribute('ry', '2');
         });
-        clearInterval(timerId);
-
-        // this line ensures that if the element is scrollable it will be all the way right (showing newest cal data)
+        // Scroll to show newest calendar data
         containerElement.scrollLeft = containerElement.scrollWidth;
+        return true;
       }
+      return false;
     };
-    const timerId = setInterval(pollForRects, 100);
+
+    // Try immediate update first
+    if (updateRects()) {
+      return;
+    }
+
+    // Use MutationObserver to detect when rects are added to DOM
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+          if (updateRects()) {
+            observer.disconnect();
+            break;
+          }
+        }
+      }
+    });
+
+    observer.observe(containerElement, {
+      childList: true,
+      subtree: true,
+    });
+
     return () => {
-      clearInterval(timerId);
+      observer.disconnect();
     };
   }, []);
 
@@ -101,7 +126,7 @@ export default function UsernameProfileSectionHeatmap() {
 
   const { profileAddress } = useUsernameProfile();
 
-  const generateHeatmapData = (transactions: Transaction[]): HeatmapValue[] => {
+  const generateHeatmapData = useCallback((transactions: Transaction[]): HeatmapValue[] => {
     const dateMap: Record<string, HeatmapValue> = {};
     transactions.forEach((tx) => {
       const txDate = new Date(parseInt(tx.timeStamp) * 1000).toLocaleDateString();
@@ -110,57 +135,60 @@ export default function UsernameProfileSectionHeatmap() {
         : { date: txDate, count: 1 };
     });
     return Object.values(dateMap);
-  };
+  }, []);
 
-  const calculateStreaksAndMetrics = (transactions: Transaction[], addrs: Address) => {
-    const filteredTransactions = transactions.filter(
-      (tx) => tx.from.toLowerCase() === addrs.toLowerCase(),
-    );
-    if (filteredTransactions.length === 0)
-      return { uniqueActiveDays: 0, longestStreakDays: 0, currentStreakDays: 0, activityPeriod: 0 };
+  const calculateStreaksAndMetrics = useCallback(
+    (transactions: Transaction[], addrs: Address) => {
+      const filteredTransactions = transactions.filter(
+        (tx) => tx.from.toLowerCase() === addrs.toLowerCase(),
+      );
+      if (filteredTransactions.length === 0)
+        return { uniqueActiveDays: 0, longestStreakDays: 0, currentStreakDays: 0, activityPeriod: 0 };
 
-    const timestamps = filteredTransactions.map((tx) => parseInt(tx.timeStamp, 10));
-    const firstTransactionDate = new Date(Math.min(...timestamps) * 1000);
-    const lastTransactionDate = new Date(Math.max(...timestamps) * 1000);
+      const timestamps = filteredTransactions.map((tx) => parseInt(tx.timeStamp, 10));
+      const firstTransactionDate = new Date(Math.min(...timestamps) * 1000);
+      const lastTransactionDate = new Date(Math.max(...timestamps) * 1000);
 
-    const uniqueActiveDaysSet = new Set(
-      filteredTransactions.map((tx) => new Date(parseInt(tx.timeStamp, 10) * 1000).toDateString()),
-    );
+      const uniqueActiveDaysSet = new Set(
+        filteredTransactions.map((tx) => new Date(parseInt(tx.timeStamp, 10) * 1000).toDateString()),
+      );
 
-    const sortedDates = Array.from(uniqueActiveDaysSet)
-      .map((dateStr) => new Date(dateStr))
-      .sort((a, b) => a.getTime() - b.getTime());
+      const sortedDates = Array.from(uniqueActiveDaysSet)
+        .map((dateStr) => new Date(dateStr))
+        .sort((a, b) => a.getTime() - b.getTime());
 
-    let longestStreakDays = 0;
-    let streak = 0;
-    for (let i = 0; i < sortedDates.length; i++) {
-      if (
-        i === 0 ||
-        (sortedDates[i].getTime() - sortedDates[i - 1].getTime()) / (1000 * 60 * 60 * 24) === 1
-      ) {
-        streak++;
-      } else {
-        longestStreakDays = Math.max(longestStreakDays, streak);
-        streak = 1;
+      let longestStreakDays = 0;
+      let streak = 0;
+      for (let i = 0; i < sortedDates.length; i++) {
+        if (
+          i === 0 ||
+          (sortedDates[i].getTime() - sortedDates[i - 1].getTime()) / (1000 * 60 * 60 * 24) === 1
+        ) {
+          streak++;
+        } else {
+          longestStreakDays = Math.max(longestStreakDays, streak);
+          streak = 1;
+        }
       }
-    }
-    longestStreakDays = Math.max(longestStreakDays, streak);
+      longestStreakDays = Math.max(longestStreakDays, streak);
 
-    return {
-      uniqueActiveDays: uniqueActiveDaysSet.size,
-      longestStreakDays,
-      currentStreakDays:
-        sortedDates[sortedDates.length - 1].toDateString() === new Date().toDateString()
-          ? streak
-          : 0,
-      activityPeriod: Math.max(
-        Math.ceil(
-          (lastTransactionDate.getTime() - firstTransactionDate.getTime()) / (1000 * 60 * 60 * 24),
+      return {
+        uniqueActiveDays: uniqueActiveDaysSet.size,
+        longestStreakDays,
+        currentStreakDays:
+          sortedDates[sortedDates.length - 1].toDateString() === new Date().toDateString()
+            ? streak
+            : 0,
+        activityPeriod: Math.max(
+          Math.ceil(
+            (lastTransactionDate.getTime() - firstTransactionDate.getTime()) / (1000 * 60 * 60 * 24),
+          ),
+          1,
         ),
-        1,
-      ),
-    };
-  };
+      };
+    },
+    [],
+  );
 
   type EtherscanApiResponse = {
     status: '1' | '0';
@@ -183,18 +211,18 @@ export default function UsernameProfileSectionHeatmap() {
           return []; // Return an empty array for no transactions
         } else if (data.status === '0' && data.message === 'Exception') {
           if (retryCount > 0) {
-            console.log(`API returned an exception. Retrying... (${retryCount} attempts left)`);
+            logger.info(`API returned an exception. Retrying... (${retryCount} attempts left)`);
             await new Promise((resolve) => setTimeout(resolve, 2000));
             return await fetchTransactions(apiUrl, retryCount - 1);
           } else {
             throw new Error(`API Error: ${data.message}`);
           }
         } else {
-          console.error('Unexpected API response structure:', json);
+          logger.error('Unexpected API response structure', json);
           return [];
         }
       } catch (e) {
-        console.error('Error fetching transactions:', e);
+        logger.error('Error fetching transactions', e);
         throw e;
       }
     },
@@ -267,22 +295,40 @@ export default function UsernameProfileSectionHeatmap() {
           baseInternalTransactions,
           sepoliaTransactions,
         ] = await Promise.all([
-          fetchTransactions(`/api/proxy?apiType=etherscan&address=${addrs}`).catch(() => []),
-          fetchTransactions(`/api/proxy?apiType=basescan&address=${addrs}`).catch(() => []),
+          fetchTransactions(`/api/proxy?apiType=etherscan&address=${addrs}`).catch((error) => {
+            logger.error('Failed to fetch Ethereum transactions', error);
+            return [];
+          }),
+          fetchTransactions(`/api/proxy?apiType=basescan&address=${addrs}`).catch((error) => {
+            logger.error('Failed to fetch Base transactions', error);
+            return [];
+          }),
           fetchTransactions(`/api/proxy?apiType=basescan-internal&address=${addrs}`).catch(
-            () => [],
+            (error) => {
+              logger.error('Failed to fetch Base internal transactions', error);
+              return [];
+            },
           ),
-          fetchTransactions(`/api/proxy?apiType=base-sepolia&address=${addrs}`).catch(() => []),
+          fetchTransactions(`/api/proxy?apiType=base-sepolia&address=${addrs}`).catch((error) => {
+            logger.error('Failed to fetch Sepolia transactions', error);
+            return [];
+          }),
         ]);
 
         const filteredEthereumTransactions = filterTransactions(ethereumTransactions, [addrs]);
         const filteredBaseTransactions = filterTransactions(baseTransactions, [addrs]);
         const filteredSepoliaTransactions = filterTransactions(sepoliaTransactions, [addrs]);
 
-        // Filter and deduplicate internal Base transactions
-        const filteredBaseInternalTransactions = baseInternalTransactions
-          .filter((tx) => tx.from.toLowerCase() === addrs.toLowerCase())
-          .filter((tx) => !baseTransactions.some((baseTx) => baseTx.hash === tx.hash));
+        // Filter and deduplicate internal Base transactions using Set for O(n) lookup instead of O(n²)
+        // Optimized: Build Set directly without intermediate array
+        const baseTransactionHashes = new Set<string>();
+        for (const tx of baseTransactions) {
+          baseTransactionHashes.add(tx.hash);
+        }
+        const filteredBaseInternalTransactions = baseInternalTransactions.filter(
+          (tx) =>
+            tx.from.toLowerCase() === addrs.toLowerCase() && !baseTransactionHashes.has(tx.hash),
+        );
 
         allTransactions.push(
           ...filteredEthereumTransactions,
@@ -290,24 +336,22 @@ export default function UsernameProfileSectionHeatmap() {
           ...filteredBaseInternalTransactions,
         );
 
-        allEthereumDeployments = [
-          ...allEthereumDeployments,
-          ...filteredEthereumTransactions
-            .filter((tx) => tx.input?.startsWith('0x60806040'))
-            .map((tx) => tx.hash),
-        ];
-        allBaseDeployments = [
-          ...allBaseDeployments,
-          ...filteredBaseTransactions
-            .filter((tx) => tx.input.includes('60806040'))
-            .map((tx) => tx.hash),
-        ];
-        allSepoliaDeployments = [
-          ...allSepoliaDeployments,
-          ...filteredSepoliaTransactions
-            .filter((tx) => tx.input.includes('60806040'))
-            .map((tx) => tx.hash),
-        ];
+        // Optimized: Single pass to extract deployment hashes without intermediate arrays
+        for (const tx of filteredEthereumTransactions) {
+          if (tx.input?.startsWith('0x60806040')) {
+            allEthereumDeployments.push(tx.hash);
+          }
+        }
+        for (const tx of filteredBaseTransactions) {
+          if (tx.input?.startsWith('0x60806040')) {
+            allBaseDeployments.push(tx.hash);
+          }
+        }
+        for (const tx of filteredSepoliaTransactions) {
+          if (tx.input?.startsWith('0x60806040')) {
+            allSepoliaDeployments.push(tx.hash);
+          }
+        }
 
         if (allTransactions.length === 0) {
           return;
@@ -328,36 +372,51 @@ export default function UsernameProfileSectionHeatmap() {
         setCurrentStreak(currentStreakDays);
         setActivityPeriod(activity);
 
-        setTokenSwapCount(
-          allTransactions.filter(
-            (tx) =>
-              ((tx.functionName &&
-                SWAP_FUNCTION_NAMES.some((fn) => tx.functionName?.includes(fn))) ??
-                tx.to === UNISWAP_ROUTER) ||
-              tx.to === AERODROME_ROUTER ||
-              tx.to === ONEINCH_ROUTER,
-          ).length,
-        );
-
-        // ENS count calculation
-        setEnsCount(
-          allTransactions.filter((tx) =>
-            [
-              ETH_REGISTRAR_CONTROLLER_1,
-              ETH_REGISTRAR_CONTROLLER_2,
-              BASENAMES_REGISTRAR_CONTROLLER,
-              BASENAMES_EA_REGISTRAR_CONTROLLER,
-            ].includes(tx.to),
-          ).length,
-        );
-
-        setBridgeCount(allTransactions.filter((tx) => bridges.has(tx.to)).length);
-
-        setLendCount(
-          allTransactions.filter(
-            (tx) => lendBorrowEarn.has(tx.to) || tx.from === MOONWELL_WETH_UNWRAPPER,
-          ).length,
-        );
+        // Optimized: Single pass through allTransactions to calculate all counts
+        let tokenSwapCount = 0;
+        let ensCount = 0;
+        let bridgeCount = 0;
+        let lendCount = 0;
+        
+        const ensAddresses = [
+          ETH_REGISTRAR_CONTROLLER_1,
+          ETH_REGISTRAR_CONTROLLER_2,
+          BASENAMES_REGISTRAR_CONTROLLER,
+          BASENAMES_EA_REGISTRAR_CONTROLLER,
+        ];
+        
+        for (const tx of allTransactions) {
+          // Token swap count
+          if (
+            ((tx.functionName &&
+              SWAP_FUNCTION_NAMES.some((fn) => tx.functionName?.includes(fn))) ??
+              tx.to === UNISWAP_ROUTER) ||
+            tx.to === AERODROME_ROUTER ||
+            tx.to === ONEINCH_ROUTER
+          ) {
+            tokenSwapCount++;
+          }
+          
+          // ENS count
+          if (ensAddresses.includes(tx.to)) {
+            ensCount++;
+          }
+          
+          // Bridge count
+          if (bridges.has(tx.to)) {
+            bridgeCount++;
+          }
+          
+          // Lend count
+          if (lendBorrowEarn.has(tx.to) || tx.from === MOONWELL_WETH_UNWRAPPER) {
+            lendCount++;
+          }
+        }
+        
+        setTokenSwapCount(tokenSwapCount);
+        setEnsCount(ensCount);
+        setBridgeCount(bridgeCount);
+        setLendCount(lendCount);
 
         setBuildCount(
           allEthereumDeployments.length + allBaseDeployments.length + allSepoliaDeployments.length,
@@ -365,13 +424,13 @@ export default function UsernameProfileSectionHeatmap() {
         setEthereumDeployments(allEthereumDeployments);
         setBaseDeployments(allBaseDeployments);
       } catch (e) {
-        console.error('Error fetching data:', e);
+        logger.error('Error fetching data:', e);
       } finally {
         setIsLoading(false);
         setIsDataFetched(true);
       }
     },
-    [fetchTransactions],
+    [fetchTransactions, generateHeatmapData, calculateStreaksAndMetrics],
   );
 
   useEffect(() => {

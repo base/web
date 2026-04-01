@@ -7,12 +7,22 @@ on:
   pull_request:
     branches: [master]
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   Jest:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - name: Setup Node.js with Yarn
+        uses: ./.github/actions/setup-node-yarn
+        with:
+          node-version: 24.x
       - name: Run Tests
-        run: |
-          yarn install 
-          yarn test
+        run: make test-unit

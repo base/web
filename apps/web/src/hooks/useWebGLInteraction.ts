@@ -127,6 +127,11 @@ export function useWebGLInteraction(
     const element = getElement();
     if (!element) return;
 
+    // Capture the animation ref for cleanup.
+    // Note: This creates a reference to the same object, not a copy.
+    // Modifying animationState.animationFrameId will update animationRef.current.animationFrameId
+    const animationState = animationRef.current;
+
     // Ensure initial rect measurement happens after layout is stable
     const scheduleInitialRect = () => {
       requestAnimationFrame(() => {
@@ -215,9 +220,9 @@ export function useWebGLInteraction(
       window.removeEventListener('scroll', handleScroll);
       resizeObserver.disconnect();
 
-      if (animationRef.current.animationFrameId !== null) {
-        cancelAnimationFrame(animationRef.current.animationFrameId);
-        animationRef.current.animationFrameId = null;
+      if (animationState.animationFrameId !== null) {
+        cancelAnimationFrame(animationState.animationFrameId);
+        animationState.animationFrameId = null;
       }
     };
   }, [getElement, screenToUV, updateRect, updateUniforms]);

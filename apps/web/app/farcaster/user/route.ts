@@ -1,11 +1,15 @@
 import { NextResponse } from 'next/server';
+import { logger } from 'apps/web/src/utils/logger';
 
 const API_URL = 'https://api.neynar.com/v2/farcaster/user/bulk';
 const API_KEY = process.env.NEYNAR_API_KEY;
 
-if (!API_KEY) console.error('NEYNAR_API_KEY required');
-
 export async function GET(request: Request) {
+  if (!API_KEY) {
+    logger.error('NEYNAR_API_KEY required', new Error('Missing NEYNAR_API_KEY'));
+    return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+  }
+
   const { searchParams } = new URL(request.url);
   const fids = searchParams.get('fid');
 

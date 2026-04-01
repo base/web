@@ -10,6 +10,7 @@ import { GLTFLoader } from 'three-stdlib';
 import { WebGlTunnelIn } from 'apps/web/src/components/WebGL/Tunnel';
 import { useWebGLInteraction } from 'apps/web/src/hooks/useWebGLInteraction';
 import { Float } from '@react-three/drei';
+import { logger } from 'apps/web/src/utils/logger';
 
 const DEBUG = false;
 const CAM_SIZE = 1.6;
@@ -207,7 +208,7 @@ export function CardScene({
         },
         undefined,
         (error) => {
-          console.error('Failed to load RGB texture:', rgbTexturePath, error);
+          logger.error('Failed to load RGB texture', error, { rgbTexturePath });
         },
       );
     } else {
@@ -237,7 +238,7 @@ export function CardScene({
       },
       undefined,
       (error: unknown) => {
-        console.error('Error loading GLTF model:', gltfSrc, error);
+        logger.error('Error loading GLTF model', error, { gltfSrc });
       },
     );
   }, [gltfSrc]);

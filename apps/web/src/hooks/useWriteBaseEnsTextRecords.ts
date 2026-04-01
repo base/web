@@ -132,7 +132,6 @@ export default function useWriteBaseEnsTextRecords({
       functionName: 'multicallWithNodeCheck',
     });
   }, [
-    basenameChain.id,
     hasChanged,
     initiateWriteTextRecords,
     keysToUpdate,

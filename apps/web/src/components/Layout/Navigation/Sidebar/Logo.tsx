@@ -7,6 +7,7 @@ import { stagger } from 'motion';
 import { AnimationSequence, useAnimate } from 'motion/react';
 import Link from 'apps/web/src/components/Link';
 import { SVGProps, useRef, useCallback } from 'react';
+import { logger } from 'apps/web/src/utils/logger';
 
 export function SidebarLogo() {
   const [scope, animate] = useAnimate();
@@ -204,7 +205,7 @@ export function SidebarLogo() {
         }, 0);
       }
     } catch (error) {
-      console.error(error);
+      logger.error('Error in logo animation', error);
     } finally {
       isAnimating.current = false;
     }
@@ -407,7 +408,7 @@ export function SidebarLogo() {
       // execute second timeline
       await animate(secondSequence, { duration: 1.2 });
     } catch (error) {
-      console.error(error);
+      logger.error('Error in logo mouse out animation', error);
     } finally {
       secondTimelineRunning.current = false;
       firstTimelineCompleted.current = false;

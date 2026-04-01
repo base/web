@@ -1,4 +1,5 @@
 import { useAnalytics } from 'apps/web/contexts/Analytics';
+import { useErrors } from 'apps/web/contexts/Errors';
 import {
   RegistrationSteps,
   useRegistration,
@@ -18,6 +19,7 @@ export default function RegistrationSuccessMessage() {
   const { address } = useAccount();
 
   const { logEventWithContext } = useAnalytics();
+  const { logError } = useErrors();
 
   const [popupMessage, setPopupMessage] = useState<string | null>(null);
 
@@ -36,9 +38,9 @@ export default function RegistrationSuccessMessage() {
       })
       .catch((error) => {
         setPopupMessage(`${error.message}`);
-        console.error('Error:', error);
+        logError(error, 'Error claiming USDC');
       });
-  }, [address]);
+  }, [address, logError]);
 
   const closePopup = useCallback(() => setPopupMessage(null), []);
 

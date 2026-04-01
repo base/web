@@ -26,11 +26,7 @@ function createDefaultPostgresManager() {
     const dialect = new PostgresDialect({ pool });
     return new Kysely<Database>({ dialect });
   } catch (error) {
-    if (isDevelopment) {
-      console.error('Failed to connect to postgres', error);
-    } else {
-      logger.error('Failed to connect to postgres', error);
-    }
+    logger.error('Failed to connect to postgres', error);
     throw new Error(`Failed to connect to postgres: ${error}`);
   }
 }

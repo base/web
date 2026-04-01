@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { useCallback, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { useCopyToClipboard } from 'usehooks-ts';
+import { logger } from 'apps/web/src/utils/logger';
 
 export function CustomWalletAdvancedAddressDetails() {
   const { address, chain } = useAccount();
@@ -17,7 +18,7 @@ export function CustomWalletAdvancedAddressDetails() {
       })
       .catch((err) => {
         setCopyText('Failed to copy');
-        console.error('Failed to copy address:', err);
+        logger.error('Failed to copy address', err);
       })
       .finally(() => {
         setTimeout(() => setCopyText('Copy'), 2000);

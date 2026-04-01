@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isAddress } from 'viem';
+import { logger } from 'apps/web/src/utils/logger';
 
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
 const TALENT_PROTOCOL_API_KEY = process.env.TALENT_PROTOCOL_API_KEY;
@@ -29,6 +30,12 @@ export async function GET(req: NextRequest) {
       case 'basescan-internal':
         apiUrl = `https://api.etherscan.io/v2/api?module=account&action=txlistinternal&address=${address}&chainid=8453&apikey=${ETHERSCAN_API_KEY}`;
         break;
+      case 'etherscan-sourcecode':
+        apiUrl = `https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${address}&apikey=${ETHERSCAN_API_KEY}`;
+        break;
+      case 'basescan-sourcecode':
+        apiUrl = `https://api.basescan.org/api?module=contract&action=getsourcecode&address=${address}&apikey=${ETHERSCAN_API_KEY}`;
+        break;
       default:
         return NextResponse.json({ error: 'Invalid apiType parameter' }, { status: 400 });
     }
@@ -54,7 +61,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: responseData }, { status: externalResponse.status });
     }
   } catch (error) {
-    console.error('Error in API proxy:', error);
+    logger.error('Error in API proxy', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

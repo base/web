@@ -20,4 +20,14 @@ const customJestConfig = {
   testPathIgnorePatterns: ['<rootDir>/e2e/'],
 };
 
-module.exports = createJestConfig(customJestConfig);
+// Export async config to properly handle Next.js Jest config and modify transformIgnorePatterns
+module.exports = async () => {
+  const nextJestConfig = await createJestConfig(customJestConfig)();
+  return {
+    ...nextJestConfig,
+    transformIgnorePatterns: [
+      // Transform all node_modules except the ones below
+      'node_modules/(?!(.*\\.mjs$|@coinbase/onchainkit|wagmi|@wagmi|viem|data-uri-to-buffer|fetch-blob|formdata-polyfill|graphql-request|cross-fetch|is-ipfs|uint8arrays|multiformats|@multiformats|iso-url))',
+    ],
+  };
+};

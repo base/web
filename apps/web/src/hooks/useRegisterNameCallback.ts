@@ -161,11 +161,22 @@ export function useRegisterNameCallback(
 
     const reverseRecordForRequest = paymasterServiceEnabled ? false : reverseRecord;
 
+    const registerContractAddress = REGISTER_CONTRACT_ADDRESSES[basenameChain.id];
+    const resolverAddress = UPGRADEABLE_L2_RESOLVER_ADDRESSES[basenameChain.id];
+
+    if (!registerContractAddress || !resolverAddress) {
+      const error = new Error(
+        `Missing contract addresses for chain ${basenameChain.id}: registerAddress=${registerContractAddress}, resolverAddress=${resolverAddress}`,
+      );
+      logError(error, 'Register name contract address lookup failed');
+      return;
+    }
+
     const registerRequest = {
       name: normalizedName, // The name being registered.
       owner: address, // The address of the owner for the name.
       duration: secondsInYears(years), // The duration of the registration in seconds.
-      resolver: UPGRADEABLE_L2_RESOLVER_ADDRESSES[basenameChain.id], // The address of the resolver to set for this name.
+      resolver: resolverAddress, // The address of the resolver to set for this name.
       data: [addressData, baseCointypeData, nameData], //  Multicallable data bytes for setting records in the associated resolver upon registration.
       reverseRecord: reverseRecordForRequest, // When using paymaster (atomic batch), set via separate call instead of signature flow.
       coinTypes: coinTypesForRequest,
@@ -177,28 +188,37 @@ export function useRegisterNameCallback(
       if (!paymasterServiceEnabled) {
         await initiateRegisterName({
           abi: REGISTER_CONTRACT_ABI,
-          address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
+          address: registerContractAddress,
           functionName: isDiscounted ? 'discountedRegister' : 'register',
           args: isDiscounted ? [registerRequest, discountKey, validationData] : [registerRequest],
           value,
         });
       } else {
+        const reverseRegistrarAddress = USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES[basenameChain.id];
+        if (reverseRecord && !reverseRegistrarAddress) {
+          const error = new Error(
+            `Missing reverse registrar address for chain ${basenameChain.id}`,
+          );
+          logError(error, 'Register name reverse registrar address lookup failed');
+          return;
+        }
+
         await initiateBatchCalls({
           contracts: [
             {
               abi: REGISTER_CONTRACT_ABI,
-              address: REGISTER_CONTRACT_ADDRESSES[basenameChain.id],
+              address: registerContractAddress,
               functionName: isDiscounted ? 'discountedRegister' : 'register',
               args: isDiscounted
                 ? [registerRequest, discountKey, validationData]
                 : [registerRequest],
               value,
             },
-            ...(reverseRecord
+            ...(reverseRecord && reverseRegistrarAddress
               ? [
                   {
                     abi: L2ReverseRegistrarAbi,
-                    address: USERNAME_L2_REVERSE_REGISTRAR_ADDRESSES[basenameChain.id],
+                    address: reverseRegistrarAddress,
                     functionName: 'setName',
                     args: [formatBaseEthDomain(name, basenameChain.id)],
                   },

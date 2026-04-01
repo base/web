@@ -73,23 +73,40 @@ export function GridHero({ hasBlue = false }: GridHeroProps) {
       ctx.fillRect(x * cellSize, y * cellSize, cellSize - 1, cellSize - 1);
     }
 
-    let animationFrameId: NodeJS.Timeout;
+    // Store active flashes with their expiration times
+    const activeFlashes = new Map<string, number>();
+    let animationTimeoutId: NodeJS.Timeout;
+    
     function animate() {
+      const now = Date.now();
+      
+      // Clear expired flashes
+      activeFlashes.forEach((expireTime, key) => {
+        if (now >= expireTime) {
+          const [x, y] = key.split(',').map(Number);
+          drawCell(x, y, BLACK);
+          activeFlashes.delete(key);
+        }
+      });
+      
+      // Add new flashes in a single pass
       for(let y = 0; y < rows; y++) {
         for(let x = 0; x < cols; x++) {
-          if(Math.random() < FLASH_PROBABILITY) {
+          const key = `${x},${y}`;
+          if(!activeFlashes.has(key) && Math.random() < FLASH_PROBABILITY) {
             const color = Math.random() < BLUE_FLASH_PROBABILITY && hasBlue ? BLUE : GREY;
             drawCell(x, y, color);
-            setTimeout(() => drawCell(x, y, BLACK), FLASH_DURATION);
+            activeFlashes.set(key, now + FLASH_DURATION);
           }
         }
       }
-      animationFrameId = setTimeout(animate, FRAME_INTERVAL);
+      
+      animationTimeoutId = setTimeout(animate, FRAME_INTERVAL);
     }
 
     drawGridLines();
     animate();
-    return () => clearTimeout(animationFrameId);
+    return () => clearTimeout(animationTimeoutId);
   }, [hasBlue, canvasWidth]);
 
   return (

@@ -56,6 +56,17 @@ const config: Record<string, string[]> = {
   ],
 };
 
+// Pre-compute subcategory to category lookup map for O(1) access instead of O(n) find operations
+const subcategoryToCategoryMap: Record<string, string> = Object.entries(config).reduce(
+  (acc, [category, subcategories]) => {
+    subcategories.forEach((subcategory) => {
+      acc[subcategory] = category;
+    });
+    return acc;
+  },
+  {} as Record<string, string>,
+);
+
 function orderedEcosystemAppsAsc() {
   return ecosystemApps.sort((a, b) => {
     if (a.name.toLowerCase() > b.name.toLowerCase()) {
@@ -109,8 +120,7 @@ export default function Content() {
     () => [
       ...new Set(
         selectedSubcategories.map(
-          (subcategory) =>
-            Object.keys(config).find((category) => config[category].includes(subcategory)) ?? 'all',
+          (subcategory) => subcategoryToCategoryMap[subcategory] ?? 'all',
         ),
       ),
     ],

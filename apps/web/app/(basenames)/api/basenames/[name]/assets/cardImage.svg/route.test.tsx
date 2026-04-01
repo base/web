@@ -152,7 +152,7 @@ describe('cardImage.svg route', () => {
     });
 
     it('should handle custom avatar URL', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
+       
       const { getCloudinaryMediaUrl } = require('apps/web/src/utils/images') as { getCloudinaryMediaUrl: jest.Mock };
       mockGetEnsText.mockResolvedValue('https://example.com/avatar.png');
 
@@ -169,9 +169,9 @@ describe('cardImage.svg route', () => {
     });
 
     it('should handle IPFS avatar URL', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
+       
       const { IsValidIpfsUrl, getIpfsGatewayUrl } = require('apps/web/src/utils/urls') as { IsValidIpfsUrl: jest.Mock; getIpfsGatewayUrl: jest.Mock };
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
+       
       const { getCloudinaryMediaUrl } = require('apps/web/src/utils/images') as { getCloudinaryMediaUrl: jest.Mock };
       IsValidIpfsUrl.mockReturnValue(true);
       getIpfsGatewayUrl.mockReturnValue('https://ipfs.io/ipfs/Qm123');
@@ -192,9 +192,9 @@ describe('cardImage.svg route', () => {
     });
 
     it('should fallback to default image when IPFS gateway URL is null', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
+       
       const { IsValidIpfsUrl, getIpfsGatewayUrl } = require('apps/web/src/utils/urls') as { IsValidIpfsUrl: jest.Mock; getIpfsGatewayUrl: jest.Mock };
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
+       
       const { getCloudinaryMediaUrl } = require('apps/web/src/utils/images') as { getCloudinaryMediaUrl: jest.Mock };
       IsValidIpfsUrl.mockReturnValue(true);
       getIpfsGatewayUrl.mockReturnValue(null);
@@ -216,7 +216,7 @@ describe('cardImage.svg route', () => {
     });
 
     it('should handle errors when fetching avatar gracefully', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
+       
       const { logger } = require('apps/web/src/utils/logger') as { logger: { error: jest.Mock } };
       const error = new Error('Failed to fetch avatar');
       mockGetEnsText.mockRejectedValue(error);
@@ -239,7 +239,7 @@ describe('cardImage.svg route', () => {
       }));
 
       // Re-import the module to get fresh mocks
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
+       
       const { GET: GETDev } = require('./route') as { GET: typeof GET };
 
       const request = new Request('http://localhost:3000/api/basenames/alice/assets/cardImage.svg');

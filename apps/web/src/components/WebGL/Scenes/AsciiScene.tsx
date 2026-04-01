@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import * as THREE from 'three';
 import { WebGLView } from 'apps/web/src/components/WebGL/WebGLView';
+import { logger } from 'apps/web/src/utils/logger';
 
 type AsciiSceneProps = {
   imagePath?: string;
@@ -110,7 +111,7 @@ export default function AsciiScene({
       },
       undefined,
       (error) => {
-        console.error('Failed to load image texture:', error);
+        logger.error('Failed to load image texture', error);
       },
     );
   }, [imagePath]);

@@ -1,6 +1,7 @@
 import { createPublicClient, http } from 'viem';
 import type { TransactionReceipt } from 'viem';
 import type { Chain } from 'viem/chains';
+import { logger } from 'apps/web/src/utils/logger';
 
 export enum RawErrorStrings {
   Unavailable = 'Name unavailable',
@@ -22,6 +23,6 @@ export async function getTransactionStatus(chain: Chain, transactionId: string) 
     const txStatus = tx.status;
     return txStatus;
   } catch (error) {
-    console.error('Could not get transaction receipt:', error);
+    logger.error('Could not get transaction receipt', error);
   }
 }

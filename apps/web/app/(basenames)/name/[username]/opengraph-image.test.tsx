@@ -214,7 +214,7 @@ describe('opengraph-image', () => {
     });
 
     it('should handle custom avatar URL', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
+       
       const { getCloudinaryMediaUrl } = require('apps/web/src/utils/images') as { getCloudinaryMediaUrl: jest.Mock };
       mockGetEnsText.mockResolvedValue('https://example.com/avatar.png');
 
@@ -233,9 +233,9 @@ describe('opengraph-image', () => {
     });
 
     it('should handle IPFS avatar URL', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
+       
       const { IsValidIpfsUrl, getIpfsGatewayUrl } = require('apps/web/src/utils/urls') as { IsValidIpfsUrl: jest.Mock; getIpfsGatewayUrl: jest.Mock };
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
+       
       const { getCloudinaryMediaUrl } = require('apps/web/src/utils/images') as { getCloudinaryMediaUrl: jest.Mock };
       IsValidIpfsUrl.mockReturnValue(true);
       getIpfsGatewayUrl.mockReturnValue('https://ipfs.io/ipfs/Qm123');
@@ -258,7 +258,7 @@ describe('opengraph-image', () => {
     });
 
     it('should handle errors when fetching avatar gracefully', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
+       
       const { logger } = require('apps/web/src/utils/logger') as { logger: { error: jest.Mock } };
       const error = new Error('Failed to fetch avatar');
       mockGetEnsText.mockRejectedValue(error);
@@ -275,7 +275,7 @@ describe('opengraph-image', () => {
     });
 
     it('should return an ImageResponse', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
+       
       const { ImageResponse } = require('next/og') as { ImageResponse: jest.Mock };
 
       const props = {
@@ -290,7 +290,7 @@ describe('opengraph-image', () => {
     });
 
     it('should include username in the image', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
+       
       const { ImageResponse } = require('next/og') as { ImageResponse: jest.Mock };
 
       const props = {
@@ -309,7 +309,7 @@ describe('opengraph-image', () => {
     });
 
     it('should load custom font for the image', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
+       
       const { ImageResponse } = require('next/og') as { ImageResponse: jest.Mock };
 
       const props = {

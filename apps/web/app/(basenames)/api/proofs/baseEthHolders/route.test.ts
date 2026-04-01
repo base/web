@@ -148,6 +148,7 @@ describe('baseEthHolders route', () => {
         validAddress,
         base.id,
         'basenames_base_eth_holders_discount',
+        false,
       );
     });
 
@@ -173,6 +174,7 @@ describe('baseEthHolders route', () => {
         validAddress,
         baseSepolia.id,
         'basenames_base_eth_holders_discount',
+        false,
       );
     });
 
@@ -320,6 +322,7 @@ describe('baseEthHolders route', () => {
         mixedCaseAddress,
         base.id,
         'basenames_base_eth_holders_discount',
+        false,
       );
     });
 
@@ -342,6 +345,7 @@ describe('baseEthHolders route', () => {
         expect.any(String),
         expect.any(Number),
         'basenames_base_eth_holders_discount',
+        false,
       );
     });
   });

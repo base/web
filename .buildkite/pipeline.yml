@@ -28,16 +28,34 @@ _shared_step: &shared_step
     NODE_OPTIONS: --max-old-space-size=8192
 
 steps:
-  - label: Build
+  - label: ":package: Build"
     <<: *shared_step
-    parallelism: 1
     commands:
       - tools/ci/setup.sh
-      - yarn build
+      - make build
 
-  - label: Lint
+  - label: ":mag: Lint"
     <<: *shared_step
-    parallelism: 1
     commands:
       - tools/ci/setup.sh
-      - yarn lint
+      - make lint
+
+  - label: ":test_tube: Unit Tests"
+    <<: *shared_step
+    commands:
+      - tools/ci/setup.sh
+      - make test-unit
+
+  - label: ":shield: Security Audit"
+    <<: *shared_step
+    commands:
+      - tools/ci/setup.sh
+      - make audit
+    soft_fail: true
+
+  - wait: ~
+    continue_on_failure: true
+
+  - label: ":bar_chart: Build Summary"
+    commands:
+      - echo "All parallel builds completed"

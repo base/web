@@ -17,6 +17,17 @@ The following is a set of guidelines for contributing to Base Web. These are jus
 
 This project and everyone participating in it is governed by our [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
 
+## Getting Started
+
+Before you start contributing, make sure you have configured your Git identity:
+
+```bash
+git config user.name "Your Name"
+git config user.email "your.email@example.com"
+```
+
+This ensures your commits are properly attributed to you.
+
 ## How Can I Contribute?
 
 ### Reporting Bugs
@@ -33,17 +44,37 @@ This project and everyone participating in it is governed by our [Code of Conduc
 
 ### Pull Requests
 
+**Important**: Before creating a pull request, please review the [Repository Policy (POLICY.md)](POLICY.md) which outlines branch protection rules, required status checks, and development workflows.
+
 1. **Fork the repository** and create your branch from `master`.
 
-2. **Make your changes**: Apply your changes, following the coding conventions described below.
+2. **Set up the development environment**:
+   ```bash
+   yarn          # Install dependencies
+   # OR
+   make setup    # Install dependencies using Make
+   ```
 
-3. **Commit your changes**: Commit your changes using a descriptive commit message.
+3. **Build System**: Use the parallelized build system for faster development:
+   ```bash
+   make build    # Build all workspaces in parallel
+   make lint     # Run linting
+   make test     # Run tests
+   make ci       # Run full CI pipeline locally
+   ```
+   See [BUILD_SYSTEM.md](BUILD_SYSTEM.md) for more details.
 
-4. **Open a Pull Request**: Describe what you did in the pull request description. Mention the issue number if your pull request is related to an existing issue. 
+4. **Make your changes**: Apply your changes, following the coding conventions described below.
 
-5. **Include Screenshots**: If your pull request includes any visual changes to the project, please include before and after screenshots in your pull request description to help us better understand the changes.
+5. **Test your changes**: Run `make ci` to ensure all checks pass locally before submitting.
 
-6. **Wait for review**: Once your pull request is opened, it will be reviewed as soon as possible. Changes may be requested, and your responsiveness is appreciated.
+6. **Commit your changes**: Commit your changes using a descriptive commit message.
+
+7. **Open a Pull Request**: Describe what you did in the pull request description. Mention the issue number if your pull request is related to an existing issue. 
+
+8. **Include Screenshots**: If your pull request includes any visual changes to the project, please include before and after screenshots in your pull request description to help us better understand the changes.
+
+9. **Wait for review**: Once your pull request is opened, it will be reviewed as soon as possible. Changes may be requested, and your responsiveness is appreciated.
 
 ## Coding Conventions
 

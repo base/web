@@ -1,0 +1,21 @@
+# security.txt for base.org
+# This file follows RFC 9116: https://www.rfc-editor.org/rfc/rfc9116.html
+
+# Our security contact
+Contact: https://github.com/base-org/base/security/advisories/new
+Contact: mailto:security@base.org
+
+# Canonical URI
+Canonical: https://base.org/.well-known/security.txt
+
+# Security policy and reporting guidelines
+Policy: https://github.com/base-org/base/blob/HEAD/POLICY.md
+
+# Security acknowledgments
+Acknowledgments: https://github.com/base-org/base/security/advisories
+
+# Preferred languages for security reports
+Preferred-Languages: en
+
+# This security.txt file expires one year from now
+Expires: 2027-02-20T12:00:00.000Z

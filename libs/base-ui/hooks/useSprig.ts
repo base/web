@@ -23,7 +23,10 @@ export default function useSprig(environmentId: SprigEnvironmentId) {
         void sprigInit('track', 'pageload');
         setSprig(sprigInit);
       } catch (error) {
-        console.error('Failed to load the Sprig module:', error);
+        if (isDevelopment) {
+          // eslint-disable-next-line no-console
+          console.error('Failed to load the Sprig module:', error);
+        }
       }
     };
 

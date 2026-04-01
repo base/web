@@ -9,39 +9,49 @@ type NextApiHandlerWithParams<T = Record<string, string>> = (
 ) => Promise<NextResponse>;
 
 const defaultTimeout = process.env.DEFAULT_API_TIMEOUT ?? 5000;
+
+// Generic timeout handler that works with both handler types
+async function handleWithTimeout(
+  req: NextRequest,
+  handlerPromise: Promise<NextResponse>,
+  timeoutLimit: number | string,
+): Promise<NextResponse> {
+  let timeoutId: NodeJS.Timeout | undefined;
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    timeoutId = setTimeout(() => reject(new Error('Request timed out')), timeoutLimit as number);
+  });
+
+  try {
+    return await Promise.race([handlerPromise, timeoutPromise]);
+  } catch (error) {
+    if (error instanceof Error) {
+      if (error.message === 'Request timed out') {
+        logger.error('Request timed out', error, {
+          endpoint_url: req.url,
+          params: req.nextUrl.searchParams,
+        });
+        return NextResponse.json({ error: 'Request timed out' }, { status: 408 });
+      }
+    }
+    logger.error('Error in withTimeout', error, {
+      endpoint_url: req.url,
+      params: req.nextUrl.searchParams,
+    });
+    return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
+  } finally {
+    if (timeoutId !== undefined) {
+      clearTimeout(timeoutId);
+    }
+  }
+}
+
 export function withTimeout(
   handler: NextApiHandler,
   timeoutLimit = defaultTimeout,
 ): NextApiHandler {
   return async (req) => {
-    const timeoutPromise = new Promise<never>((_, reject) =>
-      setTimeout(() => reject(new Error('Request timed out')), timeoutLimit as number),
-    );
-
-    const handlerPromise = new Promise<NextResponse>((resolve, reject) => {
-      Promise.resolve(handler(req))
-        .then((response) => resolve(response))
-        .catch((error) => reject(error));
-    });
-
-    try {
-      return await Promise.race([handlerPromise, timeoutPromise]);
-    } catch (error) {
-      if (error instanceof Error) {
-        if (error.message === 'Request timed out') {
-          logger.error('Request timed out', error, {
-            endpoint_url: req.url,
-            params: req.nextUrl.searchParams,
-          });
-          return NextResponse.json({ error: 'Request timed out' }, { status: 408 });
-        }
-      }
-      logger.error('Error in withTimeout', error, {
-        endpoint_url: req.url,
-        params: req.nextUrl.searchParams,
-      });
-      return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
-    }
+    const handlerPromise = Promise.resolve(handler(req));
+    return handleWithTimeout(req, handlerPromise, timeoutLimit);
   };
 }
 
@@ -50,33 +60,7 @@ export function withTimeoutWithParams<T>(
   timeoutLimit = defaultTimeout,
 ): NextApiHandlerWithParams<T> {
   return async (req, params) => {
-    const timeoutPromise = new Promise<never>((_, reject) =>
-      setTimeout(() => reject(new Error('Request timed out')), timeoutLimit as number),
-    );
-
-    const handlerPromise = new Promise<NextResponse>((resolve, reject) => {
-      Promise.resolve(handler(req, params))
-        .then((response) => resolve(response))
-        .catch((error) => reject(error));
-    });
-
-    try {
-      return await Promise.race([handlerPromise, timeoutPromise]);
-    } catch (error) {
-      if (error instanceof Error) {
-        if (error.message === 'Request timed out') {
-          logger.error('Request timed out', error, {
-            endpoint_url: req.url,
-            params: req.nextUrl.searchParams,
-          });
-          return NextResponse.json({ error: 'Request timed out' }, { status: 408 });
-        }
-      }
-      logger.error('Error in withTimeout', error, {
-        endpoint_url: req.url,
-        params: req.nextUrl.searchParams,
-      });
-      return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
-    }
+    const handlerPromise = Promise.resolve(handler(req, params));
+    return handleWithTimeout(req, handlerPromise, timeoutLimit);
   };
 }

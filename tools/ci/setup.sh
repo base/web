@@ -1,6 +1,10 @@
 #!/bin/bash
 set -eo pipefail
 
+echo "--- Configuring git"
+git config --global user.name "${GIT_AUTHOR_NAME:-Base CI}"
+git config --global user.email "${GIT_AUTHOR_EMAIL:-ci@base.org}"
+
 echo "--- Installing yarn dependencies"
 
 # Disable global cache so that we can cache `.yarn/cache` in buildkite

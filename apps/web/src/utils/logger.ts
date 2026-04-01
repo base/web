@@ -1,4 +1,5 @@
 // lib/logger.ts
+/* eslint-disable no-console */
 
 import type { Tracer } from 'dd-trace';
 import { bugsnagNotify } from 'apps/web/src/utils/bugsnag';

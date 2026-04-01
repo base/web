@@ -13,7 +13,27 @@ export const isDevelopment = nodeEnv === 'development';
 
 // trusted signer
 export const trustedSignerAddress = (process.env.TRUSTED_SIGNER_ADDRESS as Address) ?? '0x';
-export const trustedSignerPKey = process.env.TRUSTED_SIGNER_PRIVATE_KEY ?? '0x';
+
+/**
+ * Gets the trusted signer private key from environment variables.
+ * SECURITY: This function should only be called in server-side code and never exposed to the client.
+ * The private key is NOT exported as a constant to prevent accidental exposure.
+ * 
+ * @throws {Error} If TRUSTED_SIGNER_PRIVATE_KEY is not set or invalid
+ * @returns The private key from environment variables
+ */
+export function getTrustedSignerPrivateKey(): string {
+  const privateKey = process.env.TRUSTED_SIGNER_PRIVATE_KEY;
+  
+  if (!privateKey || privateKey === '0x' || privateKey.length < 66) {
+    throw new Error(
+      'TRUSTED_SIGNER_PRIVATE_KEY environment variable is missing or invalid. ' +
+      'This is required for signing operations. Ensure it is set in your .env file.'
+    );
+  }
+  
+  return privateKey;
+}
 
 type AddressMap = Record<number, Address>;
 

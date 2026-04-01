@@ -1,12 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
-import {
-  getWalletProofs,
-  ProofsException,
-  ProofTableNamespace,
-  proofValidation,
-} from 'apps/web/src/utils/proofs';
-import { logger } from 'apps/web/src/utils/logger';
+import { NextRequest } from 'next/server';
+import { ProofTableNamespace } from 'apps/web/src/utils/proofs';
 import { withTimeout } from 'apps/web/app/api/decorators';
+import { createWalletProofHandler } from '../proofHandlers';
 
 /*
 this endpoint returns whether or not the account has a cb.id
@@ -20,34 +15,12 @@ example return:
 }
 */
 async function handler(req: NextRequest) {
-  if (req.method !== 'GET') {
-    return NextResponse.json({ error: 'method not allowed' }, { status: 405 });
-  }
-  const address = req.nextUrl.searchParams.get('address');
-  const chain = req.nextUrl.searchParams.get('chain');
-  const validationErr = proofValidation(address ?? '', chain ?? '');
-  if (validationErr) {
-    return NextResponse.json({ error: validationErr.error }, { status: validationErr.status });
-  }
-
-  try {
-    const responseData = await getWalletProofs(
-      // to lower case to be able to use index on huge dataset
-      (address as string).toLowerCase() as `0x${string}`,
-      parseInt(chain as string),
-      ProofTableNamespace.CBIDDiscount,
-      false,
-    );
-
-    return NextResponse.json(responseData);
-  } catch (error: unknown) {
-    if (error instanceof ProofsException) {
-      return NextResponse.json({ error: error.message }, { status: error.statusCode });
-    }
-    logger.error('error getting proofs for cbid discount', error);
-  }
-  // If error is not an instance of Error, return a generic error message
-  return NextResponse.json({ error: 'An unexpected error occurred' }, { status: 500 });
+  return createWalletProofHandler(
+    req,
+    ProofTableNamespace.CBIDDiscount,
+    'error getting proofs for cbid discount',
+    true, // lowercase the address
+  );
 }
 
 export const GET = withTimeout(handler);
